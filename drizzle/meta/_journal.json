@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1766737429567,
+      "tag": "0000_puzzling_emma_frost",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1767184385833,
+      "tag": "0001_solid_rhodey",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1767184650504,
+      "tag": "0002_typical_red_ghost",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1767187823681,
+      "tag": "0003_puzzling_plazm",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1735660800000,
+      "tag": "0004_add_series",
+      "breakpoints": true
+    }
+  ]
+}
