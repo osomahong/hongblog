@@ -40,6 +40,11 @@ const categoryColors = {
   MARKETING: "bg-marketing text-white",
 };
 
+// 메인 페이지는 항상 최신 데이터를 보여줘야 하므로 dynamic으로 설정
+export const dynamic = 'force-dynamic';
+// 또는 짧은 revalidation 시간 설정 (예: 60초)
+// export const revalidate = 60;
+
 export default async function HomePage() {
   const [posts, trending, categoryStats, popularFaqs, allTags] = await Promise.all([
     getPublishedPosts(),
@@ -142,120 +147,124 @@ export default async function HomePage() {
       )}
 
       {/* Browse by Category */}
-      <section className="mb-6 sm:mb-12">
-        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-          <div className="bg-black border-3 sm:border-4 border-black p-1.5 sm:p-2 rotate-3">
-            <FolderOpen className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+      {categoryStats.length > 0 && categoryStats.some(stat => stat.postCount > 0 || stat.faqCount > 0) && (
+        <section className="mb-6 sm:mb-12">
+          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="bg-black border-3 sm:border-4 border-black p-1.5 sm:p-2 rotate-3">
+              <FolderOpen className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </div>
+            <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Browse by Category</h2>
           </div>
-          <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Browse by Category</h2>
-        </div>
-        <div className="grid grid-cols-3 gap-2 sm:gap-4">
-          {categoryStats.map((stat) => {
-            const Icon = categoryIcons[stat.category];
-            const bgColor = categoryColors[stat.category];
-            return (
-              <Link key={stat.category} href={`/category/${stat.category.toLowerCase()}`}>
-                <NeoTiltCard className={`${bgColor} border-3 sm:border-4 border-black p-2.5 sm:p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all`} intensity={15}>
-                  <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 mb-1.5 sm:mb-3">
-                    <Icon className="w-5 h-5 sm:w-8 sm:h-8" />
-                    <span className="text-[10px] sm:text-xl font-black uppercase text-center sm:text-left">
-                      {categoryLabels[stat.category]}
-                    </span>
-                  </div>
-                  <div className="flex flex-col sm:flex-row gap-0.5 sm:gap-4 text-[9px] sm:text-sm font-mono text-center sm:text-left">
-                    <span>{stat.postCount} posts</span>
-                    <span>{stat.faqCount} faqs</span>
-                  </div>
-                </NeoTiltCard>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+          <div className="grid grid-cols-3 gap-2 sm:gap-4">
+            {categoryStats.map((stat) => {
+              const Icon = categoryIcons[stat.category];
+              const bgColor = categoryColors[stat.category];
+              return (
+                <Link key={stat.category} href={`/category/${stat.category.toLowerCase()}`}>
+                  <NeoTiltCard className={`${bgColor} border-3 sm:border-4 border-black p-2.5 sm:p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all`} intensity={15}>
+                    <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 mb-1.5 sm:mb-3">
+                      <Icon className="w-5 h-5 sm:w-8 sm:h-8" />
+                      <span className="text-[10px] sm:text-xl font-black uppercase text-center sm:text-left">
+                        {categoryLabels[stat.category]}
+                      </span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-0.5 sm:gap-4 text-[9px] sm:text-sm font-mono text-center sm:text-left">
+                      <span>{stat.postCount} posts</span>
+                      <span>{stat.faqCount} faqs</span>
+                    </div>
+                  </NeoTiltCard>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* Latest Insights */}
-      <section className="mb-6 sm:mb-12">
-        <div className="flex items-center justify-between mb-4 sm:mb-6">
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="bg-primary border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-2">
-              <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+      {posts.length > 0 && (
+        <section className="mb-6 sm:mb-12">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="bg-primary border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-2">
+                <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              </div>
+              <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Latest Insights</h2>
             </div>
-            <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Latest Insights</h2>
+            <span className="text-[10px] sm:text-sm text-muted-foreground">{posts.length}개의 글</span>
           </div>
-          <span className="text-[10px] sm:text-sm text-muted-foreground">{posts.length}개의 글</span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-          {posts.slice(0, 6).map((post, index) => {
-            const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
-            return (
-              <Link key={post.id} href={`/insights/${post.slug}`}>
-                <NeoTiltCard className="h-full">
-                  <NeoCardHeader>
-                    <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap">
-                      <NeoBadge
-                        variant={
-                          post.category === "AI_TECH"
-                            ? "ai"
-                            : post.category === "DATA"
-                              ? "data"
-                              : "marketing"
-                        }
-                      >
-                        <span className="flex items-center gap-1">
-                          <Icon className="w-3 h-3" />
-                          {categoryLabels[post.category as keyof typeof categoryLabels]}
-                        </span>
-                      </NeoBadge>
-                      {post.highlights && (post.highlights as string[]).length > 0 && (
-                        <div className="flex gap-1 flex-wrap">
-                          {(post.highlights as string[]).slice(0, 1).map((highlight, idx) => (
-                            <span
-                              key={idx}
-                              className="text-[10px] sm:text-xs font-mono font-bold bg-black text-white px-1.5 sm:px-2 py-0.5 sm:py-1"
-                            >
-                              {highlight}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    <NeoCardTitle className="text-base sm:text-2xl leading-snug">
-                      {post.title}
-                    </NeoCardTitle>
-                    <NeoCardDescription className="text-xs sm:text-base line-clamp-2">
-                      {post.excerpt}
-                    </NeoCardDescription>
-                  </NeoCardHeader>
-                  <NeoCardContent>
-                    <div className="flex flex-wrap gap-1">
-                      {post.tags.slice(0, 3).map((tag) => (
-                        <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
-                      ))}
-                    </div>
-                  </NeoCardContent>
-                  <NeoCardFooter className="flex items-center justify-between">
-                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
-                      {post.createdAt.toLocaleDateString("ko-KR")}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">
-                      Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
-                    </span>
-                  </NeoCardFooter>
-                </NeoTiltCard>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+            {posts.slice(0, 6).map((post, index) => {
+              const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
+              return (
+                <Link key={post.id} href={`/insights/${post.slug}`}>
+                  <NeoTiltCard className="h-full">
+                    <NeoCardHeader>
+                      <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap">
+                        <NeoBadge
+                          variant={
+                            post.category === "AI_TECH"
+                              ? "ai"
+                              : post.category === "DATA"
+                                ? "data"
+                                : "marketing"
+                          }
+                        >
+                          <span className="flex items-center gap-1">
+                            <Icon className="w-3 h-3" />
+                            {categoryLabels[post.category as keyof typeof categoryLabels]}
+                          </span>
+                        </NeoBadge>
+                        {post.highlights && (post.highlights as string[]).length > 0 && (
+                          <div className="flex gap-1 flex-wrap">
+                            {(post.highlights as string[]).slice(0, 1).map((highlight, idx) => (
+                              <span
+                                key={idx}
+                                className="text-[10px] sm:text-xs font-mono font-bold bg-black text-white px-1.5 sm:px-2 py-0.5 sm:py-1"
+                              >
+                                {highlight}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      <NeoCardTitle className="text-base sm:text-2xl leading-snug">
+                        {post.title}
+                      </NeoCardTitle>
+                      <NeoCardDescription className="text-xs sm:text-base line-clamp-2">
+                        {post.excerpt}
+                      </NeoCardDescription>
+                    </NeoCardHeader>
+                    <NeoCardContent>
+                      <div className="flex flex-wrap gap-1">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
+                        ))}
+                      </div>
+                    </NeoCardContent>
+                    <NeoCardFooter className="flex items-center justify-between">
+                      <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
+                        {post.createdAt.toLocaleDateString("ko-KR")}
+                      </span>
+                      <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">
+                        Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                      </span>
+                    </NeoCardFooter>
+                  </NeoTiltCard>
+                </Link>
+              );
+            })}
+          </div>
+          {posts.length > 6 && (
+            <div className="mt-4 sm:mt-6 text-center">
+              <Link href="/insights">
+                <NeoButton variant="outline" size="lg" className="text-sm sm:text-base">
+                  모든 글 보기 ({posts.length}개) <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
+                </NeoButton>
               </Link>
-            );
-          })}
-        </div>
-        {posts.length > 6 && (
-          <div className="mt-4 sm:mt-6 text-center">
-            <Link href="/insights">
-              <NeoButton variant="outline" size="lg" className="text-sm sm:text-base">
-                모든 글 보기 ({posts.length}개) <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
-              </NeoButton>
-            </Link>
-          </div>
-        )}
-      </section>
+            </div>
+          )}
+        </section>
+      )}
 
       {/* Popular FAQs */}
       {popularFaqs.length > 0 && (

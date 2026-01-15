@@ -11,6 +11,7 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
+import { trackBackButtonClick, trackRelatedContentClick } from "@/lib/gtm";
 
 type Props = {
     params: Promise<{ courseSlug: string; classSlug: string }>;
@@ -130,7 +131,14 @@ export default async function ClassDetailPage({ params }: Props) {
             />
 
             <div className="py-4 sm:py-12">
-                <ViewTracker contentType="class" contentId={classData.id} />
+                <ViewTracker
+                    contentType="class"
+                    contentId={classData.id}
+                    contentTitle={classData.term}
+                    contentSlug={classSlug}
+                    category={classData.category}
+                    tags={classData.tags}
+                />
 
                 {/* Breadcrumb & Back Button */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
