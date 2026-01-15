@@ -30,10 +30,22 @@ export function Nav() {
           {/* Desktop Navigation Links */}
           <div className="hidden sm:flex items-center gap-1">
             <Link
+              href="/class"
+              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
+            >
+              Class
+            </Link>
+            <Link
               href="/insights"
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               Insights
+            </Link>
+            <Link
+              href="/series"
+              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
+            >
+              Series
             </Link>
             <Link
               href="/faq"
@@ -46,6 +58,12 @@ export function Nav() {
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               Tags
+            </Link>
+            <Link
+              href="/about/life"
+              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
+            >
+              Life
             </Link>
             <Link
               href="/about"
@@ -69,11 +87,25 @@ export function Nav() {
         {isMenuOpen && (
           <div className="sm:hidden border-t-2 border-black py-2">
             <Link
+              href="/class"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
+            >
+              Class
+            </Link>
+            <Link
               href="/insights"
               onClick={() => setIsMenuOpen(false)}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Insights
+            </Link>
+            <Link
+              href="/series"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
+            >
+              Series
             </Link>
             <Link
               href="/faq"
@@ -88,6 +120,13 @@ export function Nav() {
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Tags
+            </Link>
+            <Link
+              href="/about/life"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
+            >
+              Life
             </Link>
             <Link
               href="/about"

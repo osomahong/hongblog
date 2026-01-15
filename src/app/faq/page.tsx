@@ -7,6 +7,7 @@ import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/componen
 import { NeoBadge } from "@/components/neo";
 import { NeoInput } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
+import { NeoTiltCard } from "@/components/neo";
 
 type Faq = {
   id: number;
@@ -63,16 +64,15 @@ export default function FAQPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
-      {/* Hero Section */}
       <section className="mb-8 sm:mb-12">
-        <div className="bg-black border-4 border-black neo-shadow-lg p-5 sm:p-8 md:p-12 rotate-1 halftone-corner">
+        <NeoTiltCard className="bg-gradient-to-br from-cyan-600 to-indigo-700 border-4 border-black p-5 sm:p-8 md:p-12 rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 relative z-10">
             <span className="text-accent comic-emphasis">FAQ</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl relative z-10">
             자주 묻는 질문과 답변을 검색하고 탐색하세요
           </p>
-        </div>
+        </NeoTiltCard>
       </section>
 
       {/* Search & Filter */}
@@ -131,8 +131,7 @@ export default function FAQPage() {
           const Icon = categoryIcons[faq.category as keyof typeof categoryIcons];
           return (
             <Link key={faq.id} href={`/faq/${faq.slug}`}>
-              <NeoCard
-                hover
+              <NeoTiltCard
                 className={`${index % 3 === 0 ? "-rotate-0.5" : index % 3 === 1 ? "rotate-0.5" : ""} p-4 sm:p-6`}
               >
                 <NeoCardHeader className="mb-2 sm:mb-4">
@@ -176,7 +175,7 @@ export default function FAQPage() {
                     ))}
                   </div>
                 </NeoCardContent>
-              </NeoCard>
+              </NeoTiltCard>
             </Link>
           );
         })}

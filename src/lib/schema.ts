@@ -2,7 +2,7 @@ import { pgTable, serial, text, varchar, timestamp, boolean, jsonb, primaryKey, 
 import { relations } from "drizzle-orm";
 
 // Content Type Enum
-export const contentTypeEnum = ["post", "faq", "lifelog"] as const;
+export const contentTypeEnum = ["post", "faq", "lifelog", "class"] as const;
 export type ContentType = (typeof contentTypeEnum)[number];
 
 // LifeLog Category Enum
@@ -144,6 +144,100 @@ export const faqsToTagsRelations = relations(faqsToTags, ({ one }) => ({
   tag: one(tags, { fields: [faqsToTags.tagId], references: [tags.id] }),
 }));
 
+// Difficulty Enum (Courses와 Classes에서 공통 사용)
+export const difficultyEnum = ["BEGINNER", "INTERMEDIATE", "ADVANCED"] as const;
+export type Difficulty = (typeof difficultyEnum)[number];
+
+// Courses Table (강의 - HTML, JavaScript, GA4 등)
+export const courses = pgTable("courses", {
+  id: serial("id").primaryKey(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  title: varchar("title", { length: 255 }).notNull(),
+  description: text("description"),
+  category: varchar("category", { length: 50 }).$type<Category>().notNull(),
+  thumbnailUrl: varchar("thumbnail_url", { length: 500 }),
+  difficulty: varchar("difficulty", { length: 20 }).$type<Difficulty>(),
+
+  isPublished: boolean("is_published").default(false).notNull(),
+
+  // SEO Metadata
+  metaTitle: varchar("meta_title", { length: 70 }),
+  metaDescription: varchar("meta_description", { length: 170 }),
+  ogImage: varchar("og_image", { length: 500 }),
+  canonicalUrl: varchar("canonical_url", { length: 500 }),
+  noIndex: boolean("no_index").default(false),
+
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Classes Table (개념/용어 정의)
+
+export const classes = pgTable("classes", {
+  id: serial("id").primaryKey(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+
+  // 계층 구조
+  courseId: integer("course_id").references(() => courses.id, { onDelete: "set null" }),
+  orderInCourse: integer("order_in_course"), // Course 내 순서
+
+  term: varchar("term", { length: 255 }).notNull(),          // 용어/개념명
+  definition: text("definition").notNull(),                   // 간단한 정의 (1-2문장)
+  content: text("content").notNull(),                         // 상세 설명 (마크다운)
+  category: varchar("category", { length: 50 }).$type<Category>().notNull(),
+
+  // Class 특화 메타데이터
+  aliases: jsonb("aliases").$type<string[]>(),                // 동의어/별칭
+  relatedTerms: jsonb("related_terms").$type<string[]>(),     // 연관 개념 slug 목록
+  difficulty: varchar("difficulty", { length: 20 }).$type<Difficulty>(),
+
+  isPublished: boolean("is_published").default(false).notNull(),
+
+  // SEO Metadata
+  metaTitle: varchar("meta_title", { length: 70 }),
+  metaDescription: varchar("meta_description", { length: 170 }),
+  ogImage: varchar("og_image", { length: 500 }),
+  ogTitle: varchar("og_title", { length: 100 }),
+  ogDescription: varchar("og_description", { length: 200 }),
+  canonicalUrl: varchar("canonical_url", { length: 500 }),
+  noIndex: boolean("no_index").default(false),
+
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [
+  index("idx_classes_course").on(t.courseId, t.orderInCourse),
+]);
+
+// Classes to Tags Junction Table
+export const classesToTags = pgTable(
+  "classes_to_tags",
+  {
+    classId: serial("class_id")
+      .notNull()
+      .references(() => classes.id, { onDelete: "cascade" }),
+    tagId: serial("tag_id")
+      .notNull()
+      .references(() => tags.id, { onDelete: "cascade" }),
+  },
+  (t) => [primaryKey({ columns: [t.classId, t.tagId] })]
+);
+
+// Courses Relations
+export const coursesRelations = relations(courses, ({ many }) => ({
+  classes: many(classes),
+}));
+
+// Classes Relations
+export const classesRelations = relations(classes, ({ one, many }) => ({
+  classesToTags: many(classesToTags),
+  course: one(courses, { fields: [classes.courseId], references: [courses.id] }),
+}));
+
+export const classesToTagsRelations = relations(classesToTags, ({ one }) => ({
+  class: one(classes, { fields: [classesToTags.classId], references: [classes.id] }),
+  tag: one(tags, { fields: [classesToTags.tagId], references: [tags.id] }),
+}));
+
 // LifeLogs Table (개인 일상 콘텐츠)
 export const lifeLogs = pgTable("life_logs", {
   id: serial("id").primaryKey(),
@@ -184,6 +278,15 @@ export const contentDailyStats = pgTable(
   ]
 );
 
+// SEO Documents Table (동적 생성되는 SEO 파일 저장)
+export const seoDocuments = pgTable("seo_documents", {
+  id: serial("id").primaryKey(),
+  documentType: varchar("document_type", { length: 50 }).notNull().unique(), // 'llms.txt', 'robots.txt', etc.
+  content: text("content").notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // Types
 export type Series = typeof series.$inferSelect;
 export type NewSeries = typeof series.$inferInsert;
@@ -195,3 +298,9 @@ export type Tag = typeof tags.$inferSelect;
 export type ContentDailyStat = typeof contentDailyStats.$inferSelect;
 export type LifeLog = typeof lifeLogs.$inferSelect;
 export type NewLifeLog = typeof lifeLogs.$inferInsert;
+export type Course = typeof courses.$inferSelect;
+export type NewCourse = typeof courses.$inferInsert;
+export type Class = typeof classes.$inferSelect;
+export type NewClass = typeof classes.$inferInsert;
+export type SeoDocument = typeof seoDocuments.$inferSelect;
+export type NewSeoDocument = typeof seoDocuments.$inferInsert;

@@ -1,6 +1,6 @@
 import { db } from "./db";
-import { posts, faqs, tags, postsToTags, faqsToTags, contentDailyStats, series, Post, Faq, ContentType, Category, Tag, Series } from "./schema";
-import { eq, inArray, desc, sql, and, gte, asc } from "drizzle-orm";
+import { posts, faqs, tags, postsToTags, faqsToTags, contentDailyStats, series, courses, classes, classesToTags, Post, Faq, ContentType, Category, Tag, Series, Course, Class } from "./schema";
+import { eq, inArray, desc, sql, and, gte, asc, isNull } from "drizzle-orm";
 
 // 타입 정의
 export type PostWithTags = Omit<Post, "highlights"> & {
@@ -261,7 +261,7 @@ export async function getRelatedPostsByTags(tagNames: string[], excludeId?: numb
 // 조회수 기록 (UPSERT)
 export async function recordView(contentType: ContentType, contentId: number): Promise<void> {
   const today = new Date().toISOString().split("T")[0];
-  
+
   await db
     .insert(contentDailyStats)
     .values({
@@ -455,9 +455,9 @@ export async function getRelatedFaqsWithPopularity(
 
   const faqTagRecords = tagIds.length > 0
     ? await db
-        .select({ faqId: faqsToTags.faqId, tagId: faqsToTags.tagId })
-        .from(faqsToTags)
-        .where(inArray(faqsToTags.tagId, tagIds))
+      .select({ faqId: faqsToTags.faqId, tagId: faqsToTags.tagId })
+      .from(faqsToTags)
+      .where(inArray(faqsToTags.tagId, tagIds))
     : [];
 
   const tagScoreMap = new Map<number, number>();
@@ -533,9 +533,9 @@ export async function getRelatedPostsWithPopularity(
 
   const postTagRecords = tagIds.length > 0
     ? await db
-        .select({ postId: postsToTags.postId, tagId: postsToTags.tagId })
-        .from(postsToTags)
-        .where(inArray(postsToTags.tagId, tagIds))
+      .select({ postId: postsToTags.postId, tagId: postsToTags.tagId })
+      .from(postsToTags)
+      .where(inArray(postsToTags.tagId, tagIds))
     : [];
 
   const tagScoreMap = new Map<number, number>();
@@ -688,7 +688,7 @@ export async function getCategoryStats(): Promise<{ category: Category; postCoun
     .groupBy(faqs.category);
 
   const categories: Category[] = ["MARKETING", "AI_TECH", "DATA"];
-  
+
   return categories.map((cat) => ({
     category: cat,
     postCount: Number(postStats.find((p) => p.category === cat)?.count ?? 0),
@@ -770,16 +770,16 @@ export async function getTrendingMixed(days = 7, limit = 6): Promise<TrendingIte
 
   const postsData = postIds.length > 0
     ? ((await db.query.posts.findMany({
-        where: and(eq(posts.isPublished, true), inArray(posts.id, postIds)),
-        with: { postsToTags: { with: { tag: true } } },
-      })) as PostWithRelations[])
+      where: and(eq(posts.isPublished, true), inArray(posts.id, postIds)),
+      with: { postsToTags: { with: { tag: true } } },
+    })) as PostWithRelations[])
     : [];
 
   const faqsData = faqIds.length > 0
     ? ((await db.query.faqs.findMany({
-        where: and(eq(faqs.isPublished, true), inArray(faqs.id, faqIds)),
-        with: { faqsToTags: { with: { tag: true } } },
-      })) as FaqWithRelations[])
+      where: and(eq(faqs.isPublished, true), inArray(faqs.id, faqIds)),
+      with: { faqsToTags: { with: { tag: true } } },
+    })) as FaqWithRelations[])
     : [];
 
   const viewMap = new Map(viewStats.map((v) => [`${v.contentType}-${v.contentId}`, Number(v.totalViews)]));
@@ -926,7 +926,7 @@ export async function getSeriesNavigation(seriesId: number, currentPostId: numbe
   })) as PostWithRelations[];
 
   const currentIndex = seriesPosts.findIndex((p) => p.id === currentPostId);
-  
+
   const mapPost = (post: PostWithRelations): PostWithTags => ({
     ...post,
     highlights: post.highlights as string[] | null,
@@ -939,4 +939,511 @@ export async function getSeriesNavigation(seriesId: number, currentPostId: numbe
     currentIndex: currentIndex + 1,
     totalCount: seriesPosts.length,
   };
+}
+
+
+// ============================================
+// Courses 관련 쿼리
+// ============================================
+
+type CourseWithRelations = Course & {
+  classes: ClassWithRelations[];
+};
+
+type ClassWithRelations = Class & {
+  classesToTags: { tag: Tag }[];
+  course?: Course | null;
+};
+
+export type CourseWithClasses = Omit<Course, never> & {
+  classes: ClassWithTags[];
+  classCount: number;
+};
+
+export type ClassWithTags = Omit<Class, never> & {
+  tags: string[];
+  courseInfo?: {
+    id: number;
+    slug: string;
+    title: string;
+  } | null;
+};
+
+// 모든 Courses 조회 (admin용)
+export async function getAllCourses(): Promise<CourseWithClasses[]> {
+  const result = await db.query.courses.findMany({
+    orderBy: [desc(courses.createdAt)],
+    with: {
+      classes: {
+        where: eq(classes.isPublished, true),
+        orderBy: [asc(classes.orderInCourse)],
+        with: {
+          classesToTags: {
+            with: {
+              tag: true,
+            },
+          },
+        },
+      },
+    },
+  }) as CourseWithRelations[];
+
+  return result.map((course) => ({
+    ...course,
+    classes: course.classes.map((cls) => ({
+      ...cls,
+      tags: cls.classesToTags.map((ct) => ct.tag.name),
+      courseInfo: {
+        id: course.id,
+        slug: course.slug,
+        title: course.title,
+      },
+    })),
+    classCount: course.classes.length,
+  }));
+}
+
+// 배포된 Courses만 조회 (프론트엔드용)
+export async function getPublishedCourses(): Promise<CourseWithClasses[]> {
+  const result = await db.query.courses.findMany({
+    where: eq(courses.isPublished, true),
+    orderBy: [desc(courses.createdAt)],
+    with: {
+      classes: {
+        where: eq(classes.isPublished, true),
+        orderBy: [asc(classes.orderInCourse)],
+        with: {
+          classesToTags: {
+            with: {
+              tag: true,
+            },
+          },
+        },
+      },
+    },
+  }) as CourseWithRelations[];
+
+  return result.map((course) => ({
+    ...course,
+    classes: course.classes.map((cls) => ({
+      ...cls,
+      tags: cls.classesToTags.map((ct) => ct.tag.name),
+      courseInfo: {
+        id: course.id,
+        slug: course.slug,
+        title: course.title,
+      },
+    })),
+    classCount: course.classes.length,
+  }));
+}
+
+// slug로 Course 조회
+export async function getCourseBySlug(slug: string): Promise<CourseWithClasses | null> {
+  const result = await db.query.courses.findFirst({
+    where: eq(courses.slug, slug),
+    with: {
+      classes: {
+        where: eq(classes.isPublished, true),
+        orderBy: [asc(classes.orderInCourse)],
+        with: {
+          classesToTags: {
+            with: {
+              tag: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!result) return null;
+
+  const courseWithRel = result as unknown as CourseWithRelations;
+
+  return {
+    ...courseWithRel,
+    classes: courseWithRel.classes.map((cls) => ({
+      ...cls,
+      tags: cls.classesToTags.map((ct: any) => ct.tag.name),
+      courseInfo: {
+        id: courseWithRel.id,
+        slug: courseWithRel.slug,
+        title: courseWithRel.title,
+      },
+    })),
+    classCount: courseWithRel.classes.length,
+  };
+}
+
+// ============================================
+// Parts 관련 쿼리 - Part 기능 제거로 사용되지 않음
+// ============================================
+
+// Course ID로 Parts 조회 - DEPRECATED
+/*
+export async function getPartsByCourse(courseId: number): Promise<PartWithClasses[]> {
+  const result = await db.query.parts.findMany({
+    where: eq(parts.courseId, courseId),
+    orderBy: [asc(parts.partNumber)],
+    with: {
+      classes: {
+        where: eq(classes.isPublished, true),
+        orderBy: [asc(classes.orderInPart)],
+        with: {
+          classesToTags: {
+            with: {
+              tag: true,
+            },
+          },
+        },
+      },
+    },
+  }) as PartWithRelations[];
+
+  return result.map((part) => ({
+    ...part,
+    classes: part.classes.map((cls) => ({
+      ...cls,
+      tags: cls.classesToTags.map((ct) => ct.tag.name),
+    })),
+  }));
+}
+*/
+
+
+// ============================================
+// Classes 관련 쿼리
+// ============================================
+
+// 모든 Classes 조회 (admin용)
+export async function getAllClasses(): Promise<ClassWithTags[]> {
+  const result = await db.query.classes.findMany({
+    orderBy: [desc(classes.createdAt)],
+    with: {
+      classesToTags: {
+        with: {
+          tag: true,
+        },
+      },
+      course: true,
+    },
+  }) as ClassWithRelations[];
+
+  return result.map((cls) => ({
+    ...cls,
+    tags: cls.classesToTags.map((ct) => ct.tag.name),
+    courseInfo: cls.course ? {
+      id: cls.course.id,
+      slug: cls.course.slug,
+      title: cls.course.title,
+    } : null,
+  }));
+}
+
+// 배포된 Classes만 조회 (프론트엔드용)
+export async function getPublishedClasses(): Promise<ClassWithTags[]> {
+  const result = await db.query.classes.findMany({
+    where: eq(classes.isPublished, true),
+    orderBy: [desc(classes.createdAt)],
+    with: {
+      classesToTags: {
+        with: {
+          tag: true,
+        },
+      },
+      course: true,
+    },
+  }) as ClassWithRelations[];
+
+  return result.map((cls) => ({
+    ...cls,
+    tags: cls.classesToTags.map((ct) => ct.tag.name),
+    courseInfo: cls.course ? {
+      id: cls.course.id,
+      slug: cls.course.slug,
+      title: cls.course.title,
+    } : null,
+  }));
+}
+
+// slug로 Class 조회
+export async function getClassBySlug(slug: string): Promise<ClassWithTags | null> {
+  const result = await db.query.classes.findFirst({
+    where: eq(classes.slug, slug),
+    with: {
+      classesToTags: {
+        with: {
+          tag: true,
+        },
+      },
+      course: true,
+    },
+  });
+
+  if (!result) return null;
+
+  const clsWithRel = result as unknown as ClassWithRelations;
+
+  return {
+    ...clsWithRel,
+    tags: clsWithRel.classesToTags.map((ct) => ct.tag.name),
+    courseInfo: clsWithRel.course ? {
+      id: clsWithRel.course.id,
+      slug: clsWithRel.course.slug,
+      title: clsWithRel.course.title,
+    } : null,
+  };
+}
+
+// Part ID로 Classes 조회
+// Part ID로 Classes 조회 - DEPRECATED (Part 기능 제거됨)
+/*
+  const result = await db.query.classes.findMany({
+    where: and(eq(classes.partId, partId), eq(classes.isPublished, true)),
+    orderBy: [asc(classes.orderInPart)],
+    with: {
+      classesToTags: {
+        with: {
+          tag: true,
+        },
+      },
+      course: true,
+    },
+  }) as ClassWithRelations[];
+
+  return result.map((cls) => ({
+    ...cls,
+    tags: cls.classesToTags.map((ct) => ct.tag.name),
+    courseInfo: cls.course ? {
+      id: cls.course.id,
+      slug: cls.course.slug,
+      title: cls.course.title,
+    } : null,
+  }));
+}
+*/
+
+// 태그 기반 연관 Classes
+export async function getRelatedClassesByTags(tagNames: string[], excludeId?: number, limit = 3): Promise<ClassWithTags[]> {
+  const tagRecords = await db.query.tags.findMany({
+    where: inArray(tags.name, tagNames),
+  });
+  const tagIds = tagRecords.map((t: Tag) => t.id);
+
+  if (tagIds.length === 0) return [];
+
+  const classTagRecords = await db
+    .select({ classId: classesToTags.classId, tagId: classesToTags.tagId })
+    .from(classesToTags)
+    .where(inArray(classesToTags.tagId, tagIds));
+
+  const classScores = new Map<number, number>();
+  for (const record of classTagRecords) {
+    if (excludeId && record.classId === excludeId) continue;
+    classScores.set(record.classId, (classScores.get(record.classId) || 0) + 1);
+  }
+
+  const sortedClassIds = [...classScores.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([id]) => id);
+
+  if (sortedClassIds.length === 0) return [];
+
+  const result = await db.query.classes.findMany({
+    where: and(
+      inArray(classes.id, sortedClassIds),
+      eq(classes.isPublished, true)
+    ),
+    with: {
+      classesToTags: {
+        with: {
+          tag: true,
+        },
+      },
+      course: true,
+    },
+  }) as ClassWithRelations[];
+
+  return sortedClassIds
+    .map((id) => result.find((c) => c.id === id))
+    .filter((cls): cls is ClassWithRelations => cls !== undefined)
+    .map((cls) => ({
+      ...cls,
+      tags: cls.classesToTags.map((ct) => ct.tag.name),
+      courseInfo: cls.course ? {
+        id: cls.course.id,
+        slug: cls.course.slug,
+        title: cls.course.title,
+      } : null,
+    }));
+}
+
+// Part 내에서 이전/다음 Class 조회
+export async function getNextPrevClass(classId: number): Promise<{
+  prev: ClassWithTags | null;
+  next: ClassWithTags | null;
+  currentIndex: number;
+  totalCount: number;
+}> {
+  const currentClass = await db.query.classes.findFirst({
+    where: eq(classes.id, classId),
+  });
+
+  if (!currentClass || !currentClass.courseId) {
+    return { prev: null, next: null, currentIndex: 0, totalCount: 0 };
+  }
+
+  const courseClasses = await db.query.classes.findMany({
+    where: and(
+      eq(classes.courseId, currentClass.courseId),
+      eq(classes.isPublished, true)
+    ),
+    orderBy: [asc(classes.orderInCourse), asc(classes.createdAt)],
+    with: {
+      classesToTags: {
+        with: {
+          tag: true,
+        },
+      },
+      course: true,
+    },
+  }) as ClassWithRelations[];
+
+  const currentIndex = courseClasses.findIndex((c) => c.id === classId);
+
+  const mapClass = (cls: ClassWithRelations): ClassWithTags => ({
+    ...cls,
+    tags: cls.classesToTags.map((ct) => ct.tag.name),
+    courseInfo: cls.course ? {
+      id: cls.course.id,
+      slug: cls.course.slug,
+      title: cls.course.title,
+    } : null,
+  });
+
+  return {
+    prev: currentIndex > 0 ? mapClass(courseClasses[currentIndex - 1]) : null,
+    next: currentIndex < courseClasses.length - 1 ? mapClass(courseClasses[currentIndex + 1]) : null,
+    currentIndex: currentIndex + 1,
+    totalCount: courseClasses.length,
+  };
+}
+
+// ============================================
+// 교차 추천 쿼리 (Cross-Recommendation)
+// ============================================
+
+// Insights 페이지에서 연관 Class 추천
+export async function getRelatedClassesForPost(postTags: string[], classCategory: Category, limit = 3): Promise<ClassWithTags[]> {
+  const tagRecords = await db.query.tags.findMany({
+    where: inArray(tags.name, postTags),
+  });
+  const tagIds = tagRecords.map((t: Tag) => t.id);
+
+  if (tagIds.length === 0) return [];
+
+  const classTagRecords = await db
+    .select({ classId: classesToTags.classId, tagId: classesToTags.tagId })
+    .from(classesToTags)
+    .where(inArray(classesToTags.tagId, tagIds));
+
+  const classScores = new Map<number, number>();
+  for (const record of classTagRecords) {
+    classScores.set(record.classId, (classScores.get(record.classId) || 0) + 1);
+  }
+
+  const sortedClassIds = [...classScores.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([id]) => id);
+
+  if (sortedClassIds.length === 0) return [];
+
+  const result = await db.query.classes.findMany({
+    where: and(
+      inArray(classes.id, sortedClassIds),
+      eq(classes.isPublished, true),
+      eq(classes.category, classCategory)
+    ),
+    with: {
+      classesToTags: {
+        with: {
+          tag: true,
+        },
+      },
+      course: true,
+    },
+  }) as ClassWithRelations[];
+
+  return sortedClassIds
+    .map((id) => result.find((c) => c.id === id))
+    .filter((c): c is ClassWithRelations => c !== undefined)
+    .map((cls) => ({
+      ...cls,
+      tags: cls.classesToTags.map((ct) => ct.tag.name),
+      courseInfo: cls.course ? {
+        id: cls.course.id,
+        slug: cls.course.slug,
+        title: cls.course.title,
+      } : null,
+    }));
+}
+
+// Class 페이지에서 연관 Insights 추천
+export async function getRelatedPostsForClass(classTags: string[], classCategory: Category, limit = 3): Promise<PostWithTags[]> {
+  const tagRecords = await db.query.tags.findMany({
+    where: inArray(tags.name, classTags),
+  });
+  const tagIds = tagRecords.map((t: Tag) => t.id);
+
+  if (tagIds.length === 0) return [];
+
+  const postTagRecords = await db
+    .select({ postId: postsToTags.postId, tagId: postsToTags.tagId })
+    .from(postsToTags)
+    .where(inArray(postsToTags.tagId, tagIds));
+
+  const postScores = new Map<number, number>();
+  for (const record of postTagRecords) {
+    postScores.set(record.postId, (postScores.get(record.postId) || 0) + 1);
+  }
+
+  const sortedPostIds = [...postScores.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([id]) => id);
+
+  if (sortedPostIds.length === 0) return [];
+
+  const result = await db.query.posts.findMany({
+    where: and(
+      inArray(posts.id, sortedPostIds),
+      eq(posts.isPublished, true),
+      eq(posts.category, classCategory)
+    ),
+    with: {
+      postsToTags: {
+        with: {
+          tag: true,
+        },
+      },
+      series: true,
+    },
+  }) as PostWithRelations[];
+
+  return sortedPostIds
+    .map((id) => result.find((p) => p.id === id))
+    .filter((p): p is PostWithRelations => p !== undefined)
+    .map((post) => ({
+      ...post,
+      highlights: post.highlights as string[] | null,
+      tags: post.postsToTags.map((pt) => pt.tag.name),
+      seriesInfo: post.series ? {
+        id: post.series.id,
+        slug: post.series.slug,
+        title: post.series.title,
+      } : null,
+    }));
 }

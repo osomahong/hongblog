@@ -12,6 +12,7 @@ import {
 import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
+import { NeoTiltCard } from "@/components/neo";
 import {
   getPublishedPosts,
   getTrendingMixed,
@@ -51,8 +52,9 @@ export default async function HomePage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
       {/* Hero Section */}
+      {/* Hero Section */}
       <section className="mb-6 sm:mb-12">
-        <div className="bg-primary border-4 border-black neo-shadow-lg p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines relative overflow-hidden">
+        <NeoTiltCard className="bg-gradient-to-br from-red-600 to-orange-600 border-4 border-black p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines relative overflow-hidden text-left" intensity={20} shadowIntensity={10}>
           <div className="flex items-center justify-between">
             <div className="relative z-10 flex-1">
               <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
@@ -75,7 +77,7 @@ export default async function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </NeoTiltCard>
       </section>
 
       {/* Trending Section */}
@@ -98,7 +100,7 @@ export default async function HomePage() {
               if (item._type === "post") {
                 return (
                   <Link key={`post-${item.id}`} href={`/insights/${item.slug}`}>
-                    <div className={`${rotations[index % 4]} h-full bg-white border-3 sm:border-4 border-black neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all p-3 sm:p-4 halftone-corner`}>
+                    <NeoTiltCard className="h-full bg-white p-3 sm:p-4 halftone-corner" intensity={10}>
                       <div className="flex items-center gap-2 mb-2 sm:mb-3 relative z-10">
                         <div className={`${categoryColors[item.category as keyof typeof categoryColors]} px-2 py-0.5 sm:py-1 border-2 border-black text-[10px] sm:text-xs font-bold uppercase flex items-center gap-1`}>
                           <Icon className="w-3 h-3" />
@@ -111,13 +113,13 @@ export default async function HomePage() {
                       <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
                         {item.excerpt}
                       </p>
-                    </div>
+                    </NeoTiltCard>
                   </Link>
                 );
               } else {
                 return (
                   <Link key={`faq-${item.id}`} href={`/faq/${item.slug}`}>
-                    <div className={`${rotations[index % 4]} h-full bg-accent border-3 sm:border-4 border-black neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all p-3 sm:p-4 halftone-corner`}>
+                    <NeoTiltCard className="h-full bg-accent p-3 sm:p-4 halftone-corner" intensity={10}>
                       <div className="flex items-center gap-2 mb-2 sm:mb-3 relative z-10">
                         <div className="bg-black text-white px-2 py-0.5 sm:py-1 border-2 border-black text-[10px] sm:text-xs font-bold uppercase flex items-center gap-1">
                           <HelpCircle className="w-3 h-3" />
@@ -130,7 +132,7 @@ export default async function HomePage() {
                       <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
                         {item.answer.substring(0, 80)}...
                       </p>
-                    </div>
+                    </NeoTiltCard>
                   </Link>
                 );
               }
@@ -153,7 +155,7 @@ export default async function HomePage() {
             const bgColor = categoryColors[stat.category];
             return (
               <Link key={stat.category} href={`/category/${stat.category.toLowerCase()}`}>
-                <div className={`${bgColor} border-3 sm:border-4 border-black p-2.5 sm:p-6 neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all`}>
+                <NeoTiltCard className={`${bgColor} border-3 sm:border-4 border-black p-2.5 sm:p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all`} intensity={15}>
                   <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 mb-1.5 sm:mb-3">
                     <Icon className="w-5 h-5 sm:w-8 sm:h-8" />
                     <span className="text-[10px] sm:text-xl font-black uppercase text-center sm:text-left">
@@ -164,7 +166,7 @@ export default async function HomePage() {
                     <span>{stat.postCount} posts</span>
                     <span>{stat.faqCount} faqs</span>
                   </div>
-                </div>
+                </NeoTiltCard>
               </Link>
             );
           })}
@@ -187,7 +189,7 @@ export default async function HomePage() {
             const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
             return (
               <Link key={post.id} href={`/insights/${post.slug}`}>
-                <NeoCard hover rotate={index % 2 === 0} className="h-full">
+                <NeoTiltCard className="h-full">
                   <NeoCardHeader>
                     <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap">
                       <NeoBadge
@@ -239,7 +241,7 @@ export default async function HomePage() {
                       Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                     </span>
                   </NeoCardFooter>
-                </NeoCard>
+                </NeoTiltCard>
               </Link>
             );
           })}
@@ -318,7 +320,7 @@ export default async function HomePage() {
       {/* About Author CTA */}
       <section>
         <Link href="/about">
-          <div className="bg-black text-white border-3 sm:border-4 border-black neo-shadow p-4 sm:p-8 sm:rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group">
+          <NeoTiltCard className="bg-gradient-to-br from-neutral-900 to-black text-white border-3 sm:border-4 border-black p-4 sm:p-8 sm:rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group" intensity={15}>
             <div className="flex items-center gap-3 sm:gap-6">
               <div className="bg-primary p-2 sm:p-3 border-2 border-white -rotate-3 group-hover:rotate-0 transition-transform flex-shrink-0">
                 <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
@@ -331,7 +333,7 @@ export default async function HomePage() {
               </div>
               <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-accent group-hover:translate-x-2 transition-transform flex-shrink-0" />
             </div>
-          </div>
+          </NeoTiltCard>
         </Link>
       </section>
     </div>

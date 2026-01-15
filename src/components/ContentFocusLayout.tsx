@@ -5,12 +5,12 @@ import { Maximize2, Minimize2 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
 import { cn } from "@/lib/utils";
 
-interface InsightFocusLayoutProps {
+interface ContentFocusLayoutProps {
     children: React.ReactNode;
     sidebar: React.ReactNode;
 }
 
-export function InsightFocusLayout({ children, sidebar }: InsightFocusLayoutProps) {
+export function ContentFocusLayout({ children, sidebar }: ContentFocusLayoutProps) {
     const [isFocusMode, setIsFocusMode] = useState(false);
 
     const toggleFocusMode = () => {
@@ -21,9 +21,9 @@ export function InsightFocusLayout({ children, sidebar }: InsightFocusLayoutProp
         <div className="relative min-h-[50vh]">
             {/* Layout Content */}
             <div className={cn(
-                "grid gap-4 sm:gap-8 transition-all duration-300 ease-in-out",
+                "grid gap-4 sm:gap-8 transition-all duration-300 ease-in-out max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
                 isFocusMode
-                    ? "grid-cols-1 max-w-4xl mx-auto"
+                    ? "grid-cols-1"
                     : "grid-cols-1 lg:grid-cols-3"
             )}>
                 {/* Main Article Area */}
@@ -38,7 +38,7 @@ export function InsightFocusLayout({ children, sidebar }: InsightFocusLayoutProp
                 <div className={cn(
                     "transition-all duration-300",
                     isFocusMode
-                        ? "block opacity-100 scale-100 mt-12 sm:mt-16 max-w-4xl mx-auto w-full border-t-2 border-dashed border-gray-200 pt-8 [&>div]:grid [&>div]:grid-cols-1 [&>div]:md:grid-cols-2 [&>div]:gap-6 [&>div>*:not(:first-child)]:mt-0 [&>div>*]:h-full"
+                        ? "block opacity-100 scale-100 mt-12 sm:mt-16 w-full border-t-2 border-dashed border-gray-200 pt-8 [&>div]:grid [&>div]:grid-cols-1 [&>div]:md:grid-cols-2 [&>div]:gap-6 [&>div>*:not(:first-child)]:mt-0 [&>div>*]:h-full"
                         : "block opacity-100 scale-100 lg:col-span-1 mt-4 lg:mt-0"
                 )}>
                     {sidebar}

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
 import { db } from "@/lib/db";
 import { faqs, tags, faqsToTags, Faq, Tag } from "@/lib/schema";
 import { eq, desc } from "drizzle-orm";
@@ -9,6 +10,13 @@ type FaqWithRelations = Faq & {
 
 // GET: 모든 faqs 조회
 export async function GET() {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const result = await db.query.faqs.findMany({
       orderBy: [desc(faqs.createdAt)],
@@ -35,6 +43,13 @@ export async function GET() {
 
 // POST: 새 faq 생성
 export async function POST(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const {
@@ -93,6 +108,13 @@ export async function POST(request: NextRequest) {
 
 // PUT: faq 수정
 export async function PUT(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const {
@@ -151,6 +173,13 @@ export async function PUT(request: NextRequest) {
 
 // DELETE: faq 삭제
 export async function DELETE(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");

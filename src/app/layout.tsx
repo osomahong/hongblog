@@ -52,6 +52,8 @@ export const metadata: Metadata = {
   },
 };
 
+import AuthProvider from "@/components/AuthProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -60,9 +62,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} antialiased min-h-screen flex flex-col`}>
-        <Nav />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <AuthProvider>
+          <Nav />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

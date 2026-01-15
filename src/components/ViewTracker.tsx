@@ -2,8 +2,10 @@
 
 import { useEffect } from "react";
 
+type ContentType = "post" | "faq" | "class";
+
 type Props = {
-  contentType: "post" | "faq";
+  contentType: ContentType;
   contentId: number;
 };
 

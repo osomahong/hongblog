@@ -12,6 +12,7 @@ import {
 import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
+import { NeoTiltCard } from "@/components/neo";
 import { db } from "@/lib/db";
 import { posts, faqs } from "@/lib/schema";
 import { eq, desc } from "drizzle-orm";
@@ -135,7 +136,16 @@ export default async function CategoryPage({ params }: Props) {
 
       {/* Category Header */}
       <section className="mb-8 sm:mb-12">
-        <div className={`${category === "AI_TECH" ? "bg-primary" : category === "DATA" ? "bg-black" : "bg-accent"} ${category === "MARKETING" ? "text-black" : "text-white"} border-4 border-black neo-shadow-lg p-5 sm:p-8 -rotate-1 halftone-corner speed-lines`}>
+        <NeoTiltCard
+          className={`${category === "AI_TECH"
+            ? "bg-gradient-to-br from-red-600 to-orange-600"
+            : category === "DATA"
+              ? "bg-gradient-to-br from-blue-600 to-indigo-700"
+              : "bg-gradient-to-br from-amber-400 to-yellow-500"
+            } ${category === "MARKETING" ? "text-black" : "text-white"} border-4 border-black p-5 sm:p-8 -rotate-1 halftone-corner speed-lines text-left`}
+          intensity={20}
+          shadowIntensity={10}
+        >
           <div className="flex items-center gap-3 mb-2 relative z-10">
             <Icon className="w-8 h-8 sm:w-10 sm:h-10" />
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter comic-emphasis">
@@ -149,7 +159,7 @@ export default async function CategoryPage({ params }: Props) {
             <span>{categoryPosts.length} posts</span>
             <span>{categoryFaqs.length} faqs</span>
           </div>
-        </div>
+        </NeoTiltCard>
       </section>
 
       {/* Posts Section */}
@@ -161,7 +171,7 @@ export default async function CategoryPage({ params }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {categoryPosts.map((post, index) => (
               <Link key={post.id} href={`/insights/${post.slug}`}>
-                <NeoCard hover rotate={index % 2 === 0} className="h-full">
+                <NeoTiltCard className="h-full">
                   <NeoCardHeader>
                     <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
                       <NeoBadge variant={category === "AI_TECH" ? "primary" : category === "DATA" ? "default" : "accent"}>
@@ -193,7 +203,7 @@ export default async function CategoryPage({ params }: Props) {
                       Read <ArrowRight className="w-4 h-4" />
                     </span>
                   </NeoCardFooter>
-                </NeoCard>
+                </NeoTiltCard>
               </Link>
             ))}
           </div>
@@ -212,20 +222,21 @@ export default async function CategoryPage({ params }: Props) {
               <Link
                 key={faq.id}
                 href={`/faq/${faq.slug}`}
-                className="block p-4 bg-white border-4 border-black neo-shadow-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
               >
-                <div className="flex items-start gap-3">
-                  <span className="text-primary font-black text-xl">Q</span>
-                  <div className="flex-1">
-                    <p className="font-bold text-base sm:text-lg">{faq.question}</p>
-                    <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{faq.answer}</p>
-                    <div className="flex gap-1.5 mt-2 flex-wrap">
-                      {faq.tags.slice(0, 3).map((tag) => (
-                        <span key={tag} className="text-xs text-muted-foreground">#{tag}</span>
-                      ))}
+                <NeoTiltCard className="p-4 bg-white hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+                  <div className="flex items-start gap-3">
+                    <span className="text-primary font-black text-xl">Q</span>
+                    <div className="flex-1">
+                      <p className="font-bold text-base sm:text-lg">{faq.question}</p>
+                      <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{faq.answer}</p>
+                      <div className="flex gap-1.5 mt-2 flex-wrap">
+                        {faq.tags.slice(0, 3).map((tag) => (
+                          <span key={tag} className="text-xs text-muted-foreground">#{tag}</span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </NeoTiltCard>
               </Link>
             ))}
           </div>

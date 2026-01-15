@@ -8,25 +8,19 @@ interface AuthorCardProps {
 }
 
 export function AuthorCard({ className = "", compact = false }: AuthorCardProps) {
-  // TODO: 프로필 이미지 경로 설정 (예: /uploads/profile.jpg)
-  const profileImage = null;
+  const profileImage = "/profile-illustration.png";
 
   if (compact) {
     return (
       <Link href="/about" className={className}>
         <div className="flex items-center gap-3 p-3 bg-white border-4 border-black neo-shadow-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all -rotate-0.5">
-          <div className="w-10 h-10 bg-accent border-3 border-black rounded-full overflow-hidden flex-shrink-0 flex items-center justify-center">
-            {profileImage ? (
-              <Image
-                src={profileImage}
-                alt="Author"
-                width={40}
-                height={40}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <User className="w-5 h-5 text-black" />
-            )}
+          <div className="w-10 h-10 bg-white border-3 border-black rounded-full overflow-hidden flex-shrink-0 flex items-center justify-center relative p-1">
+            <Image
+              src={profileImage}
+              alt="Author"
+              fill
+              className="object-contain"
+            />
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-xs font-black uppercase truncate">Written by</p>
@@ -50,18 +44,13 @@ export function AuthorCard({ className = "", compact = false }: AuthorCardProps)
       <div className="flex flex-col items-center text-center relative z-10">
         {/* Profile Image */}
         <div className="relative mb-3 sm:mb-4">
-          <div className="w-16 h-16 sm:w-24 sm:h-24 bg-accent border-3 sm:border-4 border-black rounded-full overflow-hidden flex items-center justify-center -rotate-3 neo-shadow-sm">
-            {profileImage ? (
-              <Image
-                src={profileImage}
-                alt="Author"
-                width={96}
-                height={96}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <User className="w-8 h-8 sm:w-12 sm:h-12 text-black" />
-            )}
+          <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white border-3 sm:border-4 border-black rounded-full overflow-hidden flex items-center justify-center -rotate-3 neo-shadow-sm relative p-2 sm:p-3">
+            <Image
+              src={profileImage}
+              alt="Author"
+              fill
+              className="object-contain"
+            />
           </div>
           {/* Decorative burst */}
           <div className="absolute -top-1 -right-1 bg-primary text-white text-[7px] sm:text-[8px] font-black px-1 sm:px-1.5 py-0.5 border-2 border-black rotate-12">

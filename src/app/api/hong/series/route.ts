@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
 import { db } from "@/lib/db";
 import { series, posts, Series } from "@/lib/schema";
 import { eq, desc, asc } from "drizzle-orm";
@@ -9,6 +10,13 @@ type SeriesWithPosts = Series & {
 
 // GET: 모든 시리즈 조회
 export async function GET() {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const result = await db.query.series.findMany({
       orderBy: [desc(series.createdAt)],
@@ -39,6 +47,13 @@ export async function GET() {
 
 // POST: 새 시리즈 생성
 export async function POST(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const { title, slug, description, thumbnailUrl, isPublished, metaTitle, metaDescription } = body;
@@ -77,6 +92,13 @@ export async function POST(request: NextRequest) {
 
 // PUT: 시리즈 수정
 export async function PUT(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
     const { id, title, slug, description, thumbnailUrl, isPublished, metaTitle, metaDescription } = body;
@@ -117,6 +139,13 @@ export async function PUT(request: NextRequest) {
 
 // DELETE: 시리즈 삭제
 export async function DELETE(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");

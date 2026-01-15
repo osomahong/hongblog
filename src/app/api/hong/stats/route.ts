@@ -17,11 +17,11 @@ export async function GET(request: NextRequest) {
 
     // 조건 빌드
     const conditions = [gte(contentDailyStats.date, startDateStr)];
-    
+
     if (contentType) {
       conditions.push(eq(contentDailyStats.contentType, contentType as "post" | "faq"));
     }
-    
+
     if (ids) {
       const idList = ids.split(",").map(Number).filter(n => !isNaN(n));
       if (idList.length > 0) {
@@ -43,17 +43,24 @@ export async function GET(request: NextRequest) {
     const statsMap: Record<string, Record<number, number>> = {
       post: {},
       faq: {},
+      class: {},
+      lifelog: {},
     };
 
     for (const row of result) {
+      // contentType이 없으면 초기화
+      if (!statsMap[row.contentType]) {
+        statsMap[row.contentType] = {};
+      }
       statsMap[row.contentType][row.contentId] = Number(row.totalViews);
     }
 
     return NextResponse.json(statsMap);
   } catch (error) {
     console.error("Error fetching stats:", error);
+    console.error("Error details:", JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
     return NextResponse.json(
-      { error: "Failed to fetch stats" },
+      { error: "Failed to fetch stats", details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }

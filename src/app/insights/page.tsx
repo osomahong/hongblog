@@ -11,6 +11,7 @@ import {
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { getPublishedPosts } from "@/lib/queries";
+import { NeoTiltCard } from "@/components/neo";
 
 const categoryIcons = {
   AI_TECH: Sparkles,
@@ -31,14 +32,14 @@ export default async function InsightsPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-12">
       {/* Hero Section */}
       <section className="mb-6 sm:mb-12">
-        <div className="bg-primary border-3 sm:border-4 border-black neo-shadow-lg p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines">
+        <NeoTiltCard className="bg-gradient-to-br from-red-600 to-orange-600 border-3 sm:border-4 border-black p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines text-left" intensity={20} shadowIntensity={10}>
           <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 relative z-10 comic-emphasis leading-tight">
             Insights
           </h1>
           <p className="text-sm sm:text-lg md:text-xl text-white/90 max-w-2xl relative z-10 leading-relaxed">
             디지털 마케팅, AI, 데이터 분석 전문가의 인사이트를 담는 지식 아카이브
           </p>
-        </div>
+        </NeoTiltCard>
       </section>
 
       {/* Results Count */}
@@ -54,7 +55,7 @@ export default async function InsightsPage() {
           const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
           return (
             <Link key={post.id} href={`/insights/${post.slug}`}>
-              <NeoCard hover rotate={index % 2 === 0} className="h-full">
+              <NeoTiltCard className="h-full">
                 <NeoCardHeader>
                   <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap">
                     <NeoBadge
@@ -106,7 +107,7 @@ export default async function InsightsPage() {
                     Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </span>
                 </NeoCardFooter>
-              </NeoCard>
+              </NeoTiltCard>
             </Link>
           );
         })}

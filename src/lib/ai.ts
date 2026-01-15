@@ -217,18 +217,18 @@ ${content.substring(0, 3000)}
     const response = result.response.text();
     const cleaned = response.replace(/```json\n?|\n?```/g, "").trim();
     const parsed = JSON.parse(cleaned);
-    
+
     // 유효성 검사
     if (!parsed.title || !parsed.slug || !parsed.category) {
       throw new Error("필수 필드 누락");
     }
-    
+
     // 카테고리 유효성 검사
     const validCategories = ["MARKETING", "AI_TECH", "DATA"];
     if (!validCategories.includes(parsed.category)) {
       parsed.category = "AI_TECH"; // 기본값
     }
-    
+
     return {
       title: parsed.title,
       slug: parsed.slug.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-"),
@@ -240,5 +240,174 @@ ${content.substring(0, 3000)}
   } catch (error) {
     console.error("AI content metadata generation failed:", error);
     return null;
+  }
+}
+
+// AI 기반 링크드인 업로드용 요약 생성
+export async function generateLinkedInSummary(data: {
+  title: string;
+  content: string;
+  url: string;
+}): Promise<string> {
+  const prompt = `You are creating a LinkedIn post where the author is sharing their own blog article with their professional network. Write from the first-person perspective, focusing on the personal context and motivation behind writing the article, without introducing yourself by name or title.
+
+CRITICAL: Vary your structural approach for each post to avoid formulaic patterns. Choose ONE of the following narrative structures that best fits the content:
+
+STRUCTURE OPTIONS (select the most natural fit):
+- Problem-Journey: Start with a specific problem you faced → How you approached it → What you discovered
+- Insight-First: Lead with a surprising finding or realization → What led you there → Implications
+- Question-Driven: Open with a question you were wrestling with → Your exploration process → Answers you found
+- Contrast: Compare before/after, expectation vs reality, or common approach vs what you learned
+- Anecdote-Led: Begin with a concrete moment or scenario from your work → Lessons extracted → Broader applications
+- Curiosity-Hook: Start with something that puzzled or intrigued you → Investigation → Insights
+
+REQUIREMENTS:
+
+1. FORMAT: Adapt structure based on chosen narrative approach—not every post needs identical bullet point patterns. Vary between:
+   - Bullet points for multi-faceted insights
+   - Short paragraphs for narrative flow
+   - Mixed format when it serves the content
+   - Different levels of detail based on content complexity
+
+2. OPENING - PERSONAL CONTEXT: 
+   - Match your opening style to the chosen narrative structure
+   - Share genuine, specific experiences (e.g., "데이터 분석 업무를 진행하면서 겪었던 데이터 유실 문제...")
+   - Vary your entry point: sometimes dive straight into the problem, other times build context first
+   - Make each opening feel fresh and organic to the specific content
+
+3. CONTENT APPROACH:
+   - Write in first-person throughout
+   - Deeply personalize with concrete experiences
+   - Vary content density: some posts can be concise, others more exploratory
+   - Adjust tone slightly based on content—technical topics can be more analytical, process topics more reflective
+   - Don't force every post into the same number of points or sections
+   - Let the content's natural structure guide the format
+
+4. VALUE COMMUNICATION:
+   - Integrate value naturally within your narrative rather than always stating it explicitly
+   - Sometimes show value through your story, other times state it directly
+   - Vary between tactical ("이렇게 해결했습니다") and strategic ("이런 관점으로 접근했습니다") framing
+
+5. TONE: Conversational yet professional—but allow natural variation:
+   - Some posts can be more enthusiastic when the discovery was exciting
+   - Others more measured when discussing systematic approaches
+   - Match emotional tone to content authenticity
+
+6. LANGUAGE REQUIREMENTS:
+   - Use English for technical terms, industry jargon, and specialized terminology
+   - Write all other content in Korean
+   - Ensure natural flow between English terms and Korean text
+
+7. CLOSING: Vary your closing approach while maintaining service-orientation:
+   - Sometimes: Direct helpful wish (e.g., "...분들께 도움이 되시길 바랍니다")
+   - Sometimes: Invitation for perspective sharing (e.g., "비슷한 고민을 하시는 분들의 경험도 궁금합니다")
+   - Sometimes: Simple context (e.g., "관련 내용을 정리해봤습니다")
+   - Always include the article link naturally after the closing
+
+8. TEXT FORMAT - CRITICAL: Output as PLAIN TEXT ONLY with NO formatting syntax whatsoever:
+   - NO asterisks, NO markdown (absolutely no **, __, ##, ###, -, *, or any other symbols for formatting)
+   - Use only: simple line breaks, plain dashes for bullet points when needed (using regular dash -), and plain text
+   - Do NOT use phrases like "문제 정의:" in bold or any header-style formatting
+   - Write everything as plain, unformatted text that can be directly copied into LinkedIn
+
+9. ANTI-TEMPLATE RULES:
+   - Never use the same opening phrase structure twice in a row
+   - Avoid predictable patterns like always having 3 bullet points or always opening with "이번 글에서는..."
+   - Let content dictate length—some posts can be brief, others substantive
+   - Don't force symmetry or polish that makes the post feel manufactured
+
+SOURCE MATERIAL:
+Title: ${data.title}
+Content (first 2000 characters): ${data.content.substring(0, 2000)}
+Article URL: ${data.url}
+
+OUTPUT FORMAT:
+Provide only the final LinkedIn post text—no quotation marks, no explanations, no meta-commentary, no formatting symbols. The output must be pure plain text, immediately copy-paste ready for LinkedIn publishing. Make it feel human-written and naturally variable, not template-generated.`;
+  try {
+    const result = await aiModel.generateContent(prompt);
+    return result.response.text().trim();
+  } catch (error) {
+    console.error("AI LinkedIn summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// AI 기반 코스(Course) 기반 링크드인 업로드용 요약 생성
+export async function generateCourseLinkedInSummary(data: {
+  courseTitle: string;
+  courseDescription: string;
+  classes: { term: string; definition: string }[];
+  url: string;
+}): Promise<string> {
+  const classesContext = data.classes
+    .map((c, i) => `${i + 1}. ${c.term}: ${c.definition}`)
+    .join("\n");
+
+  const prompt = `You are creating a LinkedIn post where the author is sharing their own structured "Course" or "Knowledge Guide" with their professional network. This course consists of multiple interconnected concepts (classes). Write from the first-person perspective, focusing on the motivation for organizing this specific curriculum.
+
+CRITICAL: Vary your structural approach for each post to avoid formulaic patterns. Choose ONE of the following narrative structures that best fits the content:
+
+STRUCTURE OPTIONS (select the most natural fit):
+- Curriculum-Design: Why I chose to organize these specific topics in this order → The logic of the learning path
+- Skill-Stack: The collection of skills/concepts needed to master a domain → How these topics build that foundation
+- Knowledge-Map: Navigating a complex field through clear definitions → How this guide serves as a compass
+- Educational-Gap: What most resources miss about these topics → How this course addresses those gaps
+- Personal-Mastery: How organizing these concepts helped my own understanding → Why I'm sharing it now
+
+REQUIREMENTS:
+
+1. FORMAT: Adapt structure based on chosen narrative approach. Use:
+   - Bullet points to highlight key chapters or concepts covered
+   - Short paragraphs for narrative flow between topics
+   - Clear distinction between the overall course theme and the specific topics included
+
+2. OPENING - PERSONAL CONTEXT: 
+   - Share why you decided to create this guide (e.g., "마케팅 데이터를 다루다 보면 용어 정의부터 헷갈리는 경우가 많습니다...")
+   - Vary your entry point: sometimes start with the frustration of disorganized information, other times with the beauty of a structured system
+
+3. CONTENT APPROACH:
+   - Write in first-person throughout
+   - Mention the overall title of the course and summarize the breadth of topics included
+   - Briefly touch upon 2-3 key concepts from the provided classes to show depth
+   - Make the post feel like an invitation to a learning journey
+
+4. VALUE COMMUNICATION:
+   - Show how this structured knowledge saves time or improves efficiency
+   - Position the course as a foundational resource for professionals in the field
+
+5. TONE: Professional, authoritative, yet encouraging and accessible.
+
+6. LANGUAGE REQUIREMENTS:
+   - Use English for technical terms, industrial jargon, and specialized terminology
+   - Write all other content in Korean
+
+7. CLOSING: Invite engagement or provide the starting point:
+   - "이 커리큘럼이 도움이 되기를 바랍니다"
+   - "어떤 주제가 가장 흥미로우신가요?"
+   - Include the course link naturally after the closing
+
+8. TEXT FORMAT - CRITICAL: Output as PLAIN TEXT ONLY with NO formatting syntax (no **, no markdown).
+   - Use only simple line breaks and regular dashes for bullet points.
+
+9. ANTI-TEMPLATE RULES:
+   - Avoid "이번 코스에서는..." as a standard opening.
+   - Don't simply list all classes; pick the most representative ones for the narrative.
+
+SOURCE MATERIAL:
+Course Title: ${data.courseTitle}
+Course Description: ${data.courseDescription}
+Included Topics (Classes):
+${classesContext}
+Course URL: ${data.url}
+
+OUTPUT FORMAT:
+Provide only the final LinkedIn post text—no meta-commentary. Pure plain text, copy-paste ready.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    return result.response.text().trim();
+  } catch (error) {
+    console.error("AI Course LinkedIn summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
   }
 }

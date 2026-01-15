@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { 
-  Search, 
-  Image as ImageIcon, 
-  Link2, 
-  Eye, 
-  EyeOff, 
-  Sparkles, 
+import {
+  Search,
+  Image as ImageIcon,
+  Link2,
+  Eye,
+  EyeOff,
+  Sparkles,
   Loader2,
   CheckCircle2,
   XCircle,
@@ -48,9 +48,10 @@ interface SeoEditorProps {
   content: string;
   initialData?: Partial<SeoData>;
   onChange: (data: SeoData) => void;
+  urlPath?: string; // 커스텀 URL 경로 (예: /class/course-slug/class-slug)
 }
 
-export function SeoEditor({ title, content, initialData, onChange }: SeoEditorProps) {
+export function SeoEditor({ title, content, initialData, onChange, urlPath = "/insights/your-slug" }: SeoEditorProps) {
   const [seoData, setSeoData] = useState<SeoData>({
     metaTitle: initialData?.metaTitle || "",
     metaDescription: initialData?.metaDescription || "",
@@ -70,12 +71,13 @@ export function SeoEditor({ title, content, initialData, onChange }: SeoEditorPr
   const [showPreview, setShowPreview] = useState(false);
 
   const updateSeoData = useCallback((updates: Partial<SeoData>) => {
-    setSeoData(prev => {
-      const newData = { ...prev, ...updates };
-      onChange(newData);
-      return newData;
-    });
-  }, [onChange]);
+    setSeoData(prev => ({ ...prev, ...updates }));
+  }, []);
+
+  // seoData 변경 시 부모에게 알림
+  useEffect(() => {
+    onChange(seoData);
+  }, [seoData, onChange]);
 
   // 로컬 SEO 분석
   const analyzeLocally = useCallback(async () => {
@@ -252,22 +254,67 @@ export function SeoEditor({ title, content, initialData, onChange }: SeoEditorPr
         <div>
           <label className="block text-sm font-bold uppercase mb-2">
             <ImageIcon className="w-4 h-4 inline mr-1" />
-            OG 이미지 URL
+            OG 이미지
           </label>
+          {(() => {
+            // Extract images from markdown content
+            const imageRegex = /!\[.*?\]\((.*?)\)/g;
+            const matches = [...content.matchAll(imageRegex)];
+            const contentImages = matches.map(match => match[1]).filter(Boolean);
+
+            if (contentImages.length > 0) {
+              return (
+                <>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-2">
+                    {contentImages.map((imgUrl, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => updateSeoData({ ogImage: imgUrl })}
+                        className={`relative border-4 p-1 hover:border-primary transition-colors ${seoData.ogImage === imgUrl ? "border-primary bg-primary/10" : "border-black"
+                          }`}
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={`이미지 ${idx + 1}`}
+                          className="w-full h-24 object-cover"
+                          onError={(e) => (e.currentTarget.style.display = 'none')}
+                        />
+                        {seoData.ogImage === imgUrl && (
+                          <div className="absolute top-1 right-1 bg-primary text-white rounded-full p-1">
+                            <CheckCircle2 className="w-4 h-4" />
+                          </div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    글 내 이미지 중 선택하거나 직접 URL 입력
+                  </p>
+                </>
+              );
+            }
+            return (
+              <p className="text-xs text-muted-foreground py-2 bg-gray-50 px-3 border-2 border-dashed border-gray-300">
+                글에 이미지를 추가하면 여기서 선택할 수 있습니다
+              </p>
+            );
+          })()}
           <NeoInput
             type="url"
-            placeholder="https://example.com/image.jpg"
+            placeholder="또는 직접 입력: https://example.com/image.jpg"
             value={seoData.ogImage}
             onChange={(e) => updateSeoData({ ogImage: e.target.value })}
+            className="mt-2"
           />
           <p className="text-xs text-muted-foreground mt-1">
             소셜 미디어 공유 시 표시될 이미지 (1200x630px 권장)
           </p>
           {seoData.ogImage && (
             <div className="mt-2 border-2 border-black p-2">
-              <img 
-                src={seoData.ogImage} 
-                alt="OG Preview" 
+              <img
+                src={seoData.ogImage}
+                alt="OG Preview"
                 className="max-h-32 object-cover"
                 onError={(e) => (e.currentTarget.style.display = 'none')}
               />
@@ -292,7 +339,7 @@ export function SeoEditor({ title, content, initialData, onChange }: SeoEditorPr
                 {seoData.metaTitle || title || "페이지 제목"}
               </div>
               <div className="text-green-700 text-sm truncate">
-                https://juniappa.com/insights/your-slug
+                https://juniappa.com{urlPath}
               </div>
               <div className="text-gray-600 text-sm mt-1 line-clamp-2">
                 {seoData.metaDescription || "메타 설명이 여기에 표시됩니다. 120-160자로 작성하면 검색 결과에서 잘리지 않습니다."}
@@ -323,7 +370,7 @@ export function SeoEditor({ title, content, initialData, onChange }: SeoEditorPr
                   onChange={(e) => updateSeoData({ ogTitle: e.target.value })}
                 />
               </div>
-              
+
               {/* OG Description */}
               <div>
                 <label className="block text-sm font-bold mb-1">OG Description (소셜용 설명)</label>
@@ -378,11 +425,9 @@ export function SeoEditor({ title, content, initialData, onChange }: SeoEditorPr
               {analysis.checks.map((check) => (
                 <div
                   key={check.id}
-                  className={`flex items-start gap-2 p-2 text-sm ${
-                    check.passed ? "bg-green-50" : check.importance === "high" ? "bg-red-50" : "bg-yellow-50"
-                  } border-l-4 ${
-                    check.passed ? "border-green-500" : check.importance === "high" ? "border-red-500" : "border-yellow-500"
-                  }`}
+                  className={`flex items-start gap-2 p-2 text-sm ${check.passed ? "bg-green-50" : check.importance === "high" ? "bg-red-50" : "bg-yellow-50"
+                    } border-l-4 ${check.passed ? "border-green-500" : check.importance === "high" ? "border-red-500" : "border-yellow-500"
+                    }`}
                 >
                   {getImportanceIcon(check.importance, check.passed)}
                   <div>

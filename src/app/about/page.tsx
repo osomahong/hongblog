@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { 
-  Target, 
-  BarChart3, 
-  Lightbulb, 
+import {
+  Target,
+  BarChart3,
+  Lightbulb,
   ArrowRight,
   Database,
   LineChart,
@@ -15,6 +15,7 @@ import {
   Coffee
 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
+import { NeoTiltCard } from "@/components/neo";
 
 export const metadata: Metadata = {
   title: "About",
@@ -52,7 +53,7 @@ export default function AboutPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
       {/* Hero Section */}
       <section className="mb-12 sm:mb-16">
-        <div className="bg-primary border-4 border-black neo-shadow-lg p-6 sm:p-10 -rotate-1 halftone-corner">
+        <NeoTiltCard className="bg-gradient-to-br from-rose-500 to-red-600 border-4 border-black p-6 sm:p-10 -rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>
           <div className="flex items-center gap-3 mb-4">
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full border-3 border-black overflow-hidden rotate-3">
               <Image
@@ -68,19 +69,19 @@ export default function AboutPage() {
             마케팅을 실행하는 사람이었고,<br />
             <span className="text-accent">데이터로 설명하려는 사람</span>입니다.
           </h1>
-        </div>
+        </NeoTiltCard>
       </section>
 
       {/* Story Section */}
       <section className="mb-12 sm:mb-16">
-        <div className="bg-white border-4 border-black neo-shadow p-6 sm:p-8 rotate-0.5">
+        <NeoTiltCard className="bg-white border-4 border-black p-6 sm:p-8 rotate-0.5" intensity={15}>
           <div className="flex items-center gap-2 mb-6">
             <div className="bg-accent border-2 border-black p-1.5 -rotate-2">
               <Target className="w-5 h-5" />
             </div>
             <h2 className="text-xl sm:text-2xl font-black uppercase">The Question</h2>
           </div>
-          
+
           <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
             <p>
               광고를 집행하고, 콘텐츠를 만들고, 캠페인을 설계해왔습니다.
@@ -97,19 +98,19 @@ export default function AboutPage() {
               그 질문에 답하기 위해 마케팅을 <strong className="text-primary">데이터의 언어</strong>로 정리하기 시작했습니다.
             </p>
           </div>
-        </div>
+        </NeoTiltCard>
       </section>
 
       {/* Approach Section */}
       <section className="mb-12 sm:mb-16">
-        <div className="bg-accent border-4 border-black neo-shadow p-6 sm:p-8 -rotate-0.5 halftone-bg">
+        <NeoTiltCard className="bg-accent border-4 border-black p-6 sm:p-8 -rotate-0.5 halftone-bg" intensity={15}>
           <div className="flex items-center gap-2 mb-6 relative z-10">
             <div className="bg-black border-2 border-black p-1.5 rotate-2">
               <Lightbulb className="w-5 h-5 text-white" />
             </div>
             <h2 className="text-xl sm:text-2xl font-black uppercase">My Approach</h2>
           </div>
-          
+
           <div className="space-y-4 text-base sm:text-lg leading-relaxed relative z-10">
             <p>
               트래픽이 늘었다는 말보다 <strong>어떤 사용자가, 어떤 경로로 들어와, 어디에서 멈췄는지</strong> 설명하는 쪽을 선택했습니다.
@@ -122,7 +123,7 @@ export default function AboutPage() {
               <strong className="text-primary">복잡한 상황을 이해 가능한 형태로 정리하는 일</strong>이었습니다.
             </p>
           </div>
-        </div>
+        </NeoTiltCard>
       </section>
 
       {/* Skills Section */}
@@ -133,24 +134,25 @@ export default function AboutPage() {
           </div>
           <h2 className="text-xl sm:text-2xl font-black uppercase">Tools & Skills</h2>
         </div>
-        
+
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             const rotations = ["-rotate-1", "rotate-1", "rotate-0.5", "-rotate-0.5"];
             return (
-              <div
+              <NeoTiltCard
                 key={skill.label}
-                className={`bg-white border-4 border-black neo-shadow p-4 ${rotations[index]} hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all`}
+                className={`bg-white border-4 border-black p-4 ${rotations[index]} hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all`}
+                intensity={10}
               >
                 <Icon className="w-8 h-8 mb-3 text-primary" />
                 <h3 className="font-black text-sm sm:text-base mb-1">{skill.label}</h3>
                 <p className="text-xs text-muted-foreground">{skill.desc}</p>
-              </div>
+              </NeoTiltCard>
             );
           })}
         </div>
-        
+
         <p className="mt-6 text-sm sm:text-base text-gray-600 bg-gray-100 border-2 border-black p-4">
           이 도구들은 단순한 기술이 아니라 <strong>사고를 정리하는 수단</strong>입니다.<br />
           숫자를 많이 아는 것보다 <strong>'의사결정에 쓰일 수 있는가'</strong>를 더 중요하게 봅니다.
@@ -165,14 +167,15 @@ export default function AboutPage() {
           </div>
           <h2 className="text-xl sm:text-2xl font-black uppercase">Who I Am</h2>
         </div>
-        
+
         <div className="space-y-4">
           {principles.map((principle, index) => {
             const rotations = ["rotate-0.5", "-rotate-0.5", "rotate-0"];
             return (
-              <div
+              <NeoTiltCard
                 key={principle.title}
-                className={`bg-white border-4 border-black neo-shadow p-5 sm:p-6 ${rotations[index]}`}
+                className={`bg-white border-4 border-black p-5 sm:p-6 ${rotations[index]}`}
+                intensity={10}
               >
                 <h3 className="font-black text-base sm:text-lg mb-2 flex items-start gap-2">
                   <span className="bg-primary text-white px-2 py-0.5 text-sm border-2 border-black">
@@ -183,7 +186,7 @@ export default function AboutPage() {
                 <p className="text-sm sm:text-base text-gray-600 ml-8">
                   {principle.desc}
                 </p>
-              </div>
+              </NeoTiltCard>
             );
           })}
         </div>
@@ -191,19 +194,19 @@ export default function AboutPage() {
 
       {/* Mission Statement */}
       <section className="mb-12 sm:mb-16">
-        <div className="bg-black text-white border-4 border-black p-6 sm:p-10 neo-shadow-lg rotate-0.5">
-          <p className="text-lg sm:text-xl md:text-2xl font-black leading-relaxed text-center">
+        <NeoTiltCard className="bg-gradient-to-br from-neutral-800 to-neutral-950 text-white border-4 border-black p-6 sm:p-10 rotate-0.5 text-center" intensity={20}>
+          <p className="text-lg sm:text-xl md:text-2xl font-black leading-relaxed">
             "왜 이렇게 했는지<br />
             <span className="text-accent">설명할 수 있는 마케팅</span>을<br />
             만들고 싶은 사람입니다."
           </p>
-        </div>
+        </NeoTiltCard>
       </section>
 
       {/* Portfolio CTA */}
       <section className="mb-12 sm:mb-16">
         <Link href="/about/portfolio">
-          <div className="bg-primary text-white border-4 border-black neo-shadow-lg p-6 sm:p-8 -rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group halftone-corner speed-lines relative overflow-hidden">
+          <NeoTiltCard className="bg-gradient-to-br from-red-600 to-orange-600 text-white border-4 border-black p-6 sm:p-8 -rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group halftone-corner speed-lines relative overflow-hidden" intensity={15}>
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 relative z-10">
               <div className="bg-white p-3 border-2 border-black rotate-3 group-hover:-rotate-3 transition-transform">
                 <Briefcase className="w-8 h-8 text-primary" />
@@ -223,14 +226,14 @@ export default function AboutPage() {
                 <ArrowRight className="w-6 h-6 text-accent group-hover:translate-x-2 transition-transform" />
               </div>
             </div>
-          </div>
+          </NeoTiltCard>
         </Link>
       </section>
 
       {/* Life Log CTA */}
       <section className="mb-12 sm:mb-16">
         <Link href="/about/life">
-          <div className="bg-accent border-4 border-black neo-shadow-lg p-6 sm:p-8 rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group relative overflow-hidden">
+          <NeoTiltCard className="bg-gradient-to-br from-amber-400 to-yellow-500 border-4 border-black p-6 sm:p-8 rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group relative overflow-hidden" intensity={15}>
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 relative z-10">
               <div className="bg-white p-3 border-2 border-black -rotate-3 group-hover:rotate-3 transition-transform">
                 <Coffee className="w-8 h-8 text-primary" />
@@ -248,7 +251,7 @@ export default function AboutPage() {
                 <ArrowRight className="w-6 h-6 text-black group-hover:translate-x-2 transition-transform" />
               </div>
             </div>
-          </div>
+          </NeoTiltCard>
         </Link>
       </section>
 

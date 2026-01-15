@@ -5,6 +5,7 @@ import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent, NeoCardFooter } f
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { getAllTags, getContentByTag } from "@/lib/queries";
+import { NeoTiltCard } from "@/components/neo";
 
 const categoryIcons = {
   AI_TECH: Sparkles,
@@ -36,8 +37,8 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
               key={tag.id}
               href={`/tags?tag=${encodeURIComponent(tag.name)}`}
               className={`px-3 py-1.5 text-xs sm:text-sm font-bold uppercase border-2 border-black transition-all ${selectedTag === tag.name
-                  ? "bg-black text-white"
-                  : "bg-white text-black hover:bg-gray-100"
+                ? "bg-black text-white"
+                : "bg-white text-black hover:bg-gray-100"
                 }`}
             >
               #{tag.name}
@@ -66,7 +67,7 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
                   const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
                   return (
                     <Link key={post.id} href={`/insights/${post.slug}`}>
-                      <NeoCard hover className={`h-full ${index % 2 === 0 ? "-rotate-0.5" : "rotate-0.5"}`}>
+                      <NeoTiltCard className={`h-full ${index % 2 === 0 ? "-rotate-0.5" : "rotate-0.5"}`}>
                         <NeoCardHeader>
                           <div className="flex items-center gap-2 mb-2">
                             <NeoBadge
@@ -104,7 +105,7 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
                             Read <ArrowRight className="w-4 h-4" />
                           </span>
                         </NeoCardFooter>
-                      </NeoCard>
+                      </NeoTiltCard>
                     </Link>
                   );
                 })}
@@ -123,8 +124,7 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
                   const Icon = categoryIcons[faq.category as keyof typeof categoryIcons];
                   return (
                     <Link key={faq.id} href={`/faq/${faq.slug}`}>
-                      <NeoCard
-                        hover
+                      <NeoTiltCard
                         className={`${index % 3 === 0 ? "-rotate-0.5" : index % 3 === 1 ? "rotate-0.5" : ""} p-4 sm:p-6`}
                       >
                         <NeoCardHeader className="mb-2">
@@ -157,7 +157,7 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
                             ))}
                           </div>
                         </NeoCardContent>
-                      </NeoCard>
+                      </NeoTiltCard>
                     </Link>
                   );
                 })}
@@ -192,14 +192,14 @@ export default async function TagsPage({ searchParams }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
       {/* Hero Section */}
       <section className="mb-8 sm:mb-12">
-        <div className="bg-black border-4 border-black neo-shadow-lg p-5 sm:p-8 md:p-12 -rotate-1 halftone-corner">
+        <NeoTiltCard className="bg-gradient-to-br from-purple-600 to-fuchsia-700 border-4 border-black p-5 sm:p-8 md:p-12 -rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 relative z-10">
             <span className="text-accent comic-emphasis">Tags</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl relative z-10">
             태그별로 Insights와 FAQ를 탐색하세요
           </p>
-        </div>
+        </NeoTiltCard>
       </section>
 
       <Suspense fallback={<div className="text-center py-12">Loading...</div>}>

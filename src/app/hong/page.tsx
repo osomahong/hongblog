@@ -1,11 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Lock, FileText, Plus, List, Eye, Trash2, Edit, Save, Sparkles, Database, TrendingUp, HelpCircle, Search, Wand2, Loader2, ImageIcon, Check, BarChart3, BookOpen } from "lucide-react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { Lock, FileText, Plus, List, Eye, Trash2, Edit, Save, Sparkles, Database, TrendingUp, HelpCircle, Search, Wand2, Loader2, ImageIcon, Check, BarChart3, BookOpen, Bot, GraduationCap, LogOut, Linkedin, Copy, X } from "lucide-react";
 import MarkdownEditor from "@/components/MarkdownEditor";
 import SeoEditor, { SeoData } from "@/components/SeoEditor";
-
-const ADMIN_PASSWORD = "dhthak123!@#";
 
 type Post = {
   id: number;
@@ -61,10 +60,8 @@ const categoryIcons = {
 };
 
 export default function HongAdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState<"posts" | "faqs" | "series">("posts");
+  const { data: session, status } = useSession();
+  const [activeTab, setActiveTab] = useState<"posts" | "faqs" | "series" | "classes">("posts");
   const [view, setView] = useState<"list" | "editor">("list");
   const [posts, setPosts] = useState<Post[]>([]);
   const [faqs, setFaqs] = useState<Faq[]>([]);
@@ -112,6 +109,57 @@ export default function HongAdminPage() {
   const [seriesDescription, setSeriesDescription] = useState("");
   const [seriesThumbnailUrl, setSeriesThumbnailUrl] = useState("");
   const [isUploadingSeriesThumbnail, setIsUploadingSeriesThumbnail] = useState(false);
+
+  // llms.txt Generation state
+  const [isGeneratingLlmsTxt, setIsGeneratingLlmsTxt] = useState(false);
+  const [llmsTxtLastUpdated, setLlmsTxtLastUpdated] = useState<string | null>(null);
+
+  // Classes state
+  const [courses, setCourses] = useState<any[]>([]);
+  const [classes, setClasses] = useState<any[]>([]);
+  const [isLoadingCourses, setIsLoadingCourses] = useState(false);
+  const [isLoadingClasses, setIsLoadingClasses] = useState(false);
+
+  // Course Editor state
+  const [editingCourseId, setEditingCourseId] = useState<number | null>(null);
+  const [courseTitle, setCourseTitle] = useState("");
+  const [courseSlug, setCourseSlug] = useState("");
+  const [courseDescription, setCourseDescription] = useState("");
+  const [courseCategory, setCourseCategory] = useState<"MARKETING" | "AI_TECH" | "DATA">("AI_TECH");
+  const [courseDifficulty, setCourseDifficulty] = useState<"BEGINNER" | "INTERMEDIATE" | "ADVANCED" | "">("BEGINNER");
+  const [courseIsPublished, setCourseIsPublished] = useState(false);
+
+  // Class Editor state
+  const [editingClassId, setEditingClassId] = useState<number | null>(null);
+  const [classSlug, setClassSlug] = useState("");
+  const [classTerm, setClassTerm] = useState("");
+  const [classDefinition, setClassDefinition] = useState("");
+  const [classContent, setClassContent] = useState("");
+  const [classCategory, setClassCategory] = useState<"MARKETING" | "AI_TECH" | "DATA">("AI_TECH");
+  const [classCourseId, setClassCourseId] = useState<number | null>(null);
+  const [classOrderInCourse, setClassOrderInCourse] = useState<number | null>(null);
+  const [classDifficulty, setClassDifficulty] = useState<"BEGINNER" | "INTERMEDIATE" | "ADVANCED" | "">("BEGINNER");
+  const [classTagsInput, setClassTagsInput] = useState("");
+  const [classIsPublished, setClassIsPublished] = useState(true);
+  const [classSeoData, setClassSeoData] = useState<SeoData>({
+    metaTitle: "",
+    metaDescription: "",
+    ogImage: "",
+    ogTitle: "",
+    ogDescription: "",
+    canonicalUrl: "",
+    noIndex: false,
+  });
+  const [showClassSeoEditor, setShowClassSeoEditor] = useState(false);
+  const [isGeneratingClassMetadata, setIsGeneratingClassMetadata] = useState(false);
+
+  // LinkedIn Summary state
+  const [isGeneratingLinkedinSummary, setIsGeneratingLinkedinSummary] = useState<number | null>(null);
+  const [linkedinSummary, setLinkedinSummary] = useState("");
+  const [isLinkedinModalOpen, setIsLinkedinModalOpen] = useState(false);
+  const [activePostForLinkedin, setActivePostForLinkedin] = useState<Post | null>(null);
+  const [activeCourseForLinkedin, setActiveCourseForLinkedin] = useState<any | null>(null);
+  const [isGeneratingCourseLinkedinSummary, setIsGeneratingCourseLinkedinSummary] = useState<number | null>(null);
 
   const loadPosts = useCallback(async () => {
     try {
@@ -161,30 +209,52 @@ export default function HongAdminPage() {
     }
   }, []);
 
+  const loadCourses = useCallback(async () => {
+    setIsLoadingCourses(true);
+    try {
+      const res = await fetch("/api/hong/courses?includeUnpublished=true");
+      if (res.ok) {
+        const data = await res.json();
+        setCourses(data);
+      }
+    } catch {
+      console.error("Failed to load courses");
+    }
+    setIsLoadingCourses(false);
+  }, []);
+
+  const loadClasses = useCallback(async () => {
+    setIsLoadingClasses(true);
+    try {
+      const res = await fetch("/api/hong/classes?includeUnpublished=true");
+      if (res.ok) {
+        const data = await res.json();
+        setClasses(data);
+      }
+    } catch {
+      console.error("Failed to load classes");
+    }
+    setIsLoadingClasses(false);
+  }, []);
+
   const loadData = useCallback(async () => {
     setIsLoading(true);
-    await Promise.all([loadPosts(), loadFaqs(), loadStats(), loadSeries()]);
+    await Promise.all([loadPosts(), loadFaqs(), loadStats(), loadSeries(), loadCourses(), loadClasses()]);
     setIsLoading(false);
-  }, [loadPosts, loadFaqs, loadStats, loadSeries]);
+  }, [loadPosts, loadFaqs, loadStats, loadSeries, loadCourses, loadClasses]);
 
   useEffect(() => {
-    const auth = sessionStorage.getItem("hong_auth");
-    if (auth === "true") {
-      setIsAuthenticated(true);
+    if (status === "authenticated") {
       loadData();
     }
-  }, [loadData]);
+  }, [status, loadData]);
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("hong_auth", "true");
-      setError("");
-      loadData();
-    } else {
-      setError("비밀번호가 틀렸습니다.");
-    }
+  const handleLogin = () => {
+    signIn("google");
+  };
+
+  const handleLogout = () => {
+    signOut();
   };
 
   const resetPostEditor = () => {
@@ -228,6 +298,40 @@ export default function HongAdminPage() {
     setSeriesSlug("");
     setSeriesDescription("");
     setSeriesThumbnailUrl("");
+  };
+
+  const resetCourseEditor = () => {
+    setEditingCourseId(null);
+    setCourseTitle("");
+    setCourseSlug("");
+    setCourseDescription("");
+    setCourseCategory("AI_TECH");
+    setCourseDifficulty("BEGINNER");
+    setCourseIsPublished(false);
+  };
+
+  const resetClassEditor = () => {
+    setEditingClassId(null);
+    setClassSlug("");
+    setClassTerm("");
+    setClassDefinition("");
+    setClassContent("");
+    setClassCategory("AI_TECH");
+    setClassCourseId(null);
+    setClassOrderInCourse(null);
+    setClassDifficulty("BEGINNER");
+    setClassTagsInput("");
+    setClassIsPublished(true);
+    setClassSeoData({
+      metaTitle: "",
+      metaDescription: "",
+      ogImage: "",
+      ogTitle: "",
+      ogDescription: "",
+      canonicalUrl: "",
+      noIndex: false,
+    });
+    setShowClassSeoEditor(false);
   };
 
   // Post CRUD
@@ -583,8 +687,338 @@ export default function HongAdminPage() {
     }
   };
 
+  // Course CRUD
+  const handleSaveCourse = async () => {
+    if (!courseTitle || !courseSlug) {
+      alert("제목과 슬러그를 입력해주세요.");
+      return;
+    }
+    setIsLoading(true);
+    const courseData = {
+      id: editingCourseId,
+      title: courseTitle,
+      slug: courseSlug,
+      description: courseDescription || null,
+      category: courseCategory,
+      difficulty: courseDifficulty || null,
+      isPublished: courseIsPublished,
+    };
+    try {
+      const res = await fetch("/api/hong/courses", {
+        method: editingCourseId ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(courseData),
+      });
+      if (res.ok) {
+        alert(editingCourseId ? "수정되었습니다!" : "생성되었습니다!");
+        resetCourseEditor();
+        setView("list");
+        loadCourses();
+      } else {
+        const data = await res.json();
+        alert(data.error || "저장 실패");
+      }
+    } catch {
+      alert("저장 중 오류 발생");
+    }
+    setIsLoading(false);
+  };
+
+  const handleDeleteCourse = async (id: number) => {
+    if (!confirm("정말 삭제하시겠습니까?")) return;
+    try {
+      const res = await fetch(`/api/hong/courses?id=${id}`, { method: "DELETE" });
+      if (res.ok) loadCourses();
+      else alert("삭제 실패");
+    } catch {
+      alert("삭제 실패");
+    }
+  };
+
+  const handleEditCourse = (course: any) => {
+    setEditingCourseId(course.id);
+    setCourseTitle(course.title);
+    setCourseSlug(course.slug);
+    setCourseDescription(course.description || "");
+    setCourseCategory(course.category);
+    setCourseDifficulty(course.difficulty || "BEGINNER");
+    setCourseIsPublished(course.isPublished);
+    setView("editor");
+  };
+
+  // Class CRUD
+  const handleSaveClass = async () => {
+    if (!classTerm || !classSlug || !classDefinition || !classContent) {
+      alert("필수 항목을 모두 입력해주세요.");
+      return;
+    }
+    setIsLoading(true);
+    const classData = {
+      id: editingClassId,
+      slug: classSlug,
+      term: classTerm,
+      definition: classDefinition,
+      content: classContent,
+      category: classCategory,
+      courseId: classCourseId,
+      orderInCourse: classOrderInCourse,
+      difficulty: classDifficulty || null,
+      tagNames: classTagsInput ? classTagsInput.split(",").map((t) => t.trim()).filter(Boolean) : [],
+      isPublished: classIsPublished,
+      // SEO metadata
+      metaTitle: classSeoData.metaTitle || null,
+      metaDescription: classSeoData.metaDescription || null,
+      ogImage: classSeoData.ogImage || null,
+      ogTitle: classSeoData.ogTitle || null,
+      ogDescription: classSeoData.ogDescription || null,
+      canonicalUrl: classSeoData.canonicalUrl || null,
+      noIndex: classSeoData.noIndex || false,
+    };
+    try {
+      const res = await fetch("/api/hong/classes", {
+        method: editingClassId ? "PUT" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(classData),
+      });
+      if (res.ok) {
+        alert(editingClassId ? "수정되었습니다!" : "생성되었습니다!");
+        resetClassEditor();
+        setView("list");
+        loadClasses();
+      } else {
+        const data = await res.json();
+        alert(data.error || "저장 실패");
+      }
+    } catch {
+      alert("저장 중 오류 발생");
+    }
+    setIsLoading(false);
+  };
+
+  const handleDeleteClass = async (id: number) => {
+    if (!confirm("정말 삭제하시겠습니까?")) return;
+    try {
+      const res = await fetch(`/api/hong/classes?id=${id}`, { method: "DELETE" });
+      if (res.ok) loadClasses();
+      else alert("삭제 실패");
+    } catch {
+      alert("삭제 실패");
+    }
+  };
+
+  const handleEditClass = (cls: any) => {
+    setEditingClassId(cls.id);
+    setClassSlug(cls.slug);
+    setClassTerm(cls.term);
+    setClassDefinition(cls.definition);
+    setClassContent(cls.content);
+    setClassCategory(cls.category);
+    setClassCourseId(cls.courseId);
+    setClassOrderInCourse(cls.orderInCourse || null);
+    setClassDifficulty(cls.difficulty || "BEGINNER");
+    setClassTagsInput(cls.tags?.join(", ") || "");
+    setClassIsPublished(cls.isPublished);
+    setClassSeoData({
+      metaTitle: cls.metaTitle || "",
+      metaDescription: cls.metaDescription || "",
+      ogImage: cls.ogImage || "",
+      ogTitle: cls.ogTitle || "",
+      ogDescription: cls.ogDescription || "",
+      canonicalUrl: cls.canonicalUrl || "",
+      noIndex: cls.noIndex || false,
+    });
+    setView("editor");
+  };
+
+  const toggleCoursePublished = async (course: any) => {
+    const action = course.isPublished ? "비공개로 전환" : "공개 배포";
+    if (!confirm(`"${course.title}" Course를 ${action}하시겠습니까?`)) return;
+
+    try {
+      const res = await fetch("/api/hong/courses", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...course, isPublished: !course.isPublished }),
+      });
+      if (res.ok) {
+        loadCourses();
+        alert(`${action} 완료!`);
+      }
+    } catch {
+      alert("배포 상태 변경 실패");
+    }
+  };
+
+  const toggleClassPublished = async (cls: any) => {
+    const action = cls.isPublished ? "비공개로 전환" : "공개 배포";
+    if (!confirm(`"${cls.term}" Class를 ${action}하시겠습니까?`)) return;
+
+    try {
+      const res = await fetch("/api/hong/classes", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: cls.id,
+          slug: cls.slug,
+          term: cls.term,
+          definition: cls.definition,
+          content: cls.content,
+          category: cls.category,
+          courseId: cls.courseId,
+
+          orderInCourse: cls.orderInCourse,
+          difficulty: cls.difficulty,
+          isPublished: !cls.isPublished,
+          // SEO fields
+          metaTitle: cls.metaTitle,
+          metaDescription: cls.metaDescription,
+          ogImage: cls.ogImage,
+          ogTitle: cls.ogTitle,
+          ogDescription: cls.ogDescription,
+          canonicalUrl: cls.canonicalUrl,
+          noIndex: cls.noIndex,
+          // Tags
+          tagNames: cls.tags || [],
+        }),
+      });
+      if (res.ok) {
+        loadClasses();
+        alert(`${action} 완료!`);
+      } else {
+        const data = await res.json();
+        alert(data.error || `${action} 실패`);
+      }
+    } catch (err) {
+      console.error("Toggle publish error:", err);
+      alert("배포 상태 변경 실패");
+    }
+  };
+
+  // llms.txt 생성
+  const handleGenerateLlmsTxt = async () => {
+    if (!confirm("llms.txt 파일을 생성하시겠습니까?\n\n현재 배포된 콘텐츠와 조회수 통계를 기반으로 최신 콘텐츠가 반영됩니다.")) {
+      return;
+    }
+
+    setIsGeneratingLlmsTxt(true);
+    try {
+      const res = await fetch("/api/hong/seo/generate-llmstxt", {
+        method: "POST",
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setLlmsTxtLastUpdated(new Date().toLocaleString("ko-KR"));
+
+        let message = `✅ llms.txt 생성 완료!\n\n`;
+
+        if (data.diff && (data.diff.added.length > 0 || data.diff.removed.length > 0)) {
+          message += `🔍 변경 사항:\n`;
+
+          if (data.diff.added.length > 0) {
+            message += `\n[추가됨 (+${data.diff.added.length})]\n`;
+            data.diff.added.forEach((item: any) => {
+              message += `+ ${item.title}\n`;
+            });
+          }
+
+          if (data.diff.removed.length > 0) {
+            message += `\n[삭제됨 (-${data.diff.removed.length})]\n`;
+            data.diff.removed.forEach((item: any) => {
+              message += `- ${item.title}\n`;
+            });
+          }
+        } else {
+          message += `(변경된 내용이 없습니다)\n`;
+        }
+
+        message += `\n🔗 확인: ${data.previewUrl}`;
+
+        alert(message);
+      } else {
+        const data = await res.json();
+        alert(`❌ 생성 실패: ${data.error || "알 수 없는 오류"}`);
+      }
+    } catch (error) {
+      console.error("llms.txt generation error:", error);
+      alert("❌ llms.txt 생성 중 오류가 발생했습니다.");
+    }
+    setIsGeneratingLlmsTxt(false);
+  };
+
+  // 링크드인 요약 생성 핸들러
+  const handleGenerateLinkedinSummary = async (post: Post) => {
+    setIsGeneratingLinkedinSummary(post.id);
+    setActivePostForLinkedin(post);
+    try {
+      const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://redline-matrix.com";
+      const postUrl = `${siteUrl}/insights/${post.slug}`;
+      const res = await fetch("/api/hong/ai/generate-linkedin-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: post.title,
+          content: post.content,
+          url: postUrl
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setLinkedinSummary(data.summary);
+        setIsLinkedinModalOpen(true);
+      } else {
+        const data = await res.json();
+        alert(data.error || "요약 생성 실패");
+      }
+    } catch {
+      alert("요약 생성 중 오류 발생");
+    }
+    setIsGeneratingLinkedinSummary(null);
+  };
+
+  const handleGenerateCourseLinkedinSummary = async (course: any) => {
+    setIsGeneratingCourseLinkedinSummary(course.id);
+    setActiveCourseForLinkedin(course);
+    setActivePostForLinkedin(null); // Clear post if any
+    try {
+      const res = await fetch("/api/hong/ai/generate-course-linkedin-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ courseId: course.id }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setLinkedinSummary(data.summary);
+        setIsLinkedinModalOpen(true);
+      } else {
+        const data = await res.json();
+        alert(data.error || "요약 생성 실패");
+      }
+    } catch {
+      alert("요약 생성 중 오류 발생");
+    }
+    setIsGeneratingCourseLinkedinSummary(null);
+  };
+
+  const handleCopyLinkedinSummary = () => {
+    navigator.clipboard.writeText(linkedinSummary);
+    alert("클립보드에 복사되었습니다!");
+  };
+
+
+  // Loading State
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <Loader2 className="w-10 h-10 animate-spin text-black" />
+      </div>
+    );
+  }
+
   // Login Screen
-  if (!isAuthenticated) {
+  if (status !== "authenticated") {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
         <div className="bg-white border-4 border-black p-8 w-full max-w-md" style={{ boxShadow: "8px 8px 0 black" }}>
@@ -592,20 +1026,16 @@ export default function HongAdminPage() {
             <Lock className="w-8 h-8" />
             <h1 className="text-2xl font-black uppercase">Admin Access</h1>
           </div>
-          <form onSubmit={handleLogin}>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="비밀번호 입력"
-              className="w-full px-4 py-3 border-4 border-black mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              autoFocus
-            />
-            {error && <p className="text-red-600 font-bold mb-4">{error}</p>}
-            <button type="submit" className="w-full bg-black text-white py-3 font-bold uppercase hover:bg-gray-800 transition">
-              입장하기
-            </button>
-          </form>
+          <p className="text-gray-600 mb-6">
+            이 페이지는 관리자 전용입니다. 구글 계정으로 로그인하여 계속 진행하세요.
+          </p>
+          <button
+            onClick={handleLogin}
+            className="w-full bg-black text-white py-3 font-bold uppercase hover:bg-gray-800 transition flex items-center justify-center gap-2"
+          >
+            <img src="https://www.google.com/favicon.ico" className="w-4 h-4" alt="Google" />
+            구글로 로그인하기
+          </button>
         </div>
       </div>
     );
@@ -641,6 +1071,12 @@ export default function HongAdminPage() {
             >
               <BookOpen className="w-4 h-4" /> Series
             </button>
+            <button
+              onClick={() => { setActiveTab("classes"); setView("list"); }}
+              className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "classes" ? "bg-yellow-600" : "bg-gray-700 hover:bg-gray-600"}`}
+            >
+              <GraduationCap className="w-4 h-4" /> Classes
+            </button>
             <a
               href="/hong/life"
               className="px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 bg-orange-600 hover:bg-orange-500"
@@ -648,18 +1084,66 @@ export default function HongAdminPage() {
               ☕ Life Log
             </a>
             <div className="w-px bg-gray-600 mx-2" />
+            <div className="flex items-center gap-3">
+              <div className="text-right hidden sm:block">
+                <p className="text-xs font-bold">{session?.user?.name}</p>
+                <p className="text-[10px] text-gray-400">{session?.user?.email}</p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="p-2 bg-red-600 hover:bg-red-700 text-white rounded transition"
+                title="로그아웃"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="w-px bg-gray-600 mx-2" />
             <button
-              onClick={() => { activeTab === "posts" ? resetPostEditor() : activeTab === "faqs" ? resetFaqEditor() : resetSeriesEditor(); setView("list"); }}
+              onClick={() => {
+                if (activeTab === "posts") resetPostEditor();
+                else if (activeTab === "faqs") resetFaqEditor();
+                else if (activeTab === "series") resetSeriesEditor();
+                setView("list");
+              }}
               className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${view === "list" ? "bg-white text-black" : "bg-gray-700"}`}
             >
               <List className="w-4 h-4" /> 목록
             </button>
             <button
-              onClick={() => { activeTab === "posts" ? resetPostEditor() : activeTab === "faqs" ? resetFaqEditor() : resetSeriesEditor(); setView("editor"); }}
+              onClick={() => {
+                if (activeTab === "posts") resetPostEditor();
+                else if (activeTab === "faqs") resetFaqEditor();
+                else if (activeTab === "series") resetSeriesEditor();
+                else if (activeTab === "classes") resetClassEditor();
+                setView("editor");
+              }}
               className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${view === "editor" ? "bg-white text-black" : "bg-gray-700"}`}
             >
               <Plus className="w-4 h-4" /> 새 글
             </button>
+            <div className="w-px bg-gray-600 mx-2" />
+            {/* llms.txt 생성 버튼 */}
+            <button
+              onClick={handleGenerateLlmsTxt}
+              disabled={isGeneratingLlmsTxt}
+              className="px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 bg-cyan-600 hover:bg-cyan-500 disabled:bg-gray-500 disabled:cursor-not-allowed"
+              title="llms.txt 파일 생성 (조회수 기반 인기 콘텐츠 반영)"
+            >
+              {isGeneratingLlmsTxt ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" /> 생성중...
+                </>
+              ) : (
+                <>
+                  <Bot className="w-4 h-4" /> llms.txt
+                </>
+              )}
+            </button>
+            {llmsTxtLastUpdated && (
+              <span className="text-xs text-gray-300 self-center">
+                마지막 생성: {llmsTxtLastUpdated}
+              </span>
+            )}
           </div>
         </div>
       </header>
@@ -729,6 +1213,18 @@ export default function HongAdminPage() {
                             )}
                           </div>
                           <div className="flex gap-2">
+                            <button
+                              onClick={() => handleGenerateLinkedinSummary(post)}
+                              disabled={isGeneratingLinkedinSummary === post.id}
+                              className="p-2 border-2 border-black hover:bg-blue-50 disabled:opacity-50"
+                              title="링크드인 요약 생성"
+                            >
+                              {isGeneratingLinkedinSummary === post.id ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                              ) : (
+                                <Linkedin className="w-4 h-4 text-[#0A66C2]" />
+                              )}
+                            </button>
                             <a href={`/insights/${post.slug}`} target="_blank" className="p-2 border-2 border-black hover:bg-gray-100" title="보기">
                               <Eye className="w-4 h-4" />
                             </a>
@@ -1404,7 +1900,490 @@ export default function HongAdminPage() {
             )}
           </>
         )}
+
+        {/* Classes Tab */}
+        {activeTab === "classes" && (
+          <>
+            {/* List View */}
+            {view === "list" && (
+              <div className="space-y-6">
+                {/* Courses List */}
+                <div className="bg-white border-4 border-black p-6" style={{ boxShadow: "8px 8px 0 black" }}>
+                  <h2 className="text-xl font-black uppercase mb-4 flex items-center gap-2">
+                    <BookOpen className="w-5 h-5" /> Courses ({courses.length})
+                  </h2>
+                  {isLoadingCourses ? (
+                    <p className="text-gray-500 py-8 text-center">로딩 중...</p>
+                  ) : courses.length === 0 ? (
+                    <p className="text-gray-500 py-8 text-center">등록된 Course가 없습니다.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {courses.map((course: any) => (
+                        <div key={course.id} className="border-2 border-black p-4 flex items-center justify-between hover:bg-gray-50">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1">
+                              <h3 className="font-bold text-lg">{course.title}</h3>
+                              <button
+                                onClick={() => toggleCoursePublished(course)}
+                                className="flex items-center gap-2 text-xs font-bold"
+                                title={course.isPublished ? "클릭하여 비공개로 전환" : "클릭하여 공개 배포"}
+                              >
+                                <div className={`relative w-12 h-6 rounded-full transition-colors duration-200 ${course.isPublished ? "bg-green-500" : "bg-gray-300"}`}>
+                                  <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 flex items-center justify-center ${course.isPublished ? "translate-x-6" : "translate-x-0.5"}`}>
+                                    {course.isPublished ? (
+                                      <Eye className="w-3 h-3 text-green-600" />
+                                    ) : (
+                                      <Lock className="w-3 h-3 text-gray-400" />
+                                    )}
+                                  </div>
+                                </div>
+                                <span className={course.isPublished ? "text-green-700" : "text-gray-500"}>
+                                  {course.isPublished ? "공개" : "비공개"}
+                                </span>
+                              </button>
+                            </div>
+                            <p className="text-sm text-gray-600">{course.description || "설명 없음"}</p>
+                            <p className="text-xs text-gray-500 mt-1">
+                              /class/{course.slug} · ID: {course.id} · {course.category}
+                            </p>
+                          </div>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => handleGenerateCourseLinkedinSummary(course)}
+                              disabled={isGeneratingCourseLinkedinSummary === course.id}
+                              className="p-2 border-2 border-black hover:bg-blue-50 disabled:opacity-50"
+                              title="LinkedIn 요약 생성"
+                            >
+                              {isGeneratingCourseLinkedinSummary === course.id ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                              ) : (
+                                <Linkedin className="w-4 h-4 text-[#0A66C2]" />
+                              )}
+                            </button>
+                            <a href={`/class/${course.slug}`} target="_blank" className="p-2 border-2 border-black hover:bg-gray-100" title="보기">
+                              <Eye className="w-4 h-4" />
+                            </a>
+                            <button onClick={() => handleEditCourse(course)} className="p-2 border-2 border-black hover:bg-blue-100" title="수정">
+                              <Edit className="w-4 h-4" />
+                            </button>
+                            <button onClick={() => handleDeleteCourse(course.id)} className="p-2 border-2 border-black hover:bg-red-100" title="삭제">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Classes List */}
+                <div className="bg-white border-4 border-black p-6" style={{ boxShadow: "8px 8px 0 black" }}>
+                  <h2 className="text-xl font-black uppercase mb-4 flex items-center gap-2">
+                    <GraduationCap className="w-5 h-5" /> Classes ({classes.length})
+                  </h2>
+                  {isLoadingClasses ? (
+                    <p className="text-gray-500 py-8 text-center">로딩 중...</p>
+                  ) : classes.length === 0 ? (
+                    <p className="text-gray-500 py-8 text-center">등록된 Class가 없습니다.</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {classes.map((cls: any) => (
+                        <div key={cls.id} className="border-2 border-black p-4 flex items-center justify-between hover:bg-gray-50">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <h3 className="font-bold text-lg">{cls.term}</h3>
+                              <button
+                                onClick={() => toggleClassPublished(cls)}
+                                className="flex items-center gap-2 text-xs font-bold"
+                                title={cls.isPublished ? "클릭하여 비공개로 전환" : "클릭하여 공개 배포"}
+                              >
+                                <div className={`relative w-12 h-6 rounded-full transition-colors duration-200 ${cls.isPublished ? "bg-green-500" : "bg-gray-300"}`}>
+                                  <div className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-200 flex items-center justify-center ${cls.isPublished ? "translate-x-6" : "translate-x-0.5"}`}>
+                                    {cls.isPublished ? (
+                                      <Eye className="w-3 h-3 text-green-600" />
+                                    ) : (
+                                      <Lock className="w-3 h-3 text-gray-400" />
+                                    )}
+                                  </div>
+                                </div>
+                                <span className={cls.isPublished ? "text-green-700" : "text-gray-500"}>
+                                  {cls.isPublished ? "공개" : "비공개"}
+                                </span>
+                              </button>
+                              {cls.tags && cls.tags.length > 0 && (
+                                cls.tags.slice(0, 3).map((tag: string) => (
+                                  <span key={tag} className="text-xs text-gray-400">#{tag}</span>
+                                ))
+                              )}
+                            </div>
+                            <p className="text-sm text-gray-600 mb-1">{cls.definition}</p>
+                            <p className="text-xs text-gray-500">
+                              {cls.courseInfo ? `/class/${cls.courseInfo.slug}/${cls.slug}` : `/class/-/${cls.slug}`} · ID: {cls.id}
+                              {cls.courseInfo && ` · Course: ${cls.courseInfo.title}`}
+                              {cls.partInfo && ` · Part ${cls.partInfo.partNumber}`}
+                            </p>
+                          </div>
+                          <div className="flex gap-2">
+                            {cls.courseInfo && (
+                              <a href={`/class/${cls.courseInfo.slug}/${cls.slug}`} target="_blank" className="p-2 border-2 border-black hover:bg-gray-100" title="보기">
+                                <Eye className="w-4 h-4" />
+                              </a>
+                            )}
+                            <button onClick={() => handleEditClass(cls)} className="p-2 border-2 border-black hover:bg-blue-100" title="수정">
+                              <Edit className="w-4 h-4" />
+                            </button>
+                            <button onClick={() => handleDeleteClass(cls.id)} className="p-2 border-2 border-black hover:bg-red-100" title="삭제">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Editor View */}
+            {view === "editor" && (
+              <div className="bg-white border-4 border-black p-6" style={{ boxShadow: "8px 8px 0 black" }}>
+                <h2 className="text-2xl font-black uppercase mb-6">
+                  {editingCourseId ? "Course 수정" : editingClassId ? "Class 수정" : "새 콘텐츠 생성"}
+                </h2>
+
+                {/* 타입 선택 (새로 생성 시에만) */}
+                {!editingCourseId && !editingClassId && (
+                  <div className="mb-6 flex gap-4">
+                    <button
+                      onClick={() => {
+                        resetCourseEditor();
+                        resetClassEditor();
+                      }}
+                      className={`flex-1 py-3 font-bold uppercase border-4 border-black ${!classTerm ? "bg-green-500 text-white" : "bg-white hover:bg-gray-50"}`}
+                    >
+                      <BookOpen className="w-5 h-5 inline mr-2" />
+                      Course 생성
+                    </button>
+                    <button
+                      onClick={() => {
+                        resetCourseEditor();
+                        setClassTerm(" "); // 공백으로 Class 모드 활성화
+                      }}
+                      className={`flex-1 py-3 font-bold uppercase border-4 border-black ${classTerm ? "bg-blue-500 text-white" : "bg-white hover:bg-gray-50"}`}
+                    >
+                      <GraduationCap className="w-5 h-5 inline mr-2" />
+                      Class 생성
+                    </button>
+                  </div>
+                )}
+
+                {/* Course Editor */}
+                {(editingCourseId || (!editingClassId && !classTerm)) && (
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">제목 (Title) *</label>
+                        <input
+                          type="text"
+                          value={courseTitle}
+                          onChange={(e) => setCourseTitle(e.target.value)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none"
+                          placeholder="HTML 기초"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">슬러그 (Slug) *</label>
+                        <input
+                          type="text"
+                          value={courseSlug}
+                          onChange={(e) => setCourseSlug(e.target.value)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none"
+                          placeholder="html-basics"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">URL: /class/{courseSlug || "..."}</p>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-bold uppercase mb-1">설명 (Description)</label>
+                      <textarea
+                        value={courseDescription}
+                        onChange={(e) => setCourseDescription(e.target.value)}
+                        className="w-full px-4 py-2 border-4 border-black focus:outline-none min-h-[100px]"
+                        placeholder="강의 설명"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">카테고리 *</label>
+                        <select
+                          value={courseCategory}
+                          onChange={(e) => setCourseCategory(e.target.value as any)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none bg-white"
+                        >
+                          <option value="MARKETING">마케팅</option>
+                          <option value="AI_TECH">AI & Tech</option>
+                          <option value="DATA">데이터</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">난이도</label>
+                        <select
+                          value={courseDifficulty}
+                          onChange={(e) => setCourseDifficulty(e.target.value as any)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none bg-white"
+                        >
+                          <option value="BEGINNER">초급</option>
+                          <option value="INTERMEDIATE">중급</option>
+                          <option value="ADVANCED">고급</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="coursePublished"
+                        checked={courseIsPublished}
+                        onChange={(e) => setCourseIsPublished(e.target.checked)}
+                        className="w-5 h-5 border-2 border-black"
+                      />
+                      <label htmlFor="coursePublished" className="font-bold cursor-pointer">공개 배포</label>
+                    </div>
+
+                    <button
+                      onClick={handleSaveCourse}
+                      disabled={isLoading}
+                      className="w-full bg-green-600 text-white py-3 font-bold uppercase hover:bg-green-700 disabled:bg-gray-400 flex items-center justify-center gap-2"
+                    >
+                      <Save className="w-5 h-5" />
+                      {isLoading ? "저장 중..." : editingCourseId ? "수정 저장" : "Course 생성"}
+                    </button>
+                  </div>
+                )}
+
+                {/* Class Editor */}
+                {(editingClassId || (!editingCourseId && classTerm)) && (
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">용어 (Term) *</label>
+                        <input
+                          type="text"
+                          value={classTerm}
+                          onChange={(e) => setClassTerm(e.target.value)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none"
+                          placeholder="HTML"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">슬러그 (Slug) *</label>
+                        <input
+                          type="text"
+                          value={classSlug}
+                          onChange={(e) => setClassSlug(e.target.value)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none"
+                          placeholder="html"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-bold uppercase mb-1">정의 (Definition) *</label>
+                      <textarea
+                        value={classDefinition}
+                        onChange={(e) => setClassDefinition(e.target.value)}
+                        className="w-full px-4 py-2 border-4 border-black focus:outline-none min-h-[80px]"
+                        placeholder="간단한 정의 (1-2문장)"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-bold uppercase mb-2">내용 (Markdown) *</label>
+                      <MarkdownEditor
+                        value={classContent}
+                        onChange={setClassContent}
+                        placeholder="# 제목&#10;&#10;상세 내용을 마크다운으로 작성하세요..."
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">카테고리 *</label>
+                        <select
+                          value={classCategory}
+                          onChange={(e) => setClassCategory(e.target.value as any)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none bg-white"
+                        >
+                          <option value="MARKETING">마케팅</option>
+                          <option value="AI_TECH">AI & Tech</option>
+                          <option value="DATA">데이터</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">Course</label>
+                        <select
+                          value={classCourseId || ""}
+                          onChange={(e) => setClassCourseId(e.target.value ? parseInt(e.target.value) : null)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none bg-white"
+                        >
+                          <option value="">없음</option>
+                          {courses.map((c: any) => (
+                            <option key={c.id} value={c.id}>
+                              {c.title} (ID: {c.id})
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">난이도</label>
+                        <select
+                          value={classDifficulty}
+                          onChange={(e) => setClassDifficulty(e.target.value as any)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none bg-white"
+                        >
+                          <option value="BEGINNER">초급</option>
+                          <option value="INTERMEDIATE">중급</option>
+                          <option value="ADVANCED">고급</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">Course 내 순서</label>
+                        <input
+                          type="number"
+                          value={classOrderInCourse || ""}
+                          onChange={(e) => setClassOrderInCourse(e.target.value ? parseInt(e.target.value) : null)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none"
+                          placeholder="1"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-bold uppercase mb-1">태그 (쉼표 구분)</label>
+                        <input
+                          type="text"
+                          value={classTagsInput}
+                          onChange={(e) => setClassTagsInput(e.target.value)}
+                          className="w-full px-4 py-2 border-4 border-black focus:outline-none"
+                          placeholder="HTML, 웹개발"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="classPublished"
+                        checked={classIsPublished}
+                        onChange={(e) => setClassIsPublished(e.target.checked)}
+                        className="w-5 h-5 border-2 border-black"
+                      />
+                      <label htmlFor="classPublished" className="font-bold cursor-pointer">공개 배포</label>
+                    </div>
+
+                    {/* SEO Settings */}
+                    <div className="border-t-4 border-black pt-4">
+                      <button
+                        type="button"
+                        onClick={() => setShowClassSeoEditor(!showClassSeoEditor)}
+                        className="flex items-center gap-2 px-4 py-2 bg-blue-100 border-4 border-black font-bold uppercase text-sm hover:bg-blue-200"
+                      >
+                        <Search className="w-4 h-4" />
+                        {showClassSeoEditor ? "SEO 설정 접기" : "SEO 설정 열기"}
+                      </button>
+                    </div>
+
+                    {/* SEO Editor */}
+                    {showClassSeoEditor && (
+                      <SeoEditor
+                        title={classTerm}
+                        content={classContent}
+                        initialData={{
+                          ...classSeoData,
+                          metaTitle: classSeoData.metaTitle || (
+                            classCourseId
+                              ? `${classTerm} | ${courses.find((c: any) => c.id === classCourseId)?.title || "강의"}`
+                              : classTerm
+                          ),
+                        }}
+                        onChange={setClassSeoData}
+                        urlPath={
+                          classCourseId && courses.find((c: any) => c.id === classCourseId)
+                            ? `/class/${courses.find((c: any) => c.id === classCourseId)?.slug}/${classSlug || "your-slug"}`
+                            : `/class/-/${classSlug || "your-slug"}`
+                        }
+                      />
+                    )}
+
+                    <button
+                      onClick={handleSaveClass}
+                      disabled={isLoading}
+                      className="w-full bg-blue-600 text-white py-3 font-bold uppercase hover:bg-blue-700 disabled:bg-gray-400 flex items-center justify-center gap-2"
+                    >
+                      <Save className="w-5 h-5" />
+                      {isLoading ? "저장 중..." : editingClassId ? "수정 저장" : "Class 생성"}
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
+          </>
+        )}
       </main>
+
+      {/* LinkedIn Summary Modal */}
+      {isLinkedinModalOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border-4 border-black w-full max-w-2xl overflow-hidden" style={{ boxShadow: "12px 12px 0 black" }}>
+            <div className="bg-black text-white p-4 flex items-center justify-between">
+              <h3 className="font-black uppercase flex items-center gap-2">
+                <Linkedin className="w-5 h-5" /> LinkedIn Summary
+              </h3>
+              <button
+                onClick={() => setIsLinkedinModalOpen(false)}
+                className="hover:text-gray-300"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="p-6">
+              <div className="mb-4">
+                <p className="text-sm font-bold text-gray-500 mb-2 uppercase">
+                  {activeCourseForLinkedin ? "Target Course:" : "Target Post:"}
+                </p>
+                <p className="font-bold">
+                  {activeCourseForLinkedin ? activeCourseForLinkedin.title : activePostForLinkedin?.title}
+                </p>
+              </div>
+              <div className="relative">
+                <textarea
+                  readOnly
+                  value={linkedinSummary}
+                  className="w-full h-80 p-4 border-4 border-black focus:outline-none bg-gray-50 font-sans text-sm leading-relaxed"
+                />
+                <button
+                  onClick={handleCopyLinkedinSummary}
+                  className="absolute top-4 right-4 p-2 bg-white border-2 border-black hover:bg-gray-100 shadow-[2px_2px_0_black] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+                  title="Copy to clipboard"
+                >
+                  <Copy className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="mt-6 flex justify-end">
+                <button
+                  onClick={() => setIsLinkedinModalOpen(false)}
+                  className="px-6 py-2 border-4 border-black font-black uppercase hover:bg-gray-100"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

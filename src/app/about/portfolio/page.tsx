@@ -322,10 +322,10 @@ export default function PortfolioPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/about"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-black text-black font-medium hover:bg-gray-100 transition-colors"
+              href="https://open.kakao.com/o/sS5vN58c"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-black text-black font-medium transition-colors bg-[#FEE500] hover:bg-[#F7E600]"
             >
-              About 보기
+              카카오톡 문의
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
