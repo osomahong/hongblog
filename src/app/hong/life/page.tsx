@@ -28,7 +28,9 @@ import MarkdownEditor from "@/components/MarkdownEditor";
 import SeoEditor, { SeoData } from "@/components/SeoEditor";
 import Link from "next/link";
 
-const ADMIN_PASSWORD = "dhthak123!@#";
+// TODO: Migrate to NextAuth session-based authentication (same as /hong)
+// For now, using environment variable instead of hardcoded password
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_LIFE_ADMIN_PASSWORD || "";
 
 type LifeLog = {
   id: number;
@@ -546,11 +548,10 @@ export default function LifeLogAdminPage() {
                           key={idx}
                           type="button"
                           onClick={() => handleThumbnailSelect(url)}
-                          className={`relative aspect-square border-4 overflow-hidden transition-all ${
-                            thumbnailUrl === url
+                          className={`relative aspect-square border-4 overflow-hidden transition-all ${thumbnailUrl === url
                               ? "border-blue-600 ring-2 ring-blue-300"
                               : "border-gray-300 hover:border-black"
-                          }`}
+                            }`}
                         >
                           <img src={url} alt={`이미지 ${idx + 1}`} className="w-full h-full object-cover" />
                           {thumbnailUrl === url && (
