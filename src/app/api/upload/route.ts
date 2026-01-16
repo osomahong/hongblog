@@ -1,6 +1,5 @@
+import { put } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
-import { writeFile, mkdir } from "fs/promises";
-import path from "path";
 
 // 허용된 이미지 타입
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
@@ -31,24 +30,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 파일명 생성 (timestamp + random + 원본 확장자)
+    // 파일명 생성
     const ext = file.name.split(".").pop() || "jpg";
-    const filename = `${Date.now()}-${Math.random().toString(36).substring(2, 8)}.${ext}`;
+    const filename = `uploads/${Date.now()}-${Math.random().toString(36).substring(2, 8)}.${ext}`;
 
-    // uploads 디렉토리 생성
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    await mkdir(uploadDir, { recursive: true });
+    // Vercel Blob으로 업로드
+    const blob = await put(filename, file, {
+      access: "public",
+    });
 
-    // 파일 저장
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const filepath = path.join(uploadDir, filename);
-    await writeFile(filepath, buffer);
-
-    // 공개 URL 반환
-    const url = `/uploads/${filename}`;
-
-    return NextResponse.json({ url, filename });
+    return NextResponse.json({ url: blob.url, filename: blob.pathname });
   } catch (error) {
     console.error("Upload error:", error);
     return NextResponse.json(
