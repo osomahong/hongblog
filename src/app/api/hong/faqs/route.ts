@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { faqs, tags, faqsToTags, Faq, Tag } from "@/lib/schema";
 import { eq, desc } from "drizzle-orm";
@@ -99,6 +100,11 @@ export async function POST(request: NextRequest) {
       await processTagsForFaq(newFaq.id, tagNames);
     }
 
+    // Invalidate cache for FAQ pages
+    revalidatePath('/faq');
+    revalidatePath(`/faq/${newFaq.slug}`);
+    revalidatePath('/');
+
     return NextResponse.json({ success: true, faq: newFaq });
   } catch (error) {
     console.error("Failed to create faq:", error);
@@ -164,6 +170,11 @@ export async function PUT(request: NextRequest) {
       await processTagsForFaq(id, tagNames);
     }
 
+    // Invalidate cache for FAQ pages
+    revalidatePath('/faq');
+    revalidatePath(`/faq/${updatedFaq.slug}`);
+    revalidatePath('/');
+
     return NextResponse.json({ success: true, faq: updatedFaq });
   } catch (error) {
     console.error("Failed to update faq:", error);
@@ -192,6 +203,10 @@ export async function DELETE(request: NextRequest) {
 
     await db.delete(faqsToTags).where(eq(faqsToTags.faqId, faqId));
     await db.delete(faqs).where(eq(faqs.id, faqId));
+
+    // Invalidate cache
+    revalidatePath('/faq');
+    revalidatePath('/');
 
     return NextResponse.json({ success: true });
   } catch (error) {

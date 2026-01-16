@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { classes, classesToTags, tags } from "@/lib/schema";
 import { eq, inArray } from "drizzle-orm";
@@ -146,6 +147,15 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Invalidate cache for class pages
+        const course = courseId ? await db.query.courses.findFirst({ where: eq(require("@/lib/schema").courses.id, courseId) }) : null;
+        if (course) {
+            revalidatePath(`/class/${course.slug}`);
+            revalidatePath(`/class/${course.slug}/${cls.slug}`);
+        }
+        revalidatePath('/class');
+        revalidatePath('/');
+
         return NextResponse.json(cls, { status: 201 });
     } catch (error: any) {
         console.error("Error creating class:", error);
@@ -230,6 +240,15 @@ export async function PUT(request: NextRequest) {
             }
         }
 
+        // Invalidate cache for class pages
+        const course = updated.courseId ? await db.query.courses.findFirst({ where: eq(require("@/lib/schema").courses.id, updated.courseId) }) : null;
+        if (course) {
+            revalidatePath(`/class/${course.slug}`);
+            revalidatePath(`/class/${course.slug}/${updated.slug}`);
+        }
+        revalidatePath('/class');
+        revalidatePath('/');
+
         return NextResponse.json(updated);
     } catch (error) {
         console.error("Error updating class:", error);
@@ -261,6 +280,10 @@ export async function DELETE(request: NextRequest) {
         }
 
         await db.delete(classes).where(eq(classes.id, parseInt(id)));
+
+        // Invalidate cache
+        revalidatePath('/class');
+        revalidatePath('/');
 
         return NextResponse.json({ success: true });
     } catch (error) {

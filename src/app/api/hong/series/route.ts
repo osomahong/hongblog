@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { series, posts, Series } from "@/lib/schema";
 import { eq, desc, asc } from "drizzle-orm";
@@ -83,6 +84,11 @@ export async function POST(request: NextRequest) {
       })
       .returning();
 
+    // Invalidate cache for series pages
+    revalidatePath('/series');
+    revalidatePath(`/series/${newSeries.slug}`);
+    revalidatePath('/');
+
     return NextResponse.json({ success: true, series: newSeries });
   } catch (error) {
     console.error("Failed to create series:", error);
@@ -130,6 +136,11 @@ export async function PUT(request: NextRequest) {
       .where(eq(series.id, id))
       .returning();
 
+    // Invalidate cache for series pages
+    revalidatePath('/series');
+    revalidatePath(`/series/${updatedSeries.slug}`);
+    revalidatePath('/');
+
     return NextResponse.json({ success: true, series: updatedSeries });
   } catch (error) {
     console.error("Failed to update series:", error);
@@ -161,6 +172,10 @@ export async function DELETE(request: NextRequest) {
 
     // 시리즈 삭제
     await db.delete(series).where(eq(series.id, seriesId));
+
+    // Invalidate cache
+    revalidatePath('/series');
+    revalidatePath('/');
 
     return NextResponse.json({ success: true });
   } catch (error) {

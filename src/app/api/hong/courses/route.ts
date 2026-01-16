@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { courses } from "@/lib/schema";
 import { eq } from "drizzle-orm";
@@ -89,6 +90,10 @@ export async function POST(request: NextRequest) {
             })
             .returning();
 
+        // Invalidate cache for class pages
+        revalidatePath('/class');
+        revalidatePath('/');
+
         return NextResponse.json(course, { status: 201 });
     } catch (error: any) {
         console.error("Error creating course:", error);
@@ -143,6 +148,11 @@ export async function PUT(request: NextRequest) {
             );
         }
 
+        // Invalidate cache for all class-related pages
+        revalidatePath('/class');
+        revalidatePath(`/class/${updated.slug}`);
+        revalidatePath('/');
+
         return NextResponse.json(updated);
     } catch (error) {
         console.error("Error updating course:", error);
@@ -174,6 +184,10 @@ export async function DELETE(request: NextRequest) {
         }
 
         await db.delete(courses).where(eq(courses.id, parseInt(id)));
+
+        // Invalidate cache
+        revalidatePath('/class');
+        revalidatePath('/');
 
         return NextResponse.json({ success: true });
     } catch (error) {

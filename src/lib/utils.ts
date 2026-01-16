@@ -6,7 +6,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function absoluteUrl(path: string) {
-  return `${process.env.NEXT_PUBLIC_BASE_URL}${path}`;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.digitalmarketer.co.kr";
+
+  // If it's localhost, use production URL for SEO/schema purposes
+  if (baseUrl.includes("localhost")) {
+    return `https://www.digitalmarketer.co.kr${path}`;
+  }
+
+  return `${baseUrl}${path}`;
 }
 
 export function formatDate(date: Date | string) {

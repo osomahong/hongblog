@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
+import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { posts, tags, postsToTags, Post, Tag } from "@/lib/schema";
 import { eq, desc } from "drizzle-orm";
@@ -103,6 +104,15 @@ export async function POST(request: NextRequest) {
       await processTagsForPost(newPost.id, tagNames);
     }
 
+    // Invalidate cache for insights pages
+    revalidatePath('/insights');
+    revalidatePath(`/insights/${newPost.slug}`);
+    revalidatePath('/');
+    if (newPost.seriesId) {
+      const series = await db.query.series.findFirst({ where: eq(require("@/lib/schema").series.id, newPost.seriesId) });
+      if (series) revalidatePath(`/series/${series.slug}`);
+    }
+
     return NextResponse.json({ success: true, post: newPost });
   } catch (error) {
     console.error("Failed to create post:", error);
@@ -177,6 +187,15 @@ export async function PUT(request: NextRequest) {
       await processTagsForPost(id, tagNames);
     }
 
+    // Invalidate cache for insights pages
+    revalidatePath('/insights');
+    revalidatePath(`/insights/${updatedPost.slug}`);
+    revalidatePath('/');
+    if (updatedPost.seriesId) {
+      const series = await db.query.series.findFirst({ where: eq(require("@/lib/schema").series.id, updatedPost.seriesId) });
+      if (series) revalidatePath(`/series/${series.slug}`);
+    }
+
     return NextResponse.json({ success: true, post: updatedPost });
   } catch (error) {
     console.error("Failed to update post:", error);
@@ -208,6 +227,10 @@ export async function DELETE(request: NextRequest) {
 
     // Post 삭제
     await db.delete(posts).where(eq(posts.id, postId));
+
+    // Invalidate cache
+    revalidatePath('/insights');
+    revalidatePath('/');
 
     return NextResponse.json({ success: true });
   } catch (error) {
