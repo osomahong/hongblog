@@ -37,7 +37,12 @@ export async function createFaqAction(input: CreateFaqInput) {
 
         return { success: true };
     } catch (error) {
-        console.error("Create FAQ error:", error);
+        console.error("Create FAQ error [Server Action]:", {
+            error,
+            input,
+            message: error instanceof Error ? error.message : "Unknown error",
+            stack: error instanceof Error ? error.stack : undefined
+        });
         return {
             success: false,
             error: error instanceof Error ? error.message : "Failed to create FAQ",
@@ -68,7 +73,12 @@ export async function updateFaqAction(input: UpdateFaqInput) {
 
         return { success: true };
     } catch (error) {
-        console.error("Update FAQ error:", error);
+        console.error("Update FAQ error [Server Action]:", {
+            error,
+            input,
+            message: error instanceof Error ? error.message : "Unknown error",
+            stack: error instanceof Error ? error.stack : undefined
+        });
         return {
             success: false,
             error: error instanceof Error ? error.message : "Failed to update FAQ",

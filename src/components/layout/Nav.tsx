@@ -42,6 +42,12 @@ export function Nav() {
               Insights
             </Link>
             <Link
+              href="/logs"
+              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
+            >
+              Logs
+            </Link>
+            <Link
               href="/series"
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
@@ -99,6 +105,13 @@ export function Nav() {
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Insights
+            </Link>
+            <Link
+              href="/logs"
+              onClick={() => setIsMenuOpen(false)}
+              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
+            >
+              Logs
             </Link>
             <Link
               href="/series"

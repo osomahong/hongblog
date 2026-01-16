@@ -2,7 +2,7 @@ import { pgTable, serial, text, varchar, timestamp, boolean, jsonb, primaryKey, 
 import { relations } from "drizzle-orm";
 
 // Content Type Enum
-export const contentTypeEnum = ["post", "faq", "lifelog", "class"] as const;
+export const contentTypeEnum = ["post", "faq", "log", "class"] as const;
 export type ContentType = (typeof contentTypeEnum)[number];
 
 // LifeLog Category Enum
@@ -10,7 +10,7 @@ export const lifeLogCategoryEnum = ["FOOD", "LECTURE", "CULTURE", "TRAVEL", "DAI
 export type LifeLogCategory = (typeof lifeLogCategoryEnum)[number];
 
 // Enums
-export const categoryEnum = ["MARKETING", "AI_TECH", "DATA"] as const;
+export const categoryEnum = ["MARKETING", "AI_TECH", "DATA", "맛집", "강의", "문화생활", "여행", "일상"] as const;
 export type Category = (typeof categoryEnum)[number];
 
 // Series Table (시리즈 - 재생목록 형태)
@@ -132,6 +132,7 @@ export const faqsRelations = relations(faqs, ({ many }) => ({
 export const tagsRelations = relations(tags, ({ many }) => ({
   postsToTags: many(postsToTags),
   faqsToTags: many(faqsToTags),
+  logsToTags: many(logsToTags),
 }));
 
 export const postsToTagsRelations = relations(postsToTags, ({ one }) => ({
@@ -238,13 +239,27 @@ export const classesToTagsRelations = relations(classesToTags, ({ one }) => ({
   tag: one(tags, { fields: [classesToTags.tagId], references: [tags.id] }),
 }));
 
+// Logs to Tags Junction Table
+export const logsToTags = pgTable(
+  "logs_to_tags",
+  {
+    logId: serial("log_id")
+      .notNull()
+      .references(() => lifeLogs.id, { onDelete: "cascade" }),
+    tagId: serial("tag_id")
+      .notNull()
+      .references(() => tags.id, { onDelete: "cascade" }),
+  },
+  (t) => [primaryKey({ columns: [t.logId, t.tagId] })]
+);
+
 // LifeLogs Table (개인 일상 콘텐츠)
 export const lifeLogs = pgTable("life_logs", {
   id: serial("id").primaryKey(),
   slug: varchar("slug", { length: 255 }).notNull().unique(),
   title: varchar("title", { length: 255 }).notNull(),
   content: text("content").notNull(),
-  category: varchar("category", { length: 50 }).$type<LifeLogCategory>().notNull(),
+  category: varchar("category", { length: 50 }).$type<Category>().notNull(),
   thumbnailUrl: varchar("thumbnail_url", { length: 500 }),
   location: varchar("location", { length: 255 }),
   visitedAt: date("visited_at"),
@@ -261,6 +276,16 @@ export const lifeLogs = pgTable("life_logs", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+
+// LifeLogs Relations
+export const lifeLogsRelations = relations(lifeLogs, ({ many }) => ({
+  logsToTags: many(logsToTags),
+}));
+
+export const logsToTagsRelations = relations(logsToTags, ({ one }) => ({
+  log: one(lifeLogs, { fields: [logsToTags.logId], references: [lifeLogs.id] }),
+  tag: one(tags, { fields: [logsToTags.tagId], references: [tags.id] }),
+}));
 
 // Content Daily Stats Table (일별 조회수 집계)
 export const contentDailyStats = pgTable(

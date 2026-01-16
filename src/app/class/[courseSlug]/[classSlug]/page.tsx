@@ -11,7 +11,6 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
-import { trackBackButtonClick, trackRelatedContentClick } from "@/lib/gtm";
 
 type Props = {
     params: Promise<{ courseSlug: string; classSlug: string }>;
@@ -24,7 +23,7 @@ const difficultyLabels = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const { classSlug } = await params;
+    const { courseSlug, classSlug } = await params;
     const classData = await getClassBySlug(classSlug);
 
     if (!classData) {
@@ -38,7 +37,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: effectiveTitle,
         description: effectiveDescription,
         robots: classData.noIndex ? { index: false, follow: false } : undefined,
-        alternates: classData.canonicalUrl ? { canonical: classData.canonicalUrl } : undefined,
+        alternates: {
+            canonical: classData.canonicalUrl ||
+                `https://www.digitalmarketer.co.kr/class/${courseSlug}/${classSlug}`
+        },
         openGraph: {
             title: effectiveTitle,
             description: effectiveDescription,
@@ -134,10 +136,6 @@ export default async function ClassDetailPage({ params }: Props) {
                 <ViewTracker
                     contentType="class"
                     contentId={classData.id}
-                    contentTitle={classData.term}
-                    contentSlug={classSlug}
-                    category={classData.category}
-                    tags={classData.tags}
                 />
 
                 {/* Breadcrumb & Back Button */}

@@ -13,7 +13,6 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { AuthorCard } from "@/components/AuthorCard";
 import { SeriesNav } from "@/components/SeriesNav";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
-import { trackBackButtonClick, trackRelatedContentClick } from "@/lib/gtm";
 
 const categoryIcons = {
   AI_TECH: Sparkles,
@@ -48,7 +47,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: effectiveTitle,
     description: effectiveDescription,
     robots: post.noIndex ? { index: false, follow: false } : undefined,
-    alternates: post.canonicalUrl ? { canonical: post.canonicalUrl } : undefined,
+    alternates: {
+      canonical: post.canonicalUrl || `https://www.digitalmarketer.co.kr/insights/${slug}`
+    },
     openGraph: {
       title: effectiveOgTitle,
       description: effectiveOgDescription,
@@ -149,10 +150,6 @@ export default async function InsightDetailPage({ params }: Props) {
         <ViewTracker
           contentType="post"
           contentId={post.id}
-          contentTitle={post.title}
-          contentSlug={slug}
-          category={post.category}
-          tags={post.tags}
         />
 
         {/* 상단 네비게이션 바 */}
@@ -161,11 +158,6 @@ export default async function InsightDetailPage({ params }: Props) {
             <Link
               href="/"
               className="inline-flex items-center gap-2 group"
-              onClick={() => trackBackButtonClick({
-                sourcePage: 'post',
-                sourceContentId: post.id,
-                destination: '/'
-              })}
             >
               <NeoButton variant="outline" size="sm" className="text-[10px] sm:text-sm px-2 sm:px-3 py-1 sm:py-1.5">
                 <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-0.5 sm:mr-1" /> Back
@@ -177,8 +169,6 @@ export default async function InsightDetailPage({ params }: Props) {
               <SeriesNav
                 seriesInfo={post.seriesInfo}
                 navigation={seriesNav}
-                currentPostId={post.id}
-                currentPostTitle={post.title}
               />
             )}
           </div>
@@ -203,16 +193,6 @@ export default async function InsightDetailPage({ params }: Props) {
                           <Link
                             href={`/faq/${faq.slug}`}
                             className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
-                            onClick={() => trackRelatedContentClick({
-                              sourceType: 'post',
-                              sourceId: post.id,
-                              sourceTitle: post.title,
-                              relatedType: 'faq',
-                              relatedSection: 'related_faqs',
-                              relatedTitle: faq.question,
-                              relatedSlug: faq.slug,
-                              position: index + 1
-                            })}
                           >
                             <span className="text-[11px] sm:text-sm font-medium leading-snug block">{faq.question}</span>
                           </Link>
@@ -241,16 +221,6 @@ export default async function InsightDetailPage({ params }: Props) {
                           <Link
                             href={`/class/${cls.courseInfo?.slug || ""}/${cls.slug}`}
                             className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
-                            onClick={() => trackRelatedContentClick({
-                              sourceType: 'post',
-                              sourceId: post.id,
-                              sourceTitle: post.title,
-                              relatedType: 'class',
-                              relatedSection: 'related_classes',
-                              relatedTitle: cls.term,
-                              relatedSlug: cls.slug,
-                              position: index + 1
-                            })}
                           >
                             <span className="text-[11px] sm:text-sm font-bold leading-snug block">{cls.term}</span>
                             <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">{cls.definition}</p>
@@ -303,10 +273,6 @@ export default async function InsightDetailPage({ params }: Props) {
                       key={tag}
                       tag={tag}
                       className="text-[10px] sm:text-xs px-1.5 sm:px-3 py-0.5 sm:py-1"
-                      sourcePage="post"
-                      sourceLocation="content_footer"
-                      sourceContentId={post.id}
-                      sourceContentTitle={post.title}
                     />
                   ))}
                 </div>

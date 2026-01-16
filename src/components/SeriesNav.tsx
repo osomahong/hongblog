@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BookOpen, ChevronLeft, ChevronRight, ChevronDown, ChevronUp, List } from "lucide-react";
-import { trackSeriesNavigationClick } from "@/lib/gtm";
 
 type SeriesNavProps = {
   seriesInfo: {
@@ -17,24 +16,10 @@ type SeriesNavProps = {
     currentIndex: number;
     totalCount: number;
   };
-  // 현재 포스트 정보 (GTM tracking용)
-  currentPostId: number;
-  currentPostTitle: string;
 };
 
-export function SeriesNav({ seriesInfo, navigation, currentPostId, currentPostTitle }: SeriesNavProps) {
+export function SeriesNav({ seriesInfo, navigation }: SeriesNavProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleNavigationClick = (action: 'prev' | 'next' | 'list', targetTitle?: string) => {
-    trackSeriesNavigationClick({
-      seriesId: seriesInfo.id,
-      seriesTitle: seriesInfo.title,
-      currentPostId,
-      currentPostTitle,
-      navigationAction: action,
-      targetPostTitle: targetTitle,
-    });
-  };
 
   return (
     <div className="relative">
@@ -45,7 +30,6 @@ export function SeriesNav({ seriesInfo, navigation, currentPostId, currentPostTi
           <Link
             href={`/series/${seriesInfo.slug}`}
             className="font-bold text-xs sm:text-sm hover:underline truncate max-w-[100px] sm:max-w-[180px]"
-            onClick={() => handleNavigationClick('list')}
           >
             {seriesInfo.title}
           </Link>
@@ -61,7 +45,6 @@ export function SeriesNav({ seriesInfo, navigation, currentPostId, currentPostTi
               <button
                 className="p-1.5 hover:bg-purple-200 border border-black"
                 title={navigation.prev.title}
-                onClick={() => handleNavigationClick('prev', navigation.prev!.title)}
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -76,7 +59,6 @@ export function SeriesNav({ seriesInfo, navigation, currentPostId, currentPostTi
               <button
                 className="p-1.5 hover:bg-purple-200 border border-black"
                 title={navigation.next.title}
-                onClick={() => handleNavigationClick('next', navigation.next!.title)}
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -117,10 +99,7 @@ export function SeriesNav({ seriesInfo, navigation, currentPostId, currentPostTi
                   <Link
                     href={`/insights/${navigation.prev.slug}`}
                     className="flex items-center gap-2 p-2 border-2 border-black hover:bg-purple-50 transition-colors"
-                    onClick={() => {
-                      handleNavigationClick('prev', navigation.prev!.title);
-                      setIsExpanded(false);
-                    }}
+                    onClick={() => setIsExpanded(false)}
                   >
                     <ChevronLeft className="w-4 h-4 flex-shrink-0 text-purple-600" />
                     <div className="min-w-0">
@@ -139,10 +118,7 @@ export function SeriesNav({ seriesInfo, navigation, currentPostId, currentPostTi
                   <Link
                     href={`/insights/${navigation.next.slug}`}
                     className="flex items-center gap-2 p-2 border-2 border-black hover:bg-purple-50 transition-colors"
-                    onClick={() => {
-                      handleNavigationClick('next', navigation.next!.title);
-                      setIsExpanded(false);
-                    }}
+                    onClick={() => setIsExpanded(false)}
                   >
                     <div className="min-w-0 flex-1">
                       <div className="text-[10px] text-muted-foreground uppercase text-right">다음</div>
@@ -162,10 +138,7 @@ export function SeriesNav({ seriesInfo, navigation, currentPostId, currentPostTi
               <Link
                 href={`/series/${seriesInfo.slug}`}
                 className="flex items-center justify-center gap-2 p-2 bg-purple-100 border-2 border-black hover:bg-purple-200 transition-colors text-xs sm:text-sm font-bold"
-                onClick={() => {
-                  handleNavigationClick('list');
-                  setIsExpanded(false);
-                }}
+                onClick={() => setIsExpanded(false)}
               >
                 <List className="w-4 h-4" />
                 전체 목차 보기

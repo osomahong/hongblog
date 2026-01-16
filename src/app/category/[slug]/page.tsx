@@ -24,22 +24,37 @@ const categoryMap: Record<string, Category> = {
   marketing: "MARKETING",
 };
 
-const categoryIcons = {
+const categoryIcons: Record<string, any> = {
   AI_TECH: Sparkles,
   DATA: Database,
   MARKETING: TrendingUp,
+  맛집: TrendingUp,
+  강의: Sparkles,
+  문화생활: Database,
+  여행: TrendingUp,
+  일상: Database,
 };
 
-const categoryLabels = {
+const categoryLabels: Record<string, string> = {
   AI_TECH: "AI & Tech",
   DATA: "Data",
   MARKETING: "Marketing",
+  맛집: "맛집",
+  강의: "강의",
+  문화생활: "문화생활",
+  여행: "여행",
+  일상: "일상",
 };
 
-const categoryDescriptions = {
+const categoryDescriptions: Record<string, string> = {
   AI_TECH: "인공지능과 기술 트렌드에 대한 인사이트",
   DATA: "데이터 분석과 활용에 대한 전문 지식",
   MARKETING: "디지털 마케팅 전략과 실행 노하우",
+  맛집: "맛집 리뷰와 음식 경험",
+  강의: "교육과 학습 경험",
+  문화생활: "문화 활동과 예술 체험",
+  여행: "여행 경험과 추천",
+  일상: "일상의 소소한 이야기",
 };
 
 type Props = {

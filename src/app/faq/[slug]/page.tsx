@@ -10,7 +10,6 @@ import { absoluteUrl } from "@/lib/utils";
 import { getFaqBySlug, getRelatedPostsWithPopularity, getRelatedFaqsWithPopularity } from "@/lib/queries";
 import { ViewTracker } from "@/components/ViewTracker";
 import { AuthorCard } from "@/components/AuthorCard";
-import { trackBackButtonClick, trackRelatedContentClick, trackExternalLinkClick } from "@/lib/gtm";
 
 const categoryIcons = {
   AI_TECH: Sparkles,
@@ -43,7 +42,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: effectiveTitle,
     description: effectiveDescription,
     robots: faq.noIndex ? { index: false, follow: false } : undefined,
-    alternates: faq.canonicalUrl ? { canonical: faq.canonicalUrl } : undefined,
+    alternates: {
+      canonical: faq.canonicalUrl || `https://www.digitalmarketer.co.kr/faq/${slug}`
+    },
     openGraph: {
       title: effectiveTitle,
       description: effectiveDescription,
@@ -127,19 +128,10 @@ export default async function FaqDetailPage({ params }: Props) {
         <ViewTracker
           contentType="faq"
           contentId={faq.id}
-          contentTitle={faq.question}
-          contentSlug={slug}
-          category={faq.category}
-          tags={faq.tags}
         />
         <Link
           href="/faq"
           className="inline-flex items-center gap-2 mb-6 sm:mb-8"
-          onClick={() => trackBackButtonClick({
-            sourcePage: 'faq',
-            sourceContentId: faq.id,
-            destination: '/faq'
-          })}
         >
           <NeoButton variant="outline" size="sm" className="text-xs sm:text-sm">
             <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1" /> Back to FAQ
@@ -231,12 +223,6 @@ export default async function FaqDetailPage({ params }: Props) {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-600 hover:underline break-all flex items-center gap-1 font-medium bg-blue-50 px-3 py-2 border border-blue-200 inline-block w-full sm:w-auto"
-                          onClick={() => trackExternalLinkClick({
-                            linkUrl: faq.referenceUrl!,
-                            linkText: faq.referenceTitle || faq.referenceUrl!,
-                            sourcePage: 'faq',
-                            sourceContentId: faq.id
-                          })}
                         >
                           <BookOpen className="w-4 h-4 inline mr-1" />
                           {faq.referenceTitle || faq.referenceUrl}
@@ -254,10 +240,6 @@ export default async function FaqDetailPage({ params }: Props) {
                     <NeoTagBadge
                       key={tag}
                       tag={tag}
-                      sourcePage="faq"
-                      sourceLocation="content_footer"
-                      sourceContentId={faq.id}
-                      sourceContentTitle={faq.question}
                     />
                   ))}
                 </div>
@@ -281,16 +263,6 @@ export default async function FaqDetailPage({ params }: Props) {
                         <Link
                           key={post.id}
                           href={`/insights/${post.slug}`}
-                          onClick={() => trackRelatedContentClick({
-                            sourceType: 'faq',
-                            sourceId: faq.id,
-                            sourceTitle: faq.question,
-                            relatedType: 'post',
-                            relatedSection: 'related_posts',
-                            relatedTitle: post.title,
-                            relatedSlug: post.slug,
-                            position: index + 1
-                          })}
                         >
                           <div className="bg-white border-4 border-black p-3 sm:p-4 neo-shadow-sm neo-hover">
                             <div className="flex items-center gap-2 mb-2">
@@ -331,16 +303,6 @@ export default async function FaqDetailPage({ params }: Props) {
                           <Link
                             href={`/faq/${relatedFaq.slug}`}
                             className="block p-2.5 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
-                            onClick={() => trackRelatedContentClick({
-                              sourceType: 'faq',
-                              sourceId: faq.id,
-                              sourceTitle: faq.question,
-                              relatedType: 'faq',
-                              relatedSection: 'related_faqs',
-                              relatedTitle: relatedFaq.question,
-                              relatedSlug: relatedFaq.slug,
-                              position: index + 1
-                            })}
                           >
                             <span className="text-xs sm:text-sm font-medium line-clamp-2">{relatedFaq.question}</span>
                           </Link>

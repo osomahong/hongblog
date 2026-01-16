@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { 
-  Utensils, 
-  GraduationCap, 
-  Palette, 
-  Plane, 
+import {
+  Utensils,
+  GraduationCap,
+  Palette,
+  Plane,
   Coffee,
   MapPin,
   Calendar,
@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { db } from "@/lib/db";
 import { lifeLogs, LifeLogCategory } from "@/lib/schema";
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, and, ne } from "drizzle-orm";
 
 export const metadata: Metadata = {
   title: "Life Log | About",
@@ -30,7 +30,12 @@ const categoryConfig: Record<LifeLogCategory, { icon: typeof Utensils; label: st
 
 async function getPublishedLifeLogs() {
   return db.query.lifeLogs.findMany({
-    where: eq(lifeLogs.isPublished, true),
+    where: and(
+      eq(lifeLogs.isPublished, true),
+      ne(lifeLogs.category, "MARKETING"),
+      ne(lifeLogs.category, "AI_TECH"),
+      ne(lifeLogs.category, "DATA")
+    ),
     orderBy: [desc(lifeLogs.visitedAt), desc(lifeLogs.createdAt)],
   });
 }
@@ -41,8 +46,8 @@ export default async function LifeLogPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
       {/* Back to About */}
-      <Link 
-        href="/about" 
+      <Link
+        href="/about"
         className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-primary mb-6 group"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -97,24 +102,24 @@ export default async function LifeLogPage() {
             const config = categoryConfig[log.category as LifeLogCategory];
             const Icon = config?.icon || Coffee;
             const rotations = ["rotate-0.5", "-rotate-0.5", "rotate-0"];
-            
+
             return (
               <Link key={log.id} href={`/about/life/${log.slug}`}>
-                <article 
+                <article
                   className={`bg-white border-4 border-black neo-shadow p-5 sm:p-6 ${rotations[index % 3]} hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group`}
                 >
                   <div className="flex flex-col sm:flex-row gap-4">
                     {/* Thumbnail */}
                     {log.thumbnailUrl && (
                       <div className="w-full sm:w-32 h-32 border-2 border-black overflow-hidden flex-shrink-0">
-                        <img 
-                          src={log.thumbnailUrl} 
+                        <img
+                          src={log.thumbnailUrl}
                           alt={log.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                         />
                       </div>
                     )}
-                    
+
                     {/* Content */}
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
@@ -135,21 +140,21 @@ export default async function LifeLogPage() {
                           </span>
                         )}
                       </div>
-                      
+
                       <h2 className="text-lg sm:text-xl font-black mb-2 group-hover:text-primary transition-colors">
                         {log.title}
                       </h2>
-                      
+
                       <p className="text-sm text-gray-600 line-clamp-2">
                         {log.content.replace(/[#*`]/g, "").slice(0, 150)}...
                       </p>
-                      
+
                       {log.rating && (
                         <div className="flex items-center gap-1 mt-2">
                           {[...Array(5)].map((_, i) => (
-                            <Star 
-                              key={i} 
-                              className={`w-4 h-4 ${i < log.rating! ? "text-yellow-500 fill-yellow-500" : "text-gray-300"}`} 
+                            <Star
+                              key={i}
+                              className={`w-4 h-4 ${i < log.rating! ? "text-yellow-500 fill-yellow-500" : "text-gray-300"}`}
                             />
                           ))}
                         </div>

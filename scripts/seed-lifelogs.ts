@@ -2,13 +2,13 @@ import { config } from "dotenv";
 config({ path: ".env.local" });
 
 import { db } from "../src/lib/db";
-import { lifeLogs, LifeLogCategory } from "../src/lib/schema";
+import { lifeLogs, Category } from "../src/lib/schema";
 
 const demoLifeLogs: {
   slug: string;
   title: string;
   content: string;
-  category: LifeLogCategory;
+  category: Category;
   location: string;
   visitedAt: string;
   rating: number;
@@ -38,11 +38,41 @@ const demoLifeLogs: {
 가격은 점심 기준 8만원대로 오마카세치고는 합리적인 편. 특별한 날 방문하기 좋은 곳으로 추천한다.
 
 > 재방문 의사: ⭐⭐⭐⭐⭐`,
-      category: "FOOD",
+      category: "MARKETING",
       location: "서울 강남구",
       visitedAt: "2025-12-15",
       rating: 5,
       isPublished: true,
+    },
+    {
+      slug: "consulting-project-alpha",
+      title: "알파 프로젝트 컨설팅",
+      content: "# 알파 프로젝트 컨설팅 로그\\n\\n클라이언트의 마케팅 전략 수립을 위한 컨설팅 작업...",
+      category: "MARKETING" as const,
+      location: "서울 강남구",
+      visitedAt: "2024-01-15",
+      rating: 5,
+      isPublished: true,
+    },
+    {
+      slug: "data-analysis-beta",
+      title: "베타 기업 데이터 분석",
+      content: "# 데이터 분석 프로젝트\\n\\nGA4 데이터 연동 및 분석...",
+      category: "DATA" as const,
+      location: "온라인",
+      visitedAt: "2024-01-20",
+      rating: 4,
+      isPublished: true,
+    },
+    {
+      slug: "ai-tech-workshop",
+      title: "AI 기술 워크샵 진행",
+      content: "# AI 기술 워크샵\\n\\nChatGPT API 활용 워크샵 진행...",
+      category: "AI_TECH" as const,
+      location: "판교 스타트업 캠퍼스",
+      visitedAt: "2024-02-01",
+      rating: 5,
+      isPublished: false,
     },
     {
       slug: "ux-design-lecture-review",
@@ -79,7 +109,7 @@ const demoLifeLogs: {
 ---
 
 *다음에는 데이터 분석 관련 강의도 들어볼 예정*`,
-      category: "LECTURE",
+      category: "DATA",
       location: "온라인",
       visitedAt: "2025-11-20",
       rating: 4,

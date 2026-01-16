@@ -146,41 +146,19 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                         </span>
                                     </div>
 
-                                    {/* Curriculum Preview/Full */}
-                                    <div className={`curriculum-container transition-all duration-300 ${isExpanded ? 'bg-purple-50 -mx-4 sm:-mx-6 px-4 sm:px-6 py-4 border-y-2 border-purple-200' : ''
-                                        }`}>
-                                        <div className="flex items-center justify-between mb-3">
-                                            <h4 className={`text-xs sm:text-sm font-bold uppercase transition-colors ${isExpanded ? 'text-purple-700' : 'text-muted-foreground'
-                                                }`}>
-                                                📚 커리큘럼
-                                            </h4>
-                                            {isExpanded && (
+                                    {/* Curriculum Full - Only show when expanded */}
+                                    {isExpanded && (
+                                        <div className="curriculum-container transition-all duration-300 bg-purple-50 -mx-4 sm:-mx-6 px-4 sm:px-6 py-4 border-y-2 border-purple-200 animate-slideDown">
+                                            <div className="flex items-center justify-between mb-3">
+                                                <h4 className="text-xs sm:text-sm font-bold uppercase text-purple-700">
+                                                    📚 커리큘럼
+                                                </h4>
                                                 <span className="text-[10px] sm:text-xs font-bold text-purple-600 animate-pulse">
                                                     ● 확장됨
                                                 </span>
-                                            )}
-                                        </div>
-
-                                        {!isExpanded ? (
-                                            // Preview: Show first 5 classes
-                                            <div className="space-y-2 animate-fadeIn">
-                                                {course.classes.slice(0, 5).map((cls, idx) => (
-                                                    <div key={cls.id} className="pl-4 border-l-2 border-muted py-2">
-                                                        <div className="flex items-center gap-2 text-xs sm:text-sm">
-                                                            <span className="text-muted-foreground min-w-[1rem]">{idx + 1}.</span>
-                                                            <span className="font-medium flex-1">{cls.term}</span>
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                                {course.classes.length > 5 && (
-                                                    <div className="text-xs sm:text-sm text-muted-foreground pl-4">
-                                                        +{course.classes.length - 5}개 개념 더보기
-                                                    </div>
-                                                )}
                                             </div>
-                                        ) : (
-                                            // Full: Show all classes
-                                            <div className="space-y-1 sm:space-y-2 animate-slideDown">
+
+                                            <div className="space-y-1 sm:space-y-2">
                                                 {course.classes.map((cls, idx) => {
                                                     const isChecked = checkedClasses.has(cls.id);
                                                     const CheckIcon = isChecked ? CheckSquare : Square;
@@ -209,8 +187,8 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                                     );
                                                 })}
                                             </div>
-                                        )}
-                                    </div>
+                                        </div>
+                                    )}
                                 </NeoCardContent>
 
                                 <NeoCardFooter className="flex items-center justify-between border-t-2 border-black pt-4">

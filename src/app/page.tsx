@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Sparkles, Database, TrendingUp, Flame, HelpCircle, Tag, FolderOpen, Zap, Hash } from "lucide-react";
+import { ArrowRight, Sparkles, Database, TrendingUp, Flame, HelpCircle, Tag, FolderOpen, Zap, Hash, BookText } from "lucide-react";
 import {
   NeoCard,
   NeoCardHeader,
@@ -19,25 +19,41 @@ import {
   getCategoryStats,
   getPopularFaqs,
   getAllTags,
+  getPublishedLogs,
   TrendingItem,
 } from "@/lib/queries";
 
-const categoryIcons = {
+const categoryIcons: Record<string, any> = {
   AI_TECH: Sparkles,
   DATA: Database,
   MARKETING: TrendingUp,
+  맛집: TrendingUp,
+  강의: Sparkles,
+  문화생활: Database,
+  여행: TrendingUp,
+  일상: Database,
 };
 
-const categoryLabels = {
+const categoryLabels: Record<string, string> = {
   AI_TECH: "AI & Tech",
   DATA: "Data",
   MARKETING: "Marketing",
+  맛집: "맛집",
+  강의: "강의",
+  문화생활: "문화생활",
+  여행: "여행",
+  일상: "일상",
 };
 
-const categoryColors = {
+const categoryColors: Record<string, string> = {
   AI_TECH: "bg-ai text-black",
   DATA: "bg-data text-white",
   MARKETING: "bg-marketing text-white",
+  맛집: "bg-orange-500 text-white",
+  강의: "bg-blue-500 text-white",
+  문화생활: "bg-purple-500 text-white",
+  여행: "bg-green-500 text-white",
+  일상: "bg-gray-500 text-white",
 };
 
 // 메인 페이지는 항상 최신 데이터를 보여줘야 하므로 dynamic으로 설정
@@ -46,8 +62,9 @@ export const dynamic = 'force-dynamic';
 // export const revalidate = 60;
 
 export default async function HomePage() {
-  const [posts, trending, categoryStats, popularFaqs, allTags] = await Promise.all([
+  const [posts, logs, trending, categoryStats, popularFaqs, allTags] = await Promise.all([
     getPublishedPosts(),
+    getPublishedLogs(),
     getTrendingMixed(7, 4),
     getCategoryStats(),
     getPopularFaqs(30, 5),
@@ -99,7 +116,7 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {trending.map((item, index) => {
-              const Icon = categoryIcons[item.category as keyof typeof categoryIcons];
+              const Icon = categoryIcons[item.category as keyof typeof categoryIcons] || Sparkles;
               const rotations = ["", "sm:rotate-1", "", "sm:rotate-0.5"];
 
               if (item._type === "post") {
@@ -107,16 +124,16 @@ export default async function HomePage() {
                   <Link key={`post-${item.id}`} href={`/insights/${item.slug}`}>
                     <NeoTiltCard className="h-full bg-white p-3 sm:p-4 halftone-corner" intensity={10}>
                       <div className="flex items-center gap-2 mb-2 sm:mb-3 relative z-10">
-                        <div className={`${categoryColors[item.category as keyof typeof categoryColors]} px-2 py-0.5 sm:py-1 border-2 border-black text-[10px] sm:text-xs font-bold uppercase flex items-center gap-1`}>
+                        <div className={`${categoryColors[item.category as keyof typeof categoryColors] || "bg-gray-500 text-white"} px-2 py-0.5 sm:py-1 border-2 border-black text-[10px] sm:text-xs font-bold uppercase flex items-center gap-1`}>
                           <Icon className="w-3 h-3" />
-                          {categoryLabels[item.category as keyof typeof categoryLabels]}
+                          {categoryLabels[item.category as keyof typeof categoryLabels] || item.category}
                         </div>
                       </div>
                       <h3 className="font-black text-sm sm:text-lg leading-snug line-clamp-2 mb-1.5 sm:mb-2 relative z-10">
                         {item.title}
                       </h3>
                       <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
-                        {item.excerpt}
+                        {item.excerpt || ""}
                       </p>
                     </NeoTiltCard>
                   </Link>
@@ -135,7 +152,7 @@ export default async function HomePage() {
                         Q: {item.question}
                       </h3>
                       <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
-                        {item.answer.substring(0, 80)}...
+                        {(item.answer || "").substring(0, 80)}...
                       </p>
                     </NeoTiltCard>
                   </Link>
@@ -194,7 +211,7 @@ export default async function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {posts.slice(0, 6).map((post, index) => {
-              const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
+              const Icon = categoryIcons[post.category as keyof typeof categoryIcons] || Sparkles;
               return (
                 <Link key={post.id} href={`/insights/${post.slug}`}>
                   <NeoTiltCard className="h-full">
@@ -243,7 +260,7 @@ export default async function HomePage() {
                     </NeoCardContent>
                     <NeoCardFooter className="flex items-center justify-between">
                       <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
-                        {post.createdAt.toLocaleDateString("ko-KR")}
+                        {post.createdAt ? new Date(post.createdAt).toLocaleDateString("ko-KR") : ""}
                       </span>
                       <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">
                         Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -259,6 +276,83 @@ export default async function HomePage() {
               <Link href="/insights">
                 <NeoButton variant="outline" size="lg" className="text-sm sm:text-base">
                   모든 글 보기 ({posts.length}개) <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
+                </NeoButton>
+              </Link>
+            </div>
+          )}
+        </section>
+      )}
+      {/* Latest Logs */}
+      {logs.length > 0 && (
+        <section className="mb-6 sm:mb-12">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="bg-purple-600 border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-2">
+                <BookText className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+              </div>
+              <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Latest Logs</h2>
+            </div>
+            <span className="text-[10px] sm:text-sm text-muted-foreground">{logs.length}개</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+            {logs.slice(0, 6).map((log) => {
+              const Icon = categoryIcons[log.category as keyof typeof categoryIcons] || Sparkles;
+              return (
+                <Link key={log.id} href={`/logs/${log.slug}`}>
+                  <NeoTiltCard className="h-full bg-purple-50">
+                    <NeoCardHeader>
+                      <div className="flex items-center gap-2 mb-2 sm:mb-3 flex-wrap">
+                        <NeoBadge
+                          variant={
+                            log.category === "AI_TECH"
+                              ? "ai"
+                              : log.category === "DATA"
+                                ? "data"
+                                : "marketing"
+                          }
+                        >
+                          <span className="flex items-center gap-1">
+                            <Icon className="w-3 h-3" />
+                            {categoryLabels[log.category as keyof typeof categoryLabels]}
+                          </span>
+                        </NeoBadge>
+                        {log.location && (
+                          <span className="text-[10px] sm:text-xs bg-white px-2 py-0.5 border border-black">
+                            📍 {log.location}
+                          </span>
+                        )}
+                      </div>
+                      <NeoCardTitle className="text-base sm:text-2xl leading-snug">
+                        {log.title}
+                      </NeoCardTitle>
+                    </NeoCardHeader>
+                    <NeoCardContent>
+                      <div className="flex flex-wrap gap-1">
+                        {log.tags.slice(0, 3).map((tag) => (
+                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
+                        ))}
+                      </div>
+                    </NeoCardContent>
+                    <NeoCardFooter className="flex items-center justify-between">
+                      <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
+                        {log.visitedAt
+                          ? new Date(log.visitedAt).toLocaleDateString("ko-KR")
+                          : log.createdAt.toLocaleDateString("ko-KR")}
+                      </span>
+                      <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">
+                        Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                      </span>
+                    </NeoCardFooter>
+                  </NeoTiltCard>
+                </Link>
+              );
+            })}
+          </div>
+          {logs.length > 6 && (
+            <div className="mt-4 sm:mt-6 text-center">
+              <Link href="/logs">
+                <NeoButton variant="outline" size="lg" className="text-sm sm:text-base">
+                  모든 로그 보기 ({logs.length}개) <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
                 </NeoButton>
               </Link>
             </div>
@@ -295,7 +389,7 @@ export default async function HomePage() {
                       <div className="flex-1 min-w-0">
                         <p className="font-bold text-xs sm:text-base leading-snug">{faq.question}</p>
                         <div className="flex gap-1 sm:gap-1.5 mt-1.5 sm:mt-2 flex-wrap">
-                          {faq.tags.slice(0, 3).map((tag) => (
+                          {faq.tags && Array.isArray(faq.tags) && faq.tags.slice(0, 3).map((tag) => (
                             <span key={tag} className="text-[10px] sm:text-xs text-muted-foreground">#{tag}</span>
                           ))}
                         </div>

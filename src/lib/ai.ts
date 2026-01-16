@@ -185,7 +185,7 @@ export interface ContentMetadata {
   title: string;
   slug: string;
   excerpt: string;
-  category: "MARKETING" | "AI_TECH" | "DATA";
+  category: "MARKETING" | "AI_TECH" | "DATA" | "맛집" | "강의" | "문화생활" | "여행" | "일상";
   highlights: string[];
   tags: string[];
 }
@@ -202,7 +202,7 @@ ${content.substring(0, 3000)}
   "title": "SEO 최적화된 매력적인 제목 (30-60자, 한국어)",
   "slug": "url-friendly-slug-in-english (소문자, 하이픈 사용, 50자 이내)",
   "excerpt": "글 요약 (100-150자, 한국어, 핵심 내용 포함)",
-  "category": "MARKETING 또는 AI_TECH 또는 DATA 중 하나",
+  "category": "MARKETING, AI_TECH, DATA, 맛집, 강의, 문화생활, 여행, 일상 중 하나",
   "highlights": ["핵심포인트1", "핵심포인트2"] (2-3개, 짧은 키워드),
   "tags": ["태그1", "태그2", "태그3"] (3-5개, SEO 키워드)
 }
@@ -210,7 +210,12 @@ ${content.substring(0, 3000)}
 카테고리 선택 기준:
 - MARKETING: 마케팅, 광고, 브랜딩, 고객, 캠페인, 전환율 관련
 - AI_TECH: AI, 머신러닝, 기술, 개발, 자동화, 챗봇 관련
-- DATA: 데이터 분석, 통계, 지표, 대시보드, 인사이트 관련`;
+- DATA: 데이터 분석, 통계, 지표, 대시보드, 인사이트 관련
+- 맛집: 음식, 레스토랑, 카페, 맛집 리뷰 관련
+- 강의: 강의, 교육, 수업, 세미나, 워크샵 관련
+- 문화생활: 영화, 전시, 공연, 문화 활동 관련
+- 여행: 여행, 관광, 여행지 추천 관련
+- 일상: 일상 생활, 개인 경험, 일기 형식 관련`;
 
   try {
     const result = await aiModel.generateContent(prompt);
@@ -224,7 +229,7 @@ ${content.substring(0, 3000)}
     }
 
     // 카테고리 유효성 검사
-    const validCategories = ["MARKETING", "AI_TECH", "DATA"];
+    const validCategories = ["MARKETING", "AI_TECH", "DATA", "맛집", "강의", "문화생활", "여행", "일상"];
     if (!validCategories.includes(parsed.category)) {
       parsed.category = "AI_TECH"; // 기본값
     }

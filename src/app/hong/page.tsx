@@ -2,9 +2,10 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Lock, FileText, Plus, List, Eye, Trash2, Edit, Save, Sparkles, Database, TrendingUp, HelpCircle, Search, Wand2, Loader2, ImageIcon, Check, BarChart3, BookOpen, Bot, GraduationCap, LogOut, Linkedin, Copy, X } from "lucide-react";
+import { Lock, FileText, Plus, List, Eye, Trash2, Edit, Save, Sparkles, Database, TrendingUp, HelpCircle, Search, Wand2, Loader2, ImageIcon, Check, BarChart3, BookOpen, Bot, GraduationCap, LogOut, Linkedin, Copy, X, BookText } from "lucide-react";
 import MarkdownEditor from "@/components/MarkdownEditor";
 import SeoEditor, { SeoData } from "@/components/SeoEditor";
+import { LogManager } from "@/features/logs/components/LogManager";
 
 type Post = {
   id: number;
@@ -61,7 +62,7 @@ const categoryIcons = {
 
 export default function HongAdminPage() {
   const { data: session, status } = useSession();
-  const [activeTab, setActiveTab] = useState<"posts" | "faqs" | "series" | "classes">("posts");
+  const [activeTab, setActiveTab] = useState<"posts" | "faqs" | "logs" | "series" | "classes">("posts");
   const [view, setView] = useState<"list" | "editor">("list");
   const [posts, setPosts] = useState<Post[]>([]);
   const [faqs, setFaqs] = useState<Faq[]>([]);
@@ -152,6 +153,27 @@ export default function HongAdminPage() {
   });
   const [showClassSeoEditor, setShowClassSeoEditor] = useState(false);
   const [isGeneratingClassMetadata, setIsGeneratingClassMetadata] = useState(false);
+
+  // Log Editor state
+  const [editingLog, setEditingLog] = useState<any | null>(null);
+  const [logTitle, setLogTitle] = useState("");
+  const [logSlug, setLogSlug] = useState("");
+  const [logContent, setLogContent] = useState("");
+  const [logCategory, setLogCategory] = useState<"MARKETING" | "AI_TECH" | "DATA" | "맛집" | "강의" | "문화생활" | "여행" | "일상">("MARKETING");
+  const [logLocation, setLogLocation] = useState("");
+  const [logVisitedAt, setLogVisitedAt] = useState("");
+  const [logRating, setLogRating] = useState<number | null>(null);
+  const [logTagsInput, setLogTagsInput] = useState("");
+  const [logSeoData, setLogSeoData] = useState<SeoData>({
+    metaTitle: "",
+    metaDescription: "",
+    ogImage: "",
+    ogTitle: "",
+    ogDescription: "",
+    canonicalUrl: "",
+    noIndex: false,
+  });
+  const [showLogSeoEditor, setShowLogSeoEditor] = useState(false);
 
   // LinkedIn Summary state
   const [isGeneratingLinkedinSummary, setIsGeneratingLinkedinSummary] = useState<number | null>(null);
@@ -332,6 +354,28 @@ export default function HongAdminPage() {
       noIndex: false,
     });
     setShowClassSeoEditor(false);
+  };
+
+  const resetLogEditor = () => {
+    setEditingLog(null);
+    setLogTitle("");
+    setLogSlug("");
+    setLogContent("");
+    setLogCategory("MARKETING");
+    setLogLocation("");
+    setLogVisitedAt("");
+    setLogRating(null);
+    setLogTagsInput("");
+    setLogSeoData({
+      metaTitle: "",
+      metaDescription: "",
+      ogImage: "",
+      ogTitle: "",
+      ogDescription: "",
+      canonicalUrl: "",
+      noIndex: false,
+    });
+    setShowLogSeoEditor(false);
   };
 
   // Post CRUD
@@ -1057,25 +1101,48 @@ export default function HongAdminPage() {
               onClick={() => { setActiveTab("posts"); resetPostEditor(); setView("list"); }}
               className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "posts" ? "bg-blue-600" : "bg-gray-700 hover:bg-gray-600"}`}
             >
-              <FileText className="w-4 h-4" /> Posts
+              <FileText className="w-4 h-4" />
+              Insights
             </button>
             <button
-              onClick={() => { setActiveTab("faqs"); resetFaqEditor(); setView("list"); }}
-              className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "faqs" ? "bg-green-600" : "bg-gray-700 hover:bg-gray-600"}`}
+              onClick={() => {
+                setActiveTab("faqs");
+                setView("list");
+              }}
+              className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "faqs" ? "bg-blue-600" : "bg-gray-700 hover:bg-gray-600"}`}
             >
-              <HelpCircle className="w-4 h-4" /> FAQs
+              <HelpCircle className="w-4 h-4" />
+              FAQs
             </button>
             <button
-              onClick={() => { setActiveTab("series"); resetSeriesEditor(); setView("list"); }}
-              className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "series" ? "bg-purple-600" : "bg-gray-700 hover:bg-gray-600"}`}
+              onClick={() => {
+                setActiveTab("logs");
+                setView("list");
+              }}
+              className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "logs" ? "bg-blue-600" : "bg-gray-700 hover:bg-gray-600"}`}
             >
-              <BookOpen className="w-4 h-4" /> Series
+              <BookText className="w-4 h-4" />
+              Logs
             </button>
             <button
-              onClick={() => { setActiveTab("classes"); setView("list"); }}
-              className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "classes" ? "bg-yellow-600" : "bg-gray-700 hover:bg-gray-600"}`}
+              onClick={() => {
+                setActiveTab("series");
+                setView("list");
+              }}
+              className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "series" ? "bg-blue-600" : "bg-gray-700 hover:bg-gray-600"}`}
             >
-              <GraduationCap className="w-4 h-4" /> Classes
+              <BookOpen className="w-4 h-4" />
+              Series
+            </button>
+            <button
+              onClick={() => {
+                setActiveTab("classes");
+                setView("list");
+              }}
+              className={`px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 ${activeTab === "classes" ? "bg-blue-600" : "bg-gray-700 hover:bg-gray-600"}`}
+            >
+              <GraduationCap className="w-4 h-4" />
+              Classes
             </button>
             <a
               href="/hong/life"

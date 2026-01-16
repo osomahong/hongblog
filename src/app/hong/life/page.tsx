@@ -9,11 +9,9 @@ import {
   Trash2,
   Edit,
   Save,
-  Utensils,
-  GraduationCap,
-  Palette,
-  Plane,
-  Coffee,
+  TrendingUp,
+  Sparkles,
+  Database,
   MapPin,
   Calendar,
   Star,
@@ -23,6 +21,7 @@ import {
   Search,
   ChevronDown,
   ChevronUp,
+  BookText,
 } from "lucide-react";
 import MarkdownEditor from "@/components/MarkdownEditor";
 import SeoEditor, { SeoData } from "@/components/SeoEditor";
@@ -55,11 +54,14 @@ type LifeLog = {
 };
 
 const categoryConfig = {
-  FOOD: { icon: Utensils, label: "맛집", color: "bg-orange-500" },
-  LECTURE: { icon: GraduationCap, label: "강의", color: "bg-blue-500" },
-  CULTURE: { icon: Palette, label: "문화생활", color: "bg-purple-500" },
-  TRAVEL: { icon: Plane, label: "여행", color: "bg-green-500" },
-  DAILY: { icon: Coffee, label: "일상", color: "bg-gray-500" },
+  MARKETING: { icon: TrendingUp, label: "마케팅", color: "bg-orange-500" },
+  AI_TECH: { icon: Sparkles, label: "AI & Tech", color: "bg-purple-500" },
+  DATA: { icon: Database, label: "데이터", color: "bg-blue-500" },
+  맛집: { icon: TrendingUp, label: "맛집", color: "bg-red-500" },
+  강의: { icon: Sparkles, label: "강의", color: "bg-green-500" },
+  문화생활: { icon: Database, label: "문화생활", color: "bg-pink-500" },
+  여행: { icon: TrendingUp, label: "여행", color: "bg-teal-500" },
+  일상: { icon: BookText, label: "일상", color: "bg-gray-500" },
 };
 
 export default function LifeLogAdminPage() {
@@ -75,7 +77,7 @@ export default function LifeLogAdminPage() {
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState<keyof typeof categoryConfig>("FOOD");
+  const [category, setCategory] = useState<keyof typeof categoryConfig>("MARKETING");
   const [thumbnailUrl, setThumbnailUrl] = useState("");
   const [location, setLocation] = useState("");
   const [visitedAt, setVisitedAt] = useState("");
@@ -130,7 +132,7 @@ export default function LifeLogAdminPage() {
     setTitle("");
     setSlug("");
     setContent("");
-    setCategory("FOOD");
+    setCategory("MARKETING");
     setThumbnailUrl("");
     setLocation("");
     setVisitedAt("");
@@ -163,6 +165,7 @@ export default function LifeLogAdminPage() {
       location: location || null,
       visitedAt: visitedAt || null,
       rating: rating || null,
+      isPublished: editingLog?.isPublished ?? true,
       // SEO fields
       metaTitle: seoData.metaTitle || null,
       metaDescription: seoData.metaDescription || null,
@@ -306,7 +309,7 @@ export default function LifeLogAdminPage() {
               <ArrowLeft className="w-5 h-5" />
             </Link>
             <h1 className="text-xl font-black uppercase flex items-center gap-2">
-              <Coffee className="w-6 h-6" />
+              <BookText className="w-6 h-6" />
               Life Log CMS
             </h1>
           </div>
@@ -346,7 +349,7 @@ export default function LifeLogAdminPage() {
               <div className="space-y-3">
                 {lifeLogs.map((log) => {
                   const config = categoryConfig[log.category as keyof typeof categoryConfig];
-                  const Icon = config?.icon || Coffee;
+                  const Icon = config?.icon || BookText;
                   return (
                     <div
                       key={log.id}
@@ -549,8 +552,8 @@ export default function LifeLogAdminPage() {
                           type="button"
                           onClick={() => handleThumbnailSelect(url)}
                           className={`relative aspect-square border-4 overflow-hidden transition-all ${thumbnailUrl === url
-                              ? "border-blue-600 ring-2 ring-blue-300"
-                              : "border-gray-300 hover:border-black"
+                            ? "border-blue-600 ring-2 ring-blue-300"
+                            : "border-gray-300 hover:border-black"
                             }`}
                         >
                           <img src={url} alt={`이미지 ${idx + 1}`} className="w-full h-full object-cover" />

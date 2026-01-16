@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { posts, faqs, tags, postsToTags, faqsToTags, contentDailyStats, series, courses, classes, classesToTags, Post, Faq, ContentType, Category, Tag, Series, Course, Class } from "./schema";
+import { posts, faqs, tags, postsToTags, faqsToTags, contentDailyStats, series, courses, classes, classesToTags, lifeLogs, logsToTags, Post, Faq, ContentType, Category, Tag, Series, Course, Class, LifeLog } from "./schema";
 import { eq, inArray, desc, sql, and, gte, asc, isNull } from "drizzle-orm";
 
 // 타입 정의
@@ -29,6 +29,14 @@ type PostWithRelations = Post & {
 
 type FaqWithRelations = Faq & {
   faqsToTags: { tag: Tag }[];
+};
+
+export type LogWithTags = LifeLog & {
+  tags: string[];
+};
+
+type LogWithRelations = LifeLog & {
+  logsToTags: { tag: Tag }[];
 };
 
 // Posts 쿼리
@@ -1446,4 +1454,193 @@ export async function getRelatedPostsForClass(classTags: string[], classCategory
         title: post.series.title,
       } : null,
     }));
+}
+
+// ============================================
+// Logs 쿼리
+// ============================================
+
+// 모든 Logs 조회
+export async function getAllLogs(): Promise<LogWithTags[]> {
+  const result = (await db.query.lifeLogs.findMany({
+    orderBy: [desc(lifeLogs.createdAt)],
+    with: {
+      logsToTags: {
+        with: {
+          tag: true,
+        },
+      },
+    },
+  })) as LogWithRelations[];
+
+  return result.map((log) => ({
+    ...log,
+    tags: log.logsToTags.map((lt) => lt.tag.name),
+  }));
+}
+
+// 배포된 Logs만 조회 (프론트엔드용)
+export async function getPublishedLogs(): Promise<LogWithTags[]> {
+  const result = (await db.query.lifeLogs.findMany({
+    where: eq(lifeLogs.isPublished, true),
+    orderBy: [desc(lifeLogs.createdAt)],
+    with: {
+      logsToTags: {
+        with: {
+          tag: true,
+        },
+      },
+    },
+  })) as LogWithRelations[];
+
+  return result.map((log) => ({
+    ...log,
+    tags: log.logsToTags.map((lt) => lt.tag.name),
+  }));
+}
+
+export async function getLogBySlug(slug: string): Promise<LogWithTags | null> {
+  const result = (await db.query.lifeLogs.findFirst({
+    where: eq(lifeLogs.slug, slug),
+    with: {
+      logsToTags: {
+        with: {
+          tag: true,
+        },
+      },
+    },
+  })) as LogWithRelations | undefined;
+
+  if (!result) return null;
+
+  return {
+    ...result,
+    tags: result.logsToTags.map((lt) => lt.tag.name),
+  };
+}
+
+// 태그 기반 연관 Logs 쿼리
+export async function getRelatedLogsByTags(tagNames: string[], excludeId?: number, limit = 3): Promise<LogWithTags[]> {
+  const tagRecords = await db.query.tags.findMany({
+    where: inArray(tags.name, tagNames),
+  });
+  const tagIds = tagRecords.map((t: Tag) => t.id);
+
+  if (tagIds.length === 0) return [];
+
+  const logTagRecords = await db
+    .select({ logId: logsToTags.logId, tagId: logsToTags.tagId })
+    .from(logsToTags)
+    .where(inArray(logsToTags.tagId, tagIds));
+
+  const logScores = new Map<number, number>();
+  for (const record of logTagRecords) {
+    if (excludeId && record.logId === excludeId) continue;
+    logScores.set(record.logId, (logScores.get(record.logId) || 0) + 1);
+  }
+
+  const sortedLogIds = [...logScores.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([id]) => id);
+
+  if (sortedLogIds.length === 0) return [];
+
+  const result = (await db.query.lifeLogs.findMany({
+    where: inArray(lifeLogs.id, sortedLogIds),
+    with: {
+      logsToTags: {
+        with: {
+          tag: true,
+        },
+      },
+    },
+  })) as LogWithRelations[];
+
+  return sortedLogIds
+    .map((id) => result.find((l) => l.id === id))
+    .filter((log): log is LogWithRelations => log !== undefined)
+    .map((log) => ({
+      ...log,
+      tags: log.logsToTags.map((lt) => lt.tag.name),
+    }));
+}
+
+// 연관 Logs (태그 매칭 + 조회수 가중치 복합 점수)
+export async function getRelatedLogsWithPopularity(
+  tagNames: string[],
+  category: Category,
+  excludeId?: number,
+  limit = 3,
+  days = 7
+): Promise<LogWithTags[]> {
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days);
+  const startDateStr = startDate.toISOString().split("T")[0];
+
+  const tagRecords = await db.query.tags.findMany({
+    where: inArray(tags.name, tagNames),
+  });
+  const tagIds = tagRecords.map((t: Tag) => t.id);
+
+  const viewStats = await db
+    .select({
+      contentId: contentDailyStats.contentId,
+      totalViews: sql<number>`SUM(${contentDailyStats.viewCount})`.as("total_views"),
+    })
+    .from(contentDailyStats)
+    .where(
+      and(
+        eq(contentDailyStats.contentType, "log"),
+        gte(contentDailyStats.date, startDateStr)
+      )
+    )
+    .groupBy(contentDailyStats.contentId);
+
+  const viewMap = new Map(viewStats.map((v) => [v.contentId, Number(v.totalViews)]));
+
+  const logTagRecords = tagIds.length > 0
+    ? await db
+      .select({ logId: logsToTags.logId, tagId: logsToTags.tagId })
+      .from(logsToTags)
+      .where(inArray(logsToTags.tagId, tagIds))
+    : [];
+
+  const tagScoreMap = new Map<number, number>();
+  for (const record of logTagRecords) {
+    if (excludeId && record.logId === excludeId) continue;
+    tagScoreMap.set(record.logId, (tagScoreMap.get(record.logId) || 0) + 1);
+  }
+
+  const allLogs = (await db.query.lifeLogs.findMany({
+    where: eq(lifeLogs.isPublished, true),
+    with: {
+      logsToTags: {
+        with: {
+          tag: true,
+        },
+      },
+    },
+  })) as LogWithRelations[];
+
+  type LogWithScore = LogWithTags & { _score: number };
+  const scoredLogs: LogWithScore[] = allLogs
+    .filter((log) => log.id !== excludeId)
+    .map((log) => {
+      const tagScore = (tagScoreMap.get(log.id) || 0) * 2;
+      const categoryScore = log.category === category ? 1 : 0;
+      const viewScore = (viewMap.get(log.id) || 0) * 0.1;
+      const totalScore = tagScore + categoryScore + viewScore;
+
+      return {
+        ...log,
+        tags: log.logsToTags.map((lt) => lt.tag.name),
+        _score: totalScore,
+      };
+    })
+    .filter((log) => log._score > 0)
+    .sort((a, b) => b._score - a._score)
+    .slice(0, limit);
+
+  return scoredLogs.map(({ _score, ...log }) => log);
 }

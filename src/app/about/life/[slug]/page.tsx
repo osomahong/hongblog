@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { 
-  Utensils, 
-  GraduationCap, 
-  Palette, 
-  Plane, 
+import {
+  Utensils,
+  GraduationCap,
+  Palette,
+  Plane,
   Coffee,
   MapPin,
   Calendar,
@@ -38,7 +38,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const log = await getLifeLog(slug);
-  
+
   if (!log) {
     return { title: "Not Found" };
   }
@@ -61,7 +61,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: log.ogDescription || log.metaDescription || defaultDescription,
       images: log.ogImage ? [log.ogImage] : log.thumbnailUrl ? [log.thumbnailUrl] : [],
     },
-    alternates: log.canonicalUrl ? { canonical: log.canonicalUrl } : { canonical: `${siteUrl}/about/life/${slug}` },
+    alternates: {
+      canonical: log.canonicalUrl || `https://www.digitalmarketer.co.kr/about/life/${slug}`
+    },
     robots: log.noIndex ? { index: false, follow: false } : { index: true, follow: true },
   };
 }
@@ -80,8 +82,8 @@ export default async function LifeLogDetailPage({ params }: Props) {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
       {/* Back Link */}
-      <Link 
-        href="/about/life" 
+      <Link
+        href="/about/life"
         className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-primary mb-6 group"
       >
         <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -98,10 +100,10 @@ export default async function LifeLogDetailPage({ params }: Props) {
           {log.visitedAt && (
             <span className="inline-flex items-center gap-1.5 text-sm text-gray-500">
               <Calendar className="w-4 h-4" />
-              {new Date(log.visitedAt).toLocaleDateString("ko-KR", { 
-                year: "numeric", 
-                month: "long", 
-                day: "numeric" 
+              {new Date(log.visitedAt).toLocaleDateString("ko-KR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
               })}
             </span>
           )}
@@ -120,9 +122,9 @@ export default async function LifeLogDetailPage({ params }: Props) {
             <span className="text-sm font-bold text-gray-600">평점:</span>
             <div className="flex items-center gap-0.5">
               {[...Array(5)].map((_, i) => (
-                <Star 
-                  key={i} 
-                  className={`w-5 h-5 ${i < log.rating! ? "text-yellow-500 fill-yellow-500" : "text-gray-300"}`} 
+                <Star
+                  key={i}
+                  className={`w-5 h-5 ${i < log.rating! ? "text-yellow-500 fill-yellow-500" : "text-gray-300"}`}
                 />
               ))}
             </div>
@@ -133,8 +135,8 @@ export default async function LifeLogDetailPage({ params }: Props) {
       {/* Thumbnail */}
       {log.thumbnailUrl && (
         <div className="mb-8 border-4 border-black neo-shadow overflow-hidden">
-          <img 
-            src={log.thumbnailUrl} 
+          <img
+            src={log.thumbnailUrl}
             alt={log.title}
             className="w-full h-auto"
           />
