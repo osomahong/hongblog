@@ -10,11 +10,14 @@ export const metadata = {
   description: "주제별로 묶인 시리즈 콘텐츠를 확인하세요.",
 };
 
+import { ListViewTracker } from "@/components/ListViewTracker";
+
 export default async function SeriesPage() {
   const seriesList = await getPublishedSeries();
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+      <ListViewTracker eventName="view_series_list" />
       {/* Hero Section */}
       <section className="mb-8 sm:mb-12">
         <NeoTiltCard className="bg-gradient-to-br from-violet-600 to-indigo-700 border-4 border-black p-5 sm:p-8 md:p-12 -rotate-1 halftone-corner speed-lines text-left" intensity={20} shadowIntensity={10}>

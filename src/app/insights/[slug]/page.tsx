@@ -13,6 +13,7 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { AuthorCard } from "@/components/AuthorCard";
 import { SeriesNav } from "@/components/SeriesNav";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
+import { RelatedLink } from "@/components/RelatedLink";
 
 const categoryIcons = {
   AI_TECH: Sparkles,
@@ -150,6 +151,8 @@ export default async function InsightDetailPage({ params }: Props) {
         <ViewTracker
           contentType="post"
           contentId={post.id}
+          contentTitle={post.title}
+          contentSlug={slug}
         />
 
         {/* 상단 네비게이션 바 */}
@@ -175,6 +178,7 @@ export default async function InsightDetailPage({ params }: Props) {
         </div>
 
         <ContentFocusLayout
+          contentTitle={post.title}
           sidebar={
             <div className="lg:sticky lg:top-24 space-y-3 sm:space-y-6">
               {/* Related FAQs */}
@@ -190,12 +194,15 @@ export default async function InsightDetailPage({ params }: Props) {
                     <ul className="space-y-2 sm:space-y-3">
                       {relatedFaqs.map((faq, index) => (
                         <li key={faq.id}>
-                          <Link
+                          <RelatedLink
                             href={`/faq/${faq.slug}`}
+                            relatedType="faqs"
+                            contentId={faq.slug}
+                            contentName={faq.question}
                             className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                           >
                             <span className="text-[11px] sm:text-sm font-medium leading-snug block">{faq.question}</span>
-                          </Link>
+                          </RelatedLink>
                         </li>
                       ))}
                     </ul>
@@ -218,13 +225,16 @@ export default async function InsightDetailPage({ params }: Props) {
                     <ul className="space-y-2 sm:space-y-3">
                       {relatedClasses.map((cls, index) => (
                         <li key={cls.id}>
-                          <Link
+                          <RelatedLink
                             href={`/class/${cls.courseInfo?.slug || ""}/${cls.slug}`}
+                            relatedType="classes"
+                            contentId={cls.slug}
+                            contentName={cls.term}
                             className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                           >
                             <span className="text-[11px] sm:text-sm font-bold leading-snug block">{cls.term}</span>
                             <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">{cls.definition}</p>
-                          </Link>
+                          </RelatedLink>
                         </li>
                       ))}
                     </ul>

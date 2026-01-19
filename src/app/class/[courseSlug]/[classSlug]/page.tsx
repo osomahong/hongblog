@@ -11,6 +11,7 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
+import { RelatedLink } from "@/components/RelatedLink";
 
 type Props = {
     params: Promise<{ courseSlug: string; classSlug: string }>;
@@ -136,6 +137,8 @@ export default async function ClassDetailPage({ params }: Props) {
                 <ViewTracker
                     contentType="class"
                     contentId={classData.id}
+                    contentTitle={classData.term}
+                    contentSlug={classSlug}
                 />
 
                 {/* Breadcrumb & Back Button */}
@@ -165,6 +168,7 @@ export default async function ClassDetailPage({ params }: Props) {
                 </div>
 
                 <ContentFocusLayout
+                    contentTitle={classData.term}
                     sidebar={
                         <div className="lg:sticky lg:top-24 space-y-4 sm:space-y-6">
                             {/* Course Info */}
@@ -260,7 +264,12 @@ export default async function ClassDetailPage({ params }: Props) {
                         {(navigation.prev || navigation.next) && (
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                                 {navigation.prev ? (
-                                    <Link href={`/class/${courseSlug}/${navigation.prev.slug}`}>
+                                    <RelatedLink
+                                        href={`/class/${courseSlug}/${navigation.prev.slug}`}
+                                        relatedType="classes"
+                                        contentId={navigation.prev.slug}
+                                        contentName={navigation.prev.term}
+                                    >
                                         <NeoCard className="h-full hover:translate-x-0.5 hover:translate-y-0.5 transition-transform">
                                             <NeoCardHeader>
                                                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
@@ -272,12 +281,17 @@ export default async function ClassDetailPage({ params }: Props) {
                                                 </NeoCardTitle>
                                             </NeoCardHeader>
                                         </NeoCard>
-                                    </Link>
+                                    </RelatedLink>
                                 ) : (
                                     <div />
                                 )}
                                 {navigation.next && (
-                                    <Link href={`/class/${courseSlug}/${navigation.next.slug}`}>
+                                    <RelatedLink
+                                        href={`/class/${courseSlug}/${navigation.next.slug}`}
+                                        relatedType="classes"
+                                        contentId={navigation.next.slug}
+                                        contentName={navigation.next.term}
+                                    >
                                         <NeoCard className="h-full hover:translate-x-0.5 hover:translate-y-0.5 transition-transform">
                                             <NeoCardHeader>
                                                 <div className="flex items-center justify-end gap-2 text-sm text-muted-foreground mb-1">
@@ -289,7 +303,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                                 </NeoCardTitle>
                                             </NeoCardHeader>
                                         </NeoCard>
-                                    </Link>
+                                    </RelatedLink>
                                 )}
                             </div>
                         )}
@@ -306,16 +320,19 @@ export default async function ClassDetailPage({ params }: Props) {
                                 <NeoCardContent>
                                     <div className="grid gap-3">
                                         {relatedClasses.map((related) => (
-                                            <Link
+                                            <RelatedLink
                                                 key={related.id}
                                                 href={`/class/${related.courseInfo?.slug || courseSlug}/${related.slug}`}
+                                                relatedType="classes"
+                                                contentId={related.slug}
+                                                contentName={related.term}
                                                 className="block p-3 sm:p-4 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                                             >
                                                 <h3 className="font-bold text-sm sm:text-base mb-1">{related.term}</h3>
                                                 <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
                                                     {related.definition}
                                                 </p>
-                                            </Link>
+                                            </RelatedLink>
                                         ))}
                                     </div>
                                 </NeoCardContent>
@@ -334,9 +351,12 @@ export default async function ClassDetailPage({ params }: Props) {
                                 <NeoCardContent>
                                     <div className="grid gap-3">
                                         {relatedPosts.map((post) => (
-                                            <Link
+                                            <RelatedLink
                                                 key={post.id}
                                                 href={`/insights/${post.slug}`}
+                                                relatedType="insights"
+                                                contentId={post.slug}
+                                                contentName={post.title}
                                                 className="block p-3 sm:p-4 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                                             >
                                                 <h3 className="font-bold text-sm sm:text-base mb-1">{post.title}</h3>
@@ -345,7 +365,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                                         {post.excerpt}
                                                     </p>
                                                 )}
-                                            </Link>
+                                            </RelatedLink>
                                         ))}
                                     </div>
                                 </NeoCardContent>
@@ -364,13 +384,16 @@ export default async function ClassDetailPage({ params }: Props) {
                                 <NeoCardContent>
                                     <div className="grid gap-3">
                                         {relatedFaqs.map((faq) => (
-                                            <Link
+                                            <RelatedLink
                                                 key={faq.id}
                                                 href={`/faq/${faq.slug}`}
+                                                relatedType="faqs"
+                                                contentId={faq.slug}
+                                                contentName={faq.question}
                                                 className="block p-3 sm:p-4 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                                             >
                                                 <h3 className="font-bold text-sm sm:text-base">{faq.question}</h3>
-                                            </Link>
+                                            </RelatedLink>
                                         ))}
                                     </div>
                                 </NeoCardContent>

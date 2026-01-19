@@ -11,5 +11,16 @@ declare global {
     }
 }
 
-// Note: 모든 커스텀 dataLayer 트래킹 정보 전송이 중단되었습니다.
-// GTM 기본 스크립트(layout.tsx)만 유지됩니다.
+/**
+ * GTM dataLayer에 이벤트를 전송합니다.
+ */
+export const sendGAEvent = (eventName: string, params?: Record<string, unknown>) => {
+    if (typeof window !== 'undefined' && window.dataLayer) {
+        window.dataLayer.push({
+            event: eventName,
+            ...params,
+        });
+    }
+};
+
+// Note: 커스텀 dataLayer 트래킹이 다시 활성화되었습니다 (2026-01-19)

@@ -10,6 +10,7 @@ import { absoluteUrl } from "@/lib/utils";
 import { getFaqBySlug, getRelatedPostsWithPopularity, getRelatedFaqsWithPopularity } from "@/lib/queries";
 import { ViewTracker } from "@/components/ViewTracker";
 import { AuthorCard } from "@/components/AuthorCard";
+import { RelatedLink } from "@/components/RelatedLink";
 
 const categoryIcons = {
   AI_TECH: Sparkles,
@@ -128,6 +129,8 @@ export default async function FaqDetailPage({ params }: Props) {
         <ViewTracker
           contentType="faq"
           contentId={faq.id}
+          contentTitle={faq.question}
+          contentSlug={slug}
         />
         <Link
           href="/faq"
@@ -260,11 +263,15 @@ export default async function FaqDetailPage({ params }: Props) {
                     {relatedPosts.map((post, index) => {
                       const PostIcon = categoryIcons[post.category as keyof typeof categoryIcons];
                       return (
-                        <Link
+                        <RelatedLink
                           key={post.id}
                           href={`/insights/${post.slug}`}
+                          relatedType="insights"
+                          contentId={post.slug}
+                          contentName={post.title}
+                          className="neo-hover"
                         >
-                          <div className="bg-white border-4 border-black p-3 sm:p-4 neo-shadow-sm neo-hover">
+                          <div className="bg-white border-4 border-black p-3 sm:p-4 neo-shadow-sm h-full">
                             <div className="flex items-center gap-2 mb-2">
                               <NeoBadge variant={post.category === "AI_TECH" ? "ai" : post.category === "DATA" ? "data" : "marketing"}>
                                 <PostIcon className="w-3 h-3" />
@@ -275,7 +282,7 @@ export default async function FaqDetailPage({ params }: Props) {
                               {post.excerpt}
                             </p>
                           </div>
-                        </Link>
+                        </RelatedLink>
                       );
                     })}
                   </div>
@@ -300,12 +307,15 @@ export default async function FaqDetailPage({ params }: Props) {
                     <ul className="space-y-2 sm:space-y-3">
                       {relatedFaqs.map((relatedFaq, index) => (
                         <li key={relatedFaq.id}>
-                          <Link
+                          <RelatedLink
                             href={`/faq/${relatedFaq.slug}`}
+                            relatedType="faqs"
+                            contentId={relatedFaq.slug}
+                            contentName={relatedFaq.question}
                             className="block p-2.5 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                           >
                             <span className="text-xs sm:text-sm font-medium line-clamp-2">{relatedFaq.question}</span>
-                          </Link>
+                          </RelatedLink>
                         </li>
                       ))}
                     </ul>

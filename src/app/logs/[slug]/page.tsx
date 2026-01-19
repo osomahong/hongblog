@@ -12,6 +12,7 @@ import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { AuthorCard } from "@/components/AuthorCard";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
+import { RelatedLink } from "@/components/RelatedLink";
 
 const categoryIcons = {
     AI_TECH: Sparkles,
@@ -144,6 +145,8 @@ export default async function LogDetailPage({ params }: Props) {
                 <ViewTracker
                     contentType="log"
                     contentId={log.id}
+                    contentTitle={log.title}
+                    contentSlug={slug}
                 />
 
                 {/* 상단 네비게이션 바 */}
@@ -161,6 +164,7 @@ export default async function LogDetailPage({ params }: Props) {
                 </div>
 
                 <ContentFocusLayout
+                    contentTitle={log.title}
                     sidebar={
                         <div className="lg:sticky lg:top-24 space-y-3 sm:space-y-6">
                             {/* Related FAQs */}
@@ -176,12 +180,15 @@ export default async function LogDetailPage({ params }: Props) {
                                         <ul className="space-y-2 sm:space-y-3">
                                             {relatedFaqs.map((faq) => (
                                                 <li key={faq.id}>
-                                                    <Link
+                                                    <RelatedLink
                                                         href={`/faq/${faq.slug}`}
+                                                        relatedType="faqs"
+                                                        contentId={faq.slug}
+                                                        contentName={faq.question}
                                                         className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                                                     >
                                                         <span className="text-[11px] sm:text-sm font-medium leading-snug block">{faq.question}</span>
-                                                    </Link>
+                                                    </RelatedLink>
                                                 </li>
                                             ))}
                                         </ul>
@@ -202,13 +209,16 @@ export default async function LogDetailPage({ params }: Props) {
                                         <ul className="space-y-2 sm:space-y-3">
                                             {relatedPosts.map((post) => (
                                                 <li key={post.id}>
-                                                    <Link
+                                                    <RelatedLink
                                                         href={`/insights/${post.slug}`}
+                                                        relatedType="insights"
+                                                        contentId={post.slug}
+                                                        contentName={post.title}
                                                         className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                                                     >
                                                         <span className="text-[11px] sm:text-sm font-bold leading-snug block">{post.title}</span>
                                                         <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">{post.excerpt}</p>
-                                                    </Link>
+                                                    </RelatedLink>
                                                 </li>
                                             ))}
                                         </ul>

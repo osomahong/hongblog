@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { User } from "lucide-react";
+import { User, MessageCircle } from "lucide-react";
+import { sendGAEvent } from "@/lib/gtm";
 
 export function Footer() {
   return (
@@ -9,7 +12,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {/* Logo & About Link */}
           <div className="flex flex-col items-center md:items-start gap-3">
-            <Link href="/" className="flex items-center gap-2 group">
+            <Link
+              href="/"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "Home" })}
+              className="flex items-center gap-2 group"
+            >
               <div className="relative w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full border-2 border-red-500 overflow-hidden group-hover:border-accent transition-colors">
                 <Image
                   src="/profile-illustration.png"
@@ -31,13 +38,46 @@ export function Footer() {
           {/* Navigation Links */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Explore</span>
-            <Link href="/insights" className="text-sm text-gray-300 hover:text-accent transition-colors">
+            <Link
+              href="/class"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "Class" })}
+              className="text-sm text-gray-300 hover:text-accent transition-colors"
+            >
+              Class
+            </Link>
+            <Link
+              href="/insights"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "Insights" })}
+              className="text-sm text-gray-300 hover:text-accent transition-colors"
+            >
               Insights
             </Link>
-            <Link href="/faq" className="text-sm text-gray-300 hover:text-accent transition-colors">
+            <Link
+              href="/logs"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "Logs" })}
+              className="text-sm text-gray-300 hover:text-accent transition-colors"
+            >
+              Logs
+            </Link>
+            <Link
+              href="/series"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "Series" })}
+              className="text-sm text-gray-300 hover:text-accent transition-colors"
+            >
+              Series
+            </Link>
+            <Link
+              href="/faq"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "FAQ" })}
+              className="text-sm text-gray-300 hover:text-accent transition-colors"
+            >
               FAQ
             </Link>
-            <Link href="/tags" className="text-sm text-gray-300 hover:text-accent transition-colors">
+            <Link
+              href="/tags"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "Tags" })}
+              className="text-sm text-gray-300 hover:text-accent transition-colors"
+            >
               Tags
             </Link>
           </div>
@@ -45,8 +85,16 @@ export function Footer() {
           {/* About Section */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">About</span>
-            <Link 
-              href="/about" 
+            <Link
+              href="/about/life"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "Life" })}
+              className="text-sm text-gray-300 hover:text-accent transition-colors"
+            >
+              Life
+            </Link>
+            <Link
+              href="/about"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "About" })}
               className="flex items-center gap-2 text-sm text-gray-300 hover:text-accent transition-colors group"
             >
               <User className="w-4 h-4" />
@@ -55,6 +103,16 @@ export function Footer() {
             <p className="text-xs text-gray-500 mt-1 text-center md:text-left">
               마케팅을 데이터로 설명하는 사람
             </p>
+            <a
+              href="https://open.kakao.com/o/pvUCYfci"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => sendGAEvent("click_footer", { menu_name: "KakaoTalk" })}
+              className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-[#FEE500] text-black text-xs font-black border-2 border-white hover:bg-[#F7E600] transition-all neo-shadow-sm sm:self-start"
+            >
+              <MessageCircle className="w-4 h-4" />
+              카카오톡 문의하기
+            </a>
           </div>
         </div>
 

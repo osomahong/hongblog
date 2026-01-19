@@ -13,6 +13,7 @@ import {
   CheckCircle,
   ChevronRight,
 } from "lucide-react";
+import { ViewTracker } from "@/components/ViewTracker";
 
 export const metadata: Metadata = {
   title: "Portfolio | About",
@@ -140,9 +141,14 @@ const approach = [
   },
 ];
 
-export default function PortfolioPage() {
+export default async function PortfolioPage() {
   return (
     <div className="min-h-screen bg-white">
+      <ViewTracker
+        contentType="about"
+        contentTitle="Portfolio"
+        contentSlug="portfolio"
+      />
       {/* Header */}
       <header className="border-b-4 border-black bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -322,7 +328,7 @@ export default function PortfolioPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="https://open.kakao.com/o/sS5vN58c"
+              href="https://open.kakao.com/o/pvUCYfci"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-black text-black font-medium transition-colors bg-[#FEE500] hover:bg-[#F7E600]"
             >
               카카오톡 문의

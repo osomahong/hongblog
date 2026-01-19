@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { sendGAEvent } from "@/lib/gtm";
 
 export function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,48 +32,56 @@ export function Nav() {
           <div className="hidden sm:flex items-center gap-1">
             <Link
               href="/class"
+              onClick={() => sendGAEvent("click_nav", { menu_name: "Class" })}
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               Class
             </Link>
             <Link
               href="/insights"
+              onClick={() => sendGAEvent("click_nav", { menu_name: "Insights" })}
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               Insights
             </Link>
             <Link
               href="/logs"
+              onClick={() => sendGAEvent("click_nav", { menu_name: "Logs" })}
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               Logs
             </Link>
             <Link
               href="/series"
+              onClick={() => sendGAEvent("click_nav", { menu_name: "Series" })}
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               Series
             </Link>
             <Link
               href="/faq"
+              onClick={() => sendGAEvent("click_nav", { menu_name: "FAQ" })}
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               FAQ
             </Link>
             <Link
               href="/tags"
+              onClick={() => sendGAEvent("click_nav", { menu_name: "Tags" })}
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               Tags
             </Link>
             <Link
               href="/about/life"
+              onClick={() => sendGAEvent("click_nav", { menu_name: "Life" })}
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               Life
             </Link>
             <Link
               href="/about"
+              onClick={() => sendGAEvent("click_nav", { menu_name: "About" })}
               className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
             >
               About
@@ -94,56 +103,56 @@ export function Nav() {
           <div className="sm:hidden border-t-2 border-black py-2">
             <Link
               href="/class"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => { sendGAEvent("click_nav", { menu_name: "Class" }); setIsMenuOpen(false); }}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Class
             </Link>
             <Link
               href="/insights"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => { sendGAEvent("click_nav", { menu_name: "Insights" }); setIsMenuOpen(false); }}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Insights
             </Link>
             <Link
               href="/logs"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => { sendGAEvent("click_nav", { menu_name: "Logs" }); setIsMenuOpen(false); }}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Logs
             </Link>
             <Link
               href="/series"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => { sendGAEvent("click_nav", { menu_name: "Series" }); setIsMenuOpen(false); }}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Series
             </Link>
             <Link
               href="/faq"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => { sendGAEvent("click_nav", { menu_name: "FAQ" }); setIsMenuOpen(false); }}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               FAQ
             </Link>
             <Link
               href="/tags"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => { sendGAEvent("click_nav", { menu_name: "Tags" }); setIsMenuOpen(false); }}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Tags
             </Link>
             <Link
               href="/about/life"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => { sendGAEvent("click_nav", { menu_name: "Life" }); setIsMenuOpen(false); }}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               Life
             </Link>
             <Link
               href="/about"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => { sendGAEvent("click_nav", { menu_name: "About" }); setIsMenuOpen(false); }}
               className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
             >
               About

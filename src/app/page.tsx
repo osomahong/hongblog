@@ -22,6 +22,7 @@ import {
   getPublishedLogs,
   TrendingItem,
 } from "@/lib/queries";
+import { TrackedLink } from "@/components/TrackedLink";
 
 const categoryIcons: Record<string, any> = {
   AI_TECH: Sparkles,
@@ -121,7 +122,13 @@ export default async function HomePage() {
 
               if (item._type === "post") {
                 return (
-                  <Link key={`post-${item.id}`} href={`/insights/${item.slug}`}>
+                  <TrackedLink
+                    key={`post-${item.id}`}
+                    href={`/insights/${item.slug}`}
+                    eventName="click_main_trendingnow"
+                    contentTitle={item.title}
+                    contentId={item.id}
+                  >
                     <NeoTiltCard className="h-full bg-white p-3 sm:p-4 halftone-corner" intensity={10}>
                       <div className="flex items-center gap-2 mb-2 sm:mb-3 relative z-10">
                         <div className={`${categoryColors[item.category as keyof typeof categoryColors] || "bg-gray-500 text-white"} px-2 py-0.5 sm:py-1 border-2 border-black text-[10px] sm:text-xs font-bold uppercase flex items-center gap-1`}>
@@ -136,11 +143,17 @@ export default async function HomePage() {
                         {item.excerpt || ""}
                       </p>
                     </NeoTiltCard>
-                  </Link>
+                  </TrackedLink>
                 );
               } else {
                 return (
-                  <Link key={`faq-${item.id}`} href={`/faq/${item.slug}`}>
+                  <TrackedLink
+                    key={`faq-${item.id}`}
+                    href={`/faq/${item.slug}`}
+                    eventName="click_main_trendingnow"
+                    contentTitle={item.question}
+                    contentId={item.id}
+                  >
                     <NeoTiltCard className="h-full bg-accent p-3 sm:p-4 halftone-corner" intensity={10}>
                       <div className="flex items-center gap-2 mb-2 sm:mb-3 relative z-10">
                         <div className="bg-black text-white px-2 py-0.5 sm:py-1 border-2 border-black text-[10px] sm:text-xs font-bold uppercase flex items-center gap-1">
@@ -155,7 +168,7 @@ export default async function HomePage() {
                         {(item.answer || "").substring(0, 80)}...
                       </p>
                     </NeoTiltCard>
-                  </Link>
+                  </TrackedLink>
                 );
               }
             })}
@@ -177,7 +190,13 @@ export default async function HomePage() {
               const Icon = categoryIcons[stat.category];
               const bgColor = categoryColors[stat.category];
               return (
-                <Link key={stat.category} href={`/category/${stat.category.toLowerCase()}`}>
+                <TrackedLink
+                  key={stat.category}
+                  href={`/category/${stat.category.toLowerCase()}`}
+                  eventName="click_main_browsebycategory"
+                  contentTitle={`카테고리 - ${categoryLabels[stat.category]}`}
+                  contentId={stat.category}
+                >
                   <NeoTiltCard className={`${bgColor} border-3 sm:border-4 border-black p-2.5 sm:p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all`} intensity={15}>
                     <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 mb-1.5 sm:mb-3">
                       <Icon className="w-5 h-5 sm:w-8 sm:h-8" />
@@ -190,7 +209,7 @@ export default async function HomePage() {
                       <span>{stat.faqCount} faqs</span>
                     </div>
                   </NeoTiltCard>
-                </Link>
+                </TrackedLink>
               );
             })}
           </div>
@@ -213,7 +232,13 @@ export default async function HomePage() {
             {posts.slice(0, 6).map((post, index) => {
               const Icon = categoryIcons[post.category as keyof typeof categoryIcons] || Sparkles;
               return (
-                <Link key={post.id} href={`/insights/${post.slug}`}>
+                <TrackedLink
+                  key={post.id}
+                  href={`/insights/${post.slug}`}
+                  eventName="click_main_latestinsights"
+                  contentTitle={post.title}
+                  contentId={post.id}
+                >
                   <NeoTiltCard className="h-full">
                     <NeoCardHeader>
                       <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap">
@@ -267,7 +292,7 @@ export default async function HomePage() {
                       </span>
                     </NeoCardFooter>
                   </NeoTiltCard>
-                </Link>
+                </TrackedLink>
               );
             })}
           </div>
@@ -298,7 +323,13 @@ export default async function HomePage() {
             {logs.slice(0, 6).map((log) => {
               const Icon = categoryIcons[log.category as keyof typeof categoryIcons] || Sparkles;
               return (
-                <Link key={log.id} href={`/logs/${log.slug}`}>
+                <TrackedLink
+                  key={log.id}
+                  href={`/logs/${log.slug}`}
+                  eventName="click_main_latestlogs"
+                  contentTitle={log.title}
+                  contentId={log.id}
+                >
                   <NeoTiltCard className="h-full bg-purple-50">
                     <NeoCardHeader>
                       <div className="flex items-center gap-2 mb-2 sm:mb-3 flex-wrap">
@@ -344,7 +375,7 @@ export default async function HomePage() {
                       </span>
                     </NeoCardFooter>
                   </NeoTiltCard>
-                </Link>
+                </TrackedLink>
               );
             })}
           </div>
@@ -380,8 +411,11 @@ export default async function HomePage() {
             <ul className="space-y-2 sm:space-y-3 relative z-10">
               {popularFaqs.map((faq) => (
                 <li key={faq.id}>
-                  <Link
+                  <TrackedLink
                     href={`/faq/${faq.slug}`}
+                    eventName="click_main_popularfaqs"
+                    contentTitle={faq.question}
+                    contentId={faq.id}
                     className="block p-2.5 sm:p-4 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all speech-bubble"
                   >
                     <div className="flex items-start gap-2 sm:gap-3">
@@ -395,7 +429,7 @@ export default async function HomePage() {
                         </div>
                       </div>
                     </div>
-                  </Link>
+                  </TrackedLink>
                 </li>
               ))}
             </ul>

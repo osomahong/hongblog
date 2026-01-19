@@ -25,11 +25,14 @@ const categoryLabels = {
   MARKETING: "Marketing",
 };
 
+import { ListViewTracker } from "@/components/ListViewTracker";
+
 export default async function InsightsPage() {
   const posts = await getPublishedPosts();
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-12">
+      <ListViewTracker eventName="view_insights_list" />
       {/* Hero Section */}
       <section className="mb-6 sm:mb-12">
         <NeoTiltCard className="bg-gradient-to-br from-red-600 to-orange-600 border-3 sm:border-4 border-black p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines text-left" intensity={20} shadowIntensity={10}>

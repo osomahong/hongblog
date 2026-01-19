@@ -6,6 +6,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { getAllTags, getContentByTag } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
+import { ViewTracker } from "@/components/ViewTracker";
 
 const categoryIcons = {
   AI_TECH: Sparkles,
@@ -50,6 +51,11 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
       {/* Results */}
       {selectedTag && content && (
         <>
+          <ViewTracker
+            contentType="tags"
+            contentTitle={`Tag: ${selectedTag}`}
+            contentSlug={selectedTag}
+          />
           <div className="mb-4 sm:mb-6">
             <span className="font-mono text-xs sm:text-sm text-muted-foreground">
               {content.posts.length + content.faqs.length} results for #{selectedTag}
@@ -185,11 +191,14 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
   );
 }
 
+import { ListViewTracker } from "@/components/ListViewTracker";
+
 export default async function TagsPage({ searchParams }: Props) {
   const { tag } = await searchParams;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+      <ListViewTracker eventName="view_tags_list" />
       {/* Hero Section */}
       <section className="mb-8 sm:mb-12">
         <NeoTiltCard className="bg-gradient-to-br from-purple-600 to-fuchsia-700 border-4 border-black p-5 sm:p-8 md:p-12 -rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>

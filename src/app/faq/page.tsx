@@ -35,6 +35,8 @@ const categoryLabels = {
   MARKETING: "Marketing",
 };
 
+import { ListViewTracker } from "@/components/ListViewTracker";
+
 export default function FAQPage() {
   const [faqs, setFaqs] = useState<Faq[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -64,6 +66,7 @@ export default function FAQPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+      <ListViewTracker eventName="view_faq_list" />
       <section className="mb-8 sm:mb-12">
         <NeoTiltCard className="bg-gradient-to-br from-cyan-600 to-indigo-700 border-4 border-black p-5 sm:p-8 md:p-12 rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 relative z-10">

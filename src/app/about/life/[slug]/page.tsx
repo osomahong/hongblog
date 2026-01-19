@@ -16,6 +16,7 @@ import { db } from "@/lib/db";
 import { lifeLogs, LifeLogCategory } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import { ViewTracker } from "@/components/ViewTracker";
 
 const categoryConfig: Record<LifeLogCategory, { icon: typeof Utensils; label: string; color: string }> = {
   FOOD: { icon: Utensils, label: "맛집", color: "bg-orange-500" },
@@ -81,6 +82,12 @@ export default async function LifeLogDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+      <ViewTracker
+        contentType="life"
+        contentId={log.id}
+        contentTitle={log.title}
+        contentSlug={slug}
+      />
       {/* Back Link */}
       <Link
         href="/about/life"

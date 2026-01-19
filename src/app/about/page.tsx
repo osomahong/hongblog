@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
+import { ViewTracker } from "@/components/ViewTracker";
 
 export const metadata: Metadata = {
   title: "About",
@@ -48,9 +49,14 @@ const principles = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+      <ViewTracker
+        contentType="about"
+        contentTitle="About"
+        contentSlug="about"
+      />
       {/* Hero Section */}
       <section className="mb-12 sm:mb-16">
         <NeoTiltCard className="bg-gradient-to-br from-rose-500 to-red-600 border-4 border-black p-6 sm:p-10 -rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>

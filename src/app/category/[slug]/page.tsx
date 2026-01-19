@@ -125,6 +125,8 @@ async function getFaqsByCategory(category: Category) {
     }));
 }
 
+import { ListViewTracker } from "@/components/ListViewTracker";
+
 export default async function CategoryPage({ params }: Props) {
   const { slug } = await params;
   const category = categoryMap[slug.toLowerCase()];
@@ -142,6 +144,7 @@ export default async function CategoryPage({ params }: Props) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
+      <ListViewTracker eventName="view_category_list" />
       {/* Back Button */}
       <Link href="/" className="inline-flex items-center gap-2 mb-6">
         <NeoButton variant="outline" size="sm">

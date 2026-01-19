@@ -1,20 +1,74 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
+import { FocusGuideBubble } from "./FocusGuideBubble";
 import { cn } from "@/lib/utils";
+import { sendGAEvent } from "@/lib/gtm";
 
 interface ContentFocusLayoutProps {
     children: React.ReactNode;
     sidebar: React.ReactNode;
+    contentTitle?: string;
 }
 
-export function ContentFocusLayout({ children, sidebar }: ContentFocusLayoutProps) {
+export function ContentFocusLayout({ children, sidebar, contentTitle }: ContentFocusLayoutProps) {
     const [isFocusMode, setIsFocusMode] = useState(false);
+    const [showGuide, setShowGuide] = useState(false);
+    const [hasDismissed, setHasDismissed] = useState(false);
 
-    const toggleFocusMode = () => {
-        setIsFocusMode(!isFocusMode);
+    const toggleFocusMode = useCallback(() => {
+        const willExpand = !isFocusMode;
+        setIsFocusMode(willExpand);
+        setShowGuide(false);
+
+        // Send GTM event based on action
+        if (contentTitle) {
+            const eventName = willExpand ? "click_expand" : "click_compress";
+            sendGAEvent(eventName, { content_title: contentTitle });
+        }
+    }, [isFocusMode, contentTitle]);
+
+    useEffect(() => {
+        const checkVisibility = () => {
+            // Only for PC (lg breakpoint: 1024px)
+            if (window.innerWidth < 1024 || isFocusMode || hasDismissed) {
+                setShowGuide(false);
+                return;
+            }
+
+            const hideFocusGuide = sessionStorage.getItem("hideFocusGuide");
+            if (hideFocusGuide === new Date().toDateString()) {
+                setHasDismissed(true);
+                setShowGuide(false);
+                return;
+            }
+
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercentage = (window.scrollY / scrollHeight) * 100;
+
+            if (scrollPercentage > 60) {
+                setShowGuide(true);
+            } else {
+                setShowGuide(false);
+            }
+        };
+
+        window.addEventListener("scroll", checkVisibility);
+        window.addEventListener("resize", checkVisibility);
+        // Initial check
+        checkVisibility();
+
+        return () => {
+            window.removeEventListener("scroll", checkVisibility);
+            window.removeEventListener("resize", checkVisibility);
+        };
+    }, [isFocusMode, hasDismissed]);
+
+    const handleCloseGuide = () => {
+        setShowGuide(false);
+        setHasDismissed(true);
     };
 
     return (
@@ -45,8 +99,15 @@ export function ContentFocusLayout({ children, sidebar }: ContentFocusLayoutProp
                 </div>
             </div>
 
+            {/* Focus Guide Bubble */}
+            <FocusGuideBubble
+                isVisible={showGuide}
+                onOpen={toggleFocusMode}
+                onClose={handleCloseGuide}
+            />
+
             {/* Floating Action Button */}
-            <div className="fixed bottom-8 right-8 z-50">
+            <div className="hidden lg:block fixed bottom-8 right-8 z-50">
                 <NeoButton
                     variant="primary"
                     onClick={toggleFocusMode}
