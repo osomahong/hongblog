@@ -69,6 +69,7 @@ export function SeoEditor({ title, content, initialData, onChange, urlPath = "/i
   const [aiSuggestions, setAiSuggestions] = useState<string[]>([]);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const updateSeoData = useCallback((updates: Partial<SeoData>) => {
     setSeoData(prev => ({ ...prev, ...updates }));
@@ -105,6 +106,14 @@ export function SeoEditor({ title, content, initialData, onChange, urlPath = "/i
   // AI 메타 설명 생성
   const generateMetaDesc = async () => {
     setIsGeneratingDesc(true);
+    setErrorMessage(null);
+
+    if (!title || !content) {
+      setErrorMessage('제목과 본문을 모두 입력해주세요.');
+      setIsGeneratingDesc(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/hong/seo/generate-description", {
         method: "POST",
@@ -114,12 +123,19 @@ export function SeoEditor({ title, content, initialData, onChange, urlPath = "/i
           content,
         }),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'AI 생성 실패');
+      }
+
       const result = await response.json();
       if (result.description) {
         updateSeoData({ metaDescription: result.description });
       }
     } catch (error) {
       console.error("Meta description generation failed:", error);
+      setErrorMessage(error instanceof Error ? error.message : 'AI 생성 중 오류가 발생했습니다.');
     }
     setIsGeneratingDesc(false);
   };
@@ -232,7 +248,7 @@ export function SeoEditor({ title, content, initialData, onChange, urlPath = "/i
               variant="accent"
               size="sm"
               onClick={generateMetaDesc}
-              disabled={isGeneratingDesc || !content}
+              disabled={isGeneratingDesc || !content || !title}
             >
               {isGeneratingDesc ? (
                 <Loader2 className="w-3 h-3 animate-spin mr-1" />
@@ -248,6 +264,16 @@ export function SeoEditor({ title, content, initialData, onChange, urlPath = "/i
             value={seoData.metaDescription}
             onChange={(e) => updateSeoData({ metaDescription: e.target.value })}
           />
+          {errorMessage && (
+            <p className="text-xs text-red-600 mt-2 font-bold">
+              ⚠️ {errorMessage}
+            </p>
+          )}
+          {!title && (
+            <p className="text-xs text-orange-600 mt-1">
+              💡 제목을 먼저 입력하면 AI 생성을 사용할 수 있습니다.
+            </p>
+          )}
         </div>
 
         {/* OG Image */}
@@ -339,7 +365,7 @@ export function SeoEditor({ title, content, initialData, onChange, urlPath = "/i
                 {seoData.metaTitle || title || "페이지 제목"}
               </div>
               <div className="text-green-700 text-sm truncate">
-                https://juniappa.com{urlPath}
+                {process.env.NEXT_PUBLIC_BASE_URL || 'https://www.digitalmarketer.co.kr'}{urlPath}
               </div>
               <div className="text-gray-600 text-sm mt-1 line-clamp-2">
                 {seoData.metaDescription || "메타 설명이 여기에 표시됩니다. 120-160자로 작성하면 검색 결과에서 잘리지 않습니다."}

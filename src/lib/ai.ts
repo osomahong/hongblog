@@ -163,7 +163,7 @@ export async function generateMetaDescription(data: { title: string; content: st
 
 요구사항:
 - 120-155자 사이
-- 클릭을 유도하는 매력적인 문구
+- 글 내용을 압축하여 핵심키워드와 내용 중심으로 요약
 - 한국어로 작성
 
 제목: ${data.title}
