@@ -18,6 +18,8 @@ import { eq } from "drizzle-orm";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { ViewTracker } from "@/components/ViewTracker";
 
+export const dynamic = 'force-dynamic';
+
 const categoryConfig: Record<LifeLogCategory, { icon: typeof Utensils; label: string; color: string }> = {
   FOOD: { icon: Utensils, label: "맛집", color: "bg-orange-500" },
   LECTURE: { icon: GraduationCap, label: "강의", color: "bg-blue-500" },

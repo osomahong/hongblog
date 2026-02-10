@@ -15,6 +15,8 @@ import { db } from "@/lib/db";
 import { lifeLogs, LifeLogCategory } from "@/lib/schema";
 import { eq, desc, and, ne } from "drizzle-orm";
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: "Life Log | About",
   description: "일상의 기록들 - 맛집, 강의, 문화생활, 여행 등",

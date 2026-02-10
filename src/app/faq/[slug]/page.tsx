@@ -12,6 +12,8 @@ import { ViewTracker } from "@/components/ViewTracker";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
 
+export const dynamic = 'force-dynamic';
+
 const categoryIcons = {
   AI_TECH: Sparkles,
   DATA: Database,

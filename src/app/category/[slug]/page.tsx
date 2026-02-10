@@ -18,6 +18,8 @@ import { posts, faqs } from "@/lib/schema";
 import { eq, desc } from "drizzle-orm";
 import type { Category, Tag } from "@/lib/schema";
 
+export const dynamic = 'force-dynamic';
+
 const categoryMap: Record<string, Category> = {
   ai_tech: "AI_TECH",
   data: "DATA",

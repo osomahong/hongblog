@@ -337,6 +337,247 @@ Provide only the final LinkedIn post text—no quotation marks, no explanations,
   }
 }
 
+// ============================================
+// 콘텐츠 자동 생성 함수
+// ============================================
+
+// 블로그 콘텐츠 생성 결과 타입
+export interface GeneratedBlogContent {
+  content: string;
+  suggestedTitle: string;
+}
+
+// FAQ 콘텐츠 생성 결과 타입
+export interface GeneratedFaqContent {
+  question: string;
+  answer: string;
+  difficulty: string;
+  techStack: string[];
+}
+
+// 토픽 제안 타입
+export interface TopicSuggestion {
+  contentType: "post" | "faq" | "class" | "lifeLog";
+  title: string;
+  category: string;
+  tags: string[];
+  rationale: string;
+  priority: "HIGH" | "MEDIUM" | "LOW";
+  seriesFit?: string;
+}
+
+// 블로그 콘텐츠 생성 (Posts, Classes, LifeLogs용 장문 콘텐츠)
+export async function generateBlogContent(data: {
+  topic: string;
+  outline?: string;
+  keyPoints?: string[];
+  category: string;
+  contentType: "post" | "class" | "lifeLog";
+  styleExamples?: { title: string; contentSnippet: string }[];
+}): Promise<GeneratedBlogContent | null> {
+  const styleContext = data.styleExamples?.length
+    ? `\n\n참고할 기존 글 스타일:\n${data.styleExamples.map((ex, i) => `--- 예시 ${i + 1}: "${ex.title}" ---\n${ex.contentSnippet}`).join("\n\n")}`
+    : "";
+
+  const outlineSection = data.outline ? `\n\n아웃라인:\n${data.outline}` : "";
+  const keyPointsSection = data.keyPoints?.length
+    ? `\n\n핵심 포인트:\n${data.keyPoints.map((p, i) => `${i + 1}. ${p}`).join("\n")}`
+    : "";
+
+  const contentTypeGuide: Record<string, string> = {
+    post: "블로그 인사이트 글 (서론-본론-결론 구조, H2/H3 헤딩 활용, 실무 경험 기반, 1500-3000단어)",
+    class: "용어 사전 글 (용어 정의 → 상세 설명 → 활용 예시 → 관련 개념 순서, 500-1500단어)",
+    lifeLog: "라이프로그/일상 글 (경험 기반 서술, 개인적 관점과 평가 포함, 500-2000단어)",
+  };
+
+  const prompt = `당신은 전문 블로그 작성자입니다. 다음 주제에 대해 ${contentTypeGuide[data.contentType]} 형식의 고품질 마크다운 콘텐츠를 작성하세요.
+
+주제: ${data.topic}
+카테고리: ${data.category}
+콘텐츠 유형: ${data.contentType}${outlineSection}${keyPointsSection}${styleContext}
+
+작성 규칙:
+1. 마크다운 형식으로 작성 (H2, H3 헤딩, 리스트, 코드블록 활용)
+2. 기술 용어는 영어 그대로 사용 (예: API, Machine Learning, ROI)
+3. 설명 문장은 한국어로 작성하되, 존댓말(~입니다/~합니다) 어투 유지
+4. 실무에서 활용할 수 있는 구체적 사례와 팁 포함
+5. 각 섹션은 명확한 헤딩으로 구분
+6. 도입부에서 독자의 관심을 끌고, 결론에서 핵심 요약 제공
+
+JSON 형식으로만 응답하세요:
+{
+  "suggestedTitle": "SEO 최적화된 매력적인 제목 (30-60자)",
+  "content": "마크다운 형식의 본문 전체"
+}`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const response = result.response.text();
+    const cleaned = response.replace(/```json\n?|\n?```/g, "").trim();
+    const parsed = JSON.parse(cleaned);
+
+    if (!parsed.content || !parsed.suggestedTitle) {
+      throw new Error("필수 필드 누락");
+    }
+
+    return {
+      content: parsed.content,
+      suggestedTitle: parsed.suggestedTitle,
+    };
+  } catch (error) {
+    console.error("AI blog content generation failed:", error);
+    return null;
+  }
+}
+
+// FAQ 콘텐츠 생성 (질문+답변 구조)
+export async function generateFaqContent(data: {
+  topic: string;
+  category: string;
+  difficulty?: string;
+  styleExamples?: { question: string; answerSnippet: string }[];
+}): Promise<GeneratedFaqContent | null> {
+  const styleContext = data.styleExamples?.length
+    ? `\n\n참고할 기존 FAQ 스타일:\n${data.styleExamples.map((ex, i) => `--- 예시 ${i + 1} ---\nQ: ${ex.question}\nA: ${ex.answerSnippet}`).join("\n\n")}`
+    : "";
+
+  const prompt = `당신은 테크/마케팅 분야 전문가입니다. 다음 주제에 대한 FAQ 콘텐츠를 작성하세요.
+
+주제: ${data.topic}
+카테고리: ${data.category}
+난이도: ${data.difficulty || "자동 판별"}${styleContext}
+
+작성 규칙:
+1. 질문은 실무자가 실제로 궁금해할 법한 형태로 작성
+2. 답변은 마크다운 형식 (H3 헤딩, 리스트, 코드블록 활용)
+3. 답변 길이: 500-1500단어
+4. 기술 용어는 영어 그대로 사용
+5. 존댓말(~입니다/~합니다) 어투
+6. 실무 적용 가능한 구체적 예시 포함
+7. 난이도 기준: BEGINNER(입문), INTERMEDIATE(실무), ADVANCED(심화)
+
+JSON 형식으로만 응답하세요:
+{
+  "question": "실무자 관점의 명확한 질문",
+  "answer": "마크다운 형식의 상세 답변",
+  "difficulty": "BEGINNER | INTERMEDIATE | ADVANCED",
+  "techStack": ["관련기술1", "관련기술2"]
+}`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const response = result.response.text();
+    const cleaned = response.replace(/```json\n?|\n?```/g, "").trim();
+    const parsed = JSON.parse(cleaned);
+
+    if (!parsed.question || !parsed.answer) {
+      throw new Error("필수 필드 누락");
+    }
+
+    return {
+      question: parsed.question,
+      answer: parsed.answer,
+      difficulty: parsed.difficulty || "INTERMEDIATE",
+      techStack: Array.isArray(parsed.techStack) ? parsed.techStack : [],
+    };
+  } catch (error) {
+    console.error("AI FAQ content generation failed:", error);
+    return null;
+  }
+}
+
+// 콘텐츠 갭 분석 및 토픽 제안
+export async function analyzeContentGaps(data: {
+  existingPosts: { title: string; category: string; tags: string[] }[];
+  existingFaqs: { question: string; category: string; tags: string[] }[];
+  existingClasses: { term: string; category: string; courseTitle?: string }[];
+  existingCourses: { title: string; classCount: number }[];
+  allTags: { name: string; count: number }[];
+  seriesInfo: { title: string; postCount: number; isComplete: boolean }[];
+}): Promise<{ suggestions: TopicSuggestion[] } | null> {
+  const prompt = `당신은 테크 블로그 전략 컨설턴트입니다. 다음 블로그 콘텐츠 현황을 분석하고 새로운 토픽을 제안하세요.
+
+## 현재 콘텐츠 현황
+
+### Posts (인사이트 글) - ${data.existingPosts.length}건
+카테고리별:
+${["MARKETING", "AI_TECH", "DATA"].map((cat) => `- ${cat}: ${data.existingPosts.filter((p) => p.category === cat).length}건`).join("\n")}
+
+최근 글 제목:
+${data.existingPosts.slice(0, 10).map((p) => `- [${p.category}] ${p.title}`).join("\n")}
+
+### FAQs - ${data.existingFaqs.length}건
+${data.existingFaqs.slice(0, 10).map((f) => `- [${f.category}] ${f.question}`).join("\n")}
+
+### Classes (용어사전) - ${data.existingClasses.length}건
+${data.existingClasses.slice(0, 10).map((c) => `- [${c.category}] ${c.term}${c.courseTitle ? ` (코스: ${c.courseTitle})` : ""}`).join("\n")}
+
+### Courses - ${data.existingCourses.length}건
+${data.existingCourses.map((c) => `- ${c.title} (${c.classCount}개 클래스)`).join("\n")}
+
+### 태그 분석
+사용 빈도 낮은 태그 (확장 기회): ${data.allTags.filter((t) => t.count <= 2).map((t) => t.name).slice(0, 15).join(", ")}
+인기 태그: ${data.allTags.filter((t) => t.count >= 3).map((t) => `${t.name}(${t.count})`).slice(0, 10).join(", ")}
+
+### 시리즈 현황
+${data.seriesInfo.map((s) => `- ${s.title}: ${s.postCount}편 ${s.isComplete ? "(완결)" : "(진행중)"}`).join("\n")}
+
+## 분석 요청
+1. 카테고리 불균형 분석
+2. 콘텐츠 갭 (다뤄지지 않은 중요 주제) 식별
+3. 기존 Post에서 파생 가능한 FAQ 주제
+4. 코스에 추가할 Class 주제
+5. 미완성 시리즈의 다음 편 주제
+
+우선순위 기준:
+- HIGH: 카테고리 불균형 해소, 핵심 키워드 커버리지
+- MEDIUM: 기존 콘텐츠 보강, 시리즈 연속성
+- LOW: 니치 주제, 실험적 콘텐츠
+
+JSON 형식으로만 응답하세요:
+{
+  "suggestions": [
+    {
+      "contentType": "post | faq | class | lifeLog",
+      "title": "제안 제목",
+      "category": "MARKETING | AI_TECH | DATA",
+      "tags": ["태그1", "태그2"],
+      "rationale": "제안 근거 (1-2문장)",
+      "priority": "HIGH | MEDIUM | LOW",
+      "seriesFit": "시리즈명 (해당 시 선택)"
+    }
+  ]
+}
+
+5-10개의 제안을 우선순위 순으로 제공하세요.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const response = result.response.text();
+    const cleaned = response.replace(/```json\n?|\n?```/g, "").trim();
+    const parsed = JSON.parse(cleaned);
+
+    if (!Array.isArray(parsed.suggestions)) {
+      throw new Error("suggestions 배열 누락");
+    }
+
+    return {
+      suggestions: parsed.suggestions.map((s: TopicSuggestion) => ({
+        contentType: s.contentType,
+        title: s.title,
+        category: s.category,
+        tags: Array.isArray(s.tags) ? s.tags : [],
+        rationale: s.rationale,
+        priority: s.priority || "MEDIUM",
+        seriesFit: s.seriesFit,
+      })),
+    };
+  } catch (error) {
+    console.error("AI content gap analysis failed:", error);
+    return null;
+  }
+}
+
 // AI 기반 코스(Course) 기반 링크드인 업로드용 요약 생성
 export async function generateCourseLinkedInSummary(data: {
   courseTitle: string;

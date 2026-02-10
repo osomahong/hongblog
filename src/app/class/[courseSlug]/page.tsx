@@ -5,6 +5,8 @@ import { ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
 import { getCourseBySlug } from "@/lib/queries";
 import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
 
+export const dynamic = 'force-dynamic';
+
 type Props = {
     params: Promise<{ courseSlug: string }>;
 };

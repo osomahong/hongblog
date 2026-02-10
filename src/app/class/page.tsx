@@ -3,6 +3,8 @@ import ClassPageClient from "./ClassPageClient";
 
 import { ListViewTracker } from "@/components/ListViewTracker";
 
+export const dynamic = 'force-dynamic';
+
 export default async function ClassPage() {
     const courses = await getPublishedCourses();
 

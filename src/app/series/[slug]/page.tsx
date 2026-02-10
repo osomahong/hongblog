@@ -10,6 +10,8 @@ import { absoluteUrl } from "@/lib/utils";
 import { getSeriesBySlug } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
 
+export const dynamic = 'force-dynamic';
+
 const categoryIcons = {
   AI_TECH: Sparkles,
   DATA: Database,

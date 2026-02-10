@@ -15,6 +15,8 @@ import { SeriesNav } from "@/components/SeriesNav";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { RelatedLink } from "@/components/RelatedLink";
 
+export const dynamic = 'force-dynamic';
+
 const categoryIcons = {
   AI_TECH: Sparkles,
   DATA: Database,

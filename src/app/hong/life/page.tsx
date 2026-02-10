@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import {
-  Lock,
   Plus,
   List,
   Eye,
@@ -22,14 +21,11 @@ import {
   ChevronDown,
   ChevronUp,
   BookText,
+  Lock,
 } from "lucide-react";
 import MarkdownEditor from "@/components/MarkdownEditor";
 import SeoEditor, { SeoData } from "@/components/SeoEditor";
 import Link from "next/link";
-
-// TODO: Migrate to NextAuth session-based authentication (same as /hong)
-// For now, using environment variable instead of hardcoded password
-const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_LIFE_ADMIN_PASSWORD || "";
 
 type LifeLog = {
   id: number;
@@ -65,9 +61,6 @@ const categoryConfig = {
 };
 
 export default function LifeLogAdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [view, setView] = useState<"list" | "editor">("list");
   const [lifeLogs, setLifeLogs] = useState<LifeLog[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -108,24 +101,8 @@ export default function LifeLogAdminPage() {
   }, []);
 
   useEffect(() => {
-    const auth = sessionStorage.getItem("hong_auth");
-    if (auth === "true") {
-      setIsAuthenticated(true);
-      loadLifeLogs();
-    }
+    loadLifeLogs();
   }, [loadLifeLogs]);
-
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("hong_auth", "true");
-      setError("");
-      loadLifeLogs();
-    } else {
-      setError("비밀번호가 틀렸습니다.");
-    }
-  };
 
   const resetEditor = () => {
     setEditingLog(null);
@@ -267,37 +244,6 @@ export default function LifeLogAdminPage() {
     setThumbnailUrl(newUrl);
     setSeoData((prev) => ({ ...prev, ogImage: newUrl }));
   };
-
-  // Login Screen
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-        <div className="bg-white border-4 border-black p-8 w-full max-w-md" style={{ boxShadow: "8px 8px 0 black" }}>
-          <div className="flex items-center gap-3 mb-6">
-            <Lock className="w-8 h-8" />
-            <h1 className="text-2xl font-black uppercase">Life Log Admin</h1>
-          </div>
-          <form onSubmit={handleLogin}>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="비밀번호 입력"
-              className="w-full px-4 py-3 border-4 border-black mb-4 focus:outline-none"
-              autoFocus
-            />
-            {error && <p className="text-red-600 font-bold mb-4">{error}</p>}
-            <button
-              type="submit"
-              className="w-full bg-black text-white py-3 font-bold uppercase hover:bg-gray-800 transition"
-            >
-              입장하기
-            </button>
-          </form>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-100">

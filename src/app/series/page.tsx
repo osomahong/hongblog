@@ -12,6 +12,8 @@ export const metadata = {
 
 import { ListViewTracker } from "@/components/ListViewTracker";
 
+export const dynamic = 'force-dynamic';
+
 export default async function SeriesPage() {
   const seriesList = await getPublishedSeries();
 

@@ -2,6 +2,7 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -10,11 +11,34 @@ type MarkdownRendererProps = {
   className?: string;
 };
 
+/**
+ * CommonMark strict 파싱에서 닫는 ** 앞에 괄호 등 구두점이 오고
+ * 뒤에 한글·CJK 문자가 바로 이어지면 right-flanking delimiter로
+ * 인식되지 않는 문제를 해결한다.
+ *
+ * 코드 블록(```)과 인라인 코드(`)를 보호한 뒤,
+ * 모든 **text** 패턴을 <strong> HTML 태그로 변환한다.
+ */
+function preprocessMarkdown(content: string): string {
+  const saved: string[] = [];
+  // 1. 코드 블록·인라인 코드를 플레이스홀더로 대체
+  let result = content.replace(/```[\s\S]*?```|`[^`]+`/g, (m) => {
+    saved.push(m);
+    return `\x00CODE${saved.length - 1}\x00`;
+  });
+  // 2. 모든 **text** → <strong>text</strong> (전각 별표 ＊＊ 포함)
+  result = result.replace(/(?:\*\*|＊＊)(.+?)(?:\*\*|＊＊)/g, "<strong>$1</strong>");
+  // 3. 플레이스홀더 복원
+  result = result.replace(/\x00CODE(\d+)\x00/g, (_, i) => saved[Number(i)]);
+  return result;
+}
+
 export default function MarkdownRenderer({ content, className = "" }: MarkdownRendererProps) {
   return (
     <div className={className}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
         components={{
           // 헤딩
           h1: ({ children }) => (
@@ -142,7 +166,7 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
           em: ({ children }) => <em className="italic">{children}</em>,
         }}
       >
-        {content}
+        {preprocessMarkdown(content)}
       </ReactMarkdown>
     </div>
   );

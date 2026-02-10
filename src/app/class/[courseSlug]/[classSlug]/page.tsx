@@ -13,6 +13,8 @@ import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
 
+export const dynamic = 'force-dynamic';
+
 type Props = {
     params: Promise<{ courseSlug: string; classSlug: string }>;
 };

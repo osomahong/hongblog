@@ -26,6 +26,8 @@ const categoryLabels = {
 
 import { ListViewTracker } from "@/components/ListViewTracker";
 
+export const dynamic = 'force-dynamic';
+
 export default async function LogsPage() {
     const logs = await getPublishedLogs();
 

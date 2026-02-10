@@ -1,6 +1,6 @@
 import { getPublishedPosts } from "@/lib/queries";
 
-export const revalidate = 3600; // 1시간 캐시
+export const dynamic = 'force-dynamic';
 
 export async function GET() {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://hong.blog";
