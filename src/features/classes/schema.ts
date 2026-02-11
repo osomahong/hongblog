@@ -17,6 +17,12 @@ export const insertClassSchema = createInsertSchema(classes, {
     aliases: z.array(z.string()).optional().nullable(),
     relatedTerms: z.array(z.string()).optional().nullable(),
     difficulty: z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED"]).optional().nullable(),
+    quiz: z.array(z.object({
+        question: z.string().min(1),
+        options: z.array(z.string()).min(2).max(6),
+        correctIndex: z.number().min(0),
+        explanation: z.string().min(1),
+    })).optional().nullable(),
     isPublished: z.boolean().default(true),
     // SEO fields
     metaTitle: z.string().max(70).optional().nullable(),

@@ -56,7 +56,27 @@ courseId?: number       # Class 타입 전용 - 소속 코스 ID
 - Post/Class/LifeLog → `generateBlogContent()` (`src/lib/ai.ts`)
 - FAQ → `generateFaqContent()` (`src/lib/ai.ts`)
 
-### 2.5단계: 일러스트레이션 생성
+### 2.5단계: 퀴즈 생성
+
+모든 Post와 Class 콘텐츠에 1개의 퀴즈를 생성한다.
+
+**Post (Insight) 퀴즈 원칙:**
+- 개념의 정답을 맞추는 것이 아닌, 의견이 갈리는 주제로 구성
+- 글에서 다룬 경험/분석 기반으로 "가장 적절한 답"을 고르는 형태
+- 모든 선택지가 그럴듯해야 하며, explanation에서 왜 특정 답이 가장 적절한지 근거 제시
+- 독자의 사고를 자극하고 글을 더 깊이 이해하게 하는 목적
+
+**Class 퀴즈 원칙:**
+- 용어 정의와 핵심 개념을 확인하는 형태
+- 실무 적용 관점에서의 이해도 확인
+- 비슷한 개념 간 차이를 구별할 수 있는지 테스트
+
+**공통 규칙:**
+- 퀴즈 1개, 선택지 3-4개
+- explanation은 2-3문장으로 충분한 근거 제시
+- correctIndex는 0-based
+
+### 2.7단계: 일러스트레이션 생성
 
 모든 콘텐츠 타입에 대해 2개의 AI 일러스트를 자동 삽입한다.
 
@@ -94,6 +114,14 @@ courseId?: number       # Class 타입 전용 - 소속 코스 ID
   "tags": ["태그1", "태그2"],
   "excerpt": "요약문",
   "highlights": ["핵심1", "핵심2"],
+  "quiz": [
+    {
+      "question": "질문 내용",
+      "options": ["선택지1", "선택지2", "선택지3", "선택지4"],
+      "correctIndex": 1,
+      "explanation": "정답 근거 설명 (2-3문장)"
+    }
+  ],
   "metadata": {
     "difficulty": "INTERMEDIATE",
     "techStack": ["Python", "TensorFlow"]
@@ -108,6 +136,7 @@ courseId?: number       # Class 타입 전용 - 소속 코스 ID
 - 실무 적용 가능한 구체적 예시 1개 이상
 - 기술 용어 영어 표기 일관성
 - 존댓말(~입니다/~합니다) 어투 통일
+- Post/Class: 퀴즈 1개 포함 (모든 선택지 그럴듯, explanation 2-3문장)
 
 ## 마크다운 작성 주의사항
 

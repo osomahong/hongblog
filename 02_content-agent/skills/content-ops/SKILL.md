@@ -82,8 +82,9 @@ courseId: Class 타입 시 사용자 지정
 1. `content-creator` 에이전트에 위임
 2. 기존 콘텐츠 스타일 샘플링
 3. AI 콘텐츠 생성
-4. 나노바나나 프로로 일러스트 2장 생성 → Vercel Blob 업로드 → 마크다운 삽입 (`generateAndInjectImages()`, 모든 콘텐츠 타입 적용)
-5. 메타데이터 자동 생성
+4. 퀴즈 생성 (Post, Class 타입만) — content-creator가 본문 기반으로 자동 생성
+5. 나노바나나 프로로 일러스트 2장 생성 → Vercel Blob 업로드 → 마크다운 삽입 (`generateAndInjectImages()`, 모든 콘텐츠 타입 적용)
+6. 메타데이터 자동 생성
 
 **체크포인트 (사용자 승인):**
 - 생성된 콘텐츠 전문 표시
@@ -97,7 +98,7 @@ courseId: Class 타입 시 사용자 지정
 **트리거:** Phase 1 승인 또는 사용자가 기존 콘텐츠 검수 요청
 
 1. `content-reviewer` 에이전트에 위임
-2. 4개 항목 검수 (사실확인, 논리, 구조, 한국어)
+2. 5개 항목 검수 (사실확인, 논리, 구조, 한국어, 퀴즈)
 3. 종합 판정 (PASS/REVISE/REWRITE)
 
 **체크포인트 (사용자 승인):**

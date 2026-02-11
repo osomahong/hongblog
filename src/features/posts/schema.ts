@@ -14,6 +14,12 @@ export const insertPostSchema = createInsertSchema(posts, {
     excerpt: z.string().optional(),
     thumbnailUrl: z.string().url().optional().or(z.literal("")),
     highlights: z.array(z.string()).optional(),
+    quiz: z.array(z.object({
+        question: z.string().min(1),
+        options: z.array(z.string()).min(2).max(6),
+        correctIndex: z.number().min(0),
+        explanation: z.string().min(1),
+    })).optional().nullable(),
     seriesId: z.number().optional().nullable(),
     seriesOrder: z.number().optional().nullable(),
     isPublished: z.boolean().default(false),
