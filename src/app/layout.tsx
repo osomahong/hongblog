@@ -50,6 +50,18 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: "준이아빠블로그",
+    images: [
+      {
+        url: "https://www.digitalmarketer.co.kr/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "준이아빠블로그 - AI-Enhanced Tech Wiki",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["https://www.digitalmarketer.co.kr/og-default.png"],
   },
 };
 
