@@ -12,7 +12,9 @@ import {
   MessageSquare,
   Briefcase,
   Sparkles,
-  Coffee
+  Coffee,
+  BookOpen,
+  Layers,
 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
@@ -20,16 +22,18 @@ import { ViewTracker } from "@/components/ViewTracker";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "마케팅을 데이터의 언어로 정리하는 사람. GA4, GTM, 퍼널 분석, 캠페인 구조 설계 전문가.",
+  description: "마케팅과 AI 기술을 데이터로 연결하는 사람. GA4, 퍼널 분석, AI/LLM 활용, 지식 아카이브 운영.",
   openGraph: {
     title: "About | 준이아빠블로그",
-    description: "마케팅을 데이터의 언어로 정리하는 사람",
+    description: "마케팅과 AI 기술을 데이터로 연결하는 사람",
   },
 };
 
 const skills = [
   { icon: BarChart3, label: "GA4 & GTM", desc: "데이터 수집과 분석 설계" },
   { icon: LineChart, label: "퍼널 분석", desc: "사용자 여정 구조화" },
+  { icon: Sparkles, label: "AI & LLM 활용", desc: "GEO, 프롬프트 엔지니어링, AI 워크플로우" },
+  { icon: BookOpen, label: "콘텐츠 설계", desc: "지식 아카이브 구조화와 SEO" },
   { icon: Settings, label: "캠페인 설계", desc: "성과 측정 가능한 구조" },
   { icon: Database, label: "대시보드", desc: "의사결정을 위한 시각화" },
 ];
@@ -44,8 +48,8 @@ const principles = [
     desc: "누구나 이해할 수 있는 언어로 정리합니다.",
   },
   {
-    title: "실무에서 쓸 수 없는 전략은 관심 없습니다",
-    desc: "다음 행동으로 이어질 수 있는 인사이트만 다룹니다.",
+    title: "직접 만들고, 직접 씁니다",
+    desc: "이 사이트의 기획, 개발, 콘텐츠를 모두 직접 운영합니다.",
   },
 ];
 
@@ -72,8 +76,8 @@ export default async function AboutPage() {
             <span className="text-white/80 font-mono text-sm uppercase tracking-wider">About Me</span>
           </div>
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-            마케팅을 실행하는 사람이었고,<br />
-            <span className="text-accent">데이터로 설명하려는 사람</span>입니다.
+            마케팅을 데이터로 설명하고,<br />
+            <span className="text-accent">AI로 확장하는 사람</span>입니다.
           </h1>
         </NeoTiltCard>
       </section>
@@ -101,7 +105,11 @@ export default async function AboutPage() {
               </p>
             </div>
             <p>
-              그 질문에 답하기 위해 마케팅을 <strong className="text-primary">데이터의 언어</strong>로 정리하기 시작했습니다.
+              그 질문에 답하기 위해 마케팅을 <strong className="text-primary">데이터의 언어</strong>로 정리하기 시작했고,
+              AI와 기술의 변화를 마케팅 실무에 연결하는 작업으로 확장해왔습니다.
+            </p>
+            <p>
+              지금 이 사이트는 그 과정에서 쌓인 인사이트를 정리한 <strong className="text-primary">지식 아카이브</strong>입니다.
             </p>
           </div>
         </NeoTiltCard>
@@ -141,10 +149,10 @@ export default async function AboutPage() {
           <h2 className="text-xl sm:text-2xl font-black uppercase">Tools & Skills</h2>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
           {skills.map((skill, index) => {
             const Icon = skill.icon;
-            const rotations = ["-rotate-1", "rotate-1", "rotate-0.5", "-rotate-0.5"];
+            const rotations = ["-rotate-1", "rotate-1", "rotate-0.5", "-rotate-0.5", "rotate-1", "-rotate-0.5"];
             return (
               <NeoTiltCard
                 key={skill.label}
@@ -163,6 +171,39 @@ export default async function AboutPage() {
           이 도구들은 단순한 기술이 아니라 <strong>사고를 정리하는 수단</strong>입니다.<br />
           숫자를 많이 아는 것보다 <strong>'의사결정에 쓰일 수 있는가'</strong>를 더 중요하게 봅니다.
         </p>
+      </section>
+
+      {/* What I Build Section */}
+      <section className="mb-12 sm:mb-16">
+        <NeoTiltCard className="bg-white border-4 border-black p-6 sm:p-8 -rotate-0.5" intensity={15}>
+          <div className="flex items-center gap-2 mb-6">
+            <div className="bg-primary border-2 border-black p-1.5 rotate-2">
+              <Layers className="w-5 h-5 text-white" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black uppercase">What I Build</h2>
+          </div>
+
+          <p className="text-base sm:text-lg text-gray-700 mb-4">
+            이 사이트에서 만들고 있는 것들:
+          </p>
+
+          <div className="space-y-3">
+            {[
+              { name: "Insights", desc: "마케팅, AI, 데이터 분석에 대한 심화 인사이트" },
+              { name: "Class", desc: "개념을 체계적으로 정리한 학습 콘텐츠" },
+              { name: "FAQ", desc: "실무에서 자주 묻는 질문과 구조화된 답변" },
+              { name: "Logs", desc: "컨설팅 현장의 실전 기록" },
+              { name: "Series", desc: "주제별로 묶은 연재 콘텐츠" },
+            ].map((item) => (
+              <div key={item.name} className="flex items-start gap-3 bg-gray-50 border-2 border-black p-3">
+                <span className="bg-accent text-black text-xs font-bold px-2 py-0.5 border-2 border-black shrink-0">
+                  {item.name}
+                </span>
+                <span className="text-sm sm:text-base text-gray-700">{item.desc}</span>
+              </div>
+            ))}
+          </div>
+        </NeoTiltCard>
       </section>
 
       {/* Principles Section */}
@@ -202,9 +243,9 @@ export default async function AboutPage() {
       <section className="mb-12 sm:mb-16">
         <NeoTiltCard className="bg-gradient-to-br from-neutral-800 to-neutral-950 text-white border-4 border-black p-6 sm:p-10 rotate-0.5 text-center" intensity={20}>
           <p className="text-lg sm:text-xl md:text-2xl font-black leading-relaxed">
-            "왜 이렇게 했는지<br />
-            <span className="text-accent">설명할 수 있는 마케팅</span>을<br />
-            만들고 싶은 사람입니다."
+            "<span className="text-accent">설명할 수 있는 마케팅</span>,<br />
+            누구나 배울 수 있는 기술을<br />
+            만들고 기록하는 사람입니다."
           </p>
         </NeoTiltCard>
       </section>
@@ -270,6 +311,11 @@ export default async function AboutPage() {
           <Link href="/insights">
             <NeoButton size="lg">
               Insights 보기 <ArrowRight className="w-4 h-4 ml-2" />
+            </NeoButton>
+          </Link>
+          <Link href="/class">
+            <NeoButton size="lg">
+              Class 보기 <ArrowRight className="w-4 h-4 ml-2" />
             </NeoButton>
           </Link>
           <Link href="/faq">
