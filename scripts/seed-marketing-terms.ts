@@ -128,13 +128,15 @@ async function main() {
           classData.term
         );
         if (result.generatedImages.length > 0) {
+          const ogImage = result.generatedImages[0].url;
           await db
             .update(schema.classes)
-            .set({ content: result.content, updatedAt: new Date() })
+            .set({ content: result.content, ogImage, updatedAt: new Date() })
             .where(eq(schema.classes.id, classId));
           console.log(
             `    ✅ 이미지 ${result.generatedImages.length}개 삽입 완료`
           );
+          console.log(`    🖼️  ogImage 설정: ${ogImage}`);
           for (const img of result.generatedImages) {
             console.log(`    📷 ${img.url}`);
           }
