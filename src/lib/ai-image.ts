@@ -1,6 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
 import { put } from "@vercel/blob";
-import { aiModel } from "./ai";
 
 // ============================================
 // 나노바나나 프로 (Gemini 3 Pro Image) 일러스트 생성
@@ -9,6 +8,8 @@ import { aiModel } from "./ai";
 const imageAI = new GoogleGenAI({
   apiKey: process.env.GEMINI_IMAGE_API_KEY!,
 });
+
+const PROMPT_MODEL = "gemini-2.5-flash";
 
 // --- 타입 정의 ---
 
@@ -308,46 +309,70 @@ function findNearestParagraphEnd(
 }
 
 /**
- * 기존 aiModel로 섹션 내용→영어 일러스트 프롬프트 변환
+ * 섹션 내용 기반 화이트보드 스케치 스타일 이미지 프롬프트 생성
  */
 async function generateImagePrompt(
   sectionTitle: string,
   sectionContent: string,
   topic: string,
 ): Promise<string> {
-  const prompt = `Given this blog section about "${sectionTitle}" (topic: "${topic}"):
-"${sectionContent.substring(0, 500)}"
-
-Generate a single-sentence illustration prompt for an AI image generator.
-The illustration should be:
-- Clean, professional conceptual diagram or illustration
-- Flat design style, minimal, suitable for a tech/marketing blog
-- ABSOLUTELY NO TEXT in the image — no letters, words, labels, or characters of any language (no Korean, no Chinese, no Japanese)
-- Only abstract shapes, icons, arrows, and visual metaphors are allowed
-- If numbers are needed, use simple digits only (0-9)
-- White or light background
-Output only the prompt, nothing else.`;
-
   try {
-    const result = await aiModel.generateContent(prompt);
-    return result.response.text().trim();
+    const result = await imageAI.models.generateContent({
+      model: PROMPT_MODEL,
+      config: {
+        systemInstruction:
+          "You are an expert at writing image-generation prompts for whiteboard-style concept sketches. " +
+          "Your prompts produce hand-drawn-looking diagrams on a clean white background, using black/dark-gray ink lines " +
+          "with 1-2 accent colors (blue or orange). The images must contain ABSOLUTELY NO TEXT, letters, words, or characters " +
+          "of any language. Only use abstract shapes, icons, arrows, flowcharts, and visual metaphors.",
+        temperature: 0.7,
+        maxOutputTokens: 500,
+      },
+      contents: `Blog section title: "${sectionTitle}"
+Topic: "${topic}"
+Section content:
+"${sectionContent.substring(0, 800)}"
+
+Write a detailed 3-5 sentence image-generation prompt for this section.
+The image should be a whiteboard-style hand-drawn sketch/concept diagram that visually explains the key ideas of this section.
+
+Style requirements:
+- Hand-drawn sketch on a clean white whiteboard background
+- Black or dark gray ink strokes, slightly imperfect like real hand-drawing
+- 1-2 accent colors only (choose from: blue, orange, or teal)
+- Include relevant icons, arrows, flowcharts, or visual metaphors that represent the section concepts
+- NO TEXT, NO LETTERS, NO WORDS of any language — only visual elements
+- Professional yet approachable, like a thoughtful whiteboard sketch during a strategy meeting
+
+Output only the prompt, nothing else.`,
+    });
+    return (result.text ?? "").trim() || getFallbackPrompt(sectionTitle, topic);
   } catch (error) {
     console.error("Image prompt generation failed:", error);
-    // 폴백: 직접 프롬프트 생성
-    return `A clean, minimal flat design illustration about ${sectionTitle}, professional conceptual diagram, white background, absolutely no text or letters or words of any language, only abstract shapes and icons`;
+    return getFallbackPrompt(sectionTitle, topic);
   }
+}
+
+/**
+ * 프롬프트 생성 실패 시 화이트보드 스케치 스타일 폴백 프롬프트
+ */
+function getFallbackPrompt(sectionTitle: string, topic: string): string {
+  return `A whiteboard-style hand-drawn concept sketch about "${sectionTitle}" in the context of ${topic}. Clean white background, black and dark gray ink strokes with slight imperfections like real hand-drawing, one accent color (blue). Abstract icons, arrows, and flowchart elements representing the concept. Absolutely no text, letters, or words of any language — only visual shapes and icons.`;
 }
 
 /**
  * Gemini 3 Pro Image API 호출 → base64 PNG를 Buffer로 반환
  */
 async function generateImage(prompt: string): Promise<Buffer> {
-  const enhancedPrompt = `${prompt}. IMPORTANT: The image must contain absolutely NO text, NO letters, NO words, NO characters of any language. Only use abstract shapes, icons, and visual elements.`;
+  const enhancedPrompt = `${prompt}. Style: whiteboard hand-drawn sketch, black/dark-gray ink on white background, 1-2 accent colors only. IMPORTANT: The image must contain absolutely NO text, NO letters, NO words, NO characters of any language. Only use abstract shapes, icons, arrows, and visual elements.`;
 
   const response = await imageAI.models.generateContent({
     model: "gemini-3-pro-image-preview",
     contents: enhancedPrompt,
-    config: { responseModalities: ["TEXT", "IMAGE"] },
+    config: {
+      responseModalities: ["IMAGE"],
+      imageConfig: { aspectRatio: "16:9" },
+    },
   });
 
   if (!response.candidates?.[0]?.content?.parts) {
@@ -387,16 +412,17 @@ async function generateAltText(
   topic: string,
 ): Promise<string> {
   try {
-    const result = await aiModel.generateContent(
-      `다음 블로그 섹션의 일러스트에 적합한 한국어 alt text를 작성하세요.
+    const result = await imageAI.models.generateContent({
+      model: PROMPT_MODEL,
+      contents: `다음 블로그 섹션의 일러스트에 적합한 한국어 alt text를 작성하세요.
 섹션: "${sectionTitle}" (주제: "${topic}")
 
 규칙:
 - 30-80자
 - "~를 보여주는 개념도" 또는 "~를 설명하는 일러스트" 형태
 - alt text만 출력, 따옴표 없이`,
-    );
-    return result.response.text().trim();
+    });
+    return (result.text ?? "").trim() || `${sectionTitle} 관련 개념을 설명하는 일러스트`;
   } catch {
     return `${sectionTitle} 관련 개념을 설명하는 일러스트`;
   }
