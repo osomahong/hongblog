@@ -12,6 +12,7 @@ import { absoluteUrl } from "@/lib/utils";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
+import { ContentQuiz } from "@/components/ContentQuiz";
 
 export const dynamic = 'force-dynamic';
 
@@ -261,6 +262,17 @@ export default async function ClassDetailPage({ params }: Props) {
                                 <MarkdownRenderer content={classData.content} />
                             </NeoCardContent>
                         </NeoCard>
+
+                        {classData.quiz && classData.quiz.length > 0 && (
+                            <div className="mb-6 sm:mb-8">
+                                <ContentQuiz
+                                    quiz={classData.quiz}
+                                    contentType="class"
+                                    contentSlug={classSlug}
+                                    contentName={classData.term}
+                                />
+                            </div>
+                        )}
 
                         {/* Navigation (Prev/Next) */}
                         {(navigation.prev || navigation.next) && (

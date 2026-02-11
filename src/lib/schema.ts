@@ -47,6 +47,8 @@ export const posts = pgTable("posts", {
   ogDescription: varchar("og_description", { length: 200 }),
   canonicalUrl: varchar("canonical_url", { length: 500 }),
   noIndex: boolean("no_index").default(false),
+  // Quiz
+  quiz: jsonb("quiz").$type<QuizQuestion[]>(),
   // Series 연결
   seriesId: integer("series_id").references(() => series.id, { onDelete: "set null" }),
   seriesOrder: integer("series_order"),
@@ -192,6 +194,9 @@ export const classes = pgTable("classes", {
   relatedTerms: jsonb("related_terms").$type<string[]>(),     // 연관 개념 slug 목록
   difficulty: varchar("difficulty", { length: 20 }).$type<Difficulty>(),
 
+  // Quiz
+  quiz: jsonb("quiz").$type<QuizQuestion[]>(),
+
   isPublished: boolean("is_published").default(false).notNull(),
 
   // SEO Metadata
@@ -329,3 +334,11 @@ export type Class = typeof classes.$inferSelect;
 export type NewClass = typeof classes.$inferInsert;
 export type SeoDocument = typeof seoDocuments.$inferSelect;
 export type NewSeoDocument = typeof seoDocuments.$inferInsert;
+
+// Quiz Types
+export interface QuizQuestion {
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation: string;
+}

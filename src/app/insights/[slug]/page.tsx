@@ -14,6 +14,7 @@ import { AuthorCard } from "@/components/AuthorCard";
 import { SeriesNav } from "@/components/SeriesNav";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { RelatedLink } from "@/components/RelatedLink";
+import { ContentQuiz } from "@/components/ContentQuiz";
 
 export const dynamic = 'force-dynamic';
 
@@ -296,6 +297,15 @@ export default async function InsightDetailPage({ params }: Props) {
                 <MarkdownRenderer content={post.content} />
               </NeoCardContent>
             </NeoCard>
+
+            {post.quiz && post.quiz.length > 0 && (
+              <ContentQuiz
+                quiz={post.quiz}
+                contentType="post"
+                contentSlug={slug}
+                contentName={post.title}
+              />
+            )}
           </article>
         </ContentFocusLayout>
       </div>
