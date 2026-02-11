@@ -322,7 +322,9 @@ Generate a single-sentence illustration prompt for an AI image generator.
 The illustration should be:
 - Clean, professional conceptual diagram or illustration
 - Flat design style, minimal, suitable for a tech/marketing blog
-- No text in the image
+- ABSOLUTELY NO TEXT in the image — no letters, words, labels, or characters of any language (no Korean, no Chinese, no Japanese)
+- Only abstract shapes, icons, arrows, and visual metaphors are allowed
+- If numbers are needed, use simple digits only (0-9)
 - White or light background
 Output only the prompt, nothing else.`;
 
@@ -332,7 +334,7 @@ Output only the prompt, nothing else.`;
   } catch (error) {
     console.error("Image prompt generation failed:", error);
     // 폴백: 직접 프롬프트 생성
-    return `A clean, minimal flat design illustration about ${sectionTitle}, professional conceptual diagram, white background, no text`;
+    return `A clean, minimal flat design illustration about ${sectionTitle}, professional conceptual diagram, white background, absolutely no text or letters or words of any language, only abstract shapes and icons`;
   }
 }
 
@@ -340,9 +342,11 @@ Output only the prompt, nothing else.`;
  * Gemini 3 Pro Image API 호출 → base64 PNG를 Buffer로 반환
  */
 async function generateImage(prompt: string): Promise<Buffer> {
+  const enhancedPrompt = `${prompt}. IMPORTANT: The image must contain absolutely NO text, NO letters, NO words, NO characters of any language. Only use abstract shapes, icons, and visual elements.`;
+
   const response = await imageAI.models.generateContent({
     model: "gemini-3-pro-image-preview",
-    contents: prompt,
+    contents: enhancedPrompt,
     config: { responseModalities: ["TEXT", "IMAGE"] },
   });
 

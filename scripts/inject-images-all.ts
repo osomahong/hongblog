@@ -9,6 +9,7 @@
  * 사용법:
  *   npx tsx scripts/inject-images-all.ts
  *   npx tsx scripts/inject-images-all.ts --dry-run   # 대상만 확인
+ *   npx tsx scripts/inject-images-all.ts --force      # 기존 이미지 제거 후 재생성
  */
 import { config } from "dotenv";
 config({ path: ".env.local" });
@@ -18,8 +19,13 @@ import { drizzle } from "drizzle-orm/neon-http";
 import { eq } from "drizzle-orm";
 import * as schema from "../src/lib/schema";
 
+function stripExistingImages(content: string): string {
+  return content.replace(/\n?\!\[.*?\]\(.*?\)\n?/g, "\n").replace(/\n{3,}/g, "\n\n");
+}
+
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
+  const force = process.argv.includes("--force");
 
   if (!process.env.DATABASE_URL) {
     console.error("❌ DATABASE_URL 환경 변수가 설정되지 않았습니다.");
@@ -32,13 +38,13 @@ async function main() {
   // 모든 클래스 조회
   const allClasses = await db.query.classes.findMany();
 
-  // content에 ![ 패턴이 없는 클래스 필터링
-  const targets = allClasses.filter(
-    (c) => !c.content.includes("![")
-  );
+  // --force: 모든 클래스 대상, 기본: 이미지 없는 클래스만
+  const targets = force
+    ? allClasses
+    : allClasses.filter((c) => !c.content.includes("!["));
 
   console.log(`\n📊 전체 클래스: ${allClasses.length}개`);
-  console.log(`🎯 이미지 없는 클래스: ${targets.length}개\n`);
+  console.log(`🎯 대상 클래스: ${targets.length}개${force ? " (--force: 전체 재생성)" : ""}\n`);
 
   if (targets.length === 0) {
     console.log("✅ 모든 클래스에 이미지가 있습니다. 작업 완료!");
@@ -46,7 +52,8 @@ async function main() {
   }
 
   for (const cls of targets) {
-    console.log(`  - [${cls.id}] ${cls.term} (${cls.slug})`);
+    const hasImages = cls.content.includes("![");
+    console.log(`  - [${cls.id}] ${cls.term} (${cls.slug})${hasImages ? " [기존 이미지 교체]" : ""}`);
   }
 
   if (dryRun) {
@@ -66,9 +73,12 @@ async function main() {
     const cls = targets[i];
     console.log(`[${i + 1}/${targets.length}] "${cls.term}" (${cls.slug})`);
 
+    // --force 시 기존 이미지 마크다운 제거
+    const contentToProcess = force ? stripExistingImages(cls.content) : cls.content;
+
     try {
       const result = await generateAndInjectImages(
-        cls.content,
+        contentToProcess,
         cls.slug,
         cls.term
       );
