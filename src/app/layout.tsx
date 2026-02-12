@@ -64,6 +64,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [`${SITE_URL}/og-default.png`],
   },
+  verification: {
+    google: "NXtbFzm3hDrs3VRLp_TOLSyz-pi-6lVeIQWVZitJc9k",
+  },
 };
 
 import AuthProvider from "@/components/AuthProvider";
