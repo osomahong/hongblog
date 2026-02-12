@@ -39,6 +39,114 @@ type LogWithRelations = LifeLog & {
   logsToTags: { tag: Tag }[];
 };
 
+// ============================================
+// 공통 헬퍼 함수
+// ============================================
+
+async function resolveTagIds(tagNames: string[]): Promise<number[]> {
+  const tagRecords = await db.query.tags.findMany({
+    where: inArray(tags.name, tagNames),
+  });
+  return tagRecords.map((t: Tag) => t.id);
+}
+
+async function getViewStatsMap(contentType: ContentType, days: number): Promise<Map<number, number>> {
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days);
+  const startDateStr = startDate.toISOString().split("T")[0];
+
+  const viewStats = await db
+    .select({
+      contentId: contentDailyStats.contentId,
+      totalViews: sql<number>`SUM(${contentDailyStats.viewCount})`.as("total_views"),
+    })
+    .from(contentDailyStats)
+    .where(
+      and(
+        eq(contentDailyStats.contentType, contentType),
+        gte(contentDailyStats.date, startDateStr)
+      )
+    )
+    .groupBy(contentDailyStats.contentId);
+
+  return new Map(viewStats.map((v) => [v.contentId, Number(v.totalViews)]));
+}
+
+async function getRelatedByTagsHelper<TRelation extends { id: number }, TResult>(params: {
+  tagNames: string[];
+  excludeId?: number;
+  limit: number;
+  fetchJunctionRecords: (tagIds: number[]) => Promise<{ contentId: number }[]>;
+  fetchByIds: (ids: number[]) => Promise<TRelation[]>;
+  mapResult: (item: TRelation) => TResult;
+}): Promise<TResult[]> {
+  const tagIds = await resolveTagIds(params.tagNames);
+  if (tagIds.length === 0) return [];
+
+  const junctionRecords = await params.fetchJunctionRecords(tagIds);
+
+  const scores = new Map<number, number>();
+  for (const record of junctionRecords) {
+    if (params.excludeId && record.contentId === params.excludeId) continue;
+    scores.set(record.contentId, (scores.get(record.contentId) || 0) + 1);
+  }
+
+  const sortedIds = [...scores.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, params.limit)
+    .map(([id]) => id);
+
+  if (sortedIds.length === 0) return [];
+
+  const items = await params.fetchByIds(sortedIds);
+
+  return sortedIds
+    .map((id) => items.find((item) => item.id === id))
+    .filter((item): item is TRelation => item !== undefined)
+    .map(params.mapResult);
+}
+
+async function getRelatedWithPopularityHelper<TRelation extends { id: number; category: string }, TResult>(params: {
+  tagNames: string[];
+  category: Category;
+  excludeId?: number;
+  limit: number;
+  days: number;
+  contentType: ContentType;
+  fetchJunctionRecords: (tagIds: number[]) => Promise<{ contentId: number }[]>;
+  fetchAll: () => Promise<TRelation[]>;
+  mapResult: (item: TRelation) => TResult;
+}): Promise<TResult[]> {
+  const viewMap = await getViewStatsMap(params.contentType, params.days);
+  const tagIds = await resolveTagIds(params.tagNames);
+
+  const junctionRecords = tagIds.length > 0
+    ? await params.fetchJunctionRecords(tagIds)
+    : [];
+
+  const tagScoreMap = new Map<number, number>();
+  for (const record of junctionRecords) {
+    if (params.excludeId && record.contentId === params.excludeId) continue;
+    tagScoreMap.set(record.contentId, (tagScoreMap.get(record.contentId) || 0) + 1);
+  }
+
+  const allItems = await params.fetchAll();
+
+  const scored = allItems
+    .filter((item) => item.id !== params.excludeId)
+    .map((item) => {
+      const tagScore = (tagScoreMap.get(item.id) || 0) * 2;
+      const categoryScore = item.category === params.category ? 1 : 0;
+      const viewScore = (viewMap.get(item.id) || 0) * 0.1;
+      return { result: params.mapResult(item), _score: tagScore + categoryScore + viewScore };
+    })
+    .filter((item) => item._score > 0)
+    .sort((a, b) => b._score - a._score)
+    .slice(0, params.limit);
+
+  return scored.map((item) => item.result);
+}
+
 // Posts 쿼리
 export async function getAllPosts(): Promise<PostWithTags[]> {
   const result = (await db.query.posts.findMany({
@@ -169,96 +277,37 @@ export async function getFaqBySlug(slug: string): Promise<FaqWithTags | null> {
 
 // 태그 기반 연관 콘텐츠 쿼리
 export async function getRelatedFaqsByTags(tagNames: string[], excludeId?: number, limit = 3): Promise<FaqWithTags[]> {
-  const tagRecords = await db.query.tags.findMany({
-    where: inArray(tags.name, tagNames),
+  return getRelatedByTagsHelper<FaqWithRelations, FaqWithTags>({
+    tagNames, excludeId, limit,
+    fetchJunctionRecords: (tagIds) => db
+      .select({ contentId: faqsToTags.faqId })
+      .from(faqsToTags)
+      .where(inArray(faqsToTags.tagId, tagIds)),
+    fetchByIds: (ids) => db.query.faqs.findMany({
+      where: inArray(faqs.id, ids),
+      with: { faqsToTags: { with: { tag: true } } },
+    }) as Promise<FaqWithRelations[]>,
+    mapResult: (faq) => ({ ...faq, tags: faq.faqsToTags.map((ft) => ft.tag.name) }),
   });
-  const tagIds = tagRecords.map((t: Tag) => t.id);
-
-  if (tagIds.length === 0) return [];
-
-  const faqTagRecords = await db
-    .select({ faqId: faqsToTags.faqId, tagId: faqsToTags.tagId })
-    .from(faqsToTags)
-    .where(inArray(faqsToTags.tagId, tagIds));
-
-  const faqScores = new Map<number, number>();
-  for (const record of faqTagRecords) {
-    if (excludeId && record.faqId === excludeId) continue;
-    faqScores.set(record.faqId, (faqScores.get(record.faqId) || 0) + 1);
-  }
-
-  const sortedFaqIds = [...faqScores.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
-    .map(([id]) => id);
-
-  if (sortedFaqIds.length === 0) return [];
-
-  const result = (await db.query.faqs.findMany({
-    where: inArray(faqs.id, sortedFaqIds),
-    with: {
-      faqsToTags: {
-        with: {
-          tag: true,
-        },
-      },
-    },
-  })) as FaqWithRelations[];
-
-  return sortedFaqIds
-    .map((id) => result.find((f) => f.id === id))
-    .filter((faq): faq is FaqWithRelations => faq !== undefined)
-    .map((faq) => ({
-      ...faq,
-      tags: faq.faqsToTags.map((ft) => ft.tag.name),
-    }));
 }
 
 export async function getRelatedPostsByTags(tagNames: string[], excludeId?: number, limit = 2): Promise<PostWithTags[]> {
-  const tagRecords = await db.query.tags.findMany({
-    where: inArray(tags.name, tagNames),
-  });
-  const tagIds = tagRecords.map((t: Tag) => t.id);
-
-  if (tagIds.length === 0) return [];
-
-  const postTagRecords = await db
-    .select({ postId: postsToTags.postId, tagId: postsToTags.tagId })
-    .from(postsToTags)
-    .where(inArray(postsToTags.tagId, tagIds));
-
-  const postScores = new Map<number, number>();
-  for (const record of postTagRecords) {
-    if (excludeId && record.postId === excludeId) continue;
-    postScores.set(record.postId, (postScores.get(record.postId) || 0) + 1);
-  }
-
-  const sortedPostIds = [...postScores.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
-    .map(([id]) => id);
-
-  if (sortedPostIds.length === 0) return [];
-
-  const result = (await db.query.posts.findMany({
-    where: inArray(posts.id, sortedPostIds),
-    with: {
-      postsToTags: {
-        with: {
-          tag: true,
-        },
-      },
-    },
-  })) as PostWithRelations[];
-
-  return sortedPostIds
-    .map((id) => result.find((p) => p.id === id))
-    .filter((post): post is PostWithRelations => post !== undefined)
-    .map((post) => ({
+  return getRelatedByTagsHelper<PostWithRelations, PostWithTags>({
+    tagNames, excludeId, limit,
+    fetchJunctionRecords: (tagIds) => db
+      .select({ contentId: postsToTags.postId })
+      .from(postsToTags)
+      .where(inArray(postsToTags.tagId, tagIds)),
+    fetchByIds: (ids) => db.query.posts.findMany({
+      where: inArray(posts.id, ids),
+      with: { postsToTags: { with: { tag: true } } },
+    }) as Promise<PostWithRelations[]>,
+    mapResult: (post) => ({
       ...post,
       highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
-    }));
+    }),
+  });
 }
 
 
@@ -430,159 +479,42 @@ export async function getPopularFaqsByCategory(category: Category, days = 30, li
 
 // 연관 FAQs (태그 매칭 + 조회수 가중치 복합 점수)
 export async function getRelatedFaqsWithPopularity(
-  tagNames: string[],
-  category: Category,
-  excludeId?: number,
-  limit = 3,
-  days = 7
+  tagNames: string[], category: Category, excludeId?: number, limit = 3, days = 7
 ): Promise<FaqWithTags[]> {
-  const startDate = new Date();
-  startDate.setDate(startDate.getDate() - days);
-  const startDateStr = startDate.toISOString().split("T")[0];
-
-  const tagRecords = await db.query.tags.findMany({
-    where: inArray(tags.name, tagNames),
-  });
-  const tagIds = tagRecords.map((t: Tag) => t.id);
-
-  const viewStats = await db
-    .select({
-      contentId: contentDailyStats.contentId,
-      totalViews: sql<number>`SUM(${contentDailyStats.viewCount})`.as("total_views"),
-    })
-    .from(contentDailyStats)
-    .where(
-      and(
-        eq(contentDailyStats.contentType, "faq"),
-        gte(contentDailyStats.date, startDateStr)
-      )
-    )
-    .groupBy(contentDailyStats.contentId);
-
-  const viewMap = new Map(viewStats.map((v) => [v.contentId, Number(v.totalViews)]));
-
-  const faqTagRecords = tagIds.length > 0
-    ? await db
-      .select({ faqId: faqsToTags.faqId, tagId: faqsToTags.tagId })
+  return getRelatedWithPopularityHelper<FaqWithRelations, FaqWithTags>({
+    tagNames, category, excludeId, limit, days,
+    contentType: "faq",
+    fetchJunctionRecords: (tagIds) => db
+      .select({ contentId: faqsToTags.faqId })
       .from(faqsToTags)
-      .where(inArray(faqsToTags.tagId, tagIds))
-    : [];
-
-  const tagScoreMap = new Map<number, number>();
-  for (const record of faqTagRecords) {
-    if (excludeId && record.faqId === excludeId) continue;
-    tagScoreMap.set(record.faqId, (tagScoreMap.get(record.faqId) || 0) + 1);
-  }
-
-  const allFaqs = (await db.query.faqs.findMany({
-    with: {
-      faqsToTags: {
-        with: {
-          tag: true,
-        },
-      },
-    },
-  })) as FaqWithRelations[];
-
-  type FaqWithScore = FaqWithTags & { _score: number };
-  const scoredFaqs: FaqWithScore[] = allFaqs
-    .filter((faq) => faq.id !== excludeId)
-    .map((faq) => {
-      const tagScore = (tagScoreMap.get(faq.id) || 0) * 2;
-      const categoryScore = faq.category === category ? 1 : 0;
-      const viewScore = (viewMap.get(faq.id) || 0) * 0.1;
-      const totalScore = tagScore + categoryScore + viewScore;
-
-      return {
-        ...faq,
-        tags: faq.faqsToTags.map((ft) => ft.tag.name),
-        _score: totalScore,
-      };
-    })
-    .filter((faq) => faq._score > 0)
-    .sort((a, b) => b._score - a._score)
-    .slice(0, limit);
-
-  return scoredFaqs.map(({ _score, ...faq }) => faq);
+      .where(inArray(faqsToTags.tagId, tagIds)),
+    fetchAll: () => db.query.faqs.findMany({
+      with: { faqsToTags: { with: { tag: true } } },
+    }) as Promise<FaqWithRelations[]>,
+    mapResult: (faq) => ({ ...faq, tags: faq.faqsToTags.map((ft) => ft.tag.name) }),
+  });
 }
 
 // 연관 Posts (태그 매칭 + 조회수 가중치 복합 점수)
 export async function getRelatedPostsWithPopularity(
-  tagNames: string[],
-  category: Category,
-  excludeId?: number,
-  limit = 2,
-  days = 7
+  tagNames: string[], category: Category, excludeId?: number, limit = 2, days = 7
 ): Promise<PostWithTags[]> {
-  const startDate = new Date();
-  startDate.setDate(startDate.getDate() - days);
-  const startDateStr = startDate.toISOString().split("T")[0];
-
-  const tagRecords = await db.query.tags.findMany({
-    where: inArray(tags.name, tagNames),
-  });
-  const tagIds = tagRecords.map((t: Tag) => t.id);
-
-  const viewStats = await db
-    .select({
-      contentId: contentDailyStats.contentId,
-      totalViews: sql<number>`SUM(${contentDailyStats.viewCount})`.as("total_views"),
-    })
-    .from(contentDailyStats)
-    .where(
-      and(
-        eq(contentDailyStats.contentType, "post"),
-        gte(contentDailyStats.date, startDateStr)
-      )
-    )
-    .groupBy(contentDailyStats.contentId);
-
-  const viewMap = new Map(viewStats.map((v) => [v.contentId, Number(v.totalViews)]));
-
-  const postTagRecords = tagIds.length > 0
-    ? await db
-      .select({ postId: postsToTags.postId, tagId: postsToTags.tagId })
+  return getRelatedWithPopularityHelper<PostWithRelations, PostWithTags>({
+    tagNames, category, excludeId, limit, days,
+    contentType: "post",
+    fetchJunctionRecords: (tagIds) => db
+      .select({ contentId: postsToTags.postId })
       .from(postsToTags)
-      .where(inArray(postsToTags.tagId, tagIds))
-    : [];
-
-  const tagScoreMap = new Map<number, number>();
-  for (const record of postTagRecords) {
-    if (excludeId && record.postId === excludeId) continue;
-    tagScoreMap.set(record.postId, (tagScoreMap.get(record.postId) || 0) + 1);
-  }
-
-  const allPosts = (await db.query.posts.findMany({
-    with: {
-      postsToTags: {
-        with: {
-          tag: true,
-        },
-      },
-    },
-  })) as PostWithRelations[];
-
-  type PostWithScore = PostWithTags & { _score: number };
-  const scoredPosts: PostWithScore[] = allPosts
-    .filter((post) => post.id !== excludeId)
-    .map((post) => {
-      const tagScore = (tagScoreMap.get(post.id) || 0) * 2;
-      const categoryScore = post.category === category ? 1 : 0;
-      const viewScore = (viewMap.get(post.id) || 0) * 0.1;
-      const totalScore = tagScore + categoryScore + viewScore;
-
-      return {
-        ...post,
-        highlights: post.highlights as string[] | null,
-        tags: post.postsToTags.map((pt) => pt.tag.name),
-        _score: totalScore,
-      };
-    })
-    .filter((post) => post._score > 0)
-    .sort((a, b) => b._score - a._score)
-    .slice(0, limit);
-
-  return scoredPosts.map(({ _score, ...post }) => post);
+      .where(inArray(postsToTags.tagId, tagIds)),
+    fetchAll: () => db.query.posts.findMany({
+      with: { postsToTags: { with: { tag: true } } },
+    }) as Promise<PostWithRelations[]>,
+    mapResult: (post) => ({
+      ...post,
+      highlights: post.highlights as string[] | null,
+      tags: post.postsToTags.map((pt) => pt.tag.name),
+    }),
+  });
 }
 
 
@@ -1073,7 +1005,7 @@ export async function getCourseBySlug(slug: string): Promise<CourseWithClasses |
     ...courseWithRel,
     classes: courseWithRel.classes.map((cls) => ({
       ...cls,
-      tags: cls.classesToTags.map((ct: any) => ct.tag.name),
+      tags: cls.classesToTags.map((ct) => ct.tag.name),
       courseInfo: {
         id: courseWithRel.id,
         slug: courseWithRel.slug,
@@ -1083,42 +1015,6 @@ export async function getCourseBySlug(slug: string): Promise<CourseWithClasses |
     classCount: courseWithRel.classes.length,
   };
 }
-
-// ============================================
-// Parts 관련 쿼리 - Part 기능 제거로 사용되지 않음
-// ============================================
-
-// Course ID로 Parts 조회 - DEPRECATED
-/*
-export async function getPartsByCourse(courseId: number): Promise<PartWithClasses[]> {
-  const result = await db.query.parts.findMany({
-    where: eq(parts.courseId, courseId),
-    orderBy: [asc(parts.partNumber)],
-    with: {
-      classes: {
-        where: eq(classes.isPublished, true),
-        orderBy: [asc(classes.orderInPart)],
-        with: {
-          classesToTags: {
-            with: {
-              tag: true,
-            },
-          },
-        },
-      },
-    },
-  }) as PartWithRelations[];
-
-  return result.map((part) => ({
-    ...part,
-    classes: part.classes.map((cls) => ({
-      ...cls,
-      tags: cls.classesToTags.map((ct) => ct.tag.name),
-    })),
-  }));
-}
-*/
-
 
 // ============================================
 // Classes 관련 쿼리
@@ -1204,88 +1100,24 @@ export async function getClassBySlug(slug: string): Promise<ClassWithTags | null
   };
 }
 
-// Part ID로 Classes 조회
-// Part ID로 Classes 조회 - DEPRECATED (Part 기능 제거됨)
-/*
-  const result = await db.query.classes.findMany({
-    where: and(eq(classes.partId, partId), eq(classes.isPublished, true)),
-    orderBy: [asc(classes.orderInPart)],
-    with: {
-      classesToTags: {
-        with: {
-          tag: true,
-        },
-      },
-      course: true,
-    },
-  }) as ClassWithRelations[];
-
-  return result.map((cls) => ({
-    ...cls,
-    tags: cls.classesToTags.map((ct) => ct.tag.name),
-    courseInfo: cls.course ? {
-      id: cls.course.id,
-      slug: cls.course.slug,
-      title: cls.course.title,
-    } : null,
-  }));
-}
-*/
-
 // 태그 기반 연관 Classes
 export async function getRelatedClassesByTags(tagNames: string[], excludeId?: number, limit = 3): Promise<ClassWithTags[]> {
-  const tagRecords = await db.query.tags.findMany({
-    where: inArray(tags.name, tagNames),
-  });
-  const tagIds = tagRecords.map((t: Tag) => t.id);
-
-  if (tagIds.length === 0) return [];
-
-  const classTagRecords = await db
-    .select({ classId: classesToTags.classId, tagId: classesToTags.tagId })
-    .from(classesToTags)
-    .where(inArray(classesToTags.tagId, tagIds));
-
-  const classScores = new Map<number, number>();
-  for (const record of classTagRecords) {
-    if (excludeId && record.classId === excludeId) continue;
-    classScores.set(record.classId, (classScores.get(record.classId) || 0) + 1);
-  }
-
-  const sortedClassIds = [...classScores.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
-    .map(([id]) => id);
-
-  if (sortedClassIds.length === 0) return [];
-
-  const result = await db.query.classes.findMany({
-    where: and(
-      inArray(classes.id, sortedClassIds),
-      eq(classes.isPublished, true)
-    ),
-    with: {
-      classesToTags: {
-        with: {
-          tag: true,
-        },
-      },
-      course: true,
-    },
-  }) as ClassWithRelations[];
-
-  return sortedClassIds
-    .map((id) => result.find((c) => c.id === id))
-    .filter((cls): cls is ClassWithRelations => cls !== undefined)
-    .map((cls) => ({
+  return getRelatedByTagsHelper<ClassWithRelations, ClassWithTags>({
+    tagNames, excludeId, limit,
+    fetchJunctionRecords: (tagIds) => db
+      .select({ contentId: classesToTags.classId })
+      .from(classesToTags)
+      .where(inArray(classesToTags.tagId, tagIds)),
+    fetchByIds: (ids) => db.query.classes.findMany({
+      where: and(inArray(classes.id, ids), eq(classes.isPublished, true)),
+      with: { classesToTags: { with: { tag: true } }, course: true },
+    }) as Promise<ClassWithRelations[]>,
+    mapResult: (cls) => ({
       ...cls,
       tags: cls.classesToTags.map((ct) => ct.tag.name),
-      courseInfo: cls.course ? {
-        id: cls.course.id,
-        slug: cls.course.slug,
-        title: cls.course.title,
-      } : null,
-    }));
+      courseInfo: cls.course ? { id: cls.course.id, slug: cls.course.slug, title: cls.course.title } : null,
+    }),
+  });
 }
 
 // Part 내에서 이전/다음 Class 조회
@@ -1521,126 +1353,35 @@ export async function getLogBySlug(slug: string): Promise<LogWithTags | null> {
 
 // 태그 기반 연관 Logs 쿼리
 export async function getRelatedLogsByTags(tagNames: string[], excludeId?: number, limit = 3): Promise<LogWithTags[]> {
-  const tagRecords = await db.query.tags.findMany({
-    where: inArray(tags.name, tagNames),
+  return getRelatedByTagsHelper<LogWithRelations, LogWithTags>({
+    tagNames, excludeId, limit,
+    fetchJunctionRecords: (tagIds) => db
+      .select({ contentId: logsToTags.logId })
+      .from(logsToTags)
+      .where(inArray(logsToTags.tagId, tagIds)),
+    fetchByIds: (ids) => db.query.lifeLogs.findMany({
+      where: inArray(lifeLogs.id, ids),
+      with: { logsToTags: { with: { tag: true } } },
+    }) as Promise<LogWithRelations[]>,
+    mapResult: (log) => ({ ...log, tags: log.logsToTags.map((lt) => lt.tag.name) }),
   });
-  const tagIds = tagRecords.map((t: Tag) => t.id);
-
-  if (tagIds.length === 0) return [];
-
-  const logTagRecords = await db
-    .select({ logId: logsToTags.logId, tagId: logsToTags.tagId })
-    .from(logsToTags)
-    .where(inArray(logsToTags.tagId, tagIds));
-
-  const logScores = new Map<number, number>();
-  for (const record of logTagRecords) {
-    if (excludeId && record.logId === excludeId) continue;
-    logScores.set(record.logId, (logScores.get(record.logId) || 0) + 1);
-  }
-
-  const sortedLogIds = [...logScores.entries()]
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, limit)
-    .map(([id]) => id);
-
-  if (sortedLogIds.length === 0) return [];
-
-  const result = (await db.query.lifeLogs.findMany({
-    where: inArray(lifeLogs.id, sortedLogIds),
-    with: {
-      logsToTags: {
-        with: {
-          tag: true,
-        },
-      },
-    },
-  })) as LogWithRelations[];
-
-  return sortedLogIds
-    .map((id) => result.find((l) => l.id === id))
-    .filter((log): log is LogWithRelations => log !== undefined)
-    .map((log) => ({
-      ...log,
-      tags: log.logsToTags.map((lt) => lt.tag.name),
-    }));
 }
 
 // 연관 Logs (태그 매칭 + 조회수 가중치 복합 점수)
 export async function getRelatedLogsWithPopularity(
-  tagNames: string[],
-  category: Category,
-  excludeId?: number,
-  limit = 3,
-  days = 7
+  tagNames: string[], category: Category, excludeId?: number, limit = 3, days = 7
 ): Promise<LogWithTags[]> {
-  const startDate = new Date();
-  startDate.setDate(startDate.getDate() - days);
-  const startDateStr = startDate.toISOString().split("T")[0];
-
-  const tagRecords = await db.query.tags.findMany({
-    where: inArray(tags.name, tagNames),
-  });
-  const tagIds = tagRecords.map((t: Tag) => t.id);
-
-  const viewStats = await db
-    .select({
-      contentId: contentDailyStats.contentId,
-      totalViews: sql<number>`SUM(${contentDailyStats.viewCount})`.as("total_views"),
-    })
-    .from(contentDailyStats)
-    .where(
-      and(
-        eq(contentDailyStats.contentType, "log"),
-        gte(contentDailyStats.date, startDateStr)
-      )
-    )
-    .groupBy(contentDailyStats.contentId);
-
-  const viewMap = new Map(viewStats.map((v) => [v.contentId, Number(v.totalViews)]));
-
-  const logTagRecords = tagIds.length > 0
-    ? await db
-      .select({ logId: logsToTags.logId, tagId: logsToTags.tagId })
+  return getRelatedWithPopularityHelper<LogWithRelations, LogWithTags>({
+    tagNames, category, excludeId, limit, days,
+    contentType: "log",
+    fetchJunctionRecords: (tagIds) => db
+      .select({ contentId: logsToTags.logId })
       .from(logsToTags)
-      .where(inArray(logsToTags.tagId, tagIds))
-    : [];
-
-  const tagScoreMap = new Map<number, number>();
-  for (const record of logTagRecords) {
-    if (excludeId && record.logId === excludeId) continue;
-    tagScoreMap.set(record.logId, (tagScoreMap.get(record.logId) || 0) + 1);
-  }
-
-  const allLogs = (await db.query.lifeLogs.findMany({
-    where: eq(lifeLogs.isPublished, true),
-    with: {
-      logsToTags: {
-        with: {
-          tag: true,
-        },
-      },
-    },
-  })) as LogWithRelations[];
-
-  type LogWithScore = LogWithTags & { _score: number };
-  const scoredLogs: LogWithScore[] = allLogs
-    .filter((log) => log.id !== excludeId)
-    .map((log) => {
-      const tagScore = (tagScoreMap.get(log.id) || 0) * 2;
-      const categoryScore = log.category === category ? 1 : 0;
-      const viewScore = (viewMap.get(log.id) || 0) * 0.1;
-      const totalScore = tagScore + categoryScore + viewScore;
-
-      return {
-        ...log,
-        tags: log.logsToTags.map((lt) => lt.tag.name),
-        _score: totalScore,
-      };
-    })
-    .filter((log) => log._score > 0)
-    .sort((a, b) => b._score - a._score)
-    .slice(0, limit);
-
-  return scoredLogs.map(({ _score, ...log }) => log);
+      .where(inArray(logsToTags.tagId, tagIds)),
+    fetchAll: () => db.query.lifeLogs.findMany({
+      where: eq(lifeLogs.isPublished, true),
+      with: { logsToTags: { with: { tag: true } } },
+    }) as Promise<LogWithRelations[]>,
+    mapResult: (log) => ({ ...log, tags: log.logsToTags.map((lt) => lt.tag.name) }),
+  });
 }

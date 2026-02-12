@@ -1,5 +1,6 @@
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { posts } from "@/lib/schema";
+import { POST_CATEGORIES } from "@/lib/constants";
 import { z } from "zod";
 
 // 기본 스키마 생성
@@ -10,7 +11,7 @@ export const insertPostSchema = createInsertSchema(posts, {
             .min(1, "슬러그는 필수입니다.")
             .regex(/^[a-z0-9-]+$/, "영문 소문자, 숫자, 하이픈만 가능합니다."),
     content: (schema) => schema.min(10, "내용은 최소 10자 이상이어야 합니다."),
-    category: z.enum(["MARKETING", "AI_TECH", "DATA"]),
+    category: z.enum(POST_CATEGORIES),
     excerpt: z.string().optional(),
     thumbnailUrl: z.string().url().optional().or(z.literal("")),
     highlights: z.array(z.string()).optional(),

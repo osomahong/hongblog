@@ -6,6 +6,7 @@
  *   npx tsx scripts/inject-images.ts --type post --slug my-post-slug
  *   npx tsx scripts/inject-images.ts --type faq --slug my-faq-slug
  *   npx tsx scripts/inject-images.ts --type log --slug my-log-slug
+ *   npx tsx scripts/inject-images.ts --type class --slug what-is-cpm --force  # 기존 이미지 제거 후 재생성
  *
  * 환경 변수:
  *   DATABASE_URL          - Neon DB 연결 문자열 (필수)
@@ -20,14 +21,18 @@ import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { eq } from "drizzle-orm";
 import * as schema from "../src/lib/schema";
-import { generateAndInjectImages } from "../src/lib/ai-image";
 
 type ContentType = "post" | "faq" | "class" | "log";
 
-function parseArgs(): { type: ContentType; slug: string } {
+function stripExistingImages(content: string): string {
+  return content.replace(/\n?\!\[.*?\]\(.*?\)\n?/g, "\n").replace(/\n{3,}/g, "\n\n");
+}
+
+function parseArgs(): { type: ContentType; slug: string; force: boolean } {
   const args = process.argv.slice(2);
   let type: ContentType | undefined;
   let slug: string | undefined;
+  const force = args.includes("--force");
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--type" && args[i + 1]) {
@@ -46,15 +51,15 @@ function parseArgs(): { type: ContentType; slug: string } {
   }
 
   if (!type || !slug) {
-    console.error("사용법: npx tsx scripts/inject-images.ts --type <post|faq|class|log> --slug <slug>");
+    console.error("사용법: npx tsx scripts/inject-images.ts --type <post|faq|class|log> --slug <slug> [--force]");
     process.exit(1);
   }
 
-  return { type, slug };
+  return { type, slug, force };
 }
 
 async function main() {
-  const { type, slug } = parseArgs();
+  const { type, slug, force } = parseArgs();
 
   if (!process.env.DATABASE_URL) {
     console.error("❌ DATABASE_URL 환경 변수가 설정되지 않았습니다.");
@@ -64,7 +69,9 @@ async function main() {
   const sql = neon(process.env.DATABASE_URL!);
   const db = drizzle(sql, { schema });
 
-  console.log(`\n🖼️  이미지 삽입 시작 (타입: ${type}, slug: ${slug})\n`);
+  console.log(`\n🖼️  이미지 삽입 시작 (타입: ${type}, slug: ${slug}${force ? ", --force" : ""})\n`);
+
+  const { generateAndInjectImages } = await import("../src/lib/ai-image");
 
   // 타입별 콘텐츠 조회 및 업데이트
   if (type === "post") {
@@ -77,14 +84,17 @@ async function main() {
     }
 
     console.log(`📄 대상: "${record.title}"`);
-    const result = await generateAndInjectImages(record.content, slug, record.title);
+    const contentToProcess = force ? stripExistingImages(record.content) : record.content;
+    if (force) console.log("🔄 --force: 기존 이미지 제거 후 재생성");
+    const result = await generateAndInjectImages(contentToProcess, slug, record.title);
     logResult(result);
 
     if (result.generatedImages.length > 0) {
+      const ogImage = result.generatedImages[0].url;
       await db.update(schema.posts)
-        .set({ content: result.content, updatedAt: new Date() })
+        .set({ content: result.content, ogImage, updatedAt: new Date() })
         .where(eq(schema.posts.id, record.id));
-      console.log("✅ DB 업데이트 완료!");
+      console.log("✅ DB 업데이트 완료! (ogImage 갱신)");
     }
   } else if (type === "faq") {
     const record = await db.query.faqs.findFirst({
@@ -96,7 +106,9 @@ async function main() {
     }
 
     console.log(`📄 대상: "${record.question}"`);
-    const result = await generateAndInjectImages(record.answer, slug, record.question);
+    const contentToProcess = force ? stripExistingImages(record.answer) : record.answer;
+    if (force) console.log("🔄 --force: 기존 이미지 제거 후 재생성");
+    const result = await generateAndInjectImages(contentToProcess, slug, record.question);
     logResult(result);
 
     if (result.generatedImages.length > 0) {
@@ -115,14 +127,17 @@ async function main() {
     }
 
     console.log(`📄 대상: "${record.term}"`);
-    const result = await generateAndInjectImages(record.content, slug, record.term);
+    const contentToProcess = force ? stripExistingImages(record.content) : record.content;
+    if (force) console.log("🔄 --force: 기존 이미지 제거 후 재생성");
+    const result = await generateAndInjectImages(contentToProcess, slug, record.term);
     logResult(result);
 
     if (result.generatedImages.length > 0) {
+      const ogImage = result.generatedImages[0].url;
       await db.update(schema.classes)
-        .set({ content: result.content, updatedAt: new Date() })
+        .set({ content: result.content, ogImage, updatedAt: new Date() })
         .where(eq(schema.classes.id, record.id));
-      console.log("✅ DB 업데이트 완료!");
+      console.log("✅ DB 업데이트 완료! (ogImage 갱신)");
     }
   } else if (type === "log") {
     const record = await db.query.lifeLogs.findFirst({
@@ -134,14 +149,17 @@ async function main() {
     }
 
     console.log(`📄 대상: "${record.title}"`);
-    const result = await generateAndInjectImages(record.content, slug, record.title);
+    const contentToProcess = force ? stripExistingImages(record.content) : record.content;
+    if (force) console.log("🔄 --force: 기존 이미지 제거 후 재생성");
+    const result = await generateAndInjectImages(contentToProcess, slug, record.title);
     logResult(result);
 
     if (result.generatedImages.length > 0) {
+      const ogImage = result.generatedImages[0].url;
       await db.update(schema.lifeLogs)
-        .set({ content: result.content, updatedAt: new Date() })
+        .set({ content: result.content, ogImage, updatedAt: new Date() })
         .where(eq(schema.lifeLogs.id, record.id));
-      console.log("✅ DB 업데이트 완료!");
+      console.log("✅ DB 업데이트 완료! (ogImage 갱신)");
     }
   }
 }

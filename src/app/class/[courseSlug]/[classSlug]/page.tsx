@@ -9,6 +9,7 @@ import { NeoTagBadge } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
+import { SITE_URL } from "@/lib/constants";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
@@ -43,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         robots: classData.noIndex ? { index: false, follow: false } : undefined,
         alternates: {
             canonical: classData.canonicalUrl ||
-                `https://www.digitalmarketer.co.kr/class/${courseSlug}/${classSlug}`
+                `${SITE_URL}/class/${courseSlug}/${classSlug}`
         },
         openGraph: {
             title: effectiveTitle,

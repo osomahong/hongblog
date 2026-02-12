@@ -1,5 +1,6 @@
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { classes, courses } from "@/lib/schema";
+import { POST_CATEGORIES } from "@/lib/constants";
 import { z } from "zod";
 
 // Classes 스키마
@@ -11,7 +12,7 @@ export const insertClassSchema = createInsertSchema(classes, {
     term: (schema) => schema.min(1, "용어명을 입력해주세요."),
     definition: (schema) => schema.min(1, "정의를 입력해주세요."),
     content: (schema) => schema.min(10, "내용은 최소 10자 이상이어야 합니다."),
-    category: z.enum(["MARKETING", "AI_TECH", "DATA"]),
+    category: z.enum(POST_CATEGORIES),
     courseId: z.number().optional().nullable(),
     orderInCourse: z.number().optional().nullable(),
     aliases: z.array(z.string()).optional().nullable(),
@@ -49,7 +50,7 @@ export const insertCourseSchema = createInsertSchema(courses, {
             .min(1, "슬러그는 필수입니다.")
             .regex(/^[a-z0-9-]+$/, "영문 소문자, 숫자, 하이픈만 가능합니다."),
     title: (schema) => schema.min(1, "제목을 입력해주세요."),
-    category: z.enum(["MARKETING", "AI_TECH", "DATA"]),
+    category: z.enum(POST_CATEGORIES),
     description: z.string().optional().nullable(),
     thumbnailUrl: z.string().url().optional().or(z.literal("")).nullable(),
     difficulty: z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED"]).optional().nullable(),

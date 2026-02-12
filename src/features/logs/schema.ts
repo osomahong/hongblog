@@ -1,5 +1,6 @@
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { lifeLogs } from "@/lib/schema";
+import { POST_CATEGORIES, LOG_CATEGORIES } from "@/lib/constants";
 import { z } from "zod";
 
 // Log 스키마 생성
@@ -10,7 +11,7 @@ export const insertLogSchema = createInsertSchema(lifeLogs, {
             .min(1, "슬러그는 필수입니다.")
             .regex(/^[a-z0-9-]+$/, "영문 소문자, 숫자, 하이픈만 가능합니다."),
     content: (schema) => schema.min(10, "내용은 최소 10자 이상이어야 합니다."),
-    category: z.enum(["MARKETING", "AI_TECH", "DATA", "맛집", "강의", "문화생활", "여행", "일상"]),
+    category: z.enum([...POST_CATEGORIES, ...LOG_CATEGORIES]),
     thumbnailUrl: z.string().url().optional().or(z.literal("")).nullable(),
     location: z.string().optional().nullable(),
     visitedAt: z.string().optional().nullable(),

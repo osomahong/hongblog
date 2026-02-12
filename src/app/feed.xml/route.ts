@@ -1,9 +1,10 @@
 import { getPublishedPosts } from "@/lib/queries";
+import { SITE_URL } from "@/lib/constants";
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://hong.blog";
+    const baseUrl = SITE_URL;
     const posts = await getPublishedPosts();
 
     const xml = `<?xml version="1.0" encoding="UTF-8" ?>

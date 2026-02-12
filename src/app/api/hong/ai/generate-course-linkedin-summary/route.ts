@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth/next";
 import { db } from "@/lib/db";
 import { courses, classes } from "@/lib/schema";
 import { eq } from "drizzle-orm";
+import { SITE_URL } from "@/lib/constants";
 import { generateCourseLinkedInSummary } from "@/lib/ai";
 
 export async function POST(request: NextRequest) {
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
         }
 
         // 3. AI 요약 생성
-        const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://redline-matrix.com";
+        const siteUrl = SITE_URL;
         const courseUrl = `${siteUrl}/class/${course.slug}`;
 
         const summary = await generateCourseLinkedInSummary({

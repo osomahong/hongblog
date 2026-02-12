@@ -7,6 +7,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
+import { SITE_URL } from "@/lib/constants";
 import { getLogBySlug, getRelatedFaqsWithPopularity, getRelatedPostsWithPopularity } from "@/lib/queries";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -50,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: effectiveDescription,
         robots: log.noIndex ? { index: false, follow: false } : undefined,
         alternates: {
-            canonical: log.canonicalUrl || `https://www.digitalmarketer.co.kr/logs/${slug}`
+            canonical: log.canonicalUrl || `${SITE_URL}/logs/${slug}`
         },
         openGraph: {
             title: effectiveOgTitle,

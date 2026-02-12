@@ -309,7 +309,7 @@ function findNearestParagraphEnd(
 }
 
 /**
- * 섹션 내용 기반 화이트보드 스케치 스타일 이미지 프롬프트 생성
+ * 섹션 내용 기반 심플 3D 일러스트 스타일 이미지 프롬프트 생성
  */
 async function generateImagePrompt(
   sectionTitle: string,
@@ -321,10 +321,11 @@ async function generateImagePrompt(
       model: PROMPT_MODEL,
       config: {
         systemInstruction:
-          "You are an expert at writing image-generation prompts for whiteboard-style concept sketches. " +
-          "Your prompts produce hand-drawn-looking diagrams on a clean white background, using black/dark-gray ink lines " +
-          "with 1-2 accent colors (blue or orange). The images must contain ABSOLUTELY NO TEXT, letters, words, or characters " +
-          "of any language. Only use abstract shapes, icons, arrows, flowcharts, and visual metaphors.",
+          "You are an expert at writing image-generation prompts for simple, friendly 3D illustration icons. " +
+          "Your prompts produce clean, minimal 3D rendered scenes with 1-3 symbolic objects or cute cartoon characters. " +
+          "The style is soft, rounded, colorful like Pixar or clay-render — NOT complex diagrams or flowcharts. " +
+          "Keep compositions very simple: one central subject with minimal supporting elements. " +
+          "The images must contain ABSOLUTELY NO TEXT, letters, words, or characters of any language.",
         temperature: 0.7,
         maxOutputTokens: 500,
       },
@@ -333,16 +334,19 @@ Topic: "${topic}"
 Section content:
 "${sectionContent.substring(0, 800)}"
 
-Write a detailed 3-5 sentence image-generation prompt for this section.
-The image should be a whiteboard-style hand-drawn sketch/concept diagram that visually explains the key ideas of this section.
+Write a 2-3 sentence image-generation prompt for this section.
+The image should be a simple, friendly 3D illustration that symbolically represents the key concept of this section.
 
-Style requirements:
-- Hand-drawn sketch on a clean white whiteboard background
-- Black or dark gray ink strokes, slightly imperfect like real hand-drawing
-- 1-2 accent colors only (choose from: blue, orange, or teal)
-- Include relevant icons, arrows, flowcharts, or visual metaphors that represent the section concepts
-- NO TEXT, NO LETTERS, NO WORDS of any language — only visual elements
-- Professional yet approachable, like a thoughtful whiteboard sketch during a strategy meeting
+CRITICAL style rules:
+- Simple 3D rendered illustration, soft rounded shapes, smooth gradients
+- Cute cartoon-style characters or symbolic 3D icons (like clay/Pixar style)
+- Only 1-3 main objects — keep it VERY simple and uncluttered
+- Bright, cheerful pastel colors (soft blue, orange, purple, green)
+- Clean white or very light gradient background
+- Soft shadows and ambient occlusion for depth
+- NO complex diagrams, NO flowcharts, NO arrows, NO wireframes
+- NO TEXT, NO LETTERS, NO WORDS of any language
+- Think "app icon" or "landing page hero illustration" level of simplicity
 
 Output only the prompt, nothing else.`,
     });
@@ -354,17 +358,17 @@ Output only the prompt, nothing else.`,
 }
 
 /**
- * 프롬프트 생성 실패 시 화이트보드 스케치 스타일 폴백 프롬프트
+ * 프롬프트 생성 실패 시 심플 3D 일러스트 스타일 폴백 프롬프트
  */
 function getFallbackPrompt(sectionTitle: string, topic: string): string {
-  return `A whiteboard-style hand-drawn concept sketch about "${sectionTitle}" in the context of ${topic}. Clean white background, black and dark gray ink strokes with slight imperfections like real hand-drawing, one accent color (blue). Abstract icons, arrows, and flowchart elements representing the concept. Absolutely no text, letters, or words of any language — only visual shapes and icons.`;
+  return `A simple, friendly 3D illustration representing "${sectionTitle}" in the context of ${topic}. One or two cute 3D rendered symbolic objects in soft pastel colors, clean white background, smooth rounded shapes, soft shadows. Pixar-style clay render aesthetic, minimal and uncluttered. Absolutely no text, letters, or words of any language.`;
 }
 
 /**
  * Gemini 3 Pro Image API 호출 → base64 PNG를 Buffer로 반환
  */
 async function generateImage(prompt: string): Promise<Buffer> {
-  const enhancedPrompt = `${prompt}. Style: whiteboard hand-drawn sketch, black/dark-gray ink on white background, 1-2 accent colors only. IMPORTANT: The image must contain absolutely NO text, NO letters, NO words, NO characters of any language. Only use abstract shapes, icons, arrows, and visual elements.`;
+  const enhancedPrompt = `${prompt}. Style: simple 3D rendered illustration, soft rounded clay-like shapes, bright pastel colors, clean white background, soft shadows, Pixar-style aesthetic, minimal and uncluttered composition. IMPORTANT: The image must contain absolutely NO text, NO letters, NO words, NO characters of any language.`;
 
   const response = await imageAI.models.generateContent({
     model: "gemini-3-pro-image-preview",

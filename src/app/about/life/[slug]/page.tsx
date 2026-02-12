@@ -12,6 +12,7 @@ import {
   Star,
   ArrowLeft
 } from "lucide-react";
+import { SITE_URL } from "@/lib/constants";
 import { db } from "@/lib/db";
 import { lifeLogs, LifeLogCategory } from "@/lib/schema";
 import { eq } from "drizzle-orm";
@@ -47,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const defaultDescription = log.content.replace(/[#*`]/g, "").slice(0, 160);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://redline-matrix.com";
+  const siteUrl = SITE_URL;
 
   return {
     title: log.metaTitle || `${log.title} | Life Log`,
@@ -65,7 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: log.ogImage ? [log.ogImage] : log.thumbnailUrl ? [log.thumbnailUrl] : [],
     },
     alternates: {
-      canonical: log.canonicalUrl || `https://www.digitalmarketer.co.kr/about/life/${slug}`
+      canonical: log.canonicalUrl || `${SITE_URL}/about/life/${slug}`
     },
     robots: log.noIndex ? { index: false, follow: false } : { index: true, follow: true },
   };

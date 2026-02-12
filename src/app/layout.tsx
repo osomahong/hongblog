@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
 const pretendard = localFont({
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "준이아빠블로그",
     images: [
       {
-        url: "https://www.digitalmarketer.co.kr/og-default.png",
+        url: `${SITE_URL}/og-default.png`,
         width: 1200,
         height: 630,
         alt: "준이아빠블로그 - AI-Enhanced Tech Wiki",
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["https://www.digitalmarketer.co.kr/og-default.png"],
+    images: [`${SITE_URL}/og-default.png`],
   },
 };
 

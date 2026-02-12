@@ -7,6 +7,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
+import { SITE_URL } from "@/lib/constants";
 import { getPostBySlug, getRelatedFaqsWithPopularity, getSeriesNavigation, getRelatedClassesForPost } from "@/lib/queries";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -52,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: effectiveDescription,
     robots: post.noIndex ? { index: false, follow: false } : undefined,
     alternates: {
-      canonical: post.canonicalUrl || `https://www.digitalmarketer.co.kr/insights/${slug}`
+      canonical: post.canonicalUrl || `${SITE_URL}/insights/${slug}`
     },
     openGraph: {
       title: effectiveOgTitle,

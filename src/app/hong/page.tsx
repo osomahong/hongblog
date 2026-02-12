@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { Lock, FileText, Plus, List, Loader2, BookOpen, Bot, GraduationCap, LogOut, Linkedin, Copy, X, HelpCircle, BookText } from "lucide-react";
+import { SITE_URL } from "@/lib/constants";
 import { LogManager } from "@/features/logs/components/LogManager";
 import { PostManager } from "@/features/posts/components/PostManager";
 import { PostEditor } from "@/features/posts/components/PostEditor";
@@ -132,7 +133,7 @@ export default function HongAdminPage() {
     setIsGeneratingLinkedinSummary(post.id);
     setActivePostForLinkedin(post);
     try {
-      const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://redline-matrix.com";
+      const siteUrl = SITE_URL;
       const postUrl = `${siteUrl}/insights/${post.slug}`;
       const res = await fetch("/api/hong/ai/generate-linkedin-summary", {
         method: "POST",

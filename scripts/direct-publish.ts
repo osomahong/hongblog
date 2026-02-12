@@ -1,7 +1,14 @@
 /**
  * 트랜잭션 없이 직접 DB에 콘텐츠를 삽입하는 스크립트
  * neon-http 드라이버가 트랜잭션을 지원하지 않아 서비스 레이어 우회
+ *
+ * 사용법:
+ *   npx tsx scripts/direct-publish.ts --file payload.json
+ *   npx tsx scripts/direct-publish.ts --file payload.json --no-images  # 이미지 생성 건너뛰기
  */
+
+import { config } from "dotenv";
+config({ path: ".env.local" });
 
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
@@ -17,8 +24,9 @@ async function main() {
   }
 
   const filePath = process.argv.find((_, i, a) => a[i - 1] === "--file");
+  const noImages = process.argv.includes("--no-images");
   if (!filePath) {
-    console.error("사용법: npx tsx scripts/direct-publish.ts --file payload.json");
+    console.error("사용법: npx tsx scripts/direct-publish.ts --file payload.json [--no-images]");
     process.exit(1);
   }
 
@@ -71,14 +79,43 @@ async function main() {
     console.log(`✅ 태그 ${tagNames.length}개 연결 완료`);
   }
 
-  // 4. 결과 출력
+  // 4. 이미지 생성
+  if (!noImages) {
+    console.log("\n🖼️  AI 이미지 생성 중...");
+    try {
+      const { generateAndInjectImages } = await import("../src/lib/ai-image");
+      const result = await generateAndInjectImages(newPost.content, newPost.slug, newPost.title);
+      if (result.generatedImages.length > 0) {
+        const ogImage = result.generatedImages[0].url;
+        await db.update(posts)
+          .set({ content: result.content, ogImage, updatedAt: new Date() })
+          .where(eq(posts.id, newPost.id));
+        console.log(`✅ 이미지 ${result.generatedImages.length}개 삽입 완료`);
+        for (const img of result.generatedImages) {
+          console.log(`  📷 ${img.url}`);
+        }
+      } else {
+        console.log("⚠️  이미지 생성 결과 없음");
+      }
+      if (result.errors.length > 0) {
+        for (const err of result.errors) {
+          console.log(`  ⚠️  ${err}`);
+        }
+      }
+    } catch (err) {
+      console.error("⚠️  이미지 생성 실패 (포스트는 정상 생성됨):", err instanceof Error ? err.message : err);
+    }
+  } else {
+    console.log("\n⏭️  --no-images: 이미지 생성 건너뛰기");
+  }
+
+  // 5. 결과 출력
   console.log("\n────────────────────────────");
   console.log("   ID:", newPost.id);
   console.log("   Slug:", newPost.slug);
   console.log("   Title:", newPost.title);
   console.log("   URL:", `/insights/${newPost.slug}`);
   console.log("   상태:", newPost.isPublished ? "🟢 배포됨" : "🟡 초안");
-  console.log("   SEO 점수:", "82/100");
   console.log("────────────────────────────\n");
 }
 
