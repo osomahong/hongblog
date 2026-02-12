@@ -83,7 +83,7 @@ export default async function LogDetailPage({ params }: Props) {
 
     const jsonLd = {
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
+        "@type": "Article",
         headline: log.title,
         description: log.metaDescription || `${log.title} - 컨설팅 로그`,
         image: log.ogImage || log.thumbnailUrl,

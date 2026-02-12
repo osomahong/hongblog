@@ -90,7 +90,7 @@ export default async function InsightDetailPage({ params }: Props) {
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "Article",
     headline: post.title,
     description: post.excerpt,
     image: post.ogImage || post.thumbnailUrl,
