@@ -7,6 +7,7 @@ import { NeoTagBadge } from "@/components/neo";
 import { getAllTags, getContentByTag } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
+import { stripMarkdown } from "@/lib/utils";
 
 export const dynamic = 'force-dynamic';
 
@@ -157,7 +158,7 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
                         </NeoCardHeader>
                         <NeoCardContent>
                           <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                            {faq.answer}
+                            {stripMarkdown(faq.answer)}
                           </p>
                           <div className="flex flex-wrap gap-1.5">
                             {faq.tags.map((tag) => (

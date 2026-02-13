@@ -9,7 +9,7 @@
   "isPublished": true,
   "aliases": ["기여 분석", "성과 배분", "기여도 분석", "마케팅 어트리뷰션"],
   "relatedTerms": ["what-is-conversion", "what-is-funnel", "what-is-roas", "what-is-roi"],
-  "tags": ["디지털마케팅", "어트리뷰션", "Attribution", "GA4", "성과분석"],
+  "tags": ["어트리뷰션", "GA4", "데이터 분석"],
   "quiz": [
     {
       "question": "고객 전환 경로 분석 결과, 대부분의 고객이 'Instagram 광고 → 블로그 검색 → Google 리타겟팅 → 구매' 경로를 거칩니다. 라스트 클릭 모델에서는 Google 리타겟팅이 전환의 100%를 차지합니다. 이때 올바른 판단은?",

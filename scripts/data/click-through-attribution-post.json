@@ -9,7 +9,7 @@
     "기여 기간은 구매 결정까지 걸리는 시간을 기준으로 업종에 맞게 설정해야 한다",
     "쿠키 제한 강화로 서버 사이드 추적, Conversions API 같은 대안 준비가 필요하다"
   ],
-  "tags": ["어트리뷰션", "광고성과", "CTA", "VTA", "기여분석", "디지털마케팅"],
+  "tags": ["어트리뷰션", "광고", "데이터 추적"],
   "isPublished": true,
   "metaTitle": "클릭 기여(Click-Through Attribution)란? 성과 측정의 기본",
   "metaDescription": "클릭 기여(Click-Through Attribution)의 개념, 뷰스루 기여와의 차이, 기여 기간(Attribution Window) 설정 기준, 중복 기여 문제와 쿠키 제한 대응까지 디지털 마케팅 성과 측정의 핵심을 정리했습니다.",

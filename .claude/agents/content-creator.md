@@ -104,6 +104,12 @@ courseId?: number       # Class 타입 전용 - 소속 코스 ID
 - `generateContentMetadata()` → `src/lib/ai.ts:194`
 - 생성된 콘텐츠 기반으로 slug, excerpt, highlights, tags 자동 생성
 
+**태그 생성 규칙:**
+- 반드시 `CANONICAL_TAGS` 목록(`src/lib/constants.ts`)에서만 선택
+- 글당 3-5개 (최대 5개, Zod 스키마에서 강제)
+- 도구 이름(Claude Code, n8n 등)이나 대상자(마케터, 비개발자)를 태그로 사용하지 않음
+- `generateTagsFromContent()` 함수가 정규 태그 목록을 참조하여 자동 선택
+
 ## 출력
 
 ```json

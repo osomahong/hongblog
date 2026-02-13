@@ -8,5 +8,5 @@
   "orderInCourse": 6,
   "difficulty": "BEGINNER",
   "isPublished": true,
-  "tags": ["Element", "HTML", "DOM"]
+  "tags": ["HTML", "DOM"]
 }

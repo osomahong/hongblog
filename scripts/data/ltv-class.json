@@ -9,7 +9,7 @@
   "isPublished": true,
   "aliases": ["고객생애가치", "생애 고객 가치", "고객 평생 가치", "CLV"],
   "relatedTerms": ["what-is-cac", "what-is-roi", "what-is-conversion", "what-is-cvr"],
-  "tags": ["디지털마케팅", "LTV", "고객생애가치", "마케팅지표"],
+  "tags": ["LTV", "마케팅 실무"],
   "quiz": [
     {
       "question": "월 구독료 15,000원인 서비스의 월 이탈률이 10%입니다. 이 서비스의 고객 LTV와, CAC를 5만원으로 가정했을 때 LTV:CAC 비율을 올바르게 계산한 것은?",

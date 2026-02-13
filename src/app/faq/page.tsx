@@ -8,6 +8,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoInput } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
+import { stripMarkdown } from "@/lib/utils";
 
 type Faq = {
   id: number;
@@ -170,7 +171,7 @@ export default function FAQPage() {
                 </NeoCardHeader>
                 <NeoCardContent>
                   <p className="text-sm sm:text-base text-muted-foreground line-clamp-2">
-                    {faq.answer}
+                    {stripMarkdown(faq.answer)}
                   </p>
                   <div className="flex gap-1.5 mt-2 sm:mt-3 flex-wrap">
                     {faq.tags.map((tag) => (

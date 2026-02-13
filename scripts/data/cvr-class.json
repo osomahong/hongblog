@@ -9,7 +9,7 @@
   "isPublished": true,
   "aliases": ["전환율", "전환 비율", "컨버전 레이트"],
   "relatedTerms": ["what-is-conversion", "what-is-ctr", "what-is-cpc", "what-is-roas"],
-  "tags": ["디지털마케팅", "광고", "CVR", "전환율"],
+  "tags": ["CVR", "광고"],
   "quiz": [
     {
       "question": "광고 캠페인 결과를 분석 중입니다. CTR은 4%로 양호하지만, 랜딩 페이지 CVR이 0.5%로 매우 낮습니다. 가장 먼저 점검해야 할 영역은 어디일까요?",

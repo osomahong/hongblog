@@ -10,7 +10,7 @@
   "isPublished": true,
   "aliases": ["웹 쿠키", "HTTP Cookie", "브라우저 쿠키"],
   "relatedTerms": ["what-is-bom", "what-is-javascript"],
-  "tags": ["Cookie", "개인정보", "리타게팅", "GA4"],
+  "tags": ["데이터 추적", "리타게팅", "GA4"],
   "quiz": [
     {
       "question": "쇼핑몰에서 장바구니에 담은 상품은 브라우저를 닫아도 유지되지만, 리타게팅 광고는 크롬의 서드파티 쿠키 차단 이후 작동하지 않습니다. 이 상황을 가장 정확하게 설명한 것은?",

@@ -10,7 +10,7 @@
   "isPublished": true,
   "aliases": ["REST API", "웹 API"],
   "relatedTerms": ["what-is-javascript", "what-is-dom"],
-  "tags": ["API", "REST API", "자동화", "마케팅"],
+  "tags": ["API", "자동화", "마케팅 실무"],
   "quiz": [
     {
       "question": "마케터가 'GA4 이벤트 데이터를 자동으로 스프레드시트에 저장하고 싶다'고 할 때, 가장 적절한 방법은 무엇일까요?",

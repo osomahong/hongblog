@@ -9,7 +9,7 @@
   "isPublished": true,
   "aliases": ["마케팅 퍼널", "세일즈 퍼널", "전환 퍼널", "깔때기 모델"],
   "relatedTerms": ["what-is-cpm", "what-is-ctr", "what-is-cpc", "what-is-cvr", "what-is-conversion", "what-is-roas", "what-is-roi"],
-  "tags": ["디지털마케팅", "퍼널", "TOFU", "MOFU", "BOFU", "마케팅전략"],
+  "tags": ["퍼널", "마케팅 실무"],
   "quiz": [
     {
       "question": "광고 캠페인 결과를 분석했더니, 노출 50,000회 대비 클릭 2,500회(CTR 5%)로 양호했지만, 클릭 후 구매 전환은 25건(CVR 1%)으로 매우 낮았습니다. 퍼널 관점에서 가장 적절한 개선 방향은?",

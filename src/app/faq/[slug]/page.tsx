@@ -12,6 +12,7 @@ import { getFaqBySlug, getRelatedPostsWithPopularity, getRelatedFaqsWithPopulari
 import { ViewTracker } from "@/components/ViewTracker";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 
 export const dynamic = 'force-dynamic';
 
@@ -183,8 +184,8 @@ export default async function FaqDetailPage({ params }: Props) {
                   </NeoCardTitle>
                 </NeoCardHeader>
                 <NeoCardContent>
-                  <div className="prose prose-sm sm:prose-lg max-w-none whitespace-pre-line text-sm sm:text-base">
-                    {faq.answer}
+                  <div className="prose prose-sm sm:prose-lg max-w-none text-sm sm:text-base">
+                    <MarkdownRenderer content={faq.answer} />
                   </div>
                 </NeoCardContent>
               </NeoCard>

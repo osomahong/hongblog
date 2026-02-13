@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Sparkles, Database, TrendingUp, HelpCircle } from "lucide-react";
+import { stripMarkdown } from "@/lib/utils";
 import {
   NeoCard,
   NeoCardHeader,
@@ -248,7 +249,7 @@ export default async function CategoryPage({ params }: Props) {
                     <span className="text-primary font-black text-xl">Q</span>
                     <div className="flex-1">
                       <p className="font-bold text-base sm:text-lg">{faq.question}</p>
-                      <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{faq.answer}</p>
+                      <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{stripMarkdown(faq.answer)}</p>
                       <div className="flex gap-1.5 mt-2 flex-wrap">
                         {faq.tags.slice(0, 3).map((tag) => (
                           <span key={tag} className="text-xs text-muted-foreground">#{tag}</span>

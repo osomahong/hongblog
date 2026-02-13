@@ -1,6 +1,6 @@
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { classes, courses } from "@/lib/schema";
-import { POST_CATEGORIES } from "@/lib/constants";
+import { POST_CATEGORIES, CANONICAL_TAGS_FLAT } from "@/lib/constants";
 import { z } from "zod";
 
 // Classes 스키마
@@ -34,7 +34,8 @@ export const insertClassSchema = createInsertSchema(classes, {
     canonicalUrl: z.string().url().optional().or(z.literal("")).nullable(),
     noIndex: z.boolean().default(false),
 }).extend({
-    tags: z.array(z.string()).optional(),
+    // 태그는 정규 목록만 허용, 최대 5개
+    tags: z.array(z.string().refine((tag) => CANONICAL_TAGS_FLAT.includes(tag), { message: "정규 태그 목록에 없는 태그입니다" })).max(5).optional(),
 });
 
 export const selectClassSchema = createSelectSchema(classes);

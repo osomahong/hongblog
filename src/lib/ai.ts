@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { CANONICAL_TAGS_FLAT } from "./constants";
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY!);
 export const aiModel = genAI.getGenerativeModel({
@@ -6,7 +7,10 @@ export const aiModel = genAI.getGenerativeModel({
 });
 
 export async function generateTagsFromContent(content: string): Promise<string[]> {
-  const prompt = `Analyze the following tech blog content and extract 3 key SEO tags.
+  const prompt = `다음 블로그 콘텐츠에 가장 적합한 태그를 3-5개 선택하세요.
+반드시 아래 목록에서만 선택하세요:
+${CANONICAL_TAGS_FLAT.join(", ")}
+
 Format: JSON array of strings only. No explanations.
 Content: ${content.substring(0, 2000)}`;
 
@@ -204,7 +208,7 @@ ${content.substring(0, 3000)}
   "excerpt": "글 요약 (100-150자, 한국어, 핵심 내용 포함)",
   "category": "MARKETING, AI_TECH, DATA, 맛집, 강의, 문화생활, 여행, 일상 중 하나",
   "highlights": ["핵심포인트1", "핵심포인트2"] (2-3개, 짧은 키워드),
-  "tags": ["태그1", "태그2", "태그3"] (3-5개, SEO 키워드)
+  "tags": ["태그1", "태그2", "태그3"] (3-5개, 반드시 다음 목록에서만 선택: ${CANONICAL_TAGS_FLAT.join(", ")})
 }
 
 카테고리 선택 기준:

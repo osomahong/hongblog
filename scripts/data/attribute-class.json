@@ -8,5 +8,5 @@
   "orderInCourse": 7,
   "difficulty": "BEGINNER",
   "isPublished": true,
-  "tags": ["Attribute", "HTML", "Element", "GTM"]
+  "tags": ["HTML", "DOM", "GTM"]
 }

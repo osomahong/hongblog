@@ -13,6 +13,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
+import { stripMarkdown } from "@/lib/utils";
 import {
   getPublishedPosts,
   getTrendingMixed,
@@ -165,7 +166,7 @@ export default async function HomePage() {
                         Q: {item.question}
                       </h3>
                       <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
-                        {(item.answer || "").substring(0, 80)}...
+                        {stripMarkdown(item.answer || "").substring(0, 80)}...
                       </p>
                     </NeoTiltCard>
                   </TrackedLink>
