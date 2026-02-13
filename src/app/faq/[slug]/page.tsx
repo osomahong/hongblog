@@ -6,13 +6,13 @@ import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/componen
 import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
-import { absoluteUrl } from "@/lib/utils";
+import { absoluteUrl, stripMarkdown } from "@/lib/utils";
 import { SITE_URL } from "@/lib/constants";
 import { getFaqBySlug, getRelatedPostsWithPopularity, getRelatedFaqsWithPopularity } from "@/lib/queries";
 import { ViewTracker } from "@/components/ViewTracker";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
-import MarkdownRenderer from "@/components/MarkdownRenderer";
+import ServerMarkdown from "@/components/ServerMarkdown";
 
 export const dynamic = 'force-dynamic';
 
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const effectiveTitle = faq.metaTitle || faq.question;
-  const effectiveDescription = faq.metaDescription || faq.answer.substring(0, 160);
+  const effectiveDescription = faq.metaDescription || stripMarkdown(faq.answer).substring(0, 160);
 
   return {
     title: effectiveTitle,
@@ -87,7 +87,7 @@ export default async function FaqDetailPage({ params }: Props) {
         name: faq.question,
         acceptedAnswer: {
           "@type": "Answer",
-          text: faq.answer,
+          text: stripMarkdown(faq.answer),
         },
       },
     ],
@@ -185,7 +185,7 @@ export default async function FaqDetailPage({ params }: Props) {
                 </NeoCardHeader>
                 <NeoCardContent>
                   <div className="prose prose-sm sm:prose-lg max-w-none text-sm sm:text-base">
-                    <MarkdownRenderer content={faq.answer} />
+                    <ServerMarkdown content={faq.answer} />
                   </div>
                 </NeoCardContent>
               </NeoCard>

@@ -161,13 +161,11 @@ async function publishPost(data: unknown, noImages: boolean) {
   };
 }
 
-async function publishFaq(data: unknown, noImages: boolean) {
+async function publishFaq(data: unknown, _noImages: boolean) {
   const parsed = insertFaqSchema.parse(data);
   parsed.slug = await ensureUniqueSlug("faq", parsed.slug);
 
-  if (!noImages) {
-    parsed.answer = await injectImages(parsed.answer, parsed.slug, parsed.question);
-  }
+  // FAQ는 짧은 대화체 답변이므로 이미지 삽입 생략
 
   const result = await faqService.create(parsed as CreateFaqInput);
   return {

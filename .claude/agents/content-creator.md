@@ -82,8 +82,8 @@ courseId?: number       # Class 타입 전용 - 소속 코스 ID
 
 **함수:** `generateAndInjectImages()` → `src/lib/ai-image.ts`
 
-**적용 대상:** Post, FAQ, Class, LifeLog (모든 타입)
-- FAQ: `answer` 필드에 이미지 삽입
+**적용 대상:** Post, Class, LifeLog (FAQ 제외)
+- FAQ: 이미지 삽입 생략 (짧은 대화체 답변에 이미지 불필요)
 - 나머지: `content` 필드에 이미지 삽입
 
 **처리:**
@@ -139,8 +139,8 @@ courseId?: number       # Class 타입 전용 - 소속 코스 ID
 
 ## 품질 기준
 
-- 본문 최소 1000단어 (Post), 500단어 (FAQ/Class)
-- H2 헤딩 최소 3개 (Post), 2개 (Class)
+- 본문 최소 1000단어 (Post), 150-300단어 (FAQ), 500단어 (Class)
+- H2 헤딩 최소 3개 (Post), 2개 (Class) — FAQ는 헤딩 사용 금지 (대화체)
 - 실무 적용 가능한 구체적 예시 1개 이상
 - 기술 용어 영어 표기 일관성
 - 존댓말(~입니다/~합니다) 어투 통일
