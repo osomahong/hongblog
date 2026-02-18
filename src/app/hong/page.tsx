@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { Lock, FileText, Plus, List, Loader2, BookOpen, Bot, GraduationCap, LogOut, Linkedin, Copy, X, HelpCircle, BookText } from "lucide-react";
+import { Lock, FileText, Plus, List, Loader2, BookOpen, Bot, GraduationCap, LogOut, Linkedin, Copy, X, HelpCircle, BookText, Send, ExternalLink, CheckCircle, AlertCircle } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
 import { LogManager } from "@/features/logs/components/LogManager";
 import { PostManager } from "@/features/posts/components/PostManager";
@@ -45,6 +45,11 @@ export default function HongAdminPage() {
   const [activeCourseForLinkedin, setActiveCourseForLinkedin] = useState<any>(null);
   const [isGeneratingCourseLinkedinSummary, setIsGeneratingCourseLinkedinSummary] = useState<number | null>(null);
 
+  // LinkedIn connection & posting state
+  const [linkedinStatus, setLinkedinStatus] = useState<{ connected: boolean; name?: string; expiresAt?: string; needsReconnect?: boolean }>({ connected: false });
+  const [isPostingToLinkedin, setIsPostingToLinkedin] = useState(false);
+  const [linkedinPostResult, setLinkedinPostResult] = useState<{ success: boolean; postUrn?: string; error?: string } | null>(null);
+
   const loadStats = useCallback(async () => {
     try {
       const res = await fetch("/api/hong/stats?days=30");
@@ -69,15 +74,43 @@ export default function HongAdminPage() {
     }
   }, []);
 
+  const loadLinkedinStatus = useCallback(async () => {
+    try {
+      const res = await fetch("/api/linkedin/status");
+      if (res.ok) {
+        const data = await res.json();
+        setLinkedinStatus(data);
+      }
+    } catch {
+      console.error("Failed to load LinkedIn status");
+    }
+  }, []);
+
   const loadData = useCallback(async () => {
-    await Promise.all([loadStats(), loadSeries()]);
-  }, [loadStats, loadSeries]);
+    await Promise.all([loadStats(), loadSeries(), loadLinkedinStatus()]);
+  }, [loadStats, loadSeries, loadLinkedinStatus]);
 
   useEffect(() => {
     if (status === "authenticated") {
       loadData();
     }
   }, [status, loadData]);
+
+  // OAuth 콜백 결과 처리
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const linkedinResult = params.get("linkedin");
+    if (linkedinResult) {
+      if (linkedinResult === "connected") {
+        alert("LinkedIn 연결 완료!");
+        loadLinkedinStatus();
+      } else if (linkedinResult === "error") {
+        alert(`LinkedIn 연결 실패: ${params.get("message") || "알 수 없는 오류"}`);
+      }
+      // URL에서 쿼리 파라미터 제거
+      window.history.replaceState({}, "", "/hong");
+    }
+  }, [loadLinkedinStatus]);
 
   const handleLogin = () => { signIn("google"); };
   const handleLogout = () => { signOut(); };
@@ -181,6 +214,30 @@ export default function HongAdminPage() {
   const handleCopyLinkedinSummary = () => {
     navigator.clipboard.writeText(linkedinSummary);
     alert("클립보드에 복사되었습니다!");
+  };
+
+  const handlePostToLinkedin = async () => {
+    if (!linkedinSummary.trim()) return;
+    if (!confirm("LinkedIn에 게시하시겠습니까?")) return;
+
+    setIsPostingToLinkedin(true);
+    setLinkedinPostResult(null);
+    try {
+      const res = await fetch("/api/linkedin/post", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: linkedinSummary }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setLinkedinPostResult({ success: true, postUrn: data.postUrn });
+      } else {
+        setLinkedinPostResult({ success: false, error: data.error || "게시 실패" });
+      }
+    } catch {
+      setLinkedinPostResult({ success: false, error: "네트워크 오류가 발생했습니다." });
+    }
+    setIsPostingToLinkedin(false);
   };
 
   // Loading State
@@ -451,11 +508,18 @@ export default function HongAdminPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white border-4 border-black w-full max-w-2xl overflow-hidden" style={{ boxShadow: "12px 12px 0 black" }}>
             <div className="bg-black text-white p-4 flex items-center justify-between">
-              <h3 className="font-black uppercase flex items-center gap-2">
-                <Linkedin className="w-5 h-5" /> LinkedIn Summary
-              </h3>
+              <div className="flex items-center gap-3">
+                <h3 className="font-black uppercase flex items-center gap-2">
+                  <Linkedin className="w-5 h-5" /> LinkedIn Summary
+                </h3>
+                {linkedinStatus.connected && (
+                  <span className="text-xs bg-green-600 px-2 py-0.5 rounded flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" /> {linkedinStatus.name || "Connected"}
+                  </span>
+                )}
+              </div>
               <button
-                onClick={() => setIsLinkedinModalOpen(false)}
+                onClick={() => { setIsLinkedinModalOpen(false); setLinkedinPostResult(null); }}
                 className="hover:text-gray-300"
               >
                 <X className="w-6 h-6" />
@@ -472,9 +536,11 @@ export default function HongAdminPage() {
               </div>
               <div className="relative">
                 <textarea
-                  readOnly
                   value={linkedinSummary}
-                  className="w-full h-80 p-4 border-4 border-black focus:outline-none bg-gray-50 font-sans text-sm leading-relaxed"
+                  onChange={(e) => setLinkedinSummary(e.target.value)}
+                  className={`w-full h-80 p-4 border-4 focus:outline-none font-sans text-sm leading-relaxed ${
+                    linkedinSummary.length > 3000 ? "border-red-500 bg-red-50" : "border-black bg-white"
+                  }`}
                 />
                 <button
                   onClick={handleCopyLinkedinSummary}
@@ -484,13 +550,75 @@ export default function HongAdminPage() {
                   <Copy className="w-5 h-5" />
                 </button>
               </div>
-              <div className="mt-6 flex justify-end">
+              {/* 글자 수 카운터 */}
+              <div className="mt-2 flex justify-end">
+                <span className={`text-xs font-bold ${linkedinSummary.length > 3000 ? "text-red-600" : "text-gray-500"}`}>
+                  {linkedinSummary.length.toLocaleString()} / 3,000
+                </span>
+              </div>
+
+              {/* 게시 결과 피드백 */}
+              {linkedinPostResult && (
+                <div className={`mt-4 p-3 border-2 text-sm font-bold ${
+                  linkedinPostResult.success
+                    ? "border-green-600 bg-green-50 text-green-800"
+                    : "border-red-600 bg-red-50 text-red-800"
+                }`}>
+                  {linkedinPostResult.success ? (
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4" />
+                      <span>LinkedIn에 게시되었습니다!</span>
+                      <a
+                        href="https://www.linkedin.com/feed/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline flex items-center gap-1 ml-auto"
+                      >
+                        피드 확인 <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4" />
+                      <span>{linkedinPostResult.error}</span>
+                      {linkedinPostResult.error?.includes("연결") && (
+                        <a href="/api/linkedin/authorize" className="underline ml-auto">
+                          재연결
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              <div className="mt-6 flex justify-end gap-3">
                 <button
-                  onClick={() => setIsLinkedinModalOpen(false)}
+                  onClick={() => { setIsLinkedinModalOpen(false); setLinkedinPostResult(null); }}
                   className="px-6 py-2 border-4 border-black font-black uppercase hover:bg-gray-100"
                 >
                   Close
                 </button>
+                {linkedinStatus.connected && !linkedinPostResult?.success && (
+                  <button
+                    onClick={handlePostToLinkedin}
+                    disabled={isPostingToLinkedin || linkedinSummary.length > 3000 || !linkedinSummary.trim()}
+                    className="px-6 py-2 bg-[#0A66C2] text-white font-black uppercase flex items-center gap-2 hover:bg-[#004182] disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                  >
+                    {isPostingToLinkedin ? (
+                      <><Loader2 className="w-4 h-4 animate-spin" /> Posting...</>
+                    ) : (
+                      <><Send className="w-4 h-4" /> Post to LinkedIn</>
+                    )}
+                  </button>
+                )}
+                {!linkedinStatus.connected && (
+                  <a
+                    href="/api/linkedin/authorize"
+                    className="px-6 py-2 bg-[#0A66C2] text-white font-black uppercase flex items-center gap-2 hover:bg-[#004182] transition"
+                  >
+                    <Linkedin className="w-4 h-4" /> Connect LinkedIn
+                  </a>
+                )}
               </div>
             </div>
           </div>

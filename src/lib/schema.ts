@@ -317,7 +317,23 @@ export const seoDocuments = pgTable("seo_documents", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// LinkedIn Tokens Table (단일 관리자용, 1행만 유지)
+export const linkedinTokens = pgTable("linkedin_tokens", {
+  id: serial("id").primaryKey(),
+  personUrn: varchar("person_urn", { length: 255 }).notNull(),
+  accessToken: text("access_token").notNull(),
+  refreshToken: text("refresh_token"),
+  accessTokenExpiresAt: timestamp("access_token_expires_at").notNull(),
+  refreshTokenExpiresAt: timestamp("refresh_token_expires_at"),
+  scopes: varchar("scopes", { length: 500 }),
+  linkedinName: varchar("linkedin_name", { length: 255 }),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 // Types
+export type LinkedinToken = typeof linkedinTokens.$inferSelect;
+export type NewLinkedinToken = typeof linkedinTokens.$inferInsert;
 export type Series = typeof series.$inferSelect;
 export type NewSeries = typeof series.$inferInsert;
 export type Post = typeof posts.$inferSelect;
