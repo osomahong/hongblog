@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
 import { getCourseBySlug } from "@/lib/queries";
 import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
+import { SITE_URL } from "@/lib/constants";
+import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = 'force-dynamic';
 
@@ -21,13 +23,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     }
 
+    const effectiveTitle = course.metaTitle || course.title;
+    const effectiveDescription = course.metaDescription || course.description || undefined;
+
     return {
-        title: course.metaTitle || course.title,
-        description: course.metaDescription || course.description || undefined,
+        title: effectiveTitle,
+        description: effectiveDescription,
+        alternates: {
+            canonical: course.canonicalUrl || `${SITE_URL}/class/${courseSlug}`,
+        },
         openGraph: {
-            title: course.metaTitle || course.title,
-            description: course.metaDescription || course.description || undefined,
-            images: course.ogImage ? [course.ogImage] : undefined,
+            title: effectiveTitle,
+            description: effectiveDescription,
+            type: "website",
+            images: course.ogImage ? [{ url: course.ogImage, width: 1200, height: 630 }] : undefined,
         },
     };
 }
@@ -40,7 +49,44 @@ export default async function CourseDetailPage({ params }: Props) {
         notFound();
     }
 
+    // Schema.org JSON-LD
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        name: course.title,
+        description: course.description,
+        provider: {
+            "@type": "Person",
+            name: "준이아빠",
+            url: absoluteUrl("/about"),
+        },
+        numberOfCredits: course.classCount,
+        hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: "online",
+        },
+    };
+
+    const breadcrumbLd = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+            { "@type": "ListItem", position: 2, name: "Class", item: absoluteUrl("/class") },
+            { "@type": "ListItem", position: 3, name: course.title, item: absoluteUrl(`/class/${courseSlug}`) },
+        ],
+    };
+
     return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+            />
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
             {/* Back Button */}
             <Link href="/class" className="inline-block mb-4 sm:mb-6">
@@ -112,5 +158,6 @@ export default async function CourseDetailPage({ params }: Props) {
                 </div>
             )}
         </div>
+        </>
     );
 }
