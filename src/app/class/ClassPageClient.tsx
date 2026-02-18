@@ -13,7 +13,7 @@ import {
 import { NeoBadge } from "@/components/neo";
 import { CourseWithClasses } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const categoryIcons = {
     AI_TECH: Sparkles,
@@ -32,6 +32,8 @@ const difficultyLabels = {
     INTERMEDIATE: "중급",
     ADVANCED: "고급",
 };
+
+const PREVIEW_COUNT = 3;
 
 interface ClassPageClientProps {
     courses: CourseWithClasses[];
@@ -59,6 +61,35 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
         });
     };
 
+    const renderClassItem = (cls: CourseWithClasses["classes"][number], idx: number, courseSlug: string) => {
+        const isChecked = checkedClasses.has(cls.id);
+        const CheckIcon = isChecked ? CheckSquare : Square;
+
+        return (
+            <Link
+                key={cls.id}
+                href={`/class/${courseSlug}/${cls.slug}`}
+                className="block"
+            >
+                <div className="flex items-center gap-2 p-2 rounded hover:bg-purple-100 transition-colors group">
+                    <button
+                        onClick={(e) => toggleCheck(cls.id, e)}
+                        className="flex-shrink-0 text-muted-foreground hover:text-purple-600 transition-colors"
+                    >
+                        <CheckIcon className="w-3 h-3 sm:w-4 sm:h-4" />
+                    </button>
+                    <span className="text-[10px] sm:text-xs text-muted-foreground min-w-[1.25rem]">
+                        {idx + 1}.
+                    </span>
+                    <span className="text-xs sm:text-sm flex-1 group-hover:text-purple-600 transition-colors">
+                        {cls.term}
+                    </span>
+                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground group-hover:text-purple-600 -rotate-90 transition-colors" />
+                </div>
+            </Link>
+        );
+    };
+
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-12">
             {/* Hero Section */}
@@ -83,11 +114,13 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                 </span>
             </div>
 
-            {/* Courses List - Accordion Style */}
+            {/* Courses List */}
             <section className="space-y-4 sm:space-y-6">
                 {courses.map((course) => {
                     const Icon = categoryIcons[course.category as keyof typeof categoryIcons];
                     const isExpanded = expandedCourseId === course.id;
+                    const hasMore = course.classes.length > PREVIEW_COUNT;
+                    const visibleClasses = isExpanded ? course.classes : course.classes.slice(0, PREVIEW_COUNT);
 
                     return (
                         <div key={course.id} className="relative">
@@ -146,49 +179,28 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                         </span>
                                     </div>
 
-                                    {/* Curriculum Full - Only show when expanded */}
-                                    {isExpanded && (
-                                        <div className="curriculum-container transition-all duration-300 bg-purple-50 -mx-4 sm:-mx-6 px-4 sm:px-6 py-4 border-y-2 border-purple-200 animate-slideDown">
-                                            <div className="flex items-center justify-between mb-3">
-                                                <h4 className="text-xs sm:text-sm font-bold uppercase text-purple-700">
-                                                    📚 커리큘럼
-                                                </h4>
-                                                <span className="text-[10px] sm:text-xs font-bold text-purple-600 animate-pulse">
-                                                    ● 확장됨
-                                                </span>
-                                            </div>
+                                    {/* Curriculum List */}
+                                    <div className={`bg-purple-50 -mx-4 sm:-mx-6 px-4 sm:px-6 py-4 border-y-2 border-purple-200 ${isExpanded ? 'animate-slideDown' : ''}`}>
+                                        <h4 className="text-xs sm:text-sm font-bold uppercase text-purple-700 mb-3">
+                                            📚 커리큘럼
+                                        </h4>
 
-                                            <div className="space-y-1 sm:space-y-2">
-                                                {course.classes.map((cls, idx) => {
-                                                    const isChecked = checkedClasses.has(cls.id);
-                                                    const CheckIcon = isChecked ? CheckSquare : Square;
-
-                                                    return (
-                                                        <Link
-                                                            key={cls.id}
-                                                            href={`/class/${course.slug}/${cls.slug}`}
-                                                            className="block"
-                                                        >
-                                                            <div className="flex items-center gap-2 p-2 rounded hover:bg-accent/50 transition-colors group">
-                                                                <button
-                                                                    onClick={(e) => toggleCheck(cls.id, e)}
-                                                                    className="flex-shrink-0 text-muted-foreground hover:text-purple-600 transition-colors"
-                                                                >
-                                                                    <CheckIcon className="w-3 h-3 sm:w-4 sm:h-4" />
-                                                                </button>
-                                                                <span className="text-[10px] sm:text-xs text-muted-foreground min-w-[1.25rem]">
-                                                                    {idx + 1}.
-                                                                </span>
-                                                                <span className="text-xs sm:text-sm flex-1 group-hover:text-purple-600 transition-colors">
-                                                                    {cls.term}
-                                                                </span>
-                                                            </div>
-                                                        </Link>
-                                                    );
-                                                })}
-                                            </div>
+                                        <div className="space-y-1 sm:space-y-2">
+                                            {visibleClasses.map((cls, idx) =>
+                                                renderClassItem(cls, idx, course.slug)
+                                            )}
                                         </div>
-                                    )}
+
+                                        {/* 더보기 안내 */}
+                                        {!isExpanded && hasMore && (
+                                            <button
+                                                onClick={() => toggleExpand(course.id)}
+                                                className="mt-2 text-[10px] sm:text-xs text-purple-500 hover:text-purple-700 transition-colors"
+                                            >
+                                                +{course.classes.length - PREVIEW_COUNT}개 더보기
+                                            </button>
+                                        )}
+                                    </div>
                                 </NeoCardContent>
 
                                 <NeoCardFooter className="flex items-center justify-between border-t-2 border-black pt-4">
@@ -198,7 +210,7 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                     <button
                                         onClick={() => toggleExpand(course.id)}
                                         className={`
-                                            flex items-center gap-2 px-4 py-2 
+                                            flex items-center gap-2 px-4 py-2
                                             font-black uppercase tracking-tight
                                             border-2 border-black rounded
                                             transition-all duration-200

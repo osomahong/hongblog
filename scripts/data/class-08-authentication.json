@@ -1,0 +1,26 @@
+{
+  "slug": "what-is-authentication",
+  "term": "인증과 보안 (Authentication & Security)",
+  "definition": "사용자가 누구인지 확인하고(인증), 허가된 사람만 데이터에 접근할 수 있도록 보호하는(보안) 시스템입니다.",
+  "content": "## 🤔 혹시 이런 경험 있나요?\n\nAI에게 \"로그인 기능 만들어줘\"라고 했더니 NextAuth, Supabase Auth, Clerk 같은 용어가 쏟아집니다. 또는 \"Google로 로그인\" 버튼을 만들라고 하니까 OAuth 설정이 필요하다고 합니다. 인증은 대체 왜 이렇게 복잡하고, 바이브코딩할 때 보안은 어디까지 신경 써야 할까요?\n\n## 🔐 인증이란 무엇인가요?\n\n**인증(Authentication)**은 \"당신이 누구인지\" 확인하는 과정입니다. 현실에서 비유하면 이렇습니다.\n\n- **아파트 출입**: 카드를 찍어야 문이 열립니다 → **비밀번호 로그인**\n- **공항 출입국**: 여권을 보여줘야 합니다 → **신원 확인**\n- **은행 업무**: 신분증 + OTP 번호가 필요합니다 → **다중 인증(MFA)**\n\n웹에서도 마찬가지입니다. 사용자가 이메일과 비밀번호를 입력하면, 서버가 \"이 사람이 진짜 회원인지\" 확인하는 것이 인증입니다.\n\n## 🎫 세션 vs 토큰: 로그인 상태를 유지하는 두 가지 방법\n\n로그인에 성공하면 \"이 사람은 확인된 사용자\"라는 정보를 어딘가에 기록해야 합니다. 그래야 페이지를 이동할 때마다 다시 로그인하지 않아도 되니까요.\n\n### 세션(Session) 방식\n\n서버가 사용자 정보를 **서버 메모리에 저장**하고, 브라우저에는 **세션 ID**만 쿠키로 보내줍니다.\n\n```\n1. 로그인 → 서버: \"user123 확인. 세션 ID: abc789\"\n2. 서버 메모리에 저장: { abc789: { userId: 123, name: '홍길동' } }\n3. 브라우저 쿠키에 저장: session_id=abc789\n4. 다음 요청 시 → 쿠키의 세션 ID를 보내서 본인 확인\n```\n\n### 토큰(Token) 방식 - JWT\n\n서버가 사용자 정보를 **암호화된 토큰**으로 만들어 브라우저에 보내줍니다. 서버는 아무것도 저장하지 않습니다.\n\n```\n1. 로그인 → 서버: \"user123 확인. JWT 토큰 발급\"\n2. 토큰에 사용자 정보가 암호화되어 포함됨\n3. 브라우저가 토큰을 저장 (localStorage 또는 쿠키)\n4. 다음 요청 시 → 토큰을 보내면 서버가 복호화해서 확인\n```\n\n바이브코딩에서는 대부분 **토큰 방식(JWT)**을 사용합니다. 서버가 상태를 저장하지 않아도 되어서 더 간단하기 때문입니다.\n\n## 🌐 OAuth: \"Google로 로그인\"의 원리\n\n\"Google로 로그인\", \"GitHub로 로그인\" 버튼을 본 적 있으실 겁니다. 이것이 바로 **OAuth**입니다.\n\nOAuth는 다른 서비스의 계정으로 로그인할 수 있게 해주는 표준 방식입니다. 작동 원리는 이렇습니다.\n\n```\n1. 사용자: \"Google로 로그인\" 버튼 클릭\n2. Google: \"이 앱에 이메일 정보를 제공해도 될까요?\"\n3. 사용자: \"허용합니다\"\n4. Google → 우리 앱: \"이 사용자의 이메일은 hong@gmail.com입니다\"\n5. 우리 앱: 해당 정보로 로그인 처리\n```\n\nOAuth의 장점은 **우리 서버에 비밀번호를 저장하지 않아도 된다**는 것입니다. 비밀번호 관리라는 큰 보안 부담을 Google이나 GitHub에 맡기는 셈입니다.\n\n## ⚠️ 바이브코딩할 때 흔한 보안 실수\n\n### 1. API 키나 비밀번호를 코드에 직접 작성\n\n```javascript\n// 절대 이렇게 하면 안 됩니다\nconst dbPassword = 'mypassword123'\nconst apiKey = 'sk-abc123...'\n\n// 환경 변수를 사용하세요\nconst dbPassword = process.env.DATABASE_PASSWORD\nconst apiKey = process.env.API_KEY\n```\n\nGitHub에 코드를 올리면 이 비밀번호가 전 세계에 공개됩니다. 실제로 이런 실수로 수백만 원의 클라우드 비용이 청구되는 사례가 자주 발생합니다.\n\n### 2. API 라우트에 인증 검사를 빠뜨림\n\nAI가 만들어준 API 라우트가 누구나 접근 가능하게 되어 있는 경우가 많습니다. 예를 들어 `/api/users/delete` 같은 위험한 경로에 인증 검사가 없으면, 아무나 사용자를 삭제할 수 있습니다.\n\n```javascript\n// 인증 검사 없이 위험한 작업 허용 (잘못된 예시)\nexport async function DELETE(req) {\n  await db.user.delete({ where: { id: req.params.id } })\n}\n\n// 인증 검사 추가 (올바른 예시)\nexport async function DELETE(req) {\n  const session = await getSession(req)\n  if (!session) return new Response('Unauthorized', { status: 401 })\n  await db.user.delete({ where: { id: req.params.id } })\n}\n```\n\nAI에게 코드를 요청할 때 **\"인증된 사용자만 접근할 수 있게 해줘\"**라고 반드시 명시하세요.\n\n### 3. HTTPS를 사용하지 않음\n\nHTTP로 데이터를 보내면 중간에 누군가 내용을 엿볼 수 있습니다. 다행히 Vercel, Netlify 같은 배포 플랫폼은 기본적으로 HTTPS를 제공하므로, 이 플랫폼들을 사용하면 별도 설정 없이 해결됩니다.\n\n## 📋 30초 요약\n\n1. **인증(Authentication)은 사용자가 누구인지 확인하는 과정**입니다. 세션 방식과 토큰(JWT) 방식이 있으며, 바이브코딩에서는 토큰 방식을 주로 사용합니다.\n\n2. **OAuth는 Google, GitHub 같은 외부 서비스로 로그인하는 표준 방식**입니다. 비밀번호를 직접 관리하지 않아도 되어 보안에 유리합니다.\n\n3. **API 키는 환경 변수에 보관하고, 모든 API 라우트에 인증 검사를 추가**하세요. AI에게 코드를 요청할 때 보안 요구사항을 반드시 명시하는 습관을 들이세요.",
+  "category": "AI_TECH",
+  "orderInCourse": 8,
+  "difficulty": "BEGINNER",
+  "isPublished": true,
+  "aliases": ["인증", "Authentication", "Auth", "로그인", "OAuth"],
+  "relatedTerms": ["what-is-env-variables", "what-is-rest-api"],
+  "tags": ["바이브코딩"],
+  "quiz": [
+    {
+      "question": "바이브코딩으로 만든 웹 앱에 'Google로 로그인' 기능을 넣었습니다. 이 방식의 가장 큰 보안상 장점은 무엇일까요?",
+      "options": [
+        "로그인 속도가 비밀번호 방식보다 빠르다",
+        "우리 서버에 사용자 비밀번호를 저장하지 않아도 된다",
+        "Google 계정이 없는 사용자도 로그인할 수 있다",
+        "서버에 세션을 저장할 필요가 없어진다"
+      ],
+      "correctIndex": 1,
+      "explanation": "OAuth의 가장 큰 보안상 장점은 우리 서버에 비밀번호를 저장하지 않아도 된다는 점입니다. 비밀번호 관리(암호화, 유출 방지, 재설정 기능 등)는 보안의 큰 부담인데, Google이나 GitHub 같은 대형 서비스에 이 책임을 위임할 수 있습니다. 바이브코딩처럼 보안 전문 지식이 부족한 상황에서 특히 유용한 방식입니다."
+    }
+  ]
+}
