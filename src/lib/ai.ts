@@ -315,8 +315,7 @@ export async function generateLinkedInSummary(data: {
 [마무리 — 평문 2-3문장]
 이야기를 부드럽게 정리하며 블로그 글로 연결.
 "제 학습의 결과를 정리해봤습니다", "같은 고민을 하는 분들께 도움이 되면 좋겠습니다" 같은 겸손한 공유.
-마지막에 [글 제목] 줄바꿈 후 URL을 넣어라.
-
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.title}]
 ${data.url}
 
@@ -641,8 +640,7 @@ export async function generateCourseLinkedInSummary(data: {
 [마무리 — 평문 2-3문장]
 이야기를 부드럽게 정리하며 가이드로 연결.
 "같은 고민을 하는 분들께 도움이 되면 좋겠습니다" 같은 겸손한 공유.
-마지막에 [코스 제목] 줄바꿈 후 URL을 넣어라.
-
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.courseTitle}]
 ${data.url}
 
