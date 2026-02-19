@@ -1,4 +1,4 @@
-import { AuthClient, RestliClient } from "linkedin-api-client";
+import { AuthClient } from "linkedin-api-client";
 import { db } from "./db";
 import { linkedinTokens } from "./schema";
 import { eq } from "drizzle-orm";
@@ -12,8 +12,6 @@ function getAuthClient() {
     redirectUrl: process.env.LINKEDIN_REDIRECT_URI!,
   });
 }
-
-const restliClient = new RestliClient();
 
 /** OAuth2 인증 URL 생성 */
 export function getAuthorizationUrl(state: string): string {
@@ -150,33 +148,42 @@ export async function postToLinkedIn(
   }
 
   try {
-    const response = await restliClient.create({
-      resourcePath: "/posts",
-      entity: {
-        author: tokenData.personUrn,
-        commentary: text,
-        visibility: "PUBLIC",
-        distribution: {
-          feedDistribution: "MAIN_FEED",
-          targetEntities: [],
-          thirdPartyDistributionChannels: [],
-        },
-        lifecycleState: "PUBLISHED",
-        isReshareDisabledByAuthor: false,
+    const body = JSON.stringify({
+      author: tokenData.personUrn,
+      commentary: text,
+      visibility: "PUBLIC",
+      distribution: {
+        feedDistribution: "MAIN_FEED",
+        targetEntities: [],
+        thirdPartyDistributionChannels: [],
       },
-      accessToken: tokenData.accessToken,
-      versionString: "202601",
+      lifecycleState: "PUBLISHED",
+      isReshareDisabledByAuthor: false,
     });
 
-    return { success: true, postUrn: response.createdEntityId as string };
+    const response = await fetch("https://api.linkedin.com/rest/posts", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${tokenData.accessToken}`,
+        "Content-Type": "application/json; charset=UTF-8",
+        "LinkedIn-Version": "202601",
+        "X-Restli-Protocol-Version": "2.0.0",
+      },
+      body,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      console.error("LinkedIn post failed:", response.status, errorData);
+      const message = errorData?.message || `LinkedIn API 오류 (${response.status})`;
+      return { success: false, error: message };
+    }
+
+    const postUrn = response.headers.get("x-restli-id") || undefined;
+    return { success: true, postUrn };
   } catch (error: unknown) {
-    console.error(
-      "LinkedIn post failed:",
-      (error as { response?: { data?: unknown } })?.response?.data || error,
-    );
-    const message =
-      (error as { response?: { data?: { message?: string } } })?.response?.data
-        ?.message || "LinkedIn 게시 중 오류가 발생했습니다.";
+    console.error("LinkedIn post failed:", error);
+    const message = error instanceof Error ? error.message : "LinkedIn 게시 중 오류가 발생했습니다.";
     return { success: false, error: message };
   }
 }
