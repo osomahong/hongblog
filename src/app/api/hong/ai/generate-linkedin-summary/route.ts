@@ -13,7 +13,15 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        let summary = await generateLinkedInSummary({ title, content, url });
+        // UTM 파라미터 추가
+        let utmUrl = url;
+        if (url) {
+            const sep = url.includes("?") ? "&" : "?";
+            const campaign = encodeURIComponent(title || "post");
+            utmUrl = `${url}${sep}utm_source=linkedin&utm_medium=social&utm_campaign=${campaign}`;
+        }
+
+        let summary = await generateLinkedInSummary({ title, content, url: utmUrl });
 
         if (!summary) {
             return NextResponse.json(
@@ -23,10 +31,10 @@ export async function POST(request: NextRequest) {
         }
 
         // 최종 안전망: AI가 플레이스홀더를 남긴 경우 실제 URL로 치환
-        if (url) {
-            summary = summary.replace(/\{link\}|\{url\}|\{URL\}|\[링크\]|\[link\]|\[URL\]|\(link\)|\(url\)/gi, url);
-            if (!summary.includes(url)) {
-                summary = summary.trimEnd() + "\n" + url;
+        if (utmUrl) {
+            summary = summary.replace(/\{link\}|\{url\}|\{URL\}|\[링크\]|\[link\]|\[URL\]|\(link\)|\(url\)/gi, utmUrl);
+            if (!summary.includes(utmUrl)) {
+                summary = summary.trimEnd() + "\n" + utmUrl;
             }
         }
 
