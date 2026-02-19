@@ -47,18 +47,12 @@ export async function POST(request: NextRequest) {
         const campaign = encodeURIComponent(course.title);
         const utmUrl = `${courseUrl}?utm_source=linkedin&utm_medium=social&utm_campaign=${campaign}`;
 
-        let summary = await generateCourseLinkedInSummary({
+        const summary = await generateCourseLinkedInSummary({
             courseTitle: course.title,
             courseDescription: course.description || "",
             classes: courseClasses.map(c => ({ term: c.term, definition: c.definition })),
             url: utmUrl
         });
-
-        // 최종 안전망: AI가 플레이스홀더를 남긴 경우 실제 URL로 치환
-        summary = summary.replace(/\{link\}|\{url\}|\{URL\}|\[링크\]|\[link\]|\[URL\]|\(link\)|\(url\)/gi, utmUrl);
-        if (!summary.includes(utmUrl)) {
-            summary = summary.trimEnd() + "\n" + utmUrl;
-        }
 
         return NextResponse.json({ summary });
     } catch (error) {
