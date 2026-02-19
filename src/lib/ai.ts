@@ -3,7 +3,7 @@ import { CANONICAL_TAGS_FLAT } from "./constants";
 
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY!);
 export const aiModel = genAI.getGenerativeModel({
-  model: process.env.AI_MODEL_NAME || "gemini-1.5-flash",
+  model: process.env.AI_MODEL_NAME || "gemini-2.5-flash-preview-05-20",
 });
 
 export async function generateTagsFromContent(content: string): Promise<string[]> {
@@ -190,7 +190,6 @@ export interface ContentMetadata {
   slug: string;
   excerpt: string;
   category: "MARKETING" | "AI_TECH" | "DATA" | "맛집" | "강의" | "문화생활" | "여행" | "일상";
-  highlights: string[];
   tags: string[];
 }
 
@@ -207,7 +206,6 @@ ${content.substring(0, 3000)}
   "slug": "url-friendly-slug-in-english (소문자, 하이픈 사용, 50자 이내)",
   "excerpt": "글 요약 (100-150자, 한국어, 핵심 내용 포함)",
   "category": "MARKETING, AI_TECH, DATA, 맛집, 강의, 문화생활, 여행, 일상 중 하나",
-  "highlights": ["핵심포인트1", "핵심포인트2"] (2-3개, 짧은 키워드),
   "tags": ["태그1", "태그2", "태그3"] (3-5개, 반드시 다음 목록에서만 선택: ${CANONICAL_TAGS_FLAT.join(", ")})
 }
 
@@ -243,7 +241,6 @@ ${content.substring(0, 3000)}
       slug: parsed.slug.toLowerCase().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-"),
       excerpt: parsed.excerpt || "",
       category: parsed.category,
-      highlights: Array.isArray(parsed.highlights) ? parsed.highlights.slice(0, 3) : [],
       tags: Array.isArray(parsed.tags) ? parsed.tags.slice(0, 5) : [],
     };
   } catch (error) {
@@ -252,78 +249,80 @@ ${content.substring(0, 3000)}
   }
 }
 
+// LinkedIn 포스트 후처리: 플레이스홀더 → 실제 URL 치환 + URL 누락 시 추가
+function postProcessLinkedInText(text: string, url: string): string {
+  // 1. 모든 형태의 플레이스홀더를 실제 URL로 치환
+  let result = text.replace(/\{link\}|\{url\}|\{URL\}|\[링크\]|\[link\]|\[URL\]|\(link\)|\(url\)/gi, url);
+  // 2. 텍스트에 실제 URL이 없으면 마지막에 추가
+  if (!result.includes(url)) {
+    result = result.trimEnd() + "\n" + url;
+  }
+  return result;
+}
+
 // AI 기반 링크드인 업로드용 요약 생성
 export async function generateLinkedInSummary(data: {
   title: string;
   content: string;
   url: string;
 }): Promise<string> {
-  const prompt = `블로그 글을 홍보하는 LinkedIn 포스트를 작성해라.
+  const prompt = `너는 LinkedIn에서 바이럴을 만드는 콘텐츠 라이터다.
+아래 블로그 글을 기반으로 LinkedIn 포스트를 써라.
 
-포맷 규칙:
-- 한 문장당 한 줄. 한 줄에 두 문장 넣지 마라.
-- 의미 단락 사이에 빈 줄을 넣어 가독성을 확보해라.
-- 마크다운 문법 금지. 순수 텍스트만.
-- 이모지 사용 금지.
-- 기술 용어는 영어, 나머지는 한국어.
+== 톤 ==
+- 도발적이고 단정적인 문체. 조심스러운 표현 금지.
+- "~일 수 있습니다" 대신 "~입니다"로 끊어라.
+- 독자가 "나도 저런 실수 했는데" 하고 자기 얘기처럼 느끼게 써라.
+- 1인칭 경험담 톤. "저도 그랬습니다", "직접 겪어보니" 등.
 
-내용 규칙:
-- 읽을거리를 충분히 제공해라. 너무 짧으면 안 된다.
-- 글에서 다루는 문제 상황, 배경, 맥락을 구체적으로 풀어라.
-- 단, 글의 최종 결론이나 해결책 자체는 공개하지 마라. 궁금증을 남겨라.
-- 본인의 경험이나 관점을 섞어서 공감을 만들어라.
+== 포맷 ==
+- 한 줄에 한 문장. 두 문장 절대 금지.
+- 의미 단락 사이 빈 줄.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어 영어, 나머지 한국어.
+- 총 20-30줄 (빈 줄 포함).
 
-구조 (총 25-35줄, 빈 줄 포함):
+== 구조 ==
 
-[훅 — 1-2줄]
-스크롤을 멈추게 하는 한 줄. 도발적 질문, 반직관적 사실, 공감가는 문제.
+1줄: 훅 (스크롤 멈추게 하는 한 줄. 충격, 도발, 공감 중 택 1)
 
-(빈 줄)
+빈 줄
 
-[문제/배경 — 5-8줄]
-이 주제가 왜 중요한지, 실무에서 어떤 상황에서 부딪히는지 구체적으로 서술.
-경험담이나 현실적인 시나리오를 포함해라.
+4-7줄: 문제를 날카롭게 파고들어라.
+"왜 이것을 모르면 안 되는지" 실무 시나리오로 보여줘라.
+숫자, 실패 사례, 현실적 상황을 넣어라.
+추상적 설명 금지. 구체적 장면을 그려라.
 
-(빈 줄)
+빈 줄
 
-[인사이트 힌트 — 5-8줄]
-글에서 다루는 접근 방식이나 관점의 방향만 제시.
-"이런 관점에서 생각해볼 수 있다", "흔히 놓치는 부분이 있다" 수준의 힌트.
-구체적 방법론이나 답은 숨겨라.
+4-7줄: 글에서 다루는 관점의 힌트만 던져라.
+"이런 식으로 접근하면 달라진다" 수준.
+결론은 절대 공개하지 마라.
+읽고 나면 "그래서 뭔데?" 하고 링크를 누르게 만들어라.
 
-(빈 줄)
+빈 줄
 
-[마무리 + 링크 — 2-3줄]
-자연스러운 마무리 후 링크.
+1줄: 한 문장으로 마무리
+1줄: ${data.url}
 
-좋은 예:
-"GA4 Direct 트래픽이 갑자기 늘었다면.
+== 절대 금지 ==
+- "오늘은 ~에 대해", "~가 중요합니다", "~를 소개합니다" 같은 밋밋한 도입
+- "새로운 글에서 확인해 보세요" 같은 뻔한 CTA
+- {link}, [링크], (url) 같은 플레이스홀더. 반드시 실제 URL을 써라.
 
-대부분 UTM 세팅 문제라고 생각합니다.
-저도 처음엔 그랬습니다.
-
-그런데 실제로 데이터를 뜯어보면
-UTM이 아닌 곳에서 원인이 나오는 경우가 많습니다.
-
-Referrer 정책이 바뀌었을 수도 있고
-앱 내 브라우저에서 유입이 누락되었을 수도 있습니다.
-생각보다 다양한 경로에서 Direct로 잡힙니다.
-
-문제는 이걸 모르면
-광고비를 엉뚱한 곳에 쓰게 된다는 겁니다.
-
-원인별 진단 방법을 정리해봤습니다.
-{link}"
-
-원문 정보:
+== 원문 ==
 제목: ${data.title}
-내용: ${data.content.substring(0, 2000)}
 URL: ${data.url}
+내용:
+${data.content.substring(0, 2000)}
 
-LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
+위 원문을 기반으로 LinkedIn 포스트 텍스트만 출력해라.
+따옴표, 부연 설명, "다음은~" 같은 메타 텍스트 없이 포스트 본문만.`;
+
   try {
     const result = await aiModel.generateContent(prompt);
-    return result.response.text().trim();
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
   } catch (error) {
     console.error("AI LinkedIn summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
@@ -580,58 +579,50 @@ export async function generateCourseLinkedInSummary(data: {
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<string> {
-  const classesContext = data.classes
-    .map((c, i) => `${i + 1}. ${c.term}: ${c.definition}`)
-    .join("\n");
+  const prompt = `너는 LinkedIn에서 바이럴을 만드는 콘텐츠 라이터다.
+아래 코스(용어/개념 가이드) 정보를 바탕으로 LinkedIn 포스트를 써라.
 
-  const prompt = `본인이 만든 용어/개념 가이드(Course)를 홍보하는 LinkedIn 포스트를 작성해라.
+== 톤 ==
+- 도발적이고 단정적인 문체. 조심스러운 표현 금지.
+- "~일 수 있습니다" 대신 "~입니다"로 끊어라.
+- 정중하지만 거침없는 1인칭 화법.
+- 독자를 살짝 불편하게 만들어라. 그래야 읽는다.
 
-포맷 규칙:
+== 포맷 ==
 - 한 문장당 한 줄. 한 줄에 두 문장 넣지 마라.
-- 의미 단락 사이에 빈 줄을 넣어 가독성을 확보해라.
-- 마크다운 문법 금지. 순수 텍스트만.
-- 이모지 사용 금지.
+- 의미 단락 사이에 빈 줄 필수.
+- 마크다운 금지. 순수 텍스트만.
+- 이모지 금지.
 - 기술 용어는 영어, 나머지는 한국어.
 
-내용 규칙:
-- 읽을거리를 충분히 제공해라. 너무 짧으면 안 된다.
-- 이 분야에서 실무자들이 겪는 혼란, 오해, 어려움을 구체적으로 풀어라.
-- 용어 정의나 목록을 직접 나열하지 마라. 가이드의 존재와 가치만 전달해라.
-- 본인의 경험이나 관점을 섞어서 공감을 만들어라.
+== 구조 (총 20-30줄, 빈 줄 포함) ==
+1) 훅 — 1줄. 이 분야 실무자의 흔한 오해나 착각을 도발적으로 던져라.
+2) (빈 줄)
+3) 문제 전개 — 4-6줄. 왜 이 착각이 위험한지, 실무에서 어떤 문제를 일으키는지.
+4) (빈 줄)
+5) 전환 — 4-6줄. 이 가이드가 어떤 관점을 바꿔주는지 힌트만 줘라. 용어 나열 금지.
+6) (빈 줄)
+7) 마무리 1줄 + 아래 URL 한 줄:
+${data.url}
 
-구조 (총 25-35줄, 빈 줄 포함):
+== 절대 금지 ==
+- "오늘은 ~에 대해", "~가 중요합니다", "~를 소개합니다" 같은 밋밋한 도입
+- "새로운 글에서 확인해 보세요" 같은 뻔한 CTA
+- {link}, [링크], (url) 같은 플레이스홀더. 반드시 실제 URL을 써라.
+- 용어 정의나 목록을 직접 나열하는 행위. 가이드의 가치만 전달해라.
 
-[훅 — 1-2줄]
-이 분야에서 흔히 겪는 혼란이나 오해를 던져라.
-
-(빈 줄)
-
-[문제/배경 — 5-8줄]
-왜 이 개념들이 헷갈리는지, 실무에서 어떤 문제가 생기는지 구체적으로 서술.
-경험담이나 현실적인 시나리오를 포함해라.
-
-(빈 줄)
-
-[가이드 힌트 — 5-8줄]
-이 가이드가 어떤 관점에서 정리되었는지 방향만 제시.
-구체적 용어나 내용은 숨기고, "이런 흐름으로 잡아봤다" 수준의 힌트.
-
-(빈 줄)
-
-[마무리 + 링크 — 2-3줄]
-자연스러운 마무리 후 링크.
-
-원문 정보:
+== 원문 정보 ==
 코스 제목: ${data.courseTitle}
 코스 설명: ${data.courseDescription}
 주제 수: ${data.classes.length}개
-URL: ${data.url}
+실제 URL: ${data.url}
 
 LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
 
   try {
     const result = await aiModel.generateContent(prompt);
-    return result.response.text().trim();
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
   } catch (error) {
     console.error("AI Course LinkedIn summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";

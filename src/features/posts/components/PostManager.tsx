@@ -15,7 +15,6 @@ type Post = {
     excerpt: string | null;
     content: string;
     category: string;
-    highlights: string[] | null;
     thumbnailUrl: string | null;
     tags: string[];
     isPublished: boolean;

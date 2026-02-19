@@ -71,7 +71,6 @@ type PostWithRelations = {
   excerpt: string | null;
   content: string;
   category: string;
-  highlights: unknown;
   thumbnailUrl: string | null;
   isPublished: boolean;
   createdAt: Date;
@@ -104,7 +103,6 @@ async function getPostsByCategory(category: Category) {
     .filter((post) => post.isPublished)
     .map((post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
     }));
 }

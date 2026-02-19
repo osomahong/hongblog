@@ -165,7 +165,7 @@ export async function postToLinkedIn(
         isReshareDisabledByAuthor: false,
       },
       accessToken: tokenData.accessToken,
-      versionString: "202401",
+      versionString: "202601",
     });
 
     return { success: true, postUrn: response.createdEntityId as string };

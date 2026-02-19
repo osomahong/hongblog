@@ -309,7 +309,7 @@ function findNearestParagraphEnd(
 }
 
 /**
- * 섹션 내용 기반 심플 3D 일러스트 스타일 이미지 프롬프트 생성
+ * 섹션 내용 기반 개념 장면(conceptual scene) 일러스트 프롬프트 생성
  */
 async function generateImagePrompt(
   sectionTitle: string,
@@ -321,34 +321,35 @@ async function generateImagePrompt(
       model: PROMPT_MODEL,
       config: {
         systemInstruction:
-          "You are an expert at writing image-generation prompts for simple, friendly 3D illustration icons. " +
-          "Your prompts produce clean, minimal 3D rendered scenes with 1-3 symbolic objects or cute cartoon characters. " +
-          "The style is soft, rounded, colorful like Pixar or clay-render — NOT complex diagrams or flowcharts. " +
-          "Keep compositions very simple: one central subject with minimal supporting elements. " +
-          "The images must contain ABSOLUTELY NO TEXT, letters, words, or characters of any language.",
+          "You write image-generation prompts that depict a SCENE — a cartoon character (a small robot, a person, or an animal) actively DOING something in a specific setting. " +
+          "Every prompt MUST describe: (1) WHO is in the scene, (2) WHAT action they are performing, (3) WHERE the scene takes place. " +
+          "NEVER produce a prompt for isolated floating objects, abstract icons, or symbols without a character. " +
+          "Style: Pixar/clay-render 3D, soft rounded shapes, pastel colors, white background. " +
+          "NO text, letters, or words of any language in the image.",
         temperature: 0.7,
         maxOutputTokens: 500,
       },
       contents: `Blog section title: "${sectionTitle}"
 Topic: "${topic}"
-Section content:
+Section content (first 800 chars):
 "${sectionContent.substring(0, 800)}"
 
-Write a 2-3 sentence image-generation prompt for this section.
-The image should be a simple, friendly 3D illustration that symbolically represents the key concept of this section.
+Write a 2-3 sentence image prompt depicting a SCENE that visually explains this section's key idea.
 
-CRITICAL style rules:
-- Simple 3D rendered illustration, soft rounded shapes, smooth gradients
-- Cute cartoon-style characters or symbolic 3D icons (like clay/Pixar style)
-- Only 1-3 main objects — keep it VERY simple and uncluttered
-- Bright, cheerful pastel colors (soft blue, orange, purple, green)
-- Clean white or very light gradient background
-- Soft shadows and ambient occlusion for depth
-- NO complex diagrams, NO flowcharts, NO arrows, NO wireframes
-- NO TEXT, NO LETTERS, NO WORDS of any language
-- Think "app icon" or "landing page hero illustration" level of simplicity
+MANDATORY — every prompt must include:
+1. A CHARACTER (cute robot, small person, or animal) as the main subject
+2. An ACTION the character is performing (e.g. organizing files, typing on a laptop, presenting a chart)
+3. A SETTING with contextual props (e.g. a desk, a workshop, a control room)
 
-Output only the prompt, nothing else.`,
+FORBIDDEN:
+- Isolated floating objects or abstract icons (clouds, gears, envelopes, etc.) with no character
+- Symbolic icons without a scene context
+- Complex diagrams, flowcharts, arrows, wireframes
+- ANY text, letters, or words of any language
+
+Style: 3D Pixar/clay-render, soft rounded shapes, bright pastel colors, clean white background, soft shadows.
+
+Output ONLY the prompt, nothing else.`,
     });
     return (result.text ?? "").trim() || getFallbackPrompt(sectionTitle, topic);
   } catch (error) {
@@ -358,17 +359,17 @@ Output only the prompt, nothing else.`,
 }
 
 /**
- * 프롬프트 생성 실패 시 심플 3D 일러스트 스타일 폴백 프롬프트
+ * 프롬프트 생성 실패 시 개념 장면 스타일 폴백 프롬프트
  */
 function getFallbackPrompt(sectionTitle: string, topic: string): string {
-  return `A simple, friendly 3D illustration representing "${sectionTitle}" in the context of ${topic}. One or two cute 3D rendered symbolic objects in soft pastel colors, clean white background, smooth rounded shapes, soft shadows. Pixar-style clay render aesthetic, minimal and uncluttered. Absolutely no text, letters, or words of any language.`;
+  return `A cute small robot character sitting at a desk, working on a task related to "${sectionTitle}" in the context of ${topic}. The robot is actively performing an action with relevant props around the desk. 3D Pixar-style clay render, soft rounded shapes, bright pastel colors, clean white background, soft shadows. Absolutely no text, letters, or words of any language.`;
 }
 
 /**
  * Gemini 3 Pro Image API 호출 → base64 PNG를 Buffer로 반환
  */
 async function generateImage(prompt: string): Promise<Buffer> {
-  const enhancedPrompt = `${prompt}. Style: simple 3D rendered illustration, soft rounded clay-like shapes, bright pastel colors, clean white background, soft shadows, Pixar-style aesthetic, minimal and uncluttered composition. IMPORTANT: The image must contain absolutely NO text, NO letters, NO words, NO characters of any language.`;
+  const enhancedPrompt = `${prompt}. The scene must feature a character (robot or person) performing an action — never just floating objects or abstract icons. Style: 3D Pixar clay-render, soft rounded shapes, bright pastel colors, clean white background, soft shadows. IMPORTANT: absolutely NO text, NO letters, NO words in the image.`;
 
   const response = await imageAI.models.generateContent({
     model: "gemini-3-pro-image-preview",

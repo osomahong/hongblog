@@ -4,7 +4,6 @@ import { eq, inArray, desc, sql, and, gte, asc, isNull } from "drizzle-orm";
 
 // 타입 정의
 export type PostWithTags = Omit<Post, "highlights"> & {
-  highlights: string[] | null;
   tags: string[];
   seriesInfo?: {
     id: number;
@@ -163,7 +162,6 @@ export async function getAllPosts(): Promise<PostWithTags[]> {
 
   return result.map((post) => ({
     ...post,
-    highlights: post.highlights as string[] | null,
     tags: post.postsToTags.map((pt) => pt.tag.name),
     seriesInfo: post.series ? { id: post.series.id, slug: post.series.slug, title: post.series.title } : null,
   }));
@@ -186,7 +184,6 @@ export async function getPublishedPosts(): Promise<PostWithTags[]> {
 
   return result.map((post) => ({
     ...post,
-    highlights: post.highlights as string[] | null,
     tags: post.postsToTags.map((pt) => pt.tag.name),
     seriesInfo: post.series ? { id: post.series.id, slug: post.series.slug, title: post.series.title } : null,
   }));
@@ -209,7 +206,6 @@ export async function getPostBySlug(slug: string): Promise<PostWithTags | null> 
 
   return {
     ...result,
-    highlights: result.highlights as string[] | null,
     tags: result.postsToTags.map((pt) => pt.tag.name),
     seriesInfo: result.series ? { id: result.series.id, slug: result.series.slug, title: result.series.title } : null,
   };
@@ -304,7 +300,6 @@ export async function getRelatedPostsByTags(tagNames: string[], excludeId?: numb
     }) as Promise<PostWithRelations[]>,
     mapResult: (post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
     }),
   });
@@ -419,7 +414,6 @@ export async function getPopularPostsByCategory(category: Category, days = 30, l
   type PostWithViewCount = PostWithTags & { _viewCount: number };
   const postsWithViews: PostWithViewCount[] = result.map((post) => ({
     ...post,
-    highlights: post.highlights as string[] | null,
     tags: post.postsToTags.map((pt) => pt.tag.name),
     _viewCount: viewMap.get(post.id) ?? 0,
   }));
@@ -511,7 +505,6 @@ export async function getRelatedPostsWithPopularity(
     }) as Promise<PostWithRelations[]>,
     mapResult: (post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
     }),
   });
@@ -566,7 +559,6 @@ export async function getContentByTag(tagName: string): Promise<{
 
     postsResult = postsData.map((post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
     }));
   }
@@ -727,7 +719,6 @@ export async function getTrendingMixed(days = 7, limit = 6): Promise<TrendingIte
   const mixed: TrendingItem[] = [
     ...postsData.map((post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
       _type: "post" as const,
       _viewCount: viewMap.get(`post-${post.id}`) ?? 0,
@@ -776,7 +767,6 @@ export async function getAllSeries(): Promise<SeriesWithPosts[]> {
     ...s,
     posts: s.posts.map((post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
     })),
     postCount: s.posts.length,
@@ -807,7 +797,6 @@ export async function getPublishedSeries(): Promise<SeriesWithPosts[]> {
     ...s,
     posts: s.posts.map((post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
     })),
     postCount: s.posts.length,
@@ -839,7 +828,6 @@ export async function getSeriesBySlug(slug: string): Promise<SeriesWithPosts | n
     ...result,
     posts: (result.posts as PostWithRelations[]).map((post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
     })),
     postCount: result.posts.length,
@@ -869,7 +857,6 @@ export async function getSeriesNavigation(seriesId: number, currentPostId: numbe
 
   const mapPost = (post: PostWithRelations): PostWithTags => ({
     ...post,
-    highlights: post.highlights as string[] | null,
     tags: post.postsToTags.map((pt) => pt.tag.name),
   });
 
@@ -1278,7 +1265,6 @@ export async function getRelatedPostsForClass(classTags: string[], classCategory
     .filter((p): p is PostWithRelations => p !== undefined)
     .map((post) => ({
       ...post,
-      highlights: post.highlights as string[] | null,
       tags: post.postsToTags.map((pt) => pt.tag.name),
       seriesInfo: post.series ? {
         id: post.series.id,

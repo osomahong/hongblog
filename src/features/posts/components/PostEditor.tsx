@@ -12,7 +12,6 @@ type Post = {
   excerpt: string | null;
   content: string;
   category: string;
-  highlights: string[] | null;
   thumbnailUrl: string | null;
   tags: string[];
   isPublished: boolean;
@@ -47,7 +46,6 @@ export function PostEditor({ editingPost, seriesList, onSaved }: PostEditorProps
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [category, setCategory] = useState<"MARKETING" | "AI_TECH" | "DATA">("MARKETING");
-  const [highlights, setHighlights] = useState("");
   const [tagsInput, setTagsInput] = useState("");
   const [thumbnailUrl, setThumbnailUrl] = useState("");
   const [selectedSeriesId, setSelectedSeriesId] = useState<number | null>(null);
@@ -66,7 +64,6 @@ export function PostEditor({ editingPost, seriesList, onSaved }: PostEditorProps
       setExcerpt(editingPost.excerpt || "");
       setContent(editingPost.content);
       setCategory(editingPost.category as any);
-      setHighlights(editingPost.highlights?.join(", ") || "");
       setTagsInput(editingPost.tags?.join(", ") || "");
       setThumbnailUrl(editingPost.thumbnailUrl || "");
       setSelectedSeriesId(editingPost.seriesId);
@@ -111,7 +108,6 @@ export function PostEditor({ editingPost, seriesList, onSaved }: PostEditorProps
         setSlug(data.slug);
         setExcerpt(data.excerpt);
         setCategory(data.category);
-        setHighlights(data.highlights?.join(", ") || "");
         setTagsInput(data.tags?.join(", ") || "");
         alert("메타데이터가 생성되었습니다! 필요시 수정해주세요.");
       } else {
@@ -135,7 +131,6 @@ export function PostEditor({ editingPost, seriesList, onSaved }: PostEditorProps
       title, slug,
       excerpt: excerpt || null,
       content, category,
-      highlights: highlights ? highlights.split(",").map((h) => h.trim()).filter(Boolean) : null,
       thumbnailUrl: thumbnailUrl || null,
       tags: tagsInput ? tagsInput.split(",").map((t) => t.trim()).filter(Boolean) : [],
       seriesId: selectedSeriesId,
@@ -206,15 +201,9 @@ export function PostEditor({ editingPost, seriesList, onSaved }: PostEditorProps
           <textarea value={excerpt} onChange={(e) => setExcerpt(e.target.value)} className="w-full px-4 py-2 border-4 border-black focus:outline-none min-h-[80px]" placeholder="글 요약 (목록에 표시됨)" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-bold uppercase mb-1">하이라이트 (쉼표 구분)</label>
-            <input type="text" value={highlights} onChange={(e) => setHighlights(e.target.value)} className="w-full px-4 py-2 border-4 border-black focus:outline-none" placeholder="예: 신규, 인기, 추천" />
-          </div>
-          <div>
-            <label className="block text-sm font-bold uppercase mb-1">태그 (쉼표 구분)</label>
-            <input type="text" value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} className="w-full px-4 py-2 border-4 border-black focus:outline-none" placeholder="예: AI, 마케팅, 데이터분석" />
-          </div>
+        <div>
+          <label className="block text-sm font-bold uppercase mb-1">태그 (쉼표 구분)</label>
+          <input type="text" value={tagsInput} onChange={(e) => setTagsInput(e.target.value)} className="w-full px-4 py-2 border-4 border-black focus:outline-none" placeholder="예: AI, 마케팅, 데이터분석" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -291,7 +280,7 @@ export function PostEditor({ editingPost, seriesList, onSaved }: PostEditorProps
                 <Wand2 className="w-5 h-5 text-purple-600" />
                 AI 메타데이터 자동 생성
               </h3>
-              <p className="text-xs text-gray-600 mt-1">본문 내용을 분석하여 제목, 슬러그, 요약, 카테고리, 하이라이트, 태그를 자동 생성합니다.</p>
+              <p className="text-xs text-gray-600 mt-1">본문 내용을 분석하여 제목, 슬러그, 요약, 카테고리, 태그를 자동 생성합니다.</p>
             </div>
             <button type="button" onClick={handleGenerateMetadata} disabled={isGeneratingMetadata || content.length < 100} className="px-4 py-2 bg-purple-600 text-white border-4 border-black font-bold uppercase text-sm hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2 whitespace-nowrap">
               {isGeneratingMetadata ? (<><Loader2 className="w-4 h-4 animate-spin" />생성 중...</>) : (<><Sparkles className="w-4 h-4" />AI 생성</>)}

@@ -45,12 +45,18 @@ export async function POST(request: NextRequest) {
         const siteUrl = SITE_URL;
         const courseUrl = `${siteUrl}/class/${course.slug}`;
 
-        const summary = await generateCourseLinkedInSummary({
+        let summary = await generateCourseLinkedInSummary({
             courseTitle: course.title,
             courseDescription: course.description || "",
             classes: courseClasses.map(c => ({ term: c.term, definition: c.definition })),
             url: courseUrl
         });
+
+        // 최종 안전망: AI가 플레이스홀더를 남긴 경우 실제 URL로 치환
+        summary = summary.replace(/\{link\}|\{url\}|\{URL\}|\[링크\]|\[link\]|\[URL\]|\(link\)|\(url\)/gi, courseUrl);
+        if (!summary.includes(courseUrl)) {
+            summary = summary.trimEnd() + "\n" + courseUrl;
+        }
 
         return NextResponse.json({ summary });
     } catch (error) {

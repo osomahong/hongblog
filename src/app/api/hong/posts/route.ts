@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const {
-      title, slug, excerpt, content, category, highlights, thumbnailUrl, tags: tagNames,
+      title, slug, excerpt, content, category, thumbnailUrl, tags: tagNames,
       isPublished,
       seriesId, seriesOrder,
       // SEO fields
@@ -83,7 +83,6 @@ export async function POST(request: NextRequest) {
         excerpt: excerpt || null,
         content,
         category,
-        highlights: highlights || null,
         thumbnailUrl: thumbnailUrl || null,
         isPublished: isPublished ?? true,
         seriesId: seriesId || null,
@@ -133,7 +132,7 @@ export async function PUT(request: NextRequest) {
   try {
     const body = await request.json();
     const {
-      id, title, slug, excerpt, content, category, highlights, thumbnailUrl, tags: tagNames,
+      id, title, slug, excerpt, content, category, thumbnailUrl, tags: tagNames,
       isPublished,
       seriesId, seriesOrder,
       // SEO fields
@@ -162,7 +161,6 @@ export async function PUT(request: NextRequest) {
         excerpt: excerpt || null,
         content,
         category,
-        highlights: highlights || null,
         thumbnailUrl: thumbnailUrl || null,
         isPublished: isPublished ?? false,
         seriesId: seriesId || null,

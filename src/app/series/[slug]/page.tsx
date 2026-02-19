@@ -115,11 +115,6 @@ export default async function SeriesDetailPage({ params }: Props) {
                             {categoryLabels[post.category as keyof typeof categoryLabels]}
                           </span>
                         </NeoBadge>
-                        {post.highlights && (post.highlights as string[]).length > 0 && (
-                          <span className="text-xs font-mono font-bold bg-accent text-black px-2 py-0.5 border border-black">
-                            {(post.highlights as string[])[0]}
-                          </span>
-                        )}
                       </div>
                       <h3 className="text-base sm:text-lg font-bold mb-1 line-clamp-1 group-hover:text-primary transition-colors">
                         {post.title}

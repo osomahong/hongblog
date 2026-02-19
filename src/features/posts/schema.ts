@@ -14,7 +14,6 @@ export const insertPostSchema = createInsertSchema(posts, {
     category: z.enum(POST_CATEGORIES),
     excerpt: z.string().optional(),
     thumbnailUrl: z.string().url().optional().or(z.literal("")),
-    highlights: z.array(z.string()).optional(),
     quiz: z.array(z.object({
         question: z.string().min(1),
         options: z.array(z.string()).min(2).max(6),

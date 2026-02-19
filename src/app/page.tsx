@@ -257,18 +257,6 @@ export default async function HomePage() {
                             {categoryLabels[post.category as keyof typeof categoryLabels]}
                           </span>
                         </NeoBadge>
-                        {post.highlights && (post.highlights as string[]).length > 0 && (
-                          <div className="flex gap-1 flex-wrap">
-                            {(post.highlights as string[]).slice(0, 1).map((highlight, idx) => (
-                              <span
-                                key={idx}
-                                className="text-[10px] sm:text-xs font-mono font-bold bg-black text-white px-1.5 sm:px-2 py-0.5 sm:py-1"
-                              >
-                                {highlight}
-                              </span>
-                            ))}
-                          </div>
-                        )}
                       </div>
                       <NeoCardTitle className="text-base sm:text-2xl leading-snug">
                         {post.title}

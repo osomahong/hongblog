@@ -260,18 +260,6 @@ export default async function InsightDetailPage({ params }: Props) {
                     {categoryLabels[post.category as keyof typeof categoryLabels]}
                   </span>
                 </NeoBadge>
-                {post.highlights && (post.highlights as string[]).length > 0 && (
-                  <div className="flex gap-1 flex-wrap">
-                    {(post.highlights as string[]).map((highlight, idx) => (
-                      <span
-                        key={idx}
-                        className="text-[10px] sm:text-xs font-mono font-bold bg-accent text-black px-1.5 sm:px-2 py-0.5 sm:py-1 border-2 border-black"
-                      >
-                        {highlight}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
               <h1 className="text-xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
                 {post.title}
