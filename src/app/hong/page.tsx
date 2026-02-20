@@ -39,7 +39,8 @@ export default function HongAdminPage() {
 
   // LinkedIn Summary state
   const [isGeneratingLinkedinSummary, setIsGeneratingLinkedinSummary] = useState<number | null>(null);
-  const [linkedinSummary, setLinkedinSummary] = useState("");
+  const [linkedinSummaries, setLinkedinSummaries] = useState<{ standard: string; marketing: string; casual: string }>({ standard: "", marketing: "", casual: "" });
+  const [linkedinToneTab, setLinkedinToneTab] = useState<"standard" | "marketing" | "casual">("standard");
   const [isLinkedinModalOpen, setIsLinkedinModalOpen] = useState(false);
   const [activePostForLinkedin, setActivePostForLinkedin] = useState<any>(null);
   const [activeCourseForLinkedin, setActiveCourseForLinkedin] = useState<any>(null);
@@ -162,6 +163,9 @@ export default function HongAdminPage() {
   };
 
   // LinkedIn Summary handlers
+  const linkedinToneLabels = { standard: "대화형", marketing: "마케팅", casual: "가벼운 공유" } as const;
+  const currentLinkedinSummary = linkedinSummaries[linkedinToneTab];
+
   const handleGenerateLinkedinSummary = async (post: any) => {
     setIsGeneratingLinkedinSummary(post.id);
     setActivePostForLinkedin(post);
@@ -175,7 +179,8 @@ export default function HongAdminPage() {
       });
       if (res.ok) {
         const data = await res.json();
-        setLinkedinSummary(data.summary);
+        setLinkedinSummaries(data.summaries);
+        setLinkedinToneTab("standard");
         setIsLinkedinModalOpen(true);
       } else {
         const data = await res.json();
@@ -199,7 +204,8 @@ export default function HongAdminPage() {
       });
       if (res.ok) {
         const data = await res.json();
-        setLinkedinSummary(data.summary);
+        setLinkedinSummaries(data.summaries);
+        setLinkedinToneTab("standard");
         setIsLinkedinModalOpen(true);
       } else {
         const data = await res.json();
@@ -212,13 +218,13 @@ export default function HongAdminPage() {
   };
 
   const handleCopyLinkedinSummary = () => {
-    navigator.clipboard.writeText(linkedinSummary);
+    navigator.clipboard.writeText(currentLinkedinSummary);
     alert("클립보드에 복사되었습니다!");
   };
 
   const handlePostToLinkedin = async () => {
-    if (!linkedinSummary.trim()) return;
-    if (!confirm("LinkedIn에 게시하시겠습니까?")) return;
+    if (!currentLinkedinSummary.trim()) return;
+    if (!confirm(`"${linkedinToneLabels[linkedinToneTab]}" 버전을 LinkedIn에 게시하시겠습니까?`)) return;
 
     setIsPostingToLinkedin(true);
     setLinkedinPostResult(null);
@@ -226,7 +232,7 @@ export default function HongAdminPage() {
       const res = await fetch("/api/linkedin/post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: linkedinSummary }),
+        body: JSON.stringify({ text: currentLinkedinSummary }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
@@ -534,12 +540,35 @@ export default function HongAdminPage() {
                   {activeCourseForLinkedin ? activeCourseForLinkedin.title : activePostForLinkedin?.title}
                 </p>
               </div>
+
+              {/* 톤 선택 탭 */}
+              <div className="flex border-4 border-black mb-4">
+                {(["standard", "marketing", "casual"] as const).map((tone) => (
+                  <button
+                    key={tone}
+                    onClick={() => setLinkedinToneTab(tone)}
+                    className={`flex-1 px-3 py-2 text-sm font-black uppercase transition-colors ${
+                      linkedinToneTab === tone
+                        ? "bg-black text-white"
+                        : "bg-white text-black hover:bg-gray-100"
+                    }`}
+                  >
+                    {linkedinToneLabels[tone]}
+                    <span className="block text-[10px] font-normal normal-case mt-0.5 opacity-70">
+                      {tone === "standard" && "동료와 대화하듯"}
+                      {tone === "marketing" && "클릭 유도 중심"}
+                      {tone === "casual" && "짧고 가볍게"}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
               <div className="relative">
                 <textarea
-                  value={linkedinSummary}
-                  onChange={(e) => setLinkedinSummary(e.target.value)}
+                  value={currentLinkedinSummary}
+                  onChange={(e) => setLinkedinSummaries(prev => ({ ...prev, [linkedinToneTab]: e.target.value }))}
                   className={`w-full h-80 p-4 border-4 focus:outline-none font-sans text-sm leading-relaxed ${
-                    linkedinSummary.length > 3000 ? "border-red-500 bg-red-50" : "border-black bg-white"
+                    currentLinkedinSummary.length > 3000 ? "border-red-500 bg-red-50" : "border-black bg-white"
                   }`}
                 />
                 <button
@@ -552,8 +581,8 @@ export default function HongAdminPage() {
               </div>
               {/* 글자 수 카운터 */}
               <div className="mt-2 flex justify-end">
-                <span className={`text-xs font-bold ${linkedinSummary.length > 3000 ? "text-red-600" : "text-gray-500"}`}>
-                  {linkedinSummary.length.toLocaleString()} / 3,000
+                <span className={`text-xs font-bold ${currentLinkedinSummary.length > 3000 ? "text-red-600" : "text-gray-500"}`}>
+                  {currentLinkedinSummary.length.toLocaleString()} / 3,000
                 </span>
               </div>
 
@@ -601,7 +630,7 @@ export default function HongAdminPage() {
                 {linkedinStatus.connected && !linkedinPostResult?.success && (
                   <button
                     onClick={handlePostToLinkedin}
-                    disabled={isPostingToLinkedin || linkedinSummary.length > 3000 || !linkedinSummary.trim()}
+                    disabled={isPostingToLinkedin || currentLinkedinSummary.length > 3000 || !currentLinkedinSummary.trim()}
                     className="px-6 py-2 bg-[#0A66C2] text-white font-black uppercase flex items-center gap-2 hover:bg-[#004182] disabled:bg-gray-400 disabled:cursor-not-allowed transition"
                   >
                     {isPostingToLinkedin ? (

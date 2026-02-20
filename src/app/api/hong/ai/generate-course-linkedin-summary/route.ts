@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { courses, classes } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 import { SITE_URL } from "@/lib/constants";
-import { generateCourseLinkedInSummary } from "@/lib/ai";
+import { generateAllCourseLinkedInSummaries } from "@/lib/ai";
 
 export async function POST(request: NextRequest) {
     const session = await getServerSession();
@@ -41,20 +41,20 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: "코스에 포함된 클래스가 없습니다." }, { status: 400 });
         }
 
-        // 3. AI 요약 생성
+        // 3. AI 요약 생성 (3가지 버전 병렬)
         const siteUrl = SITE_URL;
         const courseUrl = `${siteUrl}/class/${course.slug}`;
         const campaign = encodeURIComponent(course.title);
         const utmUrl = `${courseUrl}?utm_source=linkedin&utm_medium=social&utm_campaign=${campaign}`;
 
-        const summary = await generateCourseLinkedInSummary({
+        const summaries = await generateAllCourseLinkedInSummaries({
             courseTitle: course.title,
             courseDescription: course.description || "",
             classes: courseClasses.map(c => ({ term: c.term, definition: c.definition })),
             url: utmUrl
         });
 
-        return NextResponse.json({ summary });
+        return NextResponse.json({ summaries });
     } catch (error) {
         console.error("Course LinkedIn summary generation failed:", error);
         return NextResponse.json({ error: "생성 실패" }, { status: 500 });

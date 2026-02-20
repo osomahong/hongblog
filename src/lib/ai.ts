@@ -343,6 +343,334 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
   }
 }
 
+// 마케팅형 LinkedIn 요약 생성
+export async function generateLinkedInSummaryMarketing(data: {
+  title: string;
+  content: string;
+  url: string;
+}): Promise<string> {
+  const prompt = `원문의 "주제"만 참고해서 LinkedIn 마케팅 포스트를 써라.
+원문의 내용, 용어, 구조, 사례를 직접 인용하거나 요약하지 마라.
+원문은 주제 파악용일 뿐이다. 포스트는 원문과 완전히 다른 글이어야 한다.
+
+== 목표 ==
+독자가 "이건 꼭 읽어봐야겠다"라는 충동을 느끼게 만들어라.
+문제 인식 → 해결 열망 → 콘텐츠 연결이라는 설득 구조를 따라라.
+숫자, 구체적 결과, 대비 효과를 적극 활용해라.
+
+== 제약 ==
+- URL 포함 총 800~1,200자.
+- 의미 단락 사이 빈 줄.
+- 긴 문장은 의미 단위에서 자연스럽게 줄바꿈해라. 1문장=1줄을 강제하지 마라.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어 영어, 나머지 한국어.
+
+== 톤 ==
+- 확신에 찬 전문가가 핵심을 짚어주는 톤.
+- "실제로 ~한 결과", "대부분이 놓치는 포인트" 같은 강한 문장.
+- 독자의 현재 상태(문제)와 이상적 상태(해결) 사이의 간극을 부각해라.
+- 과장하지 마라. 신뢰를 잃으면 클릭도 없다.
+
+== 구조 ==
+
+[훅 — 1-2문장]
+이 주제에서 많은 사람이 겪는 실질적 문제를 날카롭게 짚어라.
+"~하고 있다면, 이미 늦었을 수 있습니다" 같은 주목 유도.
+
+(빈 줄)
+
+[문제 심화 — 3-4문장]
+그 문제가 왜 심각한지, 어떤 비용/기회 손실이 발생하는지 구체화해라.
+숫자나 상황을 활용해 체감하게 만들어라.
+
+(빈 줄)
+
+[핵심 포인트 — 개조식 3-4항목]
+해결 방향의 핵심을 "- " 접두어로 나열.
+각 항목은 행동 가능한 인사이트여야 한다.
+"~하면 ~가 달라집니다", "핵심은 ~에 있습니다" 같은 결과 중심 표현.
+
+(빈 줄)
+
+[CTA — 2-3문장]
+"더 깊이 있는 내용을 정리했습니다"로 연결.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.title}]
+${data.url}
+
+== 절대 금지 ==
+- 원문의 내용, 사례, 용어, 구조를 인용하거나 요약하는 행위
+- 근거 없는 과장이나 허위 숫자
+- "충격적", "놀라운" 같은 낚시성 수식어
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 원문 (주제 파악용, 직접 인용 금지) ==
+제목: ${data.title}
+URL: ${data.url}
+내용:
+${data.content.substring(0, 3000)}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문만.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI LinkedIn marketing summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// 가벼운 공유형 LinkedIn 요약 생성
+export async function generateLinkedInSummaryCasual(data: {
+  title: string;
+  content: string;
+  url: string;
+}): Promise<string> {
+  const prompt = `원문의 "주제"만 참고해서 LinkedIn 포스트를 써라.
+원문의 내용, 용어, 구조, 사례를 직접 인용하거나 요약하지 마라.
+원문은 주제 파악용일 뿐이다. 포스트는 원문과 완전히 다른 글이어야 한다.
+
+== 목표 ==
+"이거 괜찮더라"라는 느낌으로 가볍게 콘텐츠를 공유해라.
+짧고 담백하게, 부담 없이 읽히는 글이어야 한다.
+핵심 한 가지만 전달하고 링크로 연결해라.
+
+== 제약 ==
+- URL 포함 총 400~700자. 반드시 짧게.
+- 의미 단락 사이 빈 줄.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어 영어, 나머지 한국어.
+- 개조식/불릿 포인트 사용하지 마라. 평문으로만 써라.
+
+== 톤 ==
+- 친구에게 메시지 보내듯 편하게.
+- "요즘 ~에 대해 정리해봤는데", "~가 궁금하신 분들은" 같은 자연스러운 말투.
+- 가르치려 하지 마라. 그냥 나누는 느낌.
+- 힘 빼고 써라. 짧을수록 좋다.
+
+== 구조 ==
+
+[한 줄 도입]
+이 주제를 왜 공유하는지 한 문장으로.
+
+(빈 줄)
+
+[본문 — 3-5문장]
+이 주제에서 본인이 느낀 점이나 재미있었던 포인트를 가볍게 풀어라.
+길게 설명하지 마라. 핵심만 짚어라.
+
+(빈 줄)
+
+[마무리 + 링크]
+"관심 있으시면 한번 읽어보세요" 정도로 가볍게 마무리.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.title}]
+${data.url}
+
+== 절대 금지 ==
+- 원문의 내용, 사례, 용어, 구조를 인용하거나 요약하는 행위
+- 장황한 설명이나 인사이트 나열
+- 개조식 목록 (- 항목)
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 원문 (주제 파악용, 직접 인용 금지) ==
+제목: ${data.title}
+URL: ${data.url}
+내용:
+${data.content.substring(0, 3000)}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문만.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI LinkedIn casual summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// LinkedIn 요약 3가지 버전 병렬 생성
+export type LinkedInSummaryVersions = {
+  standard: string;
+  marketing: string;
+  casual: string;
+};
+
+export async function generateAllLinkedInSummaries(data: {
+  title: string;
+  content: string;
+  url: string;
+}): Promise<LinkedInSummaryVersions> {
+  const [standard, marketing, casual] = await Promise.all([
+    generateLinkedInSummary(data),
+    generateLinkedInSummaryMarketing(data),
+    generateLinkedInSummaryCasual(data),
+  ]);
+  return { standard, marketing, casual };
+}
+
+// 코스용 마케팅형 LinkedIn 요약 생성
+export async function generateCourseLinkedInSummaryMarketing(data: {
+  courseTitle: string;
+  courseDescription: string;
+  classes: { term: string; definition: string }[];
+  url: string;
+}): Promise<string> {
+  const prompt = `원문의 "주제"만 참고해서 LinkedIn 마케팅 포스트를 써라.
+원문의 내용, 용어, 구조를 직접 인용하거나 요약하지 마라.
+원문은 주제 파악용일 뿐이다. 포스트는 원문과 완전히 다른 글이어야 한다.
+
+== 목표 ==
+독자가 "이 가이드는 꼭 봐야겠다"라는 충동을 느끼게 만들어라.
+문제 인식 → 해결 열망 → 가이드 연결이라는 설득 구조를 따라라.
+숫자, 구체적 결과, 대비 효과를 적극 활용해라.
+
+== 제약 ==
+- URL 포함 총 800~1,200자.
+- 의미 단락 사이 빈 줄.
+- 긴 문장은 의미 단위에서 자연스럽게 줄바꿈해라. 1문장=1줄을 강제하지 마라.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어는 영어, 나머지는 한국어.
+
+== 톤 ==
+- 확신에 찬 전문가가 핵심을 짚어주는 톤.
+- "실제로 ~한 결과", "대부분이 놓치는 포인트" 같은 강한 문장.
+- 과장하지 마라. 신뢰를 잃으면 클릭도 없다.
+
+== 구조 ==
+
+[훅 — 1-2문장]
+이 주제에서 많은 사람이 겪는 실질적 문제를 날카롭게 짚어라.
+
+(빈 줄)
+
+[문제 심화 — 3-4문장]
+그 문제가 왜 심각한지 구체화해라.
+
+(빈 줄)
+
+[핵심 포인트 — 개조식 3-4항목]
+해결 방향의 핵심을 "- " 접두어로 나열.
+
+(빈 줄)
+
+[CTA — 2-3문장]
+"더 깊이 있는 내용을 정리했습니다"로 연결.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.courseTitle}]
+${data.url}
+
+== 절대 금지 ==
+- 원문의 내용, 사례, 용어, 구조를 인용하거나 요약하는 행위
+- 근거 없는 과장이나 허위 숫자
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 원문 (주제 파악용, 직접 인용 금지) ==
+코스 제목: ${data.courseTitle}
+코스 설명: ${data.courseDescription}
+주제 수: ${data.classes.length}개
+실제 URL: ${data.url}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI Course LinkedIn marketing summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// 코스용 가벼운 공유형 LinkedIn 요약 생성
+export async function generateCourseLinkedInSummaryCasual(data: {
+  courseTitle: string;
+  courseDescription: string;
+  classes: { term: string; definition: string }[];
+  url: string;
+}): Promise<string> {
+  const prompt = `원문의 "주제"만 참고해서 LinkedIn 포스트를 써라.
+원문의 내용, 용어, 구조를 직접 인용하거나 요약하지 마라.
+원문은 주제 파악용일 뿐이다. 포스트는 원문과 완전히 다른 글이어야 한다.
+
+== 목표 ==
+"이거 괜찮더라"라는 느낌으로 가볍게 가이드를 공유해라.
+짧고 담백하게, 부담 없이 읽히는 글이어야 한다.
+
+== 제약 ==
+- URL 포함 총 400~700자. 반드시 짧게.
+- 의미 단락 사이 빈 줄.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어는 영어, 나머지는 한국어.
+- 개조식/불릿 포인트 사용하지 마라. 평문으로만 써라.
+
+== 톤 ==
+- 친구에게 메시지 보내듯 편하게.
+- 가르치려 하지 마라. 그냥 나누는 느낌.
+- 힘 빼고 써라. 짧을수록 좋다.
+
+== 구조 ==
+
+[한 줄 도입]
+이 주제를 왜 공유하는지 한 문장으로.
+
+(빈 줄)
+
+[본문 — 3-5문장]
+이 주제에서 느낀 점이나 재미있었던 포인트를 가볍게 풀어라.
+
+(빈 줄)
+
+[마무리 + 링크]
+"관심 있으시면 한번 읽어보세요" 정도로 가볍게 마무리.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.courseTitle}]
+${data.url}
+
+== 절대 금지 ==
+- 원문의 내용, 사례, 용어, 구조를 인용하거나 요약하는 행위
+- 장황한 설명이나 인사이트 나열
+- 개조식 목록 (- 항목)
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 원문 (주제 파악용, 직접 인용 금지) ==
+코스 제목: ${data.courseTitle}
+코스 설명: ${data.courseDescription}
+주제 수: ${data.classes.length}개
+실제 URL: ${data.url}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI Course LinkedIn casual summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// 코스용 LinkedIn 요약 3가지 버전 병렬 생성
+export async function generateAllCourseLinkedInSummaries(data: {
+  courseTitle: string;
+  courseDescription: string;
+  classes: { term: string; definition: string }[];
+  url: string;
+}): Promise<LinkedInSummaryVersions> {
+  const [standard, marketing, casual] = await Promise.all([
+    generateCourseLinkedInSummary(data),
+    generateCourseLinkedInSummaryMarketing(data),
+    generateCourseLinkedInSummaryCasual(data),
+  ]);
+  return { standard, marketing, casual };
+}
+
 // ============================================
 // 콘텐츠 자동 생성 함수
 // ============================================

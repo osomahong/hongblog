@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateLinkedInSummary } from "@/lib/ai";
+import { generateAllLinkedInSummaries } from "@/lib/ai";
 
 export async function POST(request: NextRequest) {
     try {
@@ -21,16 +21,16 @@ export async function POST(request: NextRequest) {
             utmUrl = `${url}${sep}utm_source=linkedin&utm_medium=social&utm_campaign=${campaign}`;
         }
 
-        const summary = await generateLinkedInSummary({ title, content, url: utmUrl });
+        const summaries = await generateAllLinkedInSummaries({ title, content, url: utmUrl });
 
-        if (!summary) {
+        if (!summaries) {
             return NextResponse.json(
                 { error: "요약 생성에 실패했습니다." },
                 { status: 500 }
             );
         }
 
-        return NextResponse.json({ summary });
+        return NextResponse.json({ summaries });
     } catch (error) {
         console.error("LinkedIn summary generation failed:", error);
         return NextResponse.json({ error: "생성 실패" }, { status: 500 });
