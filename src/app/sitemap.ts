@@ -35,8 +35,10 @@ export default async function sitemap({
 }): Promise<MetadataRoute.Sitemap> {
   const baseUrl = SITE_URL;
 
+  const sitemapId = Number(id);
+
   // sitemap/0.xml — Insights (블로그 포스트)
-  if (id === 0) {
+  if (sitemapId === 0) {
     const posts = await getPublishedPosts();
     return [
       {
@@ -51,7 +53,7 @@ export default async function sitemap({
   }
 
   // sitemap/1.xml — Class (강의 + 개별 수업)
-  if (id === 1) {
+  if (sitemapId === 1) {
     const [courses, classes] = await Promise.all([
       getPublishedCourses(),
       getPublishedClasses(),
