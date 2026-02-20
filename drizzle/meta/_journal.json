@@ -43,6 +43,13 @@
       "when": 1770776678111,
       "tag": "0005_wandering_bug",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1771591943214,
+      "tag": "0006_chemical_corsair",
+      "breakpoints": true
     }
   ]
 }

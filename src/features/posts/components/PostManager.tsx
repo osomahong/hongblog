@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useTransition } from "react";
-import { FileText, Eye, Edit, Trash2, Linkedin, Loader2, Lock, BarChart3 } from "lucide-react";
+import { FileText, Eye, Edit, Trash2, Linkedin, Loader2, Lock, BarChart3, Check } from "lucide-react";
 import {
     getPostsAction,
     deletePostAction,
@@ -20,6 +20,7 @@ type Post = {
     isPublished: boolean;
     seriesId: number | null;
     seriesOrder: number | null;
+    linkedinPostedAt: string | null;
     createdAt: string;
     seriesInfo: {
         id: number;
@@ -91,6 +92,29 @@ export function PostManager({
                 alert(`삭제 실패: ${result.error}`);
             }
         });
+    };
+
+    // LinkedIn 게시 상태 토글
+    const handleToggleLinkedinStatus = async (post: Post) => {
+        const newValue = post.linkedinPostedAt ? null : new Date().toISOString();
+        try {
+            const res = await fetch("/api/hong/linkedin-status", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contentType: "post",
+                    contentId: post.id,
+                    linkedinPostedAt: newValue,
+                }),
+            });
+            if (res.ok) {
+                await loadPosts();
+            } else {
+                alert("LinkedIn 상태 업데이트 실패");
+            }
+        } catch {
+            alert("LinkedIn 상태 업데이트 중 오류 발생");
+        }
     };
 
     // 검색 필터링
@@ -170,6 +194,22 @@ export function PostManager({
                                             <span className={post.isPublished ? "text-green-700" : "text-gray-500"}>
                                                 {post.isPublished ? "공개" : "비공개"}
                                             </span>
+                                        </button>
+                                        <button
+                                            onClick={() => handleToggleLinkedinStatus(post)}
+                                            className={`inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 border rounded-sm transition-colors ${
+                                                post.linkedinPostedAt
+                                                    ? "bg-blue-50 text-[#0A66C2] border-[#0A66C2] hover:bg-blue-100"
+                                                    : "bg-gray-50 text-gray-400 border-gray-300 hover:bg-gray-100"
+                                            }`}
+                                            title={
+                                                post.linkedinPostedAt
+                                                    ? `LinkedIn 게시됨: ${new Date(post.linkedinPostedAt).toLocaleDateString("ko-KR")}`
+                                                    : "LinkedIn 미게시 (클릭하여 게시됨으로 표시)"
+                                            }
+                                        >
+                                            <Linkedin className="w-3 h-3" />
+                                            {post.linkedinPostedAt && <Check className="w-3 h-3" />}
                                         </button>
                                     </div>
                                     <h3 className="font-bold text-lg mb-2">{post.title}</h3>

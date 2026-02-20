@@ -237,6 +237,20 @@ export default function HongAdminPage() {
       const data = await res.json();
       if (res.ok && data.success) {
         setLinkedinPostResult({ success: true, postUrn: data.postUrn });
+        // fire-and-forget: DB에 LinkedIn 게시 상태 저장
+        const contentType = activeCourseForLinkedin ? "course" : "post";
+        const contentId = activeCourseForLinkedin?.id ?? activePostForLinkedin?.id;
+        if (contentId) {
+          fetch("/api/hong/linkedin-status", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              contentType,
+              contentId,
+              linkedinPostedAt: new Date().toISOString(),
+            }),
+          }).catch(() => {});
+        }
       } else {
         setLinkedinPostResult({ success: false, error: data.error || "게시 실패" });
       }

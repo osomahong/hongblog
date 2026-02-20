@@ -52,6 +52,7 @@ export const posts = pgTable("posts", {
   // Series 연결
   seriesId: integer("series_id").references(() => series.id, { onDelete: "set null" }),
   seriesOrder: integer("series_order"),
+  linkedinPostedAt: timestamp("linkedin_posted_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (t) => [
@@ -169,6 +170,7 @@ export const courses = pgTable("courses", {
   ogImage: varchar("og_image", { length: 500 }),
   canonicalUrl: varchar("canonical_url", { length: 500 }),
   noIndex: boolean("no_index").default(false),
+  linkedinPostedAt: timestamp("linkedin_posted_at"),
 
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
