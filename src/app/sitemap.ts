@@ -28,14 +28,12 @@ function latestDate(dates: (Date | null | undefined)[]): Date {
   return new Date(Math.max(...valid.map((d) => d.getTime())));
 }
 
-export default async function sitemap({
-  id,
-}: {
-  id: number;
+export default async function sitemap(props: {
+  id: Promise<string>;
 }): Promise<MetadataRoute.Sitemap> {
+  const resolvedId = await props.id;
+  const sitemapId = Number(resolvedId);
   const baseUrl = SITE_URL;
-
-  const sitemapId = Number(id);
 
   // sitemap/0.xml — Insights (블로그 포스트)
   if (sitemapId === 0) {
