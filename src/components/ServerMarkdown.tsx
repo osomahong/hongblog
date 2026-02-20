@@ -64,8 +64,11 @@ export default function ServerMarkdown({ content, className = "" }: ServerMarkdo
             <li className="text-[13px] sm:text-base leading-[1.7] sm:leading-relaxed">{children}</li>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-black pl-3 sm:pl-4 my-3 sm:my-4 text-gray-600 italic bg-gray-50 py-2 pr-3 sm:pr-4 text-[13px] sm:text-base">
-              {children}
+            <blockquote className="relative my-4 sm:my-6 bg-amber-50 border-2 border-black rounded-lg px-5 sm:px-6 pt-8 sm:pt-10 pb-3 sm:pb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] text-[13px] sm:text-base">
+              <span className="absolute top-2 left-3 sm:left-4 text-3xl sm:text-4xl font-black text-amber-400 leading-none select-none" aria-hidden="true">&ldquo;</span>
+              <div className="text-gray-700 [&>p]:mb-1.5 [&>p:last-child]:mb-0">
+                {children}
+              </div>
             </blockquote>
           ),
           code: ({ className: codeClassName, children, ...props }) => {
