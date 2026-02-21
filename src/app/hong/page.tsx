@@ -39,8 +39,8 @@ export default function HongAdminPage() {
 
   // LinkedIn Summary state
   const [isGeneratingLinkedinSummary, setIsGeneratingLinkedinSummary] = useState<number | null>(null);
-  const [linkedinSummaries, setLinkedinSummaries] = useState<{ standard: string; marketing: string; casual: string }>({ standard: "", marketing: "", casual: "" });
-  const [linkedinToneTab, setLinkedinToneTab] = useState<"standard" | "marketing" | "casual">("standard");
+  const [linkedinSummaries, setLinkedinSummaries] = useState<{ standard: string; keyword: string; casual: string }>({ standard: "", keyword: "", casual: "" });
+  const [linkedinToneTab, setLinkedinToneTab] = useState<"standard" | "keyword" | "casual">("standard");
   const [isLinkedinModalOpen, setIsLinkedinModalOpen] = useState(false);
   const [activePostForLinkedin, setActivePostForLinkedin] = useState<any>(null);
   const [activeCourseForLinkedin, setActiveCourseForLinkedin] = useState<any>(null);
@@ -163,7 +163,7 @@ export default function HongAdminPage() {
   };
 
   // LinkedIn Summary handlers
-  const linkedinToneLabels = { standard: "대화형", marketing: "마케팅", casual: "가벼운 공유" } as const;
+  const linkedinToneLabels = { standard: "대화형", keyword: "키워드 요약", casual: "가벼운 공유" } as const;
   const currentLinkedinSummary = linkedinSummaries[linkedinToneTab];
 
   const handleGenerateLinkedinSummary = async (post: any) => {
@@ -557,7 +557,7 @@ export default function HongAdminPage() {
 
               {/* 톤 선택 탭 */}
               <div className="flex border-4 border-black mb-4">
-                {(["standard", "marketing", "casual"] as const).map((tone) => (
+                {(["standard", "keyword", "casual"] as const).map((tone) => (
                   <button
                     key={tone}
                     onClick={() => setLinkedinToneTab(tone)}
@@ -569,8 +569,8 @@ export default function HongAdminPage() {
                   >
                     {linkedinToneLabels[tone]}
                     <span className="block text-[10px] font-normal normal-case mt-0.5 opacity-70">
-                      {tone === "standard" && "동료와 대화하듯"}
-                      {tone === "marketing" && "클릭 유도 중심"}
+                      {tone === "standard" && "본문 기반 대화체"}
+                      {tone === "keyword" && "핵심 키워드 요약"}
                       {tone === "casual" && "짧고 가볍게"}
                     </span>
                   </button>

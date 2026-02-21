@@ -266,14 +266,14 @@ export async function generateLinkedInSummary(data: {
   content: string;
   url: string;
 }): Promise<string> {
-  const prompt = `원문의 "주제"만 참고해서 LinkedIn 포스트를 써라.
-원문의 내용, 용어, 구조, 사례를 직접 인용하거나 요약하지 마라.
-원문은 주제 파악용일 뿐이다. 포스트는 원문과 완전히 다른 글이어야 한다.
+  const prompt = `원문을 읽고, 원문의 핵심 내용을 바탕으로 LinkedIn 포스트를 써라.
+원문의 문장을 그대로 베끼지는 마라. 하지만 원문이 다루는 핵심 주장, 개념, 흐름은 반드시 반영해라.
+읽는 사람이 "이 글이 어떤 내용인지" 감을 잡을 수 있어야 한다.
 
 == 목표 ==
-이 주제에 관심 있는 사람이라면 누구나 공감할 이야기를 써라.
-포스트만 읽어도 가치 있는 독립 콘텐츠여야 한다.
-공감 위에서 "이걸 정리한 글이 있다"고 자연스럽게 연결해라.
+원문의 핵심 메시지를 동료에게 말로 전하듯 풀어써라.
+포스트를 읽으면 원문이 무엇을 말하는지 맥락이 잡혀야 한다.
+공감 위에서 "이걸 더 자세히 정리한 글이 있다"고 자연스럽게 연결해라.
 
 == 제약 ==
 - URL 포함 총 800~1,200자.
@@ -291,41 +291,42 @@ export async function generateLinkedInSummary(data: {
 == 구조 ==
 
 [도입 — 1-2문장]
-이 주제와 관련해 많은 사람이 한번쯤 느꼈을 순간을 부드럽게 꺼내라.
+원문이 다루는 핵심 주제와 관련해 많은 사람이 한번쯤 느꼈을 순간을 부드럽게 꺼내라.
 "~하는 순간이 있죠", "~라는 걸 체감할 때가 있습니다" 같은 톤.
+도입만 읽어도 "이 글이 어떤 이야기인지" 짐작되어야 한다.
 
 (빈 줄)
 
 [이야기 전개 — 평문 5-8문장]
-도입에서 꺼낸 경험을 구체적인 장면으로 풀어라.
-처음엔 괜찮아 보였지만 가만히 보니 달랐던 순간을 그려라.
-"당장은 성공으로 보입니다", "그런데 가만히 들여다보면" 같은 전환.
-독자가 자기 경험을 떠올리며 고개를 끄덕이게 써라.
-원문의 내용을 옮기지 마라. 주제에 대한 보편적 상황을 새로 만들어라.
+원문의 핵심 흐름을 따라가되, 자기 경험처럼 자연스럽게 풀어써라.
+원문에서 다루는 주요 개념이나 핵심 주장을 대화체로 녹여라.
+"처음엔 ~라고 생각했는데", "실제로 해보니 ~더라고요" 같은 전환.
+독자가 원문의 맥락을 자연스럽게 파악하면서 고개를 끄덕이게 써라.
 
 (빈 줄)
 
 [인사이트 — 개조식 3-5항목]
-이야기에서 자연스럽게 이어지는 깨달음을 "- " 접두어로 나열.
-"~는 결국 ~의 몫입니다", "~을 알아야 합니다" 같은 관점 공유.
-원문의 목차가 아니라, 경험에서 우러나온 교훈이어야 한다.
+원문에서 실제로 다루는 핵심 포인트를 "- " 접두어로 나열.
+원문의 내용을 기반으로 하되, 대화체로 재구성해라.
+"~는 결국 ~의 몫이더라고요", "~을 먼저 짚어봐야 합니다" 같은 관점 공유.
 
 (빈 줄)
 
 [마무리 — 평문 2-3문장]
 이야기를 부드럽게 정리하며 블로그 글로 연결.
-"제 학습의 결과를 정리해봤습니다", "같은 고민을 하는 분들께 도움이 되면 좋겠습니다" 같은 겸손한 공유.
+"이 내용을 좀 더 구체적으로 정리해봤습니다", "같은 고민을 하는 분들께 도움이 되면 좋겠습니다" 같은 겸손한 공유.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.title}]
 ${data.url}
 
 == 절대 금지 ==
-- 원문의 내용, 사례, 용어, 구조를 인용하거나 요약하는 행위
+- 원문과 동떨어진 일반론이나 추상적 이야기로 채우는 행위
+- 원문의 문장을 그대로 복사하는 행위
 - 상대를 낮추거나 지적하는 표현 ("이것도 모르면", "아직도 ~하고 있다면")
 - 경고/훈계조 ("~하면 안 됩니다", "~는 위험합니다")
 - {link}, [링크], (url) 같은 플레이스홀더
 
-== 원문 (주제 파악용, 직접 인용 금지) ==
+== 원문 (핵심 내용 파악 후 대화체로 재구성) ==
 제목: ${data.title}
 URL: ${data.url}
 내용:
@@ -343,20 +344,19 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
   }
 }
 
-// 마케팅형 LinkedIn 요약 생성
-export async function generateLinkedInSummaryMarketing(data: {
+// 키워드 요약형 LinkedIn 요약 생성
+export async function generateLinkedInSummaryKeyword(data: {
   title: string;
   content: string;
   url: string;
 }): Promise<string> {
-  const prompt = `원문의 "주제"만 참고해서 LinkedIn 마케팅 포스트를 써라.
-원문의 내용, 용어, 구조, 사례를 직접 인용하거나 요약하지 마라.
-원문은 주제 파악용일 뿐이다. 포스트는 원문과 완전히 다른 글이어야 한다.
+  const prompt = `원문의 본문을 읽고, 콘텐츠를 관통하는 핵심 키워드 3~5개를 추출해라.
+그 키워드를 뼈대로 삼아 원문의 핵심 메시지를 LinkedIn 포스트로 요약해라.
 
 == 목표 ==
-독자가 "이건 꼭 읽어봐야겠다"라는 충동을 느끼게 만들어라.
-문제 인식 → 해결 열망 → 콘텐츠 연결이라는 설득 구조를 따라라.
-숫자, 구체적 결과, 대비 효과를 적극 활용해라.
+원문이 실제로 다루는 핵심 내용을 키워드 중심으로 압축 전달해라.
+포스트만 읽어도 원문의 골자를 파악할 수 있어야 한다.
+"더 자세한 내용이 궁금하다면" 수준으로 블로그 링크를 연결해라.
 
 == 제약 ==
 - URL 포함 총 800~1,200자.
@@ -366,45 +366,40 @@ export async function generateLinkedInSummaryMarketing(data: {
 - 기술 용어 영어, 나머지 한국어.
 
 == 톤 ==
-- 확신에 찬 전문가가 핵심을 짚어주는 톤.
-- "실제로 ~한 결과", "대부분이 놓치는 포인트" 같은 강한 문장.
-- 독자의 현재 상태(문제)와 이상적 상태(해결) 사이의 간극을 부각해라.
-- 과장하지 마라. 신뢰를 잃으면 클릭도 없다.
+- 핵심을 간결하게 짚어주는 실용적 톤.
+- "~의 핵심은 결국 ~입니다", "여기서 중요한 건 ~입니다" 같은 명확한 전달.
+- 과장 없이, 원문이 실제로 말하는 내용만 다뤄라.
+- 독자가 "이 글의 포인트를 빠르게 잡았다"고 느끼게 써라.
 
 == 구조 ==
 
-[훅 — 1-2문장]
-이 주제에서 많은 사람이 겪는 실질적 문제를 날카롭게 짚어라.
-"~하고 있다면, 이미 늦었을 수 있습니다" 같은 주목 유도.
+[키워드 제시 + 도입 — 2-3문장]
+원문의 핵심 키워드를 자연스럽게 녹여서 "이 글이 무엇에 대한 것인지" 한눈에 보이게 시작해라.
+키워드를 나열하지 말고, 문장 속에 자연스럽게 배치해라.
 
 (빈 줄)
 
-[문제 심화 — 3-4문장]
-그 문제가 왜 심각한지, 어떤 비용/기회 손실이 발생하는지 구체화해라.
-숫자나 상황을 활용해 체감하게 만들어라.
+[핵심 요약 — 개조식 3-5항목]
+각 키워드와 연결되는 원문의 핵심 포인트를 "- " 접두어로 정리해라.
+원문에서 실제로 다루는 내용을 기반으로, 각 항목이 서로 다른 측면을 짚어야 한다.
+"~라는 점", "~가 핵심입니다" 같은 요약 톤.
 
 (빈 줄)
 
-[핵심 포인트 — 개조식 3-4항목]
-해결 방향의 핵심을 "- " 접두어로 나열.
-각 항목은 행동 가능한 인사이트여야 한다.
-"~하면 ~가 달라집니다", "핵심은 ~에 있습니다" 같은 결과 중심 표현.
-
-(빈 줄)
-
-[CTA — 2-3문장]
-"더 깊이 있는 내용을 정리했습니다"로 연결.
+[마무리 + 링크 — 2-3문장]
+키워드들을 하나로 엮는 한 줄 정리 후, 원문 링크로 연결.
+"각 내용을 구체적으로 풀어둔 글입니다" 같은 자연스러운 연결.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.title}]
 ${data.url}
 
 == 절대 금지 ==
-- 원문의 내용, 사례, 용어, 구조를 인용하거나 요약하는 행위
-- 근거 없는 과장이나 허위 숫자
-- "충격적", "놀라운" 같은 낚시성 수식어
+- 원문에 없는 내용을 지어내는 행위
+- 키워드를 해시태그(#)로 나열하는 행위
+- 상투적 마케팅 문구 ("꼭 읽어보세요", "놓치지 마세요")
 - {link}, [링크], (url) 같은 플레이스홀더
 
-== 원문 (주제 파악용, 직접 인용 금지) ==
+== 원문 (키워드 추출 및 요약 대상) ==
 제목: ${data.title}
 URL: ${data.url}
 내용:
@@ -417,7 +412,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
     const text = result.response.text().trim();
     return postProcessLinkedInText(text, data.url);
   } catch (error) {
-    console.error("AI LinkedIn marketing summary generation failed:", error);
+    console.error("AI LinkedIn keyword summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
   }
 }
@@ -502,7 +497,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
 // LinkedIn 요약 3가지 버전 병렬 생성
 export type LinkedInSummaryVersions = {
   standard: string;
-  marketing: string;
+  keyword: string;
   casual: string;
 };
 
@@ -511,29 +506,29 @@ export async function generateAllLinkedInSummaries(data: {
   content: string;
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [standard, marketing, casual] = await Promise.all([
+  const [standard, keyword, casual] = await Promise.all([
     generateLinkedInSummary(data),
-    generateLinkedInSummaryMarketing(data),
+    generateLinkedInSummaryKeyword(data),
     generateLinkedInSummaryCasual(data),
   ]);
-  return { standard, marketing, casual };
+  return { standard, keyword, casual };
 }
 
-// 코스용 마케팅형 LinkedIn 요약 생성
-export async function generateCourseLinkedInSummaryMarketing(data: {
+// 코스용 키워드 요약형 LinkedIn 요약 생성
+export async function generateCourseLinkedInSummaryKeyword(data: {
   courseTitle: string;
   courseDescription: string;
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<string> {
-  const prompt = `원문의 "주제"만 참고해서 LinkedIn 마케팅 포스트를 써라.
-원문의 내용, 용어, 구조를 직접 인용하거나 요약하지 마라.
-원문은 주제 파악용일 뿐이다. 포스트는 원문과 완전히 다른 글이어야 한다.
+  const classTerms = data.classes.map(c => c.term).join(", ");
+  const prompt = `아래 코스의 핵심 키워드와 내용을 바탕으로 LinkedIn 포스트를 써라.
+코스에 포함된 용어들이 곧 이 콘텐츠의 핵심 키워드다.
 
 == 목표 ==
-독자가 "이 가이드는 꼭 봐야겠다"라는 충동을 느끼게 만들어라.
-문제 인식 → 해결 열망 → 가이드 연결이라는 설득 구조를 따라라.
-숫자, 구체적 결과, 대비 효과를 적극 활용해라.
+코스가 다루는 핵심 개념들을 키워드 중심으로 압축 전달해라.
+포스트만 읽어도 이 코스가 어떤 영역의 어떤 개념들을 다루는지 파악할 수 있어야 한다.
+"더 자세한 내용이 궁금하다면" 수준으로 가이드 링크를 연결해라.
 
 == 제약 ==
 - URL 포함 총 800~1,200자.
@@ -543,41 +538,39 @@ export async function generateCourseLinkedInSummaryMarketing(data: {
 - 기술 용어는 영어, 나머지는 한국어.
 
 == 톤 ==
-- 확신에 찬 전문가가 핵심을 짚어주는 톤.
-- "실제로 ~한 결과", "대부분이 놓치는 포인트" 같은 강한 문장.
-- 과장하지 마라. 신뢰를 잃으면 클릭도 없다.
+- 핵심을 간결하게 짚어주는 실용적 톤.
+- "~의 핵심은 결국 ~입니다", "여기서 중요한 건 ~입니다" 같은 명확한 전달.
+- 과장 없이, 코스가 실제로 다루는 내용만 써라.
 
 == 구조 ==
 
-[훅 — 1-2문장]
-이 주제에서 많은 사람이 겪는 실질적 문제를 날카롭게 짚어라.
+[키워드 제시 + 도입 — 2-3문장]
+코스의 핵심 키워드를 자연스럽게 녹여서 "이 가이드가 무엇에 대한 것인지" 한눈에 보이게 시작해라.
 
 (빈 줄)
 
-[문제 심화 — 3-4문장]
-그 문제가 왜 심각한지 구체화해라.
+[핵심 요약 — 개조식 3-5항목]
+각 키워드와 연결되는 핵심 포인트를 "- " 접두어로 정리해라.
+각 항목이 서로 다른 측면을 짚어야 한다.
 
 (빈 줄)
 
-[핵심 포인트 — 개조식 3-4항목]
-해결 방향의 핵심을 "- " 접두어로 나열.
-
-(빈 줄)
-
-[CTA — 2-3문장]
-"더 깊이 있는 내용을 정리했습니다"로 연결.
+[마무리 + 링크 — 2-3문장]
+키워드들을 하나로 엮는 한 줄 정리 후, 가이드 링크로 연결.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.courseTitle}]
 ${data.url}
 
 == 절대 금지 ==
-- 원문의 내용, 사례, 용어, 구조를 인용하거나 요약하는 행위
-- 근거 없는 과장이나 허위 숫자
+- 코스에 없는 내용을 지어내는 행위
+- 키워드를 해시태그(#)로 나열하는 행위
+- 상투적 마케팅 문구 ("꼭 읽어보세요", "놓치지 마세요")
 - {link}, [링크], (url) 같은 플레이스홀더
 
-== 원문 (주제 파악용, 직접 인용 금지) ==
+== 코스 정보 (키워드 추출 및 요약 대상) ==
 코스 제목: ${data.courseTitle}
 코스 설명: ${data.courseDescription}
+핵심 용어: ${classTerms}
 주제 수: ${data.classes.length}개
 실제 URL: ${data.url}
 
@@ -588,7 +581,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
     const text = result.response.text().trim();
     return postProcessLinkedInText(text, data.url);
   } catch (error) {
-    console.error("AI Course LinkedIn marketing summary generation failed:", error);
+    console.error("AI Course LinkedIn keyword summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
   }
 }
@@ -677,12 +670,12 @@ export async function generateAllCourseLinkedInSummaries(data: {
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [standard, marketing, casual] = await Promise.all([
+  const [standard, keyword, casual] = await Promise.all([
     generateCourseLinkedInSummary(data),
-    generateCourseLinkedInSummaryMarketing(data),
+    generateCourseLinkedInSummaryKeyword(data),
     generateCourseLinkedInSummaryCasual(data),
   ]);
-  return { standard, marketing, casual };
+  return { standard, keyword, casual };
 }
 
 // ============================================
@@ -935,14 +928,15 @@ export async function generateCourseLinkedInSummary(data: {
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<string> {
-  const prompt = `원문의 "주제"만 참고해서 LinkedIn 포스트를 써라.
-원문의 내용, 용어, 구조를 직접 인용하거나 요약하지 마라.
-원문은 주제 파악용일 뿐이다. 포스트는 원문과 완전히 다른 글이어야 한다.
+  const classTerms = data.classes.map(c => c.term).join(", ");
+  const prompt = `아래 코스의 핵심 내용을 바탕으로 LinkedIn 포스트를 써라.
+코스의 용어와 설명을 읽고, 핵심 메시지를 동료에게 말로 전하듯 풀어써라.
+읽는 사람이 "이 가이드가 어떤 내용인지" 감을 잡을 수 있어야 한다.
 
 == 목표 ==
-이 주제에 관심 있는 사람이라면 누구나 공감할 이야기를 써라.
-포스트만 읽어도 가치 있는 독립 콘텐츠여야 한다.
-공감 위에서 "이걸 정리한 가이드가 있다"고 자연스럽게 연결해라.
+코스의 핵심 메시지를 동료에게 말로 전하듯 풀어써라.
+포스트를 읽으면 이 가이드가 어떤 개념들을 다루는지 맥락이 잡혀야 한다.
+공감 위에서 "이걸 더 자세히 정리한 가이드가 있다"고 자연스럽게 연결해라.
 
 == 제약 ==
 - URL 포함 총 800~1,200자.
@@ -960,41 +954,41 @@ export async function generateCourseLinkedInSummary(data: {
 == 구조 ==
 
 [도입 — 1-2문장]
-이 주제와 관련해 많은 사람이 한번쯤 느꼈을 순간을 부드럽게 꺼내라.
-"~하는 순간이 있죠", "~라는 걸 체감할 때가 있습니다" 같은 톤.
+코스가 다루는 핵심 주제와 관련해 많은 사람이 한번쯤 느꼈을 순간을 부드럽게 꺼내라.
+도입만 읽어도 "이 가이드가 어떤 이야기인지" 짐작되어야 한다.
 
 (빈 줄)
 
 [이야기 전개 — 평문 5-8문장]
-도입에서 꺼낸 경험을 구체적인 장면으로 풀어라.
-처음엔 괜찮아 보였지만 가만히 보니 달랐던 순간을 그려라.
-독자가 자기 경험을 떠올리며 고개를 끄덕이게 써라.
-원문의 내용을 옮기지 마라. 주제에 대한 보편적 상황을 새로 만들어라.
+코스의 핵심 흐름을 따라가되, 자기 경험처럼 자연스럽게 풀어써라.
+코스에서 다루는 주요 개념이나 용어를 대화체로 녹여라.
+독자가 코스의 맥락을 자연스럽게 파악하면서 고개를 끄덕이게 써라.
 
 (빈 줄)
 
 [인사이트 — 개조식 3-5항목]
-이야기에서 자연스럽게 이어지는 깨달음을 "- " 접두어로 나열.
-원문의 목차가 아니라, 경험에서 우러나온 교훈이어야 한다.
+코스에서 실제로 다루는 핵심 포인트를 "- " 접두어로 나열.
+코스 내용을 기반으로 하되, 대화체로 재구성해라.
 
 (빈 줄)
 
 [마무리 — 평문 2-3문장]
 이야기를 부드럽게 정리하며 가이드로 연결.
-"같은 고민을 하는 분들께 도움이 되면 좋겠습니다" 같은 겸손한 공유.
+"이 내용을 좀 더 구체적으로 정리해봤습니다" 같은 겸손한 공유.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.courseTitle}]
 ${data.url}
 
 == 절대 금지 ==
-- 원문의 내용, 사례, 용어, 구조를 인용하거나 요약하는 행위
+- 코스와 동떨어진 일반론이나 추상적 이야기로 채우는 행위
 - 상대를 낮추거나 지적하는 표현
 - 경고/훈계조 ("~하면 안 됩니다", "~는 위험합니다")
 - {link}, [링크], (url) 같은 플레이스홀더
 
-== 원문 (주제 파악용, 직접 인용 금지) ==
+== 코스 정보 (핵심 내용 파악 후 대화체로 재구성) ==
 코스 제목: ${data.courseTitle}
 코스 설명: ${data.courseDescription}
+핵심 용어: ${classTerms}
 주제 수: ${data.classes.length}개
 실제 URL: ${data.url}
 
