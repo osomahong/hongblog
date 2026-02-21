@@ -494,11 +494,167 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
   }
 }
 
-// LinkedIn 요약 3가지 버전 병렬 생성
+/** LinkedIn 질문/토론형 요약 — 댓글 유도 */
+export async function generateLinkedInSummaryQuestion(data: {
+  title: string;
+  content: string;
+  url: string;
+}): Promise<string> {
+  const prompt = `원문을 읽고, 원문의 핵심 주제에서 사람들이 의견이 갈릴 수 있는 질문을 뽑아라.
+그 질문을 중심으로 LinkedIn 포스트를 써라. 목표는 댓글과 토론을 유도하는 것이다.
+
+== 목표 ==
+원문의 핵심 주제에서 생각해볼 만한 질문을 던져라.
+일방적으로 답을 제시하지 말고, 본인의 관점을 짧게 밝힌 뒤 "여러분은 어떻게 생각하시나요?"로 열어라.
+읽는 사람이 자기 생각을 댓글로 남기고 싶게 만드는 것이 핵심이다.
+
+== 제약 ==
+- URL 포함 총 600~1,000자.
+- 의미 단락 사이 빈 줄.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어 영어, 나머지 한국어.
+
+== 톤 ==
+- 호기심을 자극하는 톤. "~일까요?", "~는 정말 그럴까요?" 같은 열린 질문.
+- 본인 의견은 단정 짓지 않고 "저는 ~라고 생각하는 편입니다" 수준으로 부드럽게.
+- 다른 의견도 존중하는 자세. "물론 ~라는 시각도 있고요."
+- 논쟁을 붙이려는 것이 아니라, 생각할 거리를 던지는 것이다.
+
+== 구조 ==
+
+[질문 도입 — 1-2문장]
+원문 주제와 관련된 강렬한 질문이나 의외의 관점으로 시작해라.
+첫 문장만 읽어도 "어, 이거 재미있네" 하고 멈춰서 읽게 해라.
+"~는 정말 효과가 있을까요?", "~를 아직도 하고 계신가요?" 같은 톤.
+
+(빈 줄)
+
+[맥락 제시 — 3-5문장]
+질문의 배경이 되는 맥락을 원문 내용을 바탕으로 짧게 설명해라.
+"최근 ~가 바뀌면서", "실제로 ~라는 데이터가 있는데" 같은 근거.
+너무 길게 설명하지 말고 토론의 재료를 깔아주는 정도.
+
+(빈 줄)
+
+[본인 관점 — 2-3문장]
+"개인적으로는 ~라고 생각합니다" 수준으로 본인 입장을 밝혀라.
+단정 짓지 말고, 하나의 관점으로만 제시해라.
+
+(빈 줄)
+
+[토론 유도 + 링크 — 2-3문장]
+"여러분은 어떻게 생각하시나요?", "현장에서는 어떤 경험을 하고 계신지 궁금합니다" 같은 열린 질문.
+관련 글 링크를 자연스럽게 첨부.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.title}]
+${data.url}
+
+== 절대 금지 ==
+- 답을 단정 짓거나 한쪽 입장만 강하게 주장하는 행위
+- 원문에 없는 내용으로 질문을 만드는 행위
+- 상대를 비판하거나 깎아내리는 표현
+- 클릭베이트성 과장 ("충격적인", "반드시 알아야 할")
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 원문 (질문 추출 대상) ==
+제목: ${data.title}
+URL: ${data.url}
+내용:
+${data.content.substring(0, 3000)}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문만.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI LinkedIn question summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+/** LinkedIn 실전 팁형 요약 — 저장/공유 유도 */
+export async function generateLinkedInSummaryTips(data: {
+  title: string;
+  content: string;
+  url: string;
+}): Promise<string> {
+  const prompt = `원문을 읽고, 독자가 바로 실무에 적용할 수 있는 실전 팁을 추출해라.
+번호를 매긴 짧고 명확한 팁 리스트 형태의 LinkedIn 포스트를 써라.
+
+== 목표 ==
+원문에서 실무자가 즉시 행동으로 옮길 수 있는 포인트를 뽑아라.
+"저장해뒀다가 나중에 다시 보고 싶은 글"이 되는 것이 목표다.
+각 팁은 구체적이고, 모호하지 않아야 한다.
+
+== 제약 ==
+- URL 포함 총 800~1,200자.
+- 의미 단락 사이 빈 줄.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어 영어, 나머지 한국어.
+
+== 톤 ==
+- 실무자끼리 노하우를 공유하는 톤. 친근하지만 구체적.
+- "~해보세요", "~하는 게 좋습니다" 같은 실용적 권유.
+- 이론이 아니라 행동 중심. "왜"보다 "어떻게"에 집중.
+- 짧고 임팩트 있게. 한 팁에 2문장을 넘기지 마라.
+
+== 구조 ==
+
+[도입 — 1-2문장]
+원문의 주제를 언급하며 "실무에서 바로 쓸 수 있는 팁"을 정리했다고 시작해라.
+"~를 운영하면서 바로 적용할 수 있는 팁을 정리해봤습니다" 같은 톤.
+
+(빈 줄)
+
+[팁 리스트 — 번호 매긴 5-7개 항목]
+각 팁을 "1. ", "2. " 형태로 나열해라.
+각 항목은 구체적인 행동 지침이어야 한다.
+"~를 설정하세요", "~로 변경하세요", "~를 확인하세요" 같은 명확한 액션.
+원문에서 실제로 다루는 내용을 기반으로 하되, 핵심만 압축.
+
+(빈 줄)
+
+[마무리 + 링크 — 2-3문장]
+"각 팁의 구체적인 방법과 배경은 아래 글에서 자세히 다뤘습니다" 같은 연결.
+저장이나 공유를 은근히 유도. "나중에 참고하실 분들은 저장해두시면 좋을 것 같습니다."
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.title}]
+${data.url}
+
+== 절대 금지 ==
+- 추상적이거나 모호한 팁 ("좋은 전략을 세우세요", "데이터를 활용하세요")
+- 원문에 없는 내용을 팁으로 만드는 행위
+- 이론 설명이나 배경 지식 나열
+- 각 팁이 3문장 이상 되는 것
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 원문 (팁 추출 대상) ==
+제목: ${data.title}
+URL: ${data.url}
+내용:
+${data.content.substring(0, 3000)}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문만.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI LinkedIn tips summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// LinkedIn 요약 5가지 버전 병렬 생성
 export type LinkedInSummaryVersions = {
   standard: string;
   keyword: string;
   casual: string;
+  question: string;
+  tips: string;
 };
 
 export async function generateAllLinkedInSummaries(data: {
@@ -506,12 +662,14 @@ export async function generateAllLinkedInSummaries(data: {
   content: string;
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [standard, keyword, casual] = await Promise.all([
+  const [standard, keyword, casual, question, tips] = await Promise.all([
     generateLinkedInSummary(data),
     generateLinkedInSummaryKeyword(data),
     generateLinkedInSummaryCasual(data),
+    generateLinkedInSummaryQuestion(data),
+    generateLinkedInSummaryTips(data),
   ]);
-  return { standard, keyword, casual };
+  return { standard, keyword, casual, question, tips };
 }
 
 // 코스용 키워드 요약형 LinkedIn 요약 생성
@@ -663,19 +821,166 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
   }
 }
 
-// 코스용 LinkedIn 요약 3가지 버전 병렬 생성
+/** 코스용 LinkedIn 질문/토론형 요약 */
+export async function generateCourseLinkedInSummaryQuestion(data: {
+  courseTitle: string;
+  courseDescription: string;
+  classes: { term: string; definition: string }[];
+  url: string;
+}): Promise<string> {
+  const classTerms = data.classes.map(c => c.term).join(", ");
+  const prompt = `아래 코스의 주제에서 사람들이 의견이 갈릴 수 있는 질문을 뽑아라.
+그 질문을 중심으로 LinkedIn 포스트를 써라. 목표는 댓글과 토론을 유도하는 것이다.
+
+== 목표 ==
+코스의 핵심 주제에서 생각해볼 만한 질문을 던져라.
+일방적으로 답을 제시하지 말고, 본인의 관점을 짧게 밝힌 뒤 "여러분은 어떻게 생각하시나요?"로 열어라.
+읽는 사람이 자기 생각을 댓글로 남기고 싶게 만드는 것이 핵심이다.
+
+== 제약 ==
+- URL 포함 총 600~1,000자.
+- 의미 단락 사이 빈 줄.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어는 영어, 나머지는 한국어.
+
+== 톤 ==
+- 호기심을 자극하는 톤. "~일까요?", "~는 정말 그럴까요?" 같은 열린 질문.
+- 본인 의견은 단정 짓지 않고 "저는 ~라고 생각하는 편입니다" 수준으로 부드럽게.
+- 다른 의견도 존중하는 자세.
+
+== 구조 ==
+
+[질문 도입 — 1-2문장]
+코스 주제와 관련된 강렬한 질문이나 의외의 관점으로 시작해라.
+
+(빈 줄)
+
+[맥락 제시 — 3-5문장]
+질문의 배경이 되는 맥락을 코스 내용을 바탕으로 짧게 설명해라.
+
+(빈 줄)
+
+[본인 관점 — 2-3문장]
+"개인적으로는 ~라고 생각합니다" 수준으로 본인 입장을 밝혀라.
+
+(빈 줄)
+
+[토론 유도 + 링크 — 2-3문장]
+"여러분은 어떻게 생각하시나요?" 같은 열린 질문으로 마무리.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.courseTitle}]
+${data.url}
+
+== 절대 금지 ==
+- 답을 단정 짓거나 한쪽 입장만 강하게 주장하는 행위
+- 코스에 없는 내용으로 질문을 만드는 행위
+- 클릭베이트성 과장
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 코스 정보 (질문 추출 대상) ==
+코스 제목: ${data.courseTitle}
+코스 설명: ${data.courseDescription}
+핵심 용어: ${classTerms}
+주제 수: ${data.classes.length}개
+실제 URL: ${data.url}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI Course LinkedIn question summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+/** 코스용 LinkedIn 실전 팁형 요약 */
+export async function generateCourseLinkedInSummaryTips(data: {
+  courseTitle: string;
+  courseDescription: string;
+  classes: { term: string; definition: string }[];
+  url: string;
+}): Promise<string> {
+  const classTerms = data.classes.map(c => c.term).join(", ");
+  const prompt = `아래 코스의 내용을 읽고, 독자가 바로 실무에 적용할 수 있는 실전 팁을 추출해라.
+번호를 매긴 짧고 명확한 팁 리스트 형태의 LinkedIn 포스트를 써라.
+
+== 목표 ==
+코스에서 다루는 개념들을 실무자가 즉시 행동으로 옮길 수 있는 팁으로 변환해라.
+"저장해뒀다가 나중에 다시 보고 싶은 글"이 되는 것이 목표다.
+
+== 제약 ==
+- URL 포함 총 800~1,200자.
+- 의미 단락 사이 빈 줄.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어는 영어, 나머지는 한국어.
+
+== 톤 ==
+- 실무자끼리 노하우를 공유하는 톤. 친근하지만 구체적.
+- "~해보세요", "~하는 게 좋습니다" 같은 실용적 권유.
+- 이론이 아니라 행동 중심.
+
+== 구조 ==
+
+[도입 — 1-2문장]
+코스의 주제를 언급하며 "실무에서 바로 쓸 수 있는 팁"을 정리했다고 시작해라.
+
+(빈 줄)
+
+[팁 리스트 — 번호 매긴 5-7개 항목]
+각 팁을 "1. ", "2. " 형태로 나열해라.
+각 항목은 구체적인 행동 지침이어야 한다. 코스에서 다루는 용어와 개념을 기반으로.
+
+(빈 줄)
+
+[마무리 + 링크 — 2-3문장]
+"각 팁의 구체적인 방법과 배경은 아래 가이드에서 자세히 다뤘습니다" 같은 연결.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.courseTitle}]
+${data.url}
+
+== 절대 금지 ==
+- 추상적이거나 모호한 팁
+- 코스에 없는 내용을 팁으로 만드는 행위
+- 각 팁이 3문장 이상 되는 것
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 코스 정보 (팁 추출 대상) ==
+코스 제목: ${data.courseTitle}
+코스 설명: ${data.courseDescription}
+핵심 용어: ${classTerms}
+주제 수: ${data.classes.length}개
+실제 URL: ${data.url}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI Course LinkedIn tips summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// 코스용 LinkedIn 요약 5가지 버전 병렬 생성
 export async function generateAllCourseLinkedInSummaries(data: {
   courseTitle: string;
   courseDescription: string;
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [standard, keyword, casual] = await Promise.all([
+  const [standard, keyword, casual, question, tips] = await Promise.all([
     generateCourseLinkedInSummary(data),
     generateCourseLinkedInSummaryKeyword(data),
     generateCourseLinkedInSummaryCasual(data),
+    generateCourseLinkedInSummaryQuestion(data),
+    generateCourseLinkedInSummaryTips(data),
   ]);
-  return { standard, keyword, casual };
+  return { standard, keyword, casual, question, tips };
 }
 
 // ============================================

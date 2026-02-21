@@ -39,8 +39,8 @@ export default function HongAdminPage() {
 
   // LinkedIn Summary state
   const [isGeneratingLinkedinSummary, setIsGeneratingLinkedinSummary] = useState<number | null>(null);
-  const [linkedinSummaries, setLinkedinSummaries] = useState<{ standard: string; keyword: string; casual: string }>({ standard: "", keyword: "", casual: "" });
-  const [linkedinToneTab, setLinkedinToneTab] = useState<"standard" | "keyword" | "casual">("standard");
+  const [linkedinSummaries, setLinkedinSummaries] = useState<{ standard: string; keyword: string; casual: string; question: string; tips: string }>({ standard: "", keyword: "", casual: "", question: "", tips: "" });
+  const [linkedinToneTab, setLinkedinToneTab] = useState<"standard" | "keyword" | "casual" | "question" | "tips">("standard");
   const [isLinkedinModalOpen, setIsLinkedinModalOpen] = useState(false);
   const [activePostForLinkedin, setActivePostForLinkedin] = useState<any>(null);
   const [activeCourseForLinkedin, setActiveCourseForLinkedin] = useState<any>(null);
@@ -163,7 +163,7 @@ export default function HongAdminPage() {
   };
 
   // LinkedIn Summary handlers
-  const linkedinToneLabels = { standard: "대화형", keyword: "키워드 요약", casual: "가벼운 공유" } as const;
+  const linkedinToneLabels = { standard: "대화형", keyword: "키워드 요약", casual: "가벼운 공유", question: "질문/토론", tips: "실전 팁" } as const;
   const currentLinkedinSummary = linkedinSummaries[linkedinToneTab];
 
   const handleGenerateLinkedinSummary = async (post: any) => {
@@ -556,12 +556,12 @@ export default function HongAdminPage() {
               </div>
 
               {/* 톤 선택 탭 */}
-              <div className="flex border-4 border-black mb-4">
-                {(["standard", "keyword", "casual"] as const).map((tone) => (
+              <div className="flex flex-wrap border-4 border-black mb-4">
+                {(["standard", "keyword", "casual", "question", "tips"] as const).map((tone) => (
                   <button
                     key={tone}
                     onClick={() => setLinkedinToneTab(tone)}
-                    className={`flex-1 px-3 py-2 text-sm font-black uppercase transition-colors ${
+                    className={`flex-1 min-w-[20%] px-2 py-2 text-xs font-black uppercase transition-colors ${
                       linkedinToneTab === tone
                         ? "bg-black text-white"
                         : "bg-white text-black hover:bg-gray-100"
@@ -572,6 +572,8 @@ export default function HongAdminPage() {
                       {tone === "standard" && "본문 기반 대화체"}
                       {tone === "keyword" && "핵심 키워드 요약"}
                       {tone === "casual" && "짧고 가볍게"}
+                      {tone === "question" && "댓글 유도형"}
+                      {tone === "tips" && "저장/공유 유도"}
                     </span>
                   </button>
                 ))}
