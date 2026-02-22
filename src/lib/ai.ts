@@ -656,13 +656,117 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
   }
 }
 
-// LinkedIn 요약 5가지 버전 병렬 생성
+// 가이드 공유형 LinkedIn 요약 생성 — 개념 비교 + 개인 경험 + CTA
+export async function generateLinkedInSummaryGuide(data: {
+  title: string;
+  content: string;
+  url: string;
+}): Promise<string> {
+  const prompt = `원문을 읽고, 원문의 핵심 내용을 "개념 비교·정리 + 개인 경험 + 공유 유도" 형태의 LinkedIn 포스트로 재구성해라.
+독자가 "이거 저장해야겠다"라고 느끼면서 동시에 댓글·DM으로 이어지게 만드는 것이 목표다.
+
+== 목표 ==
+원문이 다루는 핵심 개념들을 비교/정리해서 한눈에 보이게 만들어라.
+거기에 개인 경험을 짧게 얹어 공감을 만들어라.
+마지막에 댓글·좋아요·공유를 자연스럽게 유도해라.
+
+== 제약 ==
+- URL 포함 총 700~1,200자.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
+- 순수 텍스트만. 마크다운 금지.
+- 이모지는 CTA 섹션에서만 1~2개 허용 (⬇️, 😊 등). 본문에는 금지.
+- 기술 용어 영어, 나머지 한국어.
+- 해시태그는 마지막에 2~3개만.
+
+== 톤 ==
+- "이 분야 초보였던 내가 정리해봤다" 느낌의 친근한 교육자.
+- 본인이 겪은 시행착오를 솔직히 인정. ("제가 그랬습니다", "처음엔 헤맸는데")
+- 가르치되 권위적이지 않게. 동등한 눈높이에서 공유.
+- 핵심은 명확하게, 설명은 짧게.
+
+== 구조 ==
+
+[훅 도입 — 1-2문장]
+원문 주제에 대해 많은 사람이 겪는 문제/혼란을 짚어라.
+"~하려는 분들이 많은데, 시작이 어렵습니다" 같은 공감 도입.
+첫 2줄만 읽어도 "이 글이 나한테 필요한 글"이라고 느끼게 해라.
+
+(빈 줄)
+
+———
+
+(빈 줄)
+
+[개념 비교/정리 — 라벨+설명 형태 2~4개]
+원문의 핵심 개념들을 비교 가능한 형태로 정리해라.
+각 항목은 "라벨명" + 줄바꿈 + 1-2문장 설명.
+항목 사이 빈 줄로 구분.
+
+(빈 줄)
+
+———
+
+(빈 줄)
+
+[개인 경험 + 가치 전달 — 3-5문장]
+본인이 이 주제를 처음 접했을 때의 시행착오를 짧게 공유.
+그래서 이 글/가이드를 만들었다는 동기 설명.
+"가장 기본이 되는 사항만 정리했습니다" 같은 겸손한 가치 제안.
+
+(빈 줄)
+
+[링크 연결 — 1-2문장]
+"~하시는 분들을 위해 링크를 공유드릴게요" 같은 자연스러운 연결.
+이모지(⬇️) 허용.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.title}]
+${data.url}
+
+(빈 줄)
+
+[CTA — 번호 매긴 2-3개 항목]
+댓글, 좋아요, DM 등 인게이지먼트 유도 액션을 명시.
+"1. ~해주세요", "2. ~부탁드립니다" 형태.
+
+(빈 줄)
+
+[해시태그 — 2-3개]
+원문 주제와 관련된 해시태그. #태그1  #태그2 형태.
+
+== 절대 금지 ==
+- 본문 중간에 이모지 남발
+- 개념 비교 없이 일반론만 나열
+- 원문에 없는 내용을 지어내는 행위
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 원문 (개념 비교 + 가이드 공유 대상) ==
+제목: ${data.title}
+URL: ${data.url}
+내용:
+${data.content.substring(0, 3000)}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문만.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI LinkedIn guide summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// LinkedIn 요약 6가지 버전 병렬 생성
 export type LinkedInSummaryVersions = {
   story: string;
   hook: string;
   casual: string;
   question: string;
   tips: string;
+  guide: string;
 };
 
 export async function generateAllLinkedInSummaries(data: {
@@ -670,14 +774,15 @@ export async function generateAllLinkedInSummaries(data: {
   content: string;
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [story, hook, casual, question, tips] = await Promise.all([
+  const [story, hook, casual, question, tips, guide] = await Promise.all([
     generateLinkedInSummaryStory(data),
     generateLinkedInSummaryHook(data),
     generateLinkedInSummaryCasual(data),
     generateLinkedInSummaryQuestion(data),
     generateLinkedInSummaryTips(data),
+    generateLinkedInSummaryGuide(data),
   ]);
-  return { story, hook, casual, question, tips };
+  return { story, hook, casual, question, tips, guide };
 }
 
 // 코스용 한 줄 훅형 LinkedIn 요약 생성
@@ -987,21 +1092,125 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
   }
 }
 
-// 코스용 LinkedIn 요약 5가지 버전 병렬 생성
+// 코스용 가이드 공유형 LinkedIn 요약 생성
+export async function generateCourseLinkedInSummaryGuide(data: {
+  courseTitle: string;
+  courseDescription: string;
+  classes: { term: string; definition: string }[];
+  url: string;
+}): Promise<string> {
+  const classTerms = data.classes.map(c => c.term).join(", ");
+  const prompt = `아래 코스의 내용을 바탕으로, "개념 비교·정리 + 개인 경험 + 공유 유도" 형태의 LinkedIn 포스트를 써라.
+독자가 "이거 저장해야겠다"라고 느끼면서 동시에 댓글·DM으로 이어지게 만드는 것이 목표다.
+
+== 목표 ==
+코스가 다루는 핵심 개념들을 비교/정리해서 한눈에 보이게 만들어라.
+거기에 개인 경험을 짧게 얹어 공감을 만들어라.
+마지막에 댓글·좋아요·공유를 자연스럽게 유도해라.
+
+== 제약 ==
+- URL 포함 총 700~1,200자.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
+- 순수 텍스트만. 마크다운 금지.
+- 이모지는 CTA 섹션에서만 1~2개 허용 (⬇️, 😊 등). 본문에는 금지.
+- 기술 용어는 영어, 나머지는 한국어.
+- 해시태그는 마지막에 2~3개만.
+
+== 톤 ==
+- "이 분야 초보였던 내가 정리해봤다" 느낌의 친근한 교육자.
+- 본인이 겪은 시행착오를 솔직히 인정.
+- 가르치되 권위적이지 않게. 동등한 눈높이에서 공유.
+- 핵심은 명확하게, 설명은 짧게.
+
+== 구조 ==
+
+[훅 도입 — 1-2문장]
+코스 주제에 대해 많은 사람이 겪는 문제/혼란을 짚어라.
+첫 2줄만 읽어도 "이 글이 나한테 필요한 글"이라고 느끼게 해라.
+
+(빈 줄)
+
+———
+
+(빈 줄)
+
+[개념 비교/정리 — 라벨+설명 형태 2~4개]
+코스의 핵심 용어(${classTerms})를 활용하여 비교 가능한 형태로 정리해라.
+각 항목은 "라벨명" + 줄바꿈 + 1-2문장 설명.
+항목 사이 빈 줄로 구분.
+
+(빈 줄)
+
+———
+
+(빈 줄)
+
+[개인 경험 + 가치 전달 — 3-5문장]
+본인이 이 주제를 처음 접했을 때의 시행착오를 짧게 공유.
+그래서 이 가이드를 만들었다는 동기 설명.
+
+(빈 줄)
+
+[링크 연결 — 1-2문장]
+"~하시는 분들을 위해 링크를 공유드릴게요" 같은 자연스러운 연결.
+이모지(⬇️) 허용.
+마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
+[${data.courseTitle}]
+${data.url}
+
+(빈 줄)
+
+[CTA — 번호 매긴 2-3개 항목]
+댓글, 좋아요, DM 등 인게이지먼트 유도 액션을 명시.
+
+(빈 줄)
+
+[해시태그 — 2-3개]
+코스 주제와 관련된 해시태그.
+
+== 절대 금지 ==
+- 본문 중간에 이모지 남발
+- 개념 비교 없이 일반론만 나열
+- 코스에 없는 내용을 지어내는 행위
+- {link}, [링크], (url) 같은 플레이스홀더
+
+== 코스 정보 (개념 비교 + 가이드 공유 대상) ==
+코스 제목: ${data.courseTitle}
+코스 설명: ${data.courseDescription}
+핵심 용어: ${classTerms}
+주제 수: ${data.classes.length}개
+실제 URL: ${data.url}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
+
+  try {
+    const result = await aiModel.generateContent(prompt);
+    const text = result.response.text().trim();
+    return postProcessLinkedInText(text, data.url);
+  } catch (error) {
+    console.error("AI Course LinkedIn guide summary generation failed:", error);
+    return "요약 생성 중에 오류가 발생했습니다.";
+  }
+}
+
+// 코스용 LinkedIn 요약 6가지 버전 병렬 생성
 export async function generateAllCourseLinkedInSummaries(data: {
   courseTitle: string;
   courseDescription: string;
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [story, hook, casual, question, tips] = await Promise.all([
+  const [story, hook, casual, question, tips, guide] = await Promise.all([
     generateCourseLinkedInSummaryStory(data),
     generateCourseLinkedInSummaryHook(data),
     generateCourseLinkedInSummaryCasual(data),
     generateCourseLinkedInSummaryQuestion(data),
     generateCourseLinkedInSummaryTips(data),
+    generateCourseLinkedInSummaryGuide(data),
   ]);
-  return { story, hook, casual, question, tips };
+  return { story, hook, casual, question, tips, guide };
 }
 
 // ============================================
