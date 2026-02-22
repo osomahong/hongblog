@@ -86,12 +86,17 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
             </blockquote>
           ),
 
+          // pre 태그: code 컴포넌트가 직접 블록 스타일링을 처리하므로 래퍼만 전달
+          pre: ({ children }) => <>{children}</>,
+
           // 코드
           code: ({ className, children, ...props }) => {
             const match = /language-(\w+)/.exec(className || "");
-            const isInline = !match;
+            const codeString = String(children).replace(/\n$/, "");
+            const isBlock = match || codeString.includes("\n");
 
-            if (isInline) {
+            // 인라인 코드
+            if (!isBlock) {
               return (
                 <code
                   className="bg-gray-200 px-1 sm:px-1.5 py-0.5 rounded text-[12px] sm:text-sm font-mono text-red-600"
@@ -102,14 +107,36 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
               );
             }
 
+            // 언어 태그 있는 코드 블록 → macOS 윈도우 스타일 + 구문 강조
+            if (match) {
+              return (
+                <div className="my-3 sm:my-4 rounded-lg border-2 border-black overflow-hidden">
+                  <div className="flex items-center gap-1.5 px-3 py-2 bg-[#282c34] border-b border-gray-700">
+                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]" />
+                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]" />
+                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
+                  </div>
+                  <SyntaxHighlighter
+                    style={oneDark}
+                    language={match[1]}
+                    PreTag="div"
+                    className="!my-0 !rounded-none !border-0 text-[11px] sm:text-sm overflow-x-auto"
+                  >
+                    {codeString}
+                  </SyntaxHighlighter>
+                </div>
+              );
+            }
+
+            // 언어 태그 없는 코드 블록 → 단순 다크 배경
             return (
               <SyntaxHighlighter
                 style={oneDark}
-                language={match[1]}
+                language="text"
                 PreTag="div"
                 className="!my-3 sm:!my-4 !rounded-lg border-2 border-black text-[11px] sm:text-sm overflow-x-auto"
               >
-                {String(children).replace(/\n$/, "")}
+                {codeString}
               </SyntaxHighlighter>
             );
           },
