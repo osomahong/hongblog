@@ -431,35 +431,24 @@ export default function HongAdminPage() {
               <Plus className="w-4 h-4" /> 새 글
             </button>
             <div className="w-px bg-gray-600 mx-2" />
-            {/* llms.txt 생성 버튼 */}
-            <button
-              onClick={handleGenerateLlmsTxt}
-              disabled={isGeneratingLlmsTxt}
-              className="px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 bg-cyan-600 hover:bg-cyan-500 disabled:bg-gray-500 disabled:cursor-not-allowed"
-              title="llms.txt 파일 생성 (조회수 기반 인기 콘텐츠 반영)"
-            >
-              {isGeneratingLlmsTxt ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" /> 생성중...
-                </>
-              ) : (
-                <>
-                  <Bot className="w-4 h-4" /> llms.txt
-                </>
-              )}
-            </button>
-            <button
-              onClick={() => setIsStandaloneLinkedinOpen(true)}
-              className="px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 bg-[#0A66C2] hover:bg-[#004182]"
-              title="주제 기반 LinkedIn 글 생성"
-            >
-              <Linkedin className="w-4 h-4" /> LinkedIn
-            </button>
-            {llmsTxtLastUpdated && (
-              <span className="text-xs text-gray-300 self-center">
-                마지막 생성: {llmsTxtLastUpdated}
-              </span>
-            )}
+            <div className="flex gap-2 flex-shrink-0">
+              <button
+                onClick={handleGenerateLlmsTxt}
+                disabled={isGeneratingLlmsTxt}
+                className="px-3 py-2 font-bold uppercase text-sm flex items-center gap-1 bg-cyan-600 hover:bg-cyan-500 disabled:bg-gray-500 disabled:cursor-not-allowed whitespace-nowrap"
+                title={`llms.txt 파일 생성${llmsTxtLastUpdated ? ` (마지막: ${llmsTxtLastUpdated})` : ""}`}
+              >
+                {isGeneratingLlmsTxt ? <Loader2 className="w-4 h-4 animate-spin" /> : <Bot className="w-4 h-4" />}
+                llms.txt
+              </button>
+              <button
+                onClick={() => setIsStandaloneLinkedinOpen(true)}
+                className="px-3 py-2 font-bold uppercase text-sm flex items-center gap-1 bg-[#0A66C2] hover:bg-[#004182] whitespace-nowrap"
+                title="주제 기반 LinkedIn 글 생성"
+              >
+                <Linkedin className="w-4 h-4" /> LinkedIn
+              </button>
+            </div>
           </div>
         </div>
       </header>
