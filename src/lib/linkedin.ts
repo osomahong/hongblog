@@ -154,7 +154,7 @@ export async function postToLinkedIn(
       .replace(/\r/g, "\n")
       .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
 
-    const bodyStr = JSON.stringify({
+    const body = JSON.stringify({
       author: tokenData.personUrn,
       commentary: sanitized,
       visibility: "PUBLIC",
@@ -167,19 +167,15 @@ export async function postToLinkedIn(
       isReshareDisabledByAuthor: false,
     });
 
-    // UTF-8 Buffer로 명시적 인코딩하여 Content-Length 바이트 기준 보장
-    const bodyBuffer = Buffer.from(bodyStr, "utf-8");
-
     const response = await fetch("https://api.linkedin.com/rest/posts", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${tokenData.accessToken}`,
-        "Content-Type": "application/json",
-        "Content-Length": bodyBuffer.byteLength.toString(),
+        "Content-Type": "application/json; charset=UTF-8",
         "LinkedIn-Version": "202601",
         "X-Restli-Protocol-Version": "2.0.0",
       },
-      body: bodyBuffer,
+      body,
     });
 
     if (!response.ok) {
