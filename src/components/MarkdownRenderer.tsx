@@ -1,10 +1,32 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Copy, Check } from "lucide-react";
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(async () => {
+    await navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [text]);
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="absolute top-2 right-2 p-1.5 rounded bg-gray-700/60 hover:bg-gray-600 text-gray-300 hover:text-white transition-colors"
+      aria-label="코드 복사"
+    >
+      {copied ? <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" /> : <Copy className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
+    </button>
+  );
+}
 
 type MarkdownRendererProps = {
   content: string;
@@ -110,12 +132,13 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
             // 언어 태그 있는 코드 블록 → macOS 윈도우 스타일 + 구문 강조
             if (match) {
               return (
-                <div className="my-3 sm:my-4 rounded-lg border-2 border-black overflow-hidden">
+                <div className="relative my-3 sm:my-4 rounded-lg border-2 border-black overflow-hidden group">
                   <div className="flex items-center gap-1.5 px-3 py-2 bg-[#282c34] border-b border-gray-700">
                     <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]" />
                     <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]" />
                     <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
                   </div>
+                  <CopyButton text={codeString} />
                   <SyntaxHighlighter
                     style={oneDark}
                     language={match[1]}
@@ -130,14 +153,17 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
 
             // 언어 태그 없는 코드 블록 → 단순 다크 배경
             return (
-              <SyntaxHighlighter
-                style={oneDark}
-                language="text"
-                PreTag="div"
-                className="!my-3 sm:!my-4 !rounded-lg border-2 border-black text-[11px] sm:text-sm overflow-x-auto"
-              >
-                {codeString}
-              </SyntaxHighlighter>
+              <div className="relative my-3 sm:my-4 rounded-lg border-2 border-black overflow-hidden group">
+                <CopyButton text={codeString} />
+                <SyntaxHighlighter
+                  style={oneDark}
+                  language="text"
+                  PreTag="div"
+                  className="!my-0 !rounded-none !border-0 text-[11px] sm:text-sm overflow-x-auto"
+                >
+                  {codeString}
+                </SyntaxHighlighter>
+              </div>
             );
           },
 
