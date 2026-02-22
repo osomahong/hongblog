@@ -132,12 +132,13 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
             // 언어 태그 있는 코드 블록 → macOS 윈도우 스타일 + 구문 강조
             if (match) {
               return (
-                <div className="relative my-3 sm:my-4 rounded-lg border-2 border-black overflow-hidden group">
+                <div className="my-3 sm:my-4 rounded-lg border-2 border-black overflow-hidden">
                   <div className="flex items-center gap-1.5 px-3 py-2 bg-[#282c34] border-b border-gray-700">
                     <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]" />
                     <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]" />
                     <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
                   </div>
+                  <div className="relative">
                   <CopyButton text={codeString} />
                   <SyntaxHighlighter
                     style={oneDark}
@@ -147,6 +148,7 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
                   >
                     {codeString}
                   </SyntaxHighlighter>
+                  </div>
                 </div>
               );
             }
