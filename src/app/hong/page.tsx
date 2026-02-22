@@ -574,7 +574,7 @@ export default function HongAdminPage() {
                       {tone === "casual" && "짧고 가볍게"}
                       {tone === "question" && "댓글 유도형"}
                       {tone === "tips" && "저장/공유 유도"}
-                      {tone === "guide" && "개념 비교 + CTA"}
+                      {tone === "guide" && "개념 비교 + 피드백 요청"}
                     </span>
                   </button>
                 ))}
