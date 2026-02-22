@@ -46,6 +46,13 @@ export default function HongAdminPage() {
   const [activeCourseForLinkedin, setActiveCourseForLinkedin] = useState<any>(null);
   const [isGeneratingCourseLinkedinSummary, setIsGeneratingCourseLinkedinSummary] = useState<number | null>(null);
 
+  // Standalone LinkedIn post state
+  const [isStandaloneLinkedinOpen, setIsStandaloneLinkedinOpen] = useState(false);
+  const [standaloneLinkedinTopic, setStandaloneLinkedinTopic] = useState("");
+  const [isGeneratingStandaloneLinkedin, setIsGeneratingStandaloneLinkedin] = useState(false);
+  const [standaloneLinkedinVersions, setStandaloneLinkedinVersions] = useState<{ daily: string; trend: string; work: string; growth: string; opinion: string }>({ daily: "", trend: "", work: "", growth: "", opinion: "" });
+  const [standaloneLinkedinTab, setStandaloneLinkedinTab] = useState<"daily" | "trend" | "work" | "growth" | "opinion">("daily");
+
   // LinkedIn connection & posting state
   const [linkedinStatus, setLinkedinStatus] = useState<{ connected: boolean; name?: string; expiresAt?: string; needsReconnect?: boolean }>({ connected: false });
   const [isPostingToLinkedin, setIsPostingToLinkedin] = useState(false);
@@ -215,6 +222,56 @@ export default function HongAdminPage() {
       alert("요약 생성 중 오류 발생");
     }
     setIsGeneratingCourseLinkedinSummary(null);
+  };
+
+  const standaloneLinkedinLabels = { daily: "일상 공감", trend: "트렌드 코멘트", work: "업무 공감", growth: "성장 회고", opinion: "솔직한 의견" } as const;
+  const standaloneLinkedinSubtitles = { daily: "소소한 일상 → 인사이트", trend: "이슈에 대한 나의 시각", work: "직장인이면 다 겪는 이야기", growth: "과거의 나 vs 지금의 나", opinion: "통념에 대한 솔직한 반론" } as const;
+  const currentStandaloneLinkedin = standaloneLinkedinVersions[standaloneLinkedinTab];
+
+  const handleGenerateStandaloneLinkedin = async () => {
+    if (!standaloneLinkedinTopic.trim()) return;
+    setIsGeneratingStandaloneLinkedin(true);
+    try {
+      const res = await fetch("/api/hong/ai/generate-standalone-linkedin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic: standaloneLinkedinTopic }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setStandaloneLinkedinVersions(data.versions);
+        setStandaloneLinkedinTab("daily");
+      } else {
+        const data = await res.json();
+        alert(data.error || "생성 실패");
+      }
+    } catch {
+      alert("생성 중 오류 발생");
+    }
+    setIsGeneratingStandaloneLinkedin(false);
+  };
+
+  const handlePostStandaloneToLinkedin = async () => {
+    if (!currentStandaloneLinkedin.trim()) return;
+    if (!confirm(`"${standaloneLinkedinLabels[standaloneLinkedinTab]}" 버전을 LinkedIn에 게시하시겠습니까?`)) return;
+    setIsPostingToLinkedin(true);
+    setLinkedinPostResult(null);
+    try {
+      const res = await fetch("/api/linkedin/post", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: currentStandaloneLinkedin }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setLinkedinPostResult({ success: true, postUrn: data.postUrn });
+      } else {
+        setLinkedinPostResult({ success: false, error: data.error || "게시 실패" });
+      }
+    } catch {
+      setLinkedinPostResult({ success: false, error: "네트워크 오류가 발생했습니다." });
+    }
+    setIsPostingToLinkedin(false);
   };
 
   const handleCopyLinkedinSummary = () => {
@@ -390,6 +447,13 @@ export default function HongAdminPage() {
                   <Bot className="w-4 h-4" /> llms.txt
                 </>
               )}
+            </button>
+            <button
+              onClick={() => setIsStandaloneLinkedinOpen(true)}
+              className="px-4 py-2 font-bold uppercase text-sm flex items-center gap-1 bg-[#0A66C2] hover:bg-[#004182]"
+              title="주제 기반 LinkedIn 글 생성"
+            >
+              <Linkedin className="w-4 h-4" /> LinkedIn
             </button>
             {llmsTxtLastUpdated && (
               <span className="text-xs text-gray-300 self-center">
@@ -666,6 +730,148 @@ export default function HongAdminPage() {
                   </a>
                 )}
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Standalone LinkedIn Post Modal */}
+      {isStandaloneLinkedinOpen && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white border-4 border-black w-full max-w-2xl overflow-hidden max-h-[90vh] flex flex-col" style={{ boxShadow: "12px 12px 0 black" }}>
+            <div className="bg-[#0A66C2] text-white p-4 flex items-center justify-between">
+              <h3 className="font-black uppercase flex items-center gap-2">
+                <Linkedin className="w-5 h-5" /> LinkedIn 글 생성
+              </h3>
+              <button
+                onClick={() => { setIsStandaloneLinkedinOpen(false); setLinkedinPostResult(null); }}
+                className="hover:text-gray-200"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="p-6 overflow-y-auto flex-1">
+              {/* 주제 입력 */}
+              <div className="mb-4">
+                <label className="block text-sm font-bold mb-2">주제 / 아이디어</label>
+                <textarea
+                  value={standaloneLinkedinTopic}
+                  onChange={(e) => setStandaloneLinkedinTopic(e.target.value)}
+                  placeholder="예: AI 도구를 처음 도입했을 때 겪은 시행착오, 마케터의 데이터 리터러시 중요성, 재택근무 3년차 솔직 후기..."
+                  className="w-full h-24 p-3 border-4 border-black text-sm focus:outline-none resize-none"
+                />
+              </div>
+              <button
+                onClick={handleGenerateStandaloneLinkedin}
+                disabled={isGeneratingStandaloneLinkedin || standaloneLinkedinTopic.trim().length < 5}
+                className="w-full py-3 bg-black text-white font-black uppercase flex items-center justify-center gap-2 hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition mb-4"
+              >
+                {isGeneratingStandaloneLinkedin ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" /> 5가지 스타일 생성중...</>
+                ) : (
+                  <><Bot className="w-4 h-4" /> 5가지 스타일로 생성</>
+                )}
+              </button>
+
+              {/* 생성된 결과 */}
+              {(currentStandaloneLinkedin || isGeneratingStandaloneLinkedin) && (
+                <>
+                  <div className="flex flex-wrap border-4 border-black mb-4">
+                    {(["daily", "trend", "work", "growth", "opinion"] as const).map((style) => (
+                      <button
+                        key={style}
+                        onClick={() => setStandaloneLinkedinTab(style)}
+                        className={`flex-1 min-w-[20%] px-2 py-2 text-xs font-black uppercase transition-colors ${
+                          standaloneLinkedinTab === style
+                            ? "bg-black text-white"
+                            : "bg-white text-black hover:bg-gray-100"
+                        }`}
+                      >
+                        {standaloneLinkedinLabels[style]}
+                        <span className="block text-[10px] font-normal normal-case mt-0.5 opacity-70">
+                          {standaloneLinkedinSubtitles[style]}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="relative">
+                    <textarea
+                      value={currentStandaloneLinkedin}
+                      onChange={(e) => setStandaloneLinkedinVersions(prev => ({ ...prev, [standaloneLinkedinTab]: e.target.value }))}
+                      className={`w-full h-72 p-4 border-4 focus:outline-none font-sans text-sm leading-relaxed ${
+                        currentStandaloneLinkedin.length > 3000 ? "border-red-500 bg-red-50" : "border-black bg-white"
+                      }`}
+                    />
+                    <button
+                      onClick={() => { navigator.clipboard.writeText(currentStandaloneLinkedin); alert("클립보드에 복사되었습니다!"); }}
+                      className="absolute top-4 right-4 p-2 bg-white border-2 border-black hover:bg-gray-100 shadow-[2px_2px_0_black] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+                      title="Copy to clipboard"
+                    >
+                      <Copy className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <div className="mt-2 flex justify-end">
+                    <span className={`text-xs font-bold ${currentStandaloneLinkedin.length > 3000 ? "text-red-600" : "text-gray-500"}`}>
+                      {currentStandaloneLinkedin.length.toLocaleString()} / 3,000
+                    </span>
+                  </div>
+
+                  {/* 게시 결과 피드백 */}
+                  {linkedinPostResult && (
+                    <div className={`mt-4 p-3 border-2 text-sm font-bold ${
+                      linkedinPostResult.success
+                        ? "border-green-600 bg-green-50 text-green-800"
+                        : "border-red-600 bg-red-50 text-red-800"
+                    }`}>
+                      {linkedinPostResult.success ? (
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4" />
+                          <span>LinkedIn에 게시되었습니다!</span>
+                          <a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer" className="underline flex items-center gap-1 ml-auto">
+                            피드 확인 <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          <span>{linkedinPostResult.error}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="mt-6 flex justify-end gap-3">
+                    <button
+                      onClick={() => { setIsStandaloneLinkedinOpen(false); setLinkedinPostResult(null); }}
+                      className="px-6 py-2 border-4 border-black font-black uppercase hover:bg-gray-100"
+                    >
+                      Close
+                    </button>
+                    {linkedinStatus.connected && !linkedinPostResult?.success && (
+                      <button
+                        onClick={handlePostStandaloneToLinkedin}
+                        disabled={isPostingToLinkedin || currentStandaloneLinkedin.length > 3000 || !currentStandaloneLinkedin.trim()}
+                        className="px-6 py-2 bg-[#0A66C2] text-white font-black uppercase flex items-center gap-2 hover:bg-[#004182] disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                      >
+                        {isPostingToLinkedin ? (
+                          <><Loader2 className="w-4 h-4 animate-spin" /> Posting...</>
+                        ) : (
+                          <><Send className="w-4 h-4" /> Post to LinkedIn</>
+                        )}
+                      </button>
+                    )}
+                    {!linkedinStatus.connected && (
+                      <a
+                        href="/api/linkedin/authorize"
+                        className="px-6 py-2 bg-[#0A66C2] text-white font-black uppercase flex items-center gap-2 hover:bg-[#004182] transition"
+                      >
+                        <Linkedin className="w-4 h-4" /> Connect LinkedIn
+                      </a>
+                    )}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>

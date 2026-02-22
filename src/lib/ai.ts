@@ -1231,6 +1231,159 @@ export async function generateAllCourseLinkedInSummaries(data: {
 }
 
 // ============================================
+// 독립 LinkedIn 글 생성 (주제 기반, 블로그 글 불필요)
+// ============================================
+
+export type StandaloneLinkedInVersions = {
+  daily: string;
+  trend: string;
+  work: string;
+  growth: string;
+  opinion: string;
+};
+
+const STANDALONE_LINKEDIN_BASE_RULES = `== 공통 제약 ==
+- 총 500~800자.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
+- 마크다운 금지, 이모지 금지, 순수 텍스트만.
+- 기술 용어 영어, 나머지 한국어.
+- 해시태그 금지. DM 유도, 좋아요/공유 요청 금지.
+- 링크 없음 (독립 포스트).
+
+== 공통 금지 ==
+- 원문 없이 사실을 지어내는 행위 (의견·감상은 OK)
+- 클릭베이트성 거짓 과장
+- 광고·홍보 냄새가 나는 문장`;
+
+function generateStandaloneLinkedInPost(topic: string, stylePrompt: string): Promise<string> {
+  const prompt = `사용자가 제시한 주제를 바탕으로 LinkedIn 포스트를 작성해라.
+
+${stylePrompt}
+
+${STANDALONE_LINKEDIN_BASE_RULES}
+
+== 주제 ==
+${topic}
+
+LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문만.`;
+
+  return aiModel.generateContent(prompt).then(r => r.response.text().trim()).catch(() => "생성 중 오류가 발생했습니다.");
+}
+
+// 1. 일상 공감형
+function generateStandaloneDaily(topic: string): Promise<string> {
+  return generateStandaloneLinkedInPost(topic, `== 스타일: 일상 공감형 ==
+일상에서 겪은 작은 에피소드를 통해 인사이트를 전달해라.
+"오늘 카페에서..." , "퇴근길에 문득..." 같은 소소한 시작이 핵심이다.
+
+== 톤 ==
+- 친근하고 편안한 대화체. "~하더라고요", "~했거든요" 같은 구어체 어미.
+- 가볍게 시작하지만 끝에 "아, 그렇구나" 하는 깨달음이 있어야 한다.
+
+== 구조 ==
+[에피소드 시작] 일상적 상황 묘사 (1-2문장)
+(빈 줄)
+[전개] 그 상황에서 느끼거나 발견한 것 (2-3문장)
+(빈 줄)
+[인사이트] 업무나 삶에 연결되는 교훈 (1-2문장)
+(빈 줄)
+[마무리] 여운을 남기는 한마디`);
+}
+
+// 2. 트렌드 코멘트형
+function generateStandaloneTrend(topic: string): Promise<string> {
+  return generateStandaloneLinkedInPost(topic, `== 스타일: 트렌드 코멘트형 ==
+최근 이슈/트렌드에 대한 본인만의 시각을 제시해라.
+남들이 다 아는 뉴스를 전달하는 게 아니라, "나는 이걸 이렇게 본다"가 핵심이다.
+
+== 톤 ==
+- 분석적이되 딱딱하지 않은 톤. "~인 것 같습니다", "~라고 생각합니다".
+- 확신과 겸손 사이의 균형. 단정 짓되 다른 시각도 인정.
+
+== 구조 ==
+[현상 짚기] 트렌드/이슈를 한 줄로 요약 (1문장)
+(빈 줄)
+[나의 시각] "그런데 저는 이렇게 봅니다" (2-3문장)
+(빈 줄)
+[근거/경험] 왜 그렇게 생각하는지 (2-3문장)
+(빈 줄)
+[전망/질문] 앞으로 어떻게 될지, 또는 독자에게 던지는 질문 (1-2문장)`);
+}
+
+// 3. 업무 공감형
+function generateStandaloneWork(topic: string): Promise<string> {
+  return generateStandaloneLinkedInPost(topic, `== 스타일: 업무 공감형 ==
+직장인/마케터라면 누구나 겪어봤을 상황을 묘사하며 공감을 끌어내라.
+"나만 이런 거 아니었구나" 하는 안도감 + 실용적 대처법이 핵심이다.
+
+== 톤 ==
+- 동료에게 털어놓는 듯한 솔직한 톤. "~잖아요", "~인 거 아시죠".
+- 고충을 나누되 불평이 아닌 건설적 방향으로 마무리.
+
+== 구조 ==
+[공감 포인트] 누구나 겪는 업무 상황 묘사 (1-2문장)
+(빈 줄)
+[솔직한 고백] "저도 그랬습니다" 식의 경험 공유 (2-3문장)
+(빈 줄)
+[발견한 방법] 어떻게 대처했는지 (2-3문장)
+(빈 줄)
+[마무리] 독자에게 건네는 한마디`);
+}
+
+// 4. 성장 회고형
+function generateStandaloneGrowth(topic: string): Promise<string> {
+  return generateStandaloneLinkedInPost(topic, `== 스타일: 성장 회고형 ==
+과거의 나 vs 현재의 나를 대비시키며 배움과 성장을 공유해라.
+"그때는 몰랐는데 지금 돌아보니" 하는 회고가 핵심이다.
+
+== 톤 ==
+- 겸손하고 진솔한 톤. "~했었습니다", "~더라고요".
+- 자랑이 아닌 반성과 배움 중심. 실패를 숨기지 않는다.
+
+== 구조 ==
+[과거] "N개월/년 전, 저는 ~했습니다" (1-2문장)
+(빈 줄)
+[전환점] 무엇이 바뀌게 했는지 (2-3문장)
+(빈 줄)
+[현재] 지금은 어떻게 다른지 (2-3문장)
+(빈 줄)
+[교훈] 이 경험에서 배운 한 가지 (1-2문장)`);
+}
+
+// 5. 솔직한 의견형
+function generateStandaloneOpinion(topic: string): Promise<string> {
+  return generateStandaloneLinkedInPost(topic, `== 스타일: 솔직한 의견형 ==
+업계 통념이나 대중적 의견에 대해 "솔직히 말하면" 식의 반론을 제기해라.
+동의하든 반대하든 댓글을 달고 싶게 만드는 것이 핵심이다.
+
+== 톤 ==
+- 직설적이되 공격적이지 않은 톤. "솔직히", "제 경험상", "~라고 생각합니다".
+- 의견을 내되 상대방 시각도 존중하는 성숙한 태도.
+
+== 구조 ==
+[통념 제시] "많은 분들이 ~라고 말합니다" (1문장)
+(빈 줄)
+[반론/의견] "그런데 저는 다르게 생각합니다" (2-3문장)
+(빈 줄)
+[근거] 경험이나 사례 기반 설명 (2-3문장)
+(빈 줄)
+[열린 마무리] "여러분은 어떻게 생각하시나요?" 식의 토론 유도 (1문장)`);
+}
+
+export async function generateAllStandaloneLinkedIn(topic: string): Promise<StandaloneLinkedInVersions> {
+  const [daily, trend, work, growth, opinion] = await Promise.all([
+    generateStandaloneDaily(topic),
+    generateStandaloneTrend(topic),
+    generateStandaloneWork(topic),
+    generateStandaloneGrowth(topic),
+    generateStandaloneOpinion(topic),
+  ]);
+  return { daily, trend, work, growth, opinion };
+}
+
+// ============================================
 // 콘텐츠 자동 생성 함수
 // ============================================
 
