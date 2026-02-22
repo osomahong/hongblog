@@ -260,73 +260,72 @@ function postProcessLinkedInText(text: string, url: string): string {
   return result;
 }
 
-// AI 기반 링크드인 업로드용 요약 생성
-export async function generateLinkedInSummary(data: {
+// 스토리텔링형 LinkedIn 요약 생성 — 경험 기반 미니 서사
+export async function generateLinkedInSummaryStory(data: {
   title: string;
   content: string;
   url: string;
 }): Promise<string> {
-  const prompt = `원문을 읽고, 원문의 핵심 내용을 바탕으로 LinkedIn 포스트를 써라.
-원문의 문장을 그대로 베끼지는 마라. 하지만 원문이 다루는 핵심 주장, 개념, 흐름은 반드시 반영해라.
-읽는 사람이 "이 글이 어떤 내용인지" 감을 잡을 수 있어야 한다.
+  const prompt = `원문을 읽고, 원문의 핵심 메시지를 "겪어본 사람의 이야기"로 재구성해라.
+읽는 사람이 "그래서 어떻게 됐어?"라고 궁금해하며 끝까지 읽게 만들어라.
 
 == 목표 ==
-원문의 핵심 메시지를 동료에게 말로 전하듯 풀어써라.
-포스트를 읽으면 원문이 무엇을 말하는지 맥락이 잡혀야 한다.
-공감 위에서 "이걸 더 자세히 정리한 글이 있다"고 자연스럽게 연결해라.
+원문의 핵심 내용을 경험 기반 미니 서사로 풀어써라.
+상황→전개→반전(또는 발견)→교훈 흐름을 따르되, 원문의 맥락을 충실히 반영해라.
+스토리를 읽으면 원문이 무엇을 말하는지 자연스럽게 파악되어야 한다.
 
 == 제약 ==
-- URL 포함 총 800~1,200자.
-- 의미 단락 사이 빈 줄.
-- 긴 문장은 의미 단위에서 자연스럽게 줄바꿈해라. 1문장=1줄을 강제하지 마라.
+- URL 포함 총 600~1,000자.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어 영어, 나머지 한국어.
+- 개조식/불릿 포인트 절대 금지. 산문(평문)으로만 써라.
 
 == 톤 ==
-- 같은 일을 하는 동료와 점심 먹으며 나누는 대화.
-- 상대를 가르치거나 지적하지 마라. "같이 겪은 사람"으로서 말해라.
-- "~하는 순간이 있죠", "돌이켜보니 그랬더라고요" 같은 부드러운 회고.
-- 경고/훈계조 금지. 발견과 공유의 톤을 써라.
+- 친한 동료에게 "나 이런 일 있었어" 하고 꺼내는 톤.
+- "처음엔 ~라고 생각했는데", "막상 해보니까", "그때 알게 된 건" 같은 전환.
+- 과장 없이, 솔직한 체험담 느낌.
+- 교훈은 무겁지 않게. "돌이켜보면 ~였던 것 같아요" 수준.
 
 == 구조 ==
 
-[도입 — 1-2문장]
-원문이 다루는 핵심 주제와 관련해 많은 사람이 한번쯤 느꼈을 순간을 부드럽게 꺼내라.
-"~하는 순간이 있죠", "~라는 걸 체감할 때가 있습니다" 같은 톤.
-도입만 읽어도 "이 글이 어떤 이야기인지" 짐작되어야 한다.
+[상황 — 1-2문장]
+원문 주제와 관련된 구체적인 상황이나 계기를 꺼내라.
+"얼마 전에 ~를 하다가", "~를 처음 시도했을 때" 같은 시작.
+첫 2줄만 읽어도 "이 사람이 뭘 겪었는지" 감이 잡혀야 한다.
 
 (빈 줄)
 
-[이야기 전개 — 평문 5-8문장]
-원문의 핵심 흐름을 따라가되, 자기 경험처럼 자연스럽게 풀어써라.
-원문에서 다루는 주요 개념이나 핵심 주장을 대화체로 녹여라.
-"처음엔 ~라고 생각했는데", "실제로 해보니 ~더라고요" 같은 전환.
-독자가 원문의 맥락을 자연스럽게 파악하면서 고개를 끄덕이게 써라.
+[전개 — 3-5문장]
+그 상황에서 무슨 일이 있었는지 풀어라.
+원문의 핵심 내용을 자연스럽게 스토리 안에 녹여라.
+"그래서 ~를 해봤는데", "예상과 달리 ~더라고요" 같은 흐름.
 
 (빈 줄)
 
-[인사이트 — 개조식 3-5항목]
-원문에서 실제로 다루는 핵심 포인트를 "- " 접두어로 나열.
-원문의 내용을 기반으로 하되, 대화체로 재구성해라.
-"~는 결국 ~의 몫이더라고요", "~을 먼저 짚어봐야 합니다" 같은 관점 공유.
+[반전/발견 — 2-3문장]
+이야기의 전환점. 원문에서 가장 핵심적인 인사이트를 자연스럽게 드러내라.
+"결국 핵심은 ~였습니다", "그제야 ~가 보이더라고요" 같은 깨달음.
 
 (빈 줄)
 
-[마무리 — 평문 2-3문장]
-이야기를 부드럽게 정리하며 블로그 글로 연결.
-"이 내용을 좀 더 구체적으로 정리해봤습니다", "같은 고민을 하는 분들께 도움이 되면 좋겠습니다" 같은 겸손한 공유.
+[마무리 + 링크 — 1-2문장]
+이야기를 정리하며 원문으로 연결.
+"이 경험을 정리해본 글입니다" 같은 가벼운 연결.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.title}]
 ${data.url}
 
 == 절대 금지 ==
-- 원문과 동떨어진 일반론이나 추상적 이야기로 채우는 행위
+- 개조식 목록 (- 항목, 1. 항목)
+- 원문에 없는 내용을 지어내는 행위
 - 원문의 문장을 그대로 복사하는 행위
-- 상대를 낮추거나 지적하는 표현 ("이것도 모르면", "아직도 ~하고 있다면")
-- 경고/훈계조 ("~하면 안 됩니다", "~는 위험합니다")
+- 교훈을 강하게 밀어붙이는 행위 ("반드시 ~해야 합니다")
 - {link}, [링크], (url) 같은 플레이스홀더
 
-== 원문 (핵심 내용 파악 후 대화체로 재구성) ==
+== 원문 (스토리 재구성 대상) ==
 제목: ${data.title}
 URL: ${data.url}
 내용:
@@ -339,67 +338,70 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
     const text = result.response.text().trim();
     return postProcessLinkedInText(text, data.url);
   } catch (error) {
-    console.error("AI LinkedIn summary generation failed:", error);
+    console.error("AI LinkedIn story summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
   }
 }
 
-// 키워드 요약형 LinkedIn 요약 생성
-export async function generateLinkedInSummaryKeyword(data: {
+// 한 줄 훅형 LinkedIn 요약 생성 — 강한 첫 문장 + 펀치라인 나열
+export async function generateLinkedInSummaryHook(data: {
   title: string;
   content: string;
   url: string;
 }): Promise<string> {
-  const prompt = `원문의 본문을 읽고, 콘텐츠를 관통하는 핵심 키워드 3~5개를 추출해라.
-그 키워드를 뼈대로 삼아 원문의 핵심 메시지를 LinkedIn 포스트로 요약해라.
+  const prompt = `원문을 읽고, 가장 강렬한 한 줄로 시작하는 LinkedIn 포스트를 써라.
+첫 문장에서 스크롤을 멈추게 하고, 이후 짧은 펀치라인을 쌓아가며 "더 보기"를 누르게 만들어라.
 
 == 목표 ==
-원문이 실제로 다루는 핵심 내용을 키워드 중심으로 압축 전달해라.
-포스트만 읽어도 원문의 골자를 파악할 수 있어야 한다.
-"더 자세한 내용이 궁금하다면" 수준으로 블로그 링크를 연결해라.
+LinkedIn 피드에서 "더 보기"를 클릭하게 만드는 것이 최우선이다.
+첫 문장이 곧 훅이다. 의외성, 숫자, 도발적 질문, 반전 중 하나를 써라.
+이후 문장은 각각 독립된 짧은 펀치라인으로, 리듬감 있게 쌓아라.
 
 == 제약 ==
-- URL 포함 총 800~1,200자.
-- 의미 단락 사이 빈 줄.
-- 긴 문장은 의미 단위에서 자연스럽게 줄바꿈해라. 1문장=1줄을 강제하지 마라.
+- URL 포함 총 500~800자.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
+- 매 문장을 독립된 줄에 배치. 문장 사이 빈 줄로 분리.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어 영어, 나머지 한국어.
 
 == 톤 ==
-- 핵심을 간결하게 짚어주는 실용적 톤.
-- "~의 핵심은 결국 ~입니다", "여기서 중요한 건 ~입니다" 같은 명확한 전달.
-- 과장 없이, 원문이 실제로 말하는 내용만 다뤄라.
-- 독자가 "이 글의 포인트를 빠르게 잡았다"고 느끼게 써라.
+- 짧고 강한 문장. 군더더기 없이.
+- "~입니다." 보다 "~다.", "~이다." 같은 단문 어미.
+- 하나의 문장에 하나의 메시지만.
+- 마지막에 살짝 여운을 남기는 톤.
 
 == 구조 ==
 
-[키워드 제시 + 도입 — 2-3문장]
-원문의 핵심 키워드를 자연스럽게 녹여서 "이 글이 무엇에 대한 것인지" 한눈에 보이게 시작해라.
-키워드를 나열하지 말고, 문장 속에 자연스럽게 배치해라.
+[훅 — 1문장]
+스크롤을 멈추게 하는 강렬한 첫 줄.
+"대부분의 마케터가 모르는 한 가지.", "3년 동안 잘못하고 있었다." 같은 톤.
 
 (빈 줄)
 
-[핵심 요약 — 개조식 3-5항목]
-각 키워드와 연결되는 원문의 핵심 포인트를 "- " 접두어로 정리해라.
-원문에서 실제로 다루는 내용을 기반으로, 각 항목이 서로 다른 측면을 짚어야 한다.
-"~라는 점", "~가 핵심입니다" 같은 요약 톤.
+[펀치라인 나열 — 5-8문장, 각각 빈 줄로 분리]
+원문의 핵심 포인트를 한 문장씩 던져라.
+각 문장이 독립적으로 임팩트가 있어야 한다.
+앞 문장에서 다음 문장으로 자연스럽게 호기심이 이어지게 배치.
 
 (빈 줄)
 
-[마무리 + 링크 — 2-3문장]
-키워드들을 하나로 엮는 한 줄 정리 후, 원문 링크로 연결.
-"각 내용을 구체적으로 풀어둔 글입니다" 같은 자연스러운 연결.
+[마무리 + 링크 — 1-2문장]
+여운을 남기며 원문으로 연결.
+"전체 이야기는 여기에." 같은 짧은 연결.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.title}]
 ${data.url}
 
 == 절대 금지 ==
+- 긴 문장 (한 문장 40자 초과)
+- 개조식 목록 (- 항목, 1. 항목)
 - 원문에 없는 내용을 지어내는 행위
-- 키워드를 해시태그(#)로 나열하는 행위
-- 상투적 마케팅 문구 ("꼭 읽어보세요", "놓치지 마세요")
+- 클릭베이트성 거짓 과장
 - {link}, [링크], (url) 같은 플레이스홀더
 
-== 원문 (키워드 추출 및 요약 대상) ==
+== 원문 (훅 + 펀치라인 추출 대상) ==
 제목: ${data.title}
 URL: ${data.url}
 내용:
@@ -412,7 +414,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
     const text = result.response.text().trim();
     return postProcessLinkedInText(text, data.url);
   } catch (error) {
-    console.error("AI LinkedIn keyword summary generation failed:", error);
+    console.error("AI LinkedIn hook summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
   }
 }
@@ -435,7 +437,9 @@ export async function generateLinkedInSummaryCasual(data: {
 
 == 제약 ==
 - URL 포함 총 400~700자. 반드시 짧게.
-- 의미 단락 사이 빈 줄.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어 영어, 나머지 한국어.
 - 개조식/불릿 포인트 절대 사용하지 마라. 평문으로만 써라.
@@ -510,7 +514,9 @@ export async function generateLinkedInSummaryQuestion(data: {
 
 == 제약 ==
 - URL 포함 총 600~1,000자.
-- 의미 단락 사이 빈 줄.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어 영어, 나머지 한국어.
 
@@ -590,7 +596,9 @@ export async function generateLinkedInSummaryTips(data: {
 
 == 제약 ==
 - URL 포함 총 800~1,200자.
-- 의미 단락 사이 빈 줄.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어 영어, 나머지 한국어.
 
@@ -650,8 +658,8 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
 
 // LinkedIn 요약 5가지 버전 병렬 생성
 export type LinkedInSummaryVersions = {
-  standard: string;
-  keyword: string;
+  story: string;
+  hook: string;
   casual: string;
   question: string;
   tips: string;
@@ -662,70 +670,77 @@ export async function generateAllLinkedInSummaries(data: {
   content: string;
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [standard, keyword, casual, question, tips] = await Promise.all([
-    generateLinkedInSummary(data),
-    generateLinkedInSummaryKeyword(data),
+  const [story, hook, casual, question, tips] = await Promise.all([
+    generateLinkedInSummaryStory(data),
+    generateLinkedInSummaryHook(data),
     generateLinkedInSummaryCasual(data),
     generateLinkedInSummaryQuestion(data),
     generateLinkedInSummaryTips(data),
   ]);
-  return { standard, keyword, casual, question, tips };
+  return { story, hook, casual, question, tips };
 }
 
-// 코스용 키워드 요약형 LinkedIn 요약 생성
-export async function generateCourseLinkedInSummaryKeyword(data: {
+// 코스용 한 줄 훅형 LinkedIn 요약 생성
+export async function generateCourseLinkedInSummaryHook(data: {
   courseTitle: string;
   courseDescription: string;
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<string> {
   const classTerms = data.classes.map(c => c.term).join(", ");
-  const prompt = `아래 코스의 핵심 키워드와 내용을 바탕으로 LinkedIn 포스트를 써라.
-코스에 포함된 용어들이 곧 이 콘텐츠의 핵심 키워드다.
+  const prompt = `아래 코스의 내용을 바탕으로, 가장 강렬한 한 줄로 시작하는 LinkedIn 포스트를 써라.
+첫 문장에서 스크롤을 멈추게 하고, 이후 짧은 펀치라인을 쌓아가며 "더 보기"를 누르게 만들어라.
 
 == 목표 ==
-코스가 다루는 핵심 개념들을 키워드 중심으로 압축 전달해라.
-포스트만 읽어도 이 코스가 어떤 영역의 어떤 개념들을 다루는지 파악할 수 있어야 한다.
-"더 자세한 내용이 궁금하다면" 수준으로 가이드 링크를 연결해라.
+LinkedIn 피드에서 "더 보기"를 클릭하게 만드는 것이 최우선이다.
+첫 문장이 곧 훅이다. 의외성, 숫자, 도발적 질문, 반전 중 하나를 써라.
+이후 문장은 각각 독립된 짧은 펀치라인으로, 리듬감 있게 쌓아라.
 
 == 제약 ==
-- URL 포함 총 800~1,200자.
-- 의미 단락 사이 빈 줄.
-- 긴 문장은 의미 단위에서 자연스럽게 줄바꿈해라. 1문장=1줄을 강제하지 마라.
+- URL 포함 총 500~800자.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
+- 매 문장을 독립된 줄에 배치. 문장 사이 빈 줄로 분리.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어는 영어, 나머지는 한국어.
 
 == 톤 ==
-- 핵심을 간결하게 짚어주는 실용적 톤.
-- "~의 핵심은 결국 ~입니다", "여기서 중요한 건 ~입니다" 같은 명확한 전달.
-- 과장 없이, 코스가 실제로 다루는 내용만 써라.
+- 짧고 강한 문장. 군더더기 없이.
+- "~입니다." 보다 "~다.", "~이다." 같은 단문 어미.
+- 하나의 문장에 하나의 메시지만.
+- 마지막에 살짝 여운을 남기는 톤.
 
 == 구조 ==
 
-[키워드 제시 + 도입 — 2-3문장]
-코스의 핵심 키워드를 자연스럽게 녹여서 "이 가이드가 무엇에 대한 것인지" 한눈에 보이게 시작해라.
+[훅 — 1문장]
+스크롤을 멈추게 하는 강렬한 첫 줄.
+코스가 다루는 핵심 주제에서 의외성이나 반전을 뽑아라.
 
 (빈 줄)
 
-[핵심 요약 — 개조식 3-5항목]
-각 키워드와 연결되는 핵심 포인트를 "- " 접두어로 정리해라.
-각 항목이 서로 다른 측면을 짚어야 한다.
+[펀치라인 나열 — 5-8문장, 각각 빈 줄로 분리]
+코스의 핵심 개념들을 한 문장씩 던져라.
+각 문장이 독립적으로 임팩트가 있어야 한다.
+앞 문장에서 다음 문장으로 자연스럽게 호기심이 이어지게 배치.
 
 (빈 줄)
 
-[마무리 + 링크 — 2-3문장]
-키워드들을 하나로 엮는 한 줄 정리 후, 가이드 링크로 연결.
+[마무리 + 링크 — 1-2문장]
+여운을 남기며 가이드로 연결.
+"전체 가이드는 여기에." 같은 짧은 연결.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.courseTitle}]
 ${data.url}
 
 == 절대 금지 ==
+- 긴 문장 (한 문장 40자 초과)
+- 개조식 목록 (- 항목, 1. 항목)
 - 코스에 없는 내용을 지어내는 행위
-- 키워드를 해시태그(#)로 나열하는 행위
-- 상투적 마케팅 문구 ("꼭 읽어보세요", "놓치지 마세요")
+- 클릭베이트성 거짓 과장
 - {link}, [링크], (url) 같은 플레이스홀더
 
-== 코스 정보 (키워드 추출 및 요약 대상) ==
+== 코스 정보 (훅 + 펀치라인 추출 대상) ==
 코스 제목: ${data.courseTitle}
 코스 설명: ${data.courseDescription}
 핵심 용어: ${classTerms}
@@ -739,7 +754,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
     const text = result.response.text().trim();
     return postProcessLinkedInText(text, data.url);
   } catch (error) {
-    console.error("AI Course LinkedIn keyword summary generation failed:", error);
+    console.error("AI Course LinkedIn hook summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
   }
 }
@@ -763,7 +778,9 @@ export async function generateCourseLinkedInSummaryCasual(data: {
 
 == 제약 ==
 - URL 포함 총 400~700자. 반드시 짧게.
-- 의미 단락 사이 빈 줄.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어는 영어, 나머지는 한국어.
 - 개조식/불릿 포인트 절대 사용하지 마라. 평문으로만 써라.
@@ -839,7 +856,9 @@ export async function generateCourseLinkedInSummaryQuestion(data: {
 
 == 제약 ==
 - URL 포함 총 600~1,000자.
-- 의미 단락 사이 빈 줄.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어는 영어, 나머지는 한국어.
 
@@ -913,7 +932,9 @@ export async function generateCourseLinkedInSummaryTips(data: {
 
 == 제약 ==
 - URL 포함 총 800~1,200자.
-- 의미 단락 사이 빈 줄.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어는 영어, 나머지는 한국어.
 
@@ -973,14 +994,14 @@ export async function generateAllCourseLinkedInSummaries(data: {
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [standard, keyword, casual, question, tips] = await Promise.all([
-    generateCourseLinkedInSummary(data),
-    generateCourseLinkedInSummaryKeyword(data),
+  const [story, hook, casual, question, tips] = await Promise.all([
+    generateCourseLinkedInSummaryStory(data),
+    generateCourseLinkedInSummaryHook(data),
     generateCourseLinkedInSummaryCasual(data),
     generateCourseLinkedInSummaryQuestion(data),
     generateCourseLinkedInSummaryTips(data),
   ]);
-  return { standard, keyword, casual, question, tips };
+  return { story, hook, casual, question, tips };
 }
 
 // ============================================
@@ -1226,71 +1247,73 @@ JSON 형식으로만 응답하세요:
   }
 }
 
-// AI 기반 코스(Course) 기반 링크드인 업로드용 요약 생성
-export async function generateCourseLinkedInSummary(data: {
+// 코스용 스토리텔링형 LinkedIn 요약 생성 — 경험 기반 미니 서사
+export async function generateCourseLinkedInSummaryStory(data: {
   courseTitle: string;
   courseDescription: string;
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<string> {
   const classTerms = data.classes.map(c => c.term).join(", ");
-  const prompt = `아래 코스의 핵심 내용을 바탕으로 LinkedIn 포스트를 써라.
-코스의 용어와 설명을 읽고, 핵심 메시지를 동료에게 말로 전하듯 풀어써라.
-읽는 사람이 "이 가이드가 어떤 내용인지" 감을 잡을 수 있어야 한다.
+  const prompt = `아래 코스의 핵심 내용을 바탕으로, "겪어본 사람의 이야기"로 재구성한 LinkedIn 포스트를 써라.
+읽는 사람이 "그래서 어떻게 됐어?"라고 궁금해하며 끝까지 읽게 만들어라.
 
 == 목표 ==
-코스의 핵심 메시지를 동료에게 말로 전하듯 풀어써라.
-포스트를 읽으면 이 가이드가 어떤 개념들을 다루는지 맥락이 잡혀야 한다.
-공감 위에서 "이걸 더 자세히 정리한 가이드가 있다"고 자연스럽게 연결해라.
+코스의 핵심 내용을 경험 기반 미니 서사로 풀어써라.
+상황→전개→반전(또는 발견)→교훈 흐름을 따르되, 코스의 맥락을 충실히 반영해라.
+스토리를 읽으면 이 가이드가 무엇을 다루는지 자연스럽게 파악되어야 한다.
 
 == 제약 ==
-- URL 포함 총 800~1,200자.
-- 의미 단락 사이 빈 줄.
-- 긴 문장은 의미 단위에서 자연스럽게 줄바꿈해라. 1문장=1줄을 강제하지 마라.
+- URL 포함 총 600~1,000자.
+- 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
+- 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
+- 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어는 영어, 나머지는 한국어.
+- 개조식/불릿 포인트 절대 금지. 산문(평문)으로만 써라.
 
 == 톤 ==
-- 같은 일을 하는 동료와 점심 먹으며 나누는 대화.
-- 상대를 가르치거나 지적하지 마라. "같이 겪은 사람"으로서 말해라.
-- "~하는 순간이 있죠", "돌이켜보니 그랬더라고요" 같은 부드러운 회고.
-- 경고/훈계조 금지. 발견과 공유의 톤을 써라.
+- 친한 동료에게 "나 이런 일 있었어" 하고 꺼내는 톤.
+- "처음엔 ~라고 생각했는데", "막상 해보니까", "그때 알게 된 건" 같은 전환.
+- 과장 없이, 솔직한 체험담 느낌.
+- 교훈은 무겁지 않게. "돌이켜보면 ~였던 것 같아요" 수준.
 
 == 구조 ==
 
-[도입 — 1-2문장]
-코스가 다루는 핵심 주제와 관련해 많은 사람이 한번쯤 느꼈을 순간을 부드럽게 꺼내라.
-도입만 읽어도 "이 가이드가 어떤 이야기인지" 짐작되어야 한다.
+[상황 — 1-2문장]
+코스 주제와 관련된 구체적인 상황이나 계기를 꺼내라.
+"얼마 전에 ~를 하다가", "~를 처음 시도했을 때" 같은 시작.
+첫 2줄만 읽어도 "이 사람이 뭘 겪었는지" 감이 잡혀야 한다.
 
 (빈 줄)
 
-[이야기 전개 — 평문 5-8문장]
-코스의 핵심 흐름을 따라가되, 자기 경험처럼 자연스럽게 풀어써라.
-코스에서 다루는 주요 개념이나 용어를 대화체로 녹여라.
-독자가 코스의 맥락을 자연스럽게 파악하면서 고개를 끄덕이게 써라.
+[전개 — 3-5문장]
+그 상황에서 무슨 일이 있었는지 풀어라.
+코스의 핵심 개념(${classTerms})을 자연스럽게 스토리 안에 녹여라.
+"그래서 ~를 해봤는데", "예상과 달리 ~더라고요" 같은 흐름.
 
 (빈 줄)
 
-[인사이트 — 개조식 3-5항목]
-코스에서 실제로 다루는 핵심 포인트를 "- " 접두어로 나열.
-코스 내용을 기반으로 하되, 대화체로 재구성해라.
+[반전/발견 — 2-3문장]
+이야기의 전환점. 코스에서 가장 핵심적인 인사이트를 자연스럽게 드러내라.
+"결국 핵심은 ~였습니다", "그제야 ~가 보이더라고요" 같은 깨달음.
 
 (빈 줄)
 
-[마무리 — 평문 2-3문장]
-이야기를 부드럽게 정리하며 가이드로 연결.
-"이 내용을 좀 더 구체적으로 정리해봤습니다" 같은 겸손한 공유.
+[마무리 + 링크 — 1-2문장]
+이야기를 정리하며 가이드로 연결.
+"이 경험을 정리해본 가이드입니다" 같은 가벼운 연결.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.courseTitle}]
 ${data.url}
 
 == 절대 금지 ==
-- 코스와 동떨어진 일반론이나 추상적 이야기로 채우는 행위
-- 상대를 낮추거나 지적하는 표현
-- 경고/훈계조 ("~하면 안 됩니다", "~는 위험합니다")
+- 개조식 목록 (- 항목, 1. 항목)
+- 코스에 없는 내용을 지어내는 행위
+- 교훈을 강하게 밀어붙이는 행위 ("반드시 ~해야 합니다")
 - {link}, [링크], (url) 같은 플레이스홀더
 
-== 코스 정보 (핵심 내용 파악 후 대화체로 재구성) ==
+== 코스 정보 (스토리 재구성 대상) ==
 코스 제목: ${data.courseTitle}
 코스 설명: ${data.courseDescription}
 핵심 용어: ${classTerms}
@@ -1304,7 +1327,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
     const text = result.response.text().trim();
     return postProcessLinkedInText(text, data.url);
   } catch (error) {
-    console.error("AI Course LinkedIn summary generation failed:", error);
+    console.error("AI Course LinkedIn story summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
   }
 }
