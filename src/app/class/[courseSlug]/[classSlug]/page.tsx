@@ -85,7 +85,7 @@ export default async function ClassDetailPage({ params }: Props) {
         headline: classData.term,
         description: classData.definition,
         image: classData.ogImage,
-        datePublished: classData.createdAt.toISOString(),
+        datePublished: (classData.publishedAt ?? classData.createdAt).toISOString(),
         dateModified: classData.updatedAt.toISOString(),
         author: {
             "@type": "Person",

@@ -189,9 +189,14 @@ export async function getPublishedPosts(): Promise<PostWithTags[]> {
   }));
 }
 
-export async function getPostBySlug(slug: string): Promise<PostWithTags | null> {
+export async function getPostBySlug(
+  slug: string,
+  options?: { includeUnpublished?: boolean }
+): Promise<PostWithTags | null> {
   const result = (await db.query.posts.findFirst({
-    where: eq(posts.slug, slug),
+    where: options?.includeUnpublished
+      ? eq(posts.slug, slug)
+      : and(eq(posts.slug, slug), eq(posts.isPublished, true)),
     with: {
       postsToTags: {
         with: {
@@ -250,9 +255,14 @@ export async function getPublishedFaqs(): Promise<FaqWithTags[]> {
   }));
 }
 
-export async function getFaqBySlug(slug: string): Promise<FaqWithTags | null> {
+export async function getFaqBySlug(
+  slug: string,
+  options?: { includeUnpublished?: boolean }
+): Promise<FaqWithTags | null> {
   const result = (await db.query.faqs.findFirst({
-    where: eq(faqs.slug, slug),
+    where: options?.includeUnpublished
+      ? eq(faqs.slug, slug)
+      : and(eq(faqs.slug, slug), eq(faqs.isPublished, true)),
     with: {
       faqsToTags: {
         with: {
@@ -804,9 +814,14 @@ export async function getPublishedSeries(): Promise<SeriesWithPosts[]> {
 }
 
 // 슬러그로 시리즈 조회
-export async function getSeriesBySlug(slug: string): Promise<SeriesWithPosts | null> {
+export async function getSeriesBySlug(
+  slug: string,
+  options?: { includeUnpublished?: boolean }
+): Promise<SeriesWithPosts | null> {
   const result = await db.query.series.findFirst({
-    where: eq(series.slug, slug),
+    where: options?.includeUnpublished
+      ? eq(series.slug, slug)
+      : and(eq(series.slug, slug), eq(series.isPublished, true)),
     with: {
       posts: {
         where: eq(posts.isPublished, true),
@@ -966,9 +981,14 @@ export async function getPublishedCourses(): Promise<CourseWithClasses[]> {
 }
 
 // slug로 Course 조회
-export async function getCourseBySlug(slug: string): Promise<CourseWithClasses | null> {
+export async function getCourseBySlug(
+  slug: string,
+  options?: { includeUnpublished?: boolean }
+): Promise<CourseWithClasses | null> {
   const result = await db.query.courses.findFirst({
-    where: eq(courses.slug, slug),
+    where: options?.includeUnpublished
+      ? eq(courses.slug, slug)
+      : and(eq(courses.slug, slug), eq(courses.isPublished, true)),
     with: {
       classes: {
         where: eq(classes.isPublished, true),
@@ -1059,9 +1079,14 @@ export async function getPublishedClasses(): Promise<ClassWithTags[]> {
 }
 
 // slug로 Class 조회
-export async function getClassBySlug(slug: string): Promise<ClassWithTags | null> {
+export async function getClassBySlug(
+  slug: string,
+  options?: { includeUnpublished?: boolean }
+): Promise<ClassWithTags | null> {
   const result = await db.query.classes.findFirst({
-    where: eq(classes.slug, slug),
+    where: options?.includeUnpublished
+      ? eq(classes.slug, slug)
+      : and(eq(classes.slug, slug), eq(classes.isPublished, true)),
     with: {
       classesToTags: {
         with: {
@@ -1317,9 +1342,14 @@ export async function getPublishedLogs(): Promise<LogWithTags[]> {
   }));
 }
 
-export async function getLogBySlug(slug: string): Promise<LogWithTags | null> {
+export async function getLogBySlug(
+  slug: string,
+  options?: { includeUnpublished?: boolean }
+): Promise<LogWithTags | null> {
   const result = (await db.query.lifeLogs.findFirst({
-    where: eq(lifeLogs.slug, slug),
+    where: options?.includeUnpublished
+      ? eq(lifeLogs.slug, slug)
+      : and(eq(lifeLogs.slug, slug), eq(lifeLogs.isPublished, true)),
     with: {
       logsToTags: {
         with: {

@@ -50,6 +50,13 @@
       "when": 1771591943214,
       "tag": "0006_chemical_corsair",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1771773868323,
+      "tag": "0007_worthless_william_stryker",
+      "breakpoints": true
     }
   ]
 }

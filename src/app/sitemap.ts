@@ -41,11 +41,11 @@ export default async function sitemap(props: {
     return [
       {
         url: `${baseUrl}/insights`,
-        lastModified: latestDate(posts.map((p) => p.updatedAt)),
+        lastModified: latestDate(posts.map((p) => p.publishedAt ?? p.updatedAt)),
       },
       ...posts.map((post) => ({
         url: `${baseUrl}/insights/${post.slug}`,
-        lastModified: post.updatedAt,
+        lastModified: post.publishedAt ?? post.updatedAt,
       })),
     ];
   }
@@ -60,19 +60,19 @@ export default async function sitemap(props: {
       {
         url: `${baseUrl}/class`,
         lastModified: latestDate([
-          ...courses.map((c) => c.updatedAt),
-          ...classes.map((c) => c.updatedAt),
+          ...courses.map((c) => c.publishedAt ?? c.updatedAt),
+          ...classes.map((c) => c.publishedAt ?? c.updatedAt),
         ]),
       },
       ...courses.map((course) => ({
         url: `${baseUrl}/class/${course.slug}`,
-        lastModified: course.updatedAt,
+        lastModified: course.publishedAt ?? course.updatedAt,
       })),
       ...classes
         .filter((cls) => cls.courseInfo?.slug)
         .map((cls) => ({
           url: `${baseUrl}/class/${cls.courseInfo!.slug}/${cls.slug}`,
-          lastModified: cls.updatedAt,
+          lastModified: cls.publishedAt ?? cls.updatedAt,
         })),
     ];
   }
@@ -86,24 +86,24 @@ export default async function sitemap(props: {
   ]);
 
   const siteLatest = latestDate([
-    ...posts.map((p) => p.updatedAt),
-    ...faqs.map((f) => f.updatedAt),
+    ...posts.map((p) => p.publishedAt ?? p.updatedAt),
+    ...faqs.map((f) => f.publishedAt ?? f.updatedAt),
   ]);
 
   return [
     { url: baseUrl, lastModified: siteLatest },
     {
       url: `${baseUrl}/faq`,
-      lastModified: latestDate(faqs.map((f) => f.updatedAt)),
+      lastModified: latestDate(faqs.map((f) => f.publishedAt ?? f.updatedAt)),
     },
     {
       url: `${baseUrl}/series`,
-      lastModified: latestDate(seriesList.map((s) => s.updatedAt)),
+      lastModified: latestDate(seriesList.map((s) => s.publishedAt ?? s.updatedAt)),
     },
     { url: `${baseUrl}/about` },
     {
       url: `${baseUrl}/logs`,
-      lastModified: latestDate(logs.map((l) => l.updatedAt)),
+      lastModified: latestDate(logs.map((l) => l.publishedAt ?? l.updatedAt)),
     },
     {
       url: `${baseUrl}/tags`,
@@ -111,15 +111,15 @@ export default async function sitemap(props: {
     },
     ...faqs.map((faq) => ({
       url: `${baseUrl}/faq/${faq.slug}`,
-      lastModified: faq.updatedAt,
+      lastModified: faq.publishedAt ?? faq.updatedAt,
     })),
     ...seriesList.map((s) => ({
       url: `${baseUrl}/series/${s.slug}`,
-      lastModified: s.updatedAt,
+      lastModified: s.publishedAt ?? s.updatedAt,
     })),
     ...logs.map((log) => ({
       url: `${baseUrl}/logs/${log.slug}`,
-      lastModified: log.updatedAt,
+      lastModified: log.publishedAt ?? log.updatedAt,
     })),
   ];
 }

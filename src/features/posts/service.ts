@@ -210,11 +210,15 @@ export const postService = {
             throw new Error("Post not found");
         }
 
+        const now = new Date();
+        const isPublishing = !post.isPublished;
+
         const [updated] = await db
             .update(posts)
             .set({
-                isPublished: !post.isPublished,
-                updatedAt: new Date(),
+                isPublished: isPublishing,
+                updatedAt: now,
+                ...(isPublishing && !post.publishedAt ? { publishedAt: now } : {}),
             })
             .where(eq(posts.id, id))
             .returning();

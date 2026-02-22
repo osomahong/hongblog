@@ -60,7 +60,7 @@ async function ensureUniqueSlug(baseSlug: string): Promise<string> {
   let slug = baseSlug;
   let suffix = 2;
 
-  while (await getClassBySlug(slug)) {
+  while (await getClassBySlug(slug, { includeUnpublished: true })) {
     slug = `${baseSlug}-${suffix}`;
     suffix++;
   }

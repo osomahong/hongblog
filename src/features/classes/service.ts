@@ -146,11 +146,15 @@ export const classService = {
             throw new Error("Class not found");
         }
 
+        const now = new Date();
+        const isPublishing = !cls.isPublished;
+
         const [updated] = await db
             .update(classes)
             .set({
-                isPublished: !cls.isPublished,
-                updatedAt: new Date(),
+                isPublished: isPublishing,
+                updatedAt: now,
+                ...(isPublishing && !cls.publishedAt ? { publishedAt: now } : {}),
             })
             .where(eq(classes.id, id))
             .returning();
@@ -227,11 +231,15 @@ export const courseService = {
             throw new Error("Course not found");
         }
 
+        const now = new Date();
+        const isPublishing = !course.isPublished;
+
         const [updated] = await db
             .update(courses)
             .set({
-                isPublished: !course.isPublished,
-                updatedAt: new Date(),
+                isPublished: isPublishing,
+                updatedAt: now,
+                ...(isPublishing && !course.publishedAt ? { publishedAt: now } : {}),
             })
             .where(eq(courses.id, id))
             .returning();

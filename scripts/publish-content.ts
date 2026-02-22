@@ -96,10 +96,10 @@ async function readInput(filePath?: string): Promise<string> {
 
 async function ensureUniqueSlug(type: ContentType, baseSlug: string): Promise<string> {
   const checkers: Record<ContentType, (slug: string) => Promise<unknown>> = {
-    post: getPostBySlug,
-    faq: getFaqBySlug,
-    class: getClassBySlug,
-    log: getLogBySlug,
+    post: (slug) => getPostBySlug(slug, { includeUnpublished: true }),
+    faq: (slug) => getFaqBySlug(slug, { includeUnpublished: true }),
+    class: (slug) => getClassBySlug(slug, { includeUnpublished: true }),
+    log: (slug) => getLogBySlug(slug, { includeUnpublished: true }),
   };
 
   let slug = baseSlug;

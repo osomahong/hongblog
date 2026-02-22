@@ -73,11 +73,15 @@ export const logService = {
             throw new Error("Log not found");
         }
 
+        const now = new Date();
+        const isPublishing = !log.isPublished;
+
         const [updated] = await db
             .update(lifeLogs)
             .set({
-                isPublished: !log.isPublished,
-                updatedAt: new Date(),
+                isPublished: isPublishing,
+                updatedAt: now,
+                ...(isPublishing && !log.publishedAt ? { publishedAt: now } : {}),
             })
             .where(eq(lifeLogs.id, id))
             .returning();

@@ -186,11 +186,15 @@ export const faqService = {
             throw new Error("FAQ not found");
         }
 
+        const now = new Date();
+        const isPublishing = !faq.isPublished;
+
         const [updated] = await db
             .update(faqs)
             .set({
-                isPublished: !faq.isPublished,
-                updatedAt: new Date(),
+                isPublished: isPublishing,
+                updatedAt: now,
+                ...(isPublishing && !faq.publishedAt ? { publishedAt: now } : {}),
             })
             .where(eq(faqs.id, id))
             .returning();

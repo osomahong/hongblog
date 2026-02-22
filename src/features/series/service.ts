@@ -97,11 +97,15 @@ export const seriesService = {
             throw new Error("Series not found");
         }
 
+        const now = new Date();
+        const isPublishing = !s.isPublished;
+
         const [updated] = await db
             .update(series)
             .set({
-                isPublished: !s.isPublished,
-                updatedAt: new Date(),
+                isPublished: isPublishing,
+                updatedAt: now,
+                ...(isPublishing && !s.publishedAt ? { publishedAt: now } : {}),
             })
             .where(eq(series.id, id))
             .returning();

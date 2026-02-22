@@ -24,6 +24,7 @@ export const series = pgTable("series", {
   // SEO Metadata
   metaTitle: varchar("meta_title", { length: 70 }),
   metaDescription: varchar("meta_description", { length: 170 }),
+  publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -53,6 +54,7 @@ export const posts = pgTable("posts", {
   seriesId: integer("series_id").references(() => series.id, { onDelete: "set null" }),
   seriesOrder: integer("series_order"),
   linkedinPostedAt: timestamp("linkedin_posted_at"),
+  publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (t) => [
@@ -81,6 +83,7 @@ export const faqs = pgTable("faqs", {
   ogImage: varchar("og_image", { length: 500 }),
   canonicalUrl: varchar("canonical_url", { length: 500 }),
   noIndex: boolean("no_index").default(false),
+  publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -171,6 +174,7 @@ export const courses = pgTable("courses", {
   canonicalUrl: varchar("canonical_url", { length: 500 }),
   noIndex: boolean("no_index").default(false),
   linkedinPostedAt: timestamp("linkedin_posted_at"),
+  publishedAt: timestamp("published_at"),
 
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -209,6 +213,7 @@ export const classes = pgTable("classes", {
   ogDescription: varchar("og_description", { length: 200 }),
   canonicalUrl: varchar("canonical_url", { length: 500 }),
   noIndex: boolean("no_index").default(false),
+  publishedAt: timestamp("published_at"),
 
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -280,6 +285,7 @@ export const lifeLogs = pgTable("life_logs", {
   ogDescription: varchar("og_description", { length: 200 }),
   canonicalUrl: varchar("canonical_url", { length: 500 }),
   noIndex: boolean("no_index").default(false),
+  publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

@@ -87,7 +87,7 @@ export default async function LogDetailPage({ params }: Props) {
         headline: log.title,
         description: log.metaDescription || `${log.title} - 컨설팅 로그`,
         image: log.ogImage || log.thumbnailUrl,
-        datePublished: log.createdAt.toISOString(),
+        datePublished: (log.publishedAt ?? log.createdAt).toISOString(),
         dateModified: log.updatedAt.toISOString(),
         author: {
             "@type": "Person",

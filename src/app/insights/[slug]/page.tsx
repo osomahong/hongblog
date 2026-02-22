@@ -94,7 +94,7 @@ export default async function InsightDetailPage({ params }: Props) {
     headline: post.title,
     description: post.excerpt,
     image: post.ogImage || post.thumbnailUrl,
-    datePublished: post.createdAt.toISOString(),
+    datePublished: (post.publishedAt ?? post.createdAt).toISOString(),
     dateModified: post.updatedAt.toISOString(),
     author: {
       "@type": "Person",
