@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useTransition } from "react";
-import { FileText, Eye, Edit, Trash2, Linkedin, Loader2, Lock, BarChart3, Check } from "lucide-react";
+import { FileText, Eye, Edit, Trash2, Linkedin, Loader2, Lock, BarChart3 } from "lucide-react";
 import {
     getPostsAction,
     deletePostAction,
@@ -202,14 +202,12 @@ export function PostManager({
                                                     ? "bg-blue-50 text-[#0A66C2] border-[#0A66C2] hover:bg-blue-100"
                                                     : "bg-gray-50 text-gray-400 border-gray-300 hover:bg-gray-100"
                                             }`}
-                                            title={
-                                                post.linkedinPostedAt
-                                                    ? `LinkedIn 게시됨: ${new Date(post.linkedinPostedAt).toLocaleDateString("ko-KR")}`
-                                                    : "LinkedIn 미게시 (클릭하여 게시됨으로 표시)"
-                                            }
+                                            title={post.linkedinPostedAt ? "클릭하여 게시 상태 해제" : "클릭하여 게시됨으로 표시"}
                                         >
                                             <Linkedin className="w-3 h-3" />
-                                            {post.linkedinPostedAt && <Check className="w-3 h-3" />}
+                                            {post.linkedinPostedAt
+                                                ? `업로드 완료(${new Date(post.linkedinPostedAt).toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" })})`
+                                                : "미게시"}
                                         </button>
                                     </div>
                                     <h3 className="font-bold text-lg mb-2">{post.title}</h3>

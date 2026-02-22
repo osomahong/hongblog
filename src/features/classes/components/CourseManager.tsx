@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useTransition } from "react";
-import { BookOpen, Eye, Edit, Trash2, Linkedin, Loader2, Lock, Check } from "lucide-react";
+import { BookOpen, Eye, Edit, Trash2, Linkedin, Loader2, Lock } from "lucide-react";
 import {
     getCoursesAction,
     deleteCourseAction,
@@ -158,14 +158,12 @@ export function CourseManager({
                                                 ? "bg-blue-50 text-[#0A66C2] border-[#0A66C2] hover:bg-blue-100"
                                                 : "bg-gray-50 text-gray-400 border-gray-300 hover:bg-gray-100"
                                         }`}
-                                        title={
-                                            course.linkedinPostedAt
-                                                ? `LinkedIn 게시됨: ${new Date(course.linkedinPostedAt).toLocaleDateString("ko-KR")}`
-                                                : "LinkedIn 미게시 (클릭하여 게시됨으로 표시)"
-                                        }
+                                        title={course.linkedinPostedAt ? "클릭하여 게시 상태 해제" : "클릭하여 게시됨으로 표시"}
                                     >
                                         <Linkedin className="w-3 h-3" />
-                                        {course.linkedinPostedAt && <Check className="w-3 h-3" />}
+                                        {course.linkedinPostedAt
+                                            ? `업로드 완료(${new Date(course.linkedinPostedAt).toLocaleDateString("ko-KR", { month: "numeric", day: "numeric" })})`
+                                            : "미게시"}
                                     </button>
                                 </div>
                                 <p className="text-sm text-gray-600">{course.description || "설명 없음"}</p>
