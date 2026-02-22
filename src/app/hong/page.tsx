@@ -39,8 +39,8 @@ export default function HongAdminPage() {
 
   // LinkedIn Summary state
   const [isGeneratingLinkedinSummary, setIsGeneratingLinkedinSummary] = useState<number | null>(null);
-  const [linkedinSummaries, setLinkedinSummaries] = useState<{ story: string; hook: string; casual: string; question: string; tips: string; guide: string }>({ story: "", hook: "", casual: "", question: "", tips: "", guide: "" });
-  const [linkedinToneTab, setLinkedinToneTab] = useState<"story" | "hook" | "casual" | "question" | "tips" | "guide">("story");
+  const [linkedinSummaries, setLinkedinSummaries] = useState<{ story: string; mentor: string; casual: string; question: string; tips: string; guide: string }>({ story: "", mentor: "", casual: "", question: "", tips: "", guide: "" });
+  const [linkedinToneTab, setLinkedinToneTab] = useState<"story" | "mentor" | "casual" | "question" | "tips" | "guide">("story");
   const [isLinkedinModalOpen, setIsLinkedinModalOpen] = useState(false);
   const [activePostForLinkedin, setActivePostForLinkedin] = useState<any>(null);
   const [activeCourseForLinkedin, setActiveCourseForLinkedin] = useState<any>(null);
@@ -163,7 +163,7 @@ export default function HongAdminPage() {
   };
 
   // LinkedIn Summary handlers
-  const linkedinToneLabels = { story: "스토리텔링", hook: "한 줄 훅", casual: "가벼운 공유", question: "질문/토론", tips: "실전 팁", guide: "가이드 공유" } as const;
+  const linkedinToneLabels = { story: "스토리텔링", mentor: "멘토형", casual: "가벼운 공유", question: "질문/토론", tips: "실전 팁", guide: "가이드 공유" } as const;
   const currentLinkedinSummary = linkedinSummaries[linkedinToneTab];
 
   const handleGenerateLinkedinSummary = async (post: any) => {
@@ -557,7 +557,7 @@ export default function HongAdminPage() {
 
               {/* 톤 선택 탭 */}
               <div className="flex flex-wrap border-4 border-black mb-4">
-                {(["story", "hook", "casual", "question", "tips", "guide"] as const).map((tone) => (
+                {(["story", "mentor", "casual", "question", "tips", "guide"] as const).map((tone) => (
                   <button
                     key={tone}
                     onClick={() => setLinkedinToneTab(tone)}
@@ -570,7 +570,7 @@ export default function HongAdminPage() {
                     {linkedinToneLabels[tone]}
                     <span className="block text-[10px] font-normal normal-case mt-0.5 opacity-70">
                       {tone === "story" && "경험 기반 미니 서사"}
-                      {tone === "hook" && "강한 첫 문장 + 펀치라인"}
+                      {tone === "mentor" && "경험 기반 실전 조언"}
                       {tone === "casual" && "짧고 가볍게"}
                       {tone === "question" && "댓글 유도형"}
                       {tone === "tips" && "저장/공유 유도"}

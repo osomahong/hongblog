@@ -344,64 +344,71 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
 }
 
 // 한 줄 훅형 LinkedIn 요약 생성 — 강한 첫 문장 + 펀치라인 나열
-export async function generateLinkedInSummaryHook(data: {
+export async function generateLinkedInSummaryMentor(data: {
   title: string;
   content: string;
   url: string;
 }): Promise<string> {
-  const prompt = `원문을 읽고, 가장 강렬한 한 줄로 시작하는 LinkedIn 포스트를 써라.
-첫 문장에서 스크롤을 멈추게 하고, 이후 짧은 펀치라인을 쌓아가며 "더 보기"를 누르게 만들어라.
+  const prompt = `원문을 읽고, 선배가 후배에게 경험을 나누듯 실전 조언을 전하는 LinkedIn 포스트를 써라.
+통념을 뒤집는 강한 첫 문장으로 시작하고, 본인 경험 → 구체적 실행법 → 따뜻한 독려 순으로 전개해라.
 
 == 목표 ==
-LinkedIn 피드에서 "더 보기"를 클릭하게 만드는 것이 최우선이다.
-첫 문장이 곧 훅이다. 의외성, 숫자, 도발적 질문, 반전 중 하나를 써라.
-이후 문장은 각각 독립된 짧은 펀치라인으로, 리듬감 있게 쌓아라.
+읽는 사람이 "나도 바로 해봐야겠다"고 느끼게 만드는 것이 최우선이다.
+강의가 아니라 1:1 대화처럼, 멘토가 커피 마시며 알려주는 톤.
 
 == 제약 ==
-- URL 포함 총 500~800자.
+- URL 포함 총 600~1,000자.
 - 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
 - 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
 - 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
-- 매 문장을 독립된 줄에 배치. 문장 사이 빈 줄로 분리.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어 영어, 나머지 한국어.
 
 == 톤 ==
-- 짧고 강한 문장. 군더더기 없이.
-- "~입니다." 보다 "~다.", "~이다." 같은 단문 어미.
-- 하나의 문장에 하나의 메시지만.
-- 마지막에 살짝 여운을 남기는 톤.
+- 경험에서 우러나온 확신. 허세가 아닌 진정성.
+- "~하세요", "~입니다" 같은 정중하되 친근한 어미.
+- 틀린 방법을 먼저 보여주고("저도 처음엔 ~했습니다"), 맞는 방법을 알려주는 구조.
+- 마지막은 하드 CTA 없이, 행동을 독려하는 따뜻한 한마디.
 
 == 구조 ==
 
-[훅 — 1문장]
-스크롤을 멈추게 하는 강렬한 첫 줄.
-"대부분의 마케터가 모르는 한 가지.", "3년 동안 잘못하고 있었다." 같은 톤.
+[선언 — 1-2문장]
+통념을 뒤집거나 강한 주장으로 시작.
+"가장 좋은 ○○ 강의는 ○○ 자체입니다." 같은 톤.
+바로 뒤에 잘못된 접근법을 짧게 지적.
 
 (빈 줄)
 
-[펀치라인 나열 — 5-8문장, 각각 빈 줄로 분리]
-원문의 핵심 포인트를 한 문장씩 던져라.
-각 문장이 독립적으로 임팩트가 있어야 한다.
-앞 문장에서 다음 문장으로 자연스럽게 호기심이 이어지게 배치.
+[경험 공유 — 2-3문장]
+"저도 처음엔 ~했습니다." 로 시작.
+본인이 겪은 시행착오를 솔직하게 공유.
+그 과정에서 발견한 인사이트로 전환.
 
 (빈 줄)
 
-[마무리 + 링크 — 1-2문장]
-여운을 남기며 원문으로 연결.
-"전체 이야기는 여기에." 같은 짧은 연결.
+[실전 조언 — 3-5문장]
+원문의 핵심 내용을 바탕으로 구체적 실행 방법 제시.
+"이렇게 하면 됩니다" 식의 명확한 안내.
+필요하면 짧은 예시나 구체적 도구/방법 언급.
+
+(빈 줄)
+
+[독려 마무리 + 링크 — 2-3문장]
+"해보세요", "시작해보세요" 같은 부드러운 행동 유도.
+자연스럽게 원문 링크로 연결.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.title}]
 ${data.url}
 
 == 절대 금지 ==
-- 긴 문장 (한 문장 40자 초과)
+- DM 유도, 좋아요/공유 요청, 팔로우 유도
 - 개조식 목록 (- 항목, 1. 항목)
 - 원문에 없는 내용을 지어내는 행위
 - 클릭베이트성 거짓 과장
 - {link}, [링크], (url) 같은 플레이스홀더
+- 해시태그
 
-== 원문 (훅 + 펀치라인 추출 대상) ==
+== 원문 (조언 추출 대상) ==
 제목: ${data.title}
 URL: ${data.url}
 내용:
@@ -414,7 +421,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
     const text = result.response.text().trim();
     return postProcessLinkedInText(text, data.url);
   } catch (error) {
-    console.error("AI LinkedIn hook summary generation failed:", error);
+    console.error("AI LinkedIn mentor summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
   }
 }
@@ -763,7 +770,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 부연 설명 없이 본문�
 // LinkedIn 요약 6가지 버전 병렬 생성
 export type LinkedInSummaryVersions = {
   story: string;
-  hook: string;
+  mentor: string;
   casual: string;
   question: string;
   tips: string;
@@ -775,78 +782,85 @@ export async function generateAllLinkedInSummaries(data: {
   content: string;
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [story, hook, casual, question, tips, guide] = await Promise.all([
+  const [story, mentor, casual, question, tips, guide] = await Promise.all([
     generateLinkedInSummaryStory(data),
-    generateLinkedInSummaryHook(data),
+    generateLinkedInSummaryMentor(data),
     generateLinkedInSummaryCasual(data),
     generateLinkedInSummaryQuestion(data),
     generateLinkedInSummaryTips(data),
     generateLinkedInSummaryGuide(data),
   ]);
-  return { story, hook, casual, question, tips, guide };
+  return { story, mentor, casual, question, tips, guide };
 }
 
-// 코스용 한 줄 훅형 LinkedIn 요약 생성
-export async function generateCourseLinkedInSummaryHook(data: {
+// 코스용 멘토형 LinkedIn 요약 생성
+export async function generateCourseLinkedInSummaryMentor(data: {
   courseTitle: string;
   courseDescription: string;
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<string> {
   const classTerms = data.classes.map(c => c.term).join(", ");
-  const prompt = `아래 코스의 내용을 바탕으로, 가장 강렬한 한 줄로 시작하는 LinkedIn 포스트를 써라.
-첫 문장에서 스크롤을 멈추게 하고, 이후 짧은 펀치라인을 쌓아가며 "더 보기"를 누르게 만들어라.
+  const prompt = `아래 코스의 내용을 바탕으로, 선배가 후배에게 경험을 나누듯 실전 조언을 전하는 LinkedIn 포스트를 써라.
+통념을 뒤집는 강한 첫 문장으로 시작하고, 본인 경험 → 구체적 실행법 → 따뜻한 독려 순으로 전개해라.
 
 == 목표 ==
-LinkedIn 피드에서 "더 보기"를 클릭하게 만드는 것이 최우선이다.
-첫 문장이 곧 훅이다. 의외성, 숫자, 도발적 질문, 반전 중 하나를 써라.
-이후 문장은 각각 독립된 짧은 펀치라인으로, 리듬감 있게 쌓아라.
+읽는 사람이 "나도 바로 해봐야겠다"고 느끼게 만드는 것이 최우선이다.
+강의가 아니라 1:1 대화처럼, 멘토가 커피 마시며 알려주는 톤.
 
 == 제약 ==
-- URL 포함 총 500~800자.
+- URL 포함 총 600~1,000자.
 - 모바일 최적화: 한 문단 최대 2-3줄. 문단 사이 빈 줄 필수.
 - 핵심 정보를 첫 2줄 안에 배치 (LinkedIn "자세히 보기" 접힘 대응).
 - 한 문장이 모바일 화면 가로폭(약 35~40자)을 넘지 않도록 의미 단위에서 줄바꿈.
-- 매 문장을 독립된 줄에 배치. 문장 사이 빈 줄로 분리.
 - 마크다운 금지, 이모지 금지, 순수 텍스트만.
 - 기술 용어는 영어, 나머지는 한국어.
 
 == 톤 ==
-- 짧고 강한 문장. 군더더기 없이.
-- "~입니다." 보다 "~다.", "~이다." 같은 단문 어미.
-- 하나의 문장에 하나의 메시지만.
-- 마지막에 살짝 여운을 남기는 톤.
+- 경험에서 우러나온 확신. 허세가 아닌 진정성.
+- "~하세요", "~입니다" 같은 정중하되 친근한 어미.
+- 틀린 방법을 먼저 보여주고("저도 처음엔 ~했습니다"), 맞는 방법을 알려주는 구조.
+- 마지막은 하드 CTA 없이, 행동을 독려하는 따뜻한 한마디.
 
 == 구조 ==
 
-[훅 — 1문장]
-스크롤을 멈추게 하는 강렬한 첫 줄.
-코스가 다루는 핵심 주제에서 의외성이나 반전을 뽑아라.
+[선언 — 1-2문장]
+통념을 뒤집거나 강한 주장으로 시작.
+코스가 다루는 주제에서 "가장 좋은 ○○ 방법은 ○○이다" 같은 톤.
+바로 뒤에 잘못된 접근법을 짧게 지적.
 
 (빈 줄)
 
-[펀치라인 나열 — 5-8문장, 각각 빈 줄로 분리]
-코스의 핵심 개념들을 한 문장씩 던져라.
-각 문장이 독립적으로 임팩트가 있어야 한다.
-앞 문장에서 다음 문장으로 자연스럽게 호기심이 이어지게 배치.
+[경험 공유 — 2-3문장]
+"저도 처음엔 ~했습니다." 로 시작.
+본인이 겪은 시행착오를 솔직하게 공유.
+그 과정에서 발견한 인사이트로 전환.
 
 (빈 줄)
 
-[마무리 + 링크 — 1-2문장]
-여운을 남기며 가이드로 연결.
-"전체 가이드는 여기에." 같은 짧은 연결.
+[실전 조언 — 3-5문장]
+코스의 핵심 개념(${classTerms})을 바탕으로 구체적 실행 방법 제시.
+"이렇게 하면 됩니다" 식의 명확한 안내.
+필요하면 짧은 예시나 구체적 도구/방법 언급.
+
+(빈 줄)
+
+[독려 마무리 + 링크 — 2-3문장]
+"해보세요", "시작해보세요" 같은 부드러운 행동 유도.
+자연스럽게 코스 링크로 연결.
 마지막에 아래 한 블록만 정확히 1회 넣어라 (중복 금지):
 [${data.courseTitle}]
 ${data.url}
 
 == 절대 금지 ==
-- 긴 문장 (한 문장 40자 초과)
+- DM 유도, 좋아요/공유 요청, 팔로우 유도
 - 개조식 목록 (- 항목, 1. 항목)
 - 코스에 없는 내용을 지어내는 행위
 - 클릭베이트성 거짓 과장
 - {link}, [링크], (url) 같은 플레이스홀더
+- 해시태그
 
-== 코스 정보 (훅 + 펀치라인 추출 대상) ==
+== 코스 정보 (조언 추출 대상) ==
 코스 제목: ${data.courseTitle}
 코스 설명: ${data.courseDescription}
 핵심 용어: ${classTerms}
@@ -860,7 +874,7 @@ LinkedIn 포스트 텍스트만 출력. 따옴표, 설명, 부연 없이.`;
     const text = result.response.text().trim();
     return postProcessLinkedInText(text, data.url);
   } catch (error) {
-    console.error("AI Course LinkedIn hook summary generation failed:", error);
+    console.error("AI Course LinkedIn mentor summary generation failed:", error);
     return "요약 생성 중에 오류가 발생했습니다.";
   }
 }
@@ -1205,15 +1219,15 @@ export async function generateAllCourseLinkedInSummaries(data: {
   classes: { term: string; definition: string }[];
   url: string;
 }): Promise<LinkedInSummaryVersions> {
-  const [story, hook, casual, question, tips, guide] = await Promise.all([
+  const [story, mentor, casual, question, tips, guide] = await Promise.all([
     generateCourseLinkedInSummaryStory(data),
-    generateCourseLinkedInSummaryHook(data),
+    generateCourseLinkedInSummaryMentor(data),
     generateCourseLinkedInSummaryCasual(data),
     generateCourseLinkedInSummaryQuestion(data),
     generateCourseLinkedInSummaryTips(data),
     generateCourseLinkedInSummaryGuide(data),
   ]);
-  return { story, hook, casual, question, tips, guide };
+  return { story, mentor, casual, question, tips, guide };
 }
 
 // ============================================
