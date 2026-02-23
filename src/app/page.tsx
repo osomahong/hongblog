@@ -116,7 +116,7 @@ export default async function HomePage() {
               <span className="text-[10px] sm:text-xs text-muted-foreground font-mono">최근 7일 인기 콘텐츠</span>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-4 divide-y divide-gray-200 sm:divide-y-0">
             {trending.map((item, index) => {
               const Icon = categoryIcons[item.category as keyof typeof categoryIcons] || Sparkles;
               const rotations = ["", "sm:rotate-1", "", "sm:rotate-0.5"];
@@ -229,7 +229,7 @@ export default async function HomePage() {
             </div>
             <span className="text-xs sm:text-sm text-muted-foreground">{posts.length}개의 글</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-6 divide-y divide-gray-200 sm:divide-y-0">
             {posts.slice(0, 6).map((post, index) => {
               const Icon = categoryIcons[post.category as keyof typeof categoryIcons] || Sparkles;
               return (
@@ -308,7 +308,7 @@ export default async function HomePage() {
             </div>
             <span className="text-xs sm:text-sm text-muted-foreground">{logs.length}개</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-6 divide-y divide-gray-200 sm:divide-y-0">
             {logs.slice(0, 6).map((log) => {
               const Icon = categoryIcons[log.category as keyof typeof categoryIcons] || Sparkles;
               return (

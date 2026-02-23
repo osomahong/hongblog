@@ -53,7 +53,7 @@ export function NeoTiltCard({ children, className, intensity = 25, shadowIntensi
     return (
         <div
             ref={cardRef}
-            className="relative perspective-1000 cursor-pointer" // Tailwind에서 perspective-1000 지원 필요 (혹은 style로 직접)
+            className="relative perspective-1000 cursor-pointer py-3 sm:py-0" // Tailwind에서 perspective-1000 지원 필요 (혹은 style로 직접)
             style={{ perspective: "1000px" }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
