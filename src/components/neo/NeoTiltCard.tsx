@@ -61,7 +61,7 @@ export function NeoTiltCard({ children, className, intensity = 25, shadowIntensi
             <div
                 ref={contentRef}
                 className={cn(
-                    "bg-white border-0 sm:border-4 border-black p-3 sm:p-6 neo-tilt-content",
+                    "bg-transparent sm:bg-white border-0 sm:border-4 border-black p-0 sm:p-6 neo-tilt-content",
                     className
                 )}
                 style={{

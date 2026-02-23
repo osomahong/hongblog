@@ -281,7 +281,7 @@ export default async function InsightDetailPage({ params }: Props) {
               </div>
             </header>
 
-            <NeoCard className="prose prose-sm sm:prose-lg max-w-none p-0 sm:p-6">
+            <NeoCard className="prose prose-sm sm:prose-lg max-w-none">
               <NeoCardContent>
                 <MarkdownRenderer content={post.content} />
               </NeoCardContent>

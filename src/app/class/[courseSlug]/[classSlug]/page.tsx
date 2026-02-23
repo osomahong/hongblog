@@ -258,7 +258,7 @@ export default async function ClassDetailPage({ params }: Props) {
                         </header>
 
                         {/* Content */}
-                        <NeoCard className="prose prose-sm sm:prose-lg max-w-none p-0 sm:p-8 mb-6 sm:mb-8">
+                        <NeoCard className="prose prose-sm sm:prose-lg max-w-none sm:p-8 mb-6 sm:mb-8">
                             <NeoCardContent>
                                 <MarkdownRenderer content={classData.content} />
                             </NeoCardContent>

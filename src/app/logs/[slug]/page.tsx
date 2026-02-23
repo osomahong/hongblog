@@ -270,7 +270,7 @@ export default async function LogDetailPage({ params }: Props) {
                             </div>
                         </header>
 
-                        <NeoCard className="prose prose-sm sm:prose-lg max-w-none p-0 sm:p-6">
+                        <NeoCard className="prose prose-sm sm:prose-lg max-w-none">
                             <NeoCardContent>
                                 <MarkdownRenderer content={log.content} />
                             </NeoCardContent>

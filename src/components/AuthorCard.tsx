@@ -32,7 +32,7 @@ export function AuthorCard({ className = "", compact = false }: AuthorCardProps)
   }
 
   return (
-    <div className={`bg-white border-0 sm:border-4 border-black sm:neo-shadow p-3 sm:p-5 sm:rotate-1 halftone-corner ${className}`}>
+    <div className={`bg-transparent sm:bg-white border-0 sm:border-4 border-black sm:neo-shadow p-0 sm:p-5 sm:rotate-1 halftone-corner ${className}`}>
       {/* Header Badge */}
       <div className="flex items-center gap-1.5 sm:gap-2 mb-3 sm:mb-4">
         <div className="bg-primary p-1 sm:p-1.5 border-2 border-black -rotate-3">

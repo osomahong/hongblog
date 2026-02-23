@@ -12,7 +12,7 @@ export function NeoCard({ children, className, rotate = false, hover = false }: 
   return (
     <div
       className={cn(
-        "bg-white border-0 sm:border-4 border-black sm:neo-shadow p-3 sm:p-6",
+        "bg-transparent sm:bg-white border-0 sm:border-4 border-black sm:neo-shadow p-0 sm:p-6",
         rotate && "sm:rotate-1",
         hover && "neo-hover cursor-pointer",
         className
