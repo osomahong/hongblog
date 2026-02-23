@@ -188,7 +188,7 @@ export default async function InsightDetailPage({ params }: Props) {
               {/* Related FAQs */}
               <NeoCard className="bg-accent p-3 sm:p-6 halftone-bg">
                 <NeoCardHeader>
-                  <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-lg relative z-10">
+                  <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-base sm:text-lg relative z-10">
                     <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span className="comic-emphasis">Related FAQs</span>
                   </NeoCardTitle>
@@ -205,7 +205,7 @@ export default async function InsightDetailPage({ params }: Props) {
                             contentName={faq.question}
                             className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                           >
-                            <span className="text-[11px] sm:text-sm font-medium leading-snug block">{faq.question}</span>
+                            <span className="text-xs sm:text-sm font-medium leading-snug block">{faq.question}</span>
                           </RelatedLink>
                         </li>
                       ))}
@@ -220,7 +220,7 @@ export default async function InsightDetailPage({ params }: Props) {
               {relatedClasses.length > 0 && (
                 <NeoCard className="bg-blue-50 p-3 sm:p-6 halftone-bg">
                   <NeoCardHeader>
-                    <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-lg relative z-10">
+                    <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-base sm:text-lg relative z-10">
                       <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
                       <span className="comic-emphasis">관련 개념</span>
                     </NeoCardTitle>
@@ -236,8 +236,8 @@ export default async function InsightDetailPage({ params }: Props) {
                             contentName={cls.term}
                             className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                           >
-                            <span className="text-[11px] sm:text-sm font-bold leading-snug block">{cls.term}</span>
-                            <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">{cls.definition}</p>
+                            <span className="text-xs sm:text-sm font-bold leading-snug block">{cls.term}</span>
+                            <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">{cls.definition}</p>
                           </RelatedLink>
                         </li>
                       ))}
@@ -254,19 +254,19 @@ export default async function InsightDetailPage({ params }: Props) {
           <article>
             <header className="mb-4 sm:mb-8">
               <div className="flex items-center gap-1.5 sm:gap-3 mb-2 sm:mb-4 flex-wrap">
-                <NeoBadge variant={post.category === "AI_TECH" ? "ai" : post.category === "DATA" ? "data" : "marketing"} className="text-[10px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1">
+                <NeoBadge variant={post.category === "AI_TECH" ? "ai" : post.category === "DATA" ? "data" : "marketing"} className="text-[11px] sm:text-xs px-2 sm:px-3 py-0.5 sm:py-1">
                   <span className="flex items-center gap-1">
                     <Icon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                     {categoryLabels[post.category as keyof typeof categoryLabels]}
                   </span>
                 </NeoBadge>
               </div>
-              <h1 className="text-xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
                 {post.title}
               </h1>
-              <p className="text-sm sm:text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black">
-                <span className="text-[10px] sm:text-sm font-mono">
+                <span className="text-xs sm:text-sm font-mono">
                   {post.createdAt.toLocaleDateString("ko-KR")}
                 </span>
                 <div className="flex gap-1 sm:gap-1.5 flex-wrap">
@@ -274,14 +274,14 @@ export default async function InsightDetailPage({ params }: Props) {
                     <NeoTagBadge
                       key={tag}
                       tag={tag}
-                      className="text-[10px] sm:text-xs px-1.5 sm:px-3 py-0.5 sm:py-1"
+                      className="text-[11px] sm:text-xs px-1.5 sm:px-3 py-0.5 sm:py-1"
                     />
                   ))}
                 </div>
               </div>
             </header>
 
-            <NeoCard className="prose prose-sm sm:prose-lg max-w-none p-3 sm:p-6">
+            <NeoCard className="prose prose-sm sm:prose-lg max-w-none p-0 sm:p-6">
               <NeoCardContent>
                 <MarkdownRenderer content={post.content} />
               </NeoCardContent>

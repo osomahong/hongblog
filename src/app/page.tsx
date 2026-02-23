@@ -137,10 +137,10 @@ export default async function HomePage() {
                           {categoryLabels[item.category as keyof typeof categoryLabels] || item.category}
                         </div>
                       </div>
-                      <h3 className="font-black text-sm sm:text-lg leading-snug line-clamp-2 mb-1.5 sm:mb-2 relative z-10">
+                      <h3 className="font-black text-base sm:text-lg leading-snug line-clamp-2 mb-1.5 sm:mb-2 relative z-10">
                         {item.title}
                       </h3>
-                      <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
+                      <p className="text-xs sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
                         {item.excerpt || ""}
                       </p>
                     </NeoTiltCard>
@@ -162,10 +162,10 @@ export default async function HomePage() {
                           FAQ
                         </div>
                       </div>
-                      <h3 className="font-black text-sm sm:text-lg leading-snug line-clamp-2 mb-1.5 sm:mb-2 relative z-10">
+                      <h3 className="font-black text-base sm:text-lg leading-snug line-clamp-2 mb-1.5 sm:mb-2 relative z-10">
                         Q: {item.question}
                       </h3>
-                      <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
+                      <p className="text-xs sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
                         {stripMarkdown(item.answer || "").substring(0, 80)}...
                       </p>
                     </NeoTiltCard>
@@ -201,11 +201,11 @@ export default async function HomePage() {
                   <NeoTiltCard className={`${bgColor} border-3 sm:border-4 border-black p-2.5 sm:p-6 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all`} intensity={15}>
                     <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3 mb-1.5 sm:mb-3">
                       <Icon className="w-5 h-5 sm:w-8 sm:h-8" />
-                      <span className="text-[10px] sm:text-xl font-black uppercase text-center sm:text-left">
+                      <span className="text-xs sm:text-xl font-black uppercase text-center sm:text-left">
                         {categoryLabels[stat.category]}
                       </span>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-0.5 sm:gap-4 text-[9px] sm:text-sm font-mono text-center sm:text-left">
+                    <div className="flex flex-col sm:flex-row gap-0.5 sm:gap-4 text-[10px] sm:text-sm font-mono text-center sm:text-left">
                       <span>{stat.postCount} posts</span>
                       <span>{stat.faqCount} faqs</span>
                     </div>
@@ -227,7 +227,7 @@ export default async function HomePage() {
               </div>
               <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Latest Insights</h2>
             </div>
-            <span className="text-[10px] sm:text-sm text-muted-foreground">{posts.length}개의 글</span>
+            <span className="text-xs sm:text-sm text-muted-foreground">{posts.length}개의 글</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {posts.slice(0, 6).map((post, index) => {
@@ -268,12 +268,12 @@ export default async function HomePage() {
                     <NeoCardContent>
                       <div className="flex flex-wrap gap-1">
                         {post.tags.slice(0, 3).map((tag) => (
-                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
+                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[10px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
                         ))}
                       </div>
                     </NeoCardContent>
                     <NeoCardFooter className="flex items-center justify-between">
-                      <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
+                      <span className="text-xs sm:text-xs font-mono text-muted-foreground">
                         {post.createdAt ? new Date(post.createdAt).toLocaleDateString("ko-KR") : ""}
                       </span>
                       <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">
@@ -306,7 +306,7 @@ export default async function HomePage() {
               </div>
               <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Latest Logs</h2>
             </div>
-            <span className="text-[10px] sm:text-sm text-muted-foreground">{logs.length}개</span>
+            <span className="text-xs sm:text-sm text-muted-foreground">{logs.length}개</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {logs.slice(0, 6).map((log) => {
@@ -349,12 +349,12 @@ export default async function HomePage() {
                     <NeoCardContent>
                       <div className="flex flex-wrap gap-1">
                         {log.tags.slice(0, 3).map((tag) => (
-                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
+                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[10px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
                         ))}
                       </div>
                     </NeoCardContent>
                     <NeoCardFooter className="flex items-center justify-between">
-                      <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
+                      <span className="text-xs sm:text-xs font-mono text-muted-foreground">
                         {log.visitedAt
                           ? new Date(log.visitedAt).toLocaleDateString("ko-KR")
                           : log.createdAt.toLocaleDateString("ko-KR")}
@@ -410,7 +410,7 @@ export default async function HomePage() {
                     <div className="flex items-start gap-2 sm:gap-3">
                       <span className="text-primary font-black text-base sm:text-lg">Q</span>
                       <div className="flex-1 min-w-0">
-                        <p className="font-bold text-xs sm:text-base leading-snug">{faq.question}</p>
+                        <p className="font-bold text-sm sm:text-base leading-snug">{faq.question}</p>
                         <div className="flex gap-1 sm:gap-1.5 mt-1.5 sm:mt-2 flex-wrap">
                           {faq.tags && Array.isArray(faq.tags) && faq.tags.slice(0, 3).map((tag) => (
                             <span key={tag} className="text-[10px] sm:text-xs text-muted-foreground">#{tag}</span>

@@ -151,22 +151,14 @@
 
   /* Mobile touch optimization */
   @media (max-width: 640px) {
-    .neo-shadow {
-      box-shadow: 3px 3px 0px 0px #000000;
-    }
-
-    .neo-shadow-lg {
-      box-shadow: 4px 4px 0px 0px #000000;
-    }
-
     .neo-hover:hover {
       transform: none;
-      box-shadow: var(--neo-shadow);
+      box-shadow: none;
     }
 
     .neo-hover:active {
-      transform: translate(2px, 2px);
-      box-shadow: 1px 1px 0px 0px #000000;
+      transform: translate(1px, 1px);
+      box-shadow: none;
     }
   }
 }
@@ -187,8 +179,8 @@
 
   /* 기본 폰트 크기 및 줄간격 최적화 */
   body {
-    font-size: 15px;
-    line-height: 1.7;
+    font-size: 16px;
+    line-height: 1.75;
   }
 
   /* 제목 줄간격 개선 */
@@ -208,14 +200,9 @@
     overflow-wrap: break-word;
   }
 
-  /* 카드 내부 패딩 최적화 */
-  .neo-shadow {
-    box-shadow: 3px 3px 0px 0px #000000;
-  }
-
-  /* 테두리 두께 조정 */
-  .border-4 {
-    border-width: 3px;
+  /* NeoTiltCard inline boxShadow 강제 제거 */
+  .neo-tilt-content {
+    box-shadow: none !important;
   }
 
   /* 컨테이너 패딩 최적화 */

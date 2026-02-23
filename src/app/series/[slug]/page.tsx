@@ -129,7 +129,7 @@ export default async function SeriesDetailPage({ params }: Props) {
                           {post.createdAt.toLocaleDateString("ko-KR")}
                         </span>
                         {post.tags.slice(0, 3).map((tag) => (
-                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[10px] px-2 py-0.5" />
+                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[11px] px-2 py-0.5" />
                         ))}
                       </div>
                     </div>

@@ -49,7 +49,7 @@ export default async function InsightsPage() {
 
       {/* Results Count */}
       <div className="mb-3 sm:mb-6">
-        <span className="font-mono text-[10px] sm:text-sm text-muted-foreground">
+        <span className="font-mono text-xs sm:text-sm text-muted-foreground">
           {posts.length}개의 글
         </span>
       </div>
@@ -88,12 +88,12 @@ export default async function InsightsPage() {
                 <NeoCardContent>
                   <div className="flex flex-wrap gap-1">
                     {post.tags.slice(0, 3).map((tag) => (
-                      <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
+                      <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[10px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
                     ))}
                   </div>
                 </NeoCardContent>
                 <NeoCardFooter className="flex items-center justify-between">
-                  <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
+                  <span className="text-xs sm:text-xs font-mono text-muted-foreground">
                     {post.createdAt.toLocaleDateString("ko-KR")}
                   </span>
                   <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">

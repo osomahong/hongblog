@@ -48,7 +48,7 @@ export function ContentQuiz({ quiz, contentType, contentSlug, contentName }: Con
   }, [contentType, contentSlug, contentName]);
 
   return (
-    <div className="mt-6 sm:mt-8 bg-white border-3 sm:border-4 border-black neo-shadow p-4 sm:p-6">
+    <div className="mt-6 sm:mt-8 bg-white border-0 sm:border-4 border-black sm:neo-shadow p-4 sm:p-6">
       {/* Header */}
       <div className="flex items-center gap-2 mb-4 sm:mb-5">
         <CircleHelp className="w-5 h-5 sm:w-6 sm:h-6 text-muted-foreground" />

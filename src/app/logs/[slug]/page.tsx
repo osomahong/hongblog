@@ -174,7 +174,7 @@ export default async function LogDetailPage({ params }: Props) {
                             {relatedFaqs.length > 0 && (
                                 <NeoCard className="bg-accent p-3 sm:p-6 halftone-bg">
                                     <NeoCardHeader>
-                                        <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-lg relative z-10">
+                                        <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-base sm:text-lg relative z-10">
                                             <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                                             <span className="comic-emphasis">Related FAQs</span>
                                         </NeoCardTitle>
@@ -190,7 +190,7 @@ export default async function LogDetailPage({ params }: Props) {
                                                         contentName={faq.question}
                                                         className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                                                     >
-                                                        <span className="text-[11px] sm:text-sm font-medium leading-snug block">{faq.question}</span>
+                                                        <span className="text-xs sm:text-sm font-medium leading-snug block">{faq.question}</span>
                                                     </RelatedLink>
                                                 </li>
                                             ))}
@@ -203,7 +203,7 @@ export default async function LogDetailPage({ params }: Props) {
                             {relatedPosts.length > 0 && (
                                 <NeoCard className="bg-orange-50 p-3 sm:p-6 halftone-bg">
                                     <NeoCardHeader>
-                                        <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-sm sm:text-lg relative z-10">
+                                        <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-base sm:text-lg relative z-10">
                                             <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
                                             <span className="comic-emphasis">Related Insights</span>
                                         </NeoCardTitle>
@@ -219,8 +219,8 @@ export default async function LogDetailPage({ params }: Props) {
                                                         contentName={post.title}
                                                         className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
                                                     >
-                                                        <span className="text-[11px] sm:text-sm font-bold leading-snug block">{post.title}</span>
-                                                        <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">{post.excerpt}</p>
+                                                        <span className="text-xs sm:text-sm font-bold leading-snug block">{post.title}</span>
+                                                        <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">{post.excerpt}</p>
                                                     </RelatedLink>
                                                 </li>
                                             ))}
@@ -249,11 +249,11 @@ export default async function LogDetailPage({ params }: Props) {
                                     </span>
                                 )}
                             </div>
-                            <h1 className="text-xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
+                            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
                                 {log.title}
                             </h1>
                             <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black">
-                                <span className="text-[10px] sm:text-sm font-mono">
+                                <span className="text-xs sm:text-sm font-mono">
                                     {log.visitedAt
                                         ? new Date(log.visitedAt).toLocaleDateString("ko-KR")
                                         : log.createdAt.toLocaleDateString("ko-KR")}
@@ -263,14 +263,14 @@ export default async function LogDetailPage({ params }: Props) {
                                         <NeoTagBadge
                                             key={tag}
                                             tag={tag}
-                                            className="text-[10px] sm:text-xs px-1.5 sm:px-3 py-0.5 sm:py-1"
+                                            className="text-[11px] sm:text-xs px-1.5 sm:px-3 py-0.5 sm:py-1"
                                         />
                                     ))}
                                 </div>
                             </div>
                         </header>
 
-                        <NeoCard className="prose prose-sm sm:prose-lg max-w-none p-3 sm:p-6">
+                        <NeoCard className="prose prose-sm sm:prose-lg max-w-none p-0 sm:p-6">
                             <NeoCardContent>
                                 <MarkdownRenderer content={log.content} />
                             </NeoCardContent>

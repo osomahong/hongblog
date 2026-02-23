@@ -175,7 +175,7 @@ export default function FAQPage() {
                   </p>
                   <div className="flex gap-1.5 mt-2 sm:mt-3 flex-wrap">
                     {faq.tags.map((tag) => (
-                      <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[10px] px-2 py-0.5" />
+                      <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[11px] px-2 py-0.5" />
                     ))}
                   </div>
                 </NeoCardContent>

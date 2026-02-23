@@ -78,7 +78,7 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                     >
                         <CheckIcon className="w-3 h-3 sm:w-4 sm:h-4" />
                     </button>
-                    <span className="text-[10px] sm:text-xs text-muted-foreground min-w-[1.25rem]">
+                    <span className="text-xs sm:text-xs text-muted-foreground min-w-[1.25rem]">
                         {idx + 1}.
                     </span>
                     <span className="text-xs sm:text-sm flex-1 group-hover:text-purple-600 transition-colors">
@@ -109,7 +109,7 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
 
             {/* Results Count */}
             <div className="mb-3 sm:mb-6">
-                <span className="font-mono text-[10px] sm:text-sm text-muted-foreground">
+                <span className="font-mono text-xs sm:text-sm text-muted-foreground">
                     {courses.length}개의 강의
                 </span>
             </div>
@@ -195,7 +195,7 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                         {!isExpanded && hasMore && (
                                             <button
                                                 onClick={() => toggleExpand(course.id)}
-                                                className="mt-2 text-[10px] sm:text-xs text-purple-500 hover:text-purple-700 transition-colors"
+                                                className="mt-2 text-xs sm:text-xs text-purple-500 hover:text-purple-700 transition-colors"
                                             >
                                                 +{course.classes.length - PREVIEW_COUNT}개 더보기
                                             </button>
@@ -204,7 +204,7 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                 </NeoCardContent>
 
                                 <NeoCardFooter className="flex items-center justify-between border-t-2 border-black pt-4">
-                                    <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
+                                    <span className="text-xs sm:text-xs font-mono text-muted-foreground">
                                         {course.createdAt.toLocaleDateString("ko-KR")}
                                     </span>
                                     <button

@@ -171,7 +171,7 @@ export default async function FaqDetailPage({ params }: Props) {
 
               <NeoCard className="bg-primary text-white mb-4 sm:mb-6 -rotate-1 p-4 sm:p-6">
                 <NeoCardContent>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight">
+                  <h1 className="text-2xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight">
                     Q: {faq.question}
                   </h1>
                 </NeoCardContent>
@@ -302,7 +302,7 @@ export default async function FaqDetailPage({ params }: Props) {
               {relatedFaqs.length > 0 && (
                 <NeoCard className="bg-accent p-4 sm:p-6 halftone-bg">
                   <NeoCardHeader>
-                    <NeoCardTitle className="flex items-center gap-2 text-base sm:text-lg relative z-10">
+                    <NeoCardTitle className="flex items-center gap-2 text-lg sm:text-lg relative z-10">
                       <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                       <span className="comic-emphasis">Related FAQs</span>
                     </NeoCardTitle>

@@ -16,6 +16,7 @@ export function NeoTiltCard({ children, className, intensity = 25, shadowIntensi
 
     const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
         if (!cardRef.current || !contentRef.current) return;
+        if (window.innerWidth < 640) return;
 
         const rect = cardRef.current.getBoundingClientRect();
         const x = e.clientX - rect.left; // 카드 내 X 좌표
@@ -60,7 +61,7 @@ export function NeoTiltCard({ children, className, intensity = 25, shadowIntensi
             <div
                 ref={contentRef}
                 className={cn(
-                    "bg-white border-3 sm:border-4 border-black p-3 sm:p-6",
+                    "bg-white border-0 sm:border-4 border-black p-3 sm:p-6 neo-tilt-content",
                     className
                 )}
                 style={{
