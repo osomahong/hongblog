@@ -48,14 +48,14 @@ const categoryLabels: Record<string, string> = {
 };
 
 const categoryColors: Record<string, string> = {
-  AI_TECH: "bg-ai text-black",
-  DATA: "bg-data text-white",
-  MARKETING: "bg-marketing text-white",
-  맛집: "bg-orange-500 text-white",
-  강의: "bg-blue-500 text-white",
-  문화생활: "bg-purple-500 text-white",
-  여행: "bg-green-500 text-white",
-  일상: "bg-gray-500 text-white",
+  AI_TECH: "bg-ai sm:bg-ai text-black",
+  DATA: "bg-data sm:bg-data text-white",
+  MARKETING: "bg-marketing sm:bg-marketing text-white",
+  맛집: "bg-orange-500 sm:bg-orange-500 text-white",
+  강의: "bg-blue-500 sm:bg-blue-500 text-white",
+  문화생활: "bg-purple-500 sm:bg-purple-500 text-white",
+  여행: "bg-green-500 sm:bg-green-500 text-white",
+  일상: "bg-gray-500 sm:bg-gray-500 text-white",
 };
 
 // 메인 페이지는 항상 최신 데이터를 보여줘야 하므로 dynamic으로 설정
