@@ -154,6 +154,12 @@ export async function postToLinkedIn(
       .replace(/\r/g, "\n")
       .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
 
+    // LinkedIn API commentary 바이트 제한 체크 (UTF-8 기준)
+    const byteLength = new TextEncoder().encode(sanitized).length;
+    if (byteLength > 9000) {
+      return { success: false, error: `UTF-8 바이트 제한 초과 (${byteLength}/9,000 bytes). 텍스트를 줄여주세요.` };
+    }
+
     const body = JSON.stringify({
       author: tokenData.personUrn,
       commentary: sanitized,
@@ -167,12 +173,14 @@ export async function postToLinkedIn(
       isReshareDisabledByAuthor: false,
     });
 
+    console.log(`[LinkedIn] Posting: ${sanitized.length} chars, ${byteLength} bytes`);
+
     const response = await fetch("https://api.linkedin.com/rest/posts", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${tokenData.accessToken}`,
-        "Content-Type": "application/json; charset=UTF-8",
-        "LinkedIn-Version": "202601",
+        "Content-Type": "application/json",
+        "LinkedIn-Version": "202602",
         "X-Restli-Protocol-Version": "2.0.0",
       },
       body,
