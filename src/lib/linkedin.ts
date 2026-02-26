@@ -5,6 +5,29 @@ import { eq } from "drizzle-orm";
 
 const LINKEDIN_SCOPES = ["openid", "profile", "w_member_social"];
 
+/**
+ * LinkedIn "little Text Format" 예약 문자 이스케이프
+ * @see https://learn.microsoft.com/en-us/linkedin/marketing/community-management/shares/little-text-format
+ */
+function escapeLinkedInLittleText(text: string): string {
+  return text
+    .replace(/\\/g, "\\\\")
+    .replace(/\|/g, "\\|")
+    .replace(/\{/g, "\\{")
+    .replace(/\}/g, "\\}")
+    .replace(/@/g, "\\@")
+    .replace(/\[/g, "\\[")
+    .replace(/\]/g, "\\]")
+    .replace(/\(/g, "\\(")
+    .replace(/\)/g, "\\)")
+    .replace(/</g, "\\<")
+    .replace(/>/g, "\\>")
+    .replace(/#/g, "\\#")
+    .replace(/\*/g, "\\*")
+    .replace(/_/g, "\\_")
+    .replace(/~/g, "\\~");
+}
+
 function getAuthClient() {
   return new AuthClient({
     clientId: process.env.LINKEDIN_CLIENT_ID!,
@@ -160,9 +183,12 @@ export async function postToLinkedIn(
       return { success: false, error: `UTF-8 바이트 제한 초과 (${byteLength}/9,000 bytes). 텍스트를 줄여주세요.` };
     }
 
+    // LinkedIn "little Text Format" 예약 문자 이스케이프
+    const escaped = escapeLinkedInLittleText(sanitized);
+
     const body = JSON.stringify({
       author: tokenData.personUrn,
-      commentary: sanitized,
+      commentary: escaped,
       visibility: "PUBLIC",
       distribution: {
         feedDistribution: "MAIN_FEED",
