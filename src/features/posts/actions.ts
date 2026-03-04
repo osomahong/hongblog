@@ -1,18 +1,9 @@
 "use server";
 
-import { getServerSession } from "next-auth";
-import { revalidatePath } from "next/cache";
+import { checkAuth } from "@/lib/auth";
+import { revalidateInsightPaths } from "@/lib/revalidate";
 import { insertPostSchema, updatePostSchema, type CreatePostInput, type UpdatePostInput } from "./schema";
 import { postService } from "./service";
-
-const ALLOWED_EMAIL = process.env.ALLOWED_GOOGLE_ID;
-
-async function checkAuth() {
-    const session = await getServerSession();
-    if (!session || session.user?.email !== ALLOWED_EMAIL) {
-        throw new Error("Unauthorized");
-    }
-}
 
 /**
  * 게시글 생성 Server Action
@@ -29,13 +20,8 @@ export async function createPostAction(input: CreatePostInput) {
             };
         }
 
-        await postService.create(validation.data);
-
-        revalidatePath("/insights");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/tags");
-        revalidatePath("/feed.xml");
+        const post = await postService.create(validation.data);
+        await revalidateInsightPaths(post.slug, post.category);
 
         return { success: true };
     } catch (error) {
@@ -62,13 +48,8 @@ export async function updatePostAction(input: UpdatePostInput) {
             };
         }
 
-        await postService.update(validation.data);
-
-        revalidatePath("/insights");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/tags");
-        revalidatePath("/feed.xml");
+        const post = await postService.update(validation.data);
+        await revalidateInsightPaths(post.slug, post.category);
 
         return { success: true };
     } catch (error) {
@@ -88,12 +69,7 @@ export async function deletePostAction(id: number) {
         await checkAuth();
 
         await postService.delete(id);
-
-        revalidatePath("/insights");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/tags");
-        revalidatePath("/feed.xml");
+        await revalidateInsightPaths();
 
         return { success: true };
     } catch (error) {
@@ -112,13 +88,8 @@ export async function togglePostPublishedAction(id: number) {
     try {
         await checkAuth();
 
-        await postService.togglePublished(id);
-
-        revalidatePath("/insights");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/tags");
-        revalidatePath("/feed.xml");
+        const post = await postService.togglePublished(id);
+        await revalidateInsightPaths(post?.slug, post?.category);
 
         return { success: true };
     } catch (error) {

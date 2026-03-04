@@ -12,7 +12,7 @@ import {
   ArrowLeft
 } from "lucide-react";
 import { LifeLogCategory } from "@/lib/schema";
-import { getPublishedLifeLogsPersonal } from "@/lib/data-source";
+import { getPublishedLifeLogsPersonal } from "@/lib/queries";
 
 export const revalidate = 3600;
 

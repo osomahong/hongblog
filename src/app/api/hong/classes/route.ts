@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
-import { classes, classesToTags, tags } from "@/lib/schema";
+import { classes, classesToTags, tags, courses } from "@/lib/schema";
 import { eq, inArray } from "drizzle-orm";
-import { triggerRebuild } from "@/lib/trigger-rebuild";
+
 
 // GET: 모든 Classes 조회
 export async function GET(request: NextRequest) {
@@ -149,7 +149,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Invalidate cache for class pages
-        const course = courseId ? await db.query.courses.findFirst({ where: eq(require("@/lib/schema").courses.id, courseId) }) : null;
+        const course = courseId ? await db.query.courses.findFirst({ where: eq(courses.id, courseId) }) : null;
         if (course) {
             revalidatePath(`/class/${course.slug}`);
             revalidatePath(`/class/${course.slug}/${cls.slug}`);
@@ -157,7 +157,7 @@ export async function POST(request: NextRequest) {
         revalidatePath('/class');
         revalidatePath('/');
 
-        triggerRebuild();
+
         return NextResponse.json(cls, { status: 201 });
     } catch (error: any) {
         console.error("Error creating class:", error);
@@ -243,7 +243,7 @@ export async function PUT(request: NextRequest) {
         }
 
         // Invalidate cache for class pages
-        const course = updated.courseId ? await db.query.courses.findFirst({ where: eq(require("@/lib/schema").courses.id, updated.courseId) }) : null;
+        const course = updated.courseId ? await db.query.courses.findFirst({ where: eq(courses.id, updated.courseId) }) : null;
         if (course) {
             revalidatePath(`/class/${course.slug}`);
             revalidatePath(`/class/${course.slug}/${updated.slug}`);
@@ -251,7 +251,7 @@ export async function PUT(request: NextRequest) {
         revalidatePath('/class');
         revalidatePath('/');
 
-        triggerRebuild();
+
         return NextResponse.json(updated);
     } catch (error) {
         console.error("Error updating class:", error);
@@ -288,7 +288,7 @@ export async function DELETE(request: NextRequest) {
         revalidatePath('/class');
         revalidatePath('/');
 
-        triggerRebuild();
+
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Error deleting class:", error);

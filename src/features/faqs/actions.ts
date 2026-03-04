@@ -1,18 +1,9 @@
 "use server";
 
-import { getServerSession } from "next-auth";
-import { revalidatePath } from "next/cache";
+import { checkAuth } from "@/lib/auth";
+import { revalidateFaqPaths } from "@/lib/revalidate";
 import { insertFaqSchema, updateFaqSchema, type CreateFaqInput, type UpdateFaqInput } from "./schema";
 import { faqService } from "./service";
-
-const ALLOWED_EMAIL = process.env.ALLOWED_GOOGLE_ID;
-
-async function checkAuth() {
-    const session = await getServerSession();
-    if (!session || session.user?.email !== ALLOWED_EMAIL) {
-        throw new Error("Unauthorized");
-    }
-}
 
 /**
  * FAQ 생성 Server Action
@@ -29,12 +20,8 @@ export async function createFaqAction(input: CreateFaqInput) {
             };
         }
 
-        await faqService.create(validation.data);
-
-        revalidatePath("/faq");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/tags");
+        const faq = await faqService.create(validation.data);
+        await revalidateFaqPaths(faq.slug, faq.category);
 
         return { success: true };
     } catch (error) {
@@ -66,12 +53,8 @@ export async function updateFaqAction(input: UpdateFaqInput) {
             };
         }
 
-        await faqService.update(validation.data);
-
-        revalidatePath("/faq");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/tags");
+        const faq = await faqService.update(validation.data);
+        await revalidateFaqPaths(faq.slug, faq.category);
 
         return { success: true };
     } catch (error) {
@@ -96,11 +79,7 @@ export async function deleteFaqAction(id: number) {
         await checkAuth();
 
         await faqService.delete(id);
-
-        revalidatePath("/faq");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/tags");
+        await revalidateFaqPaths();
 
         return { success: true };
     } catch (error) {
@@ -119,12 +98,8 @@ export async function toggleFaqPublishedAction(id: number) {
     try {
         await checkAuth();
 
-        await faqService.togglePublished(id);
-
-        revalidatePath("/faq");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/tags");
+        const faq = await faqService.togglePublished(id);
+        await revalidateFaqPaths(faq?.slug, faq?.category);
 
         return { success: true };
     } catch (error) {

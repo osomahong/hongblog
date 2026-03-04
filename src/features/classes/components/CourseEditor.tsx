@@ -60,6 +60,8 @@ export function CourseEditor({ editingCourse, onSaved }: CourseEditorProps) {
         body: JSON.stringify(courseData),
       });
       if (res.ok) {
+        const { revalidateCoursePaths } = await import("@/lib/revalidate");
+        await revalidateCoursePaths(courseSlug);
         alert(editingCourse?.id ? "수정되었습니다!" : "생성되었습니다!");
         onSaved();
       } else {

@@ -159,6 +159,8 @@ export default function LifeLogAdminPage() {
         body: JSON.stringify(data),
       });
       if (res.ok) {
+        const { revalidateLogPaths } = await import("@/lib/revalidate");
+        await revalidateLogPaths(slug);
         alert(editingLog ? "수정되었습니다!" : "저장되었습니다!");
         resetEditor();
         setView("list");
@@ -177,8 +179,11 @@ export default function LifeLogAdminPage() {
     if (!confirm("정말 삭제하시겠습니까?")) return;
     try {
       const res = await fetch(`/api/hong/lifelogs?id=${id}`, { method: "DELETE" });
-      if (res.ok) loadLifeLogs();
-      else alert("삭제 실패");
+      if (res.ok) {
+        const { revalidateLogPaths } = await import("@/lib/revalidate");
+        await revalidateLogPaths();
+        loadLifeLogs();
+      } else alert("삭제 실패");
     } catch {
       alert("삭제 실패");
     }
@@ -218,6 +223,8 @@ export default function LifeLogAdminPage() {
         body: JSON.stringify({ ...log, isPublished: !log.isPublished }),
       });
       if (res.ok) {
+        const { revalidateLogPaths } = await import("@/lib/revalidate");
+        await revalidateLogPaths(log.slug);
         loadLifeLogs();
         alert(`${action} 완료!`);
       }

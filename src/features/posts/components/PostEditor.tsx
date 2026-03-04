@@ -151,6 +151,8 @@ export function PostEditor({ editingPost, seriesList, onSaved }: PostEditorProps
         body: JSON.stringify(postData),
       });
       if (res.ok) {
+        const { revalidateInsightPaths } = await import("@/lib/revalidate");
+        await revalidateInsightPaths(slug, category);
         alert(editingPost ? "수정되었습니다!" : "저장되었습니다!");
         onSaved();
       } else {

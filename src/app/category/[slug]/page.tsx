@@ -14,7 +14,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
-import { getPublishedPostsByCategory, getPublishedFaqsByCategory } from "@/lib/data-source";
+import { getPublishedPostsByCategory, getPublishedFaqsByCategory } from "@/lib/queries";
 import type { Category } from "@/lib/schema";
 
 export const revalidate = 3600;

@@ -90,6 +90,8 @@ export function SeriesEditor({ editingSeries, onSaved }: SeriesEditorProps) {
         body: JSON.stringify(seriesData),
       });
       if (res.ok) {
+        const { revalidateSeriesPaths } = await import("@/lib/revalidate");
+        await revalidateSeriesPaths(seriesSlug);
         alert(editingSeries ? "수정되었습니다!" : "저장되었습니다!");
         onSaved();
       } else {

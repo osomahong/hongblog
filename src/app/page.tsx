@@ -22,7 +22,7 @@ import {
   getAllTags,
   getPublishedLogs,
   TrendingItem,
-} from "@/lib/data-source";
+} from "@/lib/queries";
 import { TrackedLink } from "@/components/TrackedLink";
 
 const categoryIcons: Record<string, any> = {

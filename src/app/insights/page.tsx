@@ -10,7 +10,7 @@ import {
 } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
-import { getPublishedPosts } from "@/lib/data-source";
+import { getPublishedPosts } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
 
 const categoryIcons = {

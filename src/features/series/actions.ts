@@ -1,18 +1,9 @@
 "use server";
 
-import { getServerSession } from "next-auth";
-import { revalidatePath } from "next/cache";
+import { checkAuth } from "@/lib/auth";
+import { revalidateSeriesPaths } from "@/lib/revalidate";
 import { insertSeriesSchema, updateSeriesSchema, type CreateSeriesInput, type UpdateSeriesInput } from "./schema";
 import { seriesService } from "./service";
-
-const ALLOWED_EMAIL = process.env.ALLOWED_GOOGLE_ID;
-
-async function checkAuth() {
-    const session = await getServerSession();
-    if (!session || session.user?.email !== ALLOWED_EMAIL) {
-        throw new Error("Unauthorized");
-    }
-}
 
 export async function createSeriesAction(input: CreateSeriesInput) {
     try {
@@ -26,11 +17,8 @@ export async function createSeriesAction(input: CreateSeriesInput) {
             };
         }
 
-        await seriesService.create(validation.data);
-
-        revalidatePath("/series");
-        revalidatePath("/hong");
-        revalidatePath("/");
+        const series = await seriesService.create(validation.data);
+        await revalidateSeriesPaths(series.slug);
 
         return { success: true };
     } catch (error) {
@@ -54,11 +42,8 @@ export async function updateSeriesAction(input: UpdateSeriesInput) {
             };
         }
 
-        await seriesService.update(validation.data);
-
-        revalidatePath("/series");
-        revalidatePath("/hong");
-        revalidatePath("/");
+        const series = await seriesService.update(validation.data);
+        await revalidateSeriesPaths(series.slug);
 
         return { success: true };
     } catch (error) {
@@ -75,10 +60,7 @@ export async function deleteSeriesAction(id: number) {
         await checkAuth();
 
         await seriesService.delete(id);
-
-        revalidatePath("/series");
-        revalidatePath("/hong");
-        revalidatePath("/");
+        await revalidateSeriesPaths();
 
         return { success: true };
     } catch (error) {
@@ -94,11 +76,8 @@ export async function toggleSeriesPublishedAction(id: number) {
     try {
         await checkAuth();
 
-        await seriesService.togglePublished(id);
-
-        revalidatePath("/series");
-        revalidatePath("/hong");
-        revalidatePath("/");
+        const series = await seriesService.togglePublished(id);
+        await revalidateSeriesPaths(series?.slug);
 
         return { success: true };
     } catch (error) {

@@ -80,6 +80,9 @@ export function FaqEditor({ editingFaq, onSaved }: FaqEditorProps) {
         body: JSON.stringify(faqData),
       });
       if (res.ok) {
+        const result = await res.json();
+        const { revalidateFaqPaths } = await import("@/lib/revalidate");
+        await revalidateFaqPaths(result.faq?.slug, faqCategory);
         alert(editingFaq ? "수정되었습니다!" : "저장되었습니다!");
         onSaved();
       } else {

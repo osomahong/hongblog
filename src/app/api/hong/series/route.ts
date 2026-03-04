@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { series, posts, Series } from "@/lib/schema";
 import { eq, desc, asc } from "drizzle-orm";
-import { triggerRebuild } from "@/lib/trigger-rebuild";
+
 
 type SeriesWithPosts = Series & {
   posts: { id: number; title: string; slug: string; seriesOrder: number | null }[];
@@ -90,7 +90,6 @@ export async function POST(request: NextRequest) {
     revalidatePath(`/series/${newSeries.slug}`);
     revalidatePath('/');
 
-    triggerRebuild();
     return NextResponse.json({ success: true, series: newSeries });
   } catch (error) {
     console.error("Failed to create series:", error);
@@ -143,7 +142,6 @@ export async function PUT(request: NextRequest) {
     revalidatePath(`/series/${updatedSeries.slug}`);
     revalidatePath('/');
 
-    triggerRebuild();
     return NextResponse.json({ success: true, series: updatedSeries });
   } catch (error) {
     console.error("Failed to update series:", error);
@@ -180,7 +178,6 @@ export async function DELETE(request: NextRequest) {
     revalidatePath('/series');
     revalidatePath('/');
 
-    triggerRebuild();
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to delete series:", error);

@@ -9,7 +9,7 @@ import {
 } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
-import { getPublishedLogs } from "@/lib/data-source";
+import { getPublishedLogs } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
 
 const categoryIcons = {

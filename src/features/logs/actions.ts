@@ -1,18 +1,9 @@
 "use server";
 
-import { getServerSession } from "next-auth";
-import { revalidatePath } from "next/cache";
+import { checkAuth } from "@/lib/auth";
+import { revalidateLogPaths } from "@/lib/revalidate";
 import { insertLogSchema, updateLogSchema, type CreateLogInput, type UpdateLogInput } from "./schema";
 import { logService } from "./service";
-
-const ALLOWED_EMAIL = process.env.ALLOWED_GOOGLE_ID;
-
-async function checkAuth() {
-    const session = await getServerSession();
-    if (!session || session.user?.email !== ALLOWED_EMAIL) {
-        throw new Error("Unauthorized");
-    }
-}
 
 /**
  * 로그 생성 Server Action
@@ -29,12 +20,8 @@ export async function createLogAction(input: CreateLogInput) {
             };
         }
 
-        await logService.create(validation.data);
-
-        revalidatePath("/logs");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/about/life");
+        const log = await logService.create(validation.data);
+        await revalidateLogPaths(log.slug);
 
         return { success: true };
     } catch (error) {
@@ -61,12 +48,8 @@ export async function updateLogAction(input: UpdateLogInput) {
             };
         }
 
-        await logService.update(validation.data);
-
-        revalidatePath("/logs");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/about/life");
+        const log = await logService.update(validation.data);
+        await revalidateLogPaths(log.slug);
 
         return { success: true };
     } catch (error) {
@@ -86,11 +69,7 @@ export async function deleteLogAction(id: number) {
         await checkAuth();
 
         await logService.delete(id);
-
-        revalidatePath("/logs");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/about/life");
+        await revalidateLogPaths();
 
         return { success: true };
     } catch (error) {
@@ -109,12 +88,8 @@ export async function toggleLogPublishedAction(id: number) {
     try {
         await checkAuth();
 
-        await logService.togglePublished(id);
-
-        revalidatePath("/logs");
-        revalidatePath("/hong");
-        revalidatePath("/");
-        revalidatePath("/about/life");
+        const log = await logService.togglePublished(id);
+        await revalidateLogPaths(log?.slug);
 
         return { success: true };
     } catch (error) {

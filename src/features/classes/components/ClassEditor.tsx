@@ -128,6 +128,9 @@ export function ClassEditor({ editingClass, onSaved }: ClassEditorProps) {
         body: JSON.stringify(classData),
       });
       if (res.ok) {
+        const courseSlug = courses.find((c) => c.id === classCourseId)?.slug;
+        const { revalidateClassPaths } = await import("@/lib/revalidate");
+        await revalidateClassPaths(classSlug, courseSlug);
         alert(editingClass?.id ? "수정되었습니다!" : "생성되었습니다!");
         onSaved();
       } else {

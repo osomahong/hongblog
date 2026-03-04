@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, FileText } from "lucide-react";
 import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardDescription, NeoCardContent, NeoCardFooter } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
-import { getPublishedSeries } from "@/lib/data-source";
+import { getPublishedSeries } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
 
 export const metadata = {

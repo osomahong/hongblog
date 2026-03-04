@@ -5,7 +5,7 @@ import {
   getPublishedClasses,
   getPublishedSeries,
   getPublishedLogs,
-} from "@/lib/data-source";
+} from "@/lib/queries";
 import { SITE_URL } from "@/lib/constants";
 
 export const revalidate = 3600;

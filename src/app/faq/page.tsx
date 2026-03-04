@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { NeoTiltCard } from "@/components/neo";
-import { getPublishedFaqs } from "@/lib/data-source";
+import { getPublishedFaqs } from "@/lib/queries";
 import { ListViewTracker } from "@/components/ListViewTracker";
 import { FaqFilter } from "./_components/faq-filter";
 

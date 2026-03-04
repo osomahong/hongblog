@@ -1,10 +1,9 @@
-import { Suspense } from "react";
 import Link from "next/link";
 import { Tag, ArrowRight, Sparkles, Database, TrendingUp, CheckCircle } from "lucide-react";
 import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent, NeoCardFooter } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
-import { getAllTags, getContentByTag } from "@/lib/data-source";
+import { getAllTags, getContentByTag } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
 import { stripMarkdown } from "@/lib/utils";
@@ -214,9 +213,7 @@ export default async function TagsPage({ searchParams }: Props) {
         </NeoTiltCard>
       </section>
 
-      <Suspense fallback={<div className="text-center py-12">Loading...</div>}>
-        <TagContent selectedTag={tag} />
-      </Suspense>
+      <TagContent selectedTag={tag} />
     </div>
   );
 }

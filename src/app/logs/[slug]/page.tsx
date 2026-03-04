@@ -8,7 +8,7 @@ import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
 import { SITE_URL } from "@/lib/constants";
-import { getLogBySlug, getRelatedFaqsWithPopularity, getRelatedPostsWithPopularity, getPublishedLogs } from "@/lib/data-source";
+import { getLogBySlug, getRelatedFaqsWithPopularity, getRelatedPostsWithPopularity, getPublishedLogs } from "@/lib/queries";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { AuthorCard } from "@/components/AuthorCard";

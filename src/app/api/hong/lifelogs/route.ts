@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
 import { revalidatePath } from "next/cache";
 import { logService } from "@/features/logs/service";
 import { insertLogSchema, updateLogSchema } from "@/features/logs/schema";
-import { triggerRebuild } from "@/lib/trigger-rebuild";
+
 
 // GET: 모든 logs 조회
 export async function GET() {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const result = await logService.getAll({ includeDrafts: true });
     return NextResponse.json(result);
@@ -17,6 +25,13 @@ export async function GET() {
 
 // POST: 새 log 생성
 export async function POST(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
 
@@ -37,7 +52,7 @@ export async function POST(request: NextRequest) {
     revalidatePath('/');
     revalidatePath('/about/life');
 
-    triggerRebuild();
+
     return NextResponse.json({ success: true, log: newLog });
   } catch (error) {
     console.error("Failed to create log:", error);
@@ -47,6 +62,13 @@ export async function POST(request: NextRequest) {
 
 // PUT: log 수정
 export async function PUT(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const body = await request.json();
 
@@ -68,7 +90,7 @@ export async function PUT(request: NextRequest) {
     revalidatePath('/about/life');
     revalidatePath(`/about/life/${updatedLog.slug}`);
 
-    triggerRebuild();
+
     return NextResponse.json({ success: true, log: updatedLog });
   } catch (error) {
     console.error("Failed to update log:", error);
@@ -78,6 +100,13 @@ export async function PUT(request: NextRequest) {
 
 // DELETE: log 삭제
 export async function DELETE(request: NextRequest) {
+  const session = await getServerSession();
+  const allowedEmail = process.env.ALLOWED_GOOGLE_ID;
+
+  if (!session || session.user?.email !== allowedEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
@@ -93,7 +122,7 @@ export async function DELETE(request: NextRequest) {
     revalidatePath('/');
     revalidatePath('/about/life');
 
-    triggerRebuild();
+
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to delete log:", error);

@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
 import { LifeLogCategory } from "@/lib/schema";
-import { getLogBySlug, getPublishedLifeLogsPersonal } from "@/lib/data-source";
+import { getLogBySlug, getPublishedLifeLogsPersonal } from "@/lib/queries";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { ViewTracker } from "@/components/ViewTracker";
 

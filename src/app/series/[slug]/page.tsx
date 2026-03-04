@@ -7,7 +7,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
-import { getSeriesBySlug, getPublishedSeries } from "@/lib/data-source";
+import { getSeriesBySlug, getPublishedSeries } from "@/lib/queries";
 import { NeoTiltCard } from "@/components/neo";
 
 export const revalidate = 3600;

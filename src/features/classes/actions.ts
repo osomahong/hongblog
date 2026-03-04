@@ -1,7 +1,7 @@
 "use server";
 
-import { getServerSession } from "next-auth";
-import { revalidatePath } from "next/cache";
+import { checkAuth } from "@/lib/auth";
+import { revalidateClassPaths, revalidateCoursePaths } from "@/lib/revalidate";
 import {
     insertClassSchema,
     updateClassSchema,
@@ -13,15 +13,6 @@ import {
     type UpdateCourseInput,
 } from "./schema";
 import { classService, courseService } from "./service";
-
-const ALLOWED_EMAIL = process.env.ALLOWED_GOOGLE_ID;
-
-async function checkAuth() {
-    const session = await getServerSession();
-    if (!session || session.user?.email !== ALLOWED_EMAIL) {
-        throw new Error("Unauthorized");
-    }
-}
 
 // ========== CLASS ACTIONS ==========
 
@@ -38,9 +29,7 @@ export async function createClassAction(input: CreateClassInput) {
         }
 
         await classService.create(validation.data);
-
-        revalidatePath("/class");
-        revalidatePath("/hong");
+        await revalidateClassPaths();
 
         return { success: true };
     } catch (error) {
@@ -65,9 +54,7 @@ export async function updateClassAction(input: UpdateClassInput) {
         }
 
         await classService.update(validation.data);
-
-        revalidatePath("/class");
-        revalidatePath("/hong");
+        await revalidateClassPaths();
 
         return { success: true };
     } catch (error) {
@@ -84,9 +71,7 @@ export async function deleteClassAction(id: number) {
         await checkAuth();
 
         await classService.delete(id);
-
-        revalidatePath("/class");
-        revalidatePath("/hong");
+        await revalidateClassPaths();
 
         return { success: true };
     } catch (error) {
@@ -102,10 +87,8 @@ export async function toggleClassPublishedAction(id: number) {
     try {
         await checkAuth();
 
-        await classService.togglePublished(id);
-
-        revalidatePath("/class");
-        revalidatePath("/hong");
+        const cls = await classService.togglePublished(id);
+        await revalidateClassPaths(cls?.slug);
 
         return { success: true };
     } catch (error) {
@@ -145,10 +128,8 @@ export async function createCourseAction(input: CreateCourseInput) {
             };
         }
 
-        await courseService.create(validation.data);
-
-        revalidatePath("/class");
-        revalidatePath("/hong");
+        const course = await courseService.create(validation.data);
+        await revalidateCoursePaths(course.slug);
 
         return { success: true };
     } catch (error) {
@@ -172,10 +153,8 @@ export async function updateCourseAction(input: UpdateCourseInput) {
             };
         }
 
-        await courseService.update(validation.data);
-
-        revalidatePath("/class");
-        revalidatePath("/hong");
+        const course = await courseService.update(validation.data);
+        await revalidateCoursePaths(course.slug);
 
         return { success: true };
     } catch (error) {
@@ -192,9 +171,7 @@ export async function deleteCourseAction(id: number) {
         await checkAuth();
 
         await courseService.delete(id);
-
-        revalidatePath("/class");
-        revalidatePath("/hong");
+        await revalidateCoursePaths();
 
         return { success: true };
     } catch (error) {
@@ -210,10 +187,8 @@ export async function toggleCoursePublishedAction(id: number) {
     try {
         await checkAuth();
 
-        await courseService.togglePublished(id);
-
-        revalidatePath("/class");
-        revalidatePath("/hong");
+        const course = await courseService.togglePublished(id);
+        await revalidateCoursePaths(course?.slug);
 
         return { success: true };
     } catch (error) {

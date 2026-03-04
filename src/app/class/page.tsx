@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getPublishedCourses } from "@/lib/data-source";
+import { getPublishedCourses } from "@/lib/queries";
 import ClassPageClient from "./ClassPageClient";
 import { ListViewTracker } from "@/components/ListViewTracker";
 import { SITE_URL } from "@/lib/constants";
