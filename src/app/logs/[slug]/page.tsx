@@ -8,14 +8,19 @@ import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
 import { SITE_URL } from "@/lib/constants";
-import { getLogBySlug, getRelatedFaqsWithPopularity, getRelatedPostsWithPopularity } from "@/lib/queries";
+import { getLogBySlug, getRelatedFaqsWithPopularity, getRelatedPostsWithPopularity, getPublishedLogs } from "@/lib/data-source";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { AuthorCard } from "@/components/AuthorCard";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { RelatedLink } from "@/components/RelatedLink";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+    const logs = await getPublishedLogs();
+    return logs.map((log) => ({ slug: log.slug }));
+}
 
 const categoryIcons = {
     AI_TECH: Sparkles,

@@ -1,6 +1,6 @@
 import { db } from "./db";
 import { posts, faqs, tags, postsToTags, faqsToTags, contentDailyStats, series, courses, classes, classesToTags, lifeLogs, logsToTags, Post, Faq, ContentType, Category, Tag, Series, Course, Class, LifeLog } from "./schema";
-import { eq, inArray, desc, sql, and, gte, asc, isNull } from "drizzle-orm";
+import { eq, inArray, desc, sql, and, gte, asc, isNull, ne } from "drizzle-orm";
 
 // 타입 정의
 export type PostWithTags = Omit<Post, "highlights"> & {
@@ -1399,5 +1399,55 @@ export async function getRelatedLogsWithPopularity(
       with: { logsToTags: { with: { tag: true } } },
     }) as Promise<LogWithRelations[]>,
     mapResult: (log) => ({ ...log, tags: log.logsToTags.map((lt) => lt.tag.name) }),
+  });
+}
+
+// 카테고리별 발행된 Posts 조회
+export async function getPublishedPostsByCategory(category: Category): Promise<PostWithTags[]> {
+  const result = (await db.query.posts.findMany({
+    where: and(eq(posts.category, category), eq(posts.isPublished, true)),
+    orderBy: [desc(posts.createdAt)],
+    with: {
+      postsToTags: {
+        with: { tag: true },
+      },
+    },
+  })) as PostWithRelations[];
+
+  return result.map((post) => ({
+    ...post,
+    tags: post.postsToTags.map((pt) => pt.tag.name),
+    seriesInfo: post.series ? { id: post.series.id, slug: post.series.slug, title: post.series.title } : null,
+  }));
+}
+
+// 카테고리별 발행된 FAQs 조회
+export async function getPublishedFaqsByCategory(category: Category): Promise<FaqWithTags[]> {
+  const result = (await db.query.faqs.findMany({
+    where: and(eq(faqs.category, category), eq(faqs.isPublished, true)),
+    orderBy: [desc(faqs.createdAt)],
+    with: {
+      faqsToTags: {
+        with: { tag: true },
+      },
+    },
+  })) as FaqWithRelations[];
+
+  return result.map((faq) => ({
+    ...faq,
+    tags: faq.faqsToTags.map((ft) => ft.tag.name),
+  }));
+}
+
+// 개인 카테고리 LifeLogs (맛집, 강의, 문화생활, 여행, 일상)
+export async function getPublishedLifeLogsPersonal() {
+  return db.query.lifeLogs.findMany({
+    where: and(
+      eq(lifeLogs.isPublished, true),
+      ne(lifeLogs.category, "MARKETING"),
+      ne(lifeLogs.category, "AI_TECH"),
+      ne(lifeLogs.category, "DATA")
+    ),
+    orderBy: [desc(lifeLogs.visitedAt), desc(lifeLogs.createdAt)],
   });
 }

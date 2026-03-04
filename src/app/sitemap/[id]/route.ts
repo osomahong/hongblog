@@ -5,10 +5,14 @@ import {
   getPublishedClasses,
   getPublishedSeries,
   getPublishedLogs,
-} from "@/lib/queries";
+} from "@/lib/data-source";
 import { SITE_URL } from "@/lib/constants";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
+
+export function generateStaticParams() {
+  return [{ id: "0.xml" }, { id: "1.xml" }, { id: "2.xml" }];
+}
 
 interface SitemapEntry {
   url: string;

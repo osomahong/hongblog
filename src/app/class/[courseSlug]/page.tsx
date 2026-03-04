@@ -2,12 +2,17 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
-import { getCourseBySlug } from "@/lib/queries";
+import { getCourseBySlug, getPublishedCourses } from "@/lib/data-source";
 import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
 import { SITE_URL } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+    const courses = await getPublishedCourses();
+    return courses.map((course) => ({ courseSlug: course.slug }));
+}
 
 type Props = {
     params: Promise<{ courseSlug: string }>;

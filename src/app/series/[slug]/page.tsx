@@ -7,10 +7,15 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
-import { getSeriesBySlug } from "@/lib/queries";
+import { getSeriesBySlug, getPublishedSeries } from "@/lib/data-source";
 import { NeoTiltCard } from "@/components/neo";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const seriesList = await getPublishedSeries();
+  return seriesList.map((s) => ({ slug: s.slug }));
+}
 
 const categoryIcons = {
   AI_TECH: Sparkles,

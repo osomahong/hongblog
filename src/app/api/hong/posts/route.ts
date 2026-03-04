@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { posts, tags, postsToTags, Post, Tag } from "@/lib/schema";
 import { eq, desc } from "drizzle-orm";
+import { triggerRebuild } from "@/lib/trigger-rebuild";
 
 type PostWithRelations = Post & {
   postsToTags: { tag: Tag }[];
@@ -107,11 +108,15 @@ export async function POST(request: NextRequest) {
     revalidatePath('/insights');
     revalidatePath(`/insights/${newPost.slug}`);
     revalidatePath('/');
+    revalidatePath('/tags');
+    revalidatePath(`/category/${category.toLowerCase()}`);
+    revalidatePath('/feed.xml');
     if (newPost.seriesId) {
       const series = await db.query.series.findFirst({ where: eq(require("@/lib/schema").series.id, newPost.seriesId) });
       if (series) revalidatePath(`/series/${series.slug}`);
     }
 
+    triggerRebuild();
     return NextResponse.json({ success: true, post: newPost });
   } catch (error) {
     console.error("Failed to create post:", error);
@@ -189,11 +194,15 @@ export async function PUT(request: NextRequest) {
     revalidatePath('/insights');
     revalidatePath(`/insights/${updatedPost.slug}`);
     revalidatePath('/');
+    revalidatePath('/tags');
+    revalidatePath(`/category/${category.toLowerCase()}`);
+    revalidatePath('/feed.xml');
     if (updatedPost.seriesId) {
       const series = await db.query.series.findFirst({ where: eq(require("@/lib/schema").series.id, updatedPost.seriesId) });
       if (series) revalidatePath(`/series/${series.slug}`);
     }
 
+    triggerRebuild();
     return NextResponse.json({ success: true, post: updatedPost });
   } catch (error) {
     console.error("Failed to update post:", error);
@@ -229,7 +238,10 @@ export async function DELETE(request: NextRequest) {
     // Invalidate cache
     revalidatePath('/insights');
     revalidatePath('/');
+    revalidatePath('/tags');
+    revalidatePath('/feed.xml');
 
+    triggerRebuild();
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to delete post:", error);

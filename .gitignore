@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# generated data (build-time JSON export)
+src/data/generated/
+
 # uploads
 /public/uploads/
 .env*.local

@@ -14,12 +14,18 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
-import { db } from "@/lib/db";
-import { posts, faqs } from "@/lib/schema";
-import { eq, desc } from "drizzle-orm";
-import type { Category, Tag } from "@/lib/schema";
+import { getPublishedPostsByCategory, getPublishedFaqsByCategory } from "@/lib/data-source";
+import type { Category } from "@/lib/schema";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+export function generateStaticParams() {
+  return [
+    { slug: "marketing" },
+    { slug: "ai_tech" },
+    { slug: "data" },
+  ];
+}
 
 const categoryMap: Record<string, Category> = {
   ai_tech: "AI_TECH",
@@ -64,68 +70,6 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
-type PostWithRelations = {
-  id: number;
-  slug: string;
-  title: string;
-  excerpt: string | null;
-  content: string;
-  category: string;
-  thumbnailUrl: string | null;
-  isPublished: boolean;
-  createdAt: Date;
-  postsToTags: { tag: Tag }[];
-};
-
-type FaqWithRelations = {
-  id: number;
-  slug: string;
-  question: string;
-  answer: string;
-  category: string;
-  isPublished: boolean;
-  createdAt: Date;
-  faqsToTags: { tag: Tag }[];
-};
-
-async function getPostsByCategory(category: Category) {
-  const result = (await db.query.posts.findMany({
-    where: eq(posts.category, category),
-    orderBy: [desc(posts.createdAt)],
-    with: {
-      postsToTags: {
-        with: { tag: true },
-      },
-    },
-  })) as PostWithRelations[];
-
-  return result
-    .filter((post) => post.isPublished)
-    .map((post) => ({
-      ...post,
-      tags: post.postsToTags.map((pt) => pt.tag.name),
-    }));
-}
-
-async function getFaqsByCategory(category: Category) {
-  const result = (await db.query.faqs.findMany({
-    where: eq(faqs.category, category),
-    orderBy: [desc(faqs.createdAt)],
-    with: {
-      faqsToTags: {
-        with: { tag: true },
-      },
-    },
-  })) as FaqWithRelations[];
-
-  return result
-    .filter((faq) => faq.isPublished)
-    .map((faq) => ({
-      ...faq,
-      tags: faq.faqsToTags.map((ft) => ft.tag.name),
-    }));
-}
-
 import { ListViewTracker } from "@/components/ListViewTracker";
 
 export default async function CategoryPage({ params }: Props) {
@@ -137,8 +81,8 @@ export default async function CategoryPage({ params }: Props) {
   }
 
   const [categoryPosts, categoryFaqs] = await Promise.all([
-    getPostsByCategory(category),
-    getFaqsByCategory(category),
+    getPublishedPostsByCategory(category),
+    getPublishedFaqsByCategory(category),
   ]);
 
   const Icon = categoryIcons[category];

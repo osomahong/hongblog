@@ -13,13 +13,17 @@ import {
   ArrowLeft
 } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
-import { db } from "@/lib/db";
-import { lifeLogs, LifeLogCategory } from "@/lib/schema";
-import { eq } from "drizzle-orm";
+import { LifeLogCategory } from "@/lib/schema";
+import { getLogBySlug, getPublishedLifeLogsPersonal } from "@/lib/data-source";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { ViewTracker } from "@/components/ViewTracker";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const logs = await getPublishedLifeLogsPersonal();
+  return logs.map((log) => ({ slug: log.slug }));
+}
 
 const categoryConfig: Record<LifeLogCategory, { icon: typeof Utensils; label: string; color: string }> = {
   FOOD: { icon: Utensils, label: "맛집", color: "bg-orange-500" },
@@ -29,19 +33,13 @@ const categoryConfig: Record<LifeLogCategory, { icon: typeof Utensils; label: st
   DAILY: { icon: Coffee, label: "일상", color: "bg-gray-500" },
 };
 
-async function getLifeLog(slug: string) {
-  return db.query.lifeLogs.findFirst({
-    where: eq(lifeLogs.slug, slug),
-  });
-}
-
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const log = await getLifeLog(slug);
+  const log = await getLogBySlug(slug, { includeUnpublished: true });
 
   if (!log) {
     return { title: "Not Found" };
@@ -74,7 +72,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LifeLogDetailPage({ params }: Props) {
   const { slug } = await params;
-  const log = await getLifeLog(slug);
+  const log = await getLogBySlug(slug, { includeUnpublished: true });
 
   if (!log || !log.isPublished) {
     notFound();

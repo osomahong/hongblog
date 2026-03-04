@@ -8,7 +8,7 @@ import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
 import { SITE_URL } from "@/lib/constants";
-import { getPostBySlug, getRelatedFaqsWithPopularity, getSeriesNavigation, getRelatedClassesForPost } from "@/lib/queries";
+import { getPostBySlug, getRelatedFaqsWithPopularity, getSeriesNavigation, getRelatedClassesForPost, getPublishedPosts } from "@/lib/data-source";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { AuthorCard } from "@/components/AuthorCard";
@@ -17,7 +17,12 @@ import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
 const categoryIcons = {
   AI_TECH: Sparkles,

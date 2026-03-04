@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { courses } from "@/lib/schema";
 import { eq } from "drizzle-orm";
+import { triggerRebuild } from "@/lib/trigger-rebuild";
 
 // GET: 모든 Courses 조회
 export async function GET(request: NextRequest) {
@@ -94,6 +95,7 @@ export async function POST(request: NextRequest) {
         revalidatePath('/class');
         revalidatePath('/');
 
+        triggerRebuild();
         return NextResponse.json(course, { status: 201 });
     } catch (error: any) {
         console.error("Error creating course:", error);
@@ -153,6 +155,7 @@ export async function PUT(request: NextRequest) {
         revalidatePath(`/class/${updated.slug}`);
         revalidatePath('/');
 
+        triggerRebuild();
         return NextResponse.json(updated);
     } catch (error) {
         console.error("Error updating course:", error);
@@ -189,6 +192,7 @@ export async function DELETE(request: NextRequest) {
         revalidatePath('/class');
         revalidatePath('/');
 
+        triggerRebuild();
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error("Error deleting course:", error);

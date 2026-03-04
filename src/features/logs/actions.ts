@@ -34,6 +34,7 @@ export async function createLogAction(input: CreateLogInput) {
         revalidatePath("/logs");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/about/life");
 
         return { success: true };
     } catch (error) {
@@ -65,6 +66,7 @@ export async function updateLogAction(input: UpdateLogInput) {
         revalidatePath("/logs");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/about/life");
 
         return { success: true };
     } catch (error) {
@@ -88,6 +90,7 @@ export async function deleteLogAction(id: number) {
         revalidatePath("/logs");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/about/life");
 
         return { success: true };
     } catch (error) {
@@ -111,6 +114,7 @@ export async function toggleLogPublishedAction(id: number) {
         revalidatePath("/logs");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/about/life");
 
         return { success: true };
     } catch (error) {

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import { faqs, tags, faqsToTags, Faq, Tag } from "@/lib/schema";
 import { eq, desc } from "drizzle-orm";
+import { triggerRebuild } from "@/lib/trigger-rebuild";
 
 type FaqWithRelations = Faq & {
   faqsToTags: { tag: Tag }[];
@@ -104,7 +105,10 @@ export async function POST(request: NextRequest) {
     revalidatePath('/faq');
     revalidatePath(`/faq/${newFaq.slug}`);
     revalidatePath('/');
+    revalidatePath('/tags');
+    revalidatePath(`/category/${category.toLowerCase()}`);
 
+    triggerRebuild();
     return NextResponse.json({ success: true, faq: newFaq });
   } catch (error) {
     console.error("Failed to create faq:", error);
@@ -174,7 +178,10 @@ export async function PUT(request: NextRequest) {
     revalidatePath('/faq');
     revalidatePath(`/faq/${updatedFaq.slug}`);
     revalidatePath('/');
+    revalidatePath('/tags');
+    revalidatePath(`/category/${category.toLowerCase()}`);
 
+    triggerRebuild();
     return NextResponse.json({ success: true, faq: updatedFaq });
   } catch (error) {
     console.error("Failed to update faq:", error);
@@ -207,7 +214,9 @@ export async function DELETE(request: NextRequest) {
     // Invalidate cache
     revalidatePath('/faq');
     revalidatePath('/');
+    revalidatePath('/tags');
 
+    triggerRebuild();
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to delete faq:", error);

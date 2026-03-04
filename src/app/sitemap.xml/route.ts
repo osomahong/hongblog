@@ -1,6 +1,6 @@
 import { SITE_URL } from "@/lib/constants";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 const SITEMAP_IDS = [0, 1, 2];
 

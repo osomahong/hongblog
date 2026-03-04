@@ -11,11 +11,10 @@ import {
   Star,
   ArrowLeft
 } from "lucide-react";
-import { db } from "@/lib/db";
-import { lifeLogs, LifeLogCategory } from "@/lib/schema";
-import { eq, desc, and, ne } from "drizzle-orm";
+import { LifeLogCategory } from "@/lib/schema";
+import { getPublishedLifeLogsPersonal } from "@/lib/data-source";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Life Log | About",
@@ -30,22 +29,10 @@ const categoryConfig: Record<LifeLogCategory, { icon: typeof Utensils; label: st
   DAILY: { icon: Coffee, label: "일상", color: "bg-gray-500" },
 };
 
-async function getPublishedLifeLogs() {
-  return db.query.lifeLogs.findMany({
-    where: and(
-      eq(lifeLogs.isPublished, true),
-      ne(lifeLogs.category, "MARKETING"),
-      ne(lifeLogs.category, "AI_TECH"),
-      ne(lifeLogs.category, "DATA")
-    ),
-    orderBy: [desc(lifeLogs.visitedAt), desc(lifeLogs.createdAt)],
-  });
-}
-
 import { ListViewTracker } from "@/components/ListViewTracker";
 
 export default async function LifeLogPage() {
-  const logs = await getPublishedLifeLogs();
+  const logs = await getPublishedLifeLogsPersonal();
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">

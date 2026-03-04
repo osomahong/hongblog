@@ -22,7 +22,7 @@ import {
   getAllTags,
   getPublishedLogs,
   TrendingItem,
-} from "@/lib/queries";
+} from "@/lib/data-source";
 import { TrackedLink } from "@/components/TrackedLink";
 
 const categoryIcons: Record<string, any> = {
@@ -58,10 +58,7 @@ const categoryColors: Record<string, string> = {
   일상: "bg-gray-500 sm:bg-gray-500 text-white",
 };
 
-// 메인 페이지는 항상 최신 데이터를 보여줘야 하므로 dynamic으로 설정
-export const dynamic = 'force-dynamic';
-// 또는 짧은 revalidation 시간 설정 (예: 60초)
-// export const revalidate = 60;
+export const revalidate = 60;
 
 export default async function HomePage() {
   const [posts, logs, trending, categoryStats, popularFaqs, allTags] = await Promise.all([

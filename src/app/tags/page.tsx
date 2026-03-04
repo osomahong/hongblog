@@ -4,12 +4,12 @@ import { Tag, ArrowRight, Sparkles, Database, TrendingUp, CheckCircle } from "lu
 import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent, NeoCardFooter } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
-import { getAllTags, getContentByTag } from "@/lib/queries";
+import { getAllTags, getContentByTag } from "@/lib/data-source";
 import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
 import { stripMarkdown } from "@/lib/utils";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 const categoryIcons = {
   AI_TECH: Sparkles,

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { logService } from "@/features/logs/service";
 import { insertLogSchema, updateLogSchema } from "@/features/logs/schema";
+import { triggerRebuild } from "@/lib/trigger-rebuild";
 
 // GET: 모든 logs 조회
 export async function GET() {
@@ -34,7 +35,9 @@ export async function POST(request: NextRequest) {
     revalidatePath('/logs');
     revalidatePath(`/logs/${newLog.slug}`);
     revalidatePath('/');
+    revalidatePath('/about/life');
 
+    triggerRebuild();
     return NextResponse.json({ success: true, log: newLog });
   } catch (error) {
     console.error("Failed to create log:", error);
@@ -62,7 +65,10 @@ export async function PUT(request: NextRequest) {
     revalidatePath('/logs');
     revalidatePath(`/logs/${updatedLog.slug}`);
     revalidatePath('/');
+    revalidatePath('/about/life');
+    revalidatePath(`/about/life/${updatedLog.slug}`);
 
+    triggerRebuild();
     return NextResponse.json({ success: true, log: updatedLog });
   } catch (error) {
     console.error("Failed to update log:", error);
@@ -85,7 +91,9 @@ export async function DELETE(request: NextRequest) {
     // Invalidate cache
     revalidatePath('/logs');
     revalidatePath('/');
+    revalidatePath('/about/life');
 
+    triggerRebuild();
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Failed to delete log:", error);

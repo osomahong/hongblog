@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Sparkles, HelpCircle } from "lucide-react";
-import { getClassBySlug, getCourseBySlug, getNextPrevClass, getRelatedClassesByTags, getRelatedPostsForClass, getRelatedFaqsWithPopularity } from "@/lib/queries";
+import { getClassBySlug, getCourseBySlug, getNextPrevClass, getRelatedClassesByTags, getRelatedPostsForClass, getRelatedFaqsWithPopularity, getPublishedCourses } from "@/lib/data-source";
 import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
@@ -15,7 +15,17 @@ import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+    const courses = await getPublishedCourses();
+    return courses.flatMap((course) =>
+        course.classes.map((cls) => ({
+            courseSlug: course.slug,
+            classSlug: cls.slug,
+        }))
+    );
+}
 
 type Props = {
     params: Promise<{ courseSlug: string; classSlug: string }>;

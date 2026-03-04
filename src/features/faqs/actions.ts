@@ -34,6 +34,7 @@ export async function createFaqAction(input: CreateFaqInput) {
         revalidatePath("/faq");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/tags");
 
         return { success: true };
     } catch (error) {
@@ -70,6 +71,7 @@ export async function updateFaqAction(input: UpdateFaqInput) {
         revalidatePath("/faq");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/tags");
 
         return { success: true };
     } catch (error) {
@@ -98,6 +100,7 @@ export async function deleteFaqAction(id: number) {
         revalidatePath("/faq");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/tags");
 
         return { success: true };
     } catch (error) {
@@ -121,6 +124,7 @@ export async function toggleFaqPublishedAction(id: number) {
         revalidatePath("/faq");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/tags");
 
         return { success: true };
     } catch (error) {

@@ -34,6 +34,8 @@ export async function createPostAction(input: CreatePostInput) {
         revalidatePath("/insights");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/tags");
+        revalidatePath("/feed.xml");
 
         return { success: true };
     } catch (error) {
@@ -65,6 +67,8 @@ export async function updatePostAction(input: UpdatePostInput) {
         revalidatePath("/insights");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/tags");
+        revalidatePath("/feed.xml");
 
         return { success: true };
     } catch (error) {
@@ -88,6 +92,8 @@ export async function deletePostAction(id: number) {
         revalidatePath("/insights");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/tags");
+        revalidatePath("/feed.xml");
 
         return { success: true };
     } catch (error) {
@@ -111,6 +117,8 @@ export async function togglePostPublishedAction(id: number) {
         revalidatePath("/insights");
         revalidatePath("/hong");
         revalidatePath("/");
+        revalidatePath("/tags");
+        revalidatePath("/feed.xml");
 
         return { success: true };
     } catch (error) {

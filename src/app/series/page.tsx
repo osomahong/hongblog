@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, FileText } from "lucide-react";
 import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardDescription, NeoCardContent, NeoCardFooter } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
-import { getPublishedSeries } from "@/lib/queries";
+import { getPublishedSeries } from "@/lib/data-source";
 import { NeoTiltCard } from "@/components/neo";
 
 export const metadata = {
@@ -12,7 +12,7 @@ export const metadata = {
 
 import { ListViewTracker } from "@/components/ListViewTracker";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export default async function SeriesPage() {
   const seriesList = await getPublishedSeries();

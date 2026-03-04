@@ -1,7 +1,7 @@
-import { getPublishedPosts } from "@/lib/queries";
+import { getPublishedPosts } from "@/lib/data-source";
 import { SITE_URL } from "@/lib/constants";
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
 
 export async function GET() {
     const baseUrl = SITE_URL;
