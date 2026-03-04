@@ -174,7 +174,7 @@ export default async function FaqDetailPage({ params }: Props) {
                 </div>
               </header>
 
-              <NeoCard className="bg-primary text-white mb-4 sm:mb-6 -rotate-1 p-4 sm:p-6">
+              <NeoCard className="bg-primary sm:bg-primary text-white mb-4 sm:mb-6 -rotate-1 p-4 sm:p-6">
                 <NeoCardContent>
                   <h1 className="text-2xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight">
                     Q: {faq.question}
