@@ -171,20 +171,21 @@ export async function postToLinkedIn(
   }
 
   try {
-    // 제어 문자 제거 + 줄바꿈 정규화 (한국어 멀티바이트 안전)
+    // 제어 문자 + 유니코드 보이지 않는 문자 제거 + 줄바꿈 정규화 (한국어 멀티바이트 안전)
     const sanitized = text
       .replace(/\r\n/g, "\n")
       .replace(/\r/g, "\n")
-      .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
-
-    // LinkedIn API commentary 바이트 제한 체크 (UTF-8 기준)
-    const byteLength = new TextEncoder().encode(sanitized).length;
-    if (byteLength > 9000) {
-      return { success: false, error: `UTF-8 바이트 제한 초과 (${byteLength}/9,000 bytes). 텍스트를 줄여주세요.` };
-    }
+      .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "")
+      .replace(/[\u200B-\u200F\u2028-\u202F\uFEFF\u00AD\u2060\u180E]/g, "");
 
     // LinkedIn "little Text Format" 예약 문자 이스케이프
     const escaped = escapeLinkedInLittleText(sanitized);
+
+    // 이스케이프 후 바이트 제한 체크 (이스케이프로 \가 추가되므로 후에 체크)
+    const byteLength = new TextEncoder().encode(escaped).length;
+    if (byteLength > 9000) {
+      return { success: false, error: `UTF-8 바이트 제한 초과 (${byteLength}/9,000 bytes). 이스케이프 후 기준입니다. 텍스트를 줄여주세요.` };
+    }
 
     const body = JSON.stringify({
       author: tokenData.personUrn,
@@ -199,7 +200,7 @@ export async function postToLinkedIn(
       isReshareDisabledByAuthor: false,
     });
 
-    console.log(`[LinkedIn] Posting: ${sanitized.length} chars, ${byteLength} bytes`);
+    console.log(`[LinkedIn] Posting: ${sanitized.length} chars, ${byteLength} bytes (after escape)`);
 
     const response = await fetch("https://api.linkedin.com/rest/posts", {
       method: "POST",
