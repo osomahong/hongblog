@@ -1,5 +1,9 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.digitalmarketer.co.kr";
 
+// Feature flags - false로 설정하면 프론트엔드에서 해당 메뉴가 숨겨짐 (관리자 영역은 유지)
+export const FEATURE_LOGS_ENABLED = false;
+export const FEATURE_LIFE_ENABLED = false;
+
 export const POST_CATEGORIES = ["MARKETING", "AI_TECH", "DATA"] as const;
 export const LOG_CATEGORIES = ["맛집", "강의", "문화생활", "여행", "일상"] as const;
 

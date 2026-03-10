@@ -24,6 +24,7 @@ import {
   TrendingItem,
 } from "@/lib/queries";
 import { TrackedLink } from "@/components/TrackedLink";
+import { FEATURE_LOGS_ENABLED } from "@/lib/constants";
 
 const categoryIcons: Record<string, any> = {
   AI_TECH: Sparkles,
@@ -63,7 +64,7 @@ export const revalidate = 60;
 export default async function HomePage() {
   const [posts, logs, trending, categoryStats, popularFaqs, allTags] = await Promise.all([
     getPublishedPosts(),
-    getPublishedLogs(),
+    FEATURE_LOGS_ENABLED ? getPublishedLogs() : Promise.resolve([]),
     getTrendingMixed(7, 4),
     getCategoryStats(),
     getPopularFaqs(30, 5),

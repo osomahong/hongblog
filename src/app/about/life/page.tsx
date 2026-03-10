@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import {
   Utensils,
@@ -30,8 +31,10 @@ const categoryConfig: Record<LifeLogCategory, { icon: typeof Utensils; label: st
 };
 
 import { ListViewTracker } from "@/components/ListViewTracker";
+import { FEATURE_LIFE_ENABLED } from "@/lib/constants";
 
 export default async function LifeLogPage() {
+  if (!FEATURE_LIFE_ENABLED) notFound();
   const logs = await getPublishedLifeLogsPersonal();
 
   return (

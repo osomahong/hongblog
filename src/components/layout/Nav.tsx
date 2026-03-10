@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
+import { FEATURE_LOGS_ENABLED, FEATURE_LIFE_ENABLED } from "@/lib/constants";
 
 export function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,13 +45,15 @@ export function Nav() {
             >
               Insights
             </Link>
-            <Link
-              href="/logs"
-              onClick={() => sendGAEvent("click_nav", { menu_name: "Logs" })}
-              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-            >
-              Logs
-            </Link>
+            {FEATURE_LOGS_ENABLED && (
+              <Link
+                href="/logs"
+                onClick={() => sendGAEvent("click_nav", { menu_name: "Logs" })}
+                className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
+              >
+                Logs
+              </Link>
+            )}
             <Link
               href="/series"
               onClick={() => sendGAEvent("click_nav", { menu_name: "Series" })}
@@ -72,13 +75,15 @@ export function Nav() {
             >
               Tags
             </Link>
-            <Link
-              href="/about/life"
-              onClick={() => sendGAEvent("click_nav", { menu_name: "Life" })}
-              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-            >
-              Life
-            </Link>
+            {FEATURE_LIFE_ENABLED && (
+              <Link
+                href="/about/life"
+                onClick={() => sendGAEvent("click_nav", { menu_name: "Life" })}
+                className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
+              >
+                Life
+              </Link>
+            )}
             <Link
               href="/about"
               onClick={() => sendGAEvent("click_nav", { menu_name: "About" })}
@@ -115,13 +120,15 @@ export function Nav() {
             >
               Insights
             </Link>
-            <Link
-              href="/logs"
-              onClick={() => { sendGAEvent("click_nav", { menu_name: "Logs" }); setIsMenuOpen(false); }}
-              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-            >
-              Logs
-            </Link>
+            {FEATURE_LOGS_ENABLED && (
+              <Link
+                href="/logs"
+                onClick={() => { sendGAEvent("click_nav", { menu_name: "Logs" }); setIsMenuOpen(false); }}
+                className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
+              >
+                Logs
+              </Link>
+            )}
             <Link
               href="/series"
               onClick={() => { sendGAEvent("click_nav", { menu_name: "Series" }); setIsMenuOpen(false); }}
@@ -143,13 +150,15 @@ export function Nav() {
             >
               Tags
             </Link>
-            <Link
-              href="/about/life"
-              onClick={() => { sendGAEvent("click_nav", { menu_name: "Life" }); setIsMenuOpen(false); }}
-              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-            >
-              Life
-            </Link>
+            {FEATURE_LIFE_ENABLED && (
+              <Link
+                href="/about/life"
+                onClick={() => { sendGAEvent("click_nav", { menu_name: "Life" }); setIsMenuOpen(false); }}
+                className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
+              >
+                Life
+              </Link>
+            )}
             <Link
               href="/about"
               onClick={() => { sendGAEvent("click_nav", { menu_name: "About" }); setIsMenuOpen(false); }}

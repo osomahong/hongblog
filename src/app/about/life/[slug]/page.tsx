@@ -12,7 +12,7 @@ import {
   Star,
   ArrowLeft
 } from "lucide-react";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, FEATURE_LIFE_ENABLED } from "@/lib/constants";
 import { LifeLogCategory } from "@/lib/schema";
 import { getLogBySlug, getPublishedLifeLogsPersonal } from "@/lib/queries";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -71,6 +71,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function LifeLogDetailPage({ params }: Props) {
+  if (!FEATURE_LIFE_ENABLED) notFound();
+
   const { slug } = await params;
   const log = await getLogBySlug(slug, { includeUnpublished: true });
 

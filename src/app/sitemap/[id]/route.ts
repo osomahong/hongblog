@@ -6,7 +6,7 @@ import {
   getPublishedSeries,
   getPublishedLogs,
 } from "@/lib/queries";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, FEATURE_LOGS_ENABLED } from "@/lib/constants";
 
 export const revalidate = 3600;
 
@@ -85,7 +85,7 @@ async function buildGeneralSitemap(): Promise<SitemapEntry[]> {
   const [faqs, seriesList, logs, posts] = await Promise.all([
     getPublishedFaqs(),
     getPublishedSeries(),
-    getPublishedLogs(),
+    FEATURE_LOGS_ENABLED ? getPublishedLogs() : Promise.resolve([]),
     getPublishedPosts(),
   ]);
 
@@ -105,10 +105,10 @@ async function buildGeneralSitemap(): Promise<SitemapEntry[]> {
       lastModified: latestDate(seriesList.map((s) => s.updatedAt)),
     },
     { url: `${SITE_URL}/about` },
-    {
+    ...(FEATURE_LOGS_ENABLED ? [{
       url: `${SITE_URL}/logs`,
       lastModified: latestDate(logs.map((l) => l.updatedAt)),
-    },
+    }] : []),
     {
       url: `${SITE_URL}/tags`,
       lastModified: siteLatest,
@@ -121,10 +121,10 @@ async function buildGeneralSitemap(): Promise<SitemapEntry[]> {
       url: `${SITE_URL}/series/${s.slug}`,
       lastModified: s.updatedAt,
     })),
-    ...logs.map((log) => ({
+    ...(FEATURE_LOGS_ENABLED ? logs.map((log) => ({
       url: `${SITE_URL}/logs/${log.slug}`,
       lastModified: log.updatedAt,
-    })),
+    })) : []),
   ];
 }
 

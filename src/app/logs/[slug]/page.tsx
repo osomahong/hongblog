@@ -7,7 +7,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, FEATURE_LOGS_ENABLED } from "@/lib/constants";
 import { getLogBySlug, getRelatedFaqsWithPopularity, getRelatedPostsWithPopularity, getPublishedLogs } from "@/lib/queries";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -75,6 +75,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function LogDetailPage({ params }: Props) {
+    if (!FEATURE_LOGS_ENABLED) notFound();
+
     const { slug } = await params;
     const log = await getLogBySlug(slug);
 

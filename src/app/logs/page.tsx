@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Database, TrendingUp } from "lucide-react";
 import {
@@ -25,10 +26,12 @@ const categoryLabels = {
 };
 
 import { ListViewTracker } from "@/components/ListViewTracker";
+import { FEATURE_LOGS_ENABLED } from "@/lib/constants";
 
 export const revalidate = 3600;
 
 export default async function LogsPage() {
+    if (!FEATURE_LOGS_ENABLED) notFound();
     const logs = await getPublishedLogs();
 
     return (

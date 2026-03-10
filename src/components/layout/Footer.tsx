@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { User, MessageCircle } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
+import { FEATURE_LOGS_ENABLED, FEATURE_LIFE_ENABLED } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -52,13 +53,15 @@ export function Footer() {
             >
               Insights
             </Link>
-            <Link
-              href="/logs"
-              onClick={() => sendGAEvent("click_footer", { menu_name: "Logs" })}
-              className="text-sm text-gray-300 hover:text-accent transition-colors"
-            >
-              Logs
-            </Link>
+            {FEATURE_LOGS_ENABLED && (
+              <Link
+                href="/logs"
+                onClick={() => sendGAEvent("click_footer", { menu_name: "Logs" })}
+                className="text-sm text-gray-300 hover:text-accent transition-colors"
+              >
+                Logs
+              </Link>
+            )}
             <Link
               href="/series"
               onClick={() => sendGAEvent("click_footer", { menu_name: "Series" })}
@@ -85,13 +88,15 @@ export function Footer() {
           {/* About Section */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">About</span>
-            <Link
-              href="/about/life"
-              onClick={() => sendGAEvent("click_footer", { menu_name: "Life" })}
-              className="text-sm text-gray-300 hover:text-accent transition-colors"
-            >
-              Life
-            </Link>
+            {FEATURE_LIFE_ENABLED && (
+              <Link
+                href="/about/life"
+                onClick={() => sendGAEvent("click_footer", { menu_name: "Life" })}
+                className="text-sm text-gray-300 hover:text-accent transition-colors"
+              >
+                Life
+              </Link>
+            )}
             <Link
               href="/about"
               onClick={() => sendGAEvent("click_footer", { menu_name: "About" })}
