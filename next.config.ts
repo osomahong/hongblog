@@ -2,20 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  async redirects() {
-    return [
-      {
-        source: "/what-is-click-through-attribution",
-        destination: "/insights/what-is-click-through-attribution",
-        permanent: true,
-      },
-      {
-        source: "/conversion-and-conversion-campaign",
-        destination: "/insights/conversion-and-conversion-campaign",
-        permanent: true,
-      },
-    ];
-  },
+  // Legacy redirects는 src/middleware.ts에서 통합 처리 (리디렉트 hop 수 최소화)
 };
 
 export default nextConfig;
