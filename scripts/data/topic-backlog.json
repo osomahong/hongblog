@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "비개발자를 위한 GA4 BigQuery 연동 실전 가이드",
+    "category": "DATA",
+    "priority": "HIGH",
+    "reason": "DATA 카테고리 글당 2세션으로 최약. '비개발자를 위한 ~' 포맷이 MARKETING에서 검증됨(네이버 API 66세션). 교차 적용 기회",
+    "tags": ["GA4", "BigQuery", "데이터 분석"],
+    "contentType": "post",
+    "source": "ga4-analysis",
+    "addedAt": "2026-03-25",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "title": "AI 에이전트로 마케팅 업무 자동화하기: 실무 적용 사례",
+    "category": "MARKETING",
+    "priority": "MED",
+    "reason": "MARKETING 글당 13세션이지만, AI_TECH 교차 주제는 높은 잠재력. AI 활용법 글이 1주 급상승(12세션)",
+    "tags": ["AI", "자동화", "마케팅 실무"],
+    "contentType": "post",
+    "source": "ga4-analysis",
+    "addedAt": "2026-03-25",
+    "status": "pending"
+  },
+  {
+    "id": 3,
+    "title": "2026년 검색 환경 변화: SEO에서 GEO로의 전환 실무 가이드",
+    "category": "AI_TECH",
+    "priority": "MED",
+    "reason": "AI Overviews(19세션) + AEO/GEO(6세션) 합산 시 검색 최적화 수요 확인. Organic Search가 63%인 블로그에 핵심 주제",
+    "tags": ["SEO", "AI", "CTR"],
+    "contentType": "post",
+    "source": "ga4-analysis",
+    "addedAt": "2026-03-25",
+    "status": "pending"
+  },
+  {
+    "id": 4,
+    "title": "GTM 이벤트 설계부터 GA4 리포트까지: 마케터를 위한 데이터 추적 가이드",
+    "category": "DATA",
+    "priority": "LOW",
+    "reason": "React GTM 글(17세션)과 GA4 direct/none 글(16세션)이 꾸준. DATA 카테고리 보강 + 실무 가이드 포맷",
+    "tags": ["GTM", "GA4", "데이터 추적"],
+    "contentType": "post",
+    "source": "ga4-analysis",
+    "addedAt": "2026-03-25",
+    "status": "pending"
+  }
+]

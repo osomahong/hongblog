@@ -141,6 +141,325 @@ export function analyzeSeoScore(data: {
   return { score, checks, suggestions };
 }
 
+// AEO 점수 분석 결과 타입
+export interface AeoAnalysisResult {
+  score: number;
+  checks: AeoCheck[];
+  suggestions: string[];
+}
+
+export interface AeoCheck {
+  id: string;
+  label: string;
+  status: "pass" | "partial" | "fail";
+  message: string;
+  weight: number;
+}
+
+// AEO 점수 분석 함수 (로컬 규칙 기반)
+export function analyzeAeoScore(data: {
+  title: string;
+  content: string;
+  contentType: "post" | "faq" | "class" | "lifeLog";
+}): AeoAnalysisResult {
+  const checks: AeoCheck[] = [];
+  const suggestions: string[] = [];
+  const paragraphs = data.content.split(/\n\n+/).filter((p) => p.trim().length > 0);
+  const firstParagraph = paragraphs[0] || "";
+  const headings = data.content.match(/^##+ .+$/gm) || [];
+  const h2h3 = headings.filter((h) => h.startsWith("## ") || h.startsWith("### "));
+
+  // 1. 직접 답변 (가중치: 20)
+  const titleKeywords = data.title.replace(/[?？:：,，\s]+/g, " ").split(" ").filter((w) => w.length > 1);
+  const hasDirectAnswer =
+    firstParagraph.includes("입니다") ||
+    firstParagraph.includes("말합니다") ||
+    firstParagraph.includes("뜻합니다") ||
+    firstParagraph.includes("의미합니다");
+  const keywordInFirst = titleKeywords.some((kw) => firstParagraph.includes(kw));
+  const directAnswerPass = hasDirectAnswer && keywordInFirst;
+
+  checks.push({
+    id: "direct-answer",
+    label: "직접 답변",
+    status: directAnswerPass ? "pass" : keywordInFirst ? "partial" : "fail",
+    message: directAnswerPass
+      ? "첫 문단에 핵심 답변이 포함되어 있습니다."
+      : "첫 문단에 제목 질문에 대한 직접 답변을 추가하세요.",
+    weight: 20,
+  });
+
+  // 2. FAQ 스키마 적합성 (가중치: 15)
+  const isFaq = data.contentType === "faq";
+  const questionHeadings = h2h3.filter((h) => /[?？]|란\b|방법|무엇|어떻게|왜/.test(h));
+  const faqSchemaPass = isFaq || questionHeadings.length >= 2;
+
+  checks.push({
+    id: "faq-schema",
+    label: "FAQ 스키마 적합성",
+    status: faqSchemaPass ? "pass" : questionHeadings.length >= 1 ? "partial" : "fail",
+    message: isFaq
+      ? "FAQ 콘텐츠는 자동 PASS입니다."
+      : faqSchemaPass
+        ? "Q&A 구조가 적절합니다."
+        : "H2를 질문형으로 변환하면 FAQ 스키마 적합성이 높아집니다.",
+    weight: 15,
+  });
+
+  // 3. 질문형 헤딩 (가중치: 15)
+  const questionRatio = h2h3.length > 0 ? questionHeadings.length / h2h3.length : 0;
+
+  checks.push({
+    id: "question-headings",
+    label: "질문형 헤딩",
+    status: questionRatio >= 0.3 ? "pass" : questionRatio > 0 ? "partial" : "fail",
+    message:
+      questionRatio >= 0.3
+        ? `헤딩의 ${Math.round(questionRatio * 100)}%가 질문형입니다.`
+        : "헤딩을 질문형('~란?', '~하는 방법은?')으로 변환하세요.",
+    weight: 15,
+  });
+
+  // 4. 피처드 스니펫 포맷 (가중치: 15)
+  const hasNumberedList = /^\d+\./m.test(data.content);
+  const hasBulletList = /^[-*] /m.test(data.content);
+  const hasTable = /\|.+\|.+\|/m.test(data.content);
+  const hasDefinition = /^.{2,}(이란|란|은|는).{5,}(입니다|합니다|됩니다)/m.test(data.content);
+  const snippetFormats = [hasNumberedList, hasBulletList, hasTable, hasDefinition].filter(Boolean).length;
+
+  checks.push({
+    id: "snippet-format",
+    label: "피처드 스니펫 포맷",
+    status: snippetFormats >= 2 ? "pass" : snippetFormats >= 1 ? "partial" : "fail",
+    message:
+      snippetFormats >= 2
+        ? `${snippetFormats}가지 구조화 형식을 사용 중입니다.`
+        : "번호 리스트, 표, 정의 문단 등 구조화 형식을 추가하세요.",
+    weight: 15,
+  });
+
+  // 5. 핵심 요약 (가중치: 10)
+  const hasSummary = /##\s*(정리|요약|핵심|결론|마무리)/i.test(data.content);
+
+  checks.push({
+    id: "summary",
+    label: "핵심 요약",
+    status: hasSummary ? "pass" : "fail",
+    message: hasSummary
+      ? "요약/정리 섹션이 존재합니다."
+      : "'정리' 또는 '요약' 헤딩 아래 핵심 내용 3줄 이내 요약을 추가하세요.",
+    weight: 10,
+  });
+
+  // 6. 음성 검색 친화 (가중치: 10)
+  const voicePatterns = /어떻게|왜|무엇|얼마나|~할까요|~일까요|~인가요/g;
+  const voiceMatches = data.content.match(voicePatterns) || [];
+
+  checks.push({
+    id: "voice-search",
+    label: "음성 검색 친화",
+    status: voiceMatches.length >= 2 ? "pass" : voiceMatches.length >= 1 ? "partial" : "fail",
+    message:
+      voiceMatches.length >= 2
+        ? "자연어 질문 표현이 포함되어 있습니다."
+        : "자연어 대화체 질문 표현을 추가하세요.",
+    weight: 10,
+  });
+
+  // 7. 엔티티 명확성 (가중치: 15)
+  const entityDefinitions =
+    data.content.match(/\*\*[^*]+\*\*[은는이가](는)?\s/g) ||
+    data.content.match(/[A-Z][A-Za-z]+\([^)]+\)/g) ||
+    [];
+
+  checks.push({
+    id: "entity-clarity",
+    label: "엔티티 명확성",
+    status: entityDefinitions.length >= 2 ? "pass" : entityDefinitions.length >= 1 ? "partial" : "fail",
+    message:
+      entityDefinitions.length >= 2
+        ? "핵심 용어가 명확히 정의되어 있습니다."
+        : "핵심 용어 첫 등장 시 '**X(영어명)**는 ~입니다' 형태로 정의하세요.",
+    weight: 15,
+  });
+
+  // 점수 산출
+  let totalWeight = 0;
+  let earnedWeight = 0;
+  checks.forEach((check) => {
+    totalWeight += check.weight;
+    if (check.status === "pass") earnedWeight += check.weight;
+    else if (check.status === "partial") earnedWeight += check.weight * 0.5;
+  });
+
+  const score = Math.round((earnedWeight / totalWeight) * 100);
+
+  checks.filter((c) => c.status === "fail").forEach((c) => suggestions.push(c.message));
+
+  return { score, checks, suggestions };
+}
+
+// GEO 점수 분석 결과 타입
+export interface GeoAnalysisResult {
+  score: number;
+  checks: GeoCheck[];
+  suggestions: string[];
+}
+
+export interface GeoCheck {
+  id: string;
+  label: string;
+  status: "pass" | "partial" | "fail";
+  message: string;
+  weight: number;
+}
+
+// GEO 점수 분석 함수 (로컬 규칙 기반)
+export function analyzeGeoScore(data: {
+  title: string;
+  content: string;
+}): GeoAnalysisResult {
+  const checks: GeoCheck[] = [];
+  const suggestions: string[] = [];
+
+  // 1. 출처 인용 (가중치: 20)
+  const citationPatterns =
+    data.content.match(/에 따르면|의 연구|가 발표|보고서에|조사에 의하면|에서 발표한/g) || [];
+  const externalLinks = data.content.match(/\[.+?\]\(https?:\/\//g) || [];
+  const totalCitations = citationPatterns.length + externalLinks.length;
+
+  checks.push({
+    id: "citations",
+    label: "출처 인용",
+    status: totalCitations >= 2 ? "pass" : totalCitations >= 1 ? "partial" : "fail",
+    message:
+      totalCitations >= 2
+        ? `${totalCitations}개의 출처 참조가 있습니다.`
+        : "외부 출처 2개 이상을 추가하세요 ('~에 따르면' 형태 권장).",
+    weight: 20,
+  });
+
+  // 2. 통계 밀도 (가중치: 15)
+  const statsPattern = /\d+(\.\d+)?(%|퍼센트|배|억|만|달러|원|건|명|개|시간|분)/g;
+  const statsMatches = data.content.match(statsPattern) || [];
+  // 순서 숫자(1단계, 2번째) 제외
+  const meaningfulStats = statsMatches.filter((s) => !/^\d+(단계|번째|개월)$/.test(s));
+
+  checks.push({
+    id: "statistics",
+    label: "통계 밀도",
+    status: meaningfulStats.length >= 3 ? "pass" : meaningfulStats.length >= 1 ? "partial" : "fail",
+    message:
+      meaningfulStats.length >= 3
+        ? `${meaningfulStats.length}개의 통계 데이터가 포함되어 있습니다.`
+        : "구체적 수치 데이터를 추가하세요 (예: '전환율이 23% 증가').",
+    weight: 15,
+  });
+
+  // 3. 구조화 데이터 (가중치: 15)
+  const hasTable = /\|.+\|.+\|/.test(data.content);
+  const listCount = (data.content.match(/^[-*] /gm) || []).length + (data.content.match(/^\d+\. /gm) || []).length;
+  const hasCodeBlock = /```/.test(data.content);
+  const structureScore = (hasTable ? 1 : 0) + (listCount >= 3 ? 1 : 0) + (hasCodeBlock ? 0.5 : 0);
+
+  checks.push({
+    id: "structured-data",
+    label: "구조화 데이터",
+    status: structureScore >= 2 ? "pass" : structureScore >= 1 ? "partial" : "fail",
+    message:
+      structureScore >= 2
+        ? "표, 리스트 등 구조화 요소가 적절히 사용되었습니다."
+        : "표(비교/정리)와 리스트를 추가하세요.",
+    weight: 15,
+  });
+
+  // 4. 전문가 신호 (가중치: 10)
+  const expertPatterns =
+    data.content.match(/실무에서|직접.{0,5}(운영|사용|경험|테스트|확인)|실제 프로젝트|년간|담당하며/g) || [];
+
+  checks.push({
+    id: "expert-signals",
+    label: "전문가 신호",
+    status: expertPatterns.length >= 2 ? "pass" : expertPatterns.length >= 1 ? "partial" : "fail",
+    message:
+      expertPatterns.length >= 2
+        ? "경험 기반 서술이 포함되어 있습니다."
+        : "'실무에서 확인한 결과', '직접 운영해 본 경험' 등의 표현을 추가하세요.",
+    weight: 10,
+  });
+
+  // 5. 콘텐츠 신선도 (가중치: 10)
+  const currentYear = new Date().getFullYear();
+  const yearPattern = new RegExp(`(${currentYear}|${currentYear - 1})년`, "g");
+  const freshnessMatches = data.content.match(yearPattern) || [];
+  const recentKeywords = data.content.match(/최근|최신|올해|지난달|이번/g) || [];
+  const freshnessTotal = freshnessMatches.length + recentKeywords.length;
+
+  checks.push({
+    id: "freshness",
+    label: "콘텐츠 신선도",
+    status: freshnessTotal >= 2 ? "pass" : freshnessTotal >= 1 ? "partial" : "fail",
+    message:
+      freshnessTotal >= 2
+        ? "최신 정보 참조가 포함되어 있습니다."
+        : `'${currentYear}년 기준', '최근 업데이트에 따르면' 등의 시점 정보를 추가하세요.`,
+    weight: 10,
+  });
+
+  // 6. 주제 권위 (가중치: 15)
+  const internalLinks = data.content.match(/\[.+?\]\(\/(insights|faq|class|series|tags)\//g) || [];
+
+  checks.push({
+    id: "topical-authority",
+    label: "주제 권위",
+    status: internalLinks.length >= 2 ? "pass" : internalLinks.length >= 1 ? "partial" : "fail",
+    message:
+      internalLinks.length >= 2
+        ? `${internalLinks.length}개의 내부 링크가 있습니다.`
+        : "관련 글로의 내부 링크를 2개 이상 추가하세요.",
+    weight: 15,
+  });
+
+  // 7. 인용 가능성 (가중치: 15)
+  const sentences = data.content
+    .replace(/^#+.+$/gm, "")
+    .replace(/\|.+\|/g, "")
+    .split(/[.。]\s/)
+    .filter((s) => s.trim().length >= 20 && s.trim().length <= 80);
+  const quotableSentences = sentences.filter(
+    (s) =>
+      (s.includes("입니다") || s.includes("합니다") || s.includes("됩니다")) &&
+      !s.startsWith("-") &&
+      !s.startsWith("*"),
+  );
+
+  checks.push({
+    id: "quotability",
+    label: "인용 가능성",
+    status: quotableSentences.length >= 3 ? "pass" : quotableSentences.length >= 1 ? "partial" : "fail",
+    message:
+      quotableSentences.length >= 3
+        ? "독립적으로 인용 가능한 문장이 충분합니다."
+        : "맥락 없이도 의미가 완전한 40~80자 문장을 추가하세요.",
+    weight: 15,
+  });
+
+  // 점수 산출
+  let totalWeight = 0;
+  let earnedWeight = 0;
+  checks.forEach((check) => {
+    totalWeight += check.weight;
+    if (check.status === "pass") earnedWeight += check.weight;
+    else if (check.status === "partial") earnedWeight += check.weight * 0.5;
+  });
+
+  const score = Math.round((earnedWeight / totalWeight) * 100);
+
+  checks.filter((c) => c.status === "fail").forEach((c) => suggestions.push(c.message));
+
+  return { score, checks, suggestions };
+}
+
 // AI 기반 SEO 개선 제안 생성
 export async function generateSeoSuggestions(data: { title: string; content: string }): Promise<string[]> {
   const prompt = `당신은 SEO 전문가입니다. 다음 블로그 글을 분석하고 SEO 개선을 위한 구체적인 제안 3가지를 한국어로 제공하세요.

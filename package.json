@@ -14,10 +14,12 @@
     "db:seed": "npx tsx scripts/seed.ts"
   },
   "dependencies": {
+    "@google-analytics/data": "^5.2.1",
     "@google/genai": "^1.40.0",
     "@google/generative-ai": "^0.24.1",
     "@neondatabase/serverless": "^1.0.2",
     "@radix-ui/react-slot": "^1.2.4",
+    "@remotion/renderer": "^4.0.438",
     "@vercel/blob": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -35,11 +37,13 @@
     "react-syntax-highlighter": "^16.1.0",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
+    "remotion": "^4.0.438",
     "sharp": "^0.34.5",
     "tailwind-merge": "^3.4.0",
     "zod": "^4.3.5"
   },
   "devDependencies": {
+    "@remotion/cli": "^4.0.438",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

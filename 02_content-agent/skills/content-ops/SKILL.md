@@ -84,7 +84,8 @@ courseId: Class 타입 시 사용자 지정
 3. AI 콘텐츠 생성
 4. 퀴즈 생성 (Post, Class 타입만) — content-creator가 본문 기반으로 자동 생성
 5. 나노바나나 프로로 일러스트 2장 생성 → Vercel Blob 업로드 → 마크다운 삽입 (`generateAndInjectImages()`, 모든 콘텐츠 타입 적용)
-6. 메타데이터 자동 생성
+6. [선택] Remotion 브랜드 썸네일 생성 → ogImage 설정 (`scripts/generate-thumbnail.ts`)
+7. 메타데이터 자동 생성
 
 **체크포인트 (사용자 승인):**
 - 생성된 콘텐츠 전문 표시
@@ -118,6 +119,7 @@ courseId: Class 타입 시 사용자 지정
 1. `seo-manager` 에이전트에 위임
 2. 현재 SEO 점수 산출 (`analyzeSeoScore()`)
 3. 필드별 개선안 생성
+4. [선택] 사용자가 "심층 분석" 요청 시 → `content-inspector` 에이전트에 위임 (SEO+AEO+GEO 통합 점검)
 
 **체크포인트 (사용자 승인):**
 - SEO 점수 + 필드별 개선안 표시
