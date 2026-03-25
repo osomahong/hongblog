@@ -59,7 +59,7 @@ const categoryColors: Record<string, string> = {
   일상: "bg-gray-500 sm:bg-gray-500 text-white",
 };
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default async function HomePage() {
   const [posts, logs, trending, categoryStats, popularFaqs, allTags] = await Promise.all([

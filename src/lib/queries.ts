@@ -168,10 +168,11 @@ export async function getAllPosts(): Promise<PostWithTags[]> {
 }
 
 // 배포된 Posts만 조회 (프론트엔드용)
-export async function getPublishedPosts(): Promise<PostWithTags[]> {
+export async function getPublishedPosts(maxResults?: number): Promise<PostWithTags[]> {
   const result = (await db.query.posts.findMany({
     where: eq(posts.isPublished, true),
     orderBy: [desc(posts.createdAt)],
+    ...(maxResults ? { limit: maxResults } : {}),
     with: {
       postsToTags: {
         with: {
@@ -388,30 +389,39 @@ export async function getViewCount(contentType: ContentType, contentId: number, 
 }
 
 
-// 카테고리별 인기 Posts (조회수 기반)
+// 카테고리별 인기 Posts (조회수 기반) — 상위 N개 ID만 조회하여 전체 테이블 스캔 방지
 export async function getPopularPostsByCategory(category: Category, days = 30, limit = 5): Promise<PostWithTags[]> {
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - days);
   const startDateStr = startDate.toISOString().split("T")[0];
 
-  const viewStats = await db
+  // 해당 카테고리 내 상위 limit개 contentId만 추출 (JOIN으로 카테고리 필터)
+  const topIds = await db
     .select({
       contentId: contentDailyStats.contentId,
       totalViews: sql<number>`SUM(${contentDailyStats.viewCount})`.as("total_views"),
     })
     .from(contentDailyStats)
+    .innerJoin(posts, eq(contentDailyStats.contentId, posts.id))
     .where(
       and(
         eq(contentDailyStats.contentType, "post"),
+        eq(posts.isPublished, true),
+        eq(posts.category, category),
         gte(contentDailyStats.date, startDateStr)
       )
     )
-    .groupBy(contentDailyStats.contentId);
+    .groupBy(contentDailyStats.contentId)
+    .orderBy(sql`total_views DESC`)
+    .limit(limit);
 
-  const viewMap = new Map(viewStats.map((v) => [v.contentId, Number(v.totalViews)]));
+  const candidateIds = topIds.map((v) => v.contentId);
+  if (candidateIds.length === 0) return [];
+
+  const viewMap = new Map(topIds.map((v) => [v.contentId, Number(v.totalViews)]));
 
   const result = (await db.query.posts.findMany({
-    where: eq(posts.category, category),
+    where: inArray(posts.id, candidateIds),
     with: {
       postsToTags: {
         with: {
@@ -421,43 +431,49 @@ export async function getPopularPostsByCategory(category: Category, days = 30, l
     },
   })) as PostWithRelations[];
 
-  type PostWithViewCount = PostWithTags & { _viewCount: number };
-  const postsWithViews: PostWithViewCount[] = result.map((post) => ({
-    ...post,
-    tags: post.postsToTags.map((pt) => pt.tag.name),
-    _viewCount: viewMap.get(post.id) ?? 0,
-  }));
-
-  return postsWithViews
+  return result
+    .map((post) => ({
+      ...post,
+      tags: post.postsToTags.map((pt) => pt.tag.name),
+      _viewCount: viewMap.get(post.id) ?? 0,
+    }))
     .sort((a, b) => b._viewCount - a._viewCount)
     .slice(0, limit)
     .map(({ _viewCount, ...post }) => post);
 }
 
-// 카테고리별 인기 FAQs (조회수 기반)
+// 카테고리별 인기 FAQs (조회수 기반) — 상위 N개 ID만 조회하여 전체 테이블 스캔 방지
 export async function getPopularFaqsByCategory(category: Category, days = 30, limit = 5): Promise<FaqWithTags[]> {
   const startDate = new Date();
   startDate.setDate(startDate.getDate() - days);
   const startDateStr = startDate.toISOString().split("T")[0];
 
-  const viewStats = await db
+  const topIds = await db
     .select({
       contentId: contentDailyStats.contentId,
       totalViews: sql<number>`SUM(${contentDailyStats.viewCount})`.as("total_views"),
     })
     .from(contentDailyStats)
+    .innerJoin(faqs, eq(contentDailyStats.contentId, faqs.id))
     .where(
       and(
         eq(contentDailyStats.contentType, "faq"),
+        eq(faqs.isPublished, true),
+        eq(faqs.category, category),
         gte(contentDailyStats.date, startDateStr)
       )
     )
-    .groupBy(contentDailyStats.contentId);
+    .groupBy(contentDailyStats.contentId)
+    .orderBy(sql`total_views DESC`)
+    .limit(limit);
 
-  const viewMap = new Map(viewStats.map((v) => [v.contentId, Number(v.totalViews)]));
+  const candidateIds = topIds.map((v) => v.contentId);
+  if (candidateIds.length === 0) return [];
+
+  const viewMap = new Map(topIds.map((v) => [v.contentId, Number(v.totalViews)]));
 
   const result = (await db.query.faqs.findMany({
-    where: eq(faqs.category, category),
+    where: inArray(faqs.id, candidateIds),
     with: {
       faqsToTags: {
         with: {
@@ -467,14 +483,12 @@ export async function getPopularFaqsByCategory(category: Category, days = 30, li
     },
   })) as FaqWithRelations[];
 
-  type FaqWithViewCount = FaqWithTags & { _viewCount: number };
-  const faqsWithViews: FaqWithViewCount[] = result.map((faq) => ({
-    ...faq,
-    tags: faq.faqsToTags.map((ft) => ft.tag.name),
-    _viewCount: viewMap.get(faq.id) ?? 0,
-  }));
-
-  return faqsWithViews
+  return result
+    .map((faq) => ({
+      ...faq,
+      tags: faq.faqsToTags.map((ft) => ft.tag.name),
+      _viewCount: viewMap.get(faq.id) ?? 0,
+    }))
     .sort((a, b) => b._viewCount - a._viewCount)
     .slice(0, limit)
     .map(({ _viewCount, ...faq }) => faq);
@@ -493,6 +507,7 @@ export async function getRelatedFaqsWithPopularity(
       .from(faqsToTags)
       .where(inArray(faqsToTags.tagId, tagIds)),
     fetchAll: () => db.query.faqs.findMany({
+      where: eq(faqs.isPublished, true),
       with: { faqsToTags: { with: { tag: true } } },
     }) as Promise<FaqWithRelations[]>,
     mapResult: (faq) => ({ ...faq, tags: faq.faqsToTags.map((ft) => ft.tag.name) }),
@@ -511,6 +526,7 @@ export async function getRelatedPostsWithPopularity(
       .from(postsToTags)
       .where(inArray(postsToTags.tagId, tagIds)),
     fetchAll: () => db.query.posts.findMany({
+      where: eq(posts.isPublished, true),
       with: { postsToTags: { with: { tag: true } } },
     }) as Promise<PostWithRelations[]>,
     mapResult: (post) => ({
@@ -644,24 +660,31 @@ export async function getPopularFaqs(days = 30, limit = 5): Promise<FaqWithTags[
   startDate.setDate(startDate.getDate() - days);
   const startDateStr = startDate.toISOString().split("T")[0];
 
-  const viewStats = await db
+  const topIds = await db
     .select({
       contentId: contentDailyStats.contentId,
       totalViews: sql<number>`SUM(${contentDailyStats.viewCount})`.as("total_views"),
     })
     .from(contentDailyStats)
+    .innerJoin(faqs, eq(contentDailyStats.contentId, faqs.id))
     .where(
       and(
         eq(contentDailyStats.contentType, "faq"),
+        eq(faqs.isPublished, true),
         gte(contentDailyStats.date, startDateStr)
       )
     )
-    .groupBy(contentDailyStats.contentId);
+    .groupBy(contentDailyStats.contentId)
+    .orderBy(sql`total_views DESC`)
+    .limit(limit);
 
-  const viewMap = new Map(viewStats.map((v) => [v.contentId, Number(v.totalViews)]));
+  const candidateIds = topIds.map((v) => v.contentId);
+  if (candidateIds.length === 0) return [];
+
+  const viewMap = new Map(topIds.map((v) => [v.contentId, Number(v.totalViews)]));
 
   const result = (await db.query.faqs.findMany({
-    where: eq(faqs.isPublished, true),
+    where: inArray(faqs.id, candidateIds),
     with: {
       faqsToTags: {
         with: {
@@ -671,14 +694,12 @@ export async function getPopularFaqs(days = 30, limit = 5): Promise<FaqWithTags[
     },
   })) as FaqWithRelations[];
 
-  type FaqWithViewCount = FaqWithTags & { _viewCount: number };
-  const faqsWithViews: FaqWithViewCount[] = result.map((faq) => ({
-    ...faq,
-    tags: faq.faqsToTags.map((ft) => ft.tag.name),
-    _viewCount: viewMap.get(faq.id) ?? 0,
-  }));
-
-  return faqsWithViews
+  return result
+    .map((faq) => ({
+      ...faq,
+      tags: faq.faqsToTags.map((ft) => ft.tag.name),
+      _viewCount: viewMap.get(faq.id) ?? 0,
+    }))
     .sort((a, b) => b._viewCount - a._viewCount)
     .slice(0, limit)
     .map(({ _viewCount, ...faq }) => faq);

@@ -27,7 +27,9 @@ export const series = pgTable("series", {
   publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (t) => [
+  index("idx_series_published").on(t.isPublished),
+]);
 
 // Posts Table
 export const posts = pgTable("posts", {
@@ -59,6 +61,7 @@ export const posts = pgTable("posts", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (t) => [
   index("idx_posts_series").on(t.seriesId, t.seriesOrder),
+  index("idx_posts_published_category").on(t.isPublished, t.category),
 ]);
 
 // FAQs Table
@@ -86,7 +89,9 @@ export const faqs = pgTable("faqs", {
   publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (t) => [
+  index("idx_faqs_published_category").on(t.isPublished, t.category),
+]);
 
 // Tags Table
 export const tags = pgTable("tags", {
@@ -178,7 +183,9 @@ export const courses = pgTable("courses", {
 
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (t) => [
+  index("idx_courses_published").on(t.isPublished),
+]);
 
 // Classes Table (개념/용어 정의)
 
@@ -219,6 +226,7 @@ export const classes = pgTable("classes", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (t) => [
   index("idx_classes_course").on(t.courseId, t.orderInCourse),
+  index("idx_classes_published").on(t.isPublished),
 ]);
 
 // Classes to Tags Junction Table
@@ -288,7 +296,9 @@ export const lifeLogs = pgTable("life_logs", {
   publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (t) => [
+  index("idx_lifelogs_published").on(t.isPublished),
+]);
 
 // LifeLogs Relations
 export const lifeLogsRelations = relations(lifeLogs, ({ many }) => ({
