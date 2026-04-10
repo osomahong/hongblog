@@ -1,23 +1,22 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Sparkles, Database, TrendingUp, HelpCircle, BookOpen } from "lucide-react";
+import { ArrowLeft, Sparkles, Database, TrendingUp, BookOpen } from "lucide-react";
 import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
 import { SITE_URL } from "@/lib/constants";
-import { getPostBySlug, getRelatedFaqsWithPopularity, getSeriesNavigation, getRelatedClassesForPost, getPublishedPosts } from "@/lib/queries";
+import { getPostBySlug, getRelatedClassesForPost, getPublishedPosts } from "@/lib/content";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { AuthorCard } from "@/components/AuthorCard";
-import { SeriesNav } from "@/components/SeriesNav";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
   const posts = await getPublishedPosts();
@@ -84,14 +83,10 @@ export default async function InsightDetailPage({ params }: Props) {
     notFound();
   }
 
-  const relatedFaqs = await getRelatedFaqsWithPopularity(post.tags, post.category, post.id);
   const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
 
   // 연관 Class 추천 (교차 추천)
   const relatedClasses = await getRelatedClassesForPost(post.tags, post.category, 3);
-
-  // 시리즈 네비게이션 정보 가져오기
-  const seriesNav = post.seriesId ? await getSeriesNavigation(post.seriesId, post.id) : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -176,13 +171,6 @@ export default async function InsightDetailPage({ params }: Props) {
               </NeoButton>
             </Link>
 
-            {/* 시리즈 네비게이션 */}
-            {post.seriesInfo && seriesNav && (
-              <SeriesNav
-                seriesInfo={post.seriesInfo}
-                navigation={seriesNav}
-              />
-            )}
           </div>
         </div>
 
@@ -190,37 +178,6 @@ export default async function InsightDetailPage({ params }: Props) {
           contentTitle={post.title}
           sidebar={
             <div className="lg:sticky lg:top-24 space-y-3 sm:space-y-6">
-              {/* Related FAQs */}
-              <NeoCard className="bg-accent p-3 sm:p-6 halftone-bg">
-                <NeoCardHeader>
-                  <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-base sm:text-lg relative z-10">
-                    <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className="comic-emphasis">Related FAQs</span>
-                  </NeoCardTitle>
-                </NeoCardHeader>
-                <NeoCardContent className="relative z-10">
-                  {relatedFaqs.length > 0 ? (
-                    <ul className="space-y-2 sm:space-y-3">
-                      {relatedFaqs.map((faq, index) => (
-                        <li key={faq.id}>
-                          <RelatedLink
-                            href={`/faq/${faq.slug}`}
-                            relatedType="faqs"
-                            contentId={faq.slug}
-                            contentName={faq.question}
-                            className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
-                          >
-                            <span className="text-xs sm:text-sm font-medium leading-snug block">{faq.question}</span>
-                          </RelatedLink>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-xs sm:text-sm text-muted-foreground">연관된 FAQ가 없습니다.</p>
-                  )}
-                </NeoCardContent>
-              </NeoCard>
-
               {/* Related Classes */}
               {relatedClasses.length > 0 && (
                 <NeoCard className="bg-blue-50 p-3 sm:p-6 halftone-bg">

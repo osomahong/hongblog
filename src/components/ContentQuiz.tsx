@@ -3,13 +3,13 @@
 import { useState, useCallback } from "react";
 import { CircleHelp, CircleCheck, CircleX, RotateCcw } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
-import type { QuizQuestion } from "@/lib/schema";
+import type { Quiz } from "@/lib/types";
 
 interface ContentQuizProps {
-  quiz: QuizQuestion[];
-  contentType: "post" | "class";
-  contentSlug: string;
-  contentName: string;
+  quiz: Quiz[];
+  contentType?: string;
+  contentSlug?: string;
+  contentName?: string;
 }
 
 const LABELS = ["A", "B", "C", "D", "E", "F"];

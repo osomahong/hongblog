@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { User, MessageCircle } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
-import { FEATURE_LOGS_ENABLED, FEATURE_LIFE_ENABLED } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -32,71 +31,21 @@ export function Footer() {
             </Link>
             <p className="text-xs sm:text-sm text-gray-400 font-mono text-center md:text-left">
               AI-Enhanced Tech Wiki<br />
-              Digital Marketing • Data Analytics
+              Digital Marketing &bull; Data Analytics
             </p>
           </div>
 
           {/* Navigation Links */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Explore</span>
-            <Link
-              href="/class"
-              onClick={() => sendGAEvent("click_footer", { menu_name: "Class" })}
-              className="text-sm text-gray-300 hover:text-accent transition-colors"
-            >
-              Class
-            </Link>
-            <Link
-              href="/insights"
-              onClick={() => sendGAEvent("click_footer", { menu_name: "Insights" })}
-              className="text-sm text-gray-300 hover:text-accent transition-colors"
-            >
-              Insights
-            </Link>
-            {FEATURE_LOGS_ENABLED && (
-              <Link
-                href="/logs"
-                onClick={() => sendGAEvent("click_footer", { menu_name: "Logs" })}
-                className="text-sm text-gray-300 hover:text-accent transition-colors"
-              >
-                Logs
-              </Link>
-            )}
-            <Link
-              href="/series"
-              onClick={() => sendGAEvent("click_footer", { menu_name: "Series" })}
-              className="text-sm text-gray-300 hover:text-accent transition-colors"
-            >
-              Series
-            </Link>
-            <Link
-              href="/faq"
-              onClick={() => sendGAEvent("click_footer", { menu_name: "FAQ" })}
-              className="text-sm text-gray-300 hover:text-accent transition-colors"
-            >
-              FAQ
-            </Link>
-            <Link
-              href="/tags"
-              onClick={() => sendGAEvent("click_footer", { menu_name: "Tags" })}
-              className="text-sm text-gray-300 hover:text-accent transition-colors"
-            >
-              Tags
-            </Link>
+            <Link href="/class" onClick={() => sendGAEvent("click_footer", { menu_name: "Class" })} className="text-sm text-gray-300 hover:text-accent transition-colors">Class</Link>
+            <Link href="/insights" onClick={() => sendGAEvent("click_footer", { menu_name: "Insights" })} className="text-sm text-gray-300 hover:text-accent transition-colors">Insights</Link>
+            <Link href="/tags" onClick={() => sendGAEvent("click_footer", { menu_name: "Tags" })} className="text-sm text-gray-300 hover:text-accent transition-colors">Tags</Link>
           </div>
 
           {/* About Section */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">About</span>
-            {FEATURE_LIFE_ENABLED && (
-              <Link
-                href="/about/life"
-                onClick={() => sendGAEvent("click_footer", { menu_name: "Life" })}
-                className="text-sm text-gray-300 hover:text-accent transition-colors"
-              >
-                Life
-              </Link>
-            )}
             <Link
               href="/about"
               onClick={() => sendGAEvent("click_footer", { menu_name: "About" })}
@@ -124,7 +73,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="mt-8 pt-6 border-t border-gray-800 text-center">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} 준이아빠블로그. All rights reserved.
+            &copy; {new Date().getFullYear()} 준이아빠블로그. All rights reserved.
           </p>
         </div>
       </div>

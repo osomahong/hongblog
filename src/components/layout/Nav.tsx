@@ -5,7 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
-import { FEATURE_LOGS_ENABLED, FEATURE_LIFE_ENABLED } from "@/lib/constants";
+
+const NAV_LINKS = [
+  { href: "/class", label: "Class" },
+  { href: "/insights", label: "Insights" },
+  { href: "/tags", label: "Tags" },
+  { href: "/about", label: "About" },
+];
 
 export function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,66 +37,16 @@ export function Nav() {
 
           {/* Desktop Navigation Links */}
           <div className="hidden sm:flex items-center gap-1">
-            <Link
-              href="/class"
-              onClick={() => sendGAEvent("click_nav", { menu_name: "Class" })}
-              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-            >
-              Class
-            </Link>
-            <Link
-              href="/insights"
-              onClick={() => sendGAEvent("click_nav", { menu_name: "Insights" })}
-              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-            >
-              Insights
-            </Link>
-            {FEATURE_LOGS_ENABLED && (
+            {NAV_LINKS.map(({ href, label }) => (
               <Link
-                href="/logs"
-                onClick={() => sendGAEvent("click_nav", { menu_name: "Logs" })}
+                key={href}
+                href={href}
+                onClick={() => sendGAEvent("click_nav", { menu_name: label })}
                 className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
               >
-                Logs
+                {label}
               </Link>
-            )}
-            <Link
-              href="/series"
-              onClick={() => sendGAEvent("click_nav", { menu_name: "Series" })}
-              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-            >
-              Series
-            </Link>
-            <Link
-              href="/faq"
-              onClick={() => sendGAEvent("click_nav", { menu_name: "FAQ" })}
-              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-            >
-              FAQ
-            </Link>
-            <Link
-              href="/tags"
-              onClick={() => sendGAEvent("click_nav", { menu_name: "Tags" })}
-              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-            >
-              Tags
-            </Link>
-            {FEATURE_LIFE_ENABLED && (
-              <Link
-                href="/about/life"
-                onClick={() => sendGAEvent("click_nav", { menu_name: "Life" })}
-                className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-              >
-                Life
-              </Link>
-            )}
-            <Link
-              href="/about"
-              onClick={() => sendGAEvent("click_nav", { menu_name: "About" })}
-              className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
-            >
-              About
-            </Link>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -106,66 +62,16 @@ export function Nav() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="sm:hidden border-t-2 border-black py-2">
-            <Link
-              href="/class"
-              onClick={() => { sendGAEvent("click_nav", { menu_name: "Class" }); setIsMenuOpen(false); }}
-              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-            >
-              Class
-            </Link>
-            <Link
-              href="/insights"
-              onClick={() => { sendGAEvent("click_nav", { menu_name: "Insights" }); setIsMenuOpen(false); }}
-              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-            >
-              Insights
-            </Link>
-            {FEATURE_LOGS_ENABLED && (
+            {NAV_LINKS.map(({ href, label }) => (
               <Link
-                href="/logs"
-                onClick={() => { sendGAEvent("click_nav", { menu_name: "Logs" }); setIsMenuOpen(false); }}
+                key={href}
+                href={href}
+                onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
                 className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
               >
-                Logs
+                {label}
               </Link>
-            )}
-            <Link
-              href="/series"
-              onClick={() => { sendGAEvent("click_nav", { menu_name: "Series" }); setIsMenuOpen(false); }}
-              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-            >
-              Series
-            </Link>
-            <Link
-              href="/faq"
-              onClick={() => { sendGAEvent("click_nav", { menu_name: "FAQ" }); setIsMenuOpen(false); }}
-              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-            >
-              FAQ
-            </Link>
-            <Link
-              href="/tags"
-              onClick={() => { sendGAEvent("click_nav", { menu_name: "Tags" }); setIsMenuOpen(false); }}
-              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-            >
-              Tags
-            </Link>
-            {FEATURE_LIFE_ENABLED && (
-              <Link
-                href="/about/life"
-                onClick={() => { sendGAEvent("click_nav", { menu_name: "Life" }); setIsMenuOpen(false); }}
-                className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-              >
-                Life
-              </Link>
-            )}
-            <Link
-              href="/about"
-              onClick={() => { sendGAEvent("click_nav", { menu_name: "About" }); setIsMenuOpen(false); }}
-              className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
-            >
-              About
-            </Link>
+            ))}
           </div>
         )}
       </div>

@@ -1,35 +1,22 @@
-import {
-  getPublishedPosts,
-  getPublishedFaqs,
-  getPublishedCourses,
-  getPublishedClasses,
-  getPublishedSeries,
-  getPublishedLogs,
-} from "@/lib/queries";
-import { SITE_URL, FEATURE_LOGS_ENABLED } from "@/lib/constants";
+import { getInsights, getClasses, getCourses } from "@/lib/content";
+import { SITE_URL } from "@/lib/constants";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  return [{ id: "0.xml" }, { id: "1.xml" }, { id: "2.xml" }];
+  return [{ id: "0.xml" }, { id: "1.xml" }];
 }
 
 interface SitemapEntry {
   url: string;
-  lastModified?: Date | null;
-}
-
-function latestDate(dates: (Date | null | undefined)[]): Date {
-  const valid = dates.filter((d): d is Date => d instanceof Date);
-  if (valid.length === 0) return new Date("2026-01-01");
-  return new Date(Math.max(...valid.map((d) => d.getTime())));
+  lastModified?: string;
 }
 
 function toXml(entries: SitemapEntry[]): string {
   const urls = entries
     .map((entry) => {
       const lastmod = entry.lastModified
-        ? `\n    <lastmod>${entry.lastModified.toISOString()}</lastmod>`
+        ? `\n    <lastmod>${entry.lastModified}</lastmod>`
         : "";
       return `  <url>\n    <loc>${entry.url}</loc>${lastmod}\n  </url>`;
     })
@@ -41,97 +28,44 @@ ${urls}
 </urlset>`;
 }
 
-async function buildInsightsSitemap(): Promise<SitemapEntry[]> {
-  const posts = await getPublishedPosts();
+function validDate(dateStr: string | undefined): string | undefined {
+  if (!dateStr || dateStr.startsWith("2025-01-01T00:00")) return undefined;
+  return dateStr;
+}
+
+function buildInsightsSitemap(): SitemapEntry[] {
+  const insights = getInsights();
   return [
-    {
-      url: `${SITE_URL}/insights`,
-      lastModified: latestDate(posts.map((p) => p.updatedAt)),
-    },
-    ...posts.map((post) => ({
-      url: `${SITE_URL}/insights/${post.slug}`,
-      lastModified: post.updatedAt,
+    { url: `${SITE_URL}/insights`, lastModified: validDate(insights[0]?.publishedAt) },
+    ...insights.map((i) => ({
+      url: `${SITE_URL}/insights/${i.slug}`,
+      lastModified: validDate(i.publishedAt),
     })),
   ];
 }
 
-async function buildClassSitemap(): Promise<SitemapEntry[]> {
-  const [courses, classes] = await Promise.all([
-    getPublishedCourses(),
-    getPublishedClasses(),
-  ]);
+function buildClassSitemap(): SitemapEntry[] {
+  const courses = getCourses();
+  const classes = getClasses();
   return [
-    {
-      url: `${SITE_URL}/class`,
-      lastModified: latestDate([
-        ...courses.map((c) => c.updatedAt),
-        ...classes.map((c) => c.updatedAt),
-      ]),
-    },
-    ...courses.map((course) => ({
-      url: `${SITE_URL}/class/${course.slug}`,
-      lastModified: course.updatedAt,
-    })),
-    ...classes
-      .filter((cls) => cls.courseInfo?.slug)
-      .map((cls) => ({
-        url: `${SITE_URL}/class/${cls.courseInfo!.slug}/${cls.slug}`,
-        lastModified: cls.updatedAt,
-      })),
-  ];
-}
-
-async function buildGeneralSitemap(): Promise<SitemapEntry[]> {
-  const [faqs, seriesList, logs, posts] = await Promise.all([
-    getPublishedFaqs(),
-    getPublishedSeries(),
-    FEATURE_LOGS_ENABLED ? getPublishedLogs() : Promise.resolve([]),
-    getPublishedPosts(),
-  ]);
-
-  const siteLatest = latestDate([
-    ...posts.map((p) => p.updatedAt),
-    ...faqs.map((f) => f.updatedAt),
-  ]);
-
-  return [
-    { url: SITE_URL, lastModified: siteLatest },
-    {
-      url: `${SITE_URL}/faq`,
-      lastModified: latestDate(faqs.map((f) => f.updatedAt)),
-    },
-    {
-      url: `${SITE_URL}/series`,
-      lastModified: latestDate(seriesList.map((s) => s.updatedAt)),
-    },
+    { url: `${SITE_URL}/class` },
     { url: `${SITE_URL}/about` },
-    ...(FEATURE_LOGS_ENABLED ? [{
-      url: `${SITE_URL}/logs`,
-      lastModified: latestDate(logs.map((l) => l.updatedAt)),
-    }] : []),
-    {
-      url: `${SITE_URL}/tags`,
-      lastModified: siteLatest,
-    },
-    ...faqs.map((faq) => ({
-      url: `${SITE_URL}/faq/${faq.slug}`,
-      lastModified: faq.updatedAt,
+    { url: `${SITE_URL}/tags` },
+    { url: SITE_URL },
+    ...courses.map((c) => ({
+      url: `${SITE_URL}/class/${c.slug}`,
+      lastModified: validDate(c.publishedAt),
     })),
-    ...seriesList.map((s) => ({
-      url: `${SITE_URL}/series/${s.slug}`,
-      lastModified: s.updatedAt,
+    ...classes.map((cls) => ({
+      url: `${SITE_URL}/class/${cls.courseSlug}/${cls.slug}`,
+      lastModified: validDate(cls.publishedAt),
     })),
-    ...(FEATURE_LOGS_ENABLED ? logs.map((log) => ({
-      url: `${SITE_URL}/logs/${log.slug}`,
-      lastModified: log.updatedAt,
-    })) : []),
   ];
 }
 
-const builders: Record<number, () => Promise<SitemapEntry[]>> = {
+const builders: Record<number, () => SitemapEntry[]> = {
   0: buildInsightsSitemap,
   1: buildClassSitemap,
-  2: buildGeneralSitemap,
 };
 
 export async function GET(
@@ -146,7 +80,7 @@ export async function GET(
     return new Response("Not Found", { status: 404 });
   }
 
-  const entries = await builder();
+  const entries = builder();
   const xml = toXml(entries);
 
   return new Response(xml, {

@@ -2,12 +2,12 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
-import { getCourseBySlug, getPublishedCourses } from "@/lib/queries";
+import { getPublishedCourseBySlug as getCourseBySlug, getPublishedCourses } from "@/lib/content";
 import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
 import { SITE_URL } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
     const courses = await getPublishedCourses();

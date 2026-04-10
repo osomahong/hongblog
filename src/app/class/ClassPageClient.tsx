@@ -11,7 +11,7 @@ import {
     NeoCardFooter,
 } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
-import { CourseWithClasses } from "@/lib/queries";
+import type { CourseWithClasses } from "@/lib/types";
 import { NeoTiltCard } from "@/components/neo";
 import { useState } from "react";
 

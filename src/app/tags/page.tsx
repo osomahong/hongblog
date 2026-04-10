@@ -3,12 +3,12 @@ import { Tag, ArrowRight, Sparkles, Database, TrendingUp, CheckCircle } from "lu
 import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent, NeoCardFooter } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
-import { getAllTags, getContentByTag } from "@/lib/queries";
+import { getAllTagsWithId as getAllTags, getContentByTag } from "@/lib/content";
 import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
 import { stripMarkdown } from "@/lib/utils";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 const categoryIcons = {
   AI_TECH: Sparkles,
@@ -60,7 +60,7 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
           />
           <div className="mb-4 sm:mb-6">
             <span className="font-mono text-xs sm:text-sm text-muted-foreground">
-              {content.posts.length + content.faqs.length} results for #{selectedTag}
+              {content.posts.length} results for #{selectedTag}
             </span>
           </div>
 
@@ -121,59 +121,7 @@ async function TagContent({ selectedTag }: { selectedTag?: string }) {
             </section>
           )}
 
-          {/* FAQ Section */}
-          {content.faqs.length > 0 && (
-            <section>
-              <h2 className="text-lg sm:text-xl font-black uppercase mb-4 flex items-center gap-2">
-                <Tag className="w-5 h-5" /> <span className="comic-emphasis">FAQ</span>
-              </h2>
-              <div className="space-y-3">
-                {content.faqs.map((faq, index) => {
-                  const Icon = categoryIcons[faq.category as keyof typeof categoryIcons];
-                  return (
-                    <Link key={faq.id} href={`/faq/${faq.slug}`}>
-                      <NeoTiltCard
-                        className={`${index % 3 === 0 ? "-rotate-0.5" : index % 3 === 1 ? "rotate-0.5" : ""} p-4 sm:p-6`}
-                      >
-                        <NeoCardHeader className="mb-2">
-                          <div className="flex items-center gap-2 mb-2 flex-wrap">
-                            <NeoBadge
-                              variant={
-                                faq.category === "AI_TECH"
-                                  ? "primary"
-                                  : faq.category === "DATA"
-                                    ? "default"
-                                    : "accent"
-                              }
-                            >
-                              <span className="flex items-center gap-1">
-                                <Icon className="w-3 h-3" />
-                                {categoryLabels[faq.category as keyof typeof categoryLabels]}
-                              </span>
-                            </NeoBadge>
-                            {/* Removed invalid isVerified check */}
-                          </div>
-                          <NeoCardTitle className="text-lg">{faq.question}</NeoCardTitle>
-                        </NeoCardHeader>
-                        <NeoCardContent>
-                          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                            {stripMarkdown(faq.answer)}
-                          </p>
-                          <div className="flex flex-wrap gap-1.5">
-                            {faq.tags.map((tag) => (
-                              <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[10px] px-2 py-0.5" />
-                            ))}
-                          </div>
-                        </NeoCardContent>
-                      </NeoTiltCard>
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {content.posts.length === 0 && content.faqs.length === 0 && (
+          {content.posts.length === 0 && (
             <div className="text-center py-12">
               <Tag className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
               <p className="text-lg font-bold">해당 태그의 콘텐츠가 없습니다</p>
@@ -208,7 +156,7 @@ export default async function TagsPage({ searchParams }: Props) {
             <span className="text-accent comic-emphasis">Tags</span>
           </h1>
           <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl relative z-10">
-            태그별로 Insights와 FAQ를 탐색하세요
+            태그별로 콘텐츠를 탐색하세요
           </p>
         </NeoTiltCard>
       </section>

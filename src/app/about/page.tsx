@@ -19,7 +19,6 @@ import {
 import { NeoButton } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
-import { FEATURE_LOGS_ENABLED, FEATURE_LIFE_ENABLED } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "About",
@@ -192,9 +191,6 @@ export default async function AboutPage() {
             {[
               { name: "Insights", desc: "마케팅, AI, 데이터 분석에 대한 심화 인사이트" },
               { name: "Class", desc: "개념을 체계적으로 정리한 학습 콘텐츠" },
-              { name: "FAQ", desc: "실무에서 자주 묻는 질문과 구조화된 답변" },
-              ...(FEATURE_LOGS_ENABLED ? [{ name: "Logs", desc: "컨설팅 현장의 실전 기록" }] : []),
-              { name: "Series", desc: "주제별로 묶은 연재 콘텐츠" },
             ].map((item) => (
               <div key={item.name} className="flex items-start gap-3 bg-gray-50 border-2 border-black p-3">
                 <span className="bg-accent text-black text-xs font-bold px-2 py-0.5 border-2 border-black shrink-0">
@@ -278,32 +274,7 @@ export default async function AboutPage() {
         </Link>
       </section>
 
-      {/* Life Log CTA */}
-      {FEATURE_LIFE_ENABLED && (
-        <section className="mb-12 sm:mb-16">
-          <Link href="/about/life">
-            <NeoTiltCard className="bg-gradient-to-br from-amber-400 to-yellow-500 border-4 border-black p-6 sm:p-8 rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group relative overflow-hidden" intensity={15}>
-              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 relative z-10">
-                <div className="bg-white p-3 border-2 border-black -rotate-3 group-hover:rotate-3 transition-transform">
-                  <Coffee className="w-8 h-8 text-primary" />
-                </div>
-                <div className="text-center sm:text-left flex-1">
-                  <div className="flex items-center gap-2 justify-center sm:justify-start mb-2">
-                    <span className="text-black/60 font-mono text-xs uppercase">Personal</span>
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-black uppercase mb-2">Life Log</h3>
-                  <p className="text-sm sm:text-base text-black/70">
-                    맛집 탐방, 강의 후기, 문화생활, 여행 등 개인적인 일상의 기록들.
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <ArrowRight className="w-6 h-6 text-black group-hover:translate-x-2 transition-transform" />
-                </div>
-              </div>
-            </NeoTiltCard>
-          </Link>
-        </section>
-      )}
+      {/* Life Log CTA - removed (feature disabled) */}
 
       {/* CTA Section */}
       <section className="text-center">
@@ -321,9 +292,9 @@ export default async function AboutPage() {
               Class 보기 <ArrowRight className="w-4 h-4 ml-2" />
             </NeoButton>
           </Link>
-          <Link href="/faq">
+          <Link href="/tags">
             <NeoButton variant="outline" size="lg">
-              FAQ 둘러보기 <ArrowRight className="w-4 h-4 ml-2" />
+              Tags 둘러보기 <ArrowRight className="w-4 h-4 ml-2" />
             </NeoButton>
           </Link>
         </div>

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { sendGAEvent } from "@/lib/gtm";
 
-export type ContentType = "post" | "faq" | "log" | "class" | "life" | "tags" | "about";
+export type ContentType = "post" | "class" | "tags" | "about";
 
 type Props = {
   contentType: ContentType;
@@ -32,24 +32,10 @@ export function ViewTracker({
       return;
     }
 
-    // 1. DB 조회수 기록 API 호출 (기존 로직 유지)
-    if (contentId && ["post", "faq", "log", "class"].includes(contentType)) {
-      fetch("/api/views", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contentType, contentId }),
-      }).catch((err) => {
-        console.error("Failed to record view:", err);
-      });
-    }
-
-    // 2. GTM dataLayer 이벤트 전송 (신생활용)
+    // GTM dataLayer 이벤트 전송
     const eventMapping: Record<ContentType, string> = {
       class: "view_class",
       post: "view_insights",
-      log: "view_logs",
-      faq: "view_faq",
-      life: "view_life",
       tags: "view_tag",
       about: "view_about",
     };

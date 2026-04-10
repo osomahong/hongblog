@@ -10,7 +10,7 @@ import {
 } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
-import { getPublishedPosts } from "@/lib/queries";
+import { getPublishedPosts } from "@/lib/content";
 import { NeoTiltCard } from "@/components/neo";
 
 const categoryIcons = {
@@ -27,7 +27,7 @@ const categoryLabels = {
 
 import { ListViewTracker } from "@/components/ListViewTracker";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 export default async function InsightsPage() {
   const posts = await getPublishedPosts();

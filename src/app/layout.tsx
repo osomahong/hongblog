@@ -69,8 +69,6 @@ export const metadata: Metadata = {
   },
 };
 
-import AuthProvider from "@/components/AuthProvider";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -88,7 +86,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5H3Z6ZLZ');`}
         </Script>
 
-        {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-5H3Z6ZLZ"
@@ -97,13 +94,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        {/* End Google Tag Manager (noscript) */}
 
-        <AuthProvider>
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </AuthProvider>
+        <Nav />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

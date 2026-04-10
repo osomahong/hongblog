@@ -19,12 +19,11 @@ import {
   getTrendingMixed,
   getCategoryStats,
   getPopularFaqs,
-  getAllTags,
+  getAllTagsWithId,
   getPublishedLogs,
-  TrendingItem,
-} from "@/lib/queries";
+} from "@/lib/content";
+import type { TrendingItem } from "@/lib/types";
 import { TrackedLink } from "@/components/TrackedLink";
-import { FEATURE_LOGS_ENABLED } from "@/lib/constants";
 
 const categoryIcons: Record<string, any> = {
   AI_TECH: Sparkles,
@@ -59,17 +58,15 @@ const categoryColors: Record<string, string> = {
   일상: "bg-gray-500 sm:bg-gray-500 text-white",
 };
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 export default async function HomePage() {
-  const [posts, logs, trending, categoryStats, popularFaqs, allTags] = await Promise.all([
-    getPublishedPosts(),
-    FEATURE_LOGS_ENABLED ? getPublishedLogs() : Promise.resolve([]),
-    getTrendingMixed(7, 4),
-    getCategoryStats(),
-    getPopularFaqs(30, 5),
-    getAllTags(),
-  ]);
+  const posts = getPublishedPosts();
+  const logs = getPublishedLogs();
+  const trending = getTrendingMixed(7, 4);
+  const categoryStats = getCategoryStats();
+  const popularFaqs = getPopularFaqs();
+  const allTags = getAllTagsWithId();
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
@@ -119,8 +116,7 @@ export default async function HomePage() {
               const Icon = categoryIcons[item.category as keyof typeof categoryIcons] || Sparkles;
               const rotations = ["", "sm:rotate-1", "", "sm:rotate-0.5"];
 
-              if (item._type === "post") {
-                return (
+              return (
                   <TrackedLink
                     key={`post-${item.id}`}
                     href={`/insights/${item.slug}`}
@@ -144,39 +140,13 @@ export default async function HomePage() {
                     </NeoTiltCard>
                   </TrackedLink>
                 );
-              } else {
-                return (
-                  <TrackedLink
-                    key={`faq-${item.id}`}
-                    href={`/faq/${item.slug}`}
-                    eventName="click_main_trendingnow"
-                    contentTitle={item.question}
-                    contentId={item.id}
-                  >
-                    <NeoTiltCard className="h-full bg-accent p-3 sm:p-4 halftone-corner" intensity={10}>
-                      <div className="flex items-center gap-2 mb-2 sm:mb-3 relative z-10">
-                        <div className="bg-black text-white px-2 py-0.5 sm:py-1 border-2 border-black text-[10px] sm:text-xs font-bold uppercase flex items-center gap-1">
-                          <HelpCircle className="w-3 h-3" />
-                          FAQ
-                        </div>
-                      </div>
-                      <h3 className="font-black text-base sm:text-lg leading-snug line-clamp-2 mb-1.5 sm:mb-2 relative z-10">
-                        Q: {item.question}
-                      </h3>
-                      <p className="text-xs sm:text-xs text-muted-foreground line-clamp-2 relative z-10 leading-relaxed">
-                        {stripMarkdown(item.answer || "").substring(0, 80)}...
-                      </p>
-                    </NeoTiltCard>
-                  </TrackedLink>
-                );
-              }
             })}
           </div>
         </section>
       )}
 
       {/* Browse by Category */}
-      {categoryStats.length > 0 && categoryStats.some(stat => stat.postCount > 0 || stat.faqCount > 0) && (
+      {categoryStats.length > 0 && categoryStats.some(stat => stat.postCount > 0) && (
         <section className="mb-6 sm:mb-12">
           <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
             <div className="bg-black border-3 sm:border-4 border-black p-1.5 sm:p-2 rotate-3">
@@ -191,7 +161,7 @@ export default async function HomePage() {
               return (
                 <TrackedLink
                   key={stat.category}
-                  href={`/category/${stat.category.toLowerCase()}`}
+                  href="/insights"
                   eventName="click_main_browsebycategory"
                   contentTitle={`카테고리 - ${categoryLabels[stat.category]}`}
                   contentId={stat.category}
@@ -205,7 +175,6 @@ export default async function HomePage() {
                     </div>
                     <div className="flex flex-col sm:flex-row gap-0.5 sm:gap-4 text-[10px] sm:text-sm font-mono text-center sm:text-left">
                       <span>{stat.postCount} posts</span>
-                      <span>{stat.faqCount} faqs</span>
                     </div>
                   </NeoTiltCard>
                 </TrackedLink>
@@ -294,135 +263,7 @@ export default async function HomePage() {
           )}
         </section>
       )}
-      {/* Latest Logs */}
-      {logs.length > 0 && (
-        <section className="mb-6 sm:mb-12">
-          <div className="flex items-center justify-between mb-4 sm:mb-6">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="bg-purple-600 border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-2">
-                <BookText className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </div>
-              <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Latest Logs</h2>
-            </div>
-            <span className="text-xs sm:text-sm text-muted-foreground">{logs.length}개</span>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-6 divide-y divide-gray-200 sm:divide-y-0">
-            {logs.slice(0, 6).map((log) => {
-              const Icon = categoryIcons[log.category as keyof typeof categoryIcons] || Sparkles;
-              return (
-                <TrackedLink
-                  key={log.id}
-                  href={`/logs/${log.slug}`}
-                  eventName="click_main_latestlogs"
-                  contentTitle={log.title}
-                  contentId={log.id}
-                >
-                  <NeoTiltCard className="h-full bg-purple-50">
-                    <NeoCardHeader>
-                      <div className="flex items-center gap-2 mb-2 sm:mb-3 flex-wrap">
-                        <NeoBadge
-                          variant={
-                            log.category === "AI_TECH"
-                              ? "ai"
-                              : log.category === "DATA"
-                                ? "data"
-                                : "marketing"
-                          }
-                        >
-                          <span className="flex items-center gap-1">
-                            <Icon className="w-3 h-3" />
-                            {categoryLabels[log.category as keyof typeof categoryLabels]}
-                          </span>
-                        </NeoBadge>
-                        {log.location && (
-                          <span className="text-[10px] sm:text-xs bg-white px-2 py-0.5 border border-black">
-                            📍 {log.location}
-                          </span>
-                        )}
-                      </div>
-                      <NeoCardTitle className="text-base sm:text-2xl leading-snug">
-                        {log.title}
-                      </NeoCardTitle>
-                    </NeoCardHeader>
-                    <NeoCardContent>
-                      <div className="flex flex-wrap gap-1">
-                        {log.tags.slice(0, 3).map((tag) => (
-                          <NeoTagBadge key={tag} tag={tag} clickable={false} className="text-[10px] sm:text-[10px] px-1.5 sm:px-2 py-0.5" />
-                        ))}
-                      </div>
-                    </NeoCardContent>
-                    <NeoCardFooter className="flex items-center justify-between">
-                      <span className="text-xs sm:text-xs font-mono text-muted-foreground">
-                        {log.visitedAt
-                          ? new Date(log.visitedAt).toLocaleDateString("ko-KR")
-                          : log.createdAt.toLocaleDateString("ko-KR")}
-                      </span>
-                      <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">
-                        Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
-                      </span>
-                    </NeoCardFooter>
-                  </NeoTiltCard>
-                </TrackedLink>
-              );
-            })}
-          </div>
-          {logs.length > 6 && (
-            <div className="mt-4 sm:mt-6 text-center">
-              <Link href="/logs">
-                <NeoButton variant="outline" size="lg" className="text-sm sm:text-base">
-                  모든 로그 보기 ({logs.length}개) <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
-                </NeoButton>
-              </Link>
-            </div>
-          )}
-        </section>
-      )}
-
-      {/* Popular FAQs */}
-      {popularFaqs.length > 0 && (
-        <section className="mb-6 sm:mb-12">
-          <div className="bg-accent border-3 sm:border-4 border-black neo-shadow p-4 sm:p-6 sm:rotate-0.5 halftone-bg">
-            <div className="flex items-center justify-between mb-3 sm:mb-4 relative z-10">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="bg-black border-3 sm:border-4 border-black p-1.5 sm:p-2 rotate-2">
-                  <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                </div>
-                <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Popular FAQs</h2>
-              </div>
-              <Link href="/faq">
-                <NeoButton variant="secondary" size="sm" className="text-[10px] sm:text-sm px-2 sm:px-3 py-1 sm:py-1.5">
-                  전체 보기 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-0.5 sm:ml-1" />
-                </NeoButton>
-              </Link>
-            </div>
-            <ul className="space-y-2 sm:space-y-3 relative z-10">
-              {popularFaqs.map((faq) => (
-                <li key={faq.id}>
-                  <TrackedLink
-                    href={`/faq/${faq.slug}`}
-                    eventName="click_main_popularfaqs"
-                    contentTitle={faq.question}
-                    contentId={faq.id}
-                    className="block p-2.5 sm:p-4 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all speech-bubble"
-                  >
-                    <div className="flex items-start gap-2 sm:gap-3">
-                      <span className="text-primary font-black text-base sm:text-lg">Q</span>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-bold text-sm sm:text-base leading-snug">{faq.question}</p>
-                        <div className="flex gap-1 sm:gap-1.5 mt-1.5 sm:mt-2 flex-wrap">
-                          {faq.tags && Array.isArray(faq.tags) && faq.tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="text-[10px] sm:text-xs text-muted-foreground">#{tag}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </TrackedLink>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
+      {/* Logs/FAQ sections removed — content types no longer exist */}
 
       {/* Explore Tags */}
       {allTags.length > 0 && (

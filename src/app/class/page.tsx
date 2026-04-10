@@ -1,10 +1,10 @@
 import { Metadata } from "next";
-import { getPublishedCourses } from "@/lib/queries";
+import { getPublishedCourses } from "@/lib/content";
 import ClassPageClient from "./ClassPageClient";
 import { ListViewTracker } from "@/components/ListViewTracker";
 import { SITE_URL } from "@/lib/constants";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 export const metadata: Metadata = {
     title: "Class | 강의 & 개념 학습",

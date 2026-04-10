@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Sparkles, HelpCircle } from "lucide-react";
-import { getClassBySlug, getCourseBySlug, getNextPrevClass, getRelatedClassesByTags, getRelatedPostsForClass, getRelatedFaqsWithPopularity, getPublishedCourses } from "@/lib/queries";
+import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { getClassBySlugWithMeta as getClassBySlug, getPublishedCourseBySlug as getCourseBySlug, getNextPrevClass, getRelatedClassesByTags, getRelatedPostsForClass, getPublishedCourses } from "@/lib/content";
 import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
@@ -15,7 +15,7 @@ import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 
-export const revalidate = 3600;
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
     const courses = await getPublishedCourses();
@@ -85,8 +85,6 @@ export default async function ClassDetailPage({ params }: Props) {
     // 연관 Insights 추천 (교차 추천)
     const relatedPosts = await getRelatedPostsForClass(classData.tags, classData.category, 3);
 
-    // 연관 FAQ 추천
-    const relatedFaqs = await getRelatedFaqsWithPopularity(classData.tags, classData.category, undefined, 3);
 
     // Schema.org JSON-LD
     const jsonLd = {
@@ -397,33 +395,6 @@ export default async function ClassDetailPage({ params }: Props) {
                             </NeoCard>
                         )}
 
-                        {/* Related FAQs */}
-                        {relatedFaqs.length > 0 && (
-                            <NeoCard className="bg-green-50 halftone-bg p-4 sm:p-6">
-                                <NeoCardHeader>
-                                    <NeoCardTitle className="flex items-center gap-2">
-                                        <HelpCircle className="w-5 h-5" />
-                                        관련 FAQ
-                                    </NeoCardTitle>
-                                </NeoCardHeader>
-                                <NeoCardContent>
-                                    <div className="grid gap-3">
-                                        {relatedFaqs.map((faq) => (
-                                            <RelatedLink
-                                                key={faq.id}
-                                                href={`/faq/${faq.slug}`}
-                                                relatedType="faqs"
-                                                contentId={faq.slug}
-                                                contentName={faq.question}
-                                                className="block p-3 sm:p-4 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
-                                            >
-                                                <h3 className="font-bold text-sm sm:text-base">{faq.question}</h3>
-                                            </RelatedLink>
-                                        ))}
-                                    </div>
-                                </NeoCardContent>
-                            </NeoCard>
-                        )}
                     </article>
                 </ContentFocusLayout>
             </div>
