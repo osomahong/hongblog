@@ -37,7 +37,7 @@ export default async function InsightsPage() {
       <ListViewTracker eventName="view_insights_list" />
       {/* Hero Section */}
       <section className="mb-6 sm:mb-12">
-        <NeoTiltCard className="bg-gradient-to-br from-red-600 to-orange-600 border-3 sm:border-4 border-black p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines text-left" intensity={20} shadowIntensity={10}>
+        <NeoTiltCard className="bg-[#FF0033] border-3 sm:border-4 border-black p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines text-left" intensity={20} shadowIntensity={10}>
           <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 relative z-10 comic-emphasis leading-tight">
             Insights
           </h1>
@@ -60,9 +60,9 @@ export default async function InsightsPage() {
           const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
           return (
             <Link key={post.id} href={`/insights/${post.slug}`}>
-              <NeoTiltCard className="h-full">
+              <NeoTiltCard className={`h-full ${index % 3 === 0 ? 'tape-top mt-4' : index % 3 === 1 ? 'zigzag-bottom mb-4' : ''}`}>
                 <NeoCardHeader>
-                  <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap">
+                  <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap relative z-10">
                     <NeoBadge
                       variant={
                         post.category === "AI_TECH"
@@ -71,6 +71,7 @@ export default async function InsightsPage() {
                             ? "data"
                             : "marketing"
                       }
+                      className="transform -rotate-1 hover:rotate-0 transition-transform"
                     >
                       <span className="flex items-center gap-1">
                         <Icon className="w-3 h-3" />
@@ -96,7 +97,7 @@ export default async function InsightsPage() {
                   <span className="text-xs sm:text-xs font-mono text-muted-foreground">
                     {post.createdAt.toLocaleDateString("ko-KR")}
                   </span>
-                  <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">
+                  <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase text-[#FF0033]">
                     Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </span>
                 </NeoCardFooter>

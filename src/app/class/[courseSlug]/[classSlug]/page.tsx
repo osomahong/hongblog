@@ -362,7 +362,7 @@ export default async function ClassDetailPage({ params }: Props) {
 
                         {/* Related Insights */}
                         {relatedPosts.length > 0 && (
-                            <NeoCard className="bg-blue-50 halftone-bg p-4 sm:p-6 mb-6 sm:mb-8">
+                            <NeoCard className="bg-white bg-stripes neo-border-thick p-4 sm:p-6 mb-6 sm:mb-8">
                                 <NeoCardHeader>
                                     <NeoCardTitle className="flex items-center gap-2">
                                         <Sparkles className="w-5 h-5" />

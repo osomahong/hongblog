@@ -63,7 +63,7 @@ export default async function AboutPage() {
       />
       {/* Hero Section */}
       <section className="mb-12 sm:mb-16">
-        <NeoTiltCard className="bg-gradient-to-br from-rose-500 to-red-600 border-4 border-black p-6 sm:p-10 -rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>
+        <NeoTiltCard className="bg-[#FF0033] border-4 border-black p-6 sm:p-10 -rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>
           <div className="flex items-center gap-3 mb-4">
             <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full border-3 border-black overflow-hidden rotate-3">
               <Image
@@ -117,7 +117,7 @@ export default async function AboutPage() {
 
       {/* Approach Section */}
       <section className="mb-12 sm:mb-16">
-        <NeoTiltCard className="bg-accent border-4 border-black p-6 sm:p-8 -rotate-0.5 halftone-bg" intensity={15}>
+        <NeoTiltCard className="bg-accent border-4 border-black p-6 sm:p-8 -rotate-0.5 bg-stripes neo-shadow-lg" intensity={15}>
           <div className="flex items-center gap-2 mb-6 relative z-10">
             <div className="bg-black border-2 border-black p-1.5 rotate-2">
               <Lightbulb className="w-5 h-5 text-white" />
@@ -240,7 +240,7 @@ export default async function AboutPage() {
       <section className="mb-12 sm:mb-16">
         <NeoTiltCard className="bg-gradient-to-br from-neutral-800 to-neutral-950 text-white border-4 border-black p-6 sm:p-10 rotate-0.5 text-center" intensity={20}>
           <p className="text-lg sm:text-xl md:text-2xl font-black leading-relaxed">
-            "<span className="text-accent">설명할 수 있는 마케팅</span>,<br />
+            "<span className="text-[#FF0033]">설명할 수 있는 마케팅</span>,<br />
             누구나 배울 수 있는 기술을<br />
             만들고 기록하는 사람입니다."
           </p>
@@ -250,7 +250,7 @@ export default async function AboutPage() {
       {/* Portfolio CTA */}
       <section className="mb-12 sm:mb-16">
         <Link href="/about/portfolio">
-          <NeoTiltCard className="bg-gradient-to-br from-red-600 to-orange-600 text-white border-4 border-black p-6 sm:p-8 -rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group halftone-corner speed-lines relative overflow-hidden" intensity={15}>
+          <NeoTiltCard className="bg-[#FF0033] text-white border-4 border-black p-6 sm:p-8 -rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group halftone-corner speed-lines relative overflow-hidden" intensity={15}>
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 relative z-10">
               <div className="bg-white p-3 border-2 border-black rotate-3 group-hover:-rotate-3 transition-transform">
                 <Briefcase className="w-8 h-8 text-primary" />

@@ -42,7 +42,7 @@ export function Nav() {
                 key={href}
                 href={href}
                 onClick={() => sendGAEvent("click_nav", { menu_name: label })}
-                className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-accent hover:border-black border-2 border-transparent transition-colors"
+                className="px-4 py-2 font-bold uppercase text-sm tracking-wide hover:bg-[#FF0033] hover:text-white hover:border-black border-2 border-transparent transition-colors"
               >
                 {label}
               </Link>
@@ -67,7 +67,7 @@ export function Nav() {
                 key={href}
                 href={href}
                 onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
-                className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-accent transition-colors"
+                className="block px-4 py-3 font-bold uppercase text-sm tracking-wide hover:bg-[#FF0033] hover:text-white transition-colors"
               >
                 {label}
               </Link>

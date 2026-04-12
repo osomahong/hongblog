@@ -16,7 +16,7 @@ export default function TagsPage() {
       {/* Hero Section */}
       <section className="mb-8 sm:mb-12">
         <NeoTiltCard
-          className="bg-gradient-to-br from-purple-600 to-fuchsia-700 border-4 border-black p-5 sm:p-8 md:p-12 -rotate-1 halftone-corner text-left"
+          className="bg-black border-4 border-black p-5 sm:p-8 md:p-12 -rotate-1 halftone-corner text-left"
           intensity={20}
           shadowIntensity={10}
         >
@@ -36,7 +36,7 @@ export default function TagsPage() {
             <Link
               key={tag.id}
               href={`/tags/${encodeURIComponent(tag.name)}`}
-              className="px-3 py-1.5 text-xs sm:text-sm font-bold uppercase border-2 border-black bg-white text-black hover:bg-gray-100 transition-all"
+              className="px-3 py-1.5 text-xs sm:text-sm font-bold uppercase border-2 border-black bg-white text-black neo-shadow-sm hover:bg-[#FF0033] hover:text-white hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#000] active:translate-y-[2px] active:shadow-none transition-all"
             >
               #{tag.name}
             </Link>

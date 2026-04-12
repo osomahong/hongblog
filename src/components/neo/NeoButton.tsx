@@ -11,10 +11,10 @@ interface NeoButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const NeoButton = forwardRef<HTMLButtonElement, NeoButtonProps>(
   ({ className, variant = "primary", size = "md", children, ...props }, ref) => {
     const variants = {
-      primary: "bg-primary text-white hover:bg-red-600",
-      secondary: "bg-black text-white hover:bg-gray-800",
-      accent: "bg-accent text-black hover:bg-yellow-500",
-      outline: "bg-white text-black hover:bg-gray-100",
+      primary: "bg-primary text-white hover:bg-black hover:text-white hover:shadow-[8px_8px_0_0_#FF0033]",
+      secondary: "bg-black text-white hover:bg-[#FF0033] hover:text-white hover:shadow-[8px_8px_0_0_#000]",
+      accent: "bg-accent text-black hover:bg-black hover:text-white hover:shadow-[8px_8px_0_0_#FFD700]",
+      outline: "bg-white text-black hover:bg-black hover:text-white",
     };
 
     const sizes = {
@@ -27,7 +27,7 @@ export const NeoButton = forwardRef<HTMLButtonElement, NeoButtonProps>(
       <button
         ref={ref}
         className={cn(
-          "font-bold uppercase tracking-wide border-2 border-black neo-shadow-sm neo-hover",
+          "font-bold uppercase tracking-wide border-3 border-black neo-shadow neo-hover",
           "disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none",
           variants[variant],
           sizes[size],

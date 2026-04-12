@@ -21,7 +21,7 @@ export function NeoBadge({ children, variant = "default", className }: NeoBadgeP
   return (
     <span
       className={cn(
-        "inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider border-2 border-black",
+        "inline-block px-3 py-1 text-xs font-bold uppercase tracking-wider border-2 border-black neo-shadow-sm",
         variants[variant],
         className
       )}

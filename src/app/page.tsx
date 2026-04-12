@@ -49,7 +49,7 @@ const categoryColors: Record<string, string> = {
   DATA: "bg-data sm:bg-data text-white",
   MARKETING: "bg-marketing sm:bg-marketing text-white",
   맛집: "bg-orange-500 sm:bg-orange-500 text-white",
-  강의: "bg-blue-500 sm:bg-blue-500 text-white",
+  강의: "bg-black sm:bg-black text-white",
   문화생활: "bg-purple-500 sm:bg-purple-500 text-white",
   여행: "bg-green-500 sm:bg-green-500 text-white",
   일상: "bg-gray-500 sm:bg-gray-500 text-white",
@@ -64,11 +64,14 @@ export default async function HomePage() {
   const allTags = getAllTagsWithId();
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12">
-      {/* Hero Section */}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 relative">
+      {/* Background Graphic Decorations — Homepage Only */}
+      <div className="bg-graphic-1 hidden sm:block" />
+      <div className="bg-graphic-2 hidden sm:block" />
+
       {/* Hero Section */}
       <section className="mb-6 sm:mb-12">
-        <NeoTiltCard className="bg-gradient-to-br from-red-600 to-orange-600 border-4 border-black p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines relative overflow-hidden text-left" intensity={20} shadowIntensity={10}>
+        <NeoTiltCard className="bg-[#FF0033] neo-border-thick neo-shadow-lg p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines relative overflow-hidden text-left animate-stamp" intensity={20} shadowIntensity={10}>
           <div className="flex items-center justify-between">
             <div className="relative z-10 flex-1">
               <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
@@ -98,7 +101,7 @@ export default async function HomePage() {
       {trending.length > 0 && (
         <section className="mb-6 sm:mb-12">
           <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-            <div className="bg-orange-500 border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-3 punk-burst">
+            <div className="bg-[#FF0033] border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-3 punk-burst">
               <Flame className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <div>
@@ -202,9 +205,9 @@ export default async function HomePage() {
                   contentTitle={post.title}
                   contentId={post.id}
                 >
-                  <NeoTiltCard className="h-full">
+                  <NeoTiltCard className={`h-full ${index === 0 ? 'tape-top mt-4' : index % 3 === 2 ? 'zigzag-bottom mb-4' : ''}`}>
                     <NeoCardHeader>
-                      <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap">
+                      <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap relative z-10">
                         <NeoBadge
                           variant={
                             post.category === "AI_TECH"
@@ -213,6 +216,7 @@ export default async function HomePage() {
                                 ? "data"
                                 : "marketing"
                           }
+                          className="transform -rotate-2 hover:rotate-0 transition-transform"
                         >
                           <span className="flex items-center gap-1">
                             <Icon className="w-3 h-3" />
@@ -238,7 +242,7 @@ export default async function HomePage() {
                       <span className="text-xs sm:text-xs font-mono text-muted-foreground">
                         {post.createdAt ? new Date(post.createdAt).toLocaleDateString("ko-KR") : ""}
                       </span>
-                      <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase">
+                      <span className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase text-[#FF0033]">
                         Read <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                       </span>
                     </NeoCardFooter>
@@ -264,8 +268,8 @@ export default async function HomePage() {
       {allTags.length > 0 && (
         <section className="mb-6 sm:mb-12">
           <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-            <div className="bg-accent border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-3">
-              <Hash className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
+            <div className="bg-black border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-3">
+              <Hash className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
             </div>
             <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Explore Tags</h2>
           </div>
@@ -280,7 +284,7 @@ export default async function HomePage() {
       {/* About Author CTA */}
       <section>
         <Link href="/about">
-          <NeoTiltCard className="bg-gradient-to-br from-neutral-900 to-black text-white border-3 sm:border-4 border-black p-4 sm:p-8 sm:rotate-0.5 hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group" intensity={15}>
+          <NeoTiltCard className="bg-black text-white neo-border-thick p-4 sm:p-8 sm:rotate-0.5 neo-shadow-lg hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all group halftone-corner" intensity={15}>
             <div className="flex items-center gap-3 sm:gap-6">
               <div className="bg-primary p-2 sm:p-3 border-2 border-white -rotate-3 group-hover:rotate-0 transition-transform flex-shrink-0">
                 <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
@@ -291,7 +295,7 @@ export default async function HomePage() {
                   마케팅을 데이터로 설명하는 사람. 복잡한 상황을 이해 가능한 형태로 정리합니다.
                 </p>
               </div>
-              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-accent group-hover:translate-x-2 transition-transform flex-shrink-0" />
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 text-[#FF0033] group-hover:translate-x-2 transition-transform flex-shrink-0" />
             </div>
           </NeoTiltCard>
         </Link>

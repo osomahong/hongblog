@@ -44,12 +44,13 @@
   --radius-2xl: 0px;
   --radius-3xl: 0px;
   --radius-4xl: 0px;
-  /* Neo-Brutalism Custom */
-  --neo-shadow: 4px 4px 0px 0px #000000;
+  /* Neo-Brutalism Custom — White Edition */
+  --neo-shadow: 6px 6px 0px 0px #000000;
   --neo-shadow-sm: 2px 2px 0px 0px #000000;
-  --neo-shadow-lg: 6px 6px 0px 0px #000000;
-  --neo-border: 4px solid #000000;
+  --neo-shadow-lg: 12px 12px 0px 0px #000000;
+  --neo-border: 3px solid #000000;
   --neo-border-sm: 2px solid #000000;
+  --neo-border-thick: 4px solid #000000;
   --color-marketing: var(--marketing);
   --color-ai: var(--ai);
   --color-data: var(--data);
@@ -57,40 +58,40 @@
 
 :root {
   --radius: 0px;
-  --background: #F3F3F3;
+  --background: #FFFFFF;
   --foreground: #000000;
   --card: #FFFFFF;
   --card-foreground: #000000;
   --popover: #FFFFFF;
   --popover-foreground: #000000;
-  --primary: #FF0000;
+  --primary: #FF0033;
   --primary-foreground: #FFFFFF;
   --secondary: #000000;
   --secondary-foreground: #FFFFFF;
-  --muted: #E5E5E5;
-  --muted-foreground: #666666;
+  --muted: #F3F4F6;
+  --muted-foreground: #333333;
   --accent: #FFD700;
   --accent-foreground: #000000;
-  --destructive: #FF0000;
+  --destructive: #FF0033;
   --border: #000000;
   --input: #000000;
   --ring: #000000;
-  --chart-1: #FF0000;
+  --chart-1: #FF0033;
   --chart-2: #FFD700;
   --chart-3: #000000;
   --chart-4: #FFFFFF;
-  --chart-5: #F3F3F3;
+  --chart-5: #F3F4F6;
   --sidebar: #FFFFFF;
   --sidebar-foreground: #000000;
-  --sidebar-primary: #FF0000;
+  --sidebar-primary: #FF0033;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #FFD700;
   --sidebar-accent-foreground: #000000;
   --sidebar-border: #000000;
   --sidebar-ring: #000000;
-  --marketing: #FF0000;
+  --marketing: #FF0033;
   --ai: #FFD700;
-  --data: #0000FF;
+  --data: #333333;
 }
 
 @layer base {
@@ -106,6 +107,13 @@
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
     transform-origin: top center;
+    background-image:
+      linear-gradient(135deg, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px, transparent 25px),
+      linear-gradient(-135deg, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px, transparent 25px),
+      radial-gradient(circle at 20% 80%, rgba(255,0,51,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0,0,0,0.04) 0%, transparent 40%);
+    background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
+    word-break: keep-all;
   }
 }
 
@@ -130,13 +138,17 @@
     border: var(--neo-border-sm);
   }
 
+  .neo-border-thick {
+    border: var(--neo-border-thick);
+  }
+
   .neo-hover {
     @apply transition-all duration-100;
   }
 
   .neo-hover:hover {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0px 0px #000000;
+    transform: translate(-1px, -1px);
+    box-shadow: 8px 8px 0px 0px #000000;
   }
 
   .neo-hover:active {
@@ -212,6 +224,148 @@
     padding-right: 1rem;
   }
 }
+
+/* ===== White Edition — New Decorative Effects ===== */
+
+/* 대각선 줄무늬 배경 */
+.bg-stripes {
+  background: repeating-linear-gradient(
+    -45deg,
+    #ffffff,
+    #ffffff 10px,
+    #f3f4f6 10px,
+    #f3f4f6 20px
+  );
+}
+
+/* 와시 테이프 장식 */
+.tape-top {
+  position: relative;
+}
+.tape-top::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 120px;
+  height: 28px;
+  background-color: rgba(0, 0, 0, 0.85);
+  border: 2px solid white;
+  z-index: 20;
+}
+
+
+/* 톱니 하단 테두리 */
+.zigzag-bottom {
+  position: relative;
+}
+.zigzag-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -3px;
+  right: -3px;
+  height: 10px;
+  background: linear-gradient(135deg, #000 25%, transparent 25%) -10px 0,
+              linear-gradient(225deg, #000 25%, transparent 25%) -10px 0;
+  background-size: 20px 20px;
+}
+
+/* 만화풍 별 모양 강조 */
+.comic-starburst {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: var(--primary);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: #fff;
+  font-size: 14px;
+  text-shadow: 1px 1px 0 #000;
+}
+
+/* 번개 장식 */
+.comic-bolt {
+  position: relative;
+}
+.comic-bolt::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  width: 30px;
+  height: 50px;
+  background: var(--primary);
+  clip-path: polygon(50% 0%, 100% 35%, 60% 35%, 70% 100%, 20% 40%, 50% 40%);
+  z-index: 10;
+}
+
+/* 배경 장식 삼각형 (홈페이지 전용) */
+.bg-graphic-1 {
+  position: fixed;
+  top: 0; left: 0;
+  width: 350px; height: 350px;
+  background: var(--primary);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  z-index: -1;
+  opacity: 0.95;
+  pointer-events: none;
+}
+.bg-graphic-1::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(0,0,0,0.15) 8px,
+    rgba(0,0,0,0.15) 16px
+  );
+  opacity: 0.6;
+}
+.bg-graphic-2 {
+  position: fixed;
+  bottom: 0; right: 0;
+  width: 450px; height: 450px;
+  background: var(--primary);
+  clip-path: polygon(100% 100%, 0 100%, 100% 0);
+  z-index: -1;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.bg-graphic-2::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 12px,
+    rgba(0,0,0,0.12) 12px,
+    rgba(0,0,0,0.12) 24px
+  );
+  opacity: 0.5;
+}
+
+/* 입장 스탬프 애니메이션 */
+@keyframes stampIn {
+  0% { transform: scale(1.1) translateY(20px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+.animate-stamp {
+  animation: stampIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0;
+}
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
 
 /* ===== Comic / Manga Style Effects ===== */
 

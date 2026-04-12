@@ -179,7 +179,7 @@ export default async function InsightDetailPage({ params }: Props) {
             <div className="lg:sticky lg:top-24 space-y-3 sm:space-y-6">
               {/* Related Classes */}
               {relatedClasses.length > 0 && (
-                <NeoCard className="bg-blue-50 p-3 sm:p-6 halftone-bg">
+                <NeoCard className="bg-white p-3 sm:p-6 bg-stripes neo-border-thick">
                   <NeoCardHeader>
                     <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-base sm:text-lg relative z-10">
                       <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />

@@ -9,9 +9,9 @@ export const NeoInput = forwardRef<HTMLInputElement, NeoInputProps>(
       <input
         ref={ref}
         className={cn(
-          "w-full px-4 py-3 bg-white border-4 border-black neo-shadow-sm",
-          "placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary",
-          "transition-shadow",
+          "w-full px-4 py-3 bg-white border-3 border-black neo-shadow-sm",
+          "placeholder:text-gray-400 focus:outline-none focus:border-[#FF0033] focus:-translate-y-1 focus:shadow-[8px_8px_0_0_#000]",
+          "transition-all",
           className
         )}
         {...props}

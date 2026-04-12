@@ -100,8 +100,8 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
 
           // 인용 (callout box)
           blockquote: ({ children }) => (
-            <blockquote className="relative my-4 sm:my-6 bg-amber-50 border-2 border-black rounded-lg px-5 sm:px-6 pt-8 sm:pt-10 pb-3 sm:pb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] text-sm sm:text-base">
-              <span className="absolute top-2 left-3 sm:left-4 text-3xl sm:text-4xl font-black text-amber-400 leading-none select-none" aria-hidden="true">&ldquo;</span>
+            <blockquote className="relative my-4 sm:my-6 bg-gray-50 border-2 border-black rounded-lg px-5 sm:px-6 pt-8 sm:pt-10 pb-3 sm:pb-4 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] text-sm sm:text-base">
+              <span className="absolute top-2 left-3 sm:left-4 text-3xl sm:text-4xl font-black text-[#FF0033] leading-none select-none" aria-hidden="true">&ldquo;</span>
               <div className="text-gray-700 [&>p]:mb-1.5 [&>p:last-child]:mb-0">
                 {children}
               </div>
@@ -121,7 +121,7 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
             if (!isBlock) {
               return (
                 <code
-                  className="bg-gray-200 px-1 sm:px-1.5 py-0.5 rounded text-[13px] sm:text-sm font-mono text-red-600"
+                  className="bg-gray-200 px-1 sm:px-1.5 py-0.5 rounded text-[13px] sm:text-sm font-mono text-[#FF0033]"
                   {...props}
                 >
                   {children}
@@ -175,7 +175,7 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 underline hover:text-blue-800 font-medium text-sm sm:text-base"
+              className="text-[#FF0033] underline underline-offset-2 decoration-2 hover:bg-[#FF0033] hover:text-white hover:no-underline transition-colors font-medium text-sm sm:text-base px-0.5"
             >
               {children}
             </a>

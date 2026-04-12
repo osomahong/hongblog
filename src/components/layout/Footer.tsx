@@ -17,7 +17,7 @@ export function Footer() {
               onClick={() => sendGAEvent("click_footer", { menu_name: "Home" })}
               className="flex items-center gap-2 group"
             >
-              <div className="relative w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full border-2 border-red-500 overflow-hidden group-hover:border-accent transition-colors">
+              <div className="relative w-8 h-8 sm:w-9 sm:h-9 bg-white rounded-full border-2 border-red-500 overflow-hidden group-hover:border-[#FF0033] transition-colors">
                 <Image
                   src="/profile-illustration.png"
                   alt="Logo"
@@ -26,7 +26,7 @@ export function Footer() {
                 />
               </div>
               <span className="text-lg sm:text-xl font-black tracking-tighter">
-                준이아빠<span className="text-primary group-hover:text-accent transition-colors">블로그</span>
+                준이아빠<span className="text-primary group-hover:text-[#FF0033] transition-colors">블로그</span>
               </span>
             </Link>
             <p className="text-xs sm:text-sm text-gray-400 font-mono text-center md:text-left">
@@ -38,9 +38,9 @@ export function Footer() {
           {/* Navigation Links */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Explore</span>
-            <Link href="/class" onClick={() => sendGAEvent("click_footer", { menu_name: "Class" })} className="text-sm text-gray-300 hover:text-accent transition-colors">Class</Link>
-            <Link href="/insights" onClick={() => sendGAEvent("click_footer", { menu_name: "Insights" })} className="text-sm text-gray-300 hover:text-accent transition-colors">Insights</Link>
-            <Link href="/tags" onClick={() => sendGAEvent("click_footer", { menu_name: "Tags" })} className="text-sm text-gray-300 hover:text-accent transition-colors">Tags</Link>
+            <Link href="/class" onClick={() => sendGAEvent("click_footer", { menu_name: "Class" })} className="text-sm text-gray-300 hover:text-[#FF0033] transition-colors">Class</Link>
+            <Link href="/insights" onClick={() => sendGAEvent("click_footer", { menu_name: "Insights" })} className="text-sm text-gray-300 hover:text-[#FF0033] transition-colors">Insights</Link>
+            <Link href="/tags" onClick={() => sendGAEvent("click_footer", { menu_name: "Tags" })} className="text-sm text-gray-300 hover:text-[#FF0033] transition-colors">Tags</Link>
           </div>
 
           {/* About Section */}
@@ -49,7 +49,7 @@ export function Footer() {
             <Link
               href="/about"
               onClick={() => sendGAEvent("click_footer", { menu_name: "About" })}
-              className="flex items-center gap-2 text-sm text-gray-300 hover:text-accent transition-colors group"
+              className="flex items-center gap-2 text-sm text-gray-300 hover:text-[#FF0033] transition-colors group"
             >
               <User className="w-4 h-4" />
               <span>작성자 소개</span>

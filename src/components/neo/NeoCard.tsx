@@ -12,7 +12,8 @@ export function NeoCard({ children, className, rotate = false, hover = false }: 
   return (
     <div
       className={cn(
-        "bg-transparent sm:bg-white border-0 sm:border-4 border-black sm:neo-shadow p-0 sm:p-6",
+        "border-0 sm:border-3 border-black sm:neo-shadow p-0 sm:p-6",
+        className?.includes("bg-") ? "" : "bg-transparent sm:bg-white",
         rotate && "sm:rotate-1",
         hover && "neo-hover cursor-pointer",
         className
@@ -40,5 +41,5 @@ export function NeoCardContent({ children, className }: { children: ReactNode; c
 }
 
 export function NeoCardFooter({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={cn("mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200 sm:border-t-2 sm:border-black", className)}>{children}</div>;
+  return <div className={cn("mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200 sm:border-t-3 sm:border-black", className)}>{children}</div>;
 }

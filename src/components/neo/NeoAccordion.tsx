@@ -31,7 +31,7 @@ export function NeoAccordion({
             {/* Accordion Header */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full flex items-center justify-between p-4 sm:p-6 hover:bg-accent transition-colors group"
+                className="w-full flex items-center justify-between p-4 sm:p-6 hover:bg-[#FF0033] hover:text-white transition-colors group"
                 aria-expanded={isOpen}
             >
                 <div className="flex items-center gap-3">

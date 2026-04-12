@@ -1,0 +1,758 @@
+The code below contains a design. This design should be used to create a new app or be added to an existing one.
+
+Look at the current open project to determine if a project exists. If no project is open, create a new Vite project then create this view in React after componentizing it.
+
+If a project does exist, determine the framework being used and implement the design within that framework. Identify whether reusable components already exist that can be used to implement the design faithfully and if so use them, otherwise create new components. If other views already exist in the project, make sure to place the view in a sensible route and connect it to the other views.
+
+Ensure the visual characteristics, layout, and interactions in the design are preserved with perfect fidelity.
+
+Run the dev command so the user can see the app once finished.
+
+```
+<html lang="en" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">hongblog Design Theme — White Edition</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" vid="6">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet" vid="7">
+    <style vid="8">
+        :root {
+            --primary: #FF0033;
+            --black: #000000;
+        }
+
+        body {
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+            background-color: #ffffff;
+            
+            background-image: 
+                linear-gradient(135deg, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px, transparent 25px),
+                linear-gradient(-135deg, transparent 24px, rgba(0,0,0,0.03) 24px, rgba(0,0,0,0.03) 25px, transparent 25px),
+                radial-gradient(circle at 20% 80%, rgba(255,0,51,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0,0,0,0.05) 0%, transparent 40%);
+            background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
+            background-color: #fff;
+            color: #000;
+            overflow-x: hidden;
+            word-break: keep-all;
+        }
+
+        
+        @keyframes stampIn {
+            0% { transform: scale(1.1) translateY(20px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .animate-stamp {
+            animation: stampIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+        }
+
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+        .delay-7 { animation-delay: 0.7s; }
+
+        
+        .bg-stripes {
+            background: repeating-linear-gradient(
+                -45deg,
+                #ffffff,
+                #ffffff 10px,
+                #f3f4f6 10px,
+                #f3f4f6 20px
+            );
+        }
+
+        .tape-top::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 120px;
+            height: 28px;
+            background-color: rgba(0, 0, 0, 0.85);
+            border: 2px solid white;
+            z-index: 20;
+        }
+
+        .corner-fold {
+            position: relative;
+        }
+        
+        
+        .corner-fold::after {
+            content: '';
+            position: absolute;
+            top: -3px; 
+            right: -3px;
+            border-style: solid;
+            border-width: 0 48px 48px 0;
+            border-color: transparent var(--black) transparent transparent;
+        }
+        .corner-fold::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            border-style: solid;
+            border-width: 0 40px 40px 0;
+            border-color: transparent white transparent transparent;
+            z-index: 1;
+            transition: border-color 0.2s;
+        }
+        .corner-fold:hover::before {
+            border-color: transparent var(--primary) transparent transparent;
+        }
+
+        .zigzag-bottom {
+            position: relative;
+        }
+        .zigzag-bottom::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: -3px;
+            right: -3px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--black) 25%, transparent 25%) -10px 0,
+                        linear-gradient(225deg, var(--black) 25%, transparent 25%) -10px 0;
+            background-size: 20px 20px;
+        }
+
+        .halftone-accent {
+            position: relative;
+        }
+        .halftone-accent::before {
+            content: '';
+            position: absolute;
+            bottom: -25px;
+            right: -25px;
+            width: 120px;
+            height: 120px;
+            background-image: radial-gradient(circle, #000 3px, transparent 4px);
+            background-size: 12px 12px;
+            z-index: -1;
+            opacity: 0.8;
+        }
+        .halftone-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            right: -18px;
+            width: 80px;
+            height: 80px;
+            background-image: radial-gradient(circle, var(--primary) 2px, transparent 3px);
+            background-size: 10px 10px;
+            z-index: -2;
+            opacity: 0.6;
+        }
+
+        .pop-halftone-bg {
+            position: relative;
+        }
+        .pop-halftone-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, #000 2px, transparent 3px);
+            background-size: 8px 8px;
+            opacity: 0.2;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .pop-halftone-corner {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(var(--black) 3px, transparent 3px);
+            background-size: 10px 10px;
+            opacity: 0.15;
+            clip-path: polygon(100% 0, 0 0, 0 100%);
+        }
+
+        .pop-halftone-red {
+            position: relative;
+        }
+        .pop-halftone-red::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, #000 2px, transparent 3px);
+            background-size: 8px 8px;
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        .comic-burst {
+            position: relative;
+        }
+        .comic-burst::before {
+            content: '★';
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            font-size: 40px;
+            color: var(--primary);
+            transform: rotate(-15deg);
+            z-index: 10;
+            text-shadow: 3px 3px 0 #000;
+        }
+
+        .comic-jagged {
+            position: relative;
+            clip-path: polygon(
+                0% 4px, 4px 0%, 8px 4px, 12px 0%, 16px 4px, 20px 0%, 24px 4px, 28px 0%, 32px 4px, 36px 0%, 40px 4px, 44px 0%, 48px 4px, 52px 0%, 56px 4px, 60px 0%, 64px 4px, 68px 0%, 72px 4px, 76px 0%, 80px 4px, 84px 0%, 88px 4px, 92px 0%, 96px 4px, 100% 0%,
+                100% calc(100% - 4px), calc(100% - 4px) 100%, calc(100% - 8px) calc(100% - 4px), calc(100% - 12px) 100%, calc(100% - 16px) calc(100% - 4px), calc(100% - 20px) 100%, calc(100% - 24px) calc(100% - 4px), calc(100% - 28px) 100%, calc(100% - 32px) calc(100% - 4px), calc(100% - 36px) 100%, calc(100% - 40px) calc(100% - 4px), calc(100% - 44px) 100%, calc(100% - 48px) calc(100% - 4px), calc(100% - 52px) 100%, calc(100% - 56px) calc(100% - 4px), calc(100% - 60px) 100%, calc(100% - 64px) calc(100% - 4px), calc(100% - 68px) 100%, calc(100% - 72px) calc(100% - 4px), calc(100% - 76px) 100%, calc(100% - 80px) calc(100% - 4px), calc(100% - 84px) 100%, calc(100% - 88px) calc(100% - 4px), calc(100% - 92px) 100%, calc(100% - 96px) calc(100% - 4px), 100% 100%,
+                0% 100%
+            );
+        }
+        .comic-jagged::after {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            background: var(--black);
+            clip-path: polygon(
+                0% 4px, 4px 0%, 8px 4px, 12px 0%, 16px 4px, 20px 0%, 24px 4px, 28px 0%, 32px 4px, 36px 0%, 40px 4px, 44px 0%, 48px 4px, 52px 0%, 56px 4px, 60px 0%, 64px 4px, 68px 0%, 72px 4px, 76px 0%, 80px 4px, 84px 0%, 88px 4px, 92px 0%, 96px 4px, 100% 0%,
+                100% calc(100% - 4px), calc(100% - 4px) 100%, calc(100% - 8px) calc(100% - 4px), calc(100% - 12px) 100%, calc(100% - 16px) calc(100% - 4px), calc(100% - 20px) 100%, calc(100% - 24px) calc(100% - 4px), calc(100% - 28px) 100%, calc(100% - 32px) calc(100% - 4px), calc(100% - 36px) 100%, calc(100% - 40px) calc(100% - 4px), calc(100% - 44px) 100%, calc(100% - 48px) calc(100% - 4px), calc(100% - 52px) 100%, calc(100% - 56px) calc(100% - 4px), calc(100% - 60px) 100%, calc(100% - 64px) calc(100% - 4px), calc(100% - 68px) 100%, calc(100% - 72px) calc(100% - 4px), calc(100% - 76px) 100%, calc(100% - 80px) calc(100% - 4px), calc(100% - 84px) 100%, calc(100% - 88px) calc(100% - 4px), calc(100% - 92px) 100%, calc(100% - 96px) calc(100% - 4px), 100% 100%,
+                0% 100%
+            );
+            z-index: -1;
+        }
+
+        .comic-notch-tl::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 30px;
+            height: 16px;
+            background: #fff;
+            border: 3px solid #000;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            z-index: 5;
+        }
+
+        .comic-bolt {
+            position: relative;
+        }
+        .comic-bolt::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            width: 30px;
+            height: 50px;
+            background: var(--primary);
+            clip-path: polygon(50% 0%, 100% 35%, 60% 35%, 70% 100%, 20% 40%, 50% 40%);
+            border: 2px solid #000;
+            z-index: 10;
+        }
+
+        .comic-starburst {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #fff;
+            font-size: 14px;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .comic-burst {
+            position: relative;
+        }
+        .comic-burst::before {
+            content: '★';
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            font-size: 40px;
+            color: var(--primary);
+            transform: rotate(-15deg);
+            z-index: 10;
+            text-shadow: 3px 3px 0 #000;
+        }
+
+        .comic-jagged {
+            position: relative;
+            clip-path: polygon(
+                0% 4px, 4px 0%, 8px 4px, 12px 0%, 16px 4px, 20px 0%, 24px 4px, 28px 0%, 32px 4px, 36px 0%, 40px 4px, 44px 0%, 48px 4px, 52px 0%, 56px 4px, 60px 0%, 64px 4px, 68px 0%, 72px 4px, 76px 0%, 80px 4px, 84px 0%, 88px 4px, 92px 0%, 96px 4px, 100% 0%,
+                100% calc(100% - 4px), calc(100% - 4px) 100%, calc(100% - 8px) calc(100% - 4px), calc(100% - 12px) 100%, calc(100% - 16px) calc(100% - 4px), calc(100% - 20px) 100%, calc(100% - 24px) calc(100% - 4px), calc(100% - 28px) 100%, calc(100% - 32px) calc(100% - 4px), calc(100% - 36px) 100%, calc(100% - 40px) calc(100% - 4px), calc(100% - 44px) 100%, calc(100% - 48px) calc(100% - 4px), calc(100% - 52px) 100%, calc(100% - 56px) calc(100% - 4px), calc(100% - 60px) 100%, calc(100% - 64px) calc(100% - 4px), calc(100% - 68px) 100%, calc(100% - 72px) calc(100% - 4px), calc(100% - 76px) 100%, calc(100% - 80px) calc(100% - 4px), calc(100% - 84px) 100%, calc(100% - 88px) calc(100% - 4px), calc(100% - 92px) 100%, calc(100% - 96px) calc(100% - 4px), 100% 100%,
+                0% 100%
+            );
+        }
+        .comic-jagged::after {
+            content: '';
+            position: absolute;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
+            background: var(--black);
+            clip-path: polygon(
+                0% 4px, 4px 0%, 8px 4px, 12px 0%, 16px 4px, 20px 0%, 24px 4px, 28px 0%, 32px 4px, 36px 0%, 40px 4px, 44px 0%, 48px 4px, 52px 0%, 56px 4px, 60px 0%, 64px 4px, 68px 0%, 72px 4px, 76px 0%, 80px 4px, 84px 0%, 88px 4px, 92px 0%, 96px 4px, 100% 0%,
+                100% calc(100% - 4px), calc(100% - 4px) 100%, calc(100% - 8px) calc(100% - 4px), calc(100% - 12px) 100%, calc(100% - 16px) calc(100% - 4px), calc(100% - 20px) 100%, calc(100% - 24px) calc(100% - 4px), calc(100% - 28px) 100%, calc(100% - 32px) calc(100% - 4px), calc(100% - 36px) 100%, calc(100% - 40px) calc(100% - 4px), calc(100% - 44px) 100%, calc(100% - 48px) calc(100% - 4px), calc(100% - 52px) 100%, calc(100% - 56px) calc(100% - 4px), calc(100% - 60px) 100%, calc(100% - 64px) calc(100% - 4px), calc(100% - 68px) 100%, calc(100% - 72px) calc(100% - 4px), calc(100% - 76px) 100%, calc(100% - 80px) calc(100% - 4px), calc(100% - 84px) 100%, calc(100% - 88px) calc(100% - 4px), calc(100% - 92px) 100%, calc(100% - 96px) calc(100% - 4px), 100% 100%,
+                0% 100%
+            );
+            z-index: -1;
+        }
+
+        .comic-notch-tl::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 30px;
+            height: 16px;
+            background: #fff;
+            border: 3px solid #000;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            z-index: 5;
+        }
+
+        .comic-bolt {
+            position: relative;
+        }
+        .comic-bolt::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            width: 30px;
+            height: 50px;
+            background: var(--primary);
+            clip-path: polygon(50% 0%, 100% 35%, 60% 35%, 70% 100%, 20% 40%, 50% 40%);
+            border: 2px solid #000;
+            z-index: 10;
+        }
+
+        .comic-starburst {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: #fff;
+            font-size: 14px;
+            text-shadow: 1px 1px 0 #000;
+        }
+
+        .speech-bubble {
+            position: relative;
+        }
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 32px;
+            border-left: 16px solid transparent;
+            border-right: 16px solid transparent;
+            border-top: 16px solid var(--black);
+        }
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 36px;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 12px solid white;
+            z-index: 1;
+        }
+
+        
+        .neo-shadow-sm { box-shadow: 2px 2px 0 0 #000; }
+        .neo-shadow { box-shadow: 6px 6px 0 0 #000; }
+        .neo-shadow-lg { box-shadow: 12px 12px 0 0 #000; }
+        
+        .neo-border { border: 3px solid #000; }
+        .neo-border-thick { border: 4px solid #000; }
+
+        
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        details[open] .acc-icon { transform: rotate(45deg); }
+        details[open] .acc-content {
+            animation: slideDown 0.3s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        
+        .bg-graphic-1 {
+            position: fixed;
+            top: 0; left: 0;
+            width: 350px; height: 350px;
+            background: var(--primary);
+            clip-path: polygon(0 0, 100% 0, 0 100%);
+            z-index: -1;
+            opacity: 0.95;
+        }
+        .bg-graphic-1::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 8px,
+                rgba(0,0,0,0.15) 8px,
+                rgba(0,0,0,0.15) 16px
+            );
+            opacity: 0.6;
+        }
+        .bg-graphic-2 {
+            position: fixed;
+            bottom: 0; right: 0;
+            width: 450px; height: 450px;
+            background: var(--primary);
+            clip-path: polygon(100% 100%, 0 100%, 100% 0);
+            z-index: -1;
+            opacity: 0.9;
+        }
+        .bg-graphic-2::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 12px,
+                rgba(0,0,0,0.12) 12px,
+                rgba(0,0,0,0.12) 24px
+            );
+            opacity: 0.5;
+        }
+        
+    </style>
+</head>
+<body class="min-h-screen w-full relative" vid="9">
+
+    <div class="bg-graphic-1" vid="10"></div>
+    <div class="bg-graphic-2" vid="11"></div>
+
+    <main class="max-w-4xl mx-auto px-6 py-12" vid="12">
+        
+        
+        <header class="bg-white neo-border-thick neo-shadow-lg p-8 mb-16 relative overflow-hidden animate-stamp z-10" vid="13">
+            
+            <div class="absolute top-0 right-0 w-32 h-full bg-[#FF0033] hidden md:block" style="clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%); z-index: 0;" vid="14"></div>
+            
+            <div class="relative z-10" vid="15">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter mb-4 text-black" vid="16">
+                    hongblog <span class="text-[#FF0033]" vid="17">Design Theme</span>
+                </h1>
+                <p class="inline-block bg-[#000] text-white font-bold px-4 py-2 text-sm md:text-base uppercase tracking-widest border-2 border-[#000] transform -skew-x-6" vid="18">
+                    Neo-Brutalism + Persona 5 Style — White Edition
+                </p>
+                <p class="mt-6 text-[#222] font-medium max-w-lg border-l-4 border-[#FF0033] pl-4" vid="19">
+                    High readability, static layout. Jagged edges, red/black contrast, sharp angles. Completely re-engineered for a clean white canvas.
+                </p>
+            </div>
+        </header>
+
+        
+        <section class="mb-16 animate-stamp delay-1" vid="20">
+            <h2 class="text-2xl font-black uppercase tracking-tight mb-6 border-b-4 border-[#000] pb-2 flex items-center gap-3" vid="21">
+                <span class="w-4 h-4 bg-[#FF0033] inline-block" vid="22"></span> Colors
+            </h2>
+            <div class="flex flex-wrap gap-6" vid="23">
+                <div class="w-28 h-28 neo-border neo-shadow flex flex-col justify-end p-3 bg-white text-black group hover:-translate-y-1 transition-transform" vid="24">
+                    <span class="font-black text-sm uppercase tracking-wide" vid="25">Background</span>
+                    <span class="font-mono text-xs text-black" vid="26">#FFFFFF</span>
+                </div>
+                <div class="w-28 h-28 border-4 border-[#333] neo-shadow flex flex-col justify-end p-3 bg-[#000] text-white group hover:-translate-y-1 transition-transform" vid="27">
+                    <span class="font-black text-sm uppercase tracking-wide text-white" vid="28">Card Base</span>
+                    <span class="font-mono text-xs text-gray-400" vid="29">#000000</span>
+                </div>
+                <div class="w-28 h-28 neo-border neo-shadow flex flex-col justify-end p-3 bg-[#000] text-white group hover:-translate-y-1 transition-transform" vid="30">
+                    <span class="font-black text-sm uppercase tracking-wide text-white" vid="31">Foreground</span>
+                    <span class="font-mono text-xs text-gray-400" vid="32">#000000</span>
+                </div>
+                <div class="w-28 h-28 neo-border neo-shadow flex flex-col justify-end p-3 bg-[#FF0033] text-white group hover:-translate-y-1 transition-transform" vid="33">
+                    <span class="font-black text-sm uppercase tracking-wide text-white" vid="34">Primary/Red</span>
+                    <span class="font-mono text-xs text-white/80" vid="35">#FF0033</span>
+                </div>
+                <div class="w-28 h-28 neo-border neo-shadow flex flex-col justify-end p-3 bg-[#333] text-white group hover:-translate-y-1 transition-transform" vid="36">
+                    <span class="font-black text-sm uppercase tracking-wide text-white" vid="37">Muted</span>
+                    <span class="font-mono text-xs text-gray-400" vid="38">#333333</span>
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="mb-16 animate-stamp delay-2" vid="39">
+            <h2 class="text-2xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2 flex items-center gap-3" vid="40">
+                <span class="w-4 h-4 bg-black inline-block transform rotate-45" vid="41"></span> Shadows &amp; Borders
+            </h2>
+            <div class="flex flex-wrap items-end gap-8 mb-4" vid="42">
+                <div class="w-32 h-20 bg-white border-2 border-black neo-shadow-sm flex flex-col items-center justify-center" vid="43">
+                    <span class="font-bold text-sm" vid="44">shadow-sm</span>
+                    <span class="text-xs text-gray-500 mt-1" vid="45">2px 2px</span>
+                </div>
+                <div class="w-32 h-24 bg-white neo-border neo-shadow flex flex-col items-center justify-center relative" vid="46">
+                    
+                    <div class="absolute -top-3 -right-3 w-6 h-6 bg-[#FF0033] border-2 border-black rounded-full flex items-center justify-center text-white text-xs font-bold rotate-12" vid="47">!</div>
+                    <span class="font-black text-sm" vid="48">shadow</span>
+                    <span class="text-xs text-gray-500 mt-1" vid="49">6px 6px</span>
+                </div>
+                <div class="w-40 h-32 bg-white neo-border-thick neo-shadow-lg flex flex-col items-center justify-center" vid="50">
+                    <span class="font-black text-base" vid="51">shadow-lg</span>
+                    <span class="text-xs text-gray-500 mt-1" vid="52">12px 12px</span>
+                </div>
+            </div>
+            <p class="text-sm font-medium bg-[#000] text-white inline-block px-3 py-1 border border-[#000]" vid="53">
+                border-radius: <strong class="font-black" vid="54">0px</strong> everywhere — <code class="font-mono text-[#FF0033]" vid="55">--radius: 0px</code>
+            </p>
+        </section>
+
+        
+        <section class="mb-16 animate-stamp delay-3" vid="56">
+            <h2 class="text-2xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2 flex items-center gap-3" vid="57">
+                <span class="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-[#FF0033] border-b-[8px] border-b-transparent inline-block" vid="58"></span> Buttons
+            </h2>
+            <div class="flex flex-wrap gap-6 items-center" vid="59">
+                <button class="bg-[#FF0033] text-white neo-border neo-shadow hover:-translate-y-1 hover:bg-black hover:text-white hover:shadow-[8px_8px_0_0_#FF0033] active:translate-y-[4px] active:translate-x-[4px] active:shadow-none transition-all font-black uppercase px-8 py-3 tracking-widest text-sm" vid="60">
+                    Primary
+                </button>
+                <button class="bg-black text-white neo-border neo-shadow hover:-translate-y-1 hover:bg-[#FF0033] hover:text-white hover:shadow-[8px_8px_0_0_#000] active:translate-y-[4px] active:translate-x-[4px] active:shadow-none transition-all font-black uppercase px-8 py-3 tracking-widest text-sm" vid="61">
+                    Secondary
+                </button>
+                <button class="bg-white text-black neo-border neo-shadow hover:-translate-y-1 hover:shadow-[8px_8px_0_0_#000] hover:bg-black hover:text-white active:translate-y-[4px] active:translate-x-[4px] active:shadow-none transition-all font-black uppercase px-8 py-3 tracking-widest text-sm relative overflow-hidden group" vid="62">
+                    <span class="relative z-10" vid="63">Outline</span>
+                    <div class="absolute inset-0 bg-[#FF0033] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 z-0" vid="64"></div>
+                    <span class="relative z-10 group-hover:text-white transition-colors duration-300 hidden group-hover:block absolute inset-0 flex items-center justify-center" vid="65">OUTLINE</span>
+                </button>
+            </div>
+            <p class="mt-4 text-black text-sm font-medium" vid="66">Hover: slight lift &amp; shadow grow → Active: physical push collapse</p>
+        </section>
+
+        
+        <div class="grid md:grid-cols-2 gap-12 mb-16 animate-stamp delay-4" vid="67">
+            
+            <section vid="68">
+                <h2 class="text-xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2" vid="69">Badges</h2>
+                <div class="flex flex-wrap gap-3" vid="70">
+                    <span class="bg-[#FF0033] text-white border-2 border-black font-black uppercase text-xs px-3 py-1 neo-shadow-sm transform -rotate-2 hover:rotate-0 transition-transform cursor-default" vid="71">Marketing</span>
+                    <span class="bg-black text-white border-2 border-black font-black uppercase text-xs px-3 py-1 neo-shadow-sm transform rotate-1 hover:rotate-0 transition-transform cursor-default" vid="72">AI · Tech</span>
+                    <span class="bg-white text-black border-2 border-black font-black uppercase text-xs px-3 py-1 neo-shadow-sm transform -rotate-1 hover:rotate-0 transition-transform cursor-default" vid="73">Data</span>
+                    <span class="bg-[#333] text-white border-2 border-black font-black uppercase text-xs px-3 py-1 shadow-[2px_2px_0_0_#000] cursor-default" vid="74">Default</span>
+                </div>
+            </section>
+
+            
+            <section vid="75">
+                <h2 class="text-xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2" vid="76">Input Field</h2>
+                <div class="relative" vid="77">
+                    <input type="text" placeholder="Type here... focus shifts up" class="w-full bg-white neo-border p-4 font-medium text-black placeholder-[#666] neo-shadow transition-all focus:outline-none focus:-translate-y-1 focus:shadow-[8px_8px_0_0_#000] focus:border-[#FF0033]" vid="78">
+                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2 w-4 h-4 bg-black rounded-sm" vid="79"></div>
+                </div>
+            </section>
+        </div>
+
+        
+        <section class="mb-16 animate-stamp delay-5" vid="80">
+            <h2 class="text-2xl font-black uppercase tracking-tight mb-8 border-b-4 border-black pb-2" vid="81">Cards — Creative Variants (Static)</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8" vid="82">
+                
+                
+                <div class="bg-white neo-border neo-shadow p-6 relative bg-stripes group" vid="83">
+                    <div class="absolute -top-3 -right-3 bg-black text-white text-xs font-black px-2 py-1 border-2 border-white transform rotate-6" vid="84">V.01</div>
+                    <div class="bg-white neo-border p-4 h-full relative z-10 group-hover:-translate-y-1 transition-transform duration-300" vid="85">
+                        <h3 class="text-lg font-black uppercase mb-2" vid="86">Diagonal Stripes</h3>
+                        <p class="text-sm text-black font-medium" vid="87">Repeating pattern using light gray. Adds visual texture without compromising readability.</p>
+                    </div>
+                </div>
+
+                
+                <div class="bg-white neo-border neo-shadow p-6 relative tape-top mt-4 md:mt-0" vid="88">
+                    <span class="absolute -left-2 top-4 bg-[#FF0033] text-white text-[10px] font-black uppercase px-2 py-1 border border-black transform -rotate-12 neo-shadow-sm z-20" vid="89">New!</span>
+                    <h3 class="text-lg font-black uppercase mb-2 mt-2" vid="90">Washi Tape Card</h3>
+                    <p class="text-sm text-black font-medium" vid="91">CSS pseudo-element creates a decorative black tape strip. Strong brutalist scrapbook aesthetic.</p>
+                </div>
+
+                
+<div class="bg-white neo-border neo-shadow p-6 corner-fold" vid="92">
+                    <div class="card-content" vid="93">
+                        <h3 class="text-lg font-black uppercase mb-2 text-black" vid="94">Folded Corner</h3>
+                        <p class="text-sm text-black font-medium" vid="95">CSS border triangle technique creates a sharp folded page corner. Interactive hover state reveals color.</p>
+                    </div>
+                </div>
+
+                
+                <div class="bg-[#FF0033] neo-border neo-shadow p-6 relative text-black" vid="96">
+                    <div class="absolute -top-4 -right-4 w-10 h-10 bg-white text-black font-black text-xl flex items-center justify-center neo-border neo-shadow-sm transform rotate-6" vid="97">!</div>
+                    <h3 class="text-lg font-black uppercase mb-2 text-black" vid="98">Alert Card</h3>
+                    <p class="text-sm font-medium text-black" vid="99">Solid red background. High attention, high contrast. Designed to break the grid and demand focus.</p>
+                </div>
+
+                
+                <div class="bg-white neo-border neo-shadow p-6 zigzag-bottom pb-8" vid="100">
+                    <h3 class="text-lg font-black uppercase mb-2" vid="101">Zigzag Edge</h3>
+                    <p class="text-sm text-black font-medium" vid="102">Bottom border uses CSS gradients to create a sawtooth pattern. Adds comic book energy.</p>
+                </div>
+
+                
+                <div class="bg-white neo-border neo-shadow p-6 halftone-accent bg-white pop-halftone-bg" vid="103">
+                    <div class="flex justify-between items-start mb-3" vid="104">
+                        <span class="bg-black text-white text-[10px] font-black uppercase px-2 py-1" vid="105">Featured</span>
+                        <div class="w-8 h-8 border-2 border-black rounded-full flex items-center justify-center bg-[#FF0033]" vid="106">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" vid="107"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" vid="108"></path></svg>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-black uppercase mb-2" vid="109">Halftone Corner</h3>
+                    <p class="text-sm text-black font-medium" vid="110">Classic styling with a static halftone dot pattern acting as a drop shadow accent behind the card.</p>
+                    <div class="mt-4 pt-4 border-t-2 border-dashed border-[#000]" vid="111">
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-widest" vid="112">Card Footer Area</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        
+        <div class="grid lg:grid-cols-2 gap-12 mb-16 animate-stamp delay-6" vid="113">
+            
+            <div class="space-y-12" vid="114">
+                
+                <section vid="115">
+                    <h2 class="text-xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2" vid="116">Accordion</h2>
+                    <details class="group bg-white neo-border neo-shadow mb-4 comic-jagged" vid="117" open="">
+                        <summary class="p-4 font-black uppercase cursor-pointer hover:bg-[#FF0033] hover:text-white transition-colors flex justify-between items-center bg-white text-black relative z-10" vid="118">
+                            <span vid="119">01. What is Neo-Brutalism?</span>
+                            <span class="acc-icon text-2xl leading-none transition-transform duration-300 relative top-[-2px]" vid="120">+</span>
+                        </summary>
+                        <div class="acc-content px-4 pb-4 pt-2 border-t-[3px] border-black text-sm text-white font-medium bg-[#111]" vid="121">
+                            It's a design trend characterized by stark contrasts, sharp geometric shapes, bold typography, and a deliberate avoidance of soft, modern UI conventions like gradients or large border radii.
+                        </div>
+                    </details>
+                    <details class="group bg-white neo-border neo-shadow comic-notch-tl" vid="122">
+                        <summary class="p-4 font-black uppercase cursor-pointer hover:bg-[#FF0033] hover:text-white transition-colors flex justify-between items-center bg-white text-black relative z-10" vid="123">
+                            <span vid="124">02. Why use a white theme?</span>
+                            <span class="acc-icon text-2xl leading-none transition-transform duration-300 relative top-[-2px]" vid="125">+</span>
+                        </summary>
+                        <div class="acc-content px-4 pb-4 pt-2 border-t-[3px] border-black text-sm text-white font-medium bg-[#111]" vid="126">
+                            While dark themes are striking, a white theme significantly improves readability for long-form content. The brutalist elements (thick borders, hard shadows) stand out even more against a stark white canvas.
+                        </div>
+                    </details>
+                </section>
+
+                
+                <section vid="127">
+                    <h2 class="text-xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2" vid="128">Comic Effects</h2>
+                    <div class="bg-white neo-border p-6 speech-bubble neo-shadow max-w-sm" vid="129">
+                        <p class="font-bold text-lg leading-snug" vid="130">
+                            "This speech bubble uses standard CSS pseudo-elements for the tail. No SVG required!"
+                        </p>
+                    </div>
+                </section>
+            </div>
+
+            
+            <section vid="131">
+                <h2 class="text-xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2" vid="132">System Tokens</h2>
+                <div class="bg-white neo-border neo-shadow overflow-hidden" vid="133">
+                    <table class="w-full text-left border-collapse" vid="134">
+                        <thead vid="135">
+                            <tr class="bg-black text-white" vid="136">
+                                <th class="p-3 font-black uppercase text-sm border-b-[3px] border-black" vid="137">Token</th>
+                                <th class="p-3 font-black uppercase text-sm border-b-[3px] border-black" vid="138">Value</th>
+                                <th class="p-3 font-black uppercase text-sm border-b-[3px] border-black" vid="139">Usage</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm font-medium" vid="140">
+                            <tr class="border-b border-[#333] hover:bg-gray-100" vid="141">
+                                <td class="p-3" vid="142"><code class="bg-[#222] px-1 py-0.5 border border-[#444] text-white" vid="143">shadow</code></td>
+                                <td class="p-3 font-mono text-xs" vid="144">6px 6px 0 0 #000</td>
+                                <td class="p-3 text-black" vid="145">Standard Cards</td>
+                            </tr>
+                            <tr class="border-b-2 border-[#333] hover:bg-gray-100" vid="146">
+                                <td class="p-3" vid="147"><code class="bg-[#111] px-1 py-0.5 border border-[#333] text-white" vid="148">shadow-sm</code></td>
+                                <td class="p-3 font-mono text-xs" vid="149">2px 2px 0 0 #000</td>
+                                <td class="p-3 text-black" vid="150">Buttons, Badges</td>
+                            </tr>
+                            <tr class="border-b-2 border-[#333] hover:bg-gray-100" vid="151">
+                                <td class="p-3" vid="152"><code class="bg-[#222] px-1 py-0.5 border border-[#444] text-white" vid="153">border</code></td>
+                                <td class="p-3 font-mono text-xs" vid="154">3px solid #000</td>
+                                <td class="p-3 text-gray-600" vid="155">Primary outline</td>
+                            </tr>
+                            <tr class="border-b border-[#333] hover:bg-gray-100" vid="156">
+                                <td class="p-3" vid="157"><code class="bg-[#111] px-1 py-0.5 border border-[#333] text-white" vid="158">radius</code></td>
+                                <td class="p-3 font-mono text-xs text-[#FF0033] font-bold" vid="159">0px</td>
+                                <td class="p-3 text-gray-500" vid="160">Strictly enforced</td>
+                            </tr>
+                            <tr class="hover:bg-gray-100" vid="161">
+                                <td class="p-3" vid="162"><code class="bg-[#111] px-1 py-0.5 border border-[#333] text-white" vid="163">font</code></td>
+                                <td class="p-3 font-mono text-xs" vid="164">Pretendard</td>
+                                <td class="p-3 text-gray-500" vid="165">Headings &amp; Body</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+
+        
+        <div class="grid md:grid-cols-2 gap-8 animate-stamp delay-7" vid="166">
+            <section class="bg-white neo-border p-6 neo-shadow" vid="167">
+                <h2 class="text-xl font-black uppercase tracking-tight mb-4 border-b-[3px] border-black pb-2" vid="168">Typography Specs</h2>
+                <ul class="space-y-3 text-sm font-medium" vid="169">
+                    <li class="flex items-start gap-2" vid="170">
+                        <span class="text-[#FF0033] font-black mt-0.5" vid="171">▶</span> 
+                        <div vid="172"><strong class="font-black text-black" vid="173">Font Family:</strong> Pretendard Variable. Chosen for excellent multi-lingual legibility and sharp geometric letterforms.</div>
+                    </li>
+                    <li class="flex items-start gap-2" vid="174">
+                        <span class="text-[#FF0033] font-black mt-0.5" vid="175">▶</span> 
+                        <div vid="176"><strong class="font-black text-black" vid="177">Headings:</strong> `font-black` (900 weight), strictly uppercase, tight tracking (`tracking-tighter`).</div>
+                    </li>
+                    <li class="flex items-start gap-2" vid="178">
+                        <span class="text-[#FF0033] font-black mt-0.5" vid="179">▶</span> 
+                        <div vid="180"><strong class="font-black text-black" vid="181">Body Text:</strong> `font-medium` (500 weight), standard line-height, optimized word breaks.</div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="bg-black text-white neo-border-thick p-8 neo-shadow-lg relative overflow-hidden" vid="182">
+                
+                <div class="absolute -right-12 -bottom-12 w-32 h-32 bg-[#FF0033] rounded-full opacity-50 blur-2xl" vid="183"></div>
+                
+                <h3 class="text-2xl font-black uppercase text-[#FF0033] mb-4 relative z-10" vid="184">Design Directives</h3>
+                <ol class="space-y-3 relative z-10 font-bold text-sm tracking-wide" vid="185">
+                    <li class="border-l-2 border-white pl-3 py-1 bg-white/5" vid="186">01. NO BORDER RADIUS. EVER.</li>
+                    <li class="border-l-2 border-white pl-3 py-1 bg-white/5" vid="187">02. BORDERS MUST BE BLACK &amp; THICK (2px-4px).</li>
+                    <li class="border-l-2 border-white pl-3 py-1 bg-white/5" vid="188">03. SHADOWS ARE SOLID OFFSETS. NO BLUR.</li>
+                    <li class="border-l-2 border-[#FF0033] pl-3 py-1 bg-[#FF0033]/10 text-[#FF0033]" vid="189">04. STATIC LAYOUT. NO FLOATING ANIMATIONS.</li>
+                    <li class="border-l-2 border-white pl-3 py-1 bg-white/5" vid="190">05. EMBRACE HIGH CONTRAST &amp; WHITE SPACE.</li>
+                </ol>
+            </section>
+        </div>
+
+    </main>
+
+
+</body></html>
+```

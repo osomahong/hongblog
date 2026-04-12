@@ -71,20 +71,20 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                 href={`/class/${courseSlug}/${cls.slug}`}
                 className="block"
             >
-                <div className="flex items-center gap-2 p-2 rounded hover:bg-purple-100 transition-colors group">
+                <div className="flex items-center gap-2 p-2 rounded hover:bg-red-50 transition-colors group">
                     <button
                         onClick={(e) => toggleCheck(cls.id, e)}
-                        className="flex-shrink-0 text-muted-foreground hover:text-purple-600 transition-colors"
+                        className="flex-shrink-0 text-muted-foreground hover:text-[#FF0033] transition-colors"
                     >
                         <CheckIcon className="w-3 h-3 sm:w-4 sm:h-4" />
                     </button>
                     <span className="text-xs sm:text-xs text-muted-foreground min-w-[1.25rem]">
                         {idx + 1}.
                     </span>
-                    <span className="text-xs sm:text-sm flex-1 group-hover:text-purple-600 transition-colors">
+                    <span className="text-xs sm:text-sm flex-1 group-hover:text-[#FF0033] transition-colors">
                         {cls.term}
                     </span>
-                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground group-hover:text-purple-600 -rotate-90 transition-colors" />
+                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4 text-muted-foreground group-hover:text-[#FF0033] -rotate-90 transition-colors" />
                 </div>
             </Link>
         );
@@ -94,7 +94,7 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-12">
             {/* Hero Section */}
             <section className="mb-6 sm:mb-12">
-                <NeoTiltCard className="bg-gradient-to-br from-purple-600 to-blue-600 border-3 sm:border-4 border-black p-4 sm:p-8 md:p-12 sm:rotate-1 halftone-corner speed-lines text-left" intensity={20} shadowIntensity={10}>
+                <NeoTiltCard className="bg-[#FF0033] border-3 sm:border-4 border-black p-4 sm:p-8 md:p-12 sm:rotate-1 halftone-corner speed-lines text-left" intensity={20} shadowIntensity={10}>
                     <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 relative z-10 comic-emphasis leading-tight">
                         <span className="flex items-center gap-2 sm:gap-3">
                             <GraduationCap className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16" />
@@ -125,8 +125,8 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                     return (
                         <div key={course.id} className="relative">
                             <NeoCard className={`overflow-hidden border-l-4 transition-all duration-300 ${isExpanded
-                                ? 'border-l-purple-600 shadow-[8px_8px_0px_0px_rgba(147,51,234,0.3)]'
-                                : 'border-l-purple-600'
+                                ? 'border-l-[#FF0033] shadow-[8px_8px_0px_0px_rgba(255,0,51,0.3)]'
+                                : 'border-l-[#FF0033]'
                                 }`}>
                                 {/* Course Header */}
                                 <NeoCardHeader>
@@ -171,8 +171,8 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                     </div>
 
                                     {/* Curriculum List */}
-                                    <div className={`bg-purple-50 -mx-4 sm:-mx-6 px-4 sm:px-6 py-4 border-y-2 border-purple-200 ${isExpanded ? 'animate-slideDown' : ''}`}>
-                                        <h4 className="text-xs sm:text-sm font-bold uppercase text-purple-700 mb-3">
+                                    <div className={`bg-red-50 -mx-4 sm:-mx-6 px-4 sm:px-6 py-4 border-y-2 border-red-200 ${isExpanded ? 'animate-slideDown' : ''}`}>
+                                        <h4 className="text-xs sm:text-sm font-bold uppercase text-[#FF0033] mb-3">
                                             📚 커리큘럼
                                         </h4>
 
@@ -186,7 +186,7 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                         {!isExpanded && hasMore && (
                                             <button
                                                 onClick={() => toggleExpand(course.id)}
-                                                className="mt-2 text-xs sm:text-xs text-purple-500 hover:text-purple-700 transition-colors"
+                                                className="mt-2 text-xs sm:text-xs text-[#FF0033]/70 hover:text-[#FF0033] transition-colors"
                                             >
                                                 +{course.classes.length - PREVIEW_COUNT}개 더보기
                                             </button>
@@ -206,8 +206,8 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                             border-2 border-black rounded
                                             transition-all duration-200
                                             ${isExpanded
-                                                ? 'bg-purple-600 text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]'
-                                                : 'bg-white text-purple-600 shadow-[4px_4px_0px_0px_rgba(147,51,234,1)] hover:shadow-[2px_2px_0px_0px_rgba(147,51,234,1)] hover:translate-x-[2px] hover:translate-y-[2px]'
+                                                ? 'bg-[#FF0033] text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px]'
+                                                : 'bg-white text-[#FF0033] shadow-[4px_4px_0px_0px_rgba(255,0,51,1)] hover:shadow-[2px_2px_0px_0px_rgba(255,0,51,1)] hover:translate-x-[2px] hover:translate-y-[2px]'
                                             }
                                             text-xs sm:text-sm
                                         `}

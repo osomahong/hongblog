@@ -125,7 +125,7 @@ export default async function CourseDetailPage({ params }: Props) {
                         href={`/class/${courseSlug}/${cls.slug}`}
                         className="group block"
                     >
-                        <div className="flex items-center gap-3 p-3 sm:p-4 border-4 border-black bg-white hover:bg-accent transition-colors">
+                        <div className="flex items-center gap-3 p-3 sm:p-4 border-3 border-black bg-white hover:bg-[#FF0033] hover:text-white transition-colors neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                             <span className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full border-3 border-black flex items-center justify-center font-bold text-sm sm:text-base">
                                 {clsIndex + 1}
                             </span>

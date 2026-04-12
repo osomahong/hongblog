@@ -47,7 +47,7 @@ export function NeoTiltCard({ children, className, intensity = 25, shadowIntensi
         // 원상복구 시에만 긴 트랜지션 적용
         contentRef.current.style.transition = "all 1s ease-out";
         contentRef.current.style.transform = `rotateX(0) rotateY(0)`;
-        contentRef.current.style.boxShadow = `8px 8px 0px rgba(0,0,0,1)`;
+        contentRef.current.style.boxShadow = `6px 6px 0px rgba(0,0,0,1)`;
     };
 
     return (
@@ -61,12 +61,14 @@ export function NeoTiltCard({ children, className, intensity = 25, shadowIntensi
             <div
                 ref={contentRef}
                 className={cn(
-                    "bg-transparent sm:bg-white border-0 sm:border-4 border-black p-0 sm:p-6 neo-tilt-content",
+                    "border-0 sm:border-3 border-black p-0 sm:p-6 neo-tilt-content",
+                    // 배경색이 className으로 지정되면 기본 bg-white를 적용하지 않음
+                    className?.includes("bg-") ? "" : "bg-transparent sm:bg-white",
                     className
                 )}
                 style={{
                     transformStyle: "preserve-3d",
-                    boxShadow: "8px 8px 0px rgba(0,0,0,1)" // 기본 그림자
+                    boxShadow: "6px 6px 0px rgba(0,0,0,1)" // 기본 그림자
                 }}
             >
                 {children}
