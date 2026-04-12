@@ -9,19 +9,18 @@ haiku
 ## 동작 모드
 
 ### 모드 A: 단일 글 최적화
-Phase 3에서 생성/검수 완료된 글의 SEO 필드를 최적화한다.
+생성/검수 완료된 글의 SEO 필드를 최적화한다.
 
 ### 모드 B: 일괄 점검
 전체 발행 콘텐츠 대상으로 SEO 점수 분석 + 순위별 개선안을 제공한다.
 
-## 재사용 함수
+## 데이터 접근
 
-| 함수 | 위치 | 용도 |
-|------|------|------|
-| `analyzeSeoScore()` | `src/lib/ai.ts:40` | 로컬 규칙 기반 SEO 점수 산출 |
-| `generateSeoSuggestions()` | `src/lib/ai.ts:141` | AI 기반 SEO 개선 제안 |
-| `generateMetaDescription()` | `src/lib/ai.ts:161` | 메타 설명 자동 생성 |
-| `generateContentMetadata()` | `src/lib/ai.ts:194` | 제목/슬러그/태그 등 메타데이터 생성 |
+| 방법 | 용도 |
+|------|------|
+| `Read` tool로 `content/insights/{slug}.md` 직접 읽기 | 단일 콘텐츠 frontmatter + 본문 분석 |
+| `Glob "content/insights/*.md"` + `Read` | 일괄 점검 시 전체 목록 |
+| `Glob "content/classes/*.md"` + `Read` | Class 타입 일괄 점검 |
 
 ## SEO 필드 체크리스트
 
@@ -31,50 +30,48 @@ Phase 3에서 생성/검수 완료된 글의 SEO 필드를 최적화한다.
 | `metaDescription` | 120-160자, 행동 유도 문구 | HIGH |
 | `ogTitle` | 40-60자, SNS 클릭 유도 | MEDIUM |
 | `ogDescription` | 80-120자, 가치 제안 중심 | MEDIUM |
-| `ogImage` | 설정 여부 | MEDIUM |
-| `canonicalUrl` | 중복 콘텐츠 시 설정 | LOW |
-| `noIndex` | 색인 제외 여부 확인 | LOW |
+| `ogImage` | 설정 여부 (`generate-thumbnail` 스킬로 생성) | MEDIUM |
 
 ## 입력
 
 ### 모드 A (단일)
 ```
 mode: "single"
-contentType: "post" | "faq" | "class" | "lifeLog"
-title: string
-content: string
-existingMeta?: {
-  metaTitle?: string
-  metaDescription?: string
-  ogTitle?: string
-  ogDescription?: string
-  ogImage?: string
-}
+slug: string           # 콘텐츠 slug (content/insights/{slug}.md 또는 content/classes/{slug}.md)
 ```
 
 ### 모드 B (일괄)
 ```
 mode: "batch"
-contentTypes?: string[]   # 대상 타입 (기본: 전체)
-minScore?: number         # 이 점수 이하만 표시 (기본: 70)
+contentType?: "insights" | "classes"   # 대상 타입 (기본: 전체)
+minScore?: number                      # 이 점수 이하만 표시 (기본: 70)
 ```
 
 ## 워크플로우
 
 ### 모드 A: 단일 글 최적화
 
-1. `analyzeSeoScore()`로 현재 점수 산출
-2. 점수가 70 미만인 항목에 대해:
-   - `generateMetaDescription()`으로 메타 설명 생성
-   - `generateSeoSuggestions()`로 개선안 생성
-3. 필드별 최적화안 제시
+1. `Read`로 대상 MD 파일의 frontmatter와 본문을 읽는다
+2. frontmatter의 SEO 필드(metaTitle, metaDescription, ogTitle, ogDescription, ogImage)를 체크리스트 기준으로 분석한다
+3. 에이전트가 직접 점수를 산출하고 개선안을 생성한다
+4. 필드별 최적화안 제시
 
 ### 모드 B: 일괄 점검
 
-1. `getPublishedPosts()` / `getPublishedFaqs()` / `getPublishedClasses()` 조회
-2. 각 콘텐츠에 대해 `analyzeSeoScore()` 실행
+1. `Glob`으로 대상 MD 파일 목록을 수집한다
+2. 각 파일의 frontmatter를 `Read`로 읽어 SEO 필드를 분석한다
 3. 점수 기준 정렬 (낮은 순)
-4. 상위 개선 필요 항목에 대해 `generateSeoSuggestions()` 실행
+4. 상위 개선 필요 항목에 대해 개선안 생성
+
+## inspect-content 스킬과의 역할 분담
+
+| 구분 | seo-manager | inspect-content |
+|------|-------------|-----------------|
+| 범위 | SEO 필드(metaTitle, metaDescription 등) 빠른 점검 | SEO + AEO + GEO 3영역 통합 심층 점검 |
+| 속도 | 빠름 (frontmatter만 확인) | 느림 (본문 전체 분석) |
+| 용도 | 콘텐츠 생성 Phase 3 기본 점검 | 사용자 요청 시 심층 분석 |
+
+사용자가 "심층 분석" 또는 "SEO/AEO/GEO 점검"을 요청하면 → `inspect-content` 스킬 또는 `content-inspector` 에이전트에 위임한다.
 
 ## 출력
 
@@ -108,8 +105,15 @@ SEO 최적화를 적용하시겠습니까? (전체 적용 / 선택 적용 / 건�
 | 순위 | 타입 | 제목 | 점수 | 주요 문제 |
 |------|------|------|------|----------|
 | 1 | post | "제목1" | 35 | metaTitle, metaDescription 누락 |
-| 2 | faq | "질문1" | 45 | metaDescription 짧음 |
+| 2 | class | "용어1" | 45 | metaDescription 짧음 |
 ```
 
 ## 참조 문서
-- `02_content-agent/skills/content-ops/references/seo-checklist.md` - SEO 체크리스트 상세
+- `.claude/skills/content-ops/references/seo-checklist.md` — SEO 체크리스트 상세
+- `.claude/skills/inspect-content/SKILL.md` — SEO+AEO+GEO 통합 심층 점검
+
+## 제약
+
+- `src/lib/ai.ts`, `src/lib/queries.ts` 등 삭제된 경로를 참조하지 않는다
+- `analyzeSeoScore()`, `generateSeoSuggestions()`, `generateMetaDescription()` 등 삭제된 함수를 호출하지 않는다
+- 데이터 접근은 MD 파일 직접 Read 또는 `src/lib/content.ts`를 통해서만 수행한다

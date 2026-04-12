@@ -13,14 +13,11 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
-import { stripMarkdown } from "@/lib/utils";
 import {
   getPublishedPosts,
   getTrendingMixed,
   getCategoryStats,
-  getPopularFaqs,
   getAllTagsWithId,
-  getPublishedLogs,
 } from "@/lib/content";
 import type { TrendingItem } from "@/lib/types";
 import { TrackedLink } from "@/components/TrackedLink";
@@ -62,10 +59,8 @@ export const dynamic = "force-static";
 
 export default async function HomePage() {
   const posts = getPublishedPosts();
-  const logs = getPublishedLogs();
   const trending = getTrendingMixed(7, 4);
   const categoryStats = getCategoryStats();
-  const popularFaqs = getPopularFaqs();
   const allTags = getAllTagsWithId();
 
   return (

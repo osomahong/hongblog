@@ -35,13 +35,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: effectiveTitle,
         description: effectiveDescription,
         alternates: {
-            canonical: course.canonicalUrl || `${SITE_URL}/class/${courseSlug}`,
+            canonical: `${SITE_URL}/class/${courseSlug}`,
         },
         openGraph: {
             title: effectiveTitle,
             description: effectiveDescription,
             type: "website",
-            images: course.ogImage ? [{ url: course.ogImage, width: 1200, height: 630 }] : undefined,
+            images: undefined,
         },
     };
 }
@@ -103,15 +103,6 @@ export default async function CourseDetailPage({ params }: Props) {
 
             {/* Course Header */}
             <div className="mb-6 sm:mb-10">
-                {course.thumbnailUrl && (
-                    <div className="mb-4 sm:mb-6">
-                        <img
-                            src={course.thumbnailUrl}
-                            alt={course.title}
-                            className="w-full h-48 sm:h-64 object-cover border-4 border-black neo-shadow"
-                        />
-                    </div>
-                )}
                 <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tighter mb-3 sm:mb-4 flex items-center gap-3">
                     <BookOpen className="w-8 h-8 sm:w-12 sm:h-12" />
                     {course.title}

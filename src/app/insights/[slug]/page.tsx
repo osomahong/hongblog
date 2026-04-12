@@ -55,9 +55,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: effectiveTitle,
     description: effectiveDescription,
-    robots: post.noIndex ? { index: false, follow: false } : undefined,
     alternates: {
-      canonical: post.canonicalUrl || `${SITE_URL}/insights/${slug}`
+      canonical: `${SITE_URL}/insights/${slug}`
     },
     openGraph: {
       title: effectiveOgTitle,

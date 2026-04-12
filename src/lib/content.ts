@@ -5,7 +5,7 @@ import readingTime from "reading-time";
 import type {
   Insight, ClassItem, Course,
   PostWithTags, TrendingItem, CourseWithClasses, ClassWithMeta,
-  CategoryStat, NextPrevResult, SeriesNavResult, TagWithId, ContentByTagResult,
+  CategoryStat, NextPrevResult, TagWithId, ContentByTagResult,
 } from "./types";
 
 // ============================================
@@ -223,8 +223,6 @@ function insightToPost(insight: Insight, index?: number): PostWithTags {
     ogImage: insight.ogImage || null,
     ogTitle: insight.ogTitle || null,
     ogDescription: insight.ogDescription || null,
-    canonicalUrl: null,
-    noIndex: null,
     highlights: insight.highlights || null,
     quiz: insight.quiz || null,
     seriesId: insight.seriesSlug ? 1 : null,
@@ -254,8 +252,6 @@ function classToMeta(cls: ClassItem, index?: number): ClassWithMeta {
     ogImage: cls.ogImage || null,
     metaTitle: cls.metaTitle || null,
     metaDescription: cls.metaDescription || null,
-    canonicalUrl: null,
-    noIndex: null,
     quiz: cls.quiz || null,
     courseInfo: cls.courseSlug ? { id: 1, slug: cls.courseSlug } : null,
   };
@@ -281,13 +277,10 @@ export function getPublishedCourses(): CourseWithClasses[] {
       description: course.description,
       category: course.category,
       difficulty: course.difficulty,
-      thumbnailUrl: null,
       createdAt: new Date(course.publishedAt),
       classCount: classes.length,
-      ogImage: null,
       metaTitle: course.metaTitle || null,
       metaDescription: course.metaDescription || null,
-      canonicalUrl: null,
       classes: classes.map((cls, i) => ({
         id: i + 1,
         slug: cls.slug,
@@ -309,13 +302,10 @@ export function getPublishedCourseBySlug(slug: string): CourseWithClasses | null
     description: course.description,
     category: course.category,
     difficulty: course.difficulty,
-    thumbnailUrl: null,
     createdAt: new Date(course.publishedAt),
     classCount: classes.length,
-    ogImage: null,
     metaTitle: course.metaTitle || null,
     metaDescription: course.metaDescription || null,
-    canonicalUrl: null,
     classes: classes.map((cls, i) => ({
       id: i + 1,
       slug: cls.slug,
@@ -357,13 +347,6 @@ export function getCategoryStats(): CategoryStat[] {
   }));
 }
 
-export function getPopularFaqs(..._args: unknown[]): { id: number; slug: string; question: string; tags: string[] }[] {
-  return [];
-}
-
-export function getRelatedFaqsWithPopularity(..._args: unknown[]): { id: number; slug: string; question: string }[] {
-  return [];
-}
 
 export function getRelatedClassesForPost(tags: string[], _category: string, limit: number): ClassWithMeta[] {
   const all = getClasses();
@@ -389,19 +372,6 @@ export function getRelatedClassesByTags(tags: string[], excludeId: number, limit
     .map((cls, i) => classToMeta(cls, i + 1));
 }
 
-export function getSeriesNavigation(seriesId: number, currentId: number): SeriesNavResult | null {
-  const posts = getPublishedPosts().filter((p) => p.seriesId === seriesId);
-  if (posts.length === 0) return null;
-  posts.sort((a, b) => (a.seriesOrder ?? 0) - (b.seriesOrder ?? 0));
-  const idx = posts.findIndex((p) => p.id === currentId);
-  if (idx === -1) return null;
-  return {
-    prev: idx > 0 ? { id: posts[idx - 1].id, slug: posts[idx - 1].slug, title: posts[idx - 1].title } : null,
-    next: idx < posts.length - 1 ? { id: posts[idx + 1].id, slug: posts[idx + 1].slug, title: posts[idx + 1].title } : null,
-    currentIndex: idx,
-    totalCount: posts.length,
-  };
-}
 
 export function getNextPrevClass(classId: number): NextPrevResult {
   const all = getClasses();
@@ -423,9 +393,6 @@ export function getNextPrevClass(classId: number): NextPrevResult {
   };
 }
 
-export function getPublishedLogs(): never[] {
-  return [];
-}
 
 export function getAllTagsWithId(): TagWithId[] {
   return getAllTags().map(({ name }, i) => ({ id: i + 1, name }));

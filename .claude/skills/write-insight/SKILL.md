@@ -1,15 +1,13 @@
 ---
 name: write-insight
-description: 블로그 Insight 포스트를 주제 기반으로 리서치, 작성, 이미지 생성, DB 삽입까지 자동 수행하는 스킬. 사용자가 "블로그 글 써줘", "인사이트 포스트 작성", "write insight about X" 등으로 요청할 때 트리거. /write-insight [주제] 형태로 직접 호출 가능.
+description: 블로그 Insight 포스트를 주제 기반으로 리서치, 작성, MD 파일 생성까지 자동 수행하는 스킬. 사용자가 "블로그 글 써줘", "인사이트 포스트 작성", "write insight about X" 등으로 요청할 때 트리거. /write-insight [주제] 형태로 직접 호출 가능.
 ---
 
 # Insight 포스트 작성 스킬
 
-블로그 Insight 포스트를 **주제 분석 → 웹 리서치 → 콘텐츠 작성 → JSON 생성 → DB 삽입 + AI 이미지 생성**까지 일괄 수행한다.
+블로그 Insight 포스트를 **주제 분석 → 웹 리서치 → 콘텐츠 작성 → MD 파일 생성**까지 일괄 수행한다.
 
----
-
-## 워크플로우 (6단계)
+## 워크플로우 (5단계)
 
 ### 1단계: 주제 분석 & 요구사항 정리
 
@@ -47,41 +45,28 @@ description: 블로그 Insight 포스트를 주제 기반으로 리서치, 작�
 - 실무 적용 가능한 구체적 예시 최소 1개
 - 마지막에 **3줄 요약** 포함
 - 마크다운 테이블, 리스트 적극 활용
-- 이미지 마크다운은 직접 넣지 않음 (5단계에서 AI가 자동 삽입)
 
 **사용자 피드백:**
 - 초안 작성 후 사용자에게 공유하고 피드백을 받는다.
 - 피드백 반영 후 최종본을 확정한다.
 
-### 4단계: 메타데이터 & JSON 생성
+### 4단계: MD 파일 생성
 
-- `references/post-schema.md`를 참조하여 JSON 데이터 파일을 생성한다.
-- 파일 경로: `scripts/data/{slug}-post.json`
-- **필수 필드:** title, slug, category, content, excerpt, tags, quiz, SEO 메타데이터
+- `references/post-schema.md`를 참조하여 MD 파일을 생성한다.
+- 파일 경로: `content/insights/{slug}.md`
+- **frontmatter 필수 필드:** slug, title, excerpt, category, tags, publishedAt, metaTitle, metaDescription, ogTitle, ogDescription, quiz
 - 태그는 `src/lib/constants.ts`의 `CANONICAL_TAGS` 목록에서만 선택 (3~5개)
 - 퀴즈: 선택지 3~4개, explanation 2~3문장
 - slug: 영문 소문자 + 하이픈, 간결하게 (예: `gmail-api-what-you-can-do`)
 
-### 5단계: DB 삽입 + AI 이미지 생성
+**썸네일 생성 (선택):**
+- `/generate-thumbnail` 스킬 또는 `npx tsx scripts/generate-og.ts --slug <slug>`
+- `public/og/{slug}.png` 생성 후 frontmatter `ogImage` 필드에 경로 설정
 
-```bash
-npx tsx scripts/direct-publish.ts --file scripts/data/{slug}-post.json
-```
+### 5단계: 결과 보고
 
-- `--no-images` 플래그 **사용 금지** → `generateAndInjectImages()` 자동 호출
-- 이미지 2장이 H2 섹션의 1/3, 2/3 지점에 자동 삽입됨
-- 첫 번째 이미지가 `ogImage`로 자동 설정됨
-- **ogImage fallback:** AI 이미지 생성이 실패하거나 `--no-images`를 사용하더라도, 콘텐츠 내 첫 번째 `![alt](url)` 이미지가 자동으로 `ogImage`에 설정됨 (`extractFirstImageUrl()` 활용)
-- 이미지 생성에는 `GEMINI_IMAGE_API_KEY` 환경변수와 Vercel Blob 스토리지 접근이 필요
-- 이미지 생성 실패 시 사용자에게 보고 (포스트 자체는 정상 생성됨)
-
-### 6단계: 결과 보고
-
-- 생성된 포스트 ID, slug, URL(`/insights/{slug}`) 출력
-- 발행 상태 확인 (기본 `isPublished: false`)
-- 사용자에게 발행 여부를 확인한다.
-
----
+- 생성된 파일 경로, slug, URL(`/insights/{slug}`) 출력
+- 사용자에게 추가 작업 여부를 확인한다 (썸네일 생성, SEO 점검 등)
 
 ## 품질 기준 체크리스트
 
@@ -95,24 +80,17 @@ npx tsx scripts/direct-publish.ts --file scripts/data/{slug}-post.json
 - [ ] 태그 3~5개 (CANONICAL_TAGS에서 선택)
 - [ ] SEO 메타데이터 완비 (metaTitle ≤70자, metaDescription ≤170자)
 
----
-
 ## 주의사항
 
-- **`npm run db:seed` 사용 금지** — 데모 데이터가 삽입되어 프로덕션 DB를 오염시킴
-- 콘텐츠 삽입은 반드시 `scripts/direct-publish.ts`로만 수행
-- 이미지 관련 환경변수: `GEMINI_IMAGE_API_KEY`, Vercel Blob 토큰
 - 배포는 GitHub push로 자동 처리 (Vercel Git Integration), `npx vercel --prod` 직접 실행 금지
-
----
+- 콘텐츠 배포는 `content/insights/{slug}.md` 파일 Write로만 수행
 
 ## 핵심 파일 참조
 
 | 파일 | 용도 |
 |------|------|
-| `scripts/direct-publish.ts` | JSON → DB 삽입 + 이미지 생성 통합 스크립트 |
-| `src/lib/markdown-utils.ts` | `extractFirstImageUrl(content)` — 마크다운에서 첫 번째 이미지 URL 추출 (ogImage fallback용) |
-| `src/lib/ai-image.ts` | `generateAndInjectImages(content, slug, topic)` — AI 이미지 2장 생성 + 마크다운 삽입 |
+| `src/lib/content.ts` | MD 파일 기반 콘텐츠 조회 (getInsights, getInsightBySlug 등) |
 | `src/lib/constants.ts` | `CANONICAL_TAGS` 태그 목록, `POST_CATEGORIES` |
-| `src/lib/schema.ts` | `posts` 테이블 스키마, `QuizQuestion` 인터페이스 |
-| `scripts/data/*.json` | 기존 포스트 JSON 파일 예시 |
+| `src/lib/types.ts` | `Insight` 타입 정의 |
+| `scripts/generate-og.ts` | SVG 기반 og:image 생성 CLI |
+| `references/post-schema.md` | MD frontmatter 스키마 레퍼런스 |

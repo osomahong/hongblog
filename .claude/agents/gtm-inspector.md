@@ -105,4 +105,4 @@ GA4 자동 측정으로 대체 가능한 커스텀 이벤트가 있는지 확인
 ```
 
 ## 참조 문서
-- `02_content-agent/skills/content-ops/references/ga4-event-taxonomy.md`: 이상적 이벤트 분류표
+- `.claude/skills/content-ops/references/ga4-event-taxonomy.md`: 이상적 이벤트 분류표

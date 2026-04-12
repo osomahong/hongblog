@@ -51,10 +51,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: effectiveTitle,
         description: effectiveDescription,
-        robots: classData.noIndex ? { index: false, follow: false } : undefined,
         alternates: {
-            canonical: classData.canonicalUrl ||
-                `${SITE_URL}/class/${courseSlug}/${classSlug}`
+            canonical: `${SITE_URL}/class/${courseSlug}/${classSlug}`
         },
         openGraph: {
             title: effectiveTitle,

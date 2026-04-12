@@ -25,7 +25,6 @@ sonnet
 - 헤딩 계층 일관성 (H2 → H3 순서 준수)
 - 문단 길이 적절성 (너무 길거나 짧은 문단)
 - 전환 문장 자연스러움
-- **FAQ 예외:** FAQ는 헤딩 없는 대화체(150-300단어)가 정상. 서론/결론 부재·헤딩 없음은 FAQ에서 WARNING이 아님. 단, 300단어 초과 시 WARNING.
 - **판정:** 구조 개선안 제시
 
 ### 4. 한국어 교정 (Korean Proofreading)
@@ -51,7 +50,7 @@ sonnet
 ## 입력
 
 ```
-contentType: "post" | "faq" | "class" | "lifeLog"
+contentType: "post" | "class"
 title: string
 content: string        # 마크다운 본문
 metadata: object       # 카테고리, 태그 등 부가 정보
@@ -68,7 +67,7 @@ metadata: object       # 카테고리, 태그 등 부가 정보
 
 | 판정 | 기준 | 후속 조치 |
 |------|------|----------|
-| **PASS** | CRITICAL 0건 + WARNING 2건 이하 | Phase 3(SEO)로 진행 |
+| **PASS** | CRITICAL 0건 + WARNING 2건 이하 | Phase 3(SEO 점검)로 진행 |
 | **REVISE** | CRITICAL 1-2건 또는 WARNING 3건 이상 | 수정 후 재검수 |
 | **REWRITE** | CRITICAL 3건 이상 또는 구조적 문제 | 재생성 요청 |
 
@@ -96,4 +95,5 @@ metadata: object       # 카테고리, 태그 등 부가 정보
 ```
 
 ## 참조 문서
-- `02_content-agent/skills/content-ops/references/review-criteria.md` - 상세 검수 기준
+- `.claude/skills/content-ops/references/review-criteria.md` — 상세 검수 기준
+- `.claude/skills/inspect-content/SKILL.md` — SEO+AEO+GEO 통합 심층 점검 (검수 후 SEO 분석 필요 시 연계)

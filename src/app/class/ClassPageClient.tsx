@@ -130,15 +130,6 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                 }`}>
                                 {/* Course Header */}
                                 <NeoCardHeader>
-                                    {course.thumbnailUrl && (
-                                        <div className="mb-3 sm:mb-4 -mx-4 sm:-mx-6 -mt-4 sm:-mt-6">
-                                            <img
-                                                src={course.thumbnailUrl}
-                                                alt={course.title}
-                                                className="w-full h-32 sm:h-40 object-cover border-b-2 border-black"
-                                            />
-                                        </div>
-                                    )}
                                     <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap">
                                         <NeoBadge
                                             variant={

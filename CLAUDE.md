@@ -10,58 +10,45 @@ npm run dev          # Next.js dev server (localhost:3000)
 npm run build        # Production build (use to verify changes)
 npm run lint         # ESLint
 
-# Database (Drizzle ORM + Neon PostgreSQL)
-npm run db:generate  # Generate migration files from schema changes
-npm run db:migrate   # Run pending migrations
-npm run db:push      # Push schema directly (skip migration files)
-npm run db:studio    # Open Drizzle Studio GUI
-
-# Content publishing (CLI)
-npx tsx scripts/publish-content.ts --type post --file scripts/data/my-post.json
-npx tsx scripts/publish-content.ts --type faq < payload.json
+# OG Image Generation
+npx tsx scripts/generate-og.ts --slug <slug>   # 단일 썸네일 생성
+npx tsx scripts/generate-og.ts --all           # 전체 썸네일 생성
 ```
 
 ## Architecture
 
-**Next.js 16 App Router** full-stack blog with AI-augmented content pipeline. Korean-first content, Neo-Brutalism design system, deployed on Vercel.
+**Next.js 16 App Router** SSG 블로그. MD 파일 기반 콘텐츠, Neo-Brutalism 디자인, Vercel 배포.
 
 ### Core layers
 
 ```
 src/
-├── app/                    # Routes (insights, faq, class, logs, series, tags, category)
-├── features/{type}/        # Feature modules: service.ts (CRUD), schema.ts (Zod), components/
-│   ├── posts/              # Blog insights (MARKETING | AI_TECH | DATA)
-│   ├── faqs/               # Q&A content
-│   ├── classes/            # Hierarchical courses (course → class units)
-│   ├── logs/               # LifeLogs (맛집, 강의, 문화생활, 여행, 일상)
-│   └── series/             # Ordered post collections
+├── app/                    # Routes (insights, class, tags, about)
 ├── lib/
-│   ├── schema.ts           # Drizzle table definitions (single source of truth)
-│   ├── queries.ts          # 40+ read-only DB query functions
-│   ├── db.ts               # Drizzle client (auto-detects CLI vs serverless context)
-│   ├── ai.ts               # Gemini content generation (blog, FAQ, SEO, tags)
-│   ├── ai-image.ts         # Gemini image generation + Vercel Blob upload
+│   ├── content.ts          # MD 파일 기반 콘텐츠 조회 (getInsights, getClasses, getCourses 등)
+│   ├── types.ts            # TypeScript 타입 정의 (Insight, ClassItem, Course 등)
 │   ├── constants.ts        # Categories, canonical tags, site URL
-│   └── linkedin.ts         # LinkedIn OAuth & auto-posting
-└── components/
-    ├── neo/                # Neo-Brutalism design components (NeoCard, NeoButton, etc.)
-    ├── layout/             # Nav, Footer
-    └── ui/                 # shadcn/ui base components
+│   ├── gtm.ts              # Google Tag Manager (sendGAEvent)
+│   └── utils.ts            # cn(), absoluteUrl(), formatDate()
+├── components/
+│   ├── neo/                # Neo-Brutalism 디자인 컴포넌트 (NeoCard, NeoButton 등)
+│   └── layout/             # Nav, Footer
+├── middleware.ts            # Legacy URL 리다이렉트
+content/
+├── insights/               # 블로그 인사이트 포스트 (MD 파일)
+├── classes/                # 용어 정의 + 상세 설명 (MD 파일)
+└── courses/                # 강의 코스 컨테이너 (MD 파일)
+scripts/
+├── generate-og.ts          # SVG 기반 og:image 생성 CLI
+└── lib/                    # OG 이미지 관련 라이브러리
 ```
 
 ### Key patterns
 
-- **Service layer**: Each content type exposes `{type}Service.create()`, `.getBySlug()`, `.update()`, `.togglePublished()` in `features/{type}/service.ts`
-- **Validation**: Zod schemas generated via `drizzle-zod` in each feature's `schema.ts`
-- **DB client**: Lazy-initialized Proxy in `db.ts` — uses WebSocket pool for CLI scripts, HTTP for serverless
+- **Content layer**: `src/lib/content.ts`가 `content/*.md` 파일을 gray-matter로 파싱하여 타입 안전한 데이터 반환
+- **SSG**: 모든 페이지가 `generateStaticParams()`로 빌드 시 정적 생성
+- **콘텐츠 배포**: MD 파일 Write → git push → Vercel Git Integration 자동 배포
 - **Path alias**: `@/*` maps to `src/*`
-
-### Database (Neon PostgreSQL + Drizzle)
-
-Schema in `src/lib/schema.ts`. Key tables: `posts`, `faqs`, `classes`, `courses`, `lifeLogs`, `series`, `tags` (with junction tables `postsToTags`, `faqsToTags`, etc.), `contentDailyStats`, `seoDocuments`.
-
-Environment variables: `DATABASE_URL` (pooled), `DIRECT_URL` (for migrations).
 
 ### Design system: Neo-Brutalism
 
@@ -75,14 +62,17 @@ Environment variables: `DATABASE_URL` (pooled), `DIRECT_URL` (for migrations).
 
 ### Content agent system
 
-Orchestrator skill at `02_content-agent/skills/content-ops/SKILL.md`. Sub-agents in `.claude/agents/`:
+Orchestrator skill at `.claude/skills/content-ops/SKILL.md`. Sub-agents in `.claude/agents/`:
 
 | Agent | Role |
 |-------|------|
 | `topic-suggester` | Content gap analysis, topic recommendations |
 | `content-creator` | Generate content matching existing style |
 | `content-reviewer` | Fact-check, grammar, structure validation |
-| `seo-manager` | SEO score analysis and field optimization |
+| `seo-manager` | SEO field optimization |
+| `content-inspector` | SEO+AEO+GEO 통합 심층 점검 |
+| `ga4-analyst` | GA4 데이터 분석 |
+| `gtm-inspector` | GTM/GA4 설정 코드 감사 |
 
 Pipeline: topic suggestion → content creation → review → SEO → deploy (with user approval gates at each phase).
 
@@ -91,12 +81,5 @@ Pipeline: topic suggestion → content creation → review → SEO → deploy (w
 - **Korean content**: 국립국어원 맞춤법, 외래어 표기법 준수. 기술 용어는 업계 통용 표기 우선.
 - **Tags**: Must use canonical tags from `CANONICAL_TAGS` in `constants.ts`. No free-form tags.
 - **Slugs**: Kebab-case English. Duplicate slugs get `-2`, `-3` suffix.
-- **Loading UI**: `LoadingUI` component used by all `loading.tsx` files. Shows after 200ms delay to prevent flash.
 - **React Compiler**: Enabled in `next.config.ts`. No manual `useMemo`/`useCallback` needed for rendering optimization.
 - **Image handling**: Use native `<img>` in client components for lightweight loading; `next/image` in server components.
-
-### LinkedIn Auto-Posting (`src/lib/linkedin.ts`)
-
-- **little Text Format 이스케이프 필수**: LinkedIn Posts API의 `commentary` 필드는 "little Text Format"이라는 자체 마크업을 사용한다. `()`, `[]`, `{}`, `@`, `#`, `*`, `_`, `~`, `<>`, `|`, `\` 문자가 예약되어 있으며, 이스케이프 없이 전송하면 **해당 문자 이후 텍스트가 전부 잘린다**. `escapeLinkedInLittleText()` 함수가 이를 처리하므로 절대 제거하거나 우회하지 말 것.
-- **Content-Type**: `application/json` 만 사용. `charset=UTF-8` 붙이지 말 것 (LinkedIn API 비표준).
-- **LinkedIn-Version**: 헤더 값을 `YYYYMM` 형식으로 최신 유지 (현재 `202602`).

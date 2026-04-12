@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",
+    "@resvg/resvg-js": "^2.6.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gray-matter": "^4.0.3",
@@ -24,10 +25,7 @@
     "reading-time": "^1.5.0",
     "rehype-raw": "^7.0.0",
     "remark-gfm": "^4.0.1",
-    "remotion": "^4.0.438",
-    "tailwind-merge": "^3.4.0",
-    "three": "^0.183.2",
-    "zod": "^4.3.5"
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -35,7 +33,6 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "@types/three": "^0.183.1",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",

@@ -6,25 +6,18 @@
 ## 모델
 haiku
 
-## 분석 대상
+## 데이터 수집
 
-### 데이터 수집 (재사용 함수)
+| 데이터 | 접근 방법 |
+|--------|----------|
+| Post 현황 (카테고리별 분포, 최근 작성일) | `Glob "content/insights/*.md"` + `Read` frontmatter |
+| Class 현황 | `Glob "content/classes/*.md"` + `Read` frontmatter |
+| Course 완성도 | `Glob "content/courses/*.md"` + `Read` frontmatter |
+| 태그 커버리지 | 각 MD 파일 frontmatter의 `tags` 필드 집계 |
+| 카테고리 불균형 | 각 MD 파일 frontmatter의 `category` 필드 집계 |
+| 시리즈 연속성 | 각 MD 파일 frontmatter의 `seriesSlug`, `seriesOrder` 필드 확인 |
 
-| 함수 | 위치 | 분석 대상 |
-|------|------|----------|
-| `getPublishedPosts()` | `src/lib/queries.ts` | 카테고리별 분포, 최근 작성일 |
-| `getPublishedFaqs()` | `src/lib/queries.ts` | FAQ 커버리지 |
-| `getPublishedClasses()` | `src/lib/queries.ts` | 클래스 현황 |
-| `getPublishedCourses()` | `src/lib/queries.ts` | 코스 완성도 |
-| `getAllTags()` | `src/lib/queries.ts` | 태그 커버리지 |
-| `getCategoryStats()` | `src/lib/queries.ts` | 카테고리 불균형 감지 |
-| `getAllSeries()` | `src/lib/queries.ts` | 미완성 시리즈 감지 |
-| `getPublishedLogs()` | `src/lib/queries.ts` | 라이프로그 현황 |
-
-### AI 함수
-| 함수 | 위치 | 용도 |
-|------|------|------|
-| `analyzeContentGaps()` | `src/lib/ai.ts` | AI 기반 콘텐츠 갭 분석 + 토픽 제안 |
+에이전트가 LLM reasoning으로 수집된 데이터를 직접 분석하여 콘텐츠 갭을 식별한다.
 
 ## 분석 관점
 
@@ -46,22 +39,18 @@ haiku
 - 미완결 시리즈 감지
 - 최근 업데이트 없는 시리즈 = 다음 편 제안
 
-### 5. Post → FAQ 파생
-- 기존 Post 내용에서 FAQ로 분리 가능한 주제 탐색
-- 독자가 자주 궁금해할 하위 질문 추론
-
 ## 입력
 
 ```
-없음 (DB에서 자동 수집)
+없음 (MD 파일에서 자동 수집)
 ```
 
 ## 워크플로우
 
-1. 위 분석 대상 함수들로 전체 콘텐츠 현황 수집
-2. 태그별 콘텐츠 수 집계 (tag count 계산)
-3. `analyzeContentGaps()`에 정리된 데이터 전달
-4. AI 결과 + 규칙 기반 분석 결과 종합
+1. `Glob`으로 `content/insights/*.md`, `content/classes/*.md`, `content/courses/*.md` 파일 목록 수집
+2. 각 파일의 frontmatter를 `Read`로 읽어 카테고리, 태그, seriesSlug 등 추출
+3. 태그별 콘텐츠 수, 카테고리별 분포, 코스별 클래스 수 집계
+4. 에이전트가 직접 갭 분석 수행 (LLM reasoning)
 5. 우선순위별 정렬 후 제안
 
 ## 출력 형식
@@ -71,17 +60,15 @@ haiku
 
 ### 현황 요약
 - Posts: N건 (MARKETING: N / AI_TECH: N / DATA: N)
-- FAQs: N건
 - Classes: N건 (N개 코스)
-- Series: N개 (완결 N / 진행중 N)
 
 ### 제안 목록
 
 | 우선순위 | 타입 | 제안 제목 | 카테고리 | 근거 | 태그 |
 |----------|------|----------|---------|------|------|
 | 🔴 HIGH | post | "AI 마케팅 자동화 도입 가이드" | MARKETING | 카테고리 불균형 (AI_TECH 대비 50% 적음) | AI, 마케팅, 자동화 |
-| 🟡 MEDIUM | faq | "RAG 파이프라인 설계 시 주의점은?" | AI_TECH | Post "RAG 입문 가이드"에서 파생 | RAG, LLM |
-| 🟢 LOW | class | "Attribution Model" | MARKETING | 마케팅 코스 보강 (현재 3개 클래스) | 어트리뷰션, 분석 |
+| 🟡 MEDIUM | class | "Attribution Model" | MARKETING | 마케팅 코스 보강 (현재 3개 클래스) | 어트리뷰션, 분석 |
+| 🟢 LOW | post | "BigQuery 입문 가이드" | DATA | 태그 커버리지 확장 (BigQuery 1건) | BigQuery, 데이터 분석 |
 
 ### 추천 실행 순서
 1. [HIGH] ...
@@ -91,5 +78,7 @@ haiku
 
 ## 제약사항
 - 최소 5개, 최대 10개 토픽 제안
-- 각 콘텐츠 타입에서 최소 1개 이상 제안
+- 각 지원 타입(post, class)에서 최소 1개 이상 제안
 - 이미 존재하는 주제와 중복되지 않도록 검증
+- `src/lib/ai.ts`, `src/lib/queries.ts` 등 삭제된 경로를 참조하지 않는다
+- `analyzeContentGaps()` 등 삭제된 함수를 호출하지 않는다

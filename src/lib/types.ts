@@ -81,8 +81,6 @@ export interface PostWithTags {
   ogImage: string | null;
   ogTitle: string | null;
   ogDescription: string | null;
-  canonicalUrl: string | null;
-  noIndex: boolean | null;
   highlights: unknown;
   quiz: Quiz[] | null;
   seriesId: number | null;
@@ -106,13 +104,10 @@ export interface CourseWithClasses {
   description: string;
   category: string;
   difficulty: string;
-  thumbnailUrl: string | null;
   createdAt: Date;
   classCount: number;
-  ogImage: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
-  canonicalUrl: string | null;
   classes: { id: number; slug: string; term: string; definition: string }[];
 }
 
@@ -133,8 +128,6 @@ export interface ClassWithMeta {
   ogImage: string | null;
   metaTitle: string | null;
   metaDescription: string | null;
-  canonicalUrl: string | null;
-  noIndex: boolean | null;
   quiz: Quiz[] | null;
   courseInfo: { id: number; slug: string } | null;
 }
@@ -152,12 +145,6 @@ export interface NextPrevResult {
   totalCount: number;
 }
 
-export interface SeriesNavResult {
-  prev: { id: number; slug: string; title: string } | null;
-  next: { id: number; slug: string; title: string } | null;
-  currentIndex: number;
-  totalCount: number;
-}
 
 export interface TagWithId {
   id: number;
