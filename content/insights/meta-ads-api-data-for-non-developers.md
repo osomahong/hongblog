@@ -1,7 +1,10 @@
 ---
 slug: meta-ads-api-data-for-non-developers
 title: 비개발자도 쓰기 편하게 정리한 Meta Ads API 데이터
-excerpt: Meta(Facebook/Instagram) 광고 데이터를 API로 직접 가져오고 싶은 마케터를 위한 가이드입니다. 앱 생성부터 시스템 유저 토큰 발급, Insights API 필드 매핑, 전환 데이터 파싱까지 — 비개발자가 AI에게 코드를 맡기기 전에 알아야 할 핵심을 정리했습니다.
+excerpt: >-
+  Meta(Facebook/Instagram) 광고 데이터를 API로 직접 가져오고 싶은 마케터를 위한 가이드입니다. 앱 생성부터 시스템 유저
+  토큰 발급, Insights API 필드 매핑, 전환 데이터 파싱까지 — 비개발자가 AI에게 코드를 맡기기 전에 알아야 할 핵심을
+  정리했습니다.
 category: MARKETING
 tags:
   - Meta 광고
@@ -13,7 +16,7 @@ publishedAt: '2026-02-24T08:29:43.724Z'
 highlights:
   - Meta API의 clicks에는 좋아요·공유까지 포함됩니다 — 웹사이트 유입은 반드시 inline_link_clicks를 사용하세요
   - 전환 데이터가 단일 숫자가 아닌 actions 배열로 반환되는 Meta API의 구조와 파싱 방법
-  - 시스템 유저 토큰 발급부터 Insights API 호출, CSV 저장까지 전체 Python 코드 예시
+  - '시스템 유저 토큰 발급부터 Insights API 호출, CSV 저장까지 전체 Python 코드 예시'
 quiz:
   - options:
       - clicks — 광고에 대한 모든 클릭을 집계하는 표준 지표
@@ -21,14 +24,22 @@ quiz:
       - outbound_clicks — 외부 URL로 이동하는 클릭을 집계하는 지표
       - link_click — actions 배열 내의 링크 클릭 action_type
     question: Meta Ads API에서 웹사이트 방문 클릭수를 정확히 측정하려면 어떤 필드를 사용해야 할까요?
-    explanation: Meta의 clicks 필드에는 좋아요, 공유, 댓글, 프로필 방문 등 모든 클릭이 포함되어 있어 웹사이트 유입 측정에 적합하지 않습니다. inline_link_clicks가 랜딩페이지로 이동하는 클릭만 집계하므로, 구글 Ads의 clicks와 동일한 비교 기준으로 사용해야 합니다.
+    explanation: >-
+      Meta의 clicks 필드에는 좋아요, 공유, 댓글, 프로필 방문 등 모든 클릭이 포함되어 있어 웹사이트 유입 측정에 적합하지
+      않습니다. inline_link_clicks가 랜딩페이지로 이동하는 클릭만 집계하므로, 구글 Ads의 clicks와 동일한 비교
+      기준으로 사용해야 합니다.
     correctIndex: 1
 seriesSlug: digitalmarketing
 seriesOrder: 8
 metaTitle: 비개발자를 위한 Meta Ads API 가이드 — 필드 매핑부터 코드 예시까지
-metaDescription: Meta Marketing API 접근 방법, Insights 필드 매핑, 전환 데이터 파싱, Python 코드 예시까지. 비개발자 마케터를 위한 Meta Ads API 실전 가이드입니다.
+metaDescription: >-
+  Meta Marketing API 접근 방법, Insights 필드 매핑, 전환 데이터 파싱, Python 코드 예시까지. 비개발자 마케터를
+  위한 Meta Ads API 실전 가이드입니다.
 ogTitle: 비개발자도 쓰기 편하게 정리한 Meta Ads API 데이터
-ogDescription: Meta Marketing API 접근부터 Insights 필드 매핑, 전환 데이터 파싱, 코드 예시까지. 마케터가 알아야 할 핵심을 정리했습니다.
+ogDescription: >-
+  Meta Marketing API 접근부터 Insights 필드 매핑, 전환 데이터 파싱, 코드 예시까지. 마케터가 알아야 할 핵심을
+  정리했습니다.
+ogImage: /og/meta-ads-api-data-for-non-developers.png
 ---
 
 ## Meta 광고 데이터, 왜 API로 가져와야 할까요

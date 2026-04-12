@@ -1,7 +1,9 @@
 ---
 slug: what-is-json-and-data-structures
 term: JSON과 데이터 구조 (JSON & Data Structures)
-definition: JSON은 데이터를 주고받을 때 가장 널리 쓰이는 텍스트 형식이고, 데이터 구조는 정보를 담는 그릇의 모양입니다. AI에게 원하는 결과물의 형태를 알려줄 때 핵심이 되는 개념입니다.
+definition: >-
+  JSON은 데이터를 주고받을 때 가장 널리 쓰이는 텍스트 형식이고, 데이터 구조는 정보를 담는 그릇의 모양입니다. AI에게 원하는 결과물의
+  형태를 알려줄 때 핵심이 되는 개념입니다.
 category: AI_TECH
 tags:
   - 바이브코딩
@@ -27,10 +29,16 @@ quiz:
       - '{ "name": "홍승협", "age": 30 }'
       - '{ ''name'': ''홍승협'', ''age'': 30 }'
     question: 다음 JSON 중 올바른 형식은 무엇일까요?
-    explanation: JSON은 세 가지 규칙이 엄격합니다. (1) 키는 반드시 큰따옴표로 감싸야 합니다. (2) 문자열도 큰따옴표만 허용됩니다 (작은따옴표 불가). (3) 마지막 항목 뒤에 쉼표(trailing comma)를 넣으면 안 됩니다. 세 번째 보기만 이 규칙을 모두 충족합니다.
+    explanation: >-
+      JSON은 세 가지 규칙이 엄격합니다. (1) 키는 반드시 큰따옴표로 감싸야 합니다. (2) 문자열도 큰따옴표만 허용됩니다
+      (작은따옴표 불가). (3) 마지막 항목 뒤에 쉼표(trailing comma)를 넣으면 안 됩니다. 세 번째 보기만 이 규칙을 모두
+      충족합니다.
     correctIndex: 2
 metaTitle: JSON과 데이터 구조 (JSON & Data Structures)
-metaDescription: JSON은 데이터를 주고받을 때 가장 널리 쓰이는 텍스트 형식이고, 데이터 구조는 정보를 담는 그릇의 모양입니다. AI에게 원하는 결과물의 형태를 알려줄 때 핵심이 되는 개념이고 JSON은 시스템 간 데이터 교환의 표준 형식입니다.
+metaDescription: >-
+  JSON은 데이터를 주고받을 때 가장 널리 쓰이는 텍스트 형식이고, 데이터 구조는 정보를 담는 그릇의 모양입니다. AI에게 원하는 결과물의
+  형태를 알려줄 때 핵심이 되는 개념이고 JSON은 시스템 간 데이터 교환의 표준 형식입니다.
+ogImage: /og/what-is-json-and-data-structures.png
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

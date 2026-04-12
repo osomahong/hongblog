@@ -1,7 +1,9 @@
 ---
 slug: claude-code-custom-skill-3-patterns
 title: Claude Code 커뮤니티에서 찾은 커스텀 Skill 세 가지 패턴
-excerpt: Claude Code의 핵심은 코드 생성이 아니라 Skill 시스템입니다. TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북까지 — 전 세계 커뮤니티에서 실제로 쓰이는 3가지 커스텀 Skill 패턴을 정리했습니다.
+excerpt: >-
+  Claude Code의 핵심은 코드 생성이 아니라 Skill 시스템입니다. TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북까지 — 전
+  세계 커뮤니티에서 실제로 쓰이는 3가지 커스텀 Skill 패턴을 정리했습니다.
 category: AI_TECH
 tags:
   - AI
@@ -10,17 +12,23 @@ tags:
 publishedAt: '2026-02-25T15:24:42.180Z'
 quiz:
   - options:
-      - 테스트 작성 에이전트와 구현 에이전트를 격리하여, 서로의 맥락이 추론을 오염시키지 않게 한다
+      - '테스트 작성 에이전트와 구현 에이전트를 격리하여, 서로의 맥락이 추론을 오염시키지 않게 한다'
       - 테스트 실행 속도를 높이기 위해 병렬로 여러 테스트를 동시에 실행한다
       - 기존 코드를 수정하지 못하게 읽기 전용 모드로 강제한다
       - 테스트 파일과 구현 파일을 자동으로 분리된 디렉토리에 생성한다
     question: 'Claude Code의 context: fork 옵션이 TDD 워크플로우에서 핵심적인 이유는 무엇인가요?'
-    explanation: 'context: fork는 스킬을 별도의 서브에이전트에서 격리 실행합니다. TDD에서 이것이 중요한 이유는, 테스트 작성자가 구현 계획을 모른 채 요구사항만 보고 테스트를 써야 하고, 구현자는 테스트만 보고 코드를 작성해야 하기 때문입니다. 맥락이 섞이면 LLM은 ''코드에 맞는 테스트''를 쓰게 되어 TDD의 의미가 사라집니다.'
+    explanation: >-
+      context: fork는 스킬을 별도의 서브에이전트에서 격리 실행합니다. TDD에서 이것이 중요한 이유는, 테스트 작성자가 구현
+      계획을 모른 채 요구사항만 보고 테스트를 써야 하고, 구현자는 테스트만 보고 코드를 작성해야 하기 때문입니다. 맥락이 섞이면 LLM은
+      '코드에 맞는 테스트'를 쓰게 되어 TDD의 의미가 사라집니다.
     correctIndex: 0
-metaTitle: Claude Code 커스텀 Skill 3가지 패턴 | TDD 강제, 팀 코드 리뷰, 런북 자동화
-metaDescription: 'Claude Code 커스텀 Skill의 실전 패턴 3가지를 분석합니다. context: fork 기반 TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북까지 커뮤니티가 검증한 방법론입니다.'
+metaTitle: 'Claude Code 커스텀 Skill 3가지 패턴 | TDD 강제, 팀 코드 리뷰, 런북 자동화'
+metaDescription: >-
+  Claude Code 커스텀 Skill의 실전 패턴 3가지를 분석합니다. context: fork 기반 TDD 강제, 팀 맞춤 코드 리뷰,
+  실행 가능한 런북까지 커뮤니티가 검증한 방법론입니다.
 ogTitle: Claude Code 커스텀 Skill의 진짜 힘 — 3가지 패턴
-ogDescription: TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북 — 커뮤니티가 검증한 커스텀 Skill 패턴을 정리했습니다.
+ogDescription: 'TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북 — 커뮤니티가 검증한 커스텀 Skill 패턴을 정리했습니다.'
+ogImage: /og/claude-code-custom-skill-3-patterns.png
 ---
 
 ## 코드 생성은 시작일 뿐입니다

@@ -1,7 +1,9 @@
 ---
 slug: what-is-selector
 term: Selector (선택자)
-definition: 웹페이지에서 특정 Element를 찾아내기 위한 '주소'나 '이름표' 같은 것입니다. CSS에서 스타일을 적용하거나, GTM에서 클릭 이벤트를 추적할 때 '이 버튼'을 지정하는 방법입니다.
+definition: >-
+  웹페이지에서 특정 Element를 찾아내기 위한 '주소'나 '이름표' 같은 것입니다. CSS에서 스타일을 적용하거나, GTM에서 클릭
+  이벤트를 추적할 때 '이 버튼'을 지정하는 방법입니다.
 category: AI_TECH
 tags:
   - CSS
@@ -25,10 +27,15 @@ quiz:
       - .btn-purchase
       - '#btn-purchase'
       - button.btn-purchase
-    question: GTM에서 '구매하기' 버튼 클릭을 추적하려고 합니다. 개발자 도구로 확인했더니 <button class="btn-purchase" id="buy-now">구매하기</button>로 되어 있습니다. GTM 트리거 설정 시 Class Selector를 사용한다면 어떻게 입력해야 할까요?
-    explanation: 'GTM의 Click Classes 필드에는 점(.) 없이 클래스 이름만 입력합니다. CSS 코드에서는 .btn-purchase로 쓰지만, GTM 트리거 설정에서는 btn-purchase만 입력하면 됩니다. #는 ID Selector에 사용되는 기호입니다.'
+    question: >-
+      GTM에서 '구매하기' 버튼 클릭을 추적하려고 합니다. 개발자 도구로 확인했더니 <button class="btn-purchase"
+      id="buy-now">구매하기</button>로 되어 있습니다. GTM 트리거 설정 시 Class Selector를 사용한다면
+      어떻게 입력해야 할까요?
+    explanation: >-
+      GTM의 Click Classes 필드에는 점(.) 없이 클래스 이름만 입력합니다. CSS 코드에서는 .btn-purchase로
+      쓰지만, GTM 트리거 설정에서는 btn-purchase만 입력하면 됩니다. #는 ID Selector에 사용되는 기호입니다.
     correctIndex: 0
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-selector-0-1770800719257.png
+ogImage: /og/what-is-selector.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

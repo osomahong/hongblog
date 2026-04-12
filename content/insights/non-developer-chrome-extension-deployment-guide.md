@@ -1,7 +1,10 @@
 ---
 slug: non-developer-chrome-extension-deployment-guide
 title: 비개발자의 크롬 확장 프로그램 배포기록 A to Z
-excerpt: AI 기반 SEO 분석 확장 프로그램 개발 및 Chrome 웹 스토어 배포 과정을 비개발자 관점에서 상세히 다룹니다. 권한 요청 소명, 원격 코드 사용 여부, 개인정보 처리방침 등 배포 과정의 핵심 팁과 해결 전략을 공유하여, 비개발자도 크롬 확장 프로그램을 배포할 수 있도록 돕습니다.
+excerpt: >-
+  AI 기반 SEO 분석 확장 프로그램 개발 및 Chrome 웹 스토어 배포 과정을 비개발자 관점에서 상세히 다룹니다. 권한 요청 소명, 원격
+  코드 사용 여부, 개인정보 처리방침 등 배포 과정의 핵심 팁과 해결 전략을 공유하여, 비개발자도 크롬 확장 프로그램을 배포할 수 있도록
+  돕습니다.
 category: AI_TECH
 tags:
   - SEO
@@ -11,15 +14,24 @@ quiz:
   - options:
       - Yes — 외부 서버와 통신하므로 원격 코드에 해당한다
       - No — API로 데이터만 주고받는 것은 원격 코드가 아니다
-      - Yes로 답하되, 보안 심사 추가 서류를 준비한다
+      - 'Yes로 답하되, 보안 심사 추가 서류를 준비한다'
       - 해당 항목을 건너뛰고 설명란에 상세 내용을 적는다
-    question: 크롬 확장 프로그램이 외부 API를 호출해서 JSON 데이터를 주고받는 경우, 심사 제출 시 '원격 코드 사용 여부' 항목에 어떻게 답해야 할까요?
-    explanation: 구글이 말하는 '원격 코드'란 외부 서버에서 실행 가능한 스크립트 파일(.js)을 다운로드하여 실행(eval)하는 보안 위협을 의미합니다. API를 통해 텍스트 데이터(JSON)만 주고받는 것은 원격 코드에 해당하지 않습니다. 여기서 Yes를 선택하면 심사가 매우 까다로워지거나 반려될 수 있습니다.
+    question: >-
+      크롬 확장 프로그램이 외부 API를 호출해서 JSON 데이터를 주고받는 경우, 심사 제출 시 '원격 코드 사용 여부' 항목에 어떻게
+      답해야 할까요?
+    explanation: >-
+      구글이 말하는 '원격 코드'란 외부 서버에서 실행 가능한 스크립트 파일(.js)을 다운로드하여 실행(eval)하는 보안 위협을
+      의미합니다. API를 통해 텍스트 데이터(JSON)만 주고받는 것은 원격 코드에 해당하지 않습니다. 여기서 Yes를 선택하면 심사가
+      매우 까다로워지거나 반려될 수 있습니다.
     correctIndex: 1
-thumbnailUrl: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1769565798268-0ijdg6.png
+thumbnailUrl: >-
+  https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1769565798268-0ijdg6.png
 metaTitle: 비개발자의 크롬 확장 프로그램 배포기록 A to Z | 준이아빠블로그
-metaDescription: AI 기반 SEO 분석 확장 프로그램 개발 및 Chrome 웹 스토어 배포 과정을 비개발자 관점에서 상세히 다룹니다. 권한 요청 소명, 원격 코드 사용 여부, 개인정보 처리방침 등 배포 과정의 핵심 팁과 해결 전략을 공유하여, 비개발자도 크롬 확장 프로그램을 배포할 수 있도록 돕습니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1769565798268-0ijdg6.png
+metaDescription: >-
+  AI 기반 SEO 분석 확장 프로그램 개발 및 Chrome 웹 스토어 배포 과정을 비개발자 관점에서 상세히 다룹니다. 권한 요청 소명, 원격
+  코드 사용 여부, 개인정보 처리방침 등 배포 과정의 핵심 팁과 해결 전략을 공유하여, 비개발자도 크롬 확장 프로그램을 배포할 수 있도록
+  돕습니다.
+ogImage: /og/non-developer-chrome-extension-deployment-guide.png
 ---
 
 ## **비개발자의 크롬 확장 프로그램 배포기록 A to Z**

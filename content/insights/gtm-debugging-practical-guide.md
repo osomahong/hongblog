@@ -1,7 +1,9 @@
 ---
 slug: gtm-debugging-practical-guide
 title: 'GTM 디버깅 실전 가이드: 태그가 안 찍힐 때 원인 찾는 법'
-excerpt: GTM에서 태그가 안 찍힐 때 원인을 빠르게 찾는 실전 가이드. Preview 모드 활용법, 5대 원인 분석, Network 탭으로 실제 전송 확인하는 방법, 그리고 실무에서 자주 겪는 디버깅 케이스까지 정리했습니다.
+excerpt: >-
+  GTM에서 태그가 안 찍힐 때 원인을 빠르게 찾는 실전 가이드. Preview 모드 활용법, 5대 원인 분석, Network 탭으로 실제
+  전송 확인하는 방법, 그리고 실무에서 자주 겪는 디버깅 케이스까지 정리했습니다.
 category: DATA
 tags:
   - GTM
@@ -12,13 +14,18 @@ quiz:
       - GTM 트리거 조건을 다시 확인한다
       - 브라우저 Network 탭에서 실제 전송 여부를 확인한다
       - GTM 컨테이너를 다시 게시한다
-    question: GTM Preview에서 태그가 'Fired'로 표시되었지만 GA4에 데이터가 안 들어올 때, 다음 단계로 확인해야 할 곳은?
-    explanation: Preview에서 Fired라고 나와도 광고 차단기나 CSP 설정 때문에 실제 서버로 요청이 전송되지 않을 수 있습니다. Network 탭에서 collect? 등의 요청이 실제로 나가는지 확인하는 것이 다음 단계입니다.
+    question: 'GTM Preview에서 태그가 ''Fired''로 표시되었지만 GA4에 데이터가 안 들어올 때, 다음 단계로 확인해야 할 곳은?'
+    explanation: >-
+      Preview에서 Fired라고 나와도 광고 차단기나 CSP 설정 때문에 실제 서버로 요청이 전송되지 않을 수 있습니다.
+      Network 탭에서 collect? 등의 요청이 실제로 나가는지 확인하는 것이 다음 단계입니다.
     correctIndex: 1
 metaTitle: 'GTM 디버깅 실전 가이드 : 태그가 안 찍힐 때 원인 찾는 법'
-metaDescription: GTM 태그가 안 찍히는 5대 원인과 해결법을 정리했습니다. Preview 모드 활용법, Network 탭으로 실제 전송 확인, SPA 대응, 전환 중복 해결까지 실무 체크리스트와 함께 안내합니다.
+metaDescription: >-
+  GTM 태그가 안 찍히는 5대 원인과 해결법을 정리했습니다. Preview 모드 활용법, Network 탭으로 실제 전송 확인, SPA
+  대응, 전환 중복 해결까지 실무 체크리스트와 함께 안내합니다.
 ogTitle: 'GTM 디버깅 실전 가이드: 태그가 안 찍힐 때 원인 찾는 법'
-ogDescription: GTM Preview부터 Network 탭까지, 태그 미작동 원인을 체계적으로 찾는 실전 디버깅 가이드입니다.
+ogDescription: 'GTM Preview부터 Network 탭까지, 태그 미작동 원인을 체계적으로 찾는 실전 디버깅 가이드입니다.'
+ogImage: /og/gtm-debugging-practical-guide.png
 ---
 
 GTM(Google Tag Manager)을 설정하고 나면 "잘 되겠지"라고 생각하기 쉽습니다. 그런데 막상 GA4에 들어가보면 데이터가 안 들어오거나, 전환 이벤트가 2번 찍히거나, 특정 페이지에서만 태그가 작동하지 않는 상황이 꽤 자주 발생합니다.

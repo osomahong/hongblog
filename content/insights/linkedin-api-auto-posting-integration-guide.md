@@ -1,7 +1,11 @@
 ---
 slug: linkedin-api-auto-posting-integration-guide
-title: 블로그 관리 페이지에서 LinkedIn에 바로 글을 올리는 기능을 만들었습니다 — LinkedIn API 연동 과정을 처음부터 끝까지 정리합니다
-excerpt: 블로그에서 AI로 LinkedIn 소개글을 생성한 뒤, 복사-붙여넣기 없이 바로 게시할 수 있도록 LinkedIn Posts API를 연동한 과정을 OAuth 인증부터 실제 게시까지 단계별로 정리했습니다.
+title: >-
+  블로그 관리 페이지에서 LinkedIn에 바로 글을 올리는 기능을 만들었습니다 — LinkedIn API 연동 과정을 처음부터 끝까지
+  정리합니다
+excerpt: >-
+  블로그에서 AI로 LinkedIn 소개글을 생성한 뒤, 복사-붙여넣기 없이 바로 게시할 수 있도록 LinkedIn Posts API를 연동한
+  과정을 OAuth 인증부터 실제 게시까지 단계별로 정리했습니다.
 category: AI_TECH
 tags:
   - API
@@ -14,11 +18,15 @@ quiz:
       - DB에 저장된 기존 토큰을 확인하고 유효하면 그대로 사용한다
       - LinkedIn Developer App에서 토큰을 수동으로 복사해 온다
     question: LinkedIn OAuth 2.0 인증에서 액세스 토큰을 발급받기 위해 가장 먼저 해야 하는 단계는 무엇인가요?
-    explanation: OAuth 2.0의 3-legged 인증 흐름에서는 반드시 사용자가 먼저 LinkedIn 인증 페이지에서 직접 권한을 승인해야 합니다. 승인 후 받은 인증 코드(authorization code)를 서버에서 액세스 토큰으로 교환하는 것이 올바른 순서입니다.
+    explanation: >-
+      OAuth 2.0의 3-legged 인증 흐름에서는 반드시 사용자가 먼저 LinkedIn 인증 페이지에서 직접 권한을 승인해야
+      합니다. 승인 후 받은 인증 코드(authorization code)를 서버에서 액세스 토큰으로 교환하는 것이 올바른 순서입니다.
     correctIndex: 0
 metaTitle: LinkedIn API 연동으로 자동 포스팅 만들기 | OAuth부터 게시까지
-metaDescription: LinkedIn Posts API를 Next.js 블로그에 연동하여 관리 페이지에서 바로 게시하는 기능을 만든 과정을 OAuth 인증, 토큰 관리, API 호출까지 단계별로 정리했습니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/linkedin-api-auto-posting-integration-guide-0-1771426381790.png
+metaDescription: >-
+  LinkedIn Posts API를 Next.js 블로그에 연동하여 관리 페이지에서 바로 게시하는 기능을 만든 과정을 OAuth 인증, 토큰
+  관리, API 호출까지 단계별로 정리했습니다.
+ogImage: /og/linkedin-api-auto-posting-integration-guide.png
 ogTitle: LinkedIn에 자동으로 글 올리기 — API 연동 전 과정 공개
 ogDescription: 복사-붙여넣기 없이 블로그 관리 페이지에서 LinkedIn에 바로 게시하는 기능을 만든 과정을 정리했습니다.
 ---

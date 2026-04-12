@@ -1,7 +1,9 @@
 ---
 slug: what-is-web-crawling
 term: 웹 크롤링 (Web Crawling)
-definition: 웹사이트의 정보를 자동으로 수집하는 기술입니다. 사람이 일일이 복사-붙여넣기 할 필요 없이, 프로그램이 웹페이지를 돌아다니며 원하는 데이터를 모아줍니다.
+definition: >-
+  웹사이트의 정보를 자동으로 수집하는 기술입니다. 사람이 일일이 복사-붙여넣기 할 필요 없이, 프로그램이 웹페이지를 돌아다니며 원하는 데이터를
+  모아줍니다.
 category: AI_TECH
 tags:
   - AI
@@ -24,12 +26,16 @@ quiz:
       - API 방식 — 모든 사이트는 API를 제공하므로 API로 받으면 된다
       - 크롤링은 불가능하므로 수동으로 복사해야 한다
     question: 쿠팡이나 인스타그램처럼 스크롤을 내려야 상품이 더 나타나는 사이트에서 데이터를 수집하려면 어떤 크롤링 방식을 사용해야 할까요?
-    explanation: 쿠팡, 인스타그램 같은 사이트는 JavaScript로 콘텐츠를 동적으로 불러옵니다. 단순히 HTML을 받아오면 빈 페이지만 보이므로, 헤드리스 브라우저(Puppeteer, Playwright 등)를 사용해 JavaScript를 실행시켜야 실제 데이터를 수집할 수 있습니다.
+    explanation: >-
+      쿠팡, 인스타그램 같은 사이트는 JavaScript로 콘텐츠를 동적으로 불러옵니다. 단순히 HTML을 받아오면 빈 페이지만 보이므로,
+      헤드리스 브라우저(Puppeteer, Playwright 등)를 사용해 JavaScript를 실행시켜야 실제 데이터를 수집할 수
+      있습니다.
     correctIndex: 0
 metaTitle: 웹 크롤링이란? 비개발자를 위한 쉬운 설명
-metaDescription: 웹 크롤링의 개념, 작동 방식(정적/동적/API), 법적 주의사항, 비개발자 활용법까지. 크롤링을 처음 접하는 분을 위해 쉽게 설명합니다.
+metaDescription: '웹 크롤링의 개념, 작동 방식(정적/동적/API), 법적 주의사항, 비개발자 활용법까지. 크롤링을 처음 접하는 분을 위해 쉽게 설명합니다.'
 ogTitle: 웹 크롤링이란? — 비개발자를 위한 쉬운 설명
-ogDescription: 크롤링의 개념부터 정적·동적·API 방식의 차이, 법적 주의사항, 비개발자 활용법까지 쉽게 설명합니다.
+ogDescription: '크롤링의 개념부터 정적·동적·API 방식의 차이, 법적 주의사항, 비개발자 활용법까지 쉽게 설명합니다.'
+ogImage: /og/what-is-web-crawling.png
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

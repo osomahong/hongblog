@@ -1,7 +1,9 @@
 ---
 slug: whatiscss
 term: ' CSS'
-definition: '웹 디자인의 비밀, CSS! 웹사이트를 매력적으로 바꾸고 싶으신가요? CSS가 바로 그 해답입니다. 폰트, 색상, 레이아웃까지, CSS를 통해 웹사이트의 디자인을 완벽하게 제어해보세요. 지금 바로 CSS의 매력에 빠져보세요! '
+definition: >-
+  웹 디자인의 비밀, CSS! 웹사이트를 매력적으로 바꾸고 싶으신가요? CSS가 바로 그 해답입니다. 폰트, 색상, 레이아웃까지, CSS를
+  통해 웹사이트의 디자인을 완벽하게 제어해보세요. 지금 바로 CSS의 매력에 빠져보세요! 
 category: AI_TECH
 tags:
   - CSS
@@ -13,14 +15,18 @@ quiz:
   - options:
       - 웹페이지에 버튼 클릭 같은 동작을 추가한다
       - 웹페이지의 구조(뼈대)를 만든다
-      - 웹페이지의 색상, 크기, 배치 등 디자인을 담당한다
+      - '웹페이지의 색상, 크기, 배치 등 디자인을 담당한다'
       - 서버에서 데이터를 저장하고 불러온다
     question: CSS의 역할로 올바른 것은?
-    explanation: CSS는 HTML로 만든 뼈대 위에 색상, 글꼴, 크기, 배치 등 디자인 규칙을 입히는 스타일링 언어입니다. 구조는 HTML, 동작은 JavaScript가 담당합니다.
+    explanation: >-
+      CSS는 HTML로 만든 뼈대 위에 색상, 글꼴, 크기, 배치 등 디자인 규칙을 입히는 스타일링 언어입니다. 구조는 HTML, 동작은
+      JavaScript가 담당합니다.
     correctIndex: 2
 metaTitle: ' CSS | 디지털 환경에 적응하기 위한 디지털 기초 | 준이아빠블로그'
-metaDescription: '웹 디자인의 비밀, CSS! 웹사이트를 매력적으로 바꾸고 싶으신가요? CSS가 바로 그 해답입니다. 폰트, 색상, 레이아웃까지, CSS를 통해 웹사이트의 디자인을 완벽하게 제어해보세요. 지금 바로 CSS의 매력에 빠져보세요! '
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/whatiscss-0-1770799353896.png
+metaDescription: >-
+  웹 디자인의 비밀, CSS! 웹사이트를 매력적으로 바꾸고 싶으신가요? CSS가 바로 그 해답입니다. 폰트, 색상, 레이아웃까지, CSS를
+  통해 웹사이트의 디자인을 완벽하게 제어해보세요. 지금 바로 CSS의 매력에 빠져보세요! 
+ogImage: /og/whatiscss.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

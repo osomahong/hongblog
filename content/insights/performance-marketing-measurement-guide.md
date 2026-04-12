@@ -1,7 +1,9 @@
 ---
 slug: performance-marketing-measurement-guide
 title: 퍼포먼스 마케팅 광고 캠페인 성과를 측정하는 5가지 방법
-excerpt: 광고를 돌렸는데 이 숫자가 잘 나온 건지 모르겠다면, 이 글이 기준을 잡아드립니다. CTR, CPC, CVR, CPA, ROAS 5가지 지표의 의미와 업종별 벤치마크 데이터, SA와 DA의 구조적 차이까지 초보자 눈높이로 정리했습니다.
+excerpt: >-
+  광고를 돌렸는데 이 숫자가 잘 나온 건지 모르겠다면, 이 글이 기준을 잡아드립니다. CTR, CPC, CVR, CPA, ROAS 5가지
+  지표의 의미와 업종별 벤치마크 데이터, SA와 DA의 구조적 차이까지 초보자 눈높이로 정리했습니다.
 category: MARKETING
 tags:
   - CTR
@@ -11,18 +13,25 @@ tags:
   - 퍼포먼스마케팅
 quiz:
   - options:
-      - 상세페이지(랜딩페이지) — CTR이 높다는 건 소재가 관심을 끌고 있다는 뜻이므로, 클릭 후 도착하는 페이지를 점검해야 한다
+      - '상세페이지(랜딩페이지) — CTR이 높다는 건 소재가 관심을 끌고 있다는 뜻이므로, 클릭 후 도착하는 페이지를 점검해야 한다'
       - 광고 소재 — 전환이 안 되니 소재를 다시 만들어야 한다
       - 광고 예산 — 예산을 늘려서 더 많은 사람을 유입시켜야 한다
     question: 인스타그램 광고의 CTR(클릭률)은 높은데 CVR(전환율)이 낮습니다. 가장 먼저 점검해야 할 곳은 어디일까요?
-    explanation: CTR이 높다는 것은 광고 소재가 사람들의 관심을 끌고 있다는 뜻입니다. CVR이 낮다면 문제는 소재가 아니라, 클릭 후 도착하는 상세페이지에 있습니다. 가격, 후기, 구매 버튼 배치 등을 점검하는 것이 우선입니다.
+    explanation: >-
+      CTR이 높다는 것은 광고 소재가 사람들의 관심을 끌고 있다는 뜻입니다. CVR이 낮다면 문제는 소재가 아니라, 클릭 후 도착하는
+      상세페이지에 있습니다. 가격, 후기, 구매 버튼 배치 등을 점검하는 것이 우선입니다.
     correctIndex: 0
-thumbnailUrl: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/performance-marketing-measurement-guide-1-1772159887558.png
+thumbnailUrl: >-
+  https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/performance-marketing-measurement-guide-1-1772159887558.png
 metaTitle: 퍼포먼스 마케팅 광고 캠페인 성과를 측정하는 5가지 방법
-metaDescription: 광고를 돌렸는데 이 숫자가 잘 나온 건지 모르겠다면, 이 글이 기준을 잡아드립니다. CTR, CPC, CVR, CPA, ROAS 5가지 지표의 의미와 업종별 벤치마크 데이터, SA와 DA의 구조적 차이까지 초보자 눈높이로 정리했습니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/performance-marketing-measurement-guide-1-1772159887558.png
+metaDescription: >-
+  광고를 돌렸는데 이 숫자가 잘 나온 건지 모르겠다면, 이 글이 기준을 잡아드립니다. CTR, CPC, CVR, CPA, ROAS 5가지
+  지표의 의미와 업종별 벤치마크 데이터, SA와 DA의 구조적 차이까지 초보자 눈높이로 정리했습니다.
+ogImage: /og/performance-marketing-measurement-guide.png
 ogTitle: 퍼포먼스 마케팅 성과 측정법 — CTR·CPC·CVR·CPA·ROAS 완전 정리
-ogDescription: 클릭은 소재 반응, 구매는 상세페이지 반응. 이 차이를 아는 것이 성과 측정의 출발점입니다. 5가지 핵심 지표와 업종별 벤치마크 데이터를 정리했습니다.
+ogDescription: >-
+  클릭은 소재 반응, 구매는 상세페이지 반응. 이 차이를 아는 것이 성과 측정의 출발점입니다. 5가지 핵심 지표와 업종별 벤치마크 데이터를
+  정리했습니다.
 ---
 
 퍼포먼스 마케팅 성과는 CTR(클릭률), CPC(클릭당 비용), CVR(전환율), CPA(전환당 비용), ROAS(광고비 대비 매출) 5가지 지표로 측정합니다. 클릭은 광고 소재에 대한 반응이고 구매는 상세페이지에 대한 반응이므로, 이 둘을 구분해서 보는 것이 성과 측정의 출발점입니다.

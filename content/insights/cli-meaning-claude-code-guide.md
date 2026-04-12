@@ -1,7 +1,9 @@
 ---
 slug: cli-meaning-claude-code-guide
 title: 'CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?'
-excerpt: CLI는 영화 속 해커 화면처럼 보이지만, 실제로는 텍스트로 대화하는 창일 뿐입니다. 클로드 코드를 CLI에서 쓰면 웹 채팅보다 입출력 제한이 없고, AI가 직접 파일을 수정하는 강력한 환경이 됩니다.
+excerpt: >-
+  CLI는 영화 속 해커 화면처럼 보이지만, 실제로는 텍스트로 대화하는 창일 뿐입니다. 클로드 코드를 CLI에서 쓰면 웹 채팅보다 입출력
+  제한이 없고, AI가 직접 파일을 수정하는 강력한 환경이 됩니다.
 category: AI_TECH
 tags:
   - AI
@@ -12,14 +14,21 @@ quiz:
       - 키보드로 텍스트 명령어를 입력해서 컴퓨터를 조작하는 방식이다
       - 인터넷 없이 오프라인에서만 작동하는 프로그램이다
     question: CLI(Command Line Interface)에 대한 설명으로 올바른 것은?
-    explanation: CLI는 Command Line Interface의 약자로, 마우스 클릭(GUI) 대신 키보드로 텍스트 명령어를 입력해서 컴퓨터를 조작하는 방식입니다. 프로그래밍 언어가 아니라 인터페이스(조작 방식)의 한 종류입니다.
+    explanation: >-
+      CLI는 Command Line Interface의 약자로, 마우스 클릭(GUI) 대신 키보드로 텍스트 명령어를 입력해서 컴퓨터를
+      조작하는 방식입니다. 프로그래밍 언어가 아니라 인터페이스(조작 방식)의 한 종류입니다.
     correctIndex: 1
-thumbnailUrl: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773112884167-2bkyq1.png
+thumbnailUrl: >-
+  https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773112884167-2bkyq1.png
 metaTitle: 'CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?'
-metaDescription: CLI는 영화 속 해커 화면처럼 보이지만, 실제로는 텍스트로 대화하는 창일 뿐입니다. 클로드 코드를 CLI에서 쓰면 웹 채팅보다 입출력 제한이 없고, AI가 직접 파일을 수정하는 강력한 환경이 됩니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773112884167-2bkyq1.png
+metaDescription: >-
+  CLI는 영화 속 해커 화면처럼 보이지만, 실제로는 텍스트로 대화하는 창일 뿐입니다. 클로드 코드를 CLI에서 쓰면 웹 채팅보다 입출력
+  제한이 없고, AI가 직접 파일을 수정하는 강력한 환경이 됩니다.
+ogImage: /og/cli-meaning-claude-code-guide.png
 ogTitle: 'CLI 뜻 : 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?'
-ogDescription: CLI는 텍스트로 컴퓨터를 조작하는 방식일 뿐, 어려운 기술이 아닙니다. 클로드 코드의 CLI 사용법과 웹 채팅 대비 장점을 초보자 눈높이로 설명합니다.
+ogDescription: >-
+  CLI는 텍스트로 컴퓨터를 조작하는 방식일 뿐, 어려운 기술이 아닙니다. 클로드 코드의 CLI 사용법과 웹 채팅 대비 장점을 초보자 눈높이로
+  설명합니다.
 ---
 
 "클로드 코드(Claude Code)가 좋다는데, CLI에서만 된다고?" 여기서 막히는 분들이 많습니다.

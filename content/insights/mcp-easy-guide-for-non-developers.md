@@ -1,7 +1,9 @@
 ---
 slug: mcp-easy-guide-for-non-developers
 title: MCP란? 비전문가를 위한 MCP 쉽게 이해하기
-excerpt: AI가 내 노션, 슬랙, 구글 드라이브를 직접 다루는 것 이 MCP(Model Context Protocol)인데, 이름만 들으면 어렵게 느껴집니다. USB 포트 비유와 실제 프로덕트 예시로, 비개발자도 이해할 수 있도록 쉽게 정리했습니다.
+excerpt: >-
+  AI가 내 노션, 슬랙, 구글 드라이브를 직접 다루는 것 이 MCP(Model Context Protocol)인데, 이름만 들으면 어렵게
+  느껴집니다. USB 포트 비유와 실제 프로덕트 예시로, 비개발자도 이해할 수 있도록 쉽게 정리했습니다.
 category: AI_TECH
 tags:
   - AI
@@ -9,24 +11,32 @@ tags:
   - API
 publishedAt: '2026-03-05T14:58:55.039Z'
 highlights:
-  - MCP는 AI의 'USB 포트'다 — 노션, 슬랙, 구글 드라이브 등 다양한 서비스를 하나의 표준 방식으로 AI에 연결하는 규격이다
-  - MCP 이전에는 각 서비스마다 별도 연결 방식을 만들어야 했지만, MCP 이후에는 한 번 만든 연결을 어떤 AI에서든 재사용할 수 있다
-  - Claude Desktop에 노션 MCP를 연결하면 AI가 DB를 직접 조회하고, 슬랙 MCP를 연결하면 채널 메시지를 읽고 요약하는 것이 이미 가능하다
+  - 'MCP는 AI의 ''USB 포트''다 — 노션, 슬랙, 구글 드라이브 등 다양한 서비스를 하나의 표준 방식으로 AI에 연결하는 규격이다'
+  - 'MCP 이전에는 각 서비스마다 별도 연결 방식을 만들어야 했지만, MCP 이후에는 한 번 만든 연결을 어떤 AI에서든 재사용할 수 있다'
+  - >-
+    Claude Desktop에 노션 MCP를 연결하면 AI가 DB를 직접 조회하고, 슬랙 MCP를 연결하면 채널 메시지를 읽고 요약하는
+    것이 이미 가능하다
 quiz:
   - options:
       - AI가 외부 서비스에 연결할 때 서비스마다 다른 방식을 쓰는 문제를 하나의 표준으로 통일한다
       - AI의 응답 속도를 빠르게 만들어서 실시간 작업이 가능하게 한다
       - AI가 인터넷 없이도 로컬 파일을 처리할 수 있게 한다
       - 여러 AI 모델을 동시에 사용하여 답변 품질을 높인다
-    question: MCP(Model Context Protocol)를 USB 포트에 비유할 때, MCP가 해결하는 핵심 문제는 무엇일까요?
-    explanation: MCP의 핵심은 '표준화'입니다. USB가 등장하기 전에는 프린터, 키보드, 마우스마다 각기 다른 포트가 필요했듯이, MCP 이전에는 AI가 노션, 슬랙, 구글 드라이브 등 각 서비스에 연결하려면 서비스마다 별도의 연결 방식을 개발해야 했습니다. MCP는 이 연결 방식을 하나의 표준 규격으로 통일하여, 한 번 만든 연결을 어떤 AI 앱에서든 재사용할 수 있게 합니다.
+    question: 'MCP(Model Context Protocol)를 USB 포트에 비유할 때, MCP가 해결하는 핵심 문제는 무엇일까요?'
+    explanation: >-
+      MCP의 핵심은 '표준화'입니다. USB가 등장하기 전에는 프린터, 키보드, 마우스마다 각기 다른 포트가 필요했듯이, MCP 이전에는
+      AI가 노션, 슬랙, 구글 드라이브 등 각 서비스에 연결하려면 서비스마다 별도의 연결 방식을 개발해야 했습니다. MCP는 이 연결
+      방식을 하나의 표준 규격으로 통일하여, 한 번 만든 연결을 어떤 AI 앱에서든 재사용할 수 있게 합니다.
     correctIndex: 0
-thumbnailUrl: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/mcp-easy-guide-for-non-developers-1-1772721478777.png
+thumbnailUrl: >-
+  https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/mcp-easy-guide-for-non-developers-1-1772721478777.png
 metaTitle: MCP란? 비전문가를 위한 MCP 쉽게 이해하기 | 준이아빠블로그
-metaDescription: AI가 내 노션, 슬랙, 구글 드라이브를 직접 다루는 것 이 MCP(Model Context Protocol)인데, 이름만 들으면 어렵게 느껴집니다. USB 포트 비유와 실제 프로덕트 예시로, 비개발자도 이해할 수 있도록 쉽게 정리했습니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/mcp-easy-guide-for-non-developers-1-1772721478777.png
+metaDescription: >-
+  AI가 내 노션, 슬랙, 구글 드라이브를 직접 다루는 것 이 MCP(Model Context Protocol)인데, 이름만 들으면 어렵게
+  느껴집니다. USB 포트 비유와 실제 프로덕트 예시로, 비개발자도 이해할 수 있도록 쉽게 정리했습니다.
+ogImage: /og/mcp-easy-guide-for-non-developers.png
 ogTitle: MCP란? — AI가 내 업무 도구를 직접 다루게 만드는 표준 규격
-ogDescription: 노션, 슬랙, 구글 드라이브를 AI에 연결하는 MCP를 USB 포트 비유로 쉽게 설명합니다. 비개발자를 위한 입문 가이드.
+ogDescription: '노션, 슬랙, 구글 드라이브를 AI에 연결하는 MCP를 USB 포트 비유로 쉽게 설명합니다. 비개발자를 위한 입문 가이드.'
 ---
 
 ## AI가 내 업무 도구를 못 보는 답답함

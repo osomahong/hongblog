@@ -1,7 +1,9 @@
 ---
 slug: what-is-javascript
 term: ' Javascript'
-definition: JavaScript는 웹사이트의 생동감을 불어넣는 주인공입니다. 장바구니, 스크롤, 비밀번호 입력 등 웹 페이지의 기능을 하는 자바스크립트를 지금 바로 알아보고 디지털마케팅과 이커머스 데이터의 세계로 발을 내딛어 보세요!
+definition: >-
+  JavaScript는 웹사이트의 생동감을 불어넣는 주인공입니다. 장바구니, 스크롤, 비밀번호 입력 등 웹 페이지의 기능을 하는 자바스크립트를
+  지금 바로 알아보고 디지털마케팅과 이커머스 데이터의 세계로 발을 내딛어 보세요!
 category: AI_TECH
 tags:
   - JavaScript
@@ -12,15 +14,19 @@ difficulty: BEGINNER
 quiz:
   - options:
       - 웹페이지의 글자 색상과 크기를 꾸며준다
-      - 웹페이지의 제목, 본문 등 구조를 정의한다
+      - '웹페이지의 제목, 본문 등 구조를 정의한다'
       - 사용자의 클릭에 반응해 장바구니 숫자를 바꿔준다
       - 웹페이지에 사용할 이미지를 압축한다
     question: 다음 중 JavaScript가 하는 일은?
-    explanation: JavaScript는 웹페이지에 '동작'을 부여합니다. 버튼 클릭 반응, 실시간 입력 검증, 팝업 표시 등 사용자와 상호작용하는 모든 기능을 담당합니다. 디자인은 CSS, 구조는 HTML의 역할입니다.
+    explanation: >-
+      JavaScript는 웹페이지에 '동작'을 부여합니다. 버튼 클릭 반응, 실시간 입력 검증, 팝업 표시 등 사용자와 상호작용하는 모든
+      기능을 담당합니다. 디자인은 CSS, 구조는 HTML의 역할입니다.
     correctIndex: 2
 metaTitle: ' Javascript | 비개발자도 쉽게 배우는 디지털 환경 기초 지식'
-metaDescription: JavaScript는 웹사이트의 생동감을 불어넣는 주인공입니다. 장바구니, 스크롤, 비밀번호 입력 등 웹 페이지의 기능을 하는 자바스크립트를 지금 바로 알아보고 디지털마케팅과 이커머스 데이터의 세계로 발을 내딛어 보세요!
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-javascript-0-1770799426198.png
+metaDescription: >-
+  JavaScript는 웹사이트의 생동감을 불어넣는 주인공입니다. 장바구니, 스크롤, 비밀번호 입력 등 웹 페이지의 기능을 하는 자바스크립트를
+  지금 바로 알아보고 디지털마케팅과 이커머스 데이터의 세계로 발을 내딛어 보세요!
+ogImage: /og/what-is-javascript.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

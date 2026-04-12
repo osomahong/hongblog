@@ -1,7 +1,9 @@
 ---
 slug: claude-code-practical-guide
 title: 'Claude Code 실전 가이드: 설치부터 첫 프로젝트까지'
-excerpt: Claude Code 설치부터 첫 프로젝트 활용까지 단계별로 정리한 실전 가이드입니다. 터미널에서 자연어로 코딩 작업을 자동화하는 방법을 소개합니다.
+excerpt: >-
+  Claude Code 설치부터 첫 프로젝트 활용까지 단계별로 정리한 실전 가이드입니다. 터미널에서 자연어로 코딩 작업을 자동화하는 방법을
+  소개합니다.
 category: AI_TECH
 tags:
   - AI
@@ -11,8 +13,8 @@ publishedAt: '2026-03-24T17:45:26.343Z'
 highlights:
   - Claude Code는 한 줄 명령어로 설치 가능한 터미널 기반 AI 코딩 도구
   - 2026년 초 개발자 선호도 46%로 AI 코딩 도구 1위
-  - 코드 분석, 파일 수정, Git 관리, 외부 도구 연동까지 자연어로 처리
-  - CLAUDE.md, Skills, MCP로 프로젝트별 커스터마이징 가능
+  - '코드 분석, 파일 수정, Git 관리, 외부 도구 연동까지 자연어로 처리'
+  - 'CLAUDE.md, Skills, MCP로 프로젝트별 커스터마이징 가능'
 quiz:
   - options:
       - CLAUDE.md 파일에 코딩 컨벤션과 프로젝트 규칙을 기록해두면 매 세션 시작 시 자동으로 반영된다
@@ -20,13 +22,17 @@ quiz:
       - VS Code 설정 파일(settings.json)에 Claude Code 옵션을 추가하면 터미널에서도 적용된다
       - 별도 설정 없이 Claude Code가 코드 패턴을 자동으로 학습하므로 추가 작업이 필요 없다
     question: Claude Code를 프로젝트에 맞게 커스터마이징하려면 어떤 방법이 가장 효과적일까요?
-    explanation: CLAUDE.md는 프로젝트 루트에 두는 마크다운 파일로, Claude Code가 매 세션 시작 시 자동으로 읽습니다. 코딩 컨벤션, 아키텍처 결정, 선호 라이브러리 등을 기록해두면 일관된 코드를 생성하는 데 도움이 됩니다.
+    explanation: >-
+      CLAUDE.md는 프로젝트 루트에 두는 마크다운 파일로, Claude Code가 매 세션 시작 시 자동으로 읽습니다. 코딩 컨벤션,
+      아키텍처 결정, 선호 라이브러리 등을 기록해두면 일관된 코드를 생성하는 데 도움이 됩니다.
     correctIndex: 0
 metaTitle: 'Claude Code 실전 가이드: 설치부터 첫 프로젝트 활용까지 완벽 정리'
-metaDescription: Claude Code 설치 방법, 초기 설정, 프로젝트 분석, 코드 수정, Git 자동화까지 실전 활용법을 단계별로 정리합니다. CLAUDE.md, Skills, MCP 등 핵심 기능도 함께 소개합니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-code-practical-guide-0-1774374258763.png
+metaDescription: >-
+  Claude Code 설치 방법, 초기 설정, 프로젝트 분석, 코드 수정, Git 자동화까지 실전 활용법을 단계별로 정리합니다.
+  CLAUDE.md, Skills, MCP 등 핵심 기능도 함께 소개합니다.
+ogImage: /og/claude-code-practical-guide.png
 ogTitle: 'Claude Code 실전 가이드: 설치에서 첫 프로젝트까지 단계별 정리'
-ogDescription: 터미널 기반 AI 코딩 도구 Claude Code의 설치, 설정, 실전 활용법을 한 글에 정리했습니다. 비교 분석과 실전 팁까지 포함합니다.
+ogDescription: '터미널 기반 AI 코딩 도구 Claude Code의 설치, 설정, 실전 활용법을 한 글에 정리했습니다. 비교 분석과 실전 팁까지 포함합니다.'
 ---
 
 ## Claude Code는 터미널에서 동작하는 AI 코딩 도구입니다

@@ -1,7 +1,9 @@
 ---
 slug: ai-content-seo-not-penalized
 title: 'AI로 글을 작성해도 SEO에 불리하지 않습니다 : 직접 검증한 결과를 공유합니다.'
-excerpt: AI로 쓴 글은 SEO에 불리할까? 이 블로그가 직접 검증했습니다. Jekyll에서 Next.js로 마이그레이션하고, AI 콘텐츠 + 기술적 SEO로 검색 노출 0에서 일일 3,000건을 돌파한 과정을 공개합니다.
+excerpt: >-
+  AI로 쓴 글은 SEO에 불리할까? 이 블로그가 직접 검증했습니다. Jekyll에서 Next.js로 마이그레이션하고, AI 콘텐츠 + 기술적
+  SEO로 검색 노출 0에서 일일 3,000건을 돌파한 과정을 공개합니다.
 category: AI_TECH
 tags:
   - SEO
@@ -14,13 +16,19 @@ quiz:
       - 적절하게 사용하는 한 AI 도구 사용은 검색 가이드라인에 위배되지 않는다
       - AI 콘텐츠는 허용되지만 반드시 AI가 작성했음을 표시해야 한다
     question: AI로 작성한 콘텐츠의 SEO에 대한 Google의 공식 입장으로 올바른 것은?
-    explanation: Google은 AI 콘텐츠 자체를 처벌하지 않으며, 사용자에게 도움이 되는 고품질 콘텐츠인지가 핵심 기준이라고 밝히고 있습니다. AI 작성 표시 의무도 없습니다.
+    explanation: >-
+      Google은 AI 콘텐츠 자체를 처벌하지 않으며, 사용자에게 도움이 되는 고품질 콘텐츠인지가 핵심 기준이라고 밝히고 있습니다. AI
+      작성 표시 의무도 없습니다.
     correctIndex: 1
 metaTitle: 'AI로 글을 작성해도 SEO에 불리하지 않습니다 : 직접 검증한 결과를 공유합니다.'
-metaDescription: AI 콘텐츠는 SEO에 불리하다는 낭설을 직접 검증했습니다. Jekyll에서 Next.js로 전환하고 AI로 글을 작성하면서 기술적 SEO를 갖춘 결과, 2026년 검색 노출이 0에서 일일 3,000건 이상으로 성장한 실제 Search Console 데이터를 공개합니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773117105767-na4e6m.png
-ogTitle: AI 콘텐츠와 SEO — 검색 노출 0에서 일일 3,000건까지 직접 검증한 결과
-ogDescription: 이 블로그는 AI로 콘텐츠를 작성하면서 검색 노출 0에서 일일 3,000건을 달성했습니다. AI 콘텐츠 + 기술적 SEO의 실제 과정과 데이터를 공개합니다.
+metaDescription: >-
+  AI 콘텐츠는 SEO에 불리하다는 낭설을 직접 검증했습니다. Jekyll에서 Next.js로 전환하고 AI로 글을 작성하면서 기술적 SEO를
+  갖춘 결과, 2026년 검색 노출이 0에서 일일 3,000건 이상으로 성장한 실제 Search Console 데이터를 공개합니다.
+ogImage: /og/ai-content-seo-not-penalized.png
+ogTitle: 'AI 콘텐츠와 SEO — 검색 노출 0에서 일일 3,000건까지 직접 검증한 결과'
+ogDescription: >-
+  이 블로그는 AI로 콘텐츠를 작성하면서 검색 노출 0에서 일일 3,000건을 달성했습니다. AI 콘텐츠 + 기술적 SEO의 실제 과정과
+  데이터를 공개합니다.
 ---
 
 "AI로 쓴 글은 구글이 패널티를 준다", "AI 콘텐츠는 검색 순위에서 밀린다"

@@ -1,7 +1,9 @@
 ---
 slug: ai-usage-methods-guide
 title: 'AI를 쓸 수 있는 방법 5가지 : 웹, 앱, 터미널, 도구 탑재, MCP 완전 정리'
-excerpt: AI를 사용하는 5가지 방법(웹 챗봇, 데스크탑 앱, 터미널 CLI, 도구 탑재, MCP 연동)의 차이점과 용도를 초보자 눈높이로 정리했습니다. 모델과 인터페이스의 구분부터 상황별 쓸 수 있는 추천까지.
+excerpt: >-
+  AI를 사용하는 5가지 방법(웹 챗봇, 데스크탑 앱, 터미널 CLI, 도구 탑재, MCP 연동)의 차이점과 용도를 초보자 눈높이로
+  정리했습니다. 모델과 인터페이스의 구분부터 상황별 쓸 수 있는 추천까지.
 category: AI_TECH
 tags:
   - AI
@@ -10,14 +12,18 @@ quiz:
       - 각 인터페이스마다 서로 다른 AI 모델이 사용된다
       - 같은 AI 모델이라도 여러 가지 인터페이스를 통해 접근할 수 있다
       - 인터페이스가 다르면 AI의 성능도 완전히 달라진다
-    question: AI 모델(Claude, GPT 등)과 인터페이스(웹, 앱, 터미널 등)의 관계를 가장 올바르게 설명한 것은?
-    explanation: AI 모델은 두뇌이고 인터페이스는 접근 통로입니다. 같은 Claude 모델이라도 웹(claude.ai), 데스크탑 앱, 터미널(Claude Code), 다른 도구(Cursor 등)를 통해 사용할 수 있습니다. 통로가 다를 뿐, 핵심 모델은 동일합니다.
+    question: 'AI 모델(Claude, GPT 등)과 인터페이스(웹, 앱, 터미널 등)의 관계를 가장 올바르게 설명한 것은?'
+    explanation: >-
+      AI 모델은 두뇌이고 인터페이스는 접근 통로입니다. 같은 Claude 모델이라도 웹(claude.ai), 데스크탑 앱,
+      터미널(Claude Code), 다른 도구(Cursor 등)를 통해 사용할 수 있습니다. 통로가 다를 뿐, 핵심 모델은 동일합니다.
     correctIndex: 1
 metaTitle: 'AI를 쓸 수 있는 방법 5가지 : 웹, 앱, 터미널, 도구 탑재, MCP 완전 정리'
-metaDescription: AI를 사용하는 5가지 방법(웹 챗봇, 데스크탑 앱, 터미널 CLI, 도구 탑재, MCP 연동)의 차이점과 용도를 초보자 눈높이로 정리했습니다. 모델과 인터페이스의 구분부터 상황별 쓸 수 있는 추천까지.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773110622147-hvdhq7.png
+metaDescription: >-
+  AI를 사용하는 5가지 방법(웹 챗봇, 데스크탑 앱, 터미널 CLI, 도구 탑재, MCP 연동)의 차이점과 용도를 초보자 눈높이로
+  정리했습니다. 모델과 인터페이스의 구분부터 상황별 쓸 수 있는 추천까지.
+ogImage: /og/ai-usage-methods-guide.png
 ogTitle: 'AI를 쓸 수 있는 방법, 생각보다 많습니다 : 초보자를 위한 완전 정리'
-ogDescription: 웹 챗봇, 데스크탑 앱, 터미널, 도구 탑재, MCP 연동. AI를 사용하는 5가지 방법의 차이를 한번에 정리합니다.
+ogDescription: '웹 챗봇, 데스크탑 앱, 터미널, 도구 탑재, MCP 연동. AI를 사용하는 5가지 방법의 차이를 한번에 정리합니다.'
 ---
 
 요즘 AI를 쓸 수 있는 방법이 정말 많아졌습니다. 문제는 **방법마다 부르는 이름이 다르고, 사용 방식도 다르고, 할 수 있는 일도 다르다**는 겁니다.

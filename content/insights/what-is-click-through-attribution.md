@@ -1,16 +1,23 @@
 ---
 slug: what-is-click-through-attribution
 title: 클릭 기여(Click-Through Attribution)란? 디지털 마케팅 성과 측정의 기본
-excerpt: 디지털 마케팅에서 클릭 기여(Click-Through Attribution)의 개념과 뷰스루 기여와의 차이, 기여 기간 설정 기준, 실무에서 주의할 점을 정리했습니다.
+excerpt: >-
+  디지털 마케팅에서 클릭 기여(Click-Through Attribution)의 개념과 뷰스루 기여와의 차이, 기여 기간 설정 기준, 실무에서
+  주의할 점을 정리했습니다.
 category: MARKETING
 tags:
   - 어트리뷰션
   - 광고
 publishedAt: '2026-02-12T08:11:59.012Z'
 metaTitle: 클릭 기여(Click-Through Attribution)란? 성과 측정의 기본
-metaDescription: 클릭 기여(Click-Through Attribution)의 개념, 뷰스루 기여와의 차이, 기여 기간(Attribution Window) 설정 기준, 중복 기여 문제와 쿠키 제한 대응까지 디지털 마케팅 성과 측정의 핵심을 정리했습니다.
+metaDescription: >-
+  클릭 기여(Click-Through Attribution)의 개념, 뷰스루 기여와의 차이, 기여 기간(Attribution Window)
+  설정 기준, 중복 기여 문제와 쿠키 제한 대응까지 디지털 마케팅 성과 측정의 핵심을 정리했습니다.
 ogTitle: 클릭 기여(Click-Through Attribution) 완전 정리 - 디지털 마케팅 성과 측정의 기본
-ogDescription: 광고를 클릭한 뒤 전환까지 이어지는 과정을 어떻게 측정하고, 기여 기간은 어떻게 설정해야 할까요? 클릭 기여의 개념부터 실무 주의사항까지 정리했습니다.
+ogDescription: >-
+  광고를 클릭한 뒤 전환까지 이어지는 과정을 어떻게 측정하고, 기여 기간은 어떻게 설정해야 할까요? 클릭 기여의 개념부터 실무 주의사항까지
+  정리했습니다.
+ogImage: /og/what-is-click-through-attribution.png
 ---
 
 ## 클릭 기여란 무엇인가

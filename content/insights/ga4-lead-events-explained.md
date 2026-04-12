@@ -1,7 +1,10 @@
 ---
 slug: ga4-lead-events-explained
-title: GA4 disqualify_lead, close_unconvert_lead 뜻과 현실적인 활용 가이드
-excerpt: GA4 리드 이벤트 6가지(generate_lead, qualify_lead, disqualify_lead, working_lead, close_convert_lead, close_unconvert_lead)의 의미, 왜 구현이 어려운지, 현실적인 단계별 접근법을 정리합니다.
+title: 'GA4 disqualify_lead, close_unconvert_lead 뜻과 현실적인 활용 가이드'
+excerpt: >-
+  GA4 리드 이벤트 6가지(generate_lead, qualify_lead, disqualify_lead, working_lead,
+  close_convert_lead, close_unconvert_lead)의 의미, 왜 구현이 어려운지, 현실적인 단계별 접근법을
+  정리합니다.
 category: DATA
 tags:
   - GA4
@@ -11,17 +14,23 @@ publishedAt: '2026-03-10T08:39:41.391Z'
 quiz:
   - options:
       - GA4 태그를 설치하면 자동으로 수집되는 이벤트이다
-      - 비즈니스 유형을 '리드 생성'으로 선택하면 Google이 추천하는 이벤트이며, 직접 구현해야 데이터가 쌓인다
+      - '비즈니스 유형을 ''리드 생성''으로 선택하면 Google이 추천하는 이벤트이며, 직접 구현해야 데이터가 쌓인다'
       - 이커머스와 리드 기반 비즈니스 모두에서 동일하게 사용하는 범용 이벤트이다
       - GA4 설정의 향상된 측정에서 토글을 켜면 수집되는 이벤트이다
-    question: GA4의 리드 생성 이벤트(generate_lead, qualify_lead 등)에 대한 설명으로 올바른 것은?
-    explanation: 리드 관련 6개 이벤트는 모두 '추천 이벤트(Recommended Events)'입니다. 비즈니스 유형을 '리드 생성'으로 설정하면 Google이 목록에 표시해주지만, 실제 데이터 수집은 CRM 연동이나 GTM 설정을 통해 직접 구현해야 합니다. generate_lead 이후의 이벤트는 웹사이트 밖(CRM, 오프라인 영업)에서 발생하므로 구현 난이도가 높습니다.
+    question: 'GA4의 리드 생성 이벤트(generate_lead, qualify_lead 등)에 대한 설명으로 올바른 것은?'
+    explanation: >-
+      리드 관련 6개 이벤트는 모두 '추천 이벤트(Recommended Events)'입니다. 비즈니스 유형을 '리드 생성'으로 설정하면
+      Google이 목록에 표시해주지만, 실제 데이터 수집은 CRM 연동이나 GTM 설정을 통해 직접 구현해야 합니다.
+      generate_lead 이후의 이벤트는 웹사이트 밖(CRM, 오프라인 영업)에서 발생하므로 구현 난이도가 높습니다.
     correctIndex: 1
-metaTitle: GA4 disqualify_lead, close_unconvert_lead 뜻과 현실적인 활용 가이드
-metaDescription: GA4 리드 이벤트 6가지(generate_lead, qualify_lead, disqualify_lead, working_lead, close_convert_lead, close_unconvert_lead)의 의미, 왜 구현이 어려운지, 현실적인 단계별 접근법을 정리합니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773129905103-vgd89e.png
+metaTitle: 'GA4 disqualify_lead, close_unconvert_lead 뜻과 현실적인 활용 가이드'
+metaDescription: >-
+  GA4 리드 이벤트 6가지(generate_lead, qualify_lead, disqualify_lead, working_lead,
+  close_convert_lead, close_unconvert_lead)의 의미, 왜 구현이 어려운지, 현실적인 단계별 접근법을
+  정리합니다.
+ogImage: /og/ga4-lead-events-explained.png
 ogTitle: 'GA4 disqualify_lead, close_unconvert_lead 뜻: 리드 이벤트의 의미와 현실적인 한계'
-ogDescription: GA4 리드 생성 이벤트 6가지의 정확한 의미와, 왜 대부분의 회사에서 구현이 어려운지, 그리고 현실적인 단계별 접근법을 정리합니다.
+ogDescription: 'GA4 리드 생성 이벤트 6가지의 정확한 의미와, 왜 대부분의 회사에서 구현이 어려운지, 그리고 현실적인 단계별 접근법을 정리합니다.'
 ---
 
 ## 결론: Google이 추천하는 이벤트이지만, 실제로 쓰기는 쉽지 않습니다

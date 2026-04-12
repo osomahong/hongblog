@@ -1,7 +1,9 @@
 ---
 slug: what-is-element
 term: Element (요소)
-definition: 웹페이지를 구성하는 가장 작은 부품이 Element(요소)입니다. 버튼, 이미지, 텍스트 등 화면에 보이는 모든 것이 각각 하나의 Element이며, 이들이 조립되어 하나의 웹사이트를 완성합니다.
+definition: >-
+  웹페이지를 구성하는 가장 작은 부품이 Element(요소)입니다. 버튼, 이미지, 텍스트 등 화면에 보이는 모든 것이 각각 하나의
+  Element이며, 이들이 조립되어 하나의 웹사이트를 완성합니다.
 category: AI_TECH
 tags:
   - HTML
@@ -17,9 +19,11 @@ quiz:
       - <태그>내용</태그> 형태로 작성된 웹페이지의 개별 부품이다
       - JavaScript 함수를 Element라고 부른다
     question: HTML Element(요소)에 대한 설명으로 올바른 것은?
-    explanation: Element(요소)는 HTML에서 <태그>내용</태그> 형태로 작성된 웹페이지의 가장 작은 단위의 부품입니다. <h1>, <button>, <img> 등이 모두 Element이며, 눈에 보이지 않는 <div> 같은 투명한 상자도 Element입니다.
+    explanation: >-
+      Element(요소)는 HTML에서 <태그>내용</태그> 형태로 작성된 웹페이지의 가장 작은 단위의 부품입니다. <h1>,
+      <button>, <img> 등이 모두 Element이며, 눈에 보이지 않는 <div> 같은 투명한 상자도 Element입니다.
     correctIndex: 2
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-element-0-1770800657287.png
+ogImage: /og/what-is-element.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

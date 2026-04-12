@@ -1,7 +1,7 @@
 ---
 slug: what-is-cpm
 term: CPM (Cost Per Mille)
-definition: 광고가 1,000번 노출될 때마다 지불하는 비용을 뜻하는 디지털 광고의 기본 과금 방식입니다.
+definition: '광고가 1,000번 노출될 때마다 지불하는 비용을 뜻하는 디지털 광고의 기본 과금 방식입니다.'
 category: MARKETING
 tags:
   - 광고
@@ -18,14 +18,18 @@ relatedTerms:
 difficulty: BEGINNER
 quiz:
   - options:
-      - CPM(1,000회 노출당 과금) 방식으로 광고를 집행한다
+      - 'CPM(1,000회 노출당 과금) 방식으로 광고를 집행한다'
       - CPC(클릭당 과금) 방식으로 광고를 집행한다
       - SNS 계정에 유료 광고 없이 게시물만 올린다
       - 예산을 모두 인플루언서 마케팅에 투입한다
-    question: 신제품 런칭을 앞두고 최대한 많은 사람에게 브랜드를 알리려는 캐페인을 기획 중입니다. 예산 200만원으로 가장 많은 노출을 얻고 싶다면, 어떤 과금 방식을 선택하는 게 적절할까요?
-    explanation: 브랜드 인지도를 높이는 것이 목표라면, 최대한 많은 노출을 확보하는 것이 중요합니다. CPM은 노출 기반 과금 방식이므로, 같은 예산으로 가장 많은 사람에게 광고를 보여줄 수 있습니다.
+    question: >-
+      신제품 런칭을 앞두고 최대한 많은 사람에게 브랜드를 알리려는 캐페인을 기획 중입니다. 예산 200만원으로 가장 많은 노출을 얻고
+      싶다면, 어떤 과금 방식을 선택하는 게 적절할까요?
+    explanation: >-
+      브랜드 인지도를 높이는 것이 목표라면, 최대한 많은 노출을 확보하는 것이 중요합니다. CPM은 노출 기반 과금 방식이므로, 같은
+      예산으로 가장 많은 사람에게 광고를 보여줄 수 있습니다.
     correctIndex: 0
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-cpm-0-1770881385122.png
+ogImage: /og/what-is-cpm.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

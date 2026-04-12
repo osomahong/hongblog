@@ -1,7 +1,7 @@
 ---
 slug: what-is-roi
 term: ROI (Return On Investment)
-definition: 투자한 총 비용 대비 얻은 순이익의 비율로, 마케팅을 포함한 모든 비즈니스 활동의 궁극적인 수익성을 판단하는 지표입니다.
+definition: '투자한 총 비용 대비 얻은 순이익의 비율로, 마케팅을 포함한 모든 비즈니스 활동의 궁극적인 수익성을 판단하는 지표입니다.'
 category: MARKETING
 tags:
   - 광고
@@ -19,14 +19,19 @@ relatedTerms:
 difficulty: BEGINNER
 quiz:
   - options:
-      - 매출은 광고비 대비 4배 발생했지만, 모든 비용을 고려하면 실제로는 적자 상태이다
+      - '매출은 광고비 대비 4배 발생했지만, 모든 비용을 고려하면 실제로는 적자 상태이다'
       - ROAS가 400%이므로 수익성이 좋은 캠페인이다
       - ROI가 음수인 것은 계산 오류이므로 무시해도 된다
       - ROAS와 ROI는 같은 지표이므로 둘 다 맞을 수 없다
-    question: 마케팅 캠페인 결과 ROAS 400%를 달성했습니다. 하지만 제품 원가와 운영비를 모두 포함하면 ROI는 -10%였습니다. 이 상황을 올바르게 해석한 것은?
-    explanation: ROAS는 광고비 대비 매출만 보기 때문에 400%(4배)로 좋아 보입니다. 하지만 ROI는 제품 원가, 인건비, 배송비 등 모든 비용을 포함한 순이익 기준이므로, ROI -10%는 실제로 돈을 잃고 있다는 뜻입니다. 광고 효율만으로 판단하면 안 되고, 전체 수익 구조를 함께 분석해야 합니다.
+    question: >-
+      마케팅 캠페인 결과 ROAS 400%를 달성했습니다. 하지만 제품 원가와 운영비를 모두 포함하면 ROI는 -10%였습니다. 이 상황을
+      올바르게 해석한 것은?
+    explanation: >-
+      ROAS는 광고비 대비 매출만 보기 때문에 400%(4배)로 좋아 보입니다. 하지만 ROI는 제품 원가, 인건비, 배송비 등 모든
+      비용을 포함한 순이익 기준이므로, ROI -10%는 실제로 돈을 잃고 있다는 뜻입니다. 광고 효율만으로 판단하면 안 되고, 전체 수익
+      구조를 함께 분석해야 합니다.
     correctIndex: 0
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-roi-0-1770881745179.png
+ogImage: /og/what-is-roi.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

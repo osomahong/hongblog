@@ -1,7 +1,9 @@
 ---
 slug: gmail-api-what-you-can-do
 title: Gmail API를 활용해서 할 수 있는 것
-excerpt: Gmail API가 제공하는 7개 리소스와 50개 이상의 메서드를 한눈에 정리하고, 이를 활용해 만들 수 있는 자동화 서비스 아이디어까지 소개합니다.
+excerpt: >-
+  Gmail API가 제공하는 7개 리소스와 50개 이상의 메서드를 한눈에 정리하고, 이를 활용해 만들 수 있는 자동화 서비스 아이디어까지
+  소개합니다.
 category: AI_TECH
 tags:
   - AI
@@ -15,13 +17,21 @@ quiz:
       - history.list — 변경 이력을 조회하여 새로 추가된 메시지를 찾는다
       - settings.filters.create — 필터를 만들어 특정 메일이 오면 알림을 받는다
     question: Gmail API에서 새 이메일이 도착했을 때 실시간으로 감지하려면 어떤 메서드를 사용해야 할까요?
-    explanation: users.watch 메서드는 Google Cloud Pub/Sub와 연동하여 메일함에 변화가 생기면 즉시 푸시 알림을 받을 수 있게 해줍니다. 폴링 방식(주기적 조회)보다 효율적이고 실시간 반응이 가능합니다. history.list는 변경 이력을 사후에 조회하는 용도이고, messages.list는 목록 조회이므로 실시간 감지에는 적합하지 않습니다.
+    explanation: >-
+      users.watch 메서드는 Google Cloud Pub/Sub와 연동하여 메일함에 변화가 생기면 즉시 푸시 알림을 받을 수 있게
+      해줍니다. 폴링 방식(주기적 조회)보다 효율적이고 실시간 반응이 가능합니다. history.list는 변경 이력을 사후에 조회하는
+      용도이고, messages.list는 목록 조회이므로 실시간 감지에는 적합하지 않습니다.
     correctIndex: 0
 metaTitle: Gmail API를 활용해서 할 수 있는 것 — 기능 전체 맵과 아이디어 5가지
-metaDescription: Gmail API의 7개 리소스(Messages, Threads, Labels, Drafts, History, Users, Settings)와 50개 이상의 메서드를 한눈에 정리합니다. 모닝 다이제스트 봇, 스마트 분류기, 자동 응답 시스템 등 실전 아이디어도 함께 소개합니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/gmail-api-what-you-can-do-0-1771578221347.png
+metaDescription: >-
+  Gmail API의 7개 리소스(Messages, Threads, Labels, Drafts, History, Users,
+  Settings)와 50개 이상의 메서드를 한눈에 정리합니다. 모닝 다이제스트 봇, 스마트 분류기, 자동 응답 시스템 등 실전 아이디어도
+  함께 소개합니다.
+ogImage: /og/gmail-api-what-you-can-do.png
 ogTitle: Gmail API 기능 전체 맵 — 바이브코딩 시대에 이메일로 만들 수 있는 것들
-ogDescription: Gmail API의 7개 핵심 리소스와 50개 이상의 메서드를 한 페이지에 정리하고, AI와 결합해 만들 수 있는 자동화 서비스 아이디어 5가지를 소개합니다.
+ogDescription: >-
+  Gmail API의 7개 핵심 리소스와 50개 이상의 메서드를 한 페이지에 정리하고, AI와 결합해 만들 수 있는 자동화 서비스 아이디어
+  5가지를 소개합니다.
 ---
 
 ## 바이브코딩 시대, API가 곧 능력이다

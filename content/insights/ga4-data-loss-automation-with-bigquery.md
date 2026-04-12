@@ -1,7 +1,10 @@
 ---
 slug: ga4-data-loss-automation-with-bigquery
 title: 'GA4 데이터 유실, BigQuery로 자동 해결: 스프레드시트 관리 탈출기'
-excerpt: GA4 데이터에서 Page Title 누락 문제를 BigQuery 기반 자동화 파이프라인으로 해결했습니다. 수동 스프레드시트 관리에 따른 문제점을 분석하고, URL 정규화, STRUCT 구조 수정, 정규표현식 활용 등 기술적 난관을 극복한 과정을 소개합니다. 데이터 신뢰도 향상과 업무 효율성 증대를 위한 솔루션을 제시합니다.
+excerpt: >-
+  GA4 데이터에서 Page Title 누락 문제를 BigQuery 기반 자동화 파이프라인으로 해결했습니다. 수동 스프레드시트 관리에 따른
+  문제점을 분석하고, URL 정규화, STRUCT 구조 수정, 정규표현식 활용 등 기술적 난관을 극복한 과정을 소개합니다. 데이터 신뢰도
+  향상과 업무 효율성 증대를 위한 솔루션을 제시합니다.
 category: DATA
 tags:
   - GA4
@@ -15,11 +18,16 @@ quiz:
       - 스프레드시트에 수동으로 맵핑 테이블 관리
       - GA4 설정에서 데이터 수집 방식 자체를 변경
     question: GA4에서 발생하는 데이터 결측치(NULL) 보정은 어느 단계에서 처리하는 것이 가장 효과적일까요?
-    explanation: 시각화 단계(루커 스튜디오)에서 혼합 테이블로 보정하면 조회 속도가 저하되고, 스프레드시트 수동 관리는 휴먼 에러가 발생합니다. 글에서 다뤘듯이 데이터 적재 단계(Mart Level)에서 BigQuery 파이프라인으로 자동 보정하는 것이 조회 성능과 데이터 정합성을 모두 확보하는 방법입니다.
+    explanation: >-
+      시각화 단계(루커 스튜디오)에서 혼합 테이블로 보정하면 조회 속도가 저하되고, 스프레드시트 수동 관리는 휴먼 에러가 발생합니다.
+      글에서 다뤘듯이 데이터 적재 단계(Mart Level)에서 BigQuery 파이프라인으로 자동 보정하는 것이 조회 성능과 데이터
+      정합성을 모두 확보하는 방법입니다.
     correctIndex: 1
 thumbnailUrl: /uploads/1767593628277-qz7f5j.png
-metaDescription: GA4 데이터에서 Page Title 누락 문제를 BigQuery 기반 자동화 파이프라인으로 해결했습니다. 수동 스프레드시트 관리에 따른 문제점을 분석하고, URL 정규화, STRUCT 구조 수정, 정규표현식 활용 등 기술적 난관을 극복한 과정을 소개합니다.
-ogImage: /uploads/1767593628277-qz7f5j.png
+metaDescription: >-
+  GA4 데이터에서 Page Title 누락 문제를 BigQuery 기반 자동화 파이프라인으로 해결했습니다. 수동 스프레드시트 관리에 따른
+  문제점을 분석하고, URL 정규화, STRUCT 구조 수정, 정규표현식 활용 등 기술적 난관을 극복한 과정을 소개합니다.
+ogImage: /og/ga4-data-loss-automation-with-bigquery.png
 ---
 
 # [데이터 전처리] GA4 유실 데이터 맵핑 자동화: 스프레드시트 수동 관리에서 Bigquery로 자동화

@@ -1,7 +1,7 @@
 ---
 slug: what-is-cpc
 term: CPC (Cost Per Click)
-definition: 광고를 클릭할 때마다 광고주가 지불하는 비용으로, 사용자의 실제 행동에 대해 과금되는 디지털 광고의 핵심 과금 방식입니다.
+definition: '광고를 클릭할 때마다 광고주가 지불하는 비용으로, 사용자의 실제 행동에 대해 과금되는 디지털 광고의 핵심 과금 방식입니다.'
 category: MARKETING
 tags:
   - 광고
@@ -19,14 +19,19 @@ relatedTerms:
 difficulty: BEGINNER
 quiz:
   - options:
-      - A 소재 — CPC가 낮아 같은 예산으로 5,000회 클릭을 확보할 수 있다
+      - 'A 소재 — CPC가 낮아 같은 예산으로 5,000회 클릭을 확보할 수 있다'
       - B 소재 — CPC가 높을수록 품질 좋은 클릭이 들어온다
       - CPC는 방문자 수와 관계가 없으므로 판단할 수 없다
       - 두 소재의 클릭수는 동일하다
-    question: 웹사이트 트래픽을 늘리기 위해 광고를 집행 중입니다. 예산 100만원으로 A 소재(CPC 200원)와 B 소재(CPC 500원)를 테스트했을 때, 어떤 소재가 더 많은 방문자를 확보할 수 있을까요?
-    explanation: CPC = 총 광고비 ÷ 총 클릭수이므로, 예산 100만원일 때 A 소재(CPC 200원)는 5,000회, B 소재(CPC 500원)는 2,000회 클릭을 확보할 수 있습니다. 같은 예산으로 더 많은 방문자를 얻으려면 CPC가 낮은 광고 소재를 선택해야 합니다.
+    question: >-
+      웹사이트 트래픽을 늘리기 위해 광고를 집행 중입니다. 예산 100만원으로 A 소재(CPC 200원)와 B 소재(CPC 500원)를
+      테스트했을 때, 어떤 소재가 더 많은 방문자를 확보할 수 있을까요?
+    explanation: >-
+      CPC = 총 광고비 ÷ 총 클릭수이므로, 예산 100만원일 때 A 소재(CPC 200원)는 5,000회, B 소재(CPC
+      500원)는 2,000회 클릭을 확보할 수 있습니다. 같은 예산으로 더 많은 방문자를 얻으려면 CPC가 낮은 광고 소재를 선택해야
+      합니다.
     correctIndex: 0
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-cpc-0-1770881459270.png
+ogImage: /og/what-is-cpc.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

@@ -1,7 +1,9 @@
 ---
 slug: ga4-direct-none-traffic-guide
-title: GA4 direct/none 트래픽, 왜 이렇게 많을까? 원인 8가지와 줄이는 법
-excerpt: GA4 보고서에서 유독 비중이 큰 direct/none 트래픽의 정확한 의미, 발생 원인 8가지, 마케팅 의사결정에 미치는 영향, 그리고 실무에서 바로 적용할 수 있는 5가지 해결 방법을 정리했습니다.
+title: 'GA4 direct/none 트래픽, 왜 이렇게 많을까? 원인 8가지와 줄이는 법'
+excerpt: >-
+  GA4 보고서에서 유독 비중이 큰 direct/none 트래픽의 정확한 의미, 발생 원인 8가지, 마케팅 의사결정에 미치는 영향, 그리고
+  실무에서 바로 적용할 수 있는 5가지 해결 방법을 정리했습니다.
 category: MARKETING
 tags:
   - GA4
@@ -15,16 +17,23 @@ quiz:
       - 리디렉션 과정에서 referrer와 쿼리 파라미터가 소실되지 않는지 점검한다
       - 이메일·메신저 등 캠페인 채널별로 전용 UTM 규칙이 있는지 확인한다
       - GA4의 referral exclusion 목록이 올바르게 설정되어 있는지 점검한다
-    question: GA4에서 direct/none 트래픽 비중이 높을 때, 가장 먼저 점검해야 할 항목은 무엇이라고 생각하시나요?
-    explanation: 이 글에서 다루었듯이 direct/none의 가장 흔한 원인은 UTM 없이 공유된 링크입니다. UTM 적용만으로도 상당 부분의 미분류 트래픽을 줄일 수 있습니다. 다만 리디렉션이나 referral exclusion 문제가 복합적으로 작용하는 경우도 많으므로 종합적인 점검이 바람직합니다.
+    question: 'GA4에서 direct/none 트래픽 비중이 높을 때, 가장 먼저 점검해야 할 항목은 무엇이라고 생각하시나요?'
+    explanation: >-
+      이 글에서 다루었듯이 direct/none의 가장 흔한 원인은 UTM 없이 공유된 링크입니다. UTM 적용만으로도 상당 부분의 미분류
+      트래픽을 줄일 수 있습니다. 다만 리디렉션이나 referral exclusion 문제가 복합적으로 작용하는 경우도 많으므로 종합적인
+      점검이 바람직합니다.
     correctIndex: 0
 seriesSlug: digitalmarketing
 seriesOrder: 11
 metaTitle: GA4 direct/none 트래픽 원인 8가지와 줄이는 실무 가이드
-metaDescription: GA4에서 direct/none 트래픽이 많은 이유를 8가지 원인으로 분석하고, UTM 관리부터 리디렉션 점검까지 실무에서 바로 적용할 수 있는 5가지 해결 방법을 정리했습니다. direct/none 분석 팁도 확인하세요.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ga4-direct-none-traffic-guide-0-1771333312501.png
+metaDescription: >-
+  GA4에서 direct/none 트래픽이 많은 이유를 8가지 원인으로 분석하고, UTM 관리부터 리디렉션 점검까지 실무에서 바로 적용할 수
+  있는 5가지 해결 방법을 정리했습니다. direct/none 분석 팁도 확인하세요.
+ogImage: /og/ga4-direct-none-traffic-guide.png
 ogTitle: GA4 direct/none 트래픽이 절반이라고요? 원인과 해결법 총정리
-ogDescription: direct/none은 단순히 '직접 유입'이 아닙니다. 메신저, 이메일, 리디렉션 등 숨겨진 원인 8가지와 줄이는 방법 5가지를 정리했습니다.
+ogDescription: >-
+  direct/none은 단순히 '직접 유입'이 아닙니다. 메신저, 이메일, 리디렉션 등 숨겨진 원인 8가지와 줄이는 방법 5가지를
+  정리했습니다.
 ---
 
 ## GA4 보고서를 열 때마다 보이는 direct/none, 정체가 뭘까요?

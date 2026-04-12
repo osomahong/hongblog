@@ -1,7 +1,9 @@
 ---
 slug: what-is-frontend-backend
 term: 프론트엔드와 백엔드 (Frontend & Backend)
-definition: 프론트엔드는 사용자가 보고 상호작용하는 화면(브라우저) 부분이고, 백엔드는 데이터 처리와 비즈니스 로직을 담당하는 서버 부분입니다. 이 구분을 이해해야 바이브코딩에서 보안 사고를 방지할 수 있습니다.
+definition: >-
+  프론트엔드는 사용자가 보고 상호작용하는 화면(브라우저) 부분이고, 백엔드는 데이터 처리와 비즈니스 로직을 담당하는 서버 부분입니다. 이
+  구분을 이해해야 바이브코딩에서 보안 사고를 방지할 수 있습니다.
 category: AI_TECH
 tags:
   - 바이브코딩
@@ -21,13 +23,16 @@ relatedTerms:
 difficulty: BEGINNER
 quiz:
   - options:
-      - 프론트엔드에서 백엔드 API(/api/chat)를 호출하고, 백엔드에서 OpenAI API 키를 사용하여 요청한다
+      - '프론트엔드에서 백엔드 API(/api/chat)를 호출하고, 백엔드에서 OpenAI API 키를 사용하여 요청한다'
       - 프론트엔드 JavaScript 코드에 OpenAI API 키를 직접 넣어서 호출한다
       - API 키를 localStorage에 저장해두고 필요할 때 꺼내 쓴다
       - NEXT_PUBLIC_OPENAI_KEY라는 환경 변수에 API 키를 저장한다
     question: 바이브코딩으로 OpenAI API를 사용하는 챗봇을 만들었습니다. 다음 중 보안상 올바른 구현 방식은 무엇일까요?
-    explanation: 프론트엔드 코드는 브라우저에서 실행되므로 누구나 볼 수 있습니다. API 키를 프론트엔드에 두면 사용자가 개발자 도구(F12)로 확인할 수 있습니다. 반드시 백엔드(서버)에서 API 키를 사용하고, 프론트엔드는 백엔드 API를 통해 간접적으로 요청해야 합니다.
+    explanation: >-
+      프론트엔드 코드는 브라우저에서 실행되므로 누구나 볼 수 있습니다. API 키를 프론트엔드에 두면 사용자가 개발자 도구(F12)로
+      확인할 수 있습니다. 반드시 백엔드(서버)에서 API 키를 사용하고, 프론트엔드는 백엔드 API를 통해 간접적으로 요청해야 합니다.
     correctIndex: 0
+ogImage: /og/what-is-frontend-backend.png
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

@@ -1,7 +1,10 @@
 ---
 slug: what-is-bom
 term: ' BOM (Browser Object Model)'
-definition: BOM(Browser Object Model)이란 웹 브라우저 자체를 제어하는 기술입니다. 브라우저의 기능(뒤로 가기, 화면 크기, 브라우저 종류 등)을 JavaScript로 조작할 수 있게 해줍니다. BOM을 활용하여 사용자 경험을 개선하고, 다양한 환경에 최적화된 웹 페이지를 만들 수 있습니다.
+definition: >-
+  BOM(Browser Object Model)이란 웹 브라우저 자체를 제어하는 기술입니다. 브라우저의 기능(뒤로 가기, 화면 크기, 브라우저
+  종류 등)을 JavaScript로 조작할 수 있게 해줍니다. BOM을 활용하여 사용자 경험을 개선하고, 다양한 환경에 최적화된 웹 페이지를
+  만들 수 있습니다.
 category: AI_TECH
 tags:
   - DOM
@@ -11,16 +14,21 @@ orderInCourse: 4
 difficulty: BEGINNER
 quiz:
   - options:
-      - DOM은 오래된 기술이고, BOM은 최신 기술이다
-      - DOM은 웹페이지 내용(문서)을 다루고, BOM은 브라우저 자체(주소창, 화면 크기 등)를 다룬다
-      - BOM은 모바일에서만 사용하고, DOM은 PC에서만 사용한다
+      - 'DOM은 오래된 기술이고, BOM은 최신 기술이다'
+      - 'DOM은 웹페이지 내용(문서)을 다루고, BOM은 브라우저 자체(주소창, 화면 크기 등)를 다룬다'
+      - 'BOM은 모바일에서만 사용하고, DOM은 PC에서만 사용한다'
       - DOM과 BOM은 같은 것을 부르는 다른 이름이다
     question: BOM과 DOM의 차이로 올바른 것은?
-    explanation: DOM은 웹페이지 안의 콘텐츠(글자, 이미지, 버튼 등)를 다루는 반면, BOM은 브라우저 창 자체의 기능(주소 이동, 화면 크기, 뒤로 가기 등)을 제어합니다. TV로 비유하면 DOM은 방영 중인 드라마 내용, BOM은 TV 리모컨입니다.
+    explanation: >-
+      DOM은 웹페이지 안의 콘텐츠(글자, 이미지, 버튼 등)를 다루는 반면, BOM은 브라우저 창 자체의 기능(주소 이동, 화면 크기,
+      뒤로 가기 등)을 제어합니다. TV로 비유하면 DOM은 방영 중인 드라마 내용, BOM은 TV 리모컨입니다.
     correctIndex: 1
 metaTitle: ' BOM (브라우저 객체 모델) | 비개발자도 쉽게 배우는 디지털 환경 기초 지식'
-metaDescription: BOM(브라우저 객체 모델)이란 웹 브라우저 자체를 제어하는 기술입니다. 브라우저의 기능(뒤로 가기, 화면 크기, 브라우저 종류 등)을 JavaScript로 조작할 수 있게 해줍니다. BOM을 활용하여 사용자 경험을 개선하고, 다양한 환경에 최적화된 웹 페이지를 만들 수 있습니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-bom-0-1770799635796.png
+metaDescription: >-
+  BOM(브라우저 객체 모델)이란 웹 브라우저 자체를 제어하는 기술입니다. 브라우저의 기능(뒤로 가기, 화면 크기, 브라우저 종류 등)을
+  JavaScript로 조작할 수 있게 해줍니다. BOM을 활용하여 사용자 경험을 개선하고, 다양한 환경에 최적화된 웹 페이지를 만들 수
+  있습니다.
+ogImage: /og/what-is-bom.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

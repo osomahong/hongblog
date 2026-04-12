@@ -13,11 +13,15 @@ quiz:
       - 버튼 클릭 시 팝업을 띄우는 동작을 만든다
       - 서버에서 데이터를 불러온다
     question: 다음 중 HTML의 역할로 올바른 것은?
-    explanation: HTML은 웹페이지의 뼈대로, 브라우저에게 "이건 제목, 이건 링크, 이건 이미지"처럼 콘텐츠의 구조와 의미를 알려주는 역할을 합니다. 색상·레이아웃은 CSS, 동작은 JavaScript, 데이터 통신은 서버 기술이 담당합니다.
+    explanation: >-
+      HTML은 웹페이지의 뼈대로, 브라우저에게 "이건 제목, 이건 링크, 이건 이미지"처럼 콘텐츠의 구조와 의미를 알려주는 역할을
+      합니다. 색상·레이아웃은 CSS, 동작은 JavaScript, 데이터 통신은 서버 기술이 담당합니다.
     correctIndex: 1
 metaTitle: HTML | 디지털마케팅 환경에 적응하기 위한 디지털 기초
-metaDescription: 웹 페이지의 기본 구조를 만드는 HTML의 모든 것! 클릭 가능한 텍스트, '구매하기' 버튼, 검색 엔진이 웹 페이지를 이해하는 원리까지, HTML의 비밀을 파헤쳐 보세요. 웹 개발 초보도 쉽게 이해할 수 있는 비유와 함께 HTML의 핵심을 배워보세요.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/whatishtml-0-1770800432910.png
+metaDescription: >-
+  웹 페이지의 기본 구조를 만드는 HTML의 모든 것! 클릭 가능한 텍스트, '구매하기' 버튼, 검색 엔진이 웹 페이지를 이해하는 원리까지,
+  HTML의 비밀을 파헤쳐 보세요. 웹 개발 초보도 쉽게 이해할 수 있는 비유와 함께 HTML의 핵심을 배워보세요.
+ogImage: /og/whatishtml.png
 ---
 
 ## 🤔 혹시 인터넷을 하면서 이런 생각해 본 적 없나요?

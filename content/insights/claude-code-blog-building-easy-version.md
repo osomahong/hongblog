@@ -1,7 +1,9 @@
 ---
 slug: claude-code-blog-building-easy-version
-title: Claude Code로 블로그 만들기, 쉽게 풀어쓴 버전
-excerpt: 디지털 마케터가 Claude Code로 블로그를 처음부터 만들고 운영하는 전 과정을, 코딩을 모르는 분도 이해할 수 있도록 쉬운 말로 풀어서 정리했습니다. 같은 내용을 전문 용어 없이, 비유 중심으로 설명합니다.
+title: 'Claude Code로 블로그 만들기, 쉽게 풀어쓴 버전'
+excerpt: >-
+  디지털 마케터가 Claude Code로 블로그를 처음부터 만들고 운영하는 전 과정을, 코딩을 모르는 분도 이해할 수 있도록 쉬운 말로 풀어서
+  정리했습니다. 같은 내용을 전문 용어 없이, 비유 중심으로 설명합니다.
 category: AI_TECH
 tags:
   - AI
@@ -9,23 +11,34 @@ tags:
   - 노코드
 publishedAt: '2026-03-25T06:19:01.449Z'
 highlights:
-  - Claude Code는 '내 프로젝트를 이해하는 AI 팀원'이다. 코드를 대신 써주는 것이 아니라, 기존에 만들어진 것을 파악한 뒤 거기에 맞춰 작업한다
-  - 블로그를 만드는 것보다 운영을 자동화하는 것이 핵심이다. AI 도우미 4명이 역할을 나눠서 글쓰기, 검수, 검색 최적화, 주제 추천을 처리한다
-  - 코딩을 몰라도 '무엇을 원하는지' 구체적으로 설명할 수 있으면 충분하다. 기술 구현은 Claude Code가, 방향 판단은 사람이 담당한다
+  - >-
+    Claude Code는 '내 프로젝트를 이해하는 AI 팀원'이다. 코드를 대신 써주는 것이 아니라, 기존에 만들어진 것을 파악한 뒤
+    거기에 맞춰 작업한다
+  - >-
+    블로그를 만드는 것보다 운영을 자동화하는 것이 핵심이다. AI 도우미 4명이 역할을 나눠서 글쓰기, 검수, 검색 최적화, 주제 추천을
+    처리한다
+  - >-
+    코딩을 몰라도 '무엇을 원하는지' 구체적으로 설명할 수 있으면 충분하다. 기술 구현은 Claude Code가, 방향 판단은 사람이
+    담당한다
 quiz:
   - options:
       - 내가 원하는 것을 구체적으로 설명하는 능력
       - 프로그래밍 언어를 빠르게 배우는 학습 능력
       - AI가 만든 코드를 검토하고 수정하는 기술 능력
       - 다양한 AI 도구를 비교하고 선택하는 판단력
-    question: 코딩을 모르는 사람이 Claude Code를 활용할 때, 가장 중요한 능력은 무엇이라고 생각하시나요?
-    explanation: Claude Code는 기술적 구현을 대신 처리합니다. 사용자에게 필요한 것은 '이런 기능이 있었으면 좋겠고, 이런 이유 때문이다'라고 구체적으로 설명하는 능력입니다. 코드를 읽거나 쓸 줄 몰라도, 원하는 바를 명확히 전달하면 Claude Code가 적절한 기술적 판단을 내립니다.
+    question: '코딩을 모르는 사람이 Claude Code를 활용할 때, 가장 중요한 능력은 무엇이라고 생각하시나요?'
+    explanation: >-
+      Claude Code는 기술적 구현을 대신 처리합니다. 사용자에게 필요한 것은 '이런 기능이 있었으면 좋겠고, 이런 이유
+      때문이다'라고 구체적으로 설명하는 능력입니다. 코드를 읽거나 쓸 줄 몰라도, 원하는 바를 명확히 전달하면 Claude Code가
+      적절한 기술적 판단을 내립니다.
     correctIndex: 0
 metaTitle: 'Claude Code로 블로그 만들기: 코딩 모르는 사람을 위한 쉬운 설명'
-metaDescription: 개발 경험 없는 마케터가 Claude Code로 블로그를 만들고 운영하는 과정을, 전문 용어 없이 비유 중심으로 쉽게 풀어서 설명합니다. 같은 내용의 쉬운 버전입니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-code-blog-building-easy-version-0-1774367665029.png
-ogTitle: Claude Code로 블로그 만들기, 쉽게 풀어쓴 버전
-ogDescription: 코딩을 모르는 마케터가 AI로 블로그를 만든 과정을, 전문 용어 없이 비유로 쉽게 설명합니다.
+metaDescription: >-
+  개발 경험 없는 마케터가 Claude Code로 블로그를 만들고 운영하는 과정을, 전문 용어 없이 비유 중심으로 쉽게 풀어서 설명합니다.
+  같은 내용의 쉬운 버전입니다.
+ogImage: /og/claude-code-blog-building-easy-version.png
+ogTitle: 'Claude Code로 블로그 만들기, 쉽게 풀어쓴 버전'
+ogDescription: '코딩을 모르는 마케터가 AI로 블로그를 만든 과정을, 전문 용어 없이 비유로 쉽게 설명합니다.'
 ---
 
 ## 개발자 아닌 사람이 블로그를 직접 만든다는 것

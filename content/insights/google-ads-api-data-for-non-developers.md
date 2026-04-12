@@ -1,7 +1,9 @@
 ---
 slug: google-ads-api-data-for-non-developers
 title: 비개발자도 쓰기 편하게 정리한 구글 Ads API 데이터
-excerpt: 구글 Ads API로 가져올 수 있는 필드, 마케터가 보는 지표와 API 필드명 매핑, 연결 과정, 주의사항, 그리고 AI로 쉽게 구현하는 팁까지. 비개발자를 위한 실전 가이드.
+excerpt: >-
+  구글 Ads API로 가져올 수 있는 필드, 마케터가 보는 지표와 API 필드명 매핑, 연결 과정, 주의사항, 그리고 AI로 쉽게 구현하는
+  팁까지. 비개발자를 위한 실전 가이드.
 category: MARKETING
 tags:
   - Google 광고
@@ -12,19 +14,25 @@ tags:
 publishedAt: '2026-02-23T09:50:36.903Z'
 quiz:
   - options:
-      - metrics.cost_micros 값을 1,000,000으로 나눠야 한다
+      - 'metrics.cost_micros 값을 1,000,000으로 나눠야 한다'
       - metrics.cost 값을 그대로 사용하면 된다
-      - metrics.cost_micros 값을 1,000으로 나눠야 한다
+      - 'metrics.cost_micros 값을 1,000으로 나눠야 한다'
       - currency 필드를 별도로 조회해야 한다
-    question: 구글 Ads API에서 광고 비용(cost) 데이터를 가져올 때, 실제 금액을 구하려면 어떤 처리가 필요할까요?
-    explanation: 구글 Ads API는 비용을 마이크로(micro) 단위로 반환합니다. 예를 들어 10,000원이면 10,000,000,000 마이크로로 표시됩니다. 실제 금액을 구하려면 반드시 1,000,000으로 나눠야 합니다. 이걸 모르고 데이터를 뽑으면 비용이 100만 배로 보이는 사고가 발생합니다.
+    question: '구글 Ads API에서 광고 비용(cost) 데이터를 가져올 때, 실제 금액을 구하려면 어떤 처리가 필요할까요?'
+    explanation: >-
+      구글 Ads API는 비용을 마이크로(micro) 단위로 반환합니다. 예를 들어 10,000원이면 10,000,000,000
+      마이크로로 표시됩니다. 실제 금액을 구하려면 반드시 1,000,000으로 나눠야 합니다. 이걸 모르고 데이터를 뽑으면 비용이 100만
+      배로 보이는 사고가 발생합니다.
     correctIndex: 0
 seriesSlug: digitalmarketing
 seriesOrder: 9
 metaTitle: 비개발자도 쓰기 편하게 정리한 구글 Ads API 데이터 | 실전 가이드
-metaDescription: 구글 Ads API 필드 구조, 마케팅 지표 매핑, 연결 과정, PMax·디멘드젠 소재 성과 추출법, AI 프롬프트 활용 팁까지. 비개발자 마케터를 위한 실전 정리.
+metaDescription: >-
+  구글 Ads API 필드 구조, 마케팅 지표 매핑, 연결 과정, PMax·디멘드젠 소재 성과 추출법, AI 프롬프트 활용 팁까지. 비개발자
+  마케터를 위한 실전 정리.
 ogTitle: 비개발자도 쓰기 편하게 정리한 구글 Ads API 데이터
-ogDescription: 마케터가 알아야 할 구글 Ads API 핵심만 정리. 필드 매핑표, 연결 과정, PMax 소재 성과 추출, AI 활용 팁까지.
+ogDescription: '마케터가 알아야 할 구글 Ads API 핵심만 정리. 필드 매핑표, 연결 과정, PMax 소재 성과 추출, AI 활용 팁까지.'
+ogImage: /og/google-ads-api-data-for-non-developers.png
 ---
 
 ## 구글 Ads API로 가져올 수 있는 데이터

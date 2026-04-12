@@ -1,7 +1,9 @@
 ---
 slug: what-is-terminal-cli
 term: 터미널과 CLI (Terminal & CLI)
-definition: 컴퓨터에게 텍스트 명령어를 입력해서 작업을 수행하는 도구입니다. AI 코딩 도구가 '이 명령어를 실행하세요'라고 할 때 사용하는 바로 그 검은 화면입니다.
+definition: >-
+  컴퓨터에게 텍스트 명령어를 입력해서 작업을 수행하는 도구입니다. AI 코딩 도구가 '이 명령어를 실행하세요'라고 할 때 사용하는 바로 그
+  검은 화면입니다.
 category: AI_TECH
 tags:
   - 바이브코딩
@@ -20,9 +22,12 @@ quiz:
       - 웹 브라우저 주소창
       - 코드 파일 안에 직접 타이핑
       - 메모장에 적어서 저장
-    question: 바이브코딩 중 AI가 'npm install을 실행하세요'라고 했을 때, 이 명령어를 입력해야 하는 곳은 어디일까요?
-    explanation: 터미널은 컴퓨터에게 텍스트 명령어를 전달하는 도구입니다. AI가 알려주는 명령어는 터미널에 입력해야 실행됩니다. VS Code나 Cursor에서는 하단의 내장 터미널(Ctrl + `)을 열어 바로 입력할 수 있습니다.
+    question: '바이브코딩 중 AI가 ''npm install을 실행하세요''라고 했을 때, 이 명령어를 입력해야 하는 곳은 어디일까요?'
+    explanation: >-
+      터미널은 컴퓨터에게 텍스트 명령어를 전달하는 도구입니다. AI가 알려주는 명령어는 터미널에 입력해야 실행됩니다. VS Code나
+      Cursor에서는 하단의 내장 터미널(Ctrl + `)을 열어 바로 입력할 수 있습니다.
     correctIndex: 0
+ogImage: /og/what-is-terminal-cli.png
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

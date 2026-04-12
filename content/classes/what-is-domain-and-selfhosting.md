@@ -1,7 +1,7 @@
 ---
 slug: what-is-domain-and-selfhosting
 term: 도메인과 셀프호스팅 (Domain & Self-hosting)
-definition: 도메인은 인터넷에서 내 서비스를 찾을 수 있는 고유 주소이고, 셀프호스팅은 남의 플랫폼 대신 내가 직접 서버를 운영하는 방식입니다.
+definition: '도메인은 인터넷에서 내 서비스를 찾을 수 있는 고유 주소이고, 셀프호스팅은 남의 플랫폼 대신 내가 직접 서버를 운영하는 방식입니다.'
 category: AI_TECH
 tags:
   - 바이브코딩
@@ -26,8 +26,12 @@ quiz:
       - TXT 레코드 — 텍스트 정보를 저장하는 레코드
       - PTR 레코드 — IP 주소를 도메인으로 역변환하는 레코드
     question: 도메인을 구매하고 Vercel에 연결하려면 설정해야 하는 DNS 레코드는 무엇일까요?
-    explanation: 웹 서비스에 도메인을 연결할 때는 A 레코드(도메인 → IP 주소) 또는 CNAME(도메인 → 다른 도메인)을 사용합니다. Vercel 같은 플랫폼은 보통 CNAME 설정을 안내하며, 루트 도메인에는 A 레코드를 사용합니다. 설정 후 HTTPS 인증서는 자동으로 발급됩니다.
+    explanation: >-
+      웹 서비스에 도메인을 연결할 때는 A 레코드(도메인 → IP 주소) 또는 CNAME(도메인 → 다른 도메인)을 사용합니다.
+      Vercel 같은 플랫폼은 보통 CNAME 설정을 안내하며, 루트 도메인에는 A 레코드를 사용합니다. 설정 후 HTTPS 인증서는
+      자동으로 발급됩니다.
     correctIndex: 1
+ogImage: /og/what-is-domain-and-selfhosting.png
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

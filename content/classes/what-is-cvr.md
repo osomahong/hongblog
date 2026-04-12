@@ -1,7 +1,7 @@
 ---
 slug: what-is-cvr
 term: CVR (Conversion Rate)
-definition: 방문자 또는 클릭한 사용자 중 실제로 전환(구매, 가입 등)을 완료한 비율로, 마케팅 퍼널의 최종 효율을 측정하는 핵심 지표입니다.
+definition: '방문자 또는 클릭한 사용자 중 실제로 전환(구매, 가입 등)을 완료한 비율로, 마케팅 퍼널의 최종 효율을 측정하는 핵심 지표입니다.'
 category: MARKETING
 tags:
   - 광고
@@ -21,14 +21,18 @@ relatedTerms:
 difficulty: BEGINNER
 quiz:
   - options:
-      - 랜딩 페이지의 CTA 버튼, 결제 과정, 페이지 로딩 속도 등 전환 경로를 점검한다
+      - '랜딩 페이지의 CTA 버튼, 결제 과정, 페이지 로딩 속도 등 전환 경로를 점검한다'
       - 광고 소재의 제목과 이미지를 변경한다
       - 광고 예산을 더 늘린다
       - 타겟 오디언스를 더 넓힌다
-    question: 광고 캠페인 결과를 분석 중입니다. CTR은 4%로 양호하지만, 랜딩 페이지 CVR이 0.5%로 매우 낮습니다. 가장 먼저 점검해야 할 영역은 어디일까요?
-    explanation: CTR이 양호하다는 것은 광고 소재가 관심을 잘 끌고 있다는 뜻입니다. 하지만 CVR이 낮다면 문제는 광고가 아니라 '랜딩 페이지에서 전환까지의 과정'에 있습니다. CTA 버튼 위치, 페이지 로딩 속도, 결제 단계의 복잡성 등을 우선적으로 점검해야 합니다.
+    question: >-
+      광고 캠페인 결과를 분석 중입니다. CTR은 4%로 양호하지만, 랜딩 페이지 CVR이 0.5%로 매우 낮습니다. 가장 먼저 점검해야
+      할 영역은 어디일까요?
+    explanation: >-
+      CTR이 양호하다는 것은 광고 소재가 관심을 잘 끌고 있다는 뜻입니다. 하지만 CVR이 낮다면 문제는 광고가 아니라 '랜딩 페이지에서
+      전환까지의 과정'에 있습니다. CTA 버튼 위치, 페이지 로딩 속도, 결제 단계의 복잡성 등을 우선적으로 점검해야 합니다.
     correctIndex: 0
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-cvr-0-1770881599739.png
+ogImage: /og/what-is-cvr.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

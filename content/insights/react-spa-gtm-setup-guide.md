@@ -1,7 +1,9 @@
 ---
 slug: react-spa-gtm-setup-guide
 title: React SPA에서 GTM 설치하기 | 페이지뷰 추적 완벽 가이드
-excerpt: 리액트 같은 SPA 환경에서는 일반 웹사이트처럼 GTM을 설치해서는 안 됩니다. dataLayer를 올바르게 설정하고, 라우팅 이벤트를 추적하는 방법을 단계별로 설명합니다.
+excerpt: >-
+  리액트 같은 SPA 환경에서는 일반 웹사이트처럼 GTM을 설치해서는 안 됩니다. dataLayer를 올바르게 설정하고, 라우팅 이벤트를
+  추적하는 방법을 단계별로 설명합니다.
 category: AI_TECH
 tags:
   - React
@@ -18,12 +20,18 @@ quiz:
       - GTM이 리액트 프레임워크를 공식 지원하지 않기 때문
       - 브라우저 보안 정책이 SPA의 반복 이벤트를 제한하기 때문
     question: 리액트 SPA에서 GTM의 기본 Page View 트리거가 첫 로딩에서만 작동하는 근본적인 이유는 무엇일까요?
-    explanation: SPA는 최초에 HTML을 한 번만 로드하고, 이후 페이지 전환은 JavaScript로 DOM을 교체하며 history.pushState()로 URL만 변경합니다. 브라우저 입장에서 '새 페이지를 열었다'는 이벤트가 발생하지 않으므로, GTM의 기본 Page View 트리거(gtm.js)는 최초 로딩 시에만 작동합니다.
+    explanation: >-
+      SPA는 최초에 HTML을 한 번만 로드하고, 이후 페이지 전환은 JavaScript로 DOM을 교체하며
+      history.pushState()로 URL만 변경합니다. 브라우저 입장에서 '새 페이지를 열었다'는 이벤트가 발생하지 않으므로,
+      GTM의 기본 Page View 트리거(gtm.js)는 최초 로딩 시에만 작동합니다.
     correctIndex: 1
 metaTitle: React SPA에서 GTM 설치하기 | 페이지뷰 추적 완벽 가이드
-metaDescription: 리액트 SPA에서 GTM을 올바르게 설치하는 방법을 코드 예시와 함께 설명합니다. dataLayer 설정부터 페이지뷰 추적, Next.js 환경까지 실전 가이드를 확인하세요.
-ogTitle: 리액트 SPA에서 GTM 설치, 왜 데이터가 안 잡힐까?
+metaDescription: >-
+  리액트 SPA에서 GTM을 올바르게 설치하는 방법을 코드 예시와 함께 설명합니다. dataLayer 설정부터 페이지뷰 추적, Next.js
+  환경까지 실전 가이드를 확인하세요.
+ogTitle: '리액트 SPA에서 GTM 설치, 왜 데이터가 안 잡힐까?'
 ogDescription: SPA 환경에서 GTM이 제대로 작동하지 않는 이유와 해결법. dataLayer 설정으로 정확한 추적을 시작하세요.
+ogImage: /og/react-spa-gtm-setup-guide.png
 ---
 
 ## 도입부: 그냥 붙여넣으면 되는 거 아닌가요?

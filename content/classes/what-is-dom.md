@@ -1,7 +1,9 @@
 ---
 slug: what-is-dom
 term: DOM (Document Object Model)
-definition: 웹 개발, DOM이 궁금하다면? 버튼, 텍스트, 이미지까지, 웹 페이지의 모든 요소를 이해하고 다룰 수 있도록 돕는 DOM의 개념과 활용법을 지금 바로 확인하세요! 클릭 한 번으로 디지털 이해력과 실력을 성장시킬 수 있습니다.
+definition: >-
+  웹 개발, DOM이 궁금하다면? 버튼, 텍스트, 이미지까지, 웹 페이지의 모든 요소를 이해하고 다룰 수 있도록 돕는 DOM의 개념과 활용법을
+  지금 바로 확인하세요! 클릭 한 번으로 디지털 이해력과 실력을 성장시킬 수 있습니다.
 category: AI_TECH
 tags:
   - DOM
@@ -13,14 +15,19 @@ quiz:
   - options:
       - HTML 파일 자체를 의미한다
       - 웹페이지의 디자인(CSS)을 저장하는 공간이다
-      - 브라우저가 HTML을 분석해 만든, 요소를 찾고 조작할 수 있는 트리 구조이다
+      - '브라우저가 HTML을 분석해 만든, 요소를 찾고 조작할 수 있는 트리 구조이다'
       - JavaScript 코드를 실행하는 엔진이다
     question: DOM에 대한 설명으로 올바른 것은?
-    explanation: DOM은 브라우저가 HTML 문서를 읽고, 각 요소를 부모-자식 관계의 트리 구조(객체)로 변환한 것입니다. JavaScript나 GTM은 이 DOM을 통해 특정 요소를 찾고 수정할 수 있습니다. HTML 원본 파일 그 자체가 아닌, 브라우저가 해석한 결과물입니다.
+    explanation: >-
+      DOM은 브라우저가 HTML 문서를 읽고, 각 요소를 부모-자식 관계의 트리 구조(객체)로 변환한 것입니다. JavaScript나
+      GTM은 이 DOM을 통해 특정 요소를 찾고 수정할 수 있습니다. HTML 원본 파일 그 자체가 아닌, 브라우저가 해석한
+      결과물입니다.
     correctIndex: 2
 metaTitle: DOM (Document Object Model) | 비개발자도 쉽게 배우는 디지털 환경 기초 지식
-metaDescription: 웹 개발, DOM이 궁금하다면? 버튼, 텍스트, 이미지까지, 웹 페이지의 모든 요소를 이해하고 다룰 수 있도록 돕는 DOM의 개념과 활용법을 지금 바로 확인하세요! 클릭 한 번으로 디지털 이해력과 실력을 성장시킬 수 있습니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-dom-0-1770800283327.png
+metaDescription: >-
+  웹 개발, DOM이 궁금하다면? 버튼, 텍스트, 이미지까지, 웹 페이지의 모든 요소를 이해하고 다룰 수 있도록 돕는 DOM의 개념과 활용법을
+  지금 바로 확인하세요! 클릭 한 번으로 디지털 이해력과 실력을 성장시킬 수 있습니다.
+ogImage: /og/what-is-dom.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

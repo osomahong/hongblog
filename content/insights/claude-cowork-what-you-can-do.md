@@ -1,7 +1,9 @@
 ---
 slug: claude-cowork-what-you-can-do
 title: 클로드 코워크로 할 수 있는 것 - 총 정리
-excerpt: Claude Cowork는 채팅이 아닌 '작업'을 수행하는 AI 에이전트입니다. 파일 정리부터 보고서 생성, 데이터 분석, 플러그인 기반 업무 자동화까지 — 코드 한 줄 없이 데스크톱에서 실행할 수 있는 실전 활용법을 정리했습니다.
+excerpt: >-
+  Claude Cowork는 채팅이 아닌 '작업'을 수행하는 AI 에이전트입니다. 파일 정리부터 보고서 생성, 데이터 분석, 플러그인 기반
+  업무 자동화까지 — 코드 한 줄 없이 데스크톱에서 실행할 수 있는 실전 활용법을 정리했습니다.
 category: AI_TECH
 tags:
   - AI
@@ -10,18 +12,23 @@ tags:
 publishedAt: '2026-02-21T15:24:47.729Z'
 quiz:
   - options:
-      - 로컬 파일 시스템에 직접 접근하여 파일을 읽고, 수정하고, 생성할 수 있다
+      - '로컬 파일 시스템에 직접 접근하여 파일을 읽고, 수정하고, 생성할 수 있다'
       - 더 긴 컨텍스트 윈도우를 지원하여 대용량 문서를 처리할 수 있다
       - 플러그인 마켓플레이스를 통해 전문 도구를 설치할 수 있다
       - 여러 AI 모델을 동시에 활용하여 답변 품질을 높인다
-    question: Claude Cowork가 기존 AI 챗봇(ChatGPT, Claude 채팅 등)과 가장 본질적으로 다른 점은 무엇일까요?
-    explanation: Cowork의 본질적 차이는 '대화'가 아닌 '작업'을 수행한다는 것입니다. 로컬 파일 시스템에 직접 접근하여 실제 파일을 읽고, 편집하고, 새로 생성할 수 있기 때문에 채팅창에 텍스트를 붙여넣는 과정 없이 수백 개 파일을 한 번에 처리할 수 있습니다. 플러그인이나 컨텍스트 윈도우도 중요한 기능이지만, 파일 시스템 접근이 기존 챗봇과의 근본적 차이를 만들어냅니다.
+    question: 'Claude Cowork가 기존 AI 챗봇(ChatGPT, Claude 채팅 등)과 가장 본질적으로 다른 점은 무엇일까요?'
+    explanation: >-
+      Cowork의 본질적 차이는 '대화'가 아닌 '작업'을 수행한다는 것입니다. 로컬 파일 시스템에 직접 접근하여 실제 파일을 읽고,
+      편집하고, 새로 생성할 수 있기 때문에 채팅창에 텍스트를 붙여넣는 과정 없이 수백 개 파일을 한 번에 처리할 수 있습니다.
+      플러그인이나 컨텍스트 윈도우도 중요한 기능이지만, 파일 시스템 접근이 기존 챗봇과의 근본적 차이를 만들어냅니다.
     correctIndex: 0
 metaTitle: 클로드 코워크로 할 수 있는 것 - 총 정리 | 준이아빠블로그
-metaDescription: Claude Cowork의 실전 활용법을 정리합니다. 파일 정리, 보고서 생성, 데이터 분석, 플러그인 시스템까지 비개발자도 바로 쓸 수 있는 AI 에이전트의 모든 것.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-cowork-what-you-can-do-0-1771686918982.png
+metaDescription: >-
+  Claude Cowork의 실전 활용법을 정리합니다. 파일 정리, 보고서 생성, 데이터 분석, 플러그인 시스템까지 비개발자도 바로 쓸 수
+  있는 AI 에이전트의 모든 것.
+ogImage: /og/claude-cowork-what-you-can-do.png
 ogTitle: 클로드 코워크로 할 수 있는 것 — AI 업무 자동화 실전 가이드
-ogDescription: 파일 정리부터 보고서, 데이터 분석, 플러그인까지 — Claude Cowork로 데스크톱 업무를 자동화하는 방법을 정리했습니다.
+ogDescription: '파일 정리부터 보고서, 데이터 분석, 플러그인까지 — Claude Cowork로 데스크톱 업무를 자동화하는 방법을 정리했습니다.'
 ---
 
 ## 클로드 코워크의 핵심은 무엇일까?

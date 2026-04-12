@@ -1,7 +1,9 @@
 ---
 slug: why-markdown-matters-in-ai-era
 title: 'AI시대에 마크다운이 중요한 이유: md파일은 뭘까요'
-excerpt: 마크다운은 더 이상 개발자의 문서 도구가 아닙니다. AI 에이전트의 행동 규칙을 정하고, 스킬을 정의하고, 프롬프트 품질을 높이는 AI 시대의 핵심 소통 수단이 된 마크다운의 변화를 초보자 눈높이에서 설명합니다.
+excerpt: >-
+  마크다운은 더 이상 개발자의 문서 도구가 아닙니다. AI 에이전트의 행동 규칙을 정하고, 스킬을 정의하고, 프롬프트 품질을 높이는 AI
+  시대의 핵심 소통 수단이 된 마크다운의 변화를 초보자 눈높이에서 설명합니다.
 category: AI_TECH
 tags:
   - AI
@@ -16,13 +18,19 @@ quiz:
       - config.json — JSON 형식의 설정 파일에 규칙을 정의한다
       - settings.yaml — YAML 형식으로 에이전트의 행동 패턴을 설정한다
     question: AI 에이전트 도구인 Claude Code에서 AI의 행동 규칙을 정의하는 파일의 이름은 무엇일까요?
-    explanation: Claude Code는 CLAUDE.md 파일에 작성된 규칙을 자동으로 읽고 따릅니다. 마크다운 형식이기 때문에 코딩 지식 없이도 누구나 AI의 행동 규칙을 정의할 수 있다는 것이 핵심입니다.
+    explanation: >-
+      Claude Code는 CLAUDE.md 파일에 작성된 규칙을 자동으로 읽고 따릅니다. 마크다운 형식이기 때문에 코딩 지식 없이도
+      누구나 AI의 행동 규칙을 정의할 수 있다는 것이 핵심입니다.
     correctIndex: 0
 metaTitle: 'AI시대에 마크다운이 중요한 이유: md파일은 뭘까요 | 준이아빠블로그'
-metaDescription: 마크다운은 이제 AI 에이전트의 행동 규칙을 정의하는 핵심 도구입니다. CLAUDE.md, SKILL.md 등 .md 파일이 AI를 움직이는 원리를 초보자 눈높이에서 설명합니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/why-markdown-matters-in-ai-era-0-1771565988276.png
+metaDescription: >-
+  마크다운은 이제 AI 에이전트의 행동 규칙을 정의하는 핵심 도구입니다. CLAUDE.md, SKILL.md 등 .md 파일이 AI를 움직이는
+  원리를 초보자 눈높이에서 설명합니다.
+ogImage: /og/why-markdown-matters-in-ai-era.png
 ogTitle: AI시대에 마크다운이 중요한 이유 — .md 파일이 AI를 움직인다
-ogDescription: 문서 서식에서 AI 에이전트의 운영 체제로. 마크다운이 AI 시대의 핵심 소통 수단이 된 이유와 비개발자도 바로 활용하는 방법을 알려드립니다.
+ogDescription: >-
+  문서 서식에서 AI 에이전트의 운영 체제로. 마크다운이 AI 시대의 핵심 소통 수단이 된 이유와 비개발자도 바로 활용하는 방법을
+  알려드립니다.
 ---
 
 ## 마크다운은 이미 우리 옆에 있었습니다

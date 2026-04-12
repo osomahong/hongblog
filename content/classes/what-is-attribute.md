@@ -1,7 +1,9 @@
 ---
 slug: what-is-attribute
 term: Attribute (속성)
-definition: Attribute(속성)는 HTML Element에 붙는 추가 정보입니다. 택배 상자의 송장처럼, 이름표(id), 분류표(class), 목적지(href) 등을 통해 각 Element를 식별하고 동작을 결정합니다.
+definition: >-
+  Attribute(속성)는 HTML Element에 붙는 추가 정보입니다. 택배 상자의 송장처럼, 이름표(id), 분류표(class),
+  목적지(href) 등을 통해 각 Element를 식별하고 동작을 결정합니다.
 category: AI_TECH
 tags:
   - HTML
@@ -18,9 +20,12 @@ quiz:
       - CSS에서 색상이나 크기를 지정하는 코드이다
       - JavaScript에서 변수를 선언하는 문법이다
     question: HTML Attribute(속성)에 대한 설명으로 올바른 것은?
-    explanation: Attribute는 HTML Element에 추가 정보를 부여하는 이름="값" 쌍입니다. 예를 들어 <button id="buy" class="primary">에서 id와 class가 Attribute입니다. 같은 종류의 Element를 구별하거나 동작을 지정하는 역할을 합니다.
+    explanation: >-
+      Attribute는 HTML Element에 추가 정보를 부여하는 이름="값" 쌍입니다. 예를 들어 <button id="buy"
+      class="primary">에서 id와 class가 Attribute입니다. 같은 종류의 Element를 구별하거나 동작을 지정하는
+      역할을 합니다.
     correctIndex: 1
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-attribute-0-1770800142952.png
+ogImage: /og/what-is-attribute.png
 ---
 
 ## 🤔 혹시 이런 경험 있으신가요?

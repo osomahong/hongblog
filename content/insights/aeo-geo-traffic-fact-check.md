@@ -1,7 +1,9 @@
 ---
 slug: aeo-geo-traffic-fact-check
-title: AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다
-excerpt: Gartner의 '검색 25% 감소' 예측, AI 검색 대체론, SEO 종말론을 원본 데이터와 대조하여 검증했습니다. AI Overviews CTR 61% 하락, 제로클릭 58.5% 등 실제 수치 기반의 팩트체크와 대응 전략을 정리합니다.
+title: 'AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다'
+excerpt: >-
+  Gartner의 '검색 25% 감소' 예측, AI 검색 대체론, SEO 종말론을 원본 데이터와 대조하여 검증했습니다. AI Overviews
+  CTR 61% 하락, 제로클릭 58.5% 등 실제 수치 기반의 팩트체크와 대응 전략을 정리합니다.
 category: AI_TECH
 tags:
   - AI
@@ -11,17 +13,25 @@ tags:
 publishedAt: '2026-02-22T12:05:58.060Z'
 quiz:
   - options:
-      - 약 1% — Conductor 2026 리포트 기준 1.08%로, 빠르게 성장 중이지만 아직 극히 일부
+      - '약 1% — Conductor 2026 리포트 기준 1.08%로, 빠르게 성장 중이지만 아직 극히 일부'
       - 약 10% — Google 점유율이 10% 하락한 만큼 AI가 그 자리를 채움
       - 약 25% — Gartner가 예측한 대로 전통 검색의 1/4이 AI로 이동
-    question: 2026년 현재, AI 플랫폼(ChatGPT, Perplexity 등)에서 발생하는 추천 트래픽이 전체 웹 트래픽에서 차지하는 비중은 얼마일까요?
-    explanation: Conductor의 2026 AEO/GEO 벤치마크 리포트에 따르면, AI 추천 트래픽은 전체 웹 방문의 1.08%를 차지합니다. 빠르게 성장하고 있지만, Gartner의 25% 예측과는 큰 괴리가 있는 것이 현실입니다.
+    question: >-
+      2026년 현재, AI 플랫폼(ChatGPT, Perplexity 등)에서 발생하는 추천 트래픽이 전체 웹 트래픽에서 차지하는 비중은
+      얼마일까요?
+    explanation: >-
+      Conductor의 2026 AEO/GEO 벤치마크 리포트에 따르면, AI 추천 트래픽은 전체 웹 방문의 1.08%를 차지합니다.
+      빠르게 성장하고 있지만, Gartner의 25% 예측과는 큰 괴리가 있는 것이 현실입니다.
     correctIndex: 0
-metaTitle: AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다
-metaDescription: Gartner의 검색 25% 감소 예측을 원본 데이터로 팩트체크합니다. AI 추천 트래픽 1%, CTR 61% 하락 등 실제 수치와 대응 전략을 정리했습니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/aeo-geo-traffic-fact-check-0-1771571104708.png
+metaTitle: 'AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다'
+metaDescription: >-
+  Gartner의 검색 25% 감소 예측을 원본 데이터로 팩트체크합니다. AI 추천 트래픽 1%, CTR 61% 하락 등 실제 수치와 대응
+  전략을 정리했습니다.
+ogImage: /og/aeo-geo-traffic-fact-check.png
 ogTitle: AEO/GEO 시대의 검색 트래픽 변화 — 데이터 기반 팩트체크
-ogDescription: 검색 25% 감소설, AI 검색 대체론, SEO 종말론을 원본 출처와 대조하여 검증합니다. 실제 수치 기반의 팩트체크와 실무 대응 전략을 정리했습니다.
+ogDescription: >-
+  검색 25% 감소설, AI 검색 대체론, SEO 종말론을 원본 출처와 대조하여 검증합니다. 실제 수치 기반의 팩트체크와 실무 대응 전략을
+  정리했습니다.
 ---
 
 ## Gartner는 검색량이 25% 줄어든다고 했습니다

@@ -1,7 +1,9 @@
 ---
 slug: ai-overviews-ctr-decline
 title: AI Overviews 도입 이후 오가닉 CTR은 61% 하락했습니다
-excerpt: 구글 검색 결과 위에 나타나는 AI 요약(AI Overviews) 때문에 웹사이트 방문이 61% 줄었습니다. 15개월간 2,510만 건을 추적한 연구 데이터를 바탕으로, 실제로 무슨 일이 일어나고 있는지 쉽게 설명합니다.
+excerpt: >-
+  구글 검색 결과 위에 나타나는 AI 요약(AI Overviews) 때문에 웹사이트 방문이 61% 줄었습니다. 15개월간 2,510만 건을
+  추적한 연구 데이터를 바탕으로, 실제로 무슨 일이 일어나고 있는지 쉽게 설명합니다.
 category: AI_TECH
 tags:
   - AI
@@ -15,13 +17,19 @@ quiz:
       - 변화 없음 — AI 요약이 없는 검색은 기존 클릭률을 유지했다
       - 15% 상승 — AI 요약이 없는 검색으로 클릭이 몰리면서 오히려 올랐다
     question: 구글의 AI 요약(AI Overviews)이 나타나지 않는 검색에서는 웹사이트 클릭률이 어떻게 변했을까요?
-    explanation: 연구팀은 처음에 AI 요약이 없는 검색어는 영향을 받지 않을 것이라고 예상했지만, 실제로는 41% 하락했습니다. 이는 사람들이 ChatGPT, Perplexity 같은 AI 도구로 이동하면서 구글 검색 자체의 클릭이 줄고 있기 때문입니다.
+    explanation: >-
+      연구팀은 처음에 AI 요약이 없는 검색어는 영향을 받지 않을 것이라고 예상했지만, 실제로는 41% 하락했습니다. 이는 사람들이
+      ChatGPT, Perplexity 같은 AI 도구로 이동하면서 구글 검색 자체의 클릭이 줄고 있기 때문입니다.
     correctIndex: 0
 metaTitle: AI Overviews 도입 이후 오가닉 CTR은 61% 하락했습니다
-metaDescription: Seer Interactive 15개월 연구 기반, AI Overviews의 오가닉 CTR 61% 하락 데이터 분석. 인용 브랜드 CTR 35% 우위, 산업별 차이, 대응 전략을 정리합니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ai-overviews-ctr-decline-0-1771571882549.png
+metaDescription: >-
+  Seer Interactive 15개월 연구 기반, AI Overviews의 오가닉 CTR 61% 하락 데이터 분석. 인용 브랜드 CTR
+  35% 우위, 산업별 차이, 대응 전략을 정리합니다.
+ogImage: /og/ai-overviews-ctr-decline.png
 ogTitle: AI Overviews 도입 이후 오가닉 CTR 61% 하락 — 데이터 분석
-ogDescription: 'Seer Interactive 2,510만 노출 연구 결과: AI Overviews가 표시되면 오가닉 CTR 61% 하락, 인용된 브랜드는 35% 더 높은 CTR. 원출처 기반 분석과 대응 전략.'
+ogDescription: >-
+  Seer Interactive 2,510만 노출 연구 결과: AI Overviews가 표시되면 오가닉 CTR 61% 하락, 인용된 브랜드는
+  35% 더 높은 CTR. 원출처 기반 분석과 대응 전략.
 ---
 
 구글에서 무언가를 검색하면, 최근에는 검색 결과 맨 위에 AI가 작성한 요약 답변이 먼저 나타나는 경우가 많습니다. 이것이 바로 **AI Overviews**입니다. AI가 여러 웹사이트의 정보를 읽고, 사용자에게 핵심만 요약해서 보여주는 기능입니다.

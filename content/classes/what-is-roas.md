@@ -1,7 +1,7 @@
 ---
 slug: what-is-roas
 term: ROAS (Return On Ad Spend)
-definition: 광고에 투자한 비용 대비 발생한 매출의 비율로, 광고의 수익성을 직접적으로 판단하는 핵심 성과 지표입니다.
+definition: '광고에 투자한 비용 대비 발생한 매출의 비율로, 광고의 수익성을 직접적으로 판단하는 핵심 성과 지표입니다.'
 category: MARKETING
 tags:
   - 광고
@@ -20,14 +20,18 @@ relatedTerms:
 difficulty: BEGINNER
 quiz:
   - options:
-      - ROAS 200%이며, 손익분기 ROAS(250%)에 미달하므로 적자 상태이다
-      - ROAS 200%이며, 광고비 대비 2배 매출이므로 충분히 수익성이 있다
-      - ROAS 50%이며, 심각한 적자 상태이다
+      - 'ROAS 200%이며, 손익분기 ROAS(250%)에 미달하므로 적자 상태이다'
+      - 'ROAS 200%이며, 광고비 대비 2배 매출이므로 충분히 수익성이 있다'
+      - 'ROAS 50%이며, 심각한 적자 상태이다'
       - ROAS를 계산하려면 순이익 데이터가 반드시 필요하다
-    question: 제품 마진율이 40%인 쇼핑몰에서 광고비 300만원을 투입해 매출 600만원을 달성했습니다. 이 캠페인의 ROAS와 수익성을 올바르게 판단한 것은?
-    explanation: ROAS = (600만 ÷ 300만) × 100 = 200%입니다. 마진율 40%일 때 손익분기 ROAS = 1 ÷ 0.4 × 100 = 250%이므로, ROAS 200%는 손익분기에 미달합니다. 매출은 발생했지만 마진을 고려하면 광고비를 회수하지 못한 상태입니다.
+    question: >-
+      제품 마진율이 40%인 쇼핑몰에서 광고비 300만원을 투입해 매출 600만원을 달성했습니다. 이 캠페인의 ROAS와 수익성을 올바르게
+      판단한 것은?
+    explanation: >-
+      ROAS = (600만 ÷ 300만) × 100 = 200%입니다. 마진율 40%일 때 손익분기 ROAS = 1 ÷ 0.4 × 100
+      = 250%이므로, ROAS 200%는 손익분기에 미달합니다. 매출은 발생했지만 마진을 고려하면 광고비를 회수하지 못한 상태입니다.
     correctIndex: 0
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-roas-0-1770881672187.png
+ogImage: /og/what-is-roas.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

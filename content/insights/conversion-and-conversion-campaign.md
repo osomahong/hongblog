@@ -1,7 +1,9 @@
 ---
 slug: conversion-and-conversion-campaign
 title: 전환(Conversion)과 전환 캠페인 완전 정리
-excerpt: 전환은 구매만이 아닙니다. 마케터가 설정한 목표를 사용자가 달성하는 것이 전환이며, 이 설정에 따라 알고리즘이 찾는 사람이 달라집니다. 전환 추적 설정부터 잘못된 설정의 진단과 대처법까지 정리했습니다.
+excerpt: >-
+  전환은 구매만이 아닙니다. 마케터가 설정한 목표를 사용자가 달성하는 것이 전환이며, 이 설정에 따라 알고리즘이 찾는 사람이 달라집니다. 전환
+  추적 설정부터 잘못된 설정의 진단과 대처법까지 정리했습니다.
 category: MARKETING
 tags:
   - 전환
@@ -11,20 +13,27 @@ tags:
   - 광고
 quiz:
   - options:
-      - 알고리즘이 구매 의향이 없는 사람에게도 광고를 보여줘서, 전환 수는 많지만 실제 매출은 늘지 않는다
+      - '알고리즘이 구매 의향이 없는 사람에게도 광고를 보여줘서, 전환 수는 많지만 실제 매출은 늘지 않는다'
       - 페이지 조회 데이터가 너무 많이 쌓여서 광고 비용이 자동으로 올라간다
       - 전환 수가 너무 적어서 알고리즘이 학습할 데이터가 부족해진다
     question: 광고 플랫폼에서 전환(Conversion)을 '페이지 조회'로 설정하면 어떤 문제가 생길까요?
-    explanation: 페이지 조회는 거의 모든 방문자가 하는 행동이므로, 알고리즘은 '아무나 데려다주면 전환 달성'이라고 학습합니다. 리포트에는 전환 수가 많아 보이지만, 실제 매출과는 무관한 숫자가 됩니다. 전환은 비즈니스에 실질적 가치를 만드는 행동으로 설정해야 합니다.
+    explanation: >-
+      페이지 조회는 거의 모든 방문자가 하는 행동이므로, 알고리즘은 '아무나 데려다주면 전환 달성'이라고 학습합니다. 리포트에는 전환 수가
+      많아 보이지만, 실제 매출과는 무관한 숫자가 됩니다. 전환은 비즈니스에 실질적 가치를 만드는 행동으로 설정해야 합니다.
     correctIndex: 0
 seriesSlug: digitalmarketing
 seriesOrder: 4
-thumbnailUrl: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/conversion-and-conversion-campaign-1-1772162997807.png
+thumbnailUrl: >-
+  https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/conversion-and-conversion-campaign-1-1772162997807.png
 metaTitle: '전환(Conversion)과 전환 캠페인 완전 정리: 설정부터 진단까지'
-metaDescription: 전환은 구매가 아니라 마케터가 정의한 목표 달성입니다. 전환 설정에 따라 광고 알고리즘이 찾는 사람이 완전히 달라집니다. 전환 추적 세팅부터 잘못된 설정 진단법, 전환 캠페인 작동 원리까지 초보자 눈높이로 정리했습니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/conversion-and-conversion-campaign-1-1772162997807.png
-ogTitle: '전환(Conversion) 완전 정리 — 전환 설정이 광고 성과를 좌우하는 이유'
-ogDescription: 전환은 구매만이 아닙니다. 전환 설정에 따라 알고리즘이 찾는 사람이 달라집니다. 전환 추적 설정부터 잘못된 설정의 진단과 대처법까지 정리했습니다.
+metaDescription: >-
+  전환은 구매가 아니라 마케터가 정의한 목표 달성입니다. 전환 설정에 따라 광고 알고리즘이 찾는 사람이 완전히 달라집니다. 전환 추적 세팅부터
+  잘못된 설정 진단법, 전환 캠페인 작동 원리까지 초보자 눈높이로 정리했습니다.
+ogImage: /og/conversion-and-conversion-campaign.png
+ogTitle: 전환(Conversion) 완전 정리 — 전환 설정이 광고 성과를 좌우하는 이유
+ogDescription: >-
+  전환은 구매만이 아닙니다. 전환 설정에 따라 알고리즘이 찾는 사람이 달라집니다. 전환 추적 설정부터 잘못된 설정의 진단과 대처법까지
+  정리했습니다.
 ---
 
 전환(Conversion)이란 마케터가 설정한 목표를 사용자가 달성하는 것입니다. 구매, 가입, 상담 신청 모두 전환이 될 수 있으며, 이 설정에 따라 광고 알고리즘이 찾는 대상이 완전히 달라집니다.

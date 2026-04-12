@@ -19,14 +19,16 @@ relatedTerms:
 difficulty: BEGINNER
 quiz:
   - options:
-      - GA4 API와 Google Sheets API를 연결하는 자동화 도구(Zapier, n8n 등)를 사용한다
+      - 'GA4 API와 Google Sheets API를 연결하는 자동화 도구(Zapier, n8n 등)를 사용한다'
       - 매일 GA4에 접속해서 데이터를 수동으로 복사-붙여넣기 한다
       - 개발자에게 GA4 소스코드를 수정해달라고 요청한다
       - 스프레드시트에 직접 JavaScript 코드를 작성한다
-    question: 마케터가 'GA4 이벤트 데이터를 자동으로 스프레드시트에 저장하고 싶다'고 할 때, 가장 적절한 방법은 무엇일까요?
-    explanation: API는 서로 다른 서비스를 연결하는 통로입니다. GA4 API로 데이터를 요청하고, Google Sheets API로 저장하는 과정을 자동화 도구로 연결하면 수동 작업 없이 자동으로 데이터를 수집할 수 있습니다. 이것이 API의 가장 실용적인 활용 방법입니다.
+    question: '마케터가 ''GA4 이벤트 데이터를 자동으로 스프레드시트에 저장하고 싶다''고 할 때, 가장 적절한 방법은 무엇일까요?'
+    explanation: >-
+      API는 서로 다른 서비스를 연결하는 통로입니다. GA4 API로 데이터를 요청하고, Google Sheets API로 저장하는
+      과정을 자동화 도구로 연결하면 수동 작업 없이 자동으로 데이터를 수집할 수 있습니다. 이것이 API의 가장 실용적인 활용 방법입니다.
     correctIndex: 0
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-api-0-1770800358160.png
+ogImage: /og/what-is-api.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

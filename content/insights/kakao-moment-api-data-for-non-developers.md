@@ -1,7 +1,9 @@
 ---
 slug: kakao-moment-api-data-for-non-developers
 title: 비개발자도 쓰기 편하게 정리한 카카오모먼트 API 데이터
-excerpt: 카카오모먼트 광고 데이터를 API로 가져오고 싶은 마케터를 위한 가이드입니다. 공식대행사 전용 권한 신청, 비즈 앱 전환 심사, 비즈니스 토큰 인증, 보고서 API의 metricsGroup 구조까지 — 카카오모먼트 API의 진입 장벽과 실전 사용법을 정리했습니다.
+excerpt: >-
+  카카오모먼트 광고 데이터를 API로 가져오고 싶은 마케터를 위한 가이드입니다. 공식대행사 전용 권한 신청, 비즈 앱 전환 심사, 비즈니스
+  토큰 인증, 보고서 API의 metricsGroup 구조까지 — 카카오모먼트 API의 진입 장벽과 실전 사용법을 정리했습니다.
 category: MARKETING
 tags:
   - 광고
@@ -13,7 +15,7 @@ publishedAt: '2026-03-04T06:16:42.250Z'
 highlights:
   - 카카오모먼트 API는 공식대행사 또는 사전 협의된 광고주만 권한 신청이 가능 — 4개 매체 중 진입 장벽이 가장 높음
   - 비즈 앱 전환 심사 + 비즈니스 토큰 인증 + metricsGroup 기반 보고서 구조 — 카카오 API만의 고유한 체계
-  - 4개 매체(구글·메타·네이버·카카오) API 접근 난이도, 비용 단위, 전환 구조, Rate Limit 비교표
+  - '4개 매체(구글·메타·네이버·카카오) API 접근 난이도, 비용 단위, 전환 구조, Rate Limit 비교표'
 quiz:
   - options:
       - Kakao Developers에서 앱을 생성하면 누구나 바로 사용할 수 있다
@@ -21,14 +23,19 @@ quiz:
       - 네이버처럼 약관 동의만 하면 즉시 키가 발급된다
       - 구글처럼 Developer Token만 신청하면 접근할 수 있다
     question: 카카오모먼트 API의 접근 권한에 대한 설명으로 가장 정확한 것은 무엇일까요?
-    explanation: 카카오모먼트 오픈 API는 공식 문서에 명시된 대로 '카카오 광고 공식대행사와 사전에 협의된 광고주에 한하여 권한을 부여'합니다. 일반 개발자나 소규모 광고주는 직접 신청할 수 없으며, 비즈 앱 전환 심사도 별도로 통과해야 합니다.
+    explanation: >-
+      카카오모먼트 오픈 API는 공식 문서에 명시된 대로 '카카오 광고 공식대행사와 사전에 협의된 광고주에 한하여 권한을 부여'합니다.
+      일반 개발자나 소규모 광고주는 직접 신청할 수 없으며, 비즈 앱 전환 심사도 별도로 통과해야 합니다.
     correctIndex: 1
 seriesSlug: digitalmarketing
 seriesOrder: 5
 metaTitle: 비개발자를 위한 카카오모먼트 API 가이드 — 권한 신청·심사부터 코드 예시까지
-metaDescription: 카카오모먼트 API 권한 신청 조건, 비즈 앱 전환, 비즈니스 토큰 발급, 보고서 API 필드 매핑까지. 비개발자 마케터를 위한 카카오모먼트 API 실전 가이드입니다.
+metaDescription: >-
+  카카오모먼트 API 권한 신청 조건, 비즈 앱 전환, 비즈니스 토큰 발급, 보고서 API 필드 매핑까지. 비개발자 마케터를 위한 카카오모먼트
+  API 실전 가이드입니다.
 ogTitle: 비개발자도 쓰기 편하게 정리한 카카오모먼트 API 데이터
-ogDescription: 카카오모먼트 API 권한 신청부터 보고서 조회, 필드 매핑, 코드 예시까지. 진입 장벽이 높은 카카오 API의 핵심을 정리했습니다.
+ogDescription: '카카오모먼트 API 권한 신청부터 보고서 조회, 필드 매핑, 코드 예시까지. 진입 장벽이 높은 카카오 API의 핵심을 정리했습니다.'
+ogImage: /og/kakao-moment-api-data-for-non-developers.png
 ---
 
 ## 카카오모먼트 API, 시작하기 전에 알아야 할 것

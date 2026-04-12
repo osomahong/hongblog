@@ -1,7 +1,7 @@
 ---
 slug: what-is-env-variables
 term: 환경 변수와 .env (Environment Variables)
-definition: 프로그램이 실행될 때 참조하는 설정값으로, API 키나 비밀번호 같은 민감한 정보를 코드와 분리하여 안전하게 관리하는 방법입니다.
+definition: '프로그램이 실행될 때 참조하는 설정값으로, API 키나 비밀번호 같은 민감한 정보를 코드와 분리하여 안전하게 관리하는 방법입니다.'
 category: AI_TECH
 tags:
   - 바이브코딩
@@ -23,8 +23,12 @@ quiz:
       - API 키를 NEXT_PUBLIC_ 접두사를 붙여 저장한다
       - .env 파일 이름을 secrets.txt로 바꾼다
     question: 바이브코딩으로 프로젝트를 만들고 GitHub에 올리려고 합니다. 다음 중 반드시 확인해야 할 사항은 무엇일까요?
-    explanation: .env 파일에는 API 키, 비밀번호 등 민감한 정보가 담겨 있습니다. .gitignore에 .env를 추가하지 않으면 GitHub에 그대로 공개됩니다. 코드에 직접 복사하거나 NEXT_PUBLIC_ 접두사를 붙이면 오히려 브라우저에서 노출되므로 위험합니다.
+    explanation: >-
+      .env 파일에는 API 키, 비밀번호 등 민감한 정보가 담겨 있습니다. .gitignore에 .env를 추가하지 않으면
+      GitHub에 그대로 공개됩니다. 코드에 직접 복사하거나 NEXT_PUBLIC_ 접두사를 붙이면 오히려 브라우저에서 노출되므로
+      위험합니다.
     correctIndex: 0
+ogImage: /og/what-is-env-variables.png
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

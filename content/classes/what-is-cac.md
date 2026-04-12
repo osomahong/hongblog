@@ -1,7 +1,7 @@
 ---
 slug: what-is-cac
 term: CAC (Customer Acquisition Cost)
-definition: 한 명의 신규 고객을 획득하기 위해 들어간 총 비용으로, 마케팅과 영업 활동의 효율성을 판단하는 핵심 지표입니다.
+definition: '한 명의 신규 고객을 획득하기 위해 들어간 총 비용으로, 마케팅과 영업 활동의 효율성을 판단하는 핵심 지표입니다.'
 category: MARKETING
 tags:
   - CAC
@@ -21,13 +21,18 @@ relatedTerms:
 difficulty: BEGINNER
 quiz:
   - options:
-      - CAC 4만원, LTV 8만원으로 LTV:CAC 비율이 2:1이므로 양호하지만 개선 여지가 있다
+      - 'CAC 4만원, LTV 8만원으로 LTV:CAC 비율이 2:1이므로 양호하지만 개선 여지가 있다'
       - CAC가 낮으므로 마케팅 비용을 더 늘려야 한다
       - LTV가 CAC보다 높으므로 더 이상 최적화가 필요 없다
       - CAC와 LTV는 서로 관련이 없는 지표이다
-    question: 이번 분기 총 마케팅 비용 2,000만원을 투입하여 신규 고객 500명을 확보했습니다. 이 고객의 평균 LTV가 8만원일 때, 이 비즈니스의 상황을 올바르게 판단한 것은?
-    explanation: CAC = 2,000만원 ÷ 500명 = 4만원입니다. LTV 8만원 대비 CAC 4만원이므로 LTV:CAC = 2:1입니다. 수익이 나고 있지만, 이상적인 비율인 3:1에 미치지 못하므로 CAC를 낮추거나 LTV를 높이는 노력이 필요합니다.
+    question: >-
+      이번 분기 총 마케팅 비용 2,000만원을 투입하여 신규 고객 500명을 확보했습니다. 이 고객의 평균 LTV가 8만원일 때, 이
+      비즈니스의 상황을 올바르게 판단한 것은?
+    explanation: >-
+      CAC = 2,000만원 ÷ 500명 = 4만원입니다. LTV 8만원 대비 CAC 4만원이므로 LTV:CAC = 2:1입니다. 수익이
+      나고 있지만, 이상적인 비율인 3:1에 미치지 못하므로 CAC를 낮추거나 LTV를 높이는 노력이 필요합니다.
     correctIndex: 0
+ogImage: /og/what-is-cac.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

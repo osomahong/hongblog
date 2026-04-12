@@ -1,7 +1,9 @@
 ---
 slug: ga4-not-provided-explained
 title: GA4에서 (not provided)가 뜨는 이유 및 해결방안
-excerpt: GA4에서 (not provided)는 오류가 아니라 검색엔진의 프라이버시 정책 때문입니다. Google과 네이버 모두 검색어 전달을 중단한 배경과, Search Console 연결 및 랜딩 페이지 기반 분석이라는 실무 대안을 정리합니다.
+excerpt: >-
+  GA4에서 (not provided)는 오류가 아니라 검색엔진의 프라이버시 정책 때문입니다. Google과 네이버 모두 검색어 전달을 중단한
+  배경과, Search Console 연결 및 랜딩 페이지 기반 분석이라는 실무 대안을 정리합니다.
 category: DATA
 tags:
   - GA4
@@ -15,13 +17,20 @@ quiz:
       - Google Search Console을 GA4에 연결하지 않았기 때문이다
       - 웹사이트가 HTTPS를 사용하지 않아 데이터가 암호화되지 않기 때문이다
     question: GA4에서 오가닉 검색어가 (not provided)로 표시되는 근본적인 이유는 무엇일까요?
-    explanation: Google은 2013년부터 사용자 프라이버시 보호를 위해 모든 오가닉 검색어를 SSL로 암호화하여 웹사이트에 전달하지 않고 있습니다. 이는 GA4의 설정 문제가 아니라 검색엔진 자체의 정책이며, 네이버도 2024년 11월부터 같은 방향으로 움직이고 있습니다.
+    explanation: >-
+      Google은 2013년부터 사용자 프라이버시 보호를 위해 모든 오가닉 검색어를 SSL로 암호화하여 웹사이트에 전달하지 않고
+      있습니다. 이는 GA4의 설정 문제가 아니라 검색엔진 자체의 정책이며, 네이버도 2024년 11월부터 같은 방향으로 움직이고
+      있습니다.
     correctIndex: 1
 metaTitle: GA4에서 (not provided)가 뜨는 이유 — 오류가 아닌 정상입니다
-metaDescription: GA4의 (not provided)는 설정 오류가 아닙니다. Google과 네이버의 검색어 차단 배경, Search Console 연결법, 랜딩 페이지 기반 분석 대안을 실무 중심으로 정리합니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ga4-not-provided-explained-0-1772791256865.png
+metaDescription: >-
+  GA4의 (not provided)는 설정 오류가 아닙니다. Google과 네이버의 검색어 차단 배경, Search Console 연결법,
+  랜딩 페이지 기반 분석 대안을 실무 중심으로 정리합니다.
+ogImage: /og/ga4-not-provided-explained.png
 ogTitle: GA4 (not provided)는 오류가 아닙니다 — 검색어가 사라진 이유와 실무 대안
-ogDescription: Google과 네이버 모두 검색어 전달을 중단했습니다. Search Console 연결과 랜딩 페이지 기반 의도 분석으로 전환하는 방법을 정리합니다.
+ogDescription: >-
+  Google과 네이버 모두 검색어 전달을 중단했습니다. Search Console 연결과 랜딩 페이지 기반 의도 분석으로 전환하는 방법을
+  정리합니다.
 ---
 
 ## 결론부터: (not provided)는 오류가 아닙니다

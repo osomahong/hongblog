@@ -1,7 +1,9 @@
 ---
 slug: claude-code-blog-building-full-process
 title: Claude Code로 무한동력 블로그를 만들고 운영하는 전 과정 정리
-excerpt: 디지털 마케터가 개발 경험 없이 Claude Code만으로 Next.js 블로그를 구축하고, 콘텐츠 생성부터 SEO 최적화, GA4 분석까지 운영을 자동화한 전 과정을 정리합니다. 기술 스택 선정, 에이전트 시스템 설계, 실제 운영 워크플로우를 1인칭 경험 기반으로 다룹니다.
+excerpt: >-
+  디지털 마케터가 개발 경험 없이 Claude Code만으로 Next.js 블로그를 구축하고, 콘텐츠 생성부터 SEO 최적화, GA4 분석까지
+  운영을 자동화한 전 과정을 정리합니다. 기술 스택 선정, 에이전트 시스템 설계, 실제 운영 워크플로우를 1인칭 경험 기반으로 다룹니다.
 category: AI_TECH
 tags:
   - AI
@@ -9,23 +11,34 @@ tags:
   - 자동화
 publishedAt: '2026-03-25T06:17:38.999Z'
 highlights:
-  - 개발 경험 없는 디지털 마케터가 Claude Code로 Next.js 16 + Neon PostgreSQL + Vercel 블로그를 처음부터 구축하고, 현재까지 운영 중이다
-  - 콘텐츠 생성, 검수, SEO 최적화, 배포를 서브에이전트 4개와 스킬로 자동화하여, 글 하나를 기획부터 배포까지 30분 이내에 처리한다
-  - Claude Code는 기존 코드베이스를 이해한 상태에서 작업하기 때문에, 프로젝트가 커질수록 일관성 유지에 유리하지만, 디자인 감각과 비즈니스 판단은 여전히 사람의 몫이다
+  - >-
+    개발 경험 없는 디지털 마케터가 Claude Code로 Next.js 16 + Neon PostgreSQL + Vercel 블로그를
+    처음부터 구축하고, 현재까지 운영 중이다
+  - '콘텐츠 생성, 검수, SEO 최적화, 배포를 서브에이전트 4개와 스킬로 자동화하여, 글 하나를 기획부터 배포까지 30분 이내에 처리한다'
+  - >-
+    Claude Code는 기존 코드베이스를 이해한 상태에서 작업하기 때문에, 프로젝트가 커질수록 일관성 유지에 유리하지만, 디자인 감각과
+    비즈니스 판단은 여전히 사람의 몫이다
 quiz:
   - options:
       - 코드베이스 전체를 이해하고 일관성 있게 수정하는 맥락 파악 능력
       - 자연어만으로 기능을 요청할 수 있는 낮은 진입장벽
       - 서브에이전트와 스킬을 조합한 워크플로우 자동화
-      - 터미널에서 빌드, 배포, 디버깅을 한 번에 처리하는 통합 환경
-    question: 비개발자가 Claude Code로 프로젝트를 운영할 때, 가장 큰 생산성 향상 요인은 무엇이라고 생각하시나요?
-    explanation: 프로젝트가 커질수록 파일 간 의존성과 패턴 일관성이 중요해집니다. Claude Code는 프로젝트 전체를 읽고 기존 패턴에 맞춰 작업하기 때문에, 비개발자가 직접 코드 구조를 파악하지 않아도 일관된 결과물을 얻을 수 있습니다. 물론 자동화나 통합 환경도 큰 장점이지만, 맥락 파악이 가장 근본적인 차별점입니다.
+      - '터미널에서 빌드, 배포, 디버깅을 한 번에 처리하는 통합 환경'
+    question: '비개발자가 Claude Code로 프로젝트를 운영할 때, 가장 큰 생산성 향상 요인은 무엇이라고 생각하시나요?'
+    explanation: >-
+      프로젝트가 커질수록 파일 간 의존성과 패턴 일관성이 중요해집니다. Claude Code는 프로젝트 전체를 읽고 기존 패턴에 맞춰
+      작업하기 때문에, 비개발자가 직접 코드 구조를 파악하지 않아도 일관된 결과물을 얻을 수 있습니다. 물론 자동화나 통합 환경도 큰
+      장점이지만, 맥락 파악이 가장 근본적인 차별점입니다.
     correctIndex: 0
 metaTitle: 'Claude Code로 블로그 만들기 전 과정: 구축부터 자동화 운영까지'
-metaDescription: 개발 경험 없는 마케터가 Claude Code로 Next.js 블로그를 구축하고 콘텐츠 자동화 파이프라인을 운영하는 전 과정. 기술 스택, 에이전트 시스템, 실전 팁을 정리합니다.
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-code-blog-building-full-process-0-1774366031256.png
+metaDescription: >-
+  개발 경험 없는 마케터가 Claude Code로 Next.js 블로그를 구축하고 콘텐츠 자동화 파이프라인을 운영하는 전 과정. 기술 스택,
+  에이전트 시스템, 실전 팁을 정리합니다.
+ogImage: /og/claude-code-blog-building-full-process.png
 ogTitle: Claude Code로 블로그를 만들고 운영하는 전 과정 정리
-ogDescription: 개발 경험 없는 마케터가 Claude Code로 Next.js 블로그를 구축하고, 에이전트 시스템으로 콘텐츠 운영까지 자동화한 실전 기록입니다.
+ogDescription: >-
+  개발 경험 없는 마케터가 Claude Code로 Next.js 블로그를 구축하고, 에이전트 시스템으로 콘텐츠 운영까지 자동화한 실전
+  기록입니다.
 ---
 
 ## 개발자 아닌 사람이 블로그를 직접 만든다는 것

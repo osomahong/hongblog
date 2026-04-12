@@ -1,7 +1,9 @@
 ---
 slug: what-is-npm
 term: 패키지 매니저 (npm)
-definition: 다른 개발자가 만든 코드(패키지)를 쉽게 설치하고 관리할 수 있는 도구입니다. AI가 프로젝트를 만들면 가장 먼저 'npm install'을 실행하라고 하는데, 이것이 바로 필요한 패키지를 설치하는 명령어입니다.
+definition: >-
+  다른 개발자가 만든 코드(패키지)를 쉽게 설치하고 관리할 수 있는 도구입니다. AI가 프로젝트를 만들면 가장 먼저 'npm install'을
+  실행하라고 하는데, 이것이 바로 필요한 패키지를 설치하는 명령어입니다.
 category: AI_TECH
 tags:
   - 바이브코딩
@@ -26,8 +28,11 @@ quiz:
       - 프로젝트를 처음부터 다시 만들어야 한다
       - node_modules는 한번 삭제하면 복구할 수 없다
     question: 프로젝트의 node_modules 폴더를 실수로 삭제했습니다. 프로젝트를 다시 실행하려면 어떻게 해야 할까요?
-    explanation: package.json에 필요한 패키지 목록이 기록되어 있으므로, npm install을 실행하면 이 목록을 보고 모든 패키지를 다시 설치합니다. node_modules는 언제든 재생성 가능하기 때문에 GitHub에도 올리지 않습니다.
+    explanation: >-
+      package.json에 필요한 패키지 목록이 기록되어 있으므로, npm install을 실행하면 이 목록을 보고 모든 패키지를 다시
+      설치합니다. node_modules는 언제든 재생성 가능하기 때문에 GitHub에도 올리지 않습니다.
     correctIndex: 0
+ogImage: /og/what-is-npm.png
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

@@ -1,7 +1,9 @@
 ---
 slug: what-is-conversion
 term: 전환 (Conversion)
-definition: 마케팅에서 사용자가 광고주가 원하는 특정 행동(구매, 가입, 문의 등)을 완료하는 것을 뜻하는 디지털 마케팅의 가장 핵심적인 성과 지표입니다.
+definition: >-
+  마케팅에서 사용자가 광고주가 원하는 특정 행동(구매, 가입, 문의 등)을 완료하는 것을 뜻하는 디지털 마케팅의 가장 핵심적인 성과
+  지표입니다.
 category: MARKETING
 tags:
   - 광고
@@ -26,9 +28,11 @@ quiz:
       - 고객이 상품 상세 페이지를 조회한 것
       - 고객이 뉴스레터를 구독한 것
     question: 온라인 쇼핑몰에서 마케팅 캠페인을 분석하고 있습니다. 다음 중 '매크로 전환'에 해당하는 행동은 무엇일까요?
-    explanation: 매크로 전환은 비즈니스의 핵심 목표에 해당하는 전환입니다. 이커머스에서는 '상품 구매 완료'가 매크로 전환이며, 장바구니 담기·페이지 조회·뉴스레터 구독은 매크로 전환으로 이어지는 과정인 '마이크로 전환'에 해당합니다.
+    explanation: >-
+      매크로 전환은 비즈니스의 핵심 목표에 해당하는 전환입니다. 이커머스에서는 '상품 구매 완료'가 매크로 전환이며, 장바구니 담기·페이지
+      조회·뉴스레터 구독은 매크로 전환으로 이어지는 과정인 '마이크로 전환'에 해당합니다.
     correctIndex: 0
-ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-conversion-0-1770881524146.png
+ogImage: /og/what-is-conversion.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?
