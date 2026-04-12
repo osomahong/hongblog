@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Sparkles, Database, TrendingUp, Flame, HelpCircle, Tag, FolderOpen, Zap, Hash, BookText } from "lucide-react";
+import { ArrowRight, Sparkles, Database, TrendingUp } from "lucide-react";
 import {
   NeoCard,
   NeoCardHeader,
@@ -69,15 +69,21 @@ export default async function HomePage() {
       <div className="bg-graphic-1 hidden sm:block" />
       <div className="bg-graphic-2 hidden sm:block" />
 
-      {/* Hero Section */}
-      <section className="mb-6 sm:mb-12">
-        <NeoTiltCard className="bg-[#FF0033] neo-border-thick neo-shadow-lg p-4 sm:p-8 md:p-12 sm:-rotate-1 halftone-corner speed-lines relative overflow-hidden text-left animate-stamp" intensity={20} shadowIntensity={10}>
-          <div className="flex items-center justify-between">
-            <div className="relative z-10 flex-1">
-              <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
-                Insights
+      {/* Hero Section — White Edition */}
+      <section className="mb-6 sm:mb-12 animate-stamp">
+        <NeoTiltCard className="bg-white neo-border-thick neo-shadow-lg p-4 sm:p-8 md:p-12 relative overflow-hidden text-left" intensity={20} shadowIntensity={10}>
+          {/* 우측 빨간 사선 장식 */}
+          <div className="absolute top-0 right-0 w-24 sm:w-32 h-full bg-[#FF0033] hidden sm:block" style={{ clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)", zIndex: 0 }} />
+
+          <div className="flex items-center justify-between relative z-10">
+            <div className="flex-1">
+              <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-black tracking-tighter mb-2 sm:mb-4 leading-tight">
+                hongblog <span className="text-[#FF0033]">Insights</span>
               </h1>
-              <p className="text-sm sm:text-lg md:text-xl text-white/90 max-w-xl leading-relaxed">
+              <p className="inline-block bg-black text-white font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm uppercase tracking-widest border-2 border-black transform -skew-x-6 mb-4 sm:mb-6">
+                AI-Enhanced Tech Wiki
+              </p>
+              <p className="text-sm sm:text-base md:text-lg text-[#222] font-medium max-w-lg border-l-4 border-[#FF0033] pl-4 leading-relaxed">
                 디지털 마케팅, AI, 데이터 분석 전문가의 인사이트를 담는 지식 아카이브
               </p>
             </div>
@@ -100,15 +106,11 @@ export default async function HomePage() {
       {/* Trending Section */}
       {trending.length > 0 && (
         <section className="mb-6 sm:mb-12">
-          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-            <div className="bg-[#FF0033] border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-3 punk-burst">
-              <Flame className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-            </div>
-            <div>
-              <h2 className="text-lg sm:text-2xl font-black uppercase tracking-tight comic-emphasis">Trending Now</h2>
-              <span className="text-[10px] sm:text-xs text-muted-foreground font-mono">최근 7일 인기 콘텐츠</span>
-            </div>
-          </div>
+          <h2 className="text-lg sm:text-2xl font-black uppercase tracking-tight mb-4 sm:mb-6 border-b-4 border-black pb-2 flex items-center gap-3">
+            <span className="w-4 h-4 bg-[#FF0033] inline-block" />
+            Trending Now
+            <span className="text-[10px] sm:text-xs text-muted-foreground font-mono font-normal normal-case tracking-normal ml-auto">최근 7일 인기</span>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-4 divide-y divide-gray-200 sm:divide-y-0">
             {trending.map((item, index) => {
               const Icon = categoryIcons[item.category as keyof typeof categoryIcons] || Sparkles;
@@ -146,12 +148,10 @@ export default async function HomePage() {
       {/* Browse by Category */}
       {categoryStats.length > 0 && categoryStats.some(stat => stat.postCount > 0) && (
         <section className="mb-6 sm:mb-12">
-          <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-            <div className="bg-black border-3 sm:border-4 border-black p-1.5 sm:p-2 rotate-3">
-              <FolderOpen className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-            </div>
-            <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Browse by Category</h2>
-          </div>
+          <h2 className="text-lg sm:text-2xl font-black uppercase tracking-tight mb-4 sm:mb-6 border-b-4 border-black pb-2 flex items-center gap-3">
+            <span className="w-4 h-4 bg-black inline-block transform rotate-45" />
+            Browse by Category
+          </h2>
           <div className="grid grid-cols-3 gap-2 sm:gap-4">
             {categoryStats.map((stat) => {
               const Icon = categoryIcons[stat.category];
@@ -185,15 +185,11 @@ export default async function HomePage() {
       {/* Latest Insights */}
       {posts.length > 0 && (
         <section className="mb-6 sm:mb-12">
-          <div className="flex items-center justify-between mb-4 sm:mb-6">
-            <div className="flex items-center gap-2 sm:gap-3">
-              <div className="bg-primary border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-2">
-                <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-              </div>
-              <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Latest Insights</h2>
-            </div>
-            <span className="text-xs sm:text-sm text-muted-foreground">{posts.length}개의 글</span>
-          </div>
+          <h2 className="text-lg sm:text-2xl font-black uppercase tracking-tight mb-4 sm:mb-6 border-b-4 border-black pb-2 flex items-center gap-3">
+            <span className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-[#FF0033] border-b-[8px] border-b-transparent inline-block" />
+            Latest Insights
+            <span className="text-xs sm:text-sm text-muted-foreground font-normal normal-case tracking-normal ml-auto">{posts.length}개의 글</span>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-6 divide-y divide-gray-200 sm:divide-y-0">
             {posts.slice(0, 6).map((post, index) => {
               const Icon = categoryIcons[post.category as keyof typeof categoryIcons] || Sparkles;
@@ -267,12 +263,10 @@ export default async function HomePage() {
       {/* Explore Tags */}
       {allTags.length > 0 && (
         <section className="mb-6 sm:mb-12">
-          <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-            <div className="bg-black border-3 sm:border-4 border-black p-1.5 sm:p-2 -rotate-3">
-              <Hash className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-            </div>
-            <h2 className="text-lg sm:text-2xl font-black uppercase comic-emphasis">Explore Tags</h2>
-          </div>
+          <h2 className="text-lg sm:text-2xl font-black uppercase tracking-tight mb-3 sm:mb-4 border-b-4 border-black pb-2 flex items-center gap-3">
+            <span className="w-4 h-4 bg-[#FF0033] inline-block" />
+            Explore Tags
+          </h2>
           <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {allTags.map((tag) => (
               <NeoTagBadge key={tag.id} tag={tag.name} className="text-[10px] sm:text-xs hover:scale-105 transition-transform" />

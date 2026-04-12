@@ -94,16 +94,19 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-12">
             {/* Hero Section */}
             <section className="mb-6 sm:mb-12">
-                <NeoTiltCard className="bg-[#FF0033] border-3 sm:border-4 border-black p-4 sm:p-8 md:p-12 sm:rotate-1 halftone-corner speed-lines text-left" intensity={20} shadowIntensity={10}>
-                    <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-2 sm:mb-4 relative z-10 comic-emphasis leading-tight">
-                        <span className="flex items-center gap-2 sm:gap-3">
-                            <GraduationCap className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16" />
-                            Class
-                        </span>
-                    </h1>
-                    <p className="text-sm sm:text-lg md:text-xl text-white/90 max-w-2xl relative z-10 leading-relaxed">
-                        체계적으로 정리된 개념 강의로 기초부터 고급까지 학습하세요
-                    </p>
+                <NeoTiltCard className="bg-white neo-border-thick neo-shadow-lg p-4 sm:p-8 md:p-12 relative overflow-hidden text-left" intensity={20} shadowIntensity={10}>
+                    <div className="absolute top-0 right-0 w-24 sm:w-32 h-full bg-[#FF0033] hidden sm:block" style={{ clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)", zIndex: 0 }} />
+                    <div className="relative z-10">
+                        <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-black tracking-tighter mb-2 sm:mb-4 leading-tight">
+                            <span className="flex items-center gap-2 sm:gap-3">
+                                <GraduationCap className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 text-[#FF0033]" />
+                                <span className="text-[#FF0033]">Class</span>
+                            </span>
+                        </h1>
+                        <p className="text-sm sm:text-base text-[#222] font-medium max-w-lg border-l-4 border-[#FF0033] pl-4">
+                            체계적으로 정리된 개념 강의로 기초부터 고급까지 학습하세요
+                        </p>
+                    </div>
                 </NeoTiltCard>
             </section>
 

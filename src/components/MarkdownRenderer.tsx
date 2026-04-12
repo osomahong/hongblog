@@ -206,15 +206,15 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
             </div>
           ),
           thead: ({ children }) => (
-            <thead className="bg-gray-100">{children}</thead>
+            <thead className="bg-black text-white">{children}</thead>
           ),
           th: ({ children }) => (
-            <th className="border-2 border-black px-2 sm:px-3 py-1.5 sm:py-2 text-left font-bold text-xs sm:text-sm whitespace-nowrap">
+            <th className="border-b-[3px] border-black px-2 sm:px-3 py-2 sm:py-3 text-left font-black uppercase text-xs sm:text-sm whitespace-nowrap">
               {children}
             </th>
           ),
           td: ({ children }) => (
-            <td className="border-2 border-black px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm">{children}</td>
+            <td className="border-b border-gray-300 px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm">{children}</td>
           ),
 
           // 강조

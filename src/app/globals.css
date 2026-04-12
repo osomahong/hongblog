@@ -367,6 +367,14 @@
 .delay-4 { animation-delay: 0.4s; }
 .delay-5 { animation-delay: 0.5s; }
 
+/* stampIn 모바일 비활성화 — 성능 */
+@media (max-width: 640px) {
+  .animate-stamp {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 /* ===== Comic / Manga Style Effects ===== */
 
 /* 하프톤 도트 패턴 - 코너 장식용 (우하단 작은 영역, 은은하게) */

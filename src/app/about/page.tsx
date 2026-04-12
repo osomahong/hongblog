@@ -63,34 +63,35 @@ export default async function AboutPage() {
       />
       {/* Hero Section */}
       <section className="mb-12 sm:mb-16">
-        <NeoTiltCard className="bg-[#FF0033] border-4 border-black p-6 sm:p-10 -rotate-1 halftone-corner text-left" intensity={20} shadowIntensity={10}>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full border-3 border-black overflow-hidden rotate-3">
-              <Image
-                src="/profile-illustration.png"
-                alt="Profile"
-                fill
-                className="object-cover object-top scale-125"
-              />
+        <NeoTiltCard className="bg-white neo-border-thick neo-shadow-lg p-6 sm:p-10 relative overflow-hidden text-left" intensity={20} shadowIntensity={10}>
+          <div className="absolute top-0 right-0 w-24 sm:w-32 h-full bg-[#FF0033] hidden sm:block" style={{ clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)", zIndex: 0 }} />
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full border-3 border-black overflow-hidden rotate-3">
+                <Image
+                  src="/profile-illustration.png"
+                  alt="Profile"
+                  fill
+                  className="object-cover object-top scale-125"
+                />
+              </div>
+              <span className="inline-block bg-black text-white font-bold px-3 py-1 text-xs uppercase tracking-widest transform -skew-x-6">About Me</span>
             </div>
-            <span className="text-white/80 font-mono text-sm uppercase tracking-wider">About Me</span>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-black leading-tight mb-4">
+              마케팅을 데이터로 설명하고,<br />
+              <span className="text-[#FF0033]">AI로 확장하는 사람</span>입니다.
+            </h1>
           </div>
-          <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4">
-            마케팅을 데이터로 설명하고,<br />
-            <span className="text-accent">AI로 확장하는 사람</span>입니다.
-          </h1>
         </NeoTiltCard>
       </section>
 
       {/* Story Section */}
       <section className="mb-12 sm:mb-16">
         <NeoTiltCard className="bg-white border-4 border-black p-6 sm:p-8 rotate-0.5" intensity={15}>
-          <div className="flex items-center gap-2 mb-6">
-            <div className="bg-accent border-2 border-black p-1.5 -rotate-2">
-              <Target className="w-5 h-5" />
-            </div>
-            <h2 className="text-xl sm:text-2xl font-black uppercase">The Question</h2>
-          </div>
+          <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2 flex items-center gap-3">
+            <span className="w-4 h-4 bg-[#FF0033] inline-block" />
+            The Question
+          </h2>
 
           <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
             <p>
@@ -118,12 +119,10 @@ export default async function AboutPage() {
       {/* Approach Section */}
       <section className="mb-12 sm:mb-16">
         <NeoTiltCard className="bg-accent border-4 border-black p-6 sm:p-8 -rotate-0.5 bg-stripes neo-shadow-lg" intensity={15}>
-          <div className="flex items-center gap-2 mb-6 relative z-10">
-            <div className="bg-black border-2 border-black p-1.5 rotate-2">
-              <Lightbulb className="w-5 h-5 text-white" />
-            </div>
-            <h2 className="text-xl sm:text-2xl font-black uppercase">My Approach</h2>
-          </div>
+          <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-2 flex items-center gap-3 relative z-10">
+            <span className="w-4 h-4 bg-black inline-block transform rotate-45" />
+            My Approach
+          </h2>
 
           <div className="space-y-4 text-base sm:text-lg leading-relaxed relative z-10">
             <p>
