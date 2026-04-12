@@ -20,12 +20,14 @@ quiz:
 seriesSlug: digitalmarketing
 seriesOrder: 4
 thumbnailUrl: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/conversion-and-conversion-campaign-1-1772162997807.png
-metaTitle: 전환(Conversion)과 전환 캠페인 완전 정리
-metaDescription: 전환은 구매가 아니라 마케터가 정의한 목표 달성입니다. 전환 추적 설정 유무의 차이, 잘못된 설정 진단법, 전환 캠페인 작동 원리까지 초보자를 위해 정리했습니다.
+metaTitle: '전환(Conversion)과 전환 캠페인 완전 정리: 설정부터 진단까지'
+metaDescription: 전환은 구매가 아니라 마케터가 정의한 목표 달성입니다. 전환 설정에 따라 광고 알고리즘이 찾는 사람이 완전히 달라집니다. 전환 추적 세팅부터 잘못된 설정 진단법, 전환 캠페인 작동 원리까지 초보자 눈높이로 정리했습니다.
 ogImage: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/conversion-and-conversion-campaign-1-1772162997807.png
-ogTitle: 전환(Conversion)과 전환 캠페인 완전 정리
+ogTitle: '전환(Conversion) 완전 정리 — 전환 설정이 광고 성과를 좌우하는 이유'
 ogDescription: 전환은 구매만이 아닙니다. 전환 설정에 따라 알고리즘이 찾는 사람이 달라집니다. 전환 추적 설정부터 잘못된 설정의 진단과 대처법까지 정리했습니다.
 ---
+
+전환(Conversion)이란 마케터가 설정한 목표를 사용자가 달성하는 것입니다. 구매, 가입, 상담 신청 모두 전환이 될 수 있으며, 이 설정에 따라 광고 알고리즘이 찾는 대상이 완전히 달라집니다.
 
 광고 플랫폼에서 캠페인을 만들 때 "전환"이라는 목표를 선택할 수 있습니다. 이 글은 전환이 무엇인지, 전환 캠페인은 어떻게 작동하는지, 처음 시작하는 분들을 위해 정리했습니다.
 
@@ -86,7 +88,7 @@ ogDescription: 전환은 구매만이 아닙니다. 전환 설정에 따라 알�
 
 핵심은 **"알고리즘이 학습할 수 있는 충분한 데이터가 쌓이는 선에서, 가능한 한 비즈니스 가치가 높은 행동"**을 전환으로 설정하는 것입니다.
 
-## 전환 추적을 설정한 것과 안 한 것의 차이
+## 전환 추적을 설정하면 무엇이 달라질까?
 
 
 ![전환 추적 설정 유무에 따른 캠페인 성과 및 데이터 분석의 차이를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/conversion-and-conversion-campaign-0-1772162962804.png)
@@ -181,7 +183,7 @@ ROAS가 20:1(광고비 1원에 매출 20원)이 나온다면, 전환 값(매출)
 
 혼자 해결이 어렵다면, **GTM(Google Tag Manager) 전문가나 대행사에 의뢰하는 것**을 추천합니다. 잘못된 전환 데이터로 캠페인을 계속 돌리면 광고비 손실이 누적되기 때문에, 전환 설정 수정은 비용을 들여서라도 빨리 해결하는 것이 이득입니다.
 
-## 전환 캠페인은 어떻게 작동하는가
+## 전환 캠페인은 어떻게 작동할까?
 
 전환 설정이 올바르게 되어 있다면, 이제 전환 캠페인을 시작할 수 있습니다.
 
@@ -210,6 +212,8 @@ ROAS가 20:1(광고비 1원에 매출 20원)이 나온다면, 전환 값(매출)
 | 5 | 부족하다면 마이크로 전환 목표를 대안으로 준비했는가 |
 | 6 | 랜딩페이지가 광고 메시지와 일치하는가 |
 | 7 | 모바일에서 랜딩페이지가 정상 작동하는가 |
+
+전환과 함께 알아두면 좋은 성과 지표(CTR, CPC, CVR, CPA, ROAS)는 [퍼포먼스 마케팅 성과 측정 가이드](/insights/performance-marketing-measurement-guide)에서, 메타 광고의 전환 추적 기준인 어트리뷰션 윈도우는 [메타 어트리뷰션 윈도우 가이드](/insights/meta-attribution-window-guide)에서 확인할 수 있습니다.
 
 **3줄 요약:**
 - 전환은 구매만이 아니라, 마케터가 정의한 목표 행동을 사용자가 달성하는 것입니다. 전환을 무엇으로 설정하느냐에 따라 알고리즘이 찾는 대상이 달라집니다.
