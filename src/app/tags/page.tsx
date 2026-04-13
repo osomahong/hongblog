@@ -1,10 +1,18 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { Tag } from "lucide-react";
 import { NeoTiltCard } from "@/components/neo";
 import { getAllTagsWithId as getAllTags } from "@/lib/content";
+import { SITE_URL } from "@/lib/constants";
 import { ListViewTracker } from "@/components/ListViewTracker";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "Tags",
+  description: "태그별로 콘텐츠를 탐색하세요",
+  alternates: { canonical: `${SITE_URL}/tags` },
+};
 
 export default function TagsPage() {
   const allTags = getAllTags();

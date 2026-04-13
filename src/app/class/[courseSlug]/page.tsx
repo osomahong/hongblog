@@ -8,6 +8,7 @@ import { SITE_URL } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-static";
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
     const courses = await getPublishedCourses();

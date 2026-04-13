@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { SITE_URL } from "@/lib/constants";
 import {
   Target,
   BarChart3,
@@ -23,6 +24,7 @@ import { ViewTracker } from "@/components/ViewTracker";
 export const metadata: Metadata = {
   title: "About",
   description: "마케팅과 AI 기술을 데이터로 연결하는 사람. GA4, 퍼널 분석, AI/LLM 활용, 지식 아카이브 운영.",
+  alternates: { canonical: `${SITE_URL}/about` },
   openGraph: {
     title: "About | 준이아빠블로그",
     description: "마케팅과 AI 기술을 데이터로 연결하는 사람",

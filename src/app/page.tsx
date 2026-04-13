@@ -1,6 +1,8 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Sparkles, Database, TrendingUp } from "lucide-react";
+import { SITE_URL } from "@/lib/constants";
 import {
   NeoCard,
   NeoCardHeader,
@@ -56,6 +58,10 @@ const categoryColors: Record<string, string> = {
 };
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  alternates: { canonical: SITE_URL },
+};
 
 export default async function HomePage() {
   const posts = getPublishedPosts();

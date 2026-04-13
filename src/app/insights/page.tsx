@@ -1,5 +1,7 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Database, TrendingUp } from "lucide-react";
+import { SITE_URL } from "@/lib/constants";
 import {
   NeoCard,
   NeoCardHeader,
@@ -28,6 +30,12 @@ const categoryLabels = {
 import { ListViewTracker } from "@/components/ListViewTracker";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "Insights",
+  description: "디지털 마케팅, AI, 데이터 분석 전문가의 인사이트를 담는 지식 아카이브",
+  alternates: { canonical: `${SITE_URL}/insights` },
+};
 
 export default async function InsightsPage() {
   const posts = await getPublishedPosts();
