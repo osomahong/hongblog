@@ -1,4 +1,4 @@
-import { getInsights, getClasses, getCourses } from "@/lib/content";
+import { getInsights, getClasses, getCourses, getAllTagsWithId } from "@/lib/content";
 import { SITE_URL } from "@/lib/constants";
 
 export const dynamic = "force-static";
@@ -10,6 +10,8 @@ export function generateStaticParams() {
 interface SitemapEntry {
   url: string;
   lastModified?: string;
+  changefreq?: "daily" | "weekly" | "monthly";
+  priority?: number;
 }
 
 function toXml(entries: SitemapEntry[]): string {
@@ -18,7 +20,13 @@ function toXml(entries: SitemapEntry[]): string {
       const lastmod = entry.lastModified
         ? `\n    <lastmod>${entry.lastModified}</lastmod>`
         : "";
-      return `  <url>\n    <loc>${entry.url}</loc>${lastmod}\n  </url>`;
+      const changefreq = entry.changefreq
+        ? `\n    <changefreq>${entry.changefreq}</changefreq>`
+        : "";
+      const priority = entry.priority != null
+        ? `\n    <priority>${entry.priority.toFixed(1)}</priority>`
+        : "";
+      return `  <url>\n    <loc>${entry.url}</loc>${lastmod}${changefreq}${priority}\n  </url>`;
     })
     .join("\n");
 
@@ -36,10 +44,12 @@ function validDate(dateStr: string | undefined): string | undefined {
 function buildInsightsSitemap(): SitemapEntry[] {
   const insights = getInsights();
   return [
-    { url: `${SITE_URL}/insights`, lastModified: validDate(insights[0]?.publishedAt) },
+    { url: `${SITE_URL}/insights`, lastModified: validDate(insights[0]?.publishedAt), changefreq: "daily", priority: 0.9 },
     ...insights.map((i) => ({
       url: `${SITE_URL}/insights/${i.slug}`,
       lastModified: validDate(i.publishedAt),
+      changefreq: "weekly" as const,
+      priority: 0.8,
     })),
   ];
 }
@@ -47,18 +57,28 @@ function buildInsightsSitemap(): SitemapEntry[] {
 function buildClassSitemap(): SitemapEntry[] {
   const courses = getCourses();
   const classes = getClasses();
+  const tags = getAllTagsWithId();
   return [
-    { url: `${SITE_URL}/class` },
-    { url: `${SITE_URL}/about` },
-    { url: `${SITE_URL}/tags` },
-    { url: SITE_URL },
+    { url: SITE_URL, changefreq: "daily", priority: 1.0 },
+    { url: `${SITE_URL}/class`, changefreq: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/about`, changefreq: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/tags`, changefreq: "weekly", priority: 0.7 },
     ...courses.map((c) => ({
       url: `${SITE_URL}/class/${c.slug}`,
       lastModified: validDate(c.publishedAt),
+      changefreq: "weekly" as const,
+      priority: 0.8,
     })),
     ...classes.map((cls) => ({
       url: `${SITE_URL}/class/${cls.courseSlug}/${cls.slug}`,
       lastModified: validDate(cls.publishedAt),
+      changefreq: "weekly" as const,
+      priority: 0.7,
+    })),
+    ...tags.map((t) => ({
+      url: `${SITE_URL}/tags/${encodeURIComponent(t.name)}`,
+      changefreq: "weekly" as const,
+      priority: 0.5,
     })),
   ];
 }
