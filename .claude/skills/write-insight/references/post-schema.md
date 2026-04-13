@@ -19,6 +19,7 @@ metaTitle: "SEO 제목 (30-60자)"
 metaDescription: "SEO 설명 (120-160자)"
 ogTitle: "SNS 제목 (40-60자)"
 ogDescription: "SNS 설명 (80-120자)"
+ogImage: "/og/slug-name.png"              # generate-thumbnail 스킬이 자동 생성
 
 # === 퀴즈 (필수) ===
 quiz:
@@ -29,7 +30,6 @@ quiz:
 
 # === 선택 필드 ===
 highlights: ["핵심1", "핵심2", "핵심3"]   # 핵심 포인트
-ogImage: "/og/slug-name.png"              # generate-thumbnail 스킬로 생성
 thumbnailUrl: "https://..."               # 외부 썸네일 URL (선택)
 seriesSlug: "series-slug"                 # 시리즈 소속 시
 seriesOrder: 1                            # 시리즈 내 순서

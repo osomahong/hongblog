@@ -54,19 +54,19 @@ description: 블로그 Insight 포스트를 주제 기반으로 리서치, 작�
 
 - `references/post-schema.md`를 참조하여 MD 파일을 생성한다.
 - 파일 경로: `content/insights/{slug}.md`
-- **frontmatter 필수 필드:** slug, title, excerpt, category, tags, publishedAt, metaTitle, metaDescription, ogTitle, ogDescription, quiz
+- **frontmatter 필수 필드:** slug, title, excerpt, category, tags, publishedAt, metaTitle, metaDescription, ogTitle, ogDescription, ogImage, quiz
 - 태그는 `src/lib/constants.ts`의 `CANONICAL_TAGS` 목록에서만 선택 (3~5개)
 - 퀴즈: 선택지 3~4개, explanation 2~3문장
 - slug: 영문 소문자 + 하이픈, 간결하게 (예: `gmail-api-what-you-can-do`)
 
-**썸네일 생성 (선택):**
+**썸네일 생성:**
 - `/generate-thumbnail` 스킬 또는 `npx tsx scripts/generate-og.ts --slug <slug>`
 - `public/og/{slug}.png` 생성 후 frontmatter `ogImage` 필드에 경로 설정
 
 ### 5단계: 결과 보고
 
 - 생성된 파일 경로, slug, URL(`/insights/{slug}`) 출력
-- 사용자에게 추가 작업 여부를 확인한다 (썸네일 생성, SEO 점검 등)
+- 사용자에게 추가 작업 여부를 확인한다 (SEO 점검 등)
 
 ## 품질 기준 체크리스트
 

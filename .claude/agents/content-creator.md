@@ -70,13 +70,13 @@ courseSlug?: string     # Class 타입 전용 - 소속 코스 slug
 - explanation은 2-3문장으로 충분한 근거 제시
 - correctIndex는 0-based
 
-### 2.8단계: 브랜드 썸네일 생성 (선택)
+### 2.8단계: 브랜드 썸네일 생성
 
 SVG 기반 Neo-Brutalism 브랜드 썸네일을 ogImage로 생성한다. SNS 공유 시 표시되는 카드 이미지이다.
 
 **스킬:** `/generate-thumbnail` 스킬 사용 또는 `npx tsx scripts/generate-og.ts --slug <slug>`
 
-**적용 조건:** 배포(Phase 4) 진행 시 자동 실행하거나, 사용자가 "/generate-thumbnail" 요청 시 실행
+**실행 시점:** 배포(Phase 4)에서 MD 파일 Write 직후 자동 실행. `public/og/{slug}.png` 생성 후 frontmatter `ogImage` 필드를 업데이트한다.
 
 ### 3단계: 메타데이터 생성
 

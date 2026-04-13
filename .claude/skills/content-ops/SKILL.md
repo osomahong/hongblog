@@ -136,7 +136,7 @@ courseSlug: Class 타입 시 사용자 지정
 1. `Write` tool로 MD 파일 생성:
    - Post: `content/insights/{slug}.md` (frontmatter + 본문)
    - Class: `content/classes/{slug}.md` (frontmatter + 본문)
-2. [선택] `generate-thumbnail` 스킬로 og:image 생성:
+2. `generate-thumbnail` 스킬로 og:image 생성:
    - `npx tsx scripts/generate-og.ts --slug <slug>`
    - `public/og/{slug}.png` 생성
    - frontmatter의 `ogImage` 필드 업데이트
@@ -145,8 +145,7 @@ courseSlug: Class 타입 시 사용자 지정
 
 | 옵션 | 동작 |
 |------|------|
-| **파일 생성** | MD 파일 Write |
-| **썸네일 포함** | MD 파일 Write + generate-thumbnail 실행 |
+| **배포** | MD 파일 Write + generate-thumbnail 실행 + ogImage frontmatter 업데이트 |
 | **취소** | 저장하지 않고 종료 |
 
 **완료 보고:**
@@ -178,7 +177,7 @@ courseSlug: Class 타입 시 사용자 지정
 |----------|------|
 | 슬러그 중복 | 자동으로 `-2`, `-3` 접미사 추가 |
 | MD 파일 Write 실패 | 에러 상세 보고 |
-| 썸네일 생성 실패 | 사용자에게 보고, ogImage 없이 진행 가능 |
+| 썸네일 생성 실패 | 에러 상세 보고 → 재시도 또는 사용자 판단으로 건너뛰기 |
 
 ## 관련 코드
 

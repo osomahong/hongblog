@@ -114,7 +114,7 @@ seo-checklist.md 기준으로 SEO 필드 점검:
 ### Phase 4: 배포
 
 1. `Write` tool로 `content/insights/{slug}.md` 파일 생성
-2. [선택] `/generate-thumbnail` 스킬로 og:image 생성
+2. `/generate-thumbnail` 스킬로 og:image 생성
    - `npx tsx scripts/generate-og.ts --slug <slug>`
    - frontmatter `ogImage` 필드 업데이트
 
