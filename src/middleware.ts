@@ -14,6 +14,10 @@ const REMOVED_ROUTE_REDIRECTS: [RegExp, string][] = [
   [/^\/logs(\/.*)?$/, "/"],
   [/^\/about\/life(\/.*)?$/, "/about"],
   [/^\/about\/portfolio$/, "/about"],
+  [/^\/search$/, "/"],
+  [/^\/vibecoding-1$/, "/insights/vibe-coding-vs-ai-agent-difference"],
+  [/^\/tags\/index\.html$/, "/tags"],
+  [/^\/([\$%].*)$/, "/"],
 ];
 
 export function middleware(request: NextRequest) {
