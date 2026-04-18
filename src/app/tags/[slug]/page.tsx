@@ -29,7 +29,7 @@ type Params = { slug: string };
 
 export function generateStaticParams(): Params[] {
   return getAllTagsWithId().map((tag) => ({
-    slug: encodeURIComponent(tag.name),
+    slug: tag.name,
   }));
 }
 

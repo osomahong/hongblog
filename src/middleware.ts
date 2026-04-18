@@ -17,6 +17,7 @@ const REMOVED_ROUTE_REDIRECTS: [RegExp, string][] = [
   [/^\/search$/, "/"],
   [/^\/vibecoding-1$/, "/insights/vibe-coding-vs-ai-agent-difference"],
   [/^\/tags\/index\.html$/, "/tags"],
+  [/^\/rss(\.[a-z]+)?$/, "/insights"],
   [/^\/([\$%].*)$/, "/"],
 ];
 
