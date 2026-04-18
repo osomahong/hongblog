@@ -39,6 +39,7 @@ const pretendard = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.digitalmarketer.co.kr"),
   title: {
     default: "준이아빠블로그 | AI-Enhanced Tech Wiki",
     template: "%s | 준이아빠블로그",

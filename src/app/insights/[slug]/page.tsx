@@ -56,6 +56,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: effectiveTitle,
     description: effectiveDescription,
+    keywords: post.tags,
     alternates: {
       canonical: `${SITE_URL}/insights/${slug}`
     },
@@ -75,6 +76,57 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/**
+ * 본문 마크다운에서 H2가 질문형(?로 끝남)인 경우, 다음 H2 직전까지의 첫 단락을
+ * 답변으로 추출하여 FAQ 쌍 배열로 반환한다. 2개 이상이면 FAQPage 스키마 노출 가치 있음.
+ */
+function extractFaqPairs(markdown: string): { question: string; answer: string }[] {
+  const lines = markdown.split("\n");
+  const pairs: { question: string; answer: string }[] = [];
+  let currentQ: string | null = null;
+  let answerLines: string[] = [];
+
+  const flush = () => {
+    if (!currentQ) return;
+    const answer = answerLines.join(" ").replace(/\s+/g, " ").trim();
+    if (answer.length > 20) {
+      pairs.push({ question: currentQ, answer });
+    }
+    currentQ = null;
+    answerLines = [];
+  };
+
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    const h2 = /^##\s+(.+?)\s*$/.exec(line);
+    if (h2) {
+      flush();
+      const heading = h2[1].trim();
+      if (/[?？]\s*$/.test(heading)) {
+        currentQ = heading.replace(/[?？]\s*$/, "?").trim();
+      }
+      continue;
+    }
+    if (currentQ === null) continue;
+    if (/^#{1,6}\s/.test(line)) {
+      flush();
+      continue;
+    }
+    if (line.trim() === "") {
+      if (answerLines.length > 0) {
+        flush();
+      }
+      continue;
+    }
+    if (/^!\[/.test(line.trim()) || /^\|/.test(line.trim()) || /^[-*]\s/.test(line.trim())) {
+      continue;
+    }
+    answerLines.push(line.trim().replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"));
+  }
+  flush();
+  return pairs;
+}
+
 export default async function InsightDetailPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
@@ -88,12 +140,14 @@ export default async function InsightDetailPage({ params }: Props) {
   // 연관 Class 추천 (교차 추천)
   const relatedClasses = await getRelatedClassesForPost(post.tags, post.category, 3);
 
+  const articleImage = absoluteUrl(post.ogImage || post.thumbnailUrl || "/og-default.png");
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-    image: post.ogImage || post.thumbnailUrl,
+    image: articleImage,
     datePublished: (post.publishedAt ?? post.createdAt).toISOString(),
     dateModified: post.updatedAt.toISOString(),
     author: {
@@ -141,6 +195,22 @@ export default async function InsightDetailPage({ params }: Props) {
     ],
   };
 
+  const faqPairs = extractFaqPairs(post.content);
+  const faqLd = faqPairs.length >= 2
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqPairs.map((p) => ({
+          "@type": "Question",
+          name: p.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: p.answer,
+          },
+        })),
+      }
+    : null;
+
   return (
     <>
       <script
@@ -151,6 +221,12 @@ export default async function InsightDetailPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
+      {faqLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+        />
+      )}
       <div className="py-4 sm:py-12">
         <ViewTracker
           contentType="post"

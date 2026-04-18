@@ -150,7 +150,8 @@ quiz:
 ## 품질 기준
 
 - 본문 최소 1000단어 (Post), 500단어 (Class)
-- H2 헤딩 최소 3개 (Post), 2개 (Class)
+- H2 헤딩 최소 3개 (Post), 2개 (Class). **Post는 70% 이상이 질문형(`~을까요/~ㄹ까요/~인가요`)으로 종결 톤 통일** (AEO/FAQPage 스키마 인용 가치 ↑)
+- **본문 이미지 1장 이상 (Post 필수)** — 외부 실제 예시 이미지를 WebSearch/WebFetch로 검색하여 `public/images/insights/{slug}/`에 다운로드해 사용. 추상 일러스트·자체 생성 그래픽 금지. alt는 구체적 설명. 자세한 워크플로는 `.claude/skills/write-insight/SKILL.md`의 "본문 이미지 규칙" 참조.
 - 실무 적용 가능한 구체적 예시 1개 이상
 - 기술 용어 영어 표기 일관성
 - 존댓말(~입니다/~합니다) 어투 통일
