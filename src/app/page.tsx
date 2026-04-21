@@ -84,7 +84,7 @@ export default async function HomePage() {
           <div className="flex items-center justify-between relative z-10">
             <div className="flex-1">
               <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-black tracking-tighter mb-2 sm:mb-4 leading-tight">
-                hongblog <span className="text-[#FF0033]">Insights</span>
+                준이아빠 <span className="text-[113%] text-[#FF0033] align-baseline">Insights</span>
               </h1>
               <p className="inline-block bg-black text-white font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm uppercase tracking-widest border-2 border-black transform -skew-x-6 mb-4 sm:mb-6">
                 AI-Enhanced Tech Wiki
