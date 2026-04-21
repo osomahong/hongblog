@@ -20,14 +20,9 @@
 
 ## 주요 콘텐츠
 
-- [GA4 (not set) 완전 가이드](https://www.digitalmarketer.co.kr/insights/ga4-session-source-medium-not-set)
-- [GA4 (not provided) 원인과 해결](https://www.digitalmarketer.co.kr/insights/ga4-not-provided-explained)
-- [AEO/GEO 시대 검색 트래픽 팩트체크](https://www.digitalmarketer.co.kr/insights/aeo-geo-traffic-fact-check)
-- [AI Overviews가 CTR에 미치는 영향](https://www.digitalmarketer.co.kr/insights/ai-overviews-ctr-decline)
-- [Claude Code로 블로그 만들기](https://www.digitalmarketer.co.kr/insights/claude-code-blog-building-full-process)
-- [AI 코딩 도구 5종 비교 체험기](https://www.digitalmarketer.co.kr/insights/ai-coding-tools-comparison-vibe-coding)
-- [AI 콘텐츠와 SEO 불이익 팩트체크](https://www.digitalmarketer.co.kr/insights/ai-content-seo-not-penalized)
-- [제로클릭 시대 마케팅 전략](https://www.digitalmarketer.co.kr/insights/zero-click-marketing-strategy)
+- [클로드 코워크로 할 수 있는 것 - 총 정리](https://www.digitalmarketer.co.kr/insights/claude-cowork-what-you-can-do)
+- [Claude Code 실전 가이드: 설치부터 첫 프로젝트까지](https://www.digitalmarketer.co.kr/insights/claude-code-practical-guide)
+- [CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?](https://www.digitalmarketer.co.kr/insights/cli-meaning-claude-code-guide)
 
 ## 학습 코스
 
