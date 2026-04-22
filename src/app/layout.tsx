@@ -81,6 +81,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.variable} antialiased min-h-screen flex flex-col`}>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          href={`${SITE_URL}/rss.xml`}
+          title="준이아빠블로그 RSS"
+        />
         {/* Google Tag Manager */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
