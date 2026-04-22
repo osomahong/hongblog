@@ -104,7 +104,7 @@ export default async function CourseDetailPage({ params }: Props) {
 
             {/* Course Header */}
             <div className="mb-6 sm:mb-10">
-                <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tighter mb-3 sm:mb-4 flex items-center gap-3">
+                <h1 className="text-3xl sm:text-5xl font-black tracking-tighter mb-3 sm:mb-4 flex items-center gap-3">
                     <BookOpen className="w-8 h-8 sm:w-12 sm:h-12" />
                     {course.title}
                 </h1>

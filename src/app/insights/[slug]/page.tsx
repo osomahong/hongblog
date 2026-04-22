@@ -299,7 +299,7 @@ export default async function InsightDetailPage({ params }: Props) {
                   </span>
                 </NeoBadge>
               </div>
-              <h1 className="text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
                 {post.title}
               </h1>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>

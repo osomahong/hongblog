@@ -237,7 +237,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                 )}
                             </div>
 
-                            <h1 className="text-3xl sm:text-5xl font-black uppercase tracking-tighter mb-3 sm:mb-4 comic-emphasis leading-tight">
+                            <h1 className="text-3xl sm:text-5xl font-black tracking-tighter mb-3 sm:mb-4 comic-emphasis leading-tight">
                                 {classData.term}
                             </h1>
 

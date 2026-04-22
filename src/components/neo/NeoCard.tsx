@@ -29,7 +29,7 @@ export function NeoCardHeader({ children, className }: { children: ReactNode; cl
 }
 
 export function NeoCardTitle({ children, className }: { children: ReactNode; className?: string }) {
-  return <h3 className={cn("text-lg sm:text-2xl font-black uppercase tracking-tight leading-snug", className)}>{children}</h3>;
+  return <h3 className={cn("text-lg sm:text-2xl font-black tracking-tight leading-snug", className)}>{children}</h3>;
 }
 
 export function NeoCardDescription({ children, className }: { children: ReactNode; className?: string }) {

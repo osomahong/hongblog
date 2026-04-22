@@ -41,7 +41,7 @@ export function NeoAccordion({
                             isOpen && "rotate-180"
                         )}
                     />
-                    <h3 className="text-lg sm:text-2xl font-black uppercase tracking-tight text-left">
+                    <h3 className="text-lg sm:text-2xl font-black tracking-tight text-left">
                         {title}
                     </h3>
                 </div>

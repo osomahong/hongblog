@@ -59,17 +59,17 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
   return (
     <div className={className}>
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
         rehypePlugins={[rehypeRaw]}
         components={{
           // 헤딩
           h1: ({ children }) => (
-            <h1 className="text-2xl sm:text-3xl font-black uppercase mt-6 sm:mt-8 mb-3 sm:mb-4 border-b-4 border-black pb-2 leading-tight">
+            <h1 className="text-2xl sm:text-3xl font-black mt-6 sm:mt-8 mb-3 sm:mb-4 border-b-4 border-black pb-2 leading-tight">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="text-xl sm:text-2xl font-black uppercase mt-5 sm:mt-8 mb-2.5 sm:mb-4 border-b-2 border-black pb-2 leading-tight">
+            <h2 className="text-xl sm:text-2xl font-black mt-5 sm:mt-8 mb-2.5 sm:mb-4 border-b-2 border-black pb-2 leading-tight">
               {children}
             </h2>
           ),
@@ -222,6 +222,7 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
             <strong className="font-bold">{children}</strong>
           ),
           em: ({ children }) => <em className="italic">{children}</em>,
+          del: ({ children }) => <>{children}</>,
         }}
       >
         {preprocessMarkdown(content)}
