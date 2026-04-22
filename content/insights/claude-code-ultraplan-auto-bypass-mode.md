@@ -49,9 +49,9 @@ ogDescription: '클로드 코드에 새로 추가된 세 가지 실행 방식을
 
 세 기능이 같은 시기에 주목받은 이유는 명확합니다. Opus 4.7이 장기 실행 에이전트 작업에서 훨씬 자율적으로 움직이기 시작하면서, **"계획은 더 촘촘하게 검토하고 실행은 중단 없이 돌리되 위험만 걸러내자"**는 요구가 커졌기 때문입니다. Ultraplan은 계획 검토를 강화하고, Auto 모드는 실행 중 안전망을 자동화하며, Bypass 모드는 극단적 자율성을 원할 때 쓰는 선택지입니다.
 
-Anthropic이 공식 엔지니어링 블로그에 공개한 권한 모드 위치 비교 다이어그램을 보면 Auto 모드의 역할이 한눈에 보입니다. 가로축은 "수동 승인(피로함)"에서 "무조건 허용(위험함)" 사이의 스펙트럼이고, Auto 모드는 두 극단 사이 중간에 배치되어 있습니다.
+아래는 실제 Claude Code CLI에서 Auto 모드가 활성화된 상태 표시줄입니다. 위쪽에 `[Opus 4.7 (1M context) | Max]` 모델 정보와 사용량 게이지가 뜨고, 아래쪽에 `▶▶ auto mode on (shift+tab to cycle)` 한 줄이 보이면 지금 세션이 Auto 모드로 돌고 있다는 신호입니다.
 
-![Claude Code 권한 모드들을 '수동 승인(피로함)'과 '무조건 허용(위험함)' 사이 스펙트럼 위에 배치한 Anthropic 공식 다이어그램으로, Auto 모드가 두 극단 사이 중간 지점에 위치해 있음](/images/insights/claude-code-ultraplan-auto-bypass-mode/auto-mode-tradeoff-diagram.png)
+![실제 Claude Code CLI 상태 표시줄. 'Opus 4.7 (1M context) | Max' 모델 정보와 23% 사용량 게이지가 위쪽에, '▶▶ auto mode on (shift+tab to cycle)' Auto 모드 활성화 표시가 아래쪽에 뜬 모습](/images/insights/claude-code-ultraplan-auto-bypass-mode/auto-mode-status-bar.png)
 
 Anthropic은 이 발표에서 Auto 모드를 **"무조건 허용(위험함)과 수동 승인(피로함) 사이의 중간 지점"**이라고 명시했습니다. Bypass 모드를 완전히 대체하려는 의도가 아니라, 대부분의 장기 작업에서 더 안전한 기본값을 제공하려는 설계입니다.
 
