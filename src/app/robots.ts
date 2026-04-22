@@ -9,6 +9,10 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: ["/_next/static/media/"],
       },
+      {
+        userAgent: "Yeti",
+        allow: "/",
+      },
     ],
     sitemap: [`${SITE_URL}/sitemap/0.xml`, `${SITE_URL}/sitemap/1.xml`],
   };
