@@ -14,6 +14,7 @@ import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
+import { extractFaqPairs } from "@/lib/extract-faq";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -48,10 +49,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const effectiveTitle = classData.metaTitle || classData.term;
     const effectiveDescription = classData.metaDescription || classData.definition;
+    const ogImage = classData.ogImage ? absoluteUrl(classData.ogImage) : undefined;
 
     return {
         title: effectiveTitle,
         description: effectiveDescription,
+        keywords: classData.tags,
         alternates: {
             canonical: `${SITE_URL}/class/${courseSlug}/${classSlug}`
         },
@@ -59,7 +62,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             title: effectiveTitle,
             description: effectiveDescription,
             type: "article",
-            images: classData.ogImage ? [{ url: classData.ogImage, width: 1200, height: 630 }] : undefined,
+            url: absoluteUrl(`/class/${courseSlug}/${classSlug}`),
+            images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: effectiveTitle,
+            description: effectiveDescription,
+            images: ogImage ? [ogImage] : undefined,
         },
     };
 }
@@ -86,12 +96,16 @@ export default async function ClassDetailPage({ params }: Props) {
 
 
     // Schema.org JSON-LD
+    const articleImage = classData.ogImage ? absoluteUrl(classData.ogImage) : absoluteUrl("/og-default.png");
+    const classUrl = absoluteUrl(`/class/${courseSlug}/${classSlug}`);
+
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Article",
         headline: classData.term,
         description: classData.definition,
-        image: classData.ogImage,
+        image: articleImage,
+        inLanguage: "ko",
         datePublished: (classData.publishedAt ?? classData.createdAt).toISOString(),
         dateModified: classData.updatedAt.toISOString(),
         author: {
@@ -99,8 +113,45 @@ export default async function ClassDetailPage({ params }: Props) {
             name: "준이아빠",
             url: absoluteUrl("/about"),
         },
+        publisher: {
+            "@type": "Organization",
+            name: "준이아빠블로그",
+            logo: {
+                "@type": "ImageObject",
+                url: absoluteUrl("/favicon.ico"),
+            },
+        },
+        mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": classUrl,
+        },
+        ...(course
+            ? {
+                  isPartOf: {
+                      "@type": "Course",
+                      name: course.title,
+                      url: absoluteUrl(`/class/${courseSlug}`),
+                  },
+              }
+            : {}),
         keywords: classData.tags.join(", "),
     };
+
+    const faqPairs = extractFaqPairs(classData.content);
+    const faqLd = faqPairs.length >= 2
+        ? {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqPairs.map((p) => ({
+                  "@type": "Question",
+                  name: p.question,
+                  acceptedAnswer: {
+                      "@type": "Answer",
+                      text: p.answer,
+                  },
+              })),
+          }
+        : null;
 
     const breadcrumbLd = {
         "@context": "https://schema.org",
@@ -143,6 +194,12 @@ export default async function ClassDetailPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
+            {faqLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+                />
+            )}
 
             <div className="py-4 sm:py-12">
                 <ViewTracker

@@ -9,6 +9,7 @@ import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
 import { SITE_URL } from "@/lib/constants";
 import { getPostBySlug, getRelatedClassesForPost, getPublishedPosts } from "@/lib/content";
+import { extractFaqPairs } from "@/lib/extract-faq";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { AuthorCard } from "@/components/AuthorCard";
@@ -74,57 +75,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       images: post.ogImage ? [post.ogImage] : undefined,
     },
   };
-}
-
-/**
- * 본문 마크다운에서 H2가 질문형(?로 끝남)인 경우, 다음 H2 직전까지의 첫 단락을
- * 답변으로 추출하여 FAQ 쌍 배열로 반환한다. 2개 이상이면 FAQPage 스키마 노출 가치 있음.
- */
-function extractFaqPairs(markdown: string): { question: string; answer: string }[] {
-  const lines = markdown.split("\n");
-  const pairs: { question: string; answer: string }[] = [];
-  let currentQ: string | null = null;
-  let answerLines: string[] = [];
-
-  const flush = () => {
-    if (!currentQ) return;
-    const answer = answerLines.join(" ").replace(/\s+/g, " ").trim();
-    if (answer.length > 20) {
-      pairs.push({ question: currentQ, answer });
-    }
-    currentQ = null;
-    answerLines = [];
-  };
-
-  for (const raw of lines) {
-    const line = raw.trimEnd();
-    const h2 = /^##\s+(.+?)\s*$/.exec(line);
-    if (h2) {
-      flush();
-      const heading = h2[1].trim();
-      if (/[?？]\s*$/.test(heading)) {
-        currentQ = heading.replace(/[?？]\s*$/, "?").trim();
-      }
-      continue;
-    }
-    if (currentQ === null) continue;
-    if (/^#{1,6}\s/.test(line)) {
-      flush();
-      continue;
-    }
-    if (line.trim() === "") {
-      if (answerLines.length > 0) {
-        flush();
-      }
-      continue;
-    }
-    if (/^!\[/.test(line.trim()) || /^\|/.test(line.trim()) || /^[-*]\s/.test(line.trim())) {
-      continue;
-    }
-    answerLines.push(line.trim().replace(/\*\*([^*]+)\*\*/g, "$1").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"));
-  }
-  flush();
-  return pairs;
 }
 
 export default async function InsightDetailPage({ params }: Props) {
