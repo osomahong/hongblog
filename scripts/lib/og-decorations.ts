@@ -3,7 +3,7 @@
  * 제목+태그에서 핵심 키워드를 추출하고 flaticon 스타일 SVG 아이콘을 매칭
  */
 
-type Category = "MARKETING" | "AI_TECH" | "DATA";
+type Category = "MARKETING" | "AI_TECH" | "DATA" | "CLAUDE_EDUCATION";
 
 interface CategoryStyle {
   accent: string;
@@ -15,6 +15,7 @@ export const CATEGORY_STYLES: Record<Category, CategoryStyle> = {
   MARKETING: { accent: "#FF0000", badgeText: "#FFFFFF", label: "마케팅" },
   AI_TECH: { accent: "#FFD700", badgeText: "#000000", label: "AI·테크" },
   DATA: { accent: "#0000FF", badgeText: "#FFFFFF", label: "데이터" },
+  CLAUDE_EDUCATION: { accent: "#CC785C", badgeText: "#FFFFFF", label: "클로드 교육" },
 };
 
 // ─── 아이콘 라이브러리 (flaticon 스타일) ───
@@ -508,6 +509,7 @@ const CATEGORY_DEFAULT_ICON: Record<Category, IconKey> = {
   MARKETING: "megaphone",
   AI_TECH: "lightbulb",
   DATA: "growth",
+  CLAUDE_EDUCATION: "lightbulb",
 };
 
 /** 콘텐츠에서 핵심 키워드를 추출하여 아이콘 선택 */

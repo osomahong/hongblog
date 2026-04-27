@@ -16,7 +16,7 @@ import { buildSvg, buildDefaultSvg } from "./lib/og-template.js";
 import { renderPng } from "./lib/og-render.js";
 
 type ContentType = "post" | "class" | "course";
-type Category = "MARKETING" | "AI_TECH" | "DATA";
+type Category = "MARKETING" | "AI_TECH" | "DATA" | "CLAUDE_EDUCATION";
 
 const CONTENT_DIRS: Record<ContentType, string> = {
   post: path.join(process.cwd(), "content/insights"),

@@ -11,7 +11,7 @@ import {
   defaultPageFrame,
 } from "./og-decorations.js";
 
-type Category = "MARKETING" | "AI_TECH" | "DATA";
+type Category = "MARKETING" | "AI_TECH" | "DATA" | "CLAUDE_EDUCATION";
 
 export interface OgTemplateOptions {
   title: string;
