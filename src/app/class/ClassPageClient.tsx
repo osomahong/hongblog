@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, Sparkles, Database, TrendingUp, BookOpen, ChevronDown, ChevronUp, Square, CheckSquare } from "lucide-react";
+import { GraduationCap, Sparkles, Database, TrendingUp, BookOpen, ChevronDown, ChevronUp, Square, CheckSquare, Bot } from "lucide-react";
 import {
     NeoCard,
     NeoCardHeader,
@@ -19,12 +19,14 @@ const categoryIcons = {
     AI_TECH: Sparkles,
     DATA: Database,
     MARKETING: TrendingUp,
+    CLAUDE_EDUCATION: Bot,
 };
 
 const categoryLabels = {
     AI_TECH: "AI & Tech",
     DATA: "Data",
     MARKETING: "Marketing",
+    CLAUDE_EDUCATION: "Claude 교육",
 };
 
 const difficultyLabels = {
@@ -140,7 +142,9 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                                     ? "ai"
                                                     : course.category === "DATA"
                                                         ? "data"
-                                                        : "marketing"
+                                                        : course.category === "CLAUDE_EDUCATION"
+                                                            ? "claude"
+                                                            : "marketing"
                                             }
                                         >
                                             <span className="flex items-center gap-1">

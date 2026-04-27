@@ -54,6 +54,7 @@
   --color-marketing: var(--marketing);
   --color-ai: var(--ai);
   --color-data: var(--data);
+  --color-claude: var(--claude);
 }
 
 :root {
@@ -92,6 +93,7 @@
   --marketing: #FF0033;
   --ai: #FFD700;
   --data: #333333;
+  --claude: #CC785C;
 }
 
 @layer base {

@@ -30,7 +30,7 @@ export interface ClassItem {
   slug: string;
   term: string;
   definition: string;
-  category: "MARKETING" | "AI_TECH";
+  category: "MARKETING" | "AI_TECH" | "CLAUDE_EDUCATION";
   tags: string[];
   publishedAt: string;
   courseSlug: string;
@@ -49,7 +49,7 @@ export interface ClassItem {
 export interface Course {
   slug: string;
   title: string;
-  category: "MARKETING" | "AI_TECH";
+  category: "MARKETING" | "AI_TECH" | "CLAUDE_EDUCATION";
   difficulty: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
   publishedAt: string;
   metaTitle?: string;

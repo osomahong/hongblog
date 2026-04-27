@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 
 interface NeoBadgeProps {
   children: ReactNode;
-  variant?: "default" | "accent" | "primary" | "outline" | "marketing" | "ai" | "data";
+  variant?: "default" | "accent" | "primary" | "outline" | "marketing" | "ai" | "data" | "claude";
   className?: string;
 }
 
@@ -16,6 +16,7 @@ export function NeoBadge({ children, variant = "default", className }: NeoBadgeP
     marketing: "bg-marketing text-white",
     ai: "bg-ai text-black",
     data: "bg-data text-white",
+    claude: "bg-claude text-white",
   };
 
   return (

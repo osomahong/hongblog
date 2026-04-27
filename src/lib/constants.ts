@@ -3,7 +3,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.digital
 export const GTM_ID = "GTM-5H3Z6ZLZ";
 
 export const POST_CATEGORIES = ["MARKETING", "AI_TECH", "DATA"] as const;
-export const CLASS_CATEGORIES = ["MARKETING", "AI_TECH"] as const;
+export const CLASS_CATEGORIES = ["MARKETING", "AI_TECH", "CLAUDE_EDUCATION"] as const;
 
 export type PostCategory = (typeof POST_CATEGORIES)[number];
 export type ClassCategory = (typeof CLASS_CATEGORIES)[number];
@@ -12,6 +12,7 @@ export const CATEGORY_LABELS: Record<string, string> = {
   MARKETING: "마케팅",
   AI_TECH: "AI·테크",
   DATA: "데이터",
+  CLAUDE_EDUCATION: "클로드 교육",
 };
 
 export const DIFFICULTY_LABELS: Record<string, string> = {
