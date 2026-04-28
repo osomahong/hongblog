@@ -27,6 +27,7 @@
 - GTM 태깅 설계, dataLayer 구조화
 - Answer Engine Optimization (AEO) · Generative Engine Optimization (GEO)
 - AI/LLM 활용 마케팅 자동화 (Claude Code, Gemini)
+- 클로드 기초 교육 · Claude/Anthropic 입문 (Anthropic Academy 한국어 정리)
 - 퍼포먼스 마케팅 전략 (Meta 광고, Google 광고, Kakao Moment)
 - 그로스해킹, 퍼널 분석, 데이터 시각화
 - 바이브코딩 및 노코드 자동화
@@ -39,9 +40,17 @@
 
 ## 학습 코스
 
+### 마케팅·웹 기초
+
 - [디지털 마케팅 용어 사전](https://www.digitalmarketer.co.kr/class/digital-marketing-terms) — 마케팅 핵심 용어 11개 개념 정리
 - [디지털 기초](https://www.digitalmarketer.co.kr/class/digital-basic) — 웹 기술 기초 개념 13개
 - [바이브코딩 기초](https://www.digitalmarketer.co.kr/class/vibe-coding-basics) — AI 코딩 입문 10개 개념
+
+### 클로드 교육 (Claude/Anthropic 입문)
+
+- [클로드 기초 교육](https://www.digitalmarketer.co.kr/class/claude-fundamentals) — Claude 입문자를 위한 10개 개념 (앤트로픽 공식 AI Fluency 트랙 한국어 정리). Claude 정체·환각·아부·4D 프레임워크·프롬프트 엔지니어링·컨텍스트 윈도우 포함
+- [비개발자를 위한 Claude Code](https://www.digitalmarketer.co.kr/class/claude-code-for-everyone) — 터미널 입문자를 위한 Claude Code 8개 개념 (설치·슬래시 명령·Plan Mode·서브에이전트·훅·MCP·메모리)
+- [Claude 실무 활용](https://www.digitalmarketer.co.kr/class/claude-in-practice) — Projects·Artifacts·Skills·Cowork 등 Claude.ai 핵심 기능 8개 활용법 (마케터·교육 종사자 직무별 시나리오 포함)
 
 ## 사이트 정보
 

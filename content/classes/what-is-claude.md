@@ -1,6 +1,6 @@
 ---
 slug: what-is-claude
-term: Claude (앤트로픽 AI 어시스턴트) 이해하기
+term: 입문자를 위한 Claude (앤트로픽 AI 어시스턴트) 이해하기
 definition: '앤트로픽이 만든 AI 어시스턴트로, 한국어 대화부터 글쓰기, 코드 작성, PDF·이미지·표 분석까지 한 화면에서 처리합니다.'
 category: CLAUDE_EDUCATION
 tags:
@@ -11,12 +11,19 @@ courseSlug: claude-fundamentals
 orderInCourse: 1
 aliases:
   - 클로드
+  - 클로드 입문
+  - 클로드 초보
+  - 클로드 이해하기
   - claude.ai
   - Anthropic Claude
 relatedTerms:
   - what-is-anthropic
   - claude-model-family
 difficulty: BEGINNER
+metaTitle: Claude 입문 | 앤트로픽 AI 어시스턴트, 초보자 첫걸음 가이드
+metaDescription: >-
+  클로드 처음 쓰는 입문자를 위한 가이드입니다. Anthropic이 만든 AI 어시스턴트 Claude의 정체, ChatGPT·Gemini와의
+  차이, 마케터·디자이너·개발자 직무별 활용법을 정리했습니다.
 quiz:
   - options:
       - PDF·Word·Excel·이미지 같은 파일을 직접 읽고 분석할 수 있다

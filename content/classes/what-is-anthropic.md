@@ -1,6 +1,6 @@
 ---
 slug: what-is-anthropic
-term: Anthropic (앤트로픽) 이해하기
+term: 초보자를 위한 Anthropic (앤트로픽) 이해하기
 definition: >-
   미국 샌프란시스코에 본사를 둔 AI 안전 연구 회사로, AI 어시스턴트 Claude를 만든 곳입니다. 일반 영리법인이 아닌 Public
   Benefit Corporation 형태로 운영됩니다.
@@ -12,12 +12,19 @@ courseSlug: claude-fundamentals
 orderInCourse: 2
 aliases:
   - 앤트로픽
+  - 앤트로픽 초보
+  - 앤트로픽 입문
+  - 앤트로픽이란
   - Anthropic PBC
   - Claude 만든 회사
 relatedTerms:
   - what-is-claude
   - claude-model-family
 difficulty: BEGINNER
+metaTitle: 앤트로픽(Anthropic) 입문 | Claude를 만든 AI 안전 연구 회사, 초보자 가이드
+metaDescription: >-
+  앤트로픽 처음 알아보는 초보자를 위한 가이드입니다. Claude를 만든 미국 AI 안전 연구 회사 Anthropic의 창립 배경,
+  Public Benefit Corporation·LTBT 거버넌스, Constitutional AI까지 정리했습니다.
 quiz:
   - question: >-
       앤트로픽이 일반 영리법인이 아닌 Public Benefit Corporation(공익 회사) 형태로 설립된 이유와 가장 가까운 것은
