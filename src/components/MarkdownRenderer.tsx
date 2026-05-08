@@ -170,16 +170,24 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
           },
 
           // 링크
-          a: ({ href, children }) => (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#FF0033] underline underline-offset-2 decoration-2 hover:bg-[#FF0033] hover:text-white hover:no-underline transition-colors font-medium text-sm sm:text-base px-0.5"
-            >
-              {children}
-            </a>
-          ),
+          a: ({ href, id, children }) => {
+            // id만 있고 href가 없으면 페이지 내 점프 타깃 (보이지 않는 anchor)
+            if (!href) {
+              return <a id={id} aria-hidden="true" />;
+            }
+            const isFragment = href.startsWith("#");
+            return (
+              <a
+                href={href}
+                id={id}
+                target={isFragment ? undefined : "_blank"}
+                rel={isFragment ? undefined : "noopener noreferrer"}
+                className="text-[#FF0033] underline underline-offset-2 decoration-2 hover:bg-[#FF0033] hover:text-white hover:no-underline transition-colors font-medium text-sm sm:text-base px-0.5"
+              >
+                {children}
+              </a>
+            );
+          },
 
           // 이미지
           img: ({ src, alt }) => {
