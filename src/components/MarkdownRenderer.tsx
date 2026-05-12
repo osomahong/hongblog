@@ -190,14 +190,20 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
           },
 
           // 이미지
-          img: ({ src, alt }) => {
+          img: ({ src, alt, title }) => {
             if (!src) return null;
+            if (process.env.NODE_ENV !== "production" && !alt) {
+              console.warn(`[MarkdownRenderer] 이미지 alt 속성 누락: ${src}`);
+            }
+            const effectiveAlt = alt || title || "";
             return (
               <img
                 src={src}
-                alt={alt || ""}
+                alt={effectiveAlt}
+                title={title}
                 className="max-w-full h-auto my-3 sm:my-4 border-2 border-black rounded"
                 loading="lazy"
+                decoding="async"
               />
             );
           },

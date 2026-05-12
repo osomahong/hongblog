@@ -66,6 +66,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: effectiveOgDescription,
       type: "article",
       url: absoluteUrl(`/insights/${slug}`),
+      publishedTime: (post.publishedAt ?? post.createdAt).toISOString(),
+      modifiedTime: post.updatedAt.toISOString(),
+      authors: ["준이아빠"],
+      tags: post.tags,
       images: post.ogImage ? [{ url: post.ogImage, width: 1200, height: 630 }] : undefined,
     },
     twitter: {

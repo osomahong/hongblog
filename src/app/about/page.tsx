@@ -149,7 +149,10 @@ export default async function AboutPage() {
       occupationLocation: { "@type": "Country", name: "대한민국" },
       skills: "GA4, GTM, BigQuery, LookerStudio, AEO, GEO, LLM, Python",
     },
-    sameAs: [SITE_URL],
+    sameAs: [
+      SITE_URL,
+      "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/",
+    ],
   };
 
   const organizationLd = {
@@ -160,6 +163,9 @@ export default async function AboutPage() {
     logo: absoluteUrl("/favicon.ico"),
     founder: { "@type": "Person", name: "준이아빠" },
     description: "GA4·GTM·AEO·GEO 실무 인사이트를 공유하는 디지털 마케팅 지식 아카이브.",
+    sameAs: [
+      "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/",
+    ],
   };
 
   return (

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import Script from "next/script";
 import { Nav } from "@/components/layout/Nav";
@@ -65,12 +65,26 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [`${SITE_URL}/og-default.png`],
   },
+  alternates: {
+    canonical: SITE_URL,
+  },
+  icons: {
+    icon: "/icon-512.png",
+    apple: "/icon-512.png",
+    shortcut: "/favicon.ico",
+  },
   verification: {
     google: "NXtbFzm3hDrs3VRLp_TOLSyz-pi-6lVeIQWVZitJc9k",
     other: {
       "naver-site-verification": "36e7f419b1b60e4468b3eb47486548111d9beaeb",
     },
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#FF0000",
 };
 
 export default function RootLayout({
@@ -80,13 +94,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${pretendard.variable} antialiased min-h-screen flex flex-col`}>
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link
           rel="alternate"
           type="application/rss+xml"
           href={`${SITE_URL}/rss.xml`}
           title="준이아빠블로그 RSS"
         />
+      </head>
+      <body className={`${pretendard.variable} antialiased min-h-screen flex flex-col`}>
         {/* Google Tag Manager */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

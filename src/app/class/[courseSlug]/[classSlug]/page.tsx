@@ -63,6 +63,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             description: effectiveDescription,
             type: "article",
             url: absoluteUrl(`/class/${courseSlug}/${classSlug}`),
+            publishedTime: (classData.publishedAt ?? classData.createdAt).toISOString(),
+            modifiedTime: classData.updatedAt.toISOString(),
+            authors: ["준이아빠"],
+            tags: classData.tags,
             images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : undefined,
         },
         twitter: {
