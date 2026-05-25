@@ -6,6 +6,14 @@ const LEGACY_REDIRECTS: Record<string, string> = {
   "/conversion-and-conversion-campaign": "/insights/conversion-and-conversion-campaign",
 };
 
+// Jekyll 시절 /tags?tag=X 쿼리스트링 → 정규 태그 경로 매핑
+// 매핑되지 않은 값은 /tags 로 308 (중복 콘텐츠 색인 거부 해결)
+const LEGACY_TAG_QUERY_MAP: Record<string, string> = {
+  "메타 어트리뷰션": "/tags/%EC%96%B4%ED%8A%B8%EB%A6%AC%EB%B7%B0%EC%85%98",
+  "메타어트리뷰션": "/tags/%EC%96%B4%ED%8A%B8%EB%A6%AC%EB%B7%B0%EC%85%98",
+  "투자수익률": "/tags/ROI",
+};
+
 // SSG 리팩토링으로 삭제된 라우트 → 301 리디렉트
 const REMOVED_ROUTE_REDIRECTS: [RegExp, string][] = [
   [/^\/faq(\/.*)?$/, "/insights"],
@@ -21,8 +29,20 @@ const REMOVED_ROUTE_REDIRECTS: [RegExp, string][] = [
 ];
 
 export function middleware(request: NextRequest) {
-  const { hostname, pathname, search } = request.nextUrl;
+  const { hostname, pathname, search, searchParams } = request.nextUrl;
   const isNonWww = hostname === "digitalmarketer.co.kr";
+
+  // /tags?tag=X (Jekyll 시절) → 정규 태그 경로 308
+  // GSC "크롤링됨 - 현재 색인이 생성되지 않음" 해결용 (중복 콘텐츠 처리)
+  if (pathname === "/tags" && searchParams.has("tag")) {
+    const tagValue = (searchParams.get("tag") ?? "").trim();
+    const mappedPath = LEGACY_TAG_QUERY_MAP[tagValue];
+    const dest = mappedPath ?? "/tags";
+    return NextResponse.redirect(
+      new URL(`https://www.digitalmarketer.co.kr${dest}`),
+      308,
+    );
+  }
 
   // non-www 요청이면서 legacy redirect도 해당되면, 한 번에 최종 목적지로 308
   if (isNonWww) {

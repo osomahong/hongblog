@@ -1,6 +1,8 @@
 ---
 slug: what-is-roi
-term: ROI (Return On Investment)
+term: ROI (Return On Investment) 이해하기
+metaTitle: 'ROI(투자수익률) 뜻과 ROAS 차이 | 마케팅 수익성 판단 지표 초보 가이드'
+metaDescription: 'ROI(Return On Investment)는 투자한 총 비용 대비 순이익 비율로 마케팅 캠페인의 진짜 수익성을 보여주는 지표입니다. ROAS와의 차이, 계산 공식, 음수 ROI 해석법까지 초보자가 한눈에 정리할 수 있게 풀어 드립니다.'
 definition: '투자한 총 비용 대비 얻은 순이익의 비율로, 마케팅을 포함한 모든 비즈니스 활동의 궁극적인 수익성을 판단하는 지표입니다.'
 category: MARKETING
 tags:
