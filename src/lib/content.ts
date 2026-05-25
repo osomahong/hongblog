@@ -47,11 +47,34 @@ function readMdFile<T>(dir: string, slug: string, transform: (data: Record<strin
 // 변환 함수
 // ============================================
 
+// raw text 영역(카드 description, excerpt 등)에서 마크다운 기호를 제거한다.
+// 본문 자체(content)는 그대로 두고, 별도로 노출되는 짧은 미리보기 문자열에만 사용.
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/```[\s\S]*?```/g, "") // 코드 블록 제거
+    .replace(/<a [^>]*>[\s\S]*?<\/a>/g, "") // inline anchor 태그 제거
+    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1") // 이미지
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // 링크
+    .replace(/`([^`\n]+)`/g, "$1") // 인라인 코드
+    .replace(/\*\*\*([^*\n]+)\*\*\*/g, "$1") // bold+italic
+    .replace(/\*\*([^*\n]+)\*\*/g, "$1") // bold
+    .replace(/__([^_\n]+)__/g, "$1") // bold (underscore)
+    .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, "$1") // italic
+    .replace(/(?<!_)_([^_\n]+)_(?!_)/g, "$1") // italic (underscore)
+    .replace(/^#{1,6}\s+/gm, "") // 헤딩 prefix
+    .replace(/^>\s*/gm, "") // blockquote
+    .replace(/^[\s]*[-*+]\s+/gm, "") // 리스트 마커
+    .replace(/^[\s]*\d+\.\s+/gm, "") // 번호 리스트
+    .replace(/^---+\s*$/gm, "") // 수평선
+    .replace(/\n{3,}/g, "\n\n") // 빈 줄 압축
+    .trim();
+}
+
 function toInsight(data: Record<string, unknown>, content: string): Insight {
   return {
     slug: data.slug as string,
     title: data.title as string,
-    excerpt: (data.excerpt as string) || "",
+    excerpt: stripMarkdown((data.excerpt as string) || ""),
     category: data.category as Insight["category"],
     tags: (data.tags as string[]) || [],
     publishedAt: (data.publishedAt as string) || "2025-01-01T00:00:00.000Z",
@@ -74,7 +97,7 @@ function toClassItem(data: Record<string, unknown>, content: string): ClassItem 
   return {
     slug: data.slug as string,
     term: data.term as string,
-    definition: (data.definition as string) || "",
+    definition: stripMarkdown((data.definition as string) || ""),
     category: data.category as ClassItem["category"],
     tags: (data.tags as string[]) || [],
     publishedAt: (data.publishedAt as string) || "2025-01-01T00:00:00.000Z",
@@ -101,7 +124,7 @@ function toCourse(data: Record<string, unknown>, content: string): Course {
     publishedAt: data.publishedAt as string,
     metaTitle: data.metaTitle as string | undefined,
     metaDescription: data.metaDescription as string | undefined,
-    description: content,
+    description: stripMarkdown(content),
   };
 }
 
@@ -193,10 +216,11 @@ export function getAllTags(): { name: string; count: number }[] {
 
 export function getContentByTag(tag: string): ContentByTagResult {
   const insights = getInsights().filter((i) => i.tags.includes(tag));
+  const classes = getClasses().filter((c) => c.tags.includes(tag));
   return {
     posts: insights.map(insightToPost),
     faqs: [],
-    classes: [],
+    classes: classes.map((c, idx) => classToMeta(c, idx + 1)),
   };
 }
 

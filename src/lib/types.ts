@@ -154,5 +154,5 @@ export interface TagWithId {
 export interface ContentByTagResult {
   posts: PostWithTags[];
   faqs: never[];
-  classes: never[];
+  classes: ClassWithMeta[];
 }
