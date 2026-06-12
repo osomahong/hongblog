@@ -18,3 +18,16 @@ export function getDefaultChapter(): ChapterSpec {
 export function listChapters(): readonly ChapterSpec[] {
   return CHAPTERS;
 }
+
+/** 챕터가 참조하는 모든 클래스/코스 slug (서버에서 링크 맵 생성용) */
+export function collectClassSlugs(chapter: ChapterSpec): string[] {
+  const slugs = new Set<string>();
+  chapter.concepts.forEach((concept) => slugs.add(concept.classSlug));
+  chapter.days.forEach((day) =>
+    day.insightSlugs.forEach((slug) => slugs.add(slug)),
+  );
+  Object.values(chapter.gameOverTexts).forEach((text) => {
+    if (text.classSlug) slugs.add(text.classSlug);
+  });
+  return [...slugs];
+}
