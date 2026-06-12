@@ -6,7 +6,7 @@
  * effect에서 처리한다. 초기 렌더는 항상 타이틀이라 hydration 충돌이 없다.
  */
 
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useSyncExternalStore } from "react";
 
 import {
   gameReducer,
@@ -16,7 +16,13 @@ import {
   initialState,
   isBossDay,
 } from "@/lib/game/engine";
-import { clearSave, loadSave, persistSave } from "@/lib/game/save";
+import {
+  clearSave,
+  hasSaveSnapshot,
+  loadSave,
+  persistSave,
+  subscribeSave,
+} from "@/lib/game/save";
 import { getDefaultChapter } from "@/lib/game/scenarios";
 import type { GameAction, GameState } from "@/lib/game/types";
 import { sendGAEvent } from "@/lib/gtm";
@@ -80,12 +86,12 @@ export function GameRoot({ links }: { links: ClassLinkMap }) {
     undefined,
     titleState,
   );
-  const [hasSave, setHasSave] = useState(false);
+  const hasSave = useSyncExternalStore(
+    subscribeSave,
+    hasSaveSnapshot,
+    () => false,
+  );
   const trackedKey = useRef<string>("title");
-
-  useEffect(() => {
-    setHasSave(loadSave() !== null);
-  }, []);
 
   // phase 전이마다 저장 + 계측 (한 key당 1회)
   useEffect(() => {
@@ -104,12 +110,10 @@ export function GameRoot({ links }: { links: ClassLinkMap }) {
         kpi: state.resources.kpi,
       });
       clearSave();
-      setHasSave(false);
       return;
     }
 
     persistSave(state);
-    setHasSave(true);
 
     if (phase.kind === "task_result") {
       sendGAEvent("game_task_resolve", {
@@ -150,7 +154,7 @@ export function GameRoot({ links }: { links: ClassLinkMap }) {
   const handleContinue = () => {
     const saved = loadSave();
     if (!saved || saved.chapterId !== chapter.id) {
-      setHasSave(false);
+      clearSave();
       return;
     }
     sendGAEvent("game_start", { chapter_id: chapter.id, is_resume: true });
@@ -210,7 +214,6 @@ export function GameRoot({ links }: { links: ClassLinkMap }) {
 
         {phase.kind === "task_select" && (
           <TaskSelectScreen
-            chapter={chapter}
             state={state}
             tasks={getActiveTasks(chapter, state)}
             isBossDay={isBossDay(chapter, state.day)}

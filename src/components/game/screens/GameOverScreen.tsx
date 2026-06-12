@@ -37,7 +37,12 @@ export function GameOverScreen({
         <h2 className="mt-1 text-xl font-black">{text.title}</h2>
       </div>
 
-      <DialogueBox lines={text.dialogue} onDone={() => undefined} doneLabel="..." revealAll />
+      <DialogueBox
+        lines={text.dialogue}
+        onDone={() => undefined}
+        revealAll
+        hideDoneButton
+      />
 
       {link && (
         <a

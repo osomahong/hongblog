@@ -4,7 +4,7 @@
  * 18시: 야근 선택. 오늘은 해결되지만 내일이 망가지는 트레이드오프.
  */
 
-import type { ChapterSpec, TaskCard } from "@/lib/game/scenarios/schema";
+import type { TaskCard } from "@/lib/game/scenarios/schema";
 import { OVERTIME_BLOCKS, OVERTIME_ENERGY_COST } from "@/lib/game/types";
 
 interface OvertimeScreenProps {

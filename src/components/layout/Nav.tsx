@@ -9,6 +9,7 @@ import { sendGAEvent } from "@/lib/gtm";
 const NAV_LINKS = [
   { href: "/class", label: "Class" },
   { href: "/insights", label: "Insights" },
+  { href: "/game", label: "Game" },
   { href: "/tags", label: "Tags" },
   { href: "/about", label: "About" },
 ];

@@ -18,6 +18,8 @@ interface DialogueBoxProps {
   doneLabel?: string;
   /** true면 처음부터 전부 공개 (정산 등 요약 화면) */
   revealAll?: boolean;
+  /** 정적 표시용: 다 공개된 뒤 진행 버튼을 숨긴다 (엔딩/게임오버) */
+  hideDoneButton?: boolean;
 }
 
 export function DialogueBox({
@@ -25,6 +27,7 @@ export function DialogueBox({
   onDone,
   doneLabel = "계속",
   revealAll = false,
+  hideDoneButton = false,
 }: DialogueBoxProps) {
   const [count, setCount] = useState(revealAll ? lines.length : 1);
   const finished = count >= lines.length;
@@ -81,16 +84,18 @@ export function DialogueBox({
           );
         })}
       </div>
-      <button
-        type="button"
-        onClick={advance}
-        className={cn(
-          "w-full border-3 border-black px-4 py-3 text-sm font-bold tracking-wide neo-shadow neo-hover",
-          finished ? "bg-primary text-white" : "bg-white text-black",
-        )}
-      >
-        {finished ? doneLabel : "다음 ▸"}
-      </button>
+      {!(finished && hideDoneButton) && (
+        <button
+          type="button"
+          onClick={advance}
+          className={cn(
+            "w-full border-3 border-black px-4 py-3 text-sm font-bold tracking-wide neo-shadow neo-hover",
+            finished ? "bg-primary text-white" : "bg-white text-black",
+          )}
+        >
+          {finished ? doneLabel : "다음 ▸"}
+        </button>
+      )}
     </div>
   );
 }

@@ -41,7 +41,12 @@ export function EndingScreen({
         <h2 className="mt-1 text-xl font-black">{ending.title}</h2>
       </div>
 
-      <DialogueBox lines={ending.dialogue} onDone={() => undefined} doneLabel="..." revealAll />
+      <DialogueBox
+        lines={ending.dialogue}
+        onDone={() => undefined}
+        revealAll
+        hideDoneButton
+      />
 
       <p className="border-l-4 border-black bg-white px-3 py-3 text-sm leading-relaxed text-gray-800">
         {ending.epilogue}

@@ -16,7 +16,6 @@ import { computeQ } from "../resolve";
 import { CHAPTER1 } from "../scenarios/chapter1";
 import type {
   ChapterSpec,
-  ChoiceTask,
   PromptElement,
   StandardTask,
 } from "../scenarios/schema";

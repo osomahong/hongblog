@@ -47,6 +47,28 @@ export function normalizeSave(raw: unknown): GameState | null {
   return raw as unknown as GameState;
 }
 
+// 세이브 존재 여부 구독 (useSyncExternalStore용):
+// effect 안에서 setState 없이 타이틀의 "이어하기" 노출을 갱신한다.
+let hasSaveCache: boolean | null = null;
+const listeners = new Set<() => void>();
+
+function notify(value: boolean): void {
+  hasSaveCache = value;
+  listeners.forEach((listener) => listener());
+}
+
+export function subscribeSave(listener: () => void): () => void {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+export function hasSaveSnapshot(): boolean {
+  if (hasSaveCache === null) {
+    hasSaveCache = loadSave() !== null;
+  }
+  return hasSaveCache;
+}
+
 export function loadSave(): GameState | null {
   if (typeof window === "undefined") return null;
   try {
@@ -62,6 +84,7 @@ export function persistSave(state: GameState): void {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+    notify(true);
   } catch {
     // 저장 실패(쿼터 등)는 게임 진행을 막지 않는다
   }
@@ -71,6 +94,7 @@ export function clearSave(): void {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.removeItem(SAVE_KEY);
+    notify(false);
   } catch {
     // no-op
   }

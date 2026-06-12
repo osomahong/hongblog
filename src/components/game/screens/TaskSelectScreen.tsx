@@ -5,7 +5,7 @@
  * 함정 단서는 카드 본문에만 있다. 위임 판단 개념을 배우면 적합도 힌트가 열린다.
  */
 
-import type { ChapterSpec, TaskCard } from "@/lib/game/scenarios/schema";
+import type { TaskCard } from "@/lib/game/scenarios/schema";
 import type { GameState } from "@/lib/game/types";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +13,6 @@ import { SPEAKERS } from "../speakers";
 import { TIER_META } from "../tiers";
 
 interface TaskSelectScreenProps {
-  chapter: ChapterSpec;
   state: GameState;
   tasks: TaskCard[];
   isBossDay: boolean;
@@ -36,7 +35,6 @@ function delegationHint(task: TaskCard): { label: string; className: string } {
 }
 
 export function TaskSelectScreen({
-  chapter,
   state,
   tasks,
   isBossDay,
