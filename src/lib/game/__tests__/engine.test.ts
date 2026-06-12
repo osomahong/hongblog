@@ -191,12 +191,12 @@ describe("하루 정산", () => {
       { type: "RESOLVE_TASK", taskId: "t-basic", selection: direct },
       { type: "ADVANCE" },
       { type: "ADVANCE" }, // coaching c-role
-      // [역할] 카드만으로는 Q=5 → 반려
+      // 빈 프롬프트는 Q=3 → 반려
       { type: "SELECT_TASK", taskId: "t-hallu" },
       {
         type: "RESOLVE_TASK",
         taskId: "t-hallu",
-        selection: { method: "delegate", cards: ["role"], verify: false },
+        selection: { method: "delegate", cards: [], verify: false },
       },
       { type: "ADVANCE" },
       { type: "ADVANCE" }, // coaching c-context

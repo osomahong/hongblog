@@ -29,35 +29,39 @@ describe("computeQ", () => {
     assert.equal(computeQ(T_BASIC, sel()), 3);
   });
 
-  it("요구 요소 일치 카드당 +2, 불일치는 +0", () => {
-    assert.equal(computeQ(T_BASIC, sel({ cards: ["role"] })), 5);
-    assert.equal(computeQ(T_BASIC, sel({ cards: ["role", "context"] })), 7);
+  it("요구 요소 일치 카드당 +3, 불일치는 +0", () => {
+    assert.equal(computeQ(T_BASIC, sel({ cards: ["role"] })), 6);
+    assert.equal(computeQ(T_BASIC, sel({ cards: ["role", "context"] })), 9);
     // example은 T_BASIC 요구 요소가 아님
     assert.equal(
       computeQ(T_BASIC, sel({ cards: ["role", "context", "example"] })),
-      7,
+      9,
     );
   });
 
-  it("검증 +1로 우수(9) 도달 가능", () => {
-    assert.equal(
-      computeQ(T_BASIC, sel({ cards: ["role", "context"], verify: true })),
-      8,
-    );
+  it("카드 1장 일치 + 검증 = 7 (통과 품질 보강)", () => {
+    assert.equal(computeQ(T_BASIC, sel({ cards: ["role"], verify: true })), 7);
   });
 });
 
 describe("resolveStandardTask: 판정 등급", () => {
-  it("Q>=6 통과, 신뢰 +4 / KPI +2", () => {
+  it("카드 1장 일치 = 통과, 신뢰 +4 / KPI +2", () => {
+    const outcome = resolveStandardTask(T_BASIC, sel({ cards: ["role"] }), CTX);
+    assert.equal(outcome.tier, "pass");
+    assert.equal(outcome.trustDelta, 4);
+    assert.equal(outcome.kpiDelta, 2);
+    assert.equal(outcome.timeCost, 1);
+  });
+
+  it("요구 요소 전부 일치 = 우수, 신뢰 +8 / KPI +3", () => {
     const outcome = resolveStandardTask(
       T_BASIC,
       sel({ cards: ["role", "context"] }),
       CTX,
     );
-    assert.equal(outcome.tier, "pass");
-    assert.equal(outcome.trustDelta, 4);
-    assert.equal(outcome.kpiDelta, 2);
-    assert.equal(outcome.timeCost, 1);
+    assert.equal(outcome.tier, "excellent");
+    assert.equal(outcome.trustDelta, 8);
+    assert.equal(outcome.kpiDelta, 3);
   });
 
   it("Q<6 반려, 신뢰 -6, 재작업 기회", () => {
@@ -92,7 +96,7 @@ describe("resolveStandardTask: 함정 태그", () => {
       sel({ cards: ["role", "context"] }),
       CTX,
     );
-    assert.equal(outcome.tier, "pass"); // Q = 3 + 2 + 2 = 7
+    assert.equal(outcome.tier, "excellent"); // Q = 3 + 3 + 3 = 9, 표면상 완벽
     assert.equal(outcome.bombArmed, true);
   });
 
@@ -125,7 +129,7 @@ describe("resolveStandardTask: 함정 태그", () => {
       CTX,
     );
     assert.equal(outcome.securityIncident, false);
-    // 3 + 2(일치) + 2(가명화) = 7 통과
+    // 3 + 3(일치) + 2(가명화) = 8 통과
     assert.equal(outcome.tier, "pass");
   });
 

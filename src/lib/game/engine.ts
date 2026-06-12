@@ -592,6 +592,12 @@ export function gameReducer(
       const option = round.options.find((o) => o.id === action.optionId);
       if (!option) return state;
       if (option.requiresFlag && !state.flags[option.requiresFlag]) return state;
+      if (
+        option.requiresConcept &&
+        !state.unlockedConcepts.includes(option.requiresConcept)
+      ) {
+        return state;
+      }
       return {
         ...state,
         bossScore: state.bossScore + option.score,

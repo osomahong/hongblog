@@ -2,8 +2,11 @@
  * 판정 엔진: 선택 → 결과를 계산하는 순수 함수.
  * 판정에 난수 없음 (교육 게임에서 "맞게 했는데 운으로 망함"은 학습을 부정한다).
  *
- * Q = base(직접 6 / AI 3) + 요구요소 일치 카드당 +2 + 검증 +1 (+가명화 +2)
+ * Q = base(직접 6 / AI 3) + 요구요소 일치 카드당 +3 + 검증 +1 (+가명화 +2)
  * Q >= 9 우수 / 6~8 통과 / <6 반려
+ *
+ * 학습 곡선: 빈 프롬프트(3) 반려 → 카드 1장 일치(6) 통과 → 2장 일치(9) 우수.
+ * 직접 처리(6)는 항상 통과 고정: 안전하지만 우수가 없고 비싸다.
  */
 
 import type {
@@ -16,7 +19,7 @@ import type { ResolvedOutcome, TaskSelection, TierId } from "./types";
 
 export const Q_BASE_DIRECT = 6;
 export const Q_BASE_DELEGATE = 3;
-export const Q_MATCH_BONUS = 2;
+export const Q_MATCH_BONUS = 3;
 export const Q_VERIFY_BONUS = 1;
 export const Q_ANON_BONUS = 2;
 export const Q_EXCELLENT = 9;

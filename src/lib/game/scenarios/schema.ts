@@ -158,6 +158,8 @@ export interface BossOption {
   score: number;
   /** 플래그 보유 시에만 활성화 (예: verified:task-d2-market) */
   requiresFlag?: string;
+  /** 개념 해금 시에만 활성화 (배운 것이 보스전 선택지가 된다) */
+  requiresConcept?: ConceptId;
   reply: Dialogue[];
 }
 

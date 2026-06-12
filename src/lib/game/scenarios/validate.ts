@@ -87,6 +87,12 @@ export function validateChapter(chapter: ChapterSpec): string[] {
       if (option.score < 0 || option.score > 5) {
         errors.push(`보스 선택지 ${option.id}: score는 0~5`);
       }
+      if (
+        option.requiresConcept &&
+        !chapter.concepts.some((c) => c.id === option.requiresConcept)
+      ) {
+        errors.push(`보스 선택지 ${option.id}: 정의 안 된 개념 ${option.requiresConcept}`);
+      }
     });
   });
 
