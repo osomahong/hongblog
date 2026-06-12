@@ -104,7 +104,7 @@ ogImage: /og/google-ads-api-data-for-non-developers.png
 
 ### 2단계: OAuth 2.0 인증 설정
 
-API가 "이 사람이 이 계정 데이터를 볼 수 있는 사람인지" 확인하는 과정입니다. OAuth 2.0 클라이언트 ID를 만들고, 동의 화면을 설정합니다.
+API가 "이 사람이 이 계정 데이터를 볼 수 있는 사람인지" 확인하는 과정입니다. [OAuth 2.0](/class/vibe-coding-basics/what-is-authentication) 클라이언트 ID를 만들고, 동의 화면을 설정합니다.
 
 여기서 받는 **Client ID**와 **Client Secret**은 나중에 코드에서 쓰이니 잘 보관해야 합니다.
 
@@ -129,7 +129,7 @@ FROM campaign
 WHERE segments.date DURING LAST_7_DAYS
 ```
 
-위 쿼리를 해석하면, "지난 7일간 캠페인별 노출수, 클릭수, 비용, 전환수를 가져와라"입니다.
+위 쿼리를 해석하면, "지난 7일간 캠페인별 노출수, 클릭수, 비용, [전환](/class/digital-marketing-terms/what-is-conversion)수를 가져와라"입니다.
 
 > **AI 활용 팁**: 이 GAQL 쿼리를 직접 작성할 필요가 없습니다. AI에게 "캠페인별 지난 30일 성과 데이터를 구글 Ads API GAQL로 작성해줘"라고 하면 바로 만들어줍니다.
 
@@ -215,7 +215,7 @@ AI에게 코드를 요청할 때 "비용은 마이크로 단위를 실제 금액
 
 ### 2. 전환수가 소수점으로 나온다
 
-구글 Ads의 전환은 기여 모델(Attribution Model)에 따라 소수점이 나올 수 있습니다. 예를 들어 데이터 기반 기여 모델에서는 하나의 전환이 여러 터치포인트에 분배되므로 0.3, 0.7 같은 값이 나옵니다.
+구글 Ads의 전환은 기여 모델([Attribution Model](/class/digital-marketing-terms/what-is-attribution))에 따라 소수점이 나올 수 있습니다. 예를 들어 데이터 기반 기여 모델에서는 하나의 전환이 여러 터치포인트에 분배되므로 0.3, 0.7 같은 값이 나옵니다.
 
 정수로 맞추고 싶다면 `metrics.all_conversions`를 쓰거나, 전환 액션별로 따로 집계해야 합니다.
 
@@ -233,7 +233,7 @@ AI에게 코드를 요청할 때 "비용은 마이크로 단위를 실제 금액
 
 ## 캠페인 유형별 데이터 추출 주의사항
 
-구글 Ads는 캠페인 유형에 따라 API로 가져올 수 있는 데이터 구조가 다릅니다. 이 부분이 비개발자에게 가장 혼란스러운 영역입니다.
+구글 Ads는 캠페인 유형에 따라 API로 가져올 수 있는 [데이터 구조](/class/digital-basic/what-is-json-and-data-structures)가 다릅니다. 이 부분이 비개발자에게 가장 혼란스러운 영역입니다.
 
 ### 검색(Search) / 디스플레이(Display) 캠페인
 

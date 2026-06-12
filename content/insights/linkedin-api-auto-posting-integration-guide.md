@@ -33,13 +33,13 @@ ogDescription: 복사-붙여넣기 없이 블로그 관리 페이지에서 Linke
 
 ## 복사-붙여넣기가 싫었습니다
 
-이 블로그에는 관리 페이지가 있습니다. 글을 쓰고, 수정하고, 배포 상태를 관리하는 곳입니다. 여기에 AI로 LinkedIn 소개글을 자동 생성하는 기능도 만들어 뒀습니다.
+이 블로그에는 관리 페이지가 있습니다. 글을 쓰고, 수정하고, [배포](/class/vibe-coding-basics/what-is-deployment) 상태를 관리하는 곳입니다. 여기에 AI로 LinkedIn 소개글을 자동 생성하는 기능도 만들어 뒀습니다.
 
 그런데 생성된 글을 LinkedIn에 올리려면 매번 같은 과정을 반복해야 했습니다. 모달에서 텍스트를 복사하고, LinkedIn을 열고, 새 게시물을 만들고, 붙여넣고, 게시 버튼을 누르는 5단계입니다.
 
 글 하나에 30초밖에 안 걸리는 작업이지만, 반복될수록 거슬립니다. "여기서 바로 올릴 수 없나?"라는 생각이 들었고, LinkedIn API를 연동하기로 했습니다.
 
-이 글에서는 LinkedIn Posts API를 Next.js 프로젝트에 연동한 전체 과정을 정리합니다. OAuth 인증이 처음이어도 따라갈 수 있도록, 각 단계에서 무엇이 왜 필요한지를 중심으로 설명합니다.
+이 글에서는 LinkedIn Posts API를 Next.js 프로젝트에 연동한 전체 과정을 정리합니다. [OAuth](/class/vibe-coding-basics/what-is-authentication) 인증이 처음이어도 따라갈 수 있도록, 각 단계에서 무엇이 왜 필요한지를 중심으로 설명합니다.
 
 ## 완성된 모습부터 보겠습니다
 
@@ -319,7 +319,7 @@ export async function GET(request: NextRequest) {
 
 ### /api/linkedin/status
 
-현재 LinkedIn 연결 상태를 반환합니다. 프론트엔드에서 페이지 로드 시 호출하여 UI를 업데이트합니다.
+현재 LinkedIn 연결 상태를 반환합니다. [프론트엔드](/class/vibe-coding-basics/what-is-frontend-backend)에서 페이지 로드 시 호출하여 UI를 업데이트합니다.
 
 ### /api/linkedin/post
 

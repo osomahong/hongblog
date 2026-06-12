@@ -22,7 +22,7 @@ ogImage: /og/what-is-click-through-attribution.png
 
 ## 클릭 기여란 무엇인가
 
-디지털 마케팅에서 가장 기본이 되는 질문은 "이 광고가 실제로 효과가 있었는가"입니다. 사용자가 광고를 클릭한 뒤 전환(구매, 가입, 다운로드 등)까지 이어졌을 때, 그 전환을 해당 광고의 성과로 인정하는 방식을 **클릭 기여(Click-Through Attribution)**라고 합니다.
+디지털 마케팅에서 가장 기본이 되는 질문은 "이 광고가 실제로 효과가 있었는가"입니다. 사용자가 광고를 클릭한 뒤 [전환](/class/digital-marketing-terms/what-is-conversion)(구매, 가입, 다운로드 등)까지 이어졌을 때, 그 전환을 해당 광고의 성과로 인정하는 방식을 **클릭 기여([Click-Through Attribution](/class/digital-marketing-terms/what-is-attribution))**라고 합니다.
 
 쉽게 말해, 사용자가 광고를 클릭하고 일정 기간 내에 전환 행동을 하면 그 전환은 클릭한 광고 덕분이라고 판단하는 것입니다. 이때 클릭 후 전환까지 인정하는 시간 범위를 **기여 기간(Attribution Window)**이라고 부릅니다.
 
@@ -75,7 +75,7 @@ ogImage: /og/what-is-click-through-attribution.png
 
 ### 쿠키 제한과 개인정보 보호
 
-서드파티 쿠키의 제한이 강화되면서 클릭 기여 추적도 영향을 받고 있습니다. iOS의 ATT(App Tracking Transparency)나 브라우저의 ITP(Intelligent Tracking Prevention) 등으로 인해 기존 방식의 추적이 점점 어려워지고 있습니다. 이에 따라 서버 사이드 추적, Conversions API(CAPI), Enhanced Conversions 같은 대안이 주목받고 있습니다.
+서드파티 [쿠키](/class/digital-basic/what-is-cookie)의 제한이 강화되면서 클릭 기여 추적도 영향을 받고 있습니다. iOS의 ATT(App Tracking Transparency)나 브라우저의 ITP(Intelligent Tracking Prevention) 등으로 인해 기존 방식의 추적이 점점 어려워지고 있습니다. 이에 따라 서버 사이드 추적, Conversions API(CAPI), Enhanced Conversions 같은 대안이 주목받고 있습니다.
 
 ## 마케터가 기억해야 할 핵심
 

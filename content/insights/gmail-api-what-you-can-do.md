@@ -42,7 +42,7 @@ AI 활용 시대가 본격화되면서 "바이브코딩(Vibe Coding)"이라는 �
 
 ## Gmail API 기능 전체 맵
 
-Gmail API는 RESTful API로, 기본 URL은 `https://gmail.googleapis.com`입니다. 인증은 OAuth 2.0을 사용하며, Python, JavaScript, Java, Go, Node.js 등 다양한 언어에서 사용할 수 있습니다.
+Gmail API는 [RESTful API](/class/vibe-coding-basics/what-is-rest-api)로, 기본 URL은 `https://gmail.googleapis.com`입니다. 인증은 [OAuth 2.0](/class/vibe-coding-basics/what-is-authentication)을 사용하며, Python, JavaScript, Java, Go, Node.js 등 다양한 언어에서 사용할 수 있습니다.
 
 ![Gmail API 리소스 전체 맵 — 7개 핵심 리소스와 50개 이상의 메서드를 한눈에 보여주는 구조도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/gmail-api-what-you-can-do-0-1771578221347.png)
 

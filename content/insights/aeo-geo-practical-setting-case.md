@@ -43,7 +43,7 @@ AEO를 잘한다는 것은 콘텐츠를 잘 쓴다는 뜻이 아닙니다. 실�
 
 AEO(Answer Engine Optimization)는 질문에 대한 **직접 답변**을 제공하도록 콘텐츠를 구조화하는 작업입니다. ChatGPT, Perplexity, 음성 검색처럼 "답을 돌려주는" 엔진이 콘텐츠를 인용하거나 요약할 수 있도록 만드는 것이 목표입니다. 핵심 신호는 질문형 제목, Q&A, FAQ 구조화 데이터입니다.
 
-GEO(Generative Engine Optimization)는 Princeton 대학 연구팀이 KDD 2024 학회에서 정식으로 제안한 개념입니다. AI Overviews, Gemini, Claude 같은 **생성형 엔진의 답변에 인용 출처로 선택될 가능성**을 높이는 작업을 뜻합니다. Princeton 연구는 9가지 기법을 실증했고, 출처 인용과 통계 추가가 각각 AI 가시성을 **30~40% 끌어올린다**는 결과를 공개했습니다. 반대로 키워드 스터핑은 **15%**, 짧은 답변 강제는 **10%** 가시성을 떨어뜨렸습니다.
+GEO(Generative Engine Optimization)는 Princeton 대학 연구팀이 KDD 2024 학회에서 정식으로 제안한 개념입니다. AI Overviews, Gemini, [Claude](/class/claude-fundamentals/what-is-claude) 같은 **생성형 엔진의 답변에 인용 출처로 선택될 가능성**을 높이는 작업을 뜻합니다. Princeton 연구는 9가지 기법을 실증했고, 출처 인용과 통계 추가가 각각 AI 가시성을 **30~40% 끌어올린다**는 결과를 공개했습니다. 반대로 키워드 스터핑은 **15%**, 짧은 답변 강제는 **10%** 가시성을 떨어뜨렸습니다.
 
 두 개념은 겹치지만 초점이 다릅니다. AEO는 답변 형식에, GEO는 인용 가능성에 집중합니다. 실무에서는 하나의 파이프라인으로 같이 처리하는 것이 효율적입니다.
 
@@ -225,7 +225,7 @@ sitemap 0.xml 안에서 이 글은 이렇게 등록되어 있습니다.
 
 llms.txt는 AI 검색 시대에 새로 등장한 개념이라 초보자 입장에서 낯설 수 있습니다. 이 블로그에 실제 배포된 파일을 발췌해, 어떤 형식이고 무엇을 담고 있는지부터 먼저 확인해 보시겠습니다.
 
-`llms.txt`는 2024년 말부터 확산된 비공식 규약으로, 생성형 AI 크롤러가 사이트의 정체성과 주요 URL을 빠르게 파악할 수 있도록 돕는 파일입니다. OpenAI, Anthropic, Perplexity가 존중하는 것으로 알려져 있고, 루트(`/llms.txt`)에 배포하는 방식이 표준입니다.
+`llms.txt`는 2024년 말부터 확산된 비공식 규약으로, 생성형 AI 크롤러가 사이트의 정체성과 주요 URL을 빠르게 파악할 수 있도록 돕는 파일입니다. OpenAI, [Anthropic](/class/claude-fundamentals/what-is-anthropic), Perplexity가 존중하는 것으로 알려져 있고, 루트(`/llms.txt`)에 배포하는 방식이 표준입니다.
 
 이 사이트의 `public/llms.txt`에서 발췌한 내용입니다.
 

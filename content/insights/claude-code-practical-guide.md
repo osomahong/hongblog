@@ -37,7 +37,7 @@ ogDescription: '터미널 기반 AI 코딩 도구 Claude Code의 설치, 설정,
 
 ## Claude Code는 터미널에서 동작하는 AI 코딩 도구입니다
 
-Claude Code는 Anthropic이 만든 터미널 기반 AI 코딩 도구입니다. 프로젝트의 코드베이스 전체를 이해하고, 파일을 읽고 수정하며, 터미널 명령어를 직접 실행합니다. 웹 브라우저나 별도 IDE 없이 터미널 하나로 코딩 작업 대부분을 처리할 수 있습니다.
+[Claude Code](/class/claude-code-for-everyone/what-is-claude-code)는 [Anthropic](/class/claude-fundamentals/what-is-anthropic)이 만든 터미널 기반 AI 코딩 도구입니다. 프로젝트의 코드베이스 전체를 이해하고, 파일을 읽고 수정하며, 터미널 명령어를 직접 실행합니다. 웹 브라우저나 별도 IDE 없이 터미널 하나로 코딩 작업 대부분을 처리할 수 있습니다.
 
 2025년 5월 출시 이후 8개월 만에 개발자 선호도 조사에서 1위를 차지했습니다. 2026년 초 기준 개발자의 46%가 "가장 좋아하는 AI 코딩 도구"로 Claude Code를 꼽았으며, Cursor(19%)와 GitHub Copilot(9%)을 크게 앞서고 있습니다. 이 글에서는 설치부터 실제 프로젝트에서 활용하는 과정까지 단계별로 정리합니다.
 

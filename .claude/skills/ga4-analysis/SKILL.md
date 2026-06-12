@@ -1,6 +1,7 @@
 ---
 name: ga4-analysis
-description: GA4 데이터 분석 스킬. "GA4 분석", "트래픽 분석", "콘텐츠 성과", "애널리틱스", "이번 달 트래픽" 요청 시 트리거. GA4 Data API로 실제 트래픽 데이터를 조회하고 MD 파일 콘텐츠 메타데이터와 교차 분석하여 인사이트를 생성합니다.
+description: GA4 데이터 분석 스킬. "GA4 분석", "트래픽 분석", "콘텐츠 성과", "애널리틱스", "이번 달 트래픽", "카테고리별 성과" 요청 시 트리거. GA4 Data API로 실제 트래픽 데이터를 조회하고 MD 파일 콘텐츠 메타데이터(getInsights, getClasses)와 교차 분석하여 인사이트를 생성한다. Quick Report / Content Performance / Category Stats / Strategy 4개 모드 지원.
+argument-hint: '[--days N] [--mode quick|content-perf|category-stats|strategy]'
 ---
 
 # ga4-analysis 스킬

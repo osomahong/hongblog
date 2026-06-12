@@ -42,7 +42,7 @@ ogImage: /og/naver-search-ad-api-data-for-non-developers.png
 
 [구글 Ads API 가이드](/insights/google-ads-api-data-for-non-developers), [Meta Ads API 가이드](/insights/meta-ads-api-data-for-non-developers)에 이어 네이버 검색광고 API를 정리합니다.
 
-네이버 검색광고 API는 구글·메타와 **구조가 상당히 다릅니다.** 인증 방식이 OAuth가 아닌 HMAC 서명 방식이고, 성과 데이터에 캠페인 이름이 포함되지 않아 별도로 조인해야 하며, ROAS 단위가 배수가 아닌 퍼센트입니다. 이런 차이를 모르고 통합 리포트를 만들면 숫자가 안 맞는 상황이 생깁니다.
+네이버 검색광고 API는 구글·메타와 **구조가 상당히 다릅니다.** 인증 방식이 [OAuth](/class/vibe-coding-basics/what-is-authentication)가 아닌 HMAC 서명 방식이고, 성과 데이터에 캠페인 이름이 포함되지 않아 별도로 조인해야 하며, [ROAS](/class/digital-marketing-terms/what-is-roas) 단위가 배수가 아닌 퍼센트입니다. 이런 차이를 모르고 통합 리포트를 만들면 숫자가 안 맞는 상황이 생깁니다.
 
 이 글에서는 네이버 API만의 특이점을 중심으로, **다른 매체 데이터와 합칠 때 반드시 알아야 할 포인트**를 정리합니다.
 

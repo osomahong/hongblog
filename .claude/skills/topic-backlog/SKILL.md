@@ -1,6 +1,7 @@
 ---
 name: topic-backlog
-description: 토픽 백로그 관리 스킬. 글감 아이디어를 누적 저장하고, 필요할 때 목록을 조회하거나 일괄 작성할 수 있습니다. "토픽 저장", "글감 추가", "백로그 확인", "백로그에서 글쓰기", "/topic-backlog" 요청 시 트리거.
+description: 토픽 백로그 관리 스킬. 글감 아이디어를 scripts/data/topic-backlog.json에 누적 저장하고, 필요할 때 목록 조회·우선순위 필터·카테고리 필터로 선택하여 일괄 작성할 수 있다. "토픽 저장", "글감 추가", "백로그 확인", "백로그에서 글쓰기", "/topic-backlog" 요청 시 트리거. add/list/write/done/remove 서브명령 지원.
+argument-hint: 'add|list|write|done|remove [--priority HIGH|MID|LOW] [--category MARKETING|AI_TECH|DATA]'
 ---
 
 # 토픽 백로그 관리 스킬

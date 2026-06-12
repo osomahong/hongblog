@@ -37,7 +37,7 @@ ogImage: /og/non-developer-chrome-extension-deployment-guide.png
 ## **비개발자의 크롬 확장 프로그램 배포기록 A to Z**
 
 ### **1. 배경: 코딩보다 더 어려운 '스토어 등록'**
-업무 효율화를 위해 AI를 활용하여 SEO 분석 확장 프로그램을 만들었습니다. `manifest.json` 수정이나 자바스크립트 로직 구현은 생성형 AI(Claude)와의 협업으로 비교적 수월하게 진행할 수 있었습니다.
+업무 효율화를 위해 AI를 활용하여 SEO 분석 확장 프로그램을 만들었습니다. `manifest.json` 수정이나 자바스크립트 로직 구현은 생성형 AI([Claude](/class/claude-fundamentals/what-is-claude))와의 협업으로 비교적 수월하게 진행할 수 있었습니다.
 
 ![image](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1769565798268-0ijdg6.png)
 

@@ -1,6 +1,7 @@
 ---
 name: skill-creator
-description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.
+description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations. Walks through 6-step process (understand examples → plan resources → init_skill.py → edit SKILL.md → package_skill.py → iterate), enforces Anthropic skill conventions (frontmatter, progressive disclosure, bundled scripts/references/assets).
+argument-hint: '[skill-name]'
 license: Complete terms in LICENSE.txt
 ---
 

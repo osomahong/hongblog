@@ -1,6 +1,7 @@
 ---
 name: subagent-creator
-description: Create specialized Claude Code sub-agents with custom system prompts and tool configurations. Use when users ask to create a new sub-agent, custom agent, specialized assistant, or want to configure task-specific AI workflows for Claude Code.
+description: Create specialized Claude Code sub-agents with custom system prompts and tool configurations. Use when users ask to create a new sub-agent, custom agent, specialized assistant, or want to configure task-specific AI workflows for Claude Code. Generates .claude/agents/<name>.md files with proper YAML frontmatter (name, description, tools, model, permissionMode, skills) and a focused system prompt.
+argument-hint: '[agent-name] [purpose]'
 ---
 
 # Sub-agent Creator

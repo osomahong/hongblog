@@ -1,0 +1,1295 @@
+{
+  "generatedAt": "2026-04-29T14:23:33.201Z",
+  "totalClasses": 60,
+  "denyList": [
+    "AI",
+    "API",
+    "AI 도구",
+    "기술",
+    "도구",
+    "Code",
+    "Claude API",
+    "claude.ai",
+    "claude.ai/code",
+    "Anthropic CLI",
+    "보조 에이전트",
+    "자동 실행 규칙",
+    "코딩 에이전트",
+    "CLI 코딩 에이전트",
+    "디자인 에이전트",
+    "초보자를 위한 Anthropic",
+    "입문자를 위한 Claude",
+    "초보자를 위한",
+    "입문자를 위한",
+    "앤트로픽 AI 어시스턴트",
+    "Claude 만든 회사"
+  ],
+  "classes": [
+    {
+      "slug": "what-are-hooks",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/what-are-hooks",
+      "category": "CLAUDE_EDUCATION",
+      "term": "훅 (Hooks) 알아보기",
+      "aliases": [
+        "Hooks",
+        "훅",
+        "자동 실행 규칙"
+      ],
+      "searchTerms": [
+        "자동 실행 규칙",
+        "Hooks",
+        "훅"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-are-subagents",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/what-are-subagents",
+      "category": "CLAUDE_EDUCATION",
+      "term": "서브에이전트 (Subagents) 알아보기",
+      "aliases": [
+        "Subagents",
+        "서브 에이전트",
+        "보조 에이전트"
+      ],
+      "searchTerms": [
+        "Subagents",
+        "서브 에이전트",
+        "보조 에이전트",
+        "서브에이전트"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-claude-code",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/what-is-claude-code",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Claude Code (CLI 코딩 에이전트) 이해하기",
+      "aliases": [
+        "Claude Code",
+        "클로드 코드",
+        "Anthropic CLI"
+      ],
+      "searchTerms": [
+        "Anthropic CLI",
+        "Claude Code",
+        "CLI 코딩 에이전트",
+        "클로드 코드",
+        "CLI"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-mcp",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/what-is-mcp",
+      "category": "CLAUDE_EDUCATION",
+      "term": "MCP (Model Context Protocol) 이해하기",
+      "aliases": [
+        "MCP",
+        "Model Context Protocol",
+        "모델 컨텍스트 프로토콜"
+      ],
+      "searchTerms": [
+        "Model Context Protocol",
+        "모델 컨텍스트 프로토콜",
+        "MCP"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-anthropic",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/what-is-anthropic",
+      "category": "CLAUDE_EDUCATION",
+      "term": "초보자를 위한 Anthropic (앤트로픽) 이해하기",
+      "aliases": [
+        "앤트로픽",
+        "앤트로픽 초보",
+        "앤트로픽 입문",
+        "앤트로픽이란",
+        "Anthropic PBC",
+        "Claude 만든 회사"
+      ],
+      "searchTerms": [
+        "초보자를 위한 Anthropic",
+        "Anthropic PBC",
+        "Claude 만든 회사",
+        "Anthropic",
+        "앤트로픽 초보",
+        "앤트로픽 입문",
+        "앤트로픽이란",
+        "앤트로픽"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-claude",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/what-is-claude",
+      "category": "CLAUDE_EDUCATION",
+      "term": "입문자를 위한 Claude (앤트로픽 AI 어시스턴트) 이해하기",
+      "aliases": [
+        "클로드",
+        "클로드 입문",
+        "클로드 초보",
+        "클로드 이해하기",
+        "claude.ai",
+        "Anthropic Claude"
+      ],
+      "searchTerms": [
+        "Anthropic Claude",
+        "입문자를 위한 Claude",
+        "앤트로픽 AI 어시스턴트",
+        "claude.ai",
+        "클로드 이해하기",
+        "클로드 입문",
+        "클로드 초보",
+        "Claude",
+        "클로드"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-hallucination",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/what-is-hallucination",
+      "category": "CLAUDE_EDUCATION",
+      "term": "환각 (Hallucination) 알아보기",
+      "aliases": [
+        "할루시네이션",
+        "AI 환각",
+        "환각 현상"
+      ],
+      "searchTerms": [
+        "Hallucination",
+        "할루시네이션",
+        "AI 환각",
+        "환각 현상",
+        "환각"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-sycophancy",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/what-is-sycophancy",
+      "category": "CLAUDE_EDUCATION",
+      "term": "모델 아부 (Sycophancy) 알아보기",
+      "aliases": [
+        "시코판시",
+        "AI 아부",
+        "모델 아첨"
+      ],
+      "searchTerms": [
+        "Sycophancy",
+        "AI 아부",
+        "모델 아첨",
+        "모델 아부",
+        "시코판시"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-are-artifacts",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/what-are-artifacts",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Artifacts (실시간 결과물 생성) 활용하기",
+      "aliases": [
+        "Claude Artifacts",
+        "아티팩트"
+      ],
+      "searchTerms": [
+        "Claude Artifacts",
+        "실시간 결과물 생성",
+        "Artifacts",
+        "아티팩트"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-are-claude-projects",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/what-are-claude-projects",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Claude Projects 활용하기",
+      "aliases": [
+        "Claude 프로젝트",
+        "claude.ai Projects"
+      ],
+      "searchTerms": [
+        "claude.ai Projects",
+        "Claude Projects",
+        "Claude 프로젝트"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-are-claude-skills",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/what-are-claude-skills",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Claude Skills (재사용 가능한 작업 단위) 활용하기",
+      "aliases": [
+        "Agent Skills",
+        "SKILL.md",
+        "Claude 스킬"
+      ],
+      "searchTerms": [
+        "Claude Skills",
+        "재사용 가능한 작업 단위",
+        "Agent Skills",
+        "Claude 스킬",
+        "SKILL.md"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-extended-thinking",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/what-is-extended-thinking",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Extended Thinking (확장 추론 모드) 알아보기",
+      "aliases": [
+        "Adaptive Thinking",
+        "thinking 블록",
+        "확장 추론"
+      ],
+      "searchTerms": [
+        "Adaptive Thinking",
+        "Extended Thinking",
+        "thinking 블록",
+        "확장 추론 모드",
+        "확장 추론"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-api",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-api",
+      "category": "AI_TECH",
+      "term": "API (Application Programming Interface)",
+      "aliases": [
+        "REST API",
+        "웹 API"
+      ],
+      "searchTerms": [
+        "Application Programming Interface",
+        "REST API",
+        "웹 API",
+        "API"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-attribute",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-attribute",
+      "category": "AI_TECH",
+      "term": "Attribute (속성)",
+      "aliases": [],
+      "searchTerms": [
+        "Attribute",
+        "속성"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-bom",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-bom",
+      "category": "AI_TECH",
+      "term": " BOM (Browser Object Model)",
+      "aliases": [],
+      "searchTerms": [
+        "Browser Object Model",
+        "BOM"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-cookie",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-cookie",
+      "category": "AI_TECH",
+      "term": "Cookie (쿠키)",
+      "aliases": [
+        "웹 쿠키",
+        "HTTP Cookie",
+        "브라우저 쿠키"
+      ],
+      "searchTerms": [
+        "HTTP Cookie",
+        "브라우저 쿠키",
+        "Cookie",
+        "웹 쿠키",
+        "쿠키"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-dom",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-dom",
+      "category": "AI_TECH",
+      "term": "DOM (Document Object Model)",
+      "aliases": [],
+      "searchTerms": [
+        "Document Object Model",
+        "DOM"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-domain-and-selfhosting",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-domain-and-selfhosting",
+      "category": "AI_TECH",
+      "term": "도메인과 셀프호스팅 (Domain & Self-hosting)",
+      "aliases": [
+        "도메인",
+        "Domain",
+        "DNS",
+        "셀프호스팅",
+        "Self-hosting",
+        "VPS",
+        "호스팅"
+      ],
+      "searchTerms": [
+        "Domain & Self-hosting",
+        "Self-hosting",
+        "도메인과 셀프호스팅",
+        "Domain",
+        "셀프호스팅",
+        "Self",
+        "도메인",
+        "DNS",
+        "VPS",
+        "호스팅"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-element",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-element",
+      "category": "AI_TECH",
+      "term": "Element (요소)",
+      "aliases": [],
+      "searchTerms": [
+        "Element",
+        "요소"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-javascript",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-javascript",
+      "category": "AI_TECH",
+      "term": " Javascript",
+      "aliases": [],
+      "searchTerms": [
+        "Javascript"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-json-and-data-structures",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-json-and-data-structures",
+      "category": "AI_TECH",
+      "term": "JSON과 데이터 구조 (JSON & Data Structures)",
+      "aliases": [
+        "JSON",
+        "제이슨",
+        "배열",
+        "Array",
+        "객체",
+        "Object",
+        "데이터 구조"
+      ],
+      "searchTerms": [
+        "JSON & Data Structures",
+        "Data Structures",
+        "JSON과 데이터 구조",
+        "Object",
+        "데이터 구조",
+        "Array",
+        "JSON",
+        "제이슨",
+        "배열",
+        "객체"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-selector",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-selector",
+      "category": "AI_TECH",
+      "term": "Selector (선택자)",
+      "aliases": [
+        "CSS Selector",
+        "CSS 선택자",
+        "선택자"
+      ],
+      "searchTerms": [
+        "CSS Selector",
+        "Selector",
+        "CSS 선택자",
+        "선택자"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-web-crawling",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-web-crawling",
+      "category": "AI_TECH",
+      "term": "웹 크롤링 (Web Crawling)",
+      "aliases": [
+        "웹 스크래핑",
+        "Web Scraping",
+        "데이터 수집",
+        "웹 크롤러"
+      ],
+      "searchTerms": [
+        "Web Scraping",
+        "Web Crawling",
+        "웹 스크래핑",
+        "데이터 수집",
+        "웹 크롤러",
+        "웹 크롤링"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-attribution",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-attribution",
+      "category": "MARKETING",
+      "term": "어트리뷰션 (Attribution)",
+      "aliases": [
+        "기여 분석",
+        "성과 배분",
+        "기여도 분석",
+        "마케팅 어트리뷰션"
+      ],
+      "searchTerms": [
+        "Attribution",
+        "마케팅 어트리뷰션",
+        "기여도 분석",
+        "기여 분석",
+        "성과 배분",
+        "어트리뷰션"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-cac",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-cac",
+      "category": "MARKETING",
+      "term": "CAC (Customer Acquisition Cost)",
+      "aliases": [
+        "고객획득비용",
+        "고객 확보 비용",
+        "신규고객 획득 단가"
+      ],
+      "searchTerms": [
+        "Customer Acquisition Cost",
+        "신규고객 획득 단가",
+        "고객 확보 비용",
+        "고객획득비용",
+        "CAC"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-conversion",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-conversion",
+      "category": "MARKETING",
+      "term": "전환 (Conversion)",
+      "aliases": [
+        "컨버전",
+        "전환 행동",
+        "목표 달성"
+      ],
+      "searchTerms": [
+        "Conversion",
+        "전환 행동",
+        "목표 달성",
+        "컨버전",
+        "전환"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-cpc",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-cpc",
+      "category": "MARKETING",
+      "term": "CPC (Cost Per Click)",
+      "aliases": [
+        "클릭당 비용",
+        "클릭 단가"
+      ],
+      "searchTerms": [
+        "Cost Per Click",
+        "클릭당 비용",
+        "클릭 단가",
+        "CPC"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-cpm",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-cpm",
+      "category": "MARKETING",
+      "term": "CPM (Cost Per Mille)",
+      "aliases": [
+        "1000회 노출 비용",
+        "천회 노출 단가"
+      ],
+      "searchTerms": [
+        "Cost Per Mille",
+        "1000회 노출 비용",
+        "천회 노출 단가",
+        "CPM"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-ctr",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-ctr",
+      "category": "MARKETING",
+      "term": "CTR (Click-Through Rate)",
+      "aliases": [
+        "클릭률",
+        "클릭스루율"
+      ],
+      "searchTerms": [
+        "Click-Through Rate",
+        "클릭스루율",
+        "클릭률",
+        "CTR"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-cvr",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-cvr",
+      "category": "MARKETING",
+      "term": "CVR (Conversion Rate)",
+      "aliases": [
+        "전환율",
+        "전환 비율",
+        "컨버전 레이트"
+      ],
+      "searchTerms": [
+        "Conversion Rate",
+        "컨버전 레이트",
+        "전환 비율",
+        "전환율",
+        "CVR"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-funnel",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-funnel",
+      "category": "MARKETING",
+      "term": "퍼널 (Marketing Funnel)",
+      "aliases": [
+        "마케팅 퍼널",
+        "세일즈 퍼널",
+        "전환 퍼널",
+        "깔때기 모델"
+      ],
+      "searchTerms": [
+        "Marketing Funnel",
+        "마케팅 퍼널",
+        "세일즈 퍼널",
+        "깔때기 모델",
+        "전환 퍼널",
+        "퍼널"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-ltv",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-ltv",
+      "category": "MARKETING",
+      "term": "LTV (Lifetime Value)",
+      "aliases": [
+        "고객생애가치",
+        "생애 고객 가치",
+        "고객 평생 가치",
+        "CLV"
+      ],
+      "searchTerms": [
+        "Lifetime Value",
+        "생애 고객 가치",
+        "고객 평생 가치",
+        "고객생애가치",
+        "CLV",
+        "LTV"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-roas",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-roas",
+      "category": "MARKETING",
+      "term": "ROAS (Return On Ad Spend)",
+      "aliases": [
+        "광고 수익률",
+        "광고비 대비 매출"
+      ],
+      "searchTerms": [
+        "Return On Ad Spend",
+        "광고비 대비 매출",
+        "광고 수익률",
+        "ROAS"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-roi",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-roi",
+      "category": "MARKETING",
+      "term": "ROI (Return On Investment)",
+      "aliases": [
+        "투자 수익률",
+        "투자 대비 수익"
+      ],
+      "searchTerms": [
+        "Return On Investment",
+        "투자 대비 수익",
+        "투자 수익률",
+        "ROI"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-authentication",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-authentication",
+      "category": "AI_TECH",
+      "term": "인증과 보안 (Authentication & Security)",
+      "aliases": [
+        "인증",
+        "Authentication",
+        "Auth",
+        "로그인",
+        "OAuth"
+      ],
+      "searchTerms": [
+        "Authentication & Security",
+        "Authentication",
+        "Security",
+        "인증과 보안",
+        "OAuth",
+        "Auth",
+        "로그인",
+        "인증"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-database",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-database",
+      "category": "AI_TECH",
+      "term": "데이터베이스 (Database)",
+      "aliases": [
+        "DB",
+        "데이터베이스",
+        "SQL",
+        "NoSQL",
+        "디비"
+      ],
+      "searchTerms": [
+        "Database",
+        "데이터베이스",
+        "NoSQL",
+        "SQL",
+        "DB",
+        "디비"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-debugging",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-debugging",
+      "category": "AI_TECH",
+      "term": "디버깅 (Debugging)",
+      "aliases": [
+        "Debugging",
+        "오류 해결",
+        "에러 수정",
+        "문제 해결"
+      ],
+      "searchTerms": [
+        "Debugging",
+        "오류 해결",
+        "에러 수정",
+        "문제 해결",
+        "디버깅"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-deployment",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-deployment",
+      "category": "AI_TECH",
+      "term": "배포 (Deployment)",
+      "aliases": [
+        "디플로이",
+        "Deployment",
+        "호스팅",
+        "Hosting",
+        "배포하기"
+      ],
+      "searchTerms": [
+        "Deployment",
+        "Hosting",
+        "디플로이",
+        "배포하기",
+        "호스팅",
+        "배포"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-env-variables",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-env-variables",
+      "category": "AI_TECH",
+      "term": "환경 변수와 .env (Environment Variables)",
+      "aliases": [
+        "환경변수",
+        "Environment Variables",
+        "dotenv",
+        ".env 파일"
+      ],
+      "searchTerms": [
+        "Environment Variables",
+        "환경 변수와 .env",
+        ".env 파일",
+        "dotenv",
+        "환경변수"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-frontend-backend",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-frontend-backend",
+      "category": "AI_TECH",
+      "term": "프론트엔드와 백엔드 (Frontend & Backend)",
+      "aliases": [
+        "프론트엔드",
+        "백엔드",
+        "Frontend",
+        "Backend",
+        "클라이언트",
+        "서버"
+      ],
+      "searchTerms": [
+        "Frontend & Backend",
+        "프론트엔드와 백엔드",
+        "Frontend",
+        "Backend",
+        "프론트엔드",
+        "클라이언트",
+        "백엔드",
+        "서버"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-git",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-git",
+      "category": "AI_TECH",
+      "term": "Git과 버전 관리 (Version Control)",
+      "aliases": [
+        "깃",
+        "깃허브",
+        "GitHub",
+        "버전관리",
+        "소스 관리"
+      ],
+      "searchTerms": [
+        "Version Control",
+        "Git과 버전 관리",
+        "GitHub",
+        "소스 관리",
+        "버전관리",
+        "깃허브",
+        "Git",
+        "깃"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-npm",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-npm",
+      "category": "AI_TECH",
+      "term": "패키지 매니저 (npm)",
+      "aliases": [
+        "npm",
+        "yarn",
+        "pnpm",
+        "Node Package Manager",
+        "패키지 관리자"
+      ],
+      "searchTerms": [
+        "Node Package Manager",
+        "패키지 관리자",
+        "패키지 매니저",
+        "yarn",
+        "pnpm",
+        "npm"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-rest-api",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-rest-api",
+      "category": "AI_TECH",
+      "term": "REST API",
+      "aliases": [
+        "API",
+        "RESTful API",
+        "웹 API",
+        "Application Programming Interface"
+      ],
+      "searchTerms": [
+        "Application Programming Interface",
+        "RESTful API",
+        "REST API",
+        "웹 API",
+        "API"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-terminal-cli",
+      "courseSlug": "vibe-coding-basics",
+      "url": "/class/vibe-coding-basics/what-is-terminal-cli",
+      "category": "AI_TECH",
+      "term": "터미널과 CLI (Terminal & CLI)",
+      "aliases": [
+        "명령 프롬프트",
+        "커맨드라인",
+        "Command Line Interface",
+        "셸"
+      ],
+      "searchTerms": [
+        "Command Line Interface",
+        "Terminal & CLI",
+        "터미널과 CLI",
+        "Terminal",
+        "명령 프롬프트",
+        "커맨드라인",
+        "CLI",
+        "셸"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "claude-code-memory",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/claude-code-memory",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Memory와 CLAUDE.md (영속 컨텍스트) 이해하기",
+      "aliases": [
+        "CLAUDE.md",
+        "auto memory",
+        "Claude Code 메모리"
+      ],
+      "searchTerms": [
+        "Memory와 CLAUDE.md",
+        "Claude Code 메모리",
+        "auto memory",
+        "CLAUDE.md",
+        "영속 컨텍스트",
+        "Memory",
+        "CLAUDE"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "claude-code-plan-mode",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/claude-code-plan-mode",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Plan Mode (실행 전 검토 단계) 활용하기",
+      "aliases": [
+        "Plan Mode",
+        "플랜 모드",
+        "검토 모드"
+      ],
+      "searchTerms": [
+        "실행 전 검토 단계",
+        "Plan Mode",
+        "플랜 모드",
+        "검토 모드"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "slash-commands-explained",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/slash-commands-explained",
+      "category": "CLAUDE_EDUCATION",
+      "term": "슬래시 명령 (Slash Commands) 알아보기",
+      "aliases": [
+        "Slash Commands",
+        "슬래시 커맨드",
+        "커스텀 명령"
+      ],
+      "searchTerms": [
+        "Slash Commands",
+        "슬래시 커맨드",
+        "커스텀 명령",
+        "슬래시 명령"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "claude-model-family",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/claude-model-family",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Claude 모델 패밀리 (Opus·Sonnet·Haiku) 비교하기",
+      "aliases": [
+        "Claude Opus",
+        "Claude Sonnet",
+        "Claude Haiku",
+        "Opus 4.7",
+        "Sonnet 4.6",
+        "Haiku 4.5"
+      ],
+      "searchTerms": [
+        "Claude Sonnet",
+        "Claude 모델 패밀리",
+        "Claude Haiku",
+        "Claude Opus",
+        "Sonnet 4.6",
+        "Haiku 4.5",
+        "Opus 4.7",
+        "Sonnet",
+        "Claude",
+        "Haiku",
+        "Opus"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "claude-vs-other-llms",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/claude-vs-other-llms",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Claude vs ChatGPT vs Gemini 비교하기",
+      "aliases": [
+        "ChatGPT vs Claude",
+        "Gemini vs Claude",
+        "LLM 비교"
+      ],
+      "searchTerms": [
+        "Claude vs ChatGPT vs Gemini",
+        "ChatGPT vs Claude",
+        "Gemini vs Claude",
+        "ChatGPT",
+        "LLM 비교",
+        "Claude",
+        "Gemini"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "context-window-explained",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/context-window-explained",
+      "category": "CLAUDE_EDUCATION",
+      "term": "컨텍스트 윈도우 (Context Window) 들여다보기",
+      "aliases": [
+        "Context Window",
+        "컨텍스트 길이",
+        "토큰 한도"
+      ],
+      "searchTerms": [
+        "Context Window",
+        "컨텍스트 윈도우 들여다보기",
+        "컨텍스트 길이",
+        "토큰 한도"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "four-ds-of-ai-fluency",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/four-ds-of-ai-fluency",
+      "category": "CLAUDE_EDUCATION",
+      "term": "AI Fluency 4D 프레임워크 (Delegation·Description·Discernment·Diligence) 알아보기",
+      "aliases": [
+        "4D 프레임워크",
+        "AI Fluency",
+        "Delegation Description Discernment Diligence"
+      ],
+      "searchTerms": [
+        "Delegation Description Discernment Diligence",
+        "AI Fluency 4D 프레임워크",
+        "Description",
+        "Discernment",
+        "AI Fluency",
+        "Delegation",
+        "Diligence",
+        "4D 프레임워크"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "prompt-engineering-basics",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/prompt-engineering-basics",
+      "category": "CLAUDE_EDUCATION",
+      "term": "프롬프트 엔지니어링 기본 익히기",
+      "aliases": [
+        "프롬프트 엔지니어링",
+        "Prompt Engineering",
+        "프롬프트 작성법"
+      ],
+      "searchTerms": [
+        "Prompt Engineering",
+        "프롬프트 엔지니어링 기본 익히기",
+        "프롬프트 엔지니어링",
+        "프롬프트 작성법"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "responsible-ai-use",
+      "courseSlug": "claude-fundamentals",
+      "url": "/class/claude-fundamentals/responsible-ai-use",
+      "category": "CLAUDE_EDUCATION",
+      "term": "책임감 있는 AI 사용 익히기",
+      "aliases": [
+        "Responsible AI",
+        "AI 윤리",
+        "AI 책임"
+      ],
+      "searchTerms": [
+        "책임감 있는 AI 사용 익히기",
+        "Responsible AI",
+        "AI 윤리",
+        "AI 책임"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "claude-cowork-overview",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/claude-cowork-overview",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Claude Cowork (작업 자동화·Dispatch) 활용하기",
+      "aliases": [
+        "Cowork",
+        "Claude Dispatch",
+        "작업 자동화"
+      ],
+      "searchTerms": [
+        "Claude Dispatch",
+        "Claude Cowork",
+        "Dispatch",
+        "Cowork",
+        "작업 자동화"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "claude-document-workflow",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/claude-document-workflow",
+      "category": "CLAUDE_EDUCATION",
+      "term": "문서·자료 정리 워크플로 (PDF·이미지·표) 익히기",
+      "aliases": [
+        "문서 워크플로",
+        "PDF 분석",
+        "자료 정리"
+      ],
+      "searchTerms": [
+        "문서·자료 정리 워크플로 익히기",
+        "문서 워크플로",
+        "PDF 분석",
+        "자료 정리",
+        "PDF",
+        "이미지",
+        "표"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "claude-for-educators",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/claude-for-educators",
+      "category": "CLAUDE_EDUCATION",
+      "term": "교육 종사자를 위한 Claude 활용하기",
+      "aliases": [
+        "Claude 교육 활용",
+        "교사 Claude",
+        "강사 Claude"
+      ],
+      "searchTerms": [
+        "교육 종사자를 위한 Claude",
+        "Claude 교육 활용",
+        "교사 Claude",
+        "강사 Claude",
+        "Claude"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "claude-for-marketers",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/claude-for-marketers",
+      "category": "CLAUDE_EDUCATION",
+      "term": "마케터를 위한 Claude 활용하기",
+      "aliases": [
+        "마케터 Claude",
+        "Claude 마케팅 활용"
+      ],
+      "searchTerms": [
+        "마케터를 위한 Claude",
+        "Claude 마케팅 활용",
+        "마케터 Claude",
+        "Claude"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "whatiscss",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/whatiscss",
+      "category": "AI_TECH",
+      "term": " CSS",
+      "aliases": [],
+      "searchTerms": [
+        "CSS"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "whatishtml",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/whatishtml",
+      "category": "AI_TECH",
+      "term": " HTML",
+      "aliases": [],
+      "searchTerms": [
+        "HTML"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
+      "slug": "claude-code-installation-basics",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/claude-code-installation-basics",
+      "category": "CLAUDE_EDUCATION",
+      "term": "Claude Code 설치 첫걸음 (터미널 입문 포함) 따라하기",
+      "aliases": [
+        "Claude Code 설치",
+        "claude code 시작"
+      ],
+      "searchTerms": [
+        "Claude Code 설치 첫걸음 따라하기",
+        "Claude Code 설치",
+        "claude code 시작",
+        "Claude Code",
+        "터미널 입문 포함"
+      ],
+      "linkPriority": 3,
+      "enabled": true
+    }
+  ]
+}

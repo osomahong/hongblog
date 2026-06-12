@@ -33,9 +33,9 @@ ogImage: /og/claude-code-custom-skill-3-patterns.png
 
 ## 코드 생성은 시작일 뿐입니다
 
-Claude Code를 처음 쓰면 자연어로 코드를 생성하는 것에 감탄합니다. 그런데 몇 주 쓰다 보면 깨닫습니다. 진짜 생산성 차이는 코드 생성이 아니라 **반복되는 개발 워크플로우를 자동화하는 것**에서 나옵니다.
+[Claude Code](/class/claude-code-for-everyone/what-is-claude-code)를 처음 쓰면 자연어로 코드를 생성하는 것에 감탄합니다. 그런데 몇 주 쓰다 보면 깨닫습니다. 진짜 생산성 차이는 코드 생성이 아니라 **반복되는 개발 워크플로우를 자동화하는 것**에서 나옵니다.
 
-Claude Code의 **Skill 시스템**이 바로 이 문제를 해결합니다. Skill은 `SKILL.md` 파일에 마크다운으로 작성하는 지시문입니다. 슬래시 명령어(`/skill-name`)로 호출하면 Claude가 해당 워크플로우를 자동으로 실행합니다.
+Claude Code의 **[Skill 시스템](/class/claude-in-practice/what-are-claude-skills)**이 바로 이 문제를 해결합니다. Skill은 `SKILL.md` 파일에 마크다운으로 작성하는 지시문입니다. 슬래시 명령어(`/skill-name`)로 호출하면 Claude가 해당 워크플로우를 자동으로 실행합니다.
 
 기본 제공되는 공식 스킬도 유용하지만, Claude Code의 진짜 차별화는 **누구나 만들 수 있는 커스텀 Skill**에 있습니다. GitHub에는 이미 수천 개의 커뮤니티 스킬이 공유되고 있고, awesome-claude-skills 저장소에만 300개 이상의 스킬이 큐레이션되어 있습니다.
 
@@ -57,7 +57,7 @@ SKILL.md 안에서 `` !`shell command` `` 문법을 쓰면, 해당 셸 명령이
 - 변경 내역: !`git diff --stat`
 ```
 
-Claude가 "뭐가 바뀌었지?"를 확인하느라 토큰을 쓸 필요가 없습니다.
+[Claude](/class/claude-fundamentals/what-is-claude)가 "뭐가 바뀌었지?"를 확인하느라 토큰을 쓸 필요가 없습니다.
 
 ### 서브에이전트 격리 (`context: fork`)
 

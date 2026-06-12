@@ -1,6 +1,7 @@
 ---
 name: inspect-content
 description: hongblog의 MD 기반 콘텐츠(content/insights, content/classes, content/courses)를 대상으로 SEO + AEO(Answer Engine Optimization) + GEO(Generative Engine Optimization) 통합 점검을 수행하고, 각 위반 항목에 대한 구체적인 수정 계획(fix plan)을 제안한다. 트리거는 "콘텐츠 점검", "SEO 분석", "AEO 점검", "GEO 분석", "인사이트 점검", "심층 분석", "inspect-content", "/inspect-content" 등이며, 단일 콘텐츠 분석과 타입별 배치 점검 두 모드를 모두 지원한다. 이 스킬은 파일을 직접 수정하지 않고 구조화된 제안만 출력한다.
+argument-hint: '[slug] | --batch [--type insights|classes|courses]'
 ---
 
 # inspect-content

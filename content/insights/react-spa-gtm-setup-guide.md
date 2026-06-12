@@ -279,7 +279,7 @@ export function PageTracker() {
 }
 ```
 
-이 컴포넌트를 `layout.tsx`에 포함시키면 모든 페이지 전환이 GTM으로 전달됩니다. `react-router-dom` 대신 Next.js 자체 라우팅 훅을 쓴다는 점만 다르고, 원리는 동일합니다.
+이 컴포넌트를 `layout.tsx`에 포함시키면 모든 페이지 [전환](/class/digital-marketing-terms/what-is-conversion)이 GTM으로 전달됩니다. `react-router-dom` 대신 Next.js 자체 라우팅 훅을 쓴다는 점만 다르고, 원리는 동일합니다.
 
 ## 설치 후 반드시 확인해야 할 것들
 

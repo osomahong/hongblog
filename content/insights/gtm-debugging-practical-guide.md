@@ -28,7 +28,7 @@ ogDescription: 'GTM Preview부터 Network 탭까지, 태그 미작동 원인을 
 ogImage: /og/gtm-debugging-practical-guide.png
 ---
 
-GTM(Google Tag Manager)을 설정하고 나면 "잘 되겠지"라고 생각하기 쉽습니다. 그런데 막상 GA4에 들어가보면 데이터가 안 들어오거나, 전환 이벤트가 2번 찍히거나, 특정 페이지에서만 태그가 작동하지 않는 상황이 꽤 자주 발생합니다.
+GTM(Google Tag Manager)을 설정하고 나면 "잘 되겠지"라고 생각하기 쉽습니다. 그런데 막상 GA4에 들어가보면 데이터가 안 들어오거나, [전환](/class/digital-marketing-terms/what-is-conversion) 이벤트가 2번 찍히거나, 특정 페이지에서만 태그가 작동하지 않는 상황이 꽤 자주 발생합니다.
 
 이 글에서는 GTM에서 태그가 정상 작동하지 않을 때 **원인을 빠르게 찾는 방법**을 정리합니다. Preview 모드 활용법부터 브라우저 개발자 도구까지, 실무에서 바로 쓸 수 있는 디버깅 체크리스트를 다룹니다.
 
@@ -51,7 +51,7 @@ Preview 모드에서 태그가 "Not Fired"로 표시된다면, 해당 태그를 
 Preview 버튼을 눌렀는데 Tag Assistant 창이 열리지 않는 경우가 있습니다. 이때 확인할 것들입니다.
 
 - **브라우저 확장 프로그램 확인** : 광고 차단기(AdBlock, uBlock 등)가 GTM 스크립트를 차단할 수 있습니다. 시크릿 모드에서 테스트해보세요.
-- **쿠키/캐시 삭제** : 이전 Preview 세션의 쿠키가 충돌할 수 있습니다.
+- **[쿠키](/class/digital-basic/what-is-cookie)/캐시 삭제** : 이전 Preview 세션의 쿠키가 충돌할 수 있습니다.
 - **GTM 컨테이너 ID 확인** : 웹사이트에 설치된 GTM ID와 워크스페이스의 ID가 일치하는지 확인하세요.
 - **브라우저 변경** : 간혹 특정 브라우저에서만 Preview가 작동하지 않는 경우가 있습니다. Chrome이 가장 안정적입니다.
 

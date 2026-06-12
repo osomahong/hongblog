@@ -110,7 +110,7 @@ generate_lead (리드 생성)
     └── disqualify_lead (자격 미충족)
 ```
 
-이론적으로, 이 퍼널의 각 단계 전환율을 GA4에서 측정할 수 있다면 마케팅과 영업의 병목을 정확히 진단할 수 있습니다.
+이론적으로, 이 [퍼널](/class/digital-marketing-terms/what-is-funnel)의 각 단계 전환율을 GA4에서 측정할 수 있다면 마케팅과 영업의 병목을 정확히 진단할 수 있습니다.
 
 - **disqualify 비율이 높다면:** 마케팅 타겟팅 문제. 잘못된 사람에게 광고가 노출되고 있음
 - **working → close_convert 비율이 낮다면:** 영업 프로세스, 가격 경쟁력, 제품력 문제

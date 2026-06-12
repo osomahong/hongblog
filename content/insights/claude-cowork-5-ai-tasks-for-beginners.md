@@ -37,7 +37,7 @@ ogDescription: AI가 처음인 분도 바로 시작할 수 있는 클로드 코�
 
 클로드 코워크(Claude Cowork)는 채팅창에 답을 받는 도구가 아니라, 내 컴퓨터의 파일과 폴더를 직접 다루며 일을 끝내주는 AI 에이전트입니다. 다운로드 폴더의 파일을 정리하고, 이메일을 쓰고, 여러 문서를 한 번에 요약하고, 데이터를 표로 만들고, 웹에서 자료를 조사하는 일까지 자연어 지시 한 번으로 위임할 수 있습니다. 코딩 지식은 필요하지 않습니다.
 
-Anthropic은 2026년 1월에 Claude Desktop 앱의 새 탭으로 코워크를 공개했고, 회사는 이 도구를 "나머지 모든 사람을 위한 Claude Code(Claude Code for the rest of us)"라고 소개했습니다. 즉 개발자만 쓰던 자동화 능력을 비개발자가 쓸 수 있게 만든 도구라는 뜻입니다. 자세한 출시 배경은 [VentureBeat의 출시 기사](https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no)와 [Anthropic 공식 페이지](https://www.anthropic.com/product/claude-cowork)에서 확인할 수 있습니다.
+[Anthropic](/class/claude-fundamentals/what-is-anthropic)은 2026년 1월에 Claude Desktop 앱의 새 탭으로 코워크를 공개했고, 회사는 이 도구를 "나머지 모든 사람을 위한 [Claude Code](/class/claude-code-for-everyone/what-is-claude-code)(Claude Code for the rest of us)"라고 소개했습니다. 즉 개발자만 쓰던 자동화 능력을 비개발자가 쓸 수 있게 만든 도구라는 뜻입니다. 자세한 출시 배경은 [VentureBeat의 출시 기사](https://venturebeat.com/technology/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no)와 [Anthropic 공식 페이지](https://www.anthropic.com/product/claude-cowork)에서 확인할 수 있습니다.
 
 이 글에서는 AI를 처음 쓰는 분도 곧바로 시도할 수 있는 다섯 가지 보편적 작업을 정리합니다. 각 작업에는 시작 방법과 참고할 공식 출처를 함께 적어두었으니, 더 깊이 알고 싶다면 출처를 따라 직접 시도해 보시기 바랍니다.
 

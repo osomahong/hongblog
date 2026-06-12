@@ -87,7 +87,7 @@ ogImage: /og/meta-ads-api-data-for-non-developers.png
 
 ### Step 3. 비즈니스 인증
 
-Advanced Access가 필요한 경우, Business Manager > 비즈니스 설정 > 보안 센터에서 비즈니스 인증을 진행합니다. 사업자 등록증이나 법인 서류를 제출하며, 보통 수 영업일 내에 처리됩니다.
+Advanced Access가 필요한 경우, Business Manager > 비즈니스 설정 > 보안 센터에서 비즈니스 [인증](/class/vibe-coding-basics/what-is-authentication)을 진행합니다. 사업자 등록증이나 법인 서류를 제출하며, 보통 수 영업일 내에 처리됩니다.
 
 ### Step 4. 시스템 유저 토큰 발급 (가장 중요)
 ![image](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1771858560677-p3hfg9.png)
@@ -115,7 +115,7 @@ Business Manager
 
 ## 마케터 용어 vs API 필드 매핑
 
-이 섹션이 실무에서 가장 중요합니다. Meta API의 필드명은 구글과 상당히 다르고, **특히 클릭과 전환 지표에서 혼동이 잦습니다.**
+이 섹션이 실무에서 가장 중요합니다. Meta API의 필드명은 구글과 상당히 다르고, **특히 클릭과 [전환](/class/digital-marketing-terms/what-is-conversion) 지표에서 혼동이 잦습니다.**
 
 ### 기본 지표
 
@@ -147,7 +147,7 @@ Business Manager
 | 링크 클릭 | `actions` 배열에서 추출 | `link_click` |
 | 랜딩페이지 조회 | `actions` 배열에서 추출 | `landing_page_view` |
 
-**ROAS 계산도 직접 해야 합니다:**
+**[ROAS](/class/digital-marketing-terms/what-is-roas) 계산도 직접 해야 합니다:**
 
 ```python
 # 구글: conversion_value / cost 로 바로 계산

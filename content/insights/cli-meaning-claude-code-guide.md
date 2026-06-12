@@ -31,7 +31,7 @@ ogDescription: >-
   설명합니다.
 ---
 
-"클로드 코드(Claude Code)가 좋다는데, CLI에서만 된다고?" 여기서 막히는 분들이 많습니다.
+"[클로드 코드](/class/claude-code-for-everyone/what-is-claude-code)(Claude Code)가 좋다는데, CLI에서만 된다고?" 여기서 막히는 분들이 많습니다.
 
 CLI라는 단어 자체가 낯설고, 검색해서 나오는 화면을 보면 **검은 배경에 흰 글씨만 가득한 창**이 나옵니다. 영화에서 해커들이 키보드를 빠르게 두드리며 시스템에 침투하는 장면, 그 화면이 떠오르죠. "저건 개발자나 쓰는 거 아냐?"라는 생각이 드는 게 당연합니다.
 ![image](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773112207530-kuo3qh.png)
@@ -75,7 +75,7 @@ CLI는 버튼과 메뉴가 없을 뿐, **"내가 텍스트를 입력하면 컴�
 
 ## 클로드 코드(Claude Code)에서의 CLI
 
-클로드 코드는 Anthropic이 만든 **터미널 기반 AI 코딩 도구**입니다. Claude.ai가 브라우저에서 쓰는 웹 챗봇이라면, 클로드 코드는 터미널에서 쓰는 AI입니다.
+클로드 코드는 [Anthropic](/class/claude-fundamentals/what-is-anthropic)이 만든 **터미널 기반 AI 코딩 도구**입니다. Claude.ai가 브라우저에서 쓰는 웹 챗봇이라면, 클로드 코드는 터미널에서 쓰는 AI입니다.
 
 사용 방식은 놀랍도록 단순합니다.
 

@@ -45,7 +45,7 @@ ogDescription: >-
 
 ## .md 파일 하나가 AI 에이전트를 지배합니다
 
-AI 에이전트란 사람의 개입 없이 스스로 판단하고 작업을 수행하는 AI 시스템입니다. Claude Code, Cursor, GitHub Copilot 같은 도구가 대표적입니다. 이 에이전트들이 "어떻게 행동할지"를 결정하는 핵심 파일이 바로 `.md` 파일입니다.
+AI 에이전트란 사람의 개입 없이 스스로 판단하고 작업을 수행하는 AI 시스템입니다. [Claude Code](/class/claude-code-for-everyone/what-is-claude-code), Cursor, GitHub Copilot 같은 도구가 대표적입니다. 이 에이전트들이 "어떻게 행동할지"를 결정하는 핵심 파일이 바로 `.md` 파일입니다.
 
 ### CLAUDE.md — 에이전트의 헌법
 
@@ -66,7 +66,7 @@ AI는 코드를 생성할 때마다 이 규칙을 따릅니다. 매번 "TypeScri
 
 ### SKILL.md — AI의 업무 매뉴얼
 
-더 놀라운 건 **스킬(Skill)** 시스템입니다. `SKILL.md` 파일에 워크플로우를 정의해두면, AI가 복잡한 다단계 작업을 자동으로 수행합니다.
+더 놀라운 건 **[스킬(Skill)](/class/claude-in-practice/what-are-claude-skills)** 시스템입니다. `SKILL.md` 파일에 워크플로우를 정의해두면, AI가 복잡한 다단계 작업을 자동으로 수행합니다.
 
 예를 들어, 마케팅팀에서 주간 뉴스레터를 자동으로 만드는 스킬을 정의한다고 가정해보겠습니다.
 

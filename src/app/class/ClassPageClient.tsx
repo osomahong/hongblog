@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { GraduationCap, Sparkles, Database, TrendingUp, BookOpen, ChevronDown, ChevronUp, Square, CheckSquare, Bot } from "lucide-react";
+import { GraduationCap, Sparkles, Database, TrendingUp, BookOpen, ChevronDown, ChevronUp, Bot } from "lucide-react";
 import {
     NeoCard,
     NeoCardHeader,
@@ -43,30 +43,12 @@ interface ClassPageClientProps {
 
 export default function ClassPageClient({ courses }: ClassPageClientProps) {
     const [expandedCourseId, setExpandedCourseId] = useState<number | null>(null);
-    const [checkedClasses, setCheckedClasses] = useState<Set<number>>(new Set());
 
     const toggleExpand = (courseId: number) => {
         setExpandedCourseId(prev => prev === courseId ? null : courseId);
     };
 
-    const toggleCheck = (classId: number, e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setCheckedClasses(prev => {
-            const next = new Set(prev);
-            if (next.has(classId)) {
-                next.delete(classId);
-            } else {
-                next.add(classId);
-            }
-            return next;
-        });
-    };
-
     const renderClassItem = (cls: CourseWithClasses["classes"][number], idx: number, courseSlug: string) => {
-        const isChecked = checkedClasses.has(cls.id);
-        const CheckIcon = isChecked ? CheckSquare : Square;
-
         return (
             <Link
                 key={cls.id}
@@ -74,12 +56,6 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                 className="block"
             >
                 <div className="flex items-center gap-2 p-2 rounded hover:bg-red-50 transition-colors group">
-                    <button
-                        onClick={(e) => toggleCheck(cls.id, e)}
-                        className="flex-shrink-0 text-muted-foreground hover:text-[#FF0033] transition-colors"
-                    >
-                        <CheckIcon className="w-3 h-3 sm:w-4 sm:h-4" />
-                    </button>
                     <span className="text-xs sm:text-xs text-muted-foreground min-w-[1.25rem]">
                         {idx + 1}.
                     </span>
@@ -129,9 +105,9 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
 
                     return (
                         <div key={course.id} className="relative">
-                            <NeoCard className={`overflow-hidden border-l-4 transition-all duration-300 ${isExpanded
-                                ? 'border-l-[#FF0033] shadow-[8px_8px_0px_0px_rgba(255,0,51,0.3)]'
-                                : 'border-l-[#FF0033]'
+                            <NeoCard className={`overflow-hidden transition-all duration-300 ${isExpanded
+                                ? 'shadow-[8px_8px_0px_0px_rgba(255,0,51,0.3)]'
+                                : ''
                                 }`}>
                                 {/* Course Header */}
                                 <NeoCardHeader>

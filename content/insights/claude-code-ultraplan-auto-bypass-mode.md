@@ -49,11 +49,11 @@ ogDescription: '클로드 코드에 새로 추가된 세 가지 실행 방식을
 
 세 기능이 같은 시기에 주목받은 이유는 명확합니다. Opus 4.7이 장기 실행 에이전트 작업에서 훨씬 자율적으로 움직이기 시작하면서, **"계획은 더 촘촘하게 검토하고 실행은 중단 없이 돌리되 위험만 걸러내자"**는 요구가 커졌기 때문입니다. Ultraplan은 계획 검토를 강화하고, Auto 모드는 실행 중 안전망을 자동화하며, Bypass 모드는 극단적 자율성을 원할 때 쓰는 선택지입니다.
 
-아래는 실제 Claude Code CLI에서 Auto 모드가 활성화된 상태 표시줄입니다. 위쪽에 `[Opus 4.7 (1M context) | Max]` 모델 정보와 사용량 게이지가 뜨고, 아래쪽에 `▶▶ auto mode on (shift+tab to cycle)` 한 줄이 보이면 지금 세션이 Auto 모드로 돌고 있다는 신호입니다.
+아래는 실제 [Claude Code](/class/claude-code-for-everyone/what-is-claude-code) CLI에서 Auto 모드가 활성화된 상태 표시줄입니다. 위쪽에 `[Opus 4.7 (1M context) | Max]` 모델 정보와 사용량 게이지가 뜨고, 아래쪽에 `▶▶ auto mode on (shift+tab to cycle)` 한 줄이 보이면 지금 세션이 Auto 모드로 돌고 있다는 신호입니다.
 
 ![실제 Claude Code CLI 상태 표시줄. 'Opus 4.7 (1M context) | Max' 모델 정보와 23% 사용량 게이지가 위쪽에, '▶▶ auto mode on (shift+tab to cycle)' Auto 모드 활성화 표시가 아래쪽에 뜬 모습](/images/insights/claude-code-ultraplan-auto-bypass-mode/auto-mode-status-bar.png)
 
-Anthropic은 이 발표에서 Auto 모드를 **"무조건 허용(위험함)과 수동 승인(피로함) 사이의 중간 지점"**이라고 명시했습니다. Bypass 모드를 완전히 대체하려는 의도가 아니라, 대부분의 장기 작업에서 더 안전한 기본값을 제공하려는 설계입니다.
+[Anthropic](/class/claude-fundamentals/what-is-anthropic)은 이 발표에서 Auto 모드를 **"무조건 허용(위험함)과 수동 승인(피로함) 사이의 중간 지점"**이라고 명시했습니다. Bypass 모드를 완전히 대체하려는 의도가 아니라, 대부분의 장기 작업에서 더 안전한 기본값을 제공하려는 설계입니다.
 
 ## Opus 4.7 출시 시점에 왜 이런 모드들이 동시에 등장했을까요?
 
@@ -102,7 +102,7 @@ Ultraplan이라는 단어가 처음 보이실 수 있습니다. 쉽게 말해 **
 | 권장 환경 | 일반 개발 환경 | 격리 컨테이너·VM만 |
 | 플랜 제약 | Max, Team, Enterprise, API | 플랜 제약 없음 (관리자가 차단 가능) |
 
-Auto 모드의 핵심은 **"차단 시 중단하지 않고 다른 방법을 시도한다"**는 설계입니다. 분류기가 액션을 차단하면 Claude는 멈춰서 사용자를 기다리는 대신 더 안전한 대안을 찾습니다. 다만 3연속 차단 또는 세션 내 20회 누적 차단 시에는 사용자에게 제어를 돌려줍니다.
+Auto 모드의 핵심은 **"차단 시 중단하지 않고 다른 방법을 시도한다"**는 설계입니다. 분류기가 액션을 차단하면 [Claude](/class/claude-fundamentals/what-is-claude)는 멈춰서 사용자를 기다리는 대신 더 안전한 대안을 찾습니다. 다만 3연속 차단 또는 세션 내 20회 누적 차단 시에는 사용자에게 제어를 돌려줍니다.
 
 반면 Bypass 모드는 **차단 자체가 없어서 모델이 어떤 판단을 하든 그대로 실행**됩니다. Anthropic은 공식 문서에 "격리된 컨테이너·VM·인터넷 없는 devcontainer에서만 사용"을 명시했고, 관리자는 `permissions.disableBypassPermissionsMode: "disable"` 설정으로 조직 전체에서 차단할 수 있습니다.
 

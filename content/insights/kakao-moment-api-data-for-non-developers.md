@@ -83,14 +83,14 @@ Kakao Developers에서 만든 일반 앱을 **비즈 앱(Biz App)**으로 전환
 - 카카오 운영정책 준수 여부
 - 비즈니스 정보의 정확성
 
-비즈 앱 전환이 승인되어야 비즈니스 인증(OAuth)과 모먼트 API 권한 신청이 가능합니다.
+비즈 앱 전환이 승인되어야 비즈니스 인증([OAuth](/class/vibe-coding-basics/what-is-authentication))과 모먼트 API 권한 신청이 가능합니다.
 
 ### Step 5: 비즈니스 인증 설정
 
 카카오모먼트 API는 일반 카카오 로그인 토큰이 아닌 **비즈니스 토큰(Business Token)**을 사용합니다. 이를 위해 앱 설정에서 다음을 완료해야 합니다.
 
 - **Redirect URI 등록**: 토큰 발급 시 인가 코드를 수신할 URL
-- **Client Secret 활성화**: REST API 키와 함께 사용
+- **Client Secret 활성화**: [REST API](/class/digital-basic/what-is-api) 키와 함께 사용
 - **비즈니스 동의항목 설정**: `moment_management` 등 필요 스코프 선택
 
 ## 인증 — 비즈니스 토큰 발급 흐름

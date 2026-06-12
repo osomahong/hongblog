@@ -1,6 +1,7 @@
 ---
 name: write-insight
-description: 블로그 Insight 포스트를 주제 기반으로 리서치, 작성, MD 파일 생성까지 자동 수행하는 스킬. 사용자가 "블로그 글 써줘", "인사이트 포스트 작성", "write insight about X" 등으로 요청할 때 트리거. /write-insight [주제] 형태로 직접 호출 가능.
+description: 블로그 Insight 포스트를 주제 기반으로 리서치, 작성, MD 파일 생성까지 자동 수행하는 스킬. 사용자가 "블로그 글 써줘", "인사이트 포스트 작성", "write insight about X", "이 주제로 인사이트 써줘" 등으로 요청할 때 트리거. /write-insight [주제] 형태로 직접 호출 가능. 5단계 워크플로우(주제 분석→웹 리서치→콘텐츠 작성→메타데이터→MD Write)로 진행하며 담백체 톤, H2 질문형 헤딩, 1000단어 이상, 3줄 요약 규칙을 강제한다.
+argument-hint: '[주제] [--category MARKETING|AI_TECH|DATA]'
 ---
 
 # Insight 포스트 작성 스킬

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>hongblog Design Theme — Neo-Brutalism</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+/* =============================================
+   hongblog Neo-Brutalism Design System
+   ============================================= */
+
+/* --- Design Tokens --- */
+:root {
+  /* Colors */
+  --bg:        #F3F3F3;
+  --fg:        #000000;
+  --card:      #FFFFFF;
+  --primary:   #FF0000;
+  --accent:    #FFD700;
+  --muted:     #666666;
+  --marketing: #FF0000;
+  --ai:        #FFD700;
+  --data:      #0000FF;
+
+  /* Borders — always black, zero radius */
+  --border-card:  4px solid #000;
+  --border-btn:   2px solid #000;
+
+  /* Shadows — hard offset, no blur */
+  --shadow:    4px 4px 0 0 #000;
+  --shadow-sm: 2px 2px 0 0 #000;
+  --shadow-lg: 6px 6px 0 0 #000;
+
+  /* Radius — zero everywhere */
+  --radius: 0px;
+}
+
+/* --- Base --- */
+* { margin: 0; padding: 0; box-sizing: border-box; border-radius: var(--radius); }
+html { font-size: 110%; }
+body {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+@media (max-width: 640px) { html { font-size: 100%; } body { background: #fff; } }
+
+.container { max-width: 780px; margin: 0 auto; padding: 2rem 1.5rem; }
+h1 { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: .25rem; }
+h2 { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em; margin: 2.5rem 0 1rem; border-bottom: 3px solid #000; padding-bottom: .4rem; }
+h3 { font-size: .95rem; font-weight: 800; margin: 1.2rem 0 .5rem; }
+p, li { font-size: .85rem; }
+code { font-family: 'Pretendard Variable', monospace; background: var(--accent); padding: 1px 5px; border: 1px solid #000; font-size: .8rem; }
+
+/* --- Neo Card --- */
+.neo-card {
+  background: var(--card);
+  border: var(--border-card);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.neo-card.rotate { transform: rotate(1deg); }
+
+/* --- Neo Button --- */
+.neo-btn {
+  display: inline-block;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  border: var(--border-btn);
+  box-shadow: var(--shadow-sm);
+  padding: .6rem 1.2rem;
+  font-size: .8rem;
+  cursor: pointer;
+  transition: all .1s;
+}
+.neo-btn:hover   { transform: translate(2px, 2px); box-shadow: var(--shadow-sm); box-shadow: none; }
+.neo-btn:active  { transform: translate(4px, 4px); box-shadow: none; }
+.neo-btn.primary { background: var(--primary); color: #fff; }
+.neo-btn.secondary { background: #000; color: #fff; }
+.neo-btn.accent  { background: var(--accent); color: #000; }
+.neo-btn.outline { background: #fff; color: #000; }
+
+/* --- Neo Badge --- */
+.neo-badge {
+  display: inline-block;
+  padding: .2rem .6rem;
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  border: var(--border-btn);
+}
+.neo-badge.marketing { background: var(--marketing); color: #fff; }
+.neo-badge.ai        { background: var(--ai);        color: #000; }
+.neo-badge.data      { background: var(--data);      color: #fff; }
+.neo-badge.default   { background: #000;             color: #fff; }
+
+/* --- Neo Input --- */
+.neo-input {
+  width: 100%;
+  padding: .7rem 1rem;
+  background: #fff;
+  border: var(--border-card);
+  box-shadow: var(--shadow-sm);
+  font-family: inherit;
+  font-size: .85rem;
+}
+.neo-input:focus { outline: 2px solid var(--primary); outline-offset: 0; }
+
+/* --- Neo Accordion --- */
+.neo-accordion {
+  background: #fff;
+  border: var(--border-card);
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+.neo-accordion summary {
+  padding: 1rem 1.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+}
+.neo-accordion summary:hover { background: var(--accent); }
+.neo-accordion summary::marker, .neo-accordion summary::-webkit-details-marker { display: none; }
+.neo-accordion .acc-body { padding: 0 1.2rem 1rem; border-top: 3px solid #000; padding-top: 1rem; font-size: .85rem; }
+
+/* --- Table (Article style) --- */
+table { width: 100%; border-collapse: collapse; border: var(--border-card); font-size: .8rem; }
+th { background: #000; color: #fff; text-align: left; padding: .5rem .7rem; font-weight: 700; text-transform: uppercase; font-size: .7rem; letter-spacing: .04em; }
+td { padding: .5rem .7rem; border-top: 2px solid #000; }
+
+/* --- Comic Effects --- */
+.halftone-corner { position: relative; overflow: hidden; }
+.halftone-corner::after {
+  content: '';
+  position: absolute; bottom: 0; right: 0; width: 25%; height: 25%;
+  background: radial-gradient(circle, rgba(0,0,0,.3) 1.5px, transparent 1.5px);
+  background-size: 5px 5px;
+  mask-image: linear-gradient(135deg, transparent 30%, black 100%);
+  pointer-events: none;
+}
+.speech-bubble { position: relative; }
+.speech-bubble::after {
+  content: ''; position: absolute; bottom: -12px; left: 24px;
+  border-left: 10px solid transparent; border-right: 10px solid transparent;
+  border-top: 12px solid #fff; filter: drop-shadow(0 3px 0 #000);
+}
+
+/* --- Swatches --- */
+.swatch-row { display: flex; gap: .5rem; flex-wrap: wrap; margin: .5rem 0; }
+.swatch {
+  width: 5rem; height: 3rem; border: 2px solid #000;
+  display: flex; align-items: flex-end; padding: .2rem .3rem;
+  font-size: .55rem; font-weight: 700;
+}
+
+/* --- Utility --- */
+.flex-row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.mt { margin-top: .7rem; }
+.mb { margin-bottom: .7rem; }
+.muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="neo-card" style="background: var(--primary); color: #fff; border-color: #000;">
+  <h1>hongblog Design Theme</h1>
+  <p style="color: rgba(255,255,255,.85); margin-top:.3rem">Neo-Brutalism &mdash; Zero radius, hard shadows, bold borders</p>
+</div>
+
+<!-- 1. Colors -->
+<h2>Colors</h2>
+<div class="swatch-row">
+  <div class="swatch" style="background:#F3F3F3">bg #F3F3F3</div>
+  <div class="swatch" style="background:#FFFFFF">card #FFF</div>
+  <div class="swatch" style="background:#000;color:#fff">fg #000</div>
+  <div class="swatch" style="background:#FF0000;color:#fff">primary #F00</div>
+  <div class="swatch" style="background:#FFD700">accent #FFD700</div>
+  <div class="swatch" style="background:#0000FF;color:#fff">data #00F</div>
+</div>
+
+<!-- 2. Shadows & Borders -->
+<h2>Shadows &amp; Borders</h2>
+<div class="flex-row">
+  <div style="width:7rem;height:3.5rem;background:#fff;border:4px solid #000;box-shadow:2px 2px 0 0 #000;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700">shadow-sm</div>
+  <div style="width:7rem;height:3.5rem;background:#fff;border:4px solid #000;box-shadow:4px 4px 0 0 #000;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700">shadow</div>
+  <div style="width:7rem;height:3.5rem;background:#fff;border:4px solid #000;box-shadow:6px 6px 0 0 #000;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700">shadow-lg</div>
+</div>
+<p class="mt muted">border-radius: 0px everywhere &mdash; <code>--radius: 0px</code></p>
+
+<!-- 3. Buttons -->
+<h2>Buttons</h2>
+<div class="flex-row">
+  <button class="neo-btn primary">Primary</button>
+  <button class="neo-btn secondary">Secondary</button>
+  <button class="neo-btn accent">Accent</button>
+  <button class="neo-btn outline">Outline</button>
+</div>
+<p class="mt muted">Hover: translate(2px,2px) &rarr; Active: translate(4px,4px), shadow removed</p>
+
+<!-- 4. Badges -->
+<h2>Badges (Category)</h2>
+<div class="flex-row">
+  <span class="neo-badge marketing">Marketing</span>
+  <span class="neo-badge ai">AI &middot; Tech</span>
+  <span class="neo-badge data">Data</span>
+  <span class="neo-badge default">Default</span>
+</div>
+
+<!-- 5. Cards -->
+<h2>Card</h2>
+<div class="neo-card halftone-corner">
+  <div class="flex-row mb">
+    <span class="neo-badge marketing">Marketing</span>
+  </div>
+  <h3>Neo-Brutalism Card</h3>
+  <p class="mt">bg-white, border-4 border-black, box-shadow 4px 4px. Mobile: transparent bg, no border/shadow.</p>
+  <div style="margin-top:1rem;padding-top:.8rem;border-top:2px solid #000">
+    <span class="muted" style="font-size:.75rem">Card Footer &mdash; border-t-2 border-black</span>
+  </div>
+</div>
+
+<div class="neo-card rotate">
+  <h3>Rotated Card</h3>
+  <p class="mt">transform: rotate(1deg) &mdash; optional tilt effect</p>
+</div>
+
+<!-- 6. Input -->
+<h2>Input</h2>
+<input class="neo-input" type="text" placeholder="border-4 border-black, shadow-sm">
+
+<!-- 7. Accordion -->
+<h2>Accordion</h2>
+<details class="neo-accordion" open>
+  <summary>Accordion Header &mdash; hover: bg-accent</summary>
+  <div class="acc-body">border-top 3px solid black separates header and body. Content goes here.</div>
+</details>
+
+<!-- 8. Table -->
+<h2>Table</h2>
+<table>
+  <thead><tr><th>Token</th><th>Value</th><th>Usage</th></tr></thead>
+  <tbody>
+    <tr><td><code>--shadow</code></td><td>4px 4px 0 0 #000</td><td>Cards, Accordion</td></tr>
+    <tr><td><code>--shadow-sm</code></td><td>2px 2px 0 0 #000</td><td>Buttons, Input</td></tr>
+    <tr><td><code>--shadow-lg</code></td><td>6px 6px 0 0 #000</td><td>Featured hero</td></tr>
+    <tr><td><code>--border-card</code></td><td>4px solid #000</td><td>Cards, Input</td></tr>
+    <tr><td><code>--border-btn</code></td><td>2px solid #000</td><td>Buttons, Badges</td></tr>
+  </tbody>
+</table>
+
+<!-- 9. Speech Bubble -->
+<h2>Comic Effects</h2>
+<div class="neo-card speech-bubble" style="margin-bottom:2rem">
+  <p><strong>Speech Bubble</strong> &mdash; ::after pseudo-element with triangle and drop-shadow</p>
+</div>
+
+<!-- 10. Typography -->
+<h2>Typography</h2>
+<p><strong>Font:</strong> Pretendard Variable (Korean-optimized)</p>
+<p><strong>Desktop:</strong> html font-size 110% &mdash; <strong>Mobile:</strong> 16px base</p>
+<p><strong>Headings:</strong> font-weight 900, uppercase, tight tracking</p>
+<p><strong>Body:</strong> word-break: keep-all (Korean line break optimization)</p>
+
+<!-- Summary -->
+<div class="neo-card" style="background: var(--accent); margin-top: 2rem;">
+  <h3>Design Rules Summary</h3>
+  <ul style="margin-top:.5rem;padding-left:1.2rem">
+    <li>Border-radius: <strong>0px</strong> &mdash; everywhere, no exceptions</li>
+    <li>Borders: <strong>black only</strong> &mdash; 4px (cards) / 2px (buttons, badges)</li>
+    <li>Shadows: <strong>hard offset</strong> &mdash; no blur, no spread beyond offset</li>
+    <li>Colors: <strong>3 primaries</strong> &mdash; Red #F00, Gold #FFD700, Black #000</li>
+    <li>Hover: <strong>translate + shadow collapse</strong> &mdash; physical press feel</li>
+    <li>Mobile: <strong>cards become borderless</strong> &mdash; transparent bg, no shadow</li>
+  </ul>
+</div>
+
+</div>
+</body>
+</html>

@@ -101,7 +101,7 @@ AWS(아마존 웹 서비스)가 성장하던 초기, AWS를 대신 팔아주는 
 
 독자적 기술이나 특화된 전문성이 있는 리셀러만 살아남았습니다. 나머지는 플랫폼 제공자가 직접 서비스를 확장하면서 설 자리를 잃었습니다.
 
-지금 AI 시장에서 LLM 래퍼와 어그리게이터에게 벌어지고 있는 일이 바로 이것입니다. OpenAI가 ChatGPT Enterprise를 내놓고, 구글이 Gemini for Workspace를 확장하고, Anthropic이 Claude의 기업용 기능을 강화하면서, 중간 계층의 존재 이유가 빠르게 줄어들고 있습니다.
+지금 AI 시장에서 LLM 래퍼와 어그리게이터에게 벌어지고 있는 일이 바로 이것입니다. OpenAI가 ChatGPT Enterprise를 내놓고, 구글이 Gemini for Workspace를 확장하고, [Anthropic](/class/claude-fundamentals/what-is-anthropic)이 [Claude](/class/claude-fundamentals/what-is-claude)의 기업용 기능을 강화하면서, 중간 계층의 존재 이유가 빠르게 줄어들고 있습니다.
 
 ## 그러면 어떤 AI 스타트업이 살아남을까요?
 

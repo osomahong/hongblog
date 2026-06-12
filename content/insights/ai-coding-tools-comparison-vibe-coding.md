@@ -33,7 +33,7 @@ ogDescription: >-
 
 ## AI 코딩 도구가 쏟아지는 시대, 직접 다 써봤습니다
 
-2025년 들어 AI 코딩 도구가 폭발적으로 늘었습니다. Cursor, Windsurf 같은 IDE가 자리를 잡더니, 이제는 터미널에서 바로 코딩하는 CLI 도구들까지 쏟아지고 있습니다. Google의 Gemini CLI, OpenAI의 Codex CLI, AWS의 Kiro, Google의 Antigravity, 그리고 Anthropic의 Claude Code까지. 매주 새로운 도구가 발표될 때마다 "이것도 써봐야 하나" 하는 생각이 드는 건 저만은 아닐 겁니다.
+2025년 들어 AI 코딩 도구가 폭발적으로 늘었습니다. Cursor, Windsurf 같은 IDE가 자리를 잡더니, 이제는 터미널에서 바로 코딩하는 CLI 도구들까지 쏟아지고 있습니다. Google의 Gemini CLI, OpenAI의 Codex CLI, AWS의 Kiro, Google의 Antigravity, 그리고 [Anthropic](/class/claude-fundamentals/what-is-anthropic)의 [Claude Code](/class/claude-code-for-everyone/what-is-claude-code)까지. 매주 새로운 도구가 발표될 때마다 "이것도 써봐야 하나" 하는 생각이 드는 건 저만은 아닐 겁니다.
 
 저는 디지털 마케터입니다. 개발자가 아닙니다. 그런데 왜 AI 코딩 도구를 5개씩이나 써봤을까요? 이유는 단순합니다. **마케팅 실무에서 반복적으로 겪는 불편함을 직접 해결하고 싶었기 때문입니다.** 광고 리포트를 자동화하고, GA4 데이터를 API로 가져오고, 나만의 대시보드를 만들고 싶었습니다. 이른바 "바이브코딩(Vibe Coding)" — AI에게 자연어로 원하는 걸 설명하면 코드를 만들어주는 방식으로 실제 프로젝트 여러 개를 완성했습니다.
 
@@ -108,7 +108,7 @@ Claude Code는 Anthropic의 터미널 기반 에이전틱 코딩 도구입니다
 
 둘째, **멀티 플랫폼 지원**입니다. Claude Code는 터미널 CLI로 사용할 수 있을 뿐 아니라, VS Code와 JetBrains IDE 확장으로도 동작하고, claude.ai 웹에서도 사용할 수 있습니다. 상황에 따라 터미널에서 빠르게 작업하거나, IDE에서 시각적으로 확인하거나, 모바일에서 진행 상황을 체크하는 것이 모두 가능합니다.
 
-셋째, **MCP(Model Context Protocol)를 통한 확장성**입니다. MCP는 AI 모델이 외부 도구와 데이터 소스에 접근할 수 있게 해주는 프로토콜입니다. 이를 통해 Claude Code가 Notion API에 직접 접근하여 페이지를 검수하거나, 데이터베이스를 업데이트하는 것이 가능합니다. 단순히 코드를 생성하는 것을 넘어, **업무 자동화 에이전트**로 활용할 수 있다는 점이 다른 도구와 차별화되는 지점입니다.
+셋째, **MCP(Model Context Protocol)를 통한 확장성**입니다. [MCP](/class/claude-code-for-everyone/what-is-mcp)는 AI 모델이 외부 도구와 데이터 소스에 접근할 수 있게 해주는 프로토콜입니다. 이를 통해 Claude Code가 Notion API에 직접 접근하여 페이지를 검수하거나, 데이터베이스를 업데이트하는 것이 가능합니다. 단순히 코드를 생성하는 것을 넘어, **업무 자동화 에이전트**로 활용할 수 있다는 점이 다른 도구와 차별화되는 지점입니다.
 
 실제로 저는 Claude Code와 MCP를 조합하여 블로그 콘텐츠 생성부터 검수, SEO 최적화, 배포까지의 전 과정을 자동화하는 시스템을 구축했습니다. Notion 워크스페이스의 콘텐츠 현황을 자동으로 확인하고, 맞춤법 검수를 수행하고, 데이터베이스를 최신 상태로 유지하는 것도 같은 도구로 처리합니다. 이런 수준의 확장은 다른 AI 코딩 도구에서는 아직 구현하기 어렵습니다.
 

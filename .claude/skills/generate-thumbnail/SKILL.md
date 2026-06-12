@@ -1,6 +1,7 @@
 ---
 name: generate-thumbnail
-description: SVG 기반 블로그 썸네일(og:image) 생성 스킬. "썸네일 만들어줘", "og:image 생성", "generate-thumbnail" 요청 시 트리거. 콘텐츠 타입별(Post, Class) Neo-Brutalism 디자인 썸네일을 SVG로 생성하고 public/og/에 PNG로 저장 후 frontmatter ogImage 필드를 업데이트합니다.
+description: SVG 기반 블로그 썸네일(og:image) 생성 스킬. "썸네일 만들어줘", "og:image 생성", "썸네일 일괄 생성", "/generate-thumbnail" 요청 시 트리거. 콘텐츠 타입별(Post, Class) Neo-Brutalism 디자인 썸네일을 SVG로 생성하고 @resvg/resvg-js로 PNG 변환하여 public/og/에 저장한 뒤 frontmatter ogImage 필드를 업데이트한다. 단일/배치/전체 모드 지원.
+argument-hint: '[slug] [--type post|class] | --batch --type post | --all'
 ---
 
 # generate-thumbnail 스킬

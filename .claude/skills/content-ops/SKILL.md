@@ -1,3 +1,9 @@
+---
+name: content-ops
+description: 블로그 콘텐츠 생성→검수→SEO 최적화→배포 파이프라인을 관리하는 마스터 오케스트레이터 스킬. topic-suggester, content-creator, content-reviewer, seo-manager 서브에이전트를 Phase별로 순차 호출하여 통합 워크플로우를 실행한다. "토픽 추천", "글 써줘", "Class 만들어줘", "글 검수해줘", "SEO 최적화", "전체 실행", "/content-ops" 요청 시 트리거. 각 Phase 종료 시 사용자 승인 게이트를 거친다.
+argument-hint: '[phase] | "토픽 추천" | "이 주제로 글 써줘" | "검수해줘" | "전체 실행"'
+---
+
 # content-ops 스킬 (오케스트레이터)
 
 블로그 콘텐츠의 생성→검수→SEO 최적화→배포를 관리하는 마스터 워크플로우.
