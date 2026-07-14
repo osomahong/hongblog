@@ -39,7 +39,7 @@
 - [CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?](https://www.digitalmarketer.co.kr/insights/cli-meaning-claude-code-guide)
 - [VS Code에서 클로드 코드 설치하기: 맥 사용자를 위한 안내](https://www.digitalmarketer.co.kr/insights/install-claude-code-vscode-mac)
 - [VS Code에서 클로드 코드 설치하기: 윈도우 사용자를 위한 안내](https://www.digitalmarketer.co.kr/insights/install-claude-code-vscode-windows)
-- [요즘 자꾸 언급되는 Orca 정리: 정체, 사용법, 주의할 점](https://www.digitalmarketer.co.kr/insights/orca-ide-easy-guide)
+- [클로드코드와 Codex 사용자를 위한 Orca 총정리](https://www.digitalmarketer.co.kr/insights/orca-ide-easy-guide)
 
 ## 학습 코스
 
