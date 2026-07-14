@@ -48,7 +48,7 @@ quiz:
 
 > 클로드 코드(Claude Code)는 앤트로픽이 만든 AI 코딩 도구입니다. 2026년 7월 기준 VS Code에서는 확장(Extension) 설치가 공식 권장 방법이며, 확장이 실행에 필요한 프로그램을 내장하고 있어 터미널 명령어나 Node.js 설치 없이 확장 설치와 브라우저 로그인만으로 시작할 수 있습니다.
 
-이 글은 맥(macOS)과 VS Code 조합을 기준으로 합니다. 터미널에서 직접 설치하는 방법이 필요하신 분은 [터미널 기준 설치 가이드](/insights/claude-code-mac-easy-setup-guide) (터미널로 설치하는 방법 바로가기)를, 클로드 코드가 무엇인지부터 알고 싶으신 분은 [클로드 코드 소개 글](/class/claude-code-for-everyone/what-is-claude-code) (클로드 코드 설명 바로가기)을 참고하세요.
+이 글은 맥(macOS)과 VS Code 조합을 기준으로 합니다. 윈도우 PC를 쓰시는 분은 [윈도우용 안내](/insights/install-claude-code-vscode-windows) (윈도우 기준 설치 방법 바로가기)를 참고하세요. 터미널에서 직접 설치하는 방법이 필요하신 분은 [터미널 기준 설치 가이드](/insights/claude-code-mac-easy-setup-guide) (터미널로 설치하는 방법 바로가기)를, 클로드 코드가 무엇인지부터 알고 싶으신 분은 [클로드 코드 소개 글](/class/claude-code-for-everyone/what-is-claude-code) (클로드 코드 설명 바로가기)을 참고하세요.
 
 ## 시작 전 준비물 2가지와 필요 없는 것들
 
