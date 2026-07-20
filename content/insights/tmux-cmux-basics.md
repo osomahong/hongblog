@@ -1,9 +1,9 @@
 ---
 slug: tmux-cmux-basics
-title: 'tmux, cmux 기초 정리: 개념, 사용법, AI 시대에 중요한 이유'
+title: 'AI 사용자를 위한 tmux, cmux 사용법과 차이 쉽게 알아보기'
 excerpt: >-
-  터미널 멀티플렉서 tmux의 기본 개념과 사용법, 그리고 AI 코딩 에이전트를 여러 개 돌리는 시대에 이 개념이 다시 중요해진 이유를
-  기초부터 정리합니다. macOS 전용 도구 cmux와의 차이도 함께 다룹니다.
+  AI 코딩 에이전트를 쓰는 분들을 위해 tmux의 기본 개념과 사용법, cmux와의 차이를 기초부터 쉽게 알아봅니다. 터미널 하나로 에이전트
+  여러 개를 관리하는 방법까지 순서대로 다룹니다.
 category: AI_TECH
 tags:
   - AI
@@ -13,12 +13,12 @@ publishedAt: '2026-07-21T00:00:00.000Z'
 highlights:
   - '에이전트 하나로 충분한 동안은 도구를 늘리지 말고, AI가 일하는 동안 기다리는 시간이 아까워지기 시작할 때 tmux부터 익히면 됩니다.'
   - macOS에서 AI 에이전트 여러 개를 동시에 관리한다면 tmux 대신 cmux 같은 전용 앱을 검토해 볼 만합니다.
-metaTitle: 'tmux, cmux 기초 정리: 개념과 사용법, AI 에이전트 시대에 중요한 이유'
+metaTitle: 'AI 사용자를 위한 tmux, cmux 사용법과 차이 쉽게 알아보기'
 metaDescription: >-
-  터미널 멀티플렉서 tmux의 세션, 윈도우, 페인 개념과 기본 명령어, AI 코딩 에이전트 병렬 실행에 쓰이는 이유를 기초부터 정리합니다.
-  macOS 전용 cmux와의 차이 비교 포함.
-ogTitle: 'tmux와 cmux, AI 에이전트 시대의 터미널 사용법 기초'
-ogDescription: 'AI 코딩 에이전트를 여러 개 돌리는 사람들이 tmux를 다시 꺼내 든 이유, 그리고 cmux가 등장한 배경을 기초 개념부터 정리했습니다.'
+  AI 코딩 에이전트를 쓰는 분들을 위해 tmux의 세션, 윈도우, 페인 개념과 기본 명령어를 쉽게 알아봅니다. 에이전트 여러 개를 한
+  화면에서 관리하는 방법과 macOS 전용 cmux와의 차이 비교까지 기초부터 다룹니다.
+ogTitle: 'AI 사용자를 위한 tmux, cmux 사용법과 차이'
+ogDescription: 'AI 에이전트를 여러 개 돌릴 때 왜 tmux가 필요한지, cmux는 무엇이 다른지 기초부터 쉽게 알아봅니다.'
 ogImage: /og/tmux-cmux-basics.png
 quiz:
   - question: tmux에서 실행 중인 프로그램을 종료하지 않고 화면에서만 빠져나와 백그라운드에 계속 돌게 하는 기능은 무엇일까요?
