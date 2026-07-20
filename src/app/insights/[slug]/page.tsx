@@ -301,6 +301,8 @@ export default async function InsightDetailPage({ params }: Props) {
               </NeoCardContent>
             </NeoCard>
 
+            <RelatedPosts posts={relatedPosts} />
+
             {post.quiz && post.quiz.length > 0 && (
               <ContentQuiz
                 quiz={post.quiz}
@@ -309,8 +311,6 @@ export default async function InsightDetailPage({ params }: Props) {
                 contentName={post.title}
               />
             )}
-
-            <RelatedPosts posts={relatedPosts} />
           </article>
         </ContentFocusLayout>
       </div>
