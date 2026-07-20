@@ -3,6 +3,8 @@
 import { useState, useCallback } from "react";
 import { CircleHelp, CircleCheck, CircleX, RotateCcw } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
+import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
+import { AD_SLOTS } from "@/lib/ads";
 import type { Quiz } from "@/lib/types";
 
 interface ContentQuizProps {
@@ -125,6 +127,11 @@ export function ContentQuiz({ quiz, contentType, contentSlug, contentName }: Con
             {q.explanation}
           </p>
         </div>
+      )}
+
+      {/* 퀴즈 결과 하단 광고: 답 선택 후에만 자연 노출 (클릭 조건 없음) */}
+      {answered && (
+        <AdSenseSlot slot={AD_SLOTS.quizResult} className="mt-4 sm:mt-5" minHeight={250} />
       )}
 
       {/* Retry */}

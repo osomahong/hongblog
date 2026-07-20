@@ -15,6 +15,9 @@ import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 import { extractFaqPairs } from "@/lib/extract-faq";
+import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
+import { AD_SLOTS } from "@/lib/ads";
+import { splitMarkdownAtNthH2 } from "@/lib/markdown-split";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -88,6 +91,9 @@ export default async function ClassDetailPage({ params }: Props) {
 
     // Course 정보 가져오기
     const course = classData.courseInfo ? await getCourseBySlug(courseSlug) : null;
+
+    // 본문 중간 광고 삽입 위치: 두 번째 H2 직전 (H2가 2개 미만이면 미삽입)
+    const [classContentBeforeAd, classContentAfterAd] = splitMarkdownAtNthH2(classData.content, 2);
 
     // 이전/다음 Class 네비게이션
     const navigation = await getNextPrevClass(classData.id);
@@ -328,7 +334,18 @@ export default async function ClassDetailPage({ params }: Props) {
                         {/* Content */}
                         <NeoCard className="prose prose-sm sm:prose-lg max-w-none sm:p-8 mb-6 sm:mb-8">
                             <NeoCardContent>
-                                <MarkdownRenderer content={classData.content} />
+                                <MarkdownRenderer content={classContentBeforeAd} />
+                                {classContentAfterAd && (
+                                    <>
+                                        <AdSenseSlot
+                                            slot={AD_SLOTS.inArticle}
+                                            format="fluid"
+                                            layout="in-article"
+                                            className="my-6 not-prose"
+                                        />
+                                        <MarkdownRenderer content={classContentAfterAd} />
+                                    </>
+                                )}
                             </NeoCardContent>
                         </NeoCard>
 
