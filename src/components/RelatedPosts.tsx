@@ -68,7 +68,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
       0,
       <div
         key="in-feed-ad"
-        className="min-w-[240px] w-[240px] sm:w-auto sm:min-w-0 snap-start bg-white border-2 border-black neo-shadow-sm p-2"
+        className="adsense-slot min-w-[240px] w-[240px] sm:w-auto sm:min-w-0 snap-start bg-white border-2 border-black neo-shadow-sm p-2"
       >
         <AdSenseSlot
           slot={AD_SLOTS.inFeed}
@@ -86,7 +86,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
         <Newspaper className="w-5 h-5" />
         다음으로 읽어볼 글
       </h2>
-      <div className="flex gap-3 overflow-x-auto snap-x pb-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:pb-0">
+      <div className="flex items-start gap-3 overflow-x-auto snap-x pb-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:items-start sm:overflow-visible sm:pb-0">
         {cards}
       </div>
     </section>

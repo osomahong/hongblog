@@ -51,7 +51,7 @@ export function AdSenseSlot({
   if (!slot) return null;
 
   return (
-    <div className={className} style={{ minHeight }} aria-label="광고">
+    <div className={`adsense-slot ${className}`} style={{ minHeight }} aria-label="광고">
       <ins
         ref={insRef}
         className="adsbygoogle"
