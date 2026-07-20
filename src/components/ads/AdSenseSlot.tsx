@@ -55,7 +55,10 @@ export function AdSenseSlot({
       <ins
         ref={insRef}
         className="adsbygoogle"
-        style={{ display: "block" }}
+        style={{
+          display: "block",
+          ...(layout === "in-article" ? { textAlign: "center" as const } : {}),
+        }}
         data-ad-client={ADSENSE_CLIENT}
         data-ad-slot={slot}
         data-ad-format={format}
