@@ -345,17 +345,42 @@ export function getClassBySlugWithMeta(slug: string): ClassWithMeta | null {
   return classToMeta(cls, 1);
 }
 
+/**
+ * 홈 TRENDING NOW: GA4 최근 7일 조회수 기준 인기 인사이트.
+ * scripts/update-trending.ts가 생성하는 scripts/data/trending.json을 읽고,
+ * 파일이 없거나 부족하면 최신 글로 채운다.
+ */
 export function getTrendingMixed(_days: number, limit: number): TrendingItem[] {
-  return getInsights()
-    .slice(0, limit)
-    .map((i, idx) => ({
-      _type: "post" as const,
-      id: idx + 1,
-      slug: i.slug,
-      title: i.title,
-      category: i.category,
-      excerpt: i.excerpt,
-    }));
+  const insights = getInsights();
+  const bySlug = new Map(insights.map((i) => [i.slug, i]));
+
+  let picked: Insight[] = [];
+  try {
+    const raw = fs.readFileSync(
+      path.join(process.cwd(), "scripts/data/trending.json"),
+      "utf-8",
+    );
+    const data = JSON.parse(raw) as { slugs?: string[] };
+    picked = (data.slugs ?? [])
+      .map((slug) => bySlug.get(slug))
+      .filter((i): i is Insight => Boolean(i));
+  } catch {
+    // trending.json이 없으면 아래에서 최신 글로 채운다
+  }
+
+  for (const i of insights) {
+    if (picked.length >= limit) break;
+    if (!picked.includes(i)) picked.push(i);
+  }
+
+  return picked.slice(0, limit).map((i, idx) => ({
+    _type: "post" as const,
+    id: idx + 1,
+    slug: i.slug,
+    title: i.title,
+    category: i.category,
+    excerpt: i.excerpt,
+  }));
 }
 
 export function getCategoryStats(): CategoryStat[] {
