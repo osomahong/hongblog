@@ -57,12 +57,12 @@ export function CourseClassList({ courseSlug, classes }: CourseClassListProps) {
                             href={`/class/${courseSlug}/${cls.slug}`}
                             className="group block"
                         >
-                            <div className="flex items-center gap-3 p-3 sm:p-4 border-3 border-black bg-white hover:bg-[#FF0033] hover:text-white transition-colors neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
-                                <span className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full border-3 border-black flex items-center justify-center font-bold text-sm sm:text-base">
-                                    {isDone ? <CheckCircle2 className="w-5 h-5 text-primary group-hover:text-white" /> : clsIndex + 1}
+                            <div className="flex items-center gap-3 p-3 sm:p-4 border-3 border-black bg-white hover:bg-[#FFF8E1] transition-colors neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                                <span className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full border-3 border-black bg-white flex items-center justify-center font-bold text-sm sm:text-base">
+                                    {isDone ? <CheckCircle2 className="w-5 h-5 text-primary" /> : clsIndex + 1}
                                 </span>
                                 <div className="flex-1 min-w-0">
-                                    <h3 className="font-bold text-base sm:text-lg group-hover:text-primary transition-colors">
+                                    <h3 className="font-bold text-base sm:text-lg group-hover:text-[#FF0033] transition-colors">
                                         {cls.term}
                                     </h3>
                                     {cls.definition && (
@@ -72,11 +72,11 @@ export function CourseClassList({ courseSlug, classes }: CourseClassListProps) {
                                     )}
                                 </div>
                                 {cls.readingTime > 0 && (
-                                    <span className="flex-shrink-0 text-xs font-mono text-muted-foreground group-hover:text-white">
+                                    <span className="flex-shrink-0 text-xs font-mono text-muted-foreground">
                                         {cls.readingTime}분
                                     </span>
                                 )}
-                                <span className="text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
+                                <span className="text-lg sm:text-xl font-bold text-[#FF0033] opacity-0 group-hover:opacity-100 transition-opacity">
                                     →
                                 </span>
                             </div>
