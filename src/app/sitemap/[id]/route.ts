@@ -61,7 +61,6 @@ function buildClassSitemap(): SitemapEntry[] {
   return [
     { url: SITE_URL, changefreq: "daily", priority: 1.0 },
     { url: `${SITE_URL}/class`, changefreq: "weekly", priority: 0.9 },
-    { url: `${SITE_URL}/game`, changefreq: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/about`, changefreq: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/tags`, changefreq: "weekly", priority: 0.7 },
     ...courses.map((c) => ({
