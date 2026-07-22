@@ -459,60 +459,76 @@ export interface TagPreviewItem {
 /**
  * /tags 허브 페이지 미리보기용 추천 태그를 뽑는다.
  * scripts/update-featured-tags.ts가 생성하는 GA4 실제 조회수 기반
- * scripts/data/featured-tags.json을 우선 쓰고, 파일이 없거나 부족하면
- * 콘텐츠 개수 상위 태그로 채운다.
- * 각 태그마다 대표 글을 1건씩 매칭한다 (인사이트 우선, 없으면 클래스로 대체).
+ * scripts/data/featured-tags.json을 우선 순서로 쓰고, 이후 남은 태그는
+ * 콘텐츠 개수 순으로 이어 붙여 후보 목록을 만든다.
+ *
+ * 한 글에 태그가 여러 개 붙어 있으면 같은 글이 여러 카드에 중복 노출될 수 있으므로,
+ * 이미 카드로 쓰인 글(href)은 다시 쓰지 않는다. 그 태그에 아직 안 쓴 글이 없으면
+ * 그 태그는 건너뛰고 다음 후보 태그로 넘어가 limit개를 채운다.
  */
 export function getFeaturedTagPreviews(limit: number): TagPreviewItem[] {
   const allTags = getAllTagsWithId();
   const byName = new Map(allTags.map((t) => [t.name, t]));
 
-  let picked: TagWithId[] = [];
+  let priorityNames: string[] = [];
   try {
     const raw = fs.readFileSync(
       path.join(process.cwd(), "scripts/data/featured-tags.json"),
       "utf-8",
     );
     const data = JSON.parse(raw) as { tags?: string[] };
-    picked = (data.tags ?? [])
-      .map((name) => byName.get(name))
-      .filter((t): t is TagWithId => Boolean(t));
+    priorityNames = data.tags ?? [];
   } catch {
-    // featured-tags.json이 없으면 아래에서 콘텐츠 개수 순으로 채운다
+    // featured-tags.json이 없으면 콘텐츠 개수 순 태그만 후보가 된다
   }
 
-  for (const tag of allTags) {
-    if (picked.length >= limit) break;
-    if (!picked.includes(tag)) picked.push(tag);
+  const priorityTags = priorityNames
+    .map((name) => byName.get(name))
+    .filter((t): t is TagWithId => Boolean(t));
+  const restTags = allTags.filter((t) => !priorityNames.includes(t.name));
+  const candidates = [...priorityTags, ...restTags];
+
+  const usedHrefs = new Set<string>();
+  const result: TagPreviewItem[] = [];
+
+  for (const tag of candidates) {
+    if (result.length >= limit) break;
+
+    const { posts, classes } = getContentByTag(tag.name);
+    const post = posts.find((p) => !usedHrefs.has(`/insights/${p.slug}`));
+    if (post) {
+      const href = `/insights/${post.slug}`;
+      usedHrefs.add(href);
+      result.push({
+        tag,
+        title: post.title,
+        excerpt: post.excerpt,
+        href,
+        category: post.category,
+        contentType: "insight",
+      });
+      continue;
+    }
+
+    const cls = classes.find(
+      (c) => !usedHrefs.has(`/class/${c.courseInfo?.slug ?? ""}/${c.slug}`),
+    );
+    if (cls) {
+      const href = `/class/${cls.courseInfo?.slug ?? ""}/${cls.slug}`;
+      usedHrefs.add(href);
+      result.push({
+        tag,
+        title: cls.term,
+        excerpt: cls.definition,
+        href,
+        category: cls.category,
+        contentType: "class",
+      });
+      continue;
+    }
+
+    // 이 태그가 가진 글이 전부 다른 카드에 이미 쓰였음 → 태그를 건너뛰고 다음 후보로
   }
 
-  return picked
-    .slice(0, limit)
-    .map((tag): TagPreviewItem | null => {
-      const { posts, classes } = getContentByTag(tag.name);
-      const post = posts[0];
-      if (post) {
-        return {
-          tag,
-          title: post.title,
-          excerpt: post.excerpt,
-          href: `/insights/${post.slug}`,
-          category: post.category,
-          contentType: "insight",
-        };
-      }
-      const cls = classes[0];
-      if (cls) {
-        return {
-          tag,
-          title: cls.term,
-          excerpt: cls.definition,
-          href: `/class/${cls.courseInfo?.slug ?? ""}/${cls.slug}`,
-          category: cls.category,
-          contentType: "class",
-        };
-      }
-      return null;
-    })
-    .filter((x): x is TagPreviewItem => x !== null);
+  return result;
 }
