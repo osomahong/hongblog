@@ -55,6 +55,42 @@ GSC 90일 실데이터 진단(4/21~7/20) 기반으로 진행한 개선 작업 �
 - [x] 코스 목록 호버 색 충돌 수정(빨강 배경에 빨강 제목 → 연한 골드 배경 + 빨강 제목), 배포 반영 확인
 - [x] 유사 색 충돌 패턴 전수 검사: Nav, NeoButton, 태그, 링크, 아코디언은 빨강 배경 + 흰 텍스트 조합으로 문제없음 확인
 
+## 4차 작업: 내부 링크 404 수정 (2026-07-23)
+
+사용자가 "프롬프트 엔지니어링 기본 익히기" 페이지의 이전 개념 링크에서 404를 만난 건에 대한 조치.
+
+### 근본 원인
+
+`getClassBySlugWithMeta()`가 `classToMeta(cls, 1)`로 **id를 항상 1로 고정**해서 반환했다.
+상세 페이지는 그 id로 `getNextPrevClass(classData.id)`를 호출했기 때문에, 모든 클래스
+페이지가 "전체 정렬 목록의 첫 번째 클래스"를 기준으로 이전/다음을 계산했다. 결과로 나온
+다른 코스의 클래스 슬러그가 현재 페이지의 `courseSlug`와 조립되어
+`/class/claude-fundamentals/what-is-mcp` 같은 존재하지 않는 URL이 만들어졌다
+(`dynamicParams = false`이므로 실제 조합이 아닌 경로는 404).
+
+### 조치
+
+- [x] `getNextPrevClass`를 slug 기반으로 변경, 진행 표시를 1-based로 교정
+- [x] prev/next/연관 개념 링크가 각 항목의 실제 코스 슬러그를 사용하도록 수정
+- [x] `src/lib/links.ts`의 `classHref()`로 링크 생성 일원화. 코스 정보가 없으면 null을 반환해
+      링크 자체를 렌더링하지 않음 (기존에 흩어져 있던 `?? ""` 폴백은 `/class//slug`를 만들 수 있었음)
+- [x] 미들웨어: 코스 조각이 틀린 클래스 URL을 정규 경로로 **301** (이미 색인된 URL 구제)
+- [x] `scripts/generate-class-map.ts` + prebuild: 미들웨어용 슬러그-코스 매핑 자동 생성
+- [x] `scripts/check-links.ts`: 콘텐츠 소스와 빌드 HTML의 내부 링크 전수 검사.
+      **prebuild에 편입해 깨진 링크가 있으면 빌드가 종료 코드 1로 중단** (재발 방지 검증 완료)
+- [x] CLAUDE.md에 링크 규칙 명문화
+
+### 검증 결과
+
+| 검사 | 결과 |
+|---|---|
+| 콘텐츠 소스 링크 (relatedTerms, 본문, courseSlug) | 0건 |
+| 빌드 산출물 HTML 185개의 모든 내부 href | 0건 |
+| 라이브 사이트 크롤링 182개 페이지 | 404 0건, 의도치 않은 리디렉트 0건 |
+| 사이트맵, RSS, llms.txt의 182개 URL 응답 | 비정상 0건 |
+| 문제 URL `/class/claude-fundamentals/what-is-mcp` | 301 → `/class/claude-code-for-everyone/what-is-mcp` |
+| 깨진 링크 주입 시 빌드 | 중단됨 (exit 1, 페이지 생성 도달 못 함) |
+
 ## 최종 검증 상태 (2026-07-23 배포 시점)
 
 - 본문 추상 일러스트: 0건 (85개 전량 HTML 예시 교체 또는 삭제)

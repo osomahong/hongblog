@@ -13,7 +13,25 @@ npm run lint         # ESLint
 # OG Image Generation
 npx tsx scripts/generate-og.ts --slug <slug>   # 단일 썸네일 생성
 npx tsx scripts/generate-og.ts --all           # 전체 썸네일 생성
+
+# 내부 링크 검사 (prebuild에서 자동 실행, 실패 시 빌드 중단)
+npm run check:links        # 콘텐츠 소스의 링크·relatedTerms·courseSlug 검사
+npm run check:links:html   # 빌드 산출물 HTML의 모든 내부 링크까지 검사
+
+# SEO 점검
+npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 리포트
 ```
+
+### 링크 규칙 (404 재발 방지)
+
+- 클래스 상세 경로는 `/class/{courseSlug}/{classSlug}`다. **코스 조각을 현재 페이지 값으로
+  조립하지 말 것.** 다른 코스의 클래스를 현재 코스 경로에 붙이면 404가 된다
+  (`dynamicParams = false`라 실제 조합만 라우트로 생성됨).
+- 링크는 항상 `src/lib/links.ts`의 `classHref()`로 만든다. 코스 정보가 없으면 `null`을
+  반환하므로 호출부에서 링크를 렌더링하지 않는다.
+- `content/classes/*.md`는 `courseSlug`가 필수이고 `relatedTerms`는 실재하는 슬러그만 쓴다.
+- 클래스를 추가·이동하면 `npm run build`(prebuild)가 `src/lib/generated/class-course-map.ts`를
+  다시 생성한다. 이 매핑은 미들웨어가 잘못된 코스 경로를 정규 경로로 301 보낼 때 쓴다.
 
 ## Architecture
 

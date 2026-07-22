@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "prebuild": "tsx scripts/generate-class-map.ts",
+    "prebuild": "tsx scripts/generate-class-map.ts && tsx scripts/check-links.ts",
     "check:links": "tsx scripts/check-links.ts",
     "check:links:html": "tsx scripts/check-links.ts --html"
   },
