@@ -79,7 +79,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
       0,
       <div
         key="in-feed-ad"
-        className="adsense-slot min-w-[240px] w-[240px] sm:w-auto sm:min-w-0 snap-start bg-white border-2 border-black neo-shadow-sm p-2"
+        className="adsense-slot flex flex-col min-w-[240px] w-[240px] sm:w-auto sm:min-w-0 snap-start bg-white border-2 border-black neo-shadow-sm p-2"
       >
         <AdSenseSlot
           slot={AD_SLOTS.inFeed}
@@ -97,7 +97,8 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
         <Newspaper className="w-5 h-5" />
         다음으로 읽어볼 글
       </h2>
-      <div className="flex items-start gap-3 overflow-x-auto snap-x pb-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:items-start sm:overflow-visible sm:pb-0">
+      {/* 행 단위로 카드 프레임 높이를 동일하게 맞춘다 (기본 stretch). 광고 미채움 시에는 CSS로 카드째 숨겨져 빈 프레임이 남지 않는다 */}
+      <div className="flex items-stretch gap-3 overflow-x-auto snap-x pb-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:pb-0">
         {cards}
       </div>
     </section>
