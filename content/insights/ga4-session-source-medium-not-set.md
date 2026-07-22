@@ -53,7 +53,7 @@ GA4에서 **보고서 → 획득 → 트래픽 획득**을 열고 측정기준�
 
 이 글에서는 세션 소스/매체에 (not set)이 나타나는 실제 원인을 하나씩 짚고, 각각 어떻게 대응하면 되는지를 초보자 눈높이에서 정리합니다.
 
-## 원인 1. 데이터 처리가 아직 끝나지 않았다 (어제·당일 데이터)
+## 원인 1. 데이터 처리가 아직 끝나지 않았다 (어제, 당일 데이터)
 
 가장 흔하고, 가장 먼저 의심해야 할 원인입니다.
 
@@ -76,7 +76,24 @@ GA4는 데이터를 실시간으로 완전하게 처리하지 않습니다. 이�
 ## 원인 2. 브라우저 비활성 상태에서 세션이 재개되었다
 
 
-![브라우저 비활성 후 세션 재개로 인해 GA4 세션 소스/매체가 (not set)으로 기록되는 원리를 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ga4-session-source-medium-not-set-0-1772039139476.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">예시: 비활성 탭 복귀가 (not set)이 되는 과정</div>
+<div style="padding:14px;border-bottom:2px solid #000;">
+<span style="font-family:monospace;font-weight:700;">14:00</span> 구글 검색으로 사이트 방문<br>
+→ 세션 1 시작, 소스/매체 = <span style="font-family:monospace;">google / organic</span>
+</div>
+<div style="padding:14px;border-bottom:2px solid #000;background:#F3F3F3;">
+<span style="font-family:monospace;font-weight:700;">14:05~14:40</span> 탭을 열어둔 채 아무 행동 없음<br>
+→ 30분 타임아웃으로 세션 1 종료
+</div>
+<div style="padding:14px;">
+<span style="font-family:monospace;font-weight:700;">14:40</span> 같은 탭으로 돌아와 스크롤 시작<br>
+→ session_start 발생, 세션 2 시작<br>
+→ 외부 유입이 아니므로 referrer 없음 → 소스/매체 = <span style="font-family:monospace;font-weight:700;">(not set)</span>
+</div>
+</div>
+</div>
 
 사용자가 사이트를 방문한 뒤 **브라우저 탭을 그대로 둔 채 30분 이상 아무 행동도 하지 않으면**, GA4는 해당 세션이 종료된 것으로 판단합니다(GA4의 세션 타임아웃 기본값은 30분입니다). 이후 사용자가 같은 탭으로 돌아와서 다시 클릭이나 스크롤 등 행동을 시작하면, GA4는 **새로운 세션**을 시작합니다.
 
@@ -132,9 +149,6 @@ GA4 관리자 화면에서 **속성 → 데이터 표시 → 잠재고객**으�
 
 ## 원인 5. 그 외 원인들
 
-
-![GA4 세션 소스/매체에 (not set)이 보이는 '그 외 원인들'을 정리한 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ga4-session-source-medium-not-set-1-1772039180153.png)
-
 위 4가지 외에도 세션 소스/매체가 (not set)으로 나타날 수 있는 상황이 있습니다.
 
 ### 추적 코드 설치 누락
@@ -163,7 +177,7 @@ GA4에서 데이터 필터(내부 트래픽 제외 등)를 적용했거나, 보�
 |------|:-----------:|--------|
 | 데이터 처리 지연 | O (24~48시간) | 분석 시 2~3일 전 데이터 사용 |
 | 비활성 탭 세션 재개 | X | 세션 타임아웃 검토, 소량은 허용 |
-| Measurement Protocol | X | client_id·session_id 연결 구현 |
+| Measurement Protocol | X | client_id, session_id 연결 구현 |
 | 잠재고객 트리거 이벤트 | X | 분석 시 해당 이벤트 필터 제외 |
 | 추적 코드 누락 | X | GTM 점검 후 전체 페이지 설치 |
 
@@ -185,6 +199,6 @@ Measurement Protocol이나 잠재고객 트리거에서 발생하는 (not set)�
 
 GA4에서 세션 소스/매체의 (not set)에 대해 기억해야 할 핵심은 세 가지입니다.
 
-1. **가장 흔한 원인은 데이터 처리 지연입니다.** 어제·당일 데이터에서 (not set)이 많이 보인다면, 2~3일 후에 다시 확인하면 대부분 해소됩니다.
+1. **가장 흔한 원인은 데이터 처리 지연입니다.** 어제, 당일 데이터에서 (not set)이 많이 보인다면, 2~3일 후에 다시 확인하면 대부분 해소됩니다.
 2. **비활성 탭 복귀, Measurement Protocol, 잠재고객 트리거 이벤트는 구조적으로 (not set)이 발생합니다.** 이들은 설정 오류가 아니며, 분석 시 분리해서 다루는 것이 맞습니다.
 3. **3일 이상 지난 데이터에서도 (not set) 비중이 높다면 추적 코드 설치와 GTM 설정을 점검합니다.** 전체 페이지에 추적 코드가 빠짐없이 설치되어 있는지가 가장 먼저 확인할 항목입니다.

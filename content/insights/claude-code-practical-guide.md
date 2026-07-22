@@ -93,7 +93,27 @@ claude
 ## 첫 프로젝트에서 Claude Code를 어떻게 활용하나
 
 
-![첫 프로젝트에서 Claude Code를 활용하여 코드를 작성하는 주요 과정을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-code-practical-guide-0-1774374258763.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">첫 프로젝트 작업 흐름 예시</div>
+<div style="padding:14px;font-family:monospace;font-size:0.85em;background:#F3F3F3;border-bottom:2px solid #000;">
+$ cd your-project<br>
+$ claude
+</div>
+<div style="padding:14px;border-bottom:2px solid #000;">
+<div style="font-family:monospace;font-weight:700;">&gt; 이 프로젝트는 무엇을 하나요?</div>
+<div style="margin-top:4px;font-size:0.9em;">프로젝트 파일을 자동으로 읽고 구조를 설명합니다</div>
+</div>
+<div style="padding:14px;border-bottom:2px solid #000;">
+<div style="font-family:monospace;font-weight:700;">&gt; 사용자 등록 양식에 이메일 유효성 검사 추가</div>
+<div style="margin-top:4px;font-size:0.9em;">관련 파일을 찾아 변경안 diff를 보여주고, 적용 전에 승인을 요청합니다</div>
+</div>
+<div style="padding:14px;">
+<div style="font-family:monospace;font-weight:700;">&gt; 설명적인 메시지로 변경 사항 커밋</div>
+<div style="margin-top:4px;font-size:0.9em;">변경 내용을 분석해 커밋 메시지를 만들고 Git에 기록합니다</div>
+</div>
+</div>
+</div>
 
 설치를 마쳤다면, 실제 프로젝트에서 활용하는 과정을 살펴봅니다. 실무에서 자주 쓰는 패턴 위주로 정리했습니다.
 
@@ -174,9 +194,6 @@ Model Context Protocol(MCP)은 AI 도구를 외부 데이터 소스에 연결하
 `/loop` 명령어로 반복 작업을 예약할 수 있습니다. 매일 아침 PR 리뷰, 주간 의존성 감사 같은 작업을 자동화합니다. `/remote-control`을 사용하면 모바일이나 브라우저에서 실행 중인 Claude Code 세션에 접속할 수도 있습니다.
 
 ## Cursor, GitHub Copilot과 비교하면 어떤 차이가 있나
-
-
-![Claude Code와 Cursor, GitHub Copilot의 주요 기능 및 특징 차이를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-code-practical-guide-1-1774374293940.png)
 
 2026년 AI 코딩 도구 시장에서 세 도구는 각각 다른 설계 철학을 가지고 있습니다.
 

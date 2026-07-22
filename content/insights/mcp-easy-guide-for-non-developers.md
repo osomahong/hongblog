@@ -11,7 +11,7 @@ tags:
   - API
 publishedAt: '2026-03-05T14:58:55.039Z'
 highlights:
-  - 'MCP는 AI의 ''USB 포트''다 — 노션, 슬랙, 구글 드라이브 등 다양한 서비스를 하나의 표준 방식으로 AI에 연결하는 규격이다'
+  - 'MCP는 AI의 ''USB 포트''다: 노션, 슬랙, 구글 드라이브 등 다양한 서비스를 하나의 표준 방식으로 AI에 연결하는 규격이다'
   - 'MCP 이전에는 각 서비스마다 별도 연결 방식을 만들어야 했지만, MCP 이후에는 한 번 만든 연결을 어떤 AI에서든 재사용할 수 있다'
   - >-
     Claude Desktop에 노션 MCP를 연결하면 AI가 DB를 직접 조회하고, 슬랙 MCP를 연결하면 채널 메시지를 읽고 요약하는
@@ -35,7 +35,7 @@ metaDescription: >-
   AI가 내 노션, 슬랙, 구글 드라이브를 직접 다루는 것 이 MCP(Model Context Protocol)인데, 이름만 들으면 어렵게
   느껴집니다. USB 포트 비유와 실제 프로덕트 예시로, 비개발자도 이해할 수 있도록 쉽게 정리했습니다.
 ogImage: /og/mcp-easy-guide-for-non-developers.png
-ogTitle: MCP란? — AI가 내 업무 도구를 직접 다루게 만드는 표준 규격
+ogTitle: 'MCP란?: AI가 내 업무 도구를 직접 다루게 만드는 표준 규격'
 ogDescription: '노션, 슬랙, 구글 드라이브를 AI에 연결하는 MCP를 USB 포트 비유로 쉽게 설명합니다. 비개발자를 위한 입문 가이드.'
 ---
 
@@ -94,8 +94,24 @@ MCP에는 세 가지 등장인물이 있습니다.
 
 ## MCP 없을 때 vs 있을 때
 
-
-![MCP 없을 때와 있을 때의 주요 차이를 시각적으로 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/mcp-easy-guide-for-non-developers-0-1772721442233.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;display:flex;flex-wrap:wrap;gap:12px">
+<div style="flex:1;min-width:240px;border:3px solid #000;background:#fff">
+<div style="background:#F3F3F3;border-bottom:3px solid #000;padding:8px 14px;font-weight:800;font-size:13px">MCP 없을 때: 사람이 나른다</div>
+<div style="padding:12px 14px;font-size:13px;line-height:1.9">
+열기 → 복사 → 붙여넣기 → 요청 → 복사 → 붙여넣기
+<div style="margin-top:8px;font-family:monospace;font-weight:800">총 6단계, 반복 작업</div>
+</div>
+</div>
+<div style="flex:1;min-width:240px;border:3px solid #000;background:#fff">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:8px 14px;font-weight:800;font-size:13px">MCP 있을 때: AI가 직접 본다</div>
+<div style="padding:12px 14px;font-size:13px;line-height:1.9">
+"회의록 읽고 핵심 정리해줘" 한 마디
+<div style="margin-top:8px;font-family:monospace;font-weight:800">총 1단계, 요청 한 번</div>
+</div>
+</div>
+</div>
+</div>
 
 일상 업무 시나리오로 차이를 비교해 보겠습니다.
 
@@ -193,9 +209,6 @@ Claude Desktop에 노션 MCP와 슬랙 MCP를 함께 연결하면, 이런 요청
 AI가 슬랙에서 메시지를 읽고 → 내용을 정리하고 → 노션에 페이지를 만드는 것을 **한 번의 요청**으로 처리합니다. 서비스 사이의 복사-붙여넣기가 완전히 사라지는 것입니다.
 
 ## MCP가 바꾸는 일하는 방식
-
-
-![MCP가 복잡한 IT 환경을 단순화하여 업무 효율을 높이는 방식을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/mcp-easy-guide-for-non-developers-1-1772721478777.png)
 
 기술적인 내용을 떠나서, 실무자 관점에서 MCP가 만드는 변화를 생각해 보겠습니다.
 

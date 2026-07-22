@@ -57,7 +57,7 @@ GEO(Generative Engine Optimization)는 Princeton 대학 연구팀이 KDD 2024 �
 | AEO | ChatGPT, Perplexity, 음성 비서, AI 챗봇 | 직접 답변으로 인용 | FAQ 구조, 질문형 헤딩, 명확한 정의 |
 | GEO | AI Overviews, Gemini, Claude 요약 엔진 | 생성 답변의 출처로 채택 | 출처 인용, 통계, 구조화 데이터 |
 
-세 영역은 베이스가 같습니다. AI가 인용하는 출처는 결국 검색 엔진에 잘 인덱싱된 문서입니다. SEO가 부실한 사이트는 AEO와 GEO의 출발점조차 확보하지 못합니다. Neil Patel과 Backlinko의 공통된 결론도 명확합니다. 죽은 것은 나쁜 SEO이지, SEO 자체가 아닙니다. 그래서 실무 우선순위는 SEO → AEO → GEO 순차 진행이 아니라, **SEO 기반 위에 AEO·GEO 신호를 동시에 올리는 방식**이어야 합니다.
+세 영역은 베이스가 같습니다. AI가 인용하는 출처는 결국 검색 엔진에 잘 인덱싱된 문서입니다. SEO가 부실한 사이트는 AEO와 GEO의 출발점조차 확보하지 못합니다. Neil Patel과 Backlinko의 공통된 결론도 명확합니다. 죽은 것은 나쁜 SEO이지, SEO 자체가 아닙니다. 그래서 실무 우선순위는 SEO → AEO → GEO 순차 진행이 아니라, **SEO 기반 위에 AEO, GEO 신호를 동시에 올리는 방식**이어야 합니다.
 
 ## 여러분이 보는 본문 뒤에는 무엇이 숨어 있을까요
 
@@ -103,7 +103,7 @@ HTML 태그가 어렵게 느껴질 수 있습니다. 초보자 입장에서 바�
 
 AI 검색 엔진도 이 태그들을 페이지 정체성의 1차 신호로 받아들입니다.
 
-여기서 흔히 실수하는 지점이 있습니다. `metaTitle`과 `ogTitle`을 동일하게 두면 소셜 공유에 최적화된 문구를 만들 기회를 놓칩니다. 검색 결과용 제목은 키워드 중심, 소셜용 제목은 감정·맥락 중심으로 분리해야 두 채널 모두에서 클릭률이 올라갑니다.
+여기서 흔히 실수하는 지점이 있습니다. `metaTitle`과 `ogTitle`을 동일하게 두면 소셜 공유에 최적화된 문구를 만들 기회를 놓칩니다. 검색 결과용 제목은 키워드 중심, 소셜용 제목은 감정, 맥락 중심으로 분리해야 두 채널 모두에서 클릭률이 올라갑니다.
 
 ## schema.org 구조화된 데이터가 AEO에 어떤 정보를 제공할까요
 
@@ -140,7 +140,7 @@ JSON-LD라는 단어 자체가 처음 듣는 개념일 수 있습니다. 쉽게 
 }
 ```
 
-Article 스키마는 Google Search Central이 AI Overviews 인용 후보를 판별할 때 사용하는 핵심 신호입니다. `author`, `datePublished`, `publisher` 필드가 비어 있으면 E-E-A-T(경험·전문성·권위·신뢰) 판단 근거가 사라집니다.
+Article 스키마는 Google Search Central이 AI Overviews 인용 후보를 판별할 때 사용하는 핵심 신호입니다. `author`, `datePublished`, `publisher` 필드가 비어 있으면 E-E-A-T(경험, 전문성, 권위, 신뢰) 판단 근거가 사라집니다.
 
 ### BreadcrumbList 스키마
 
@@ -180,7 +180,7 @@ Article 스키마는 Google Search Central이 AI Overviews 인용 후보를 판�
       "name": "SEO와 AEO, GEO는 어떻게 다를까요?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "SEO는 전통 검색 엔진, AEO는 답변 엔진, GEO는 생성형 엔진을 대상으로 합니다. 세 영역은 베이스가 같으며 SEO 기반 위에 AEO·GEO를 동시에 올리는 방식이 맞습니다."
+        "text": "SEO는 전통 검색 엔진, AEO는 답변 엔진, GEO는 생성형 엔진을 대상으로 합니다. 세 영역은 베이스가 같으며 SEO 기반 위에 AEO, GEO를 동시에 올리는 방식이 맞습니다."
       }
     }
   ]
@@ -206,7 +206,7 @@ Sitemap: https://www.digitalmarketer.co.kr/sitemap/0.xml
 Sitemap: https://www.digitalmarketer.co.kr/sitemap/1.xml
 ```
 
-여기서 핵심 포인트는 두 가지입니다. 첫째, **AI 크롤러를 막지 않습니다**. GPTBot, PerplexityBot, ClaudeBot 등을 `Disallow`로 차단하는 사이트는 GEO 후보에서 자동 제외됩니다. 둘째, sitemap을 두 벌로 분리했습니다. 인사이트(0.xml)와 클래스·태그(1.xml)를 나누면 크롤러가 카테고리별로 업데이트를 효율적으로 따라갑니다.
+여기서 핵심 포인트는 두 가지입니다. 첫째, **AI 크롤러를 막지 않습니다**. GPTBot, PerplexityBot, ClaudeBot 등을 `Disallow`로 차단하는 사이트는 GEO 후보에서 자동 제외됩니다. 둘째, sitemap을 두 벌로 분리했습니다. 인사이트(0.xml)와 클래스, 태그(1.xml)를 나누면 크롤러가 카테고리별로 업데이트를 효율적으로 따라갑니다.
 
 sitemap 0.xml 안에서 이 글은 이렇게 등록되어 있습니다.
 
@@ -230,7 +230,7 @@ llms.txt는 AI 검색 시대에 새로 등장한 개념이라 초보자 입장�
 이 사이트의 `public/llms.txt`에서 발췌한 내용입니다.
 
 ```text
-# 준이아빠블로그 — AI-Enhanced Tech Wiki
+# 준이아빠블로그: AI-Enhanced Tech Wiki
 
 > https://www.digitalmarketer.co.kr
 
@@ -255,15 +255,15 @@ llms.txt는 AI 검색 시대에 새로 등장한 개념이라 초보자 입장�
 
 ## 이 세팅들이 서치콘솔 수치에서 어떻게 드러날까요
 
-오늘 기준 구글 서치콘솔의 노출·클릭 추이 그래프입니다. 짙은 선이 노출, 밝은 선이 클릭입니다.
+오늘 기준 구글 서치콘솔의 노출, 클릭 추이 그래프입니다. 짙은 선이 노출, 밝은 선이 클릭입니다.
 
-![서치콘솔 노출·클릭 추이가 2월 초 거의 0에서 4월 중순 최고점까지 상승한 그래프](/images/insights/aeo-geo-practical-setting-case/search-console-ai-traffic-trend.png)
+![서치콘솔 노출, 클릭 추이가 2월 초 거의 0에서 4월 중순 최고점까지 상승한 그래프](/images/insights/aeo-geo-practical-setting-case/search-console-ai-traffic-trend.png)
 
 곡선의 흐름은 다음과 같습니다.
 
 | 구간 | 상태 | 2월 초 대비 |
 |------|------|------------|
-| 2월 3일 ~ 2월 17일 | 노출·클릭 모두 0에 가까움 | 기준선 |
+| 2월 3일 ~ 2월 17일 | 노출, 클릭 모두 0에 가까움 | 기준선 |
 | 2월 24일 ~ 3월 3일 | 상승 시작 | 뚜렷한 증가 |
 | 3월 10일 ~ 3월 17일 | 1차 피크 | 수십 배 증가 |
 | 3월 21일 ~ 3월 31일 | 일시 하락 | 1차 피크 대비 70% 감소 |
@@ -280,7 +280,7 @@ Conductor의 2026 AEO/GEO 벤치마크 리포트도 같은 방향을 가리킵�
 
 1. **H2를 질문형으로 바꾸세요.** 가장 비용이 낮고 효과가 즉각적입니다. 기존 글의 H2만 손봐도 1~2주 안에 서치콘솔 노출이 움직이기 시작합니다.
 2. **`<head>` 메타 태그를 완비하세요.** `<title>`, `description`, `canonical`, `og:*`, `twitter:*`를 빠뜨린 페이지는 검색 엔진과 AI 양쪽에서 불이익을 받습니다.
-3. **FAQPage·Article·BreadcrumbList JSON-LD를 페이지 템플릿에 심으세요.** 질문형 H2가 준비되어 있다면 자동 추출 로직은 20줄 안쪽으로 구현됩니다.
+3. **FAQPage, Article, BreadcrumbList JSON-LD를 페이지 템플릿에 심으세요.** 질문형 H2가 준비되어 있다면 자동 추출 로직은 20줄 안쪽으로 구현됩니다.
 4. **sitemap.xml의 priority와 changefreq를 실제 업데이트 주기에 맞추세요.** 모든 URL이 0.5로 나가는 기본 설정은 크롤 예산 관점에서 손해입니다.
 5. **robots.txt에서 AI 크롤러를 막지 말고, 루트에 llms.txt를 배포하세요.** GEO의 입장권에 해당하는 두 파일입니다.
 
@@ -288,14 +288,14 @@ Conductor의 2026 AEO/GEO 벤치마크 리포트도 같은 방향을 가리킵�
 
 **3줄 요약:**
 - AEO는 본문이 아니라 소스코드 뒤에 숨은 기능들에서 결정됩니다. `<head>` 메타 태그, schema.org JSON-LD, sitemap, robots.txt, llms.txt, canonical URL이 AI에게 가장 먼저 읽히는 텍스트입니다.
-- 이 글에는 Article·BreadcrumbList·FAQPage JSON-LD 세 종이 자동 발행되고 있고, H2를 질문형으로만 통일하면 FAQPage가 빌드 타임에 자동으로 붙는 구조로 설계되어 있습니다.
-- 2월 초 거의 0이었던 서치콘솔 노출·클릭이 4월 중순 최고점까지 계단식으로 상승한 패턴은, FAQPage 스키마 도입 → sitemap priority 조정 → llms.txt 배포 순서로 붙인 기능들이 곡선에 그대로 반영된 결과입니다.
+- 이 글에는 Article, BreadcrumbList, FAQPage JSON-LD 세 종이 자동 발행되고 있고, H2를 질문형으로만 통일하면 FAQPage가 빌드 타임에 자동으로 붙는 구조로 설계되어 있습니다.
+- 2월 초 거의 0이었던 서치콘솔 노출, 클릭이 4월 중순 최고점까지 계단식으로 상승한 패턴은, FAQPage 스키마 도입 → sitemap priority 조정 → llms.txt 배포 순서로 붙인 기능들이 곡선에 그대로 반영된 결과입니다.
 
 **Sources:**
-- [Princeton/KDD — GEO: Generative Engine Optimization (2024)](https://dl.acm.org/doi/10.1145/3637528.3671900)
-- [Conductor — 2026 AEO/GEO Benchmarks Report](https://www.conductor.com/academy/aeo-geo-benchmarks-report/)
-- [Google Search Central — FAQ structured data guidelines](https://developers.google.com/search/docs/appearance/structured-data/faqpage)
-- [Google Search Central — Article structured data](https://developers.google.com/search/docs/appearance/structured-data/article)
-- [Schema.org — FAQPage specification](https://schema.org/FAQPage)
+- [Princeton/KDD: GEO: Generative Engine Optimization (2024)](https://dl.acm.org/doi/10.1145/3637528.3671900)
+- [Conductor: 2026 AEO/GEO Benchmarks Report](https://www.conductor.com/academy/aeo-geo-benchmarks-report/)
+- [Google Search Central: FAQ structured data guidelines](https://developers.google.com/search/docs/appearance/structured-data/faqpage)
+- [Google Search Central: Article structured data](https://developers.google.com/search/docs/appearance/structured-data/article)
+- [Schema.org: FAQPage specification](https://schema.org/FAQPage)
 - [llms.txt 공식 제안 문서](https://llmstxt.org/)
-- [Sitemaps.org — Protocol](https://www.sitemaps.org/protocol.html)
+- [Sitemaps.org: Protocol](https://www.sitemaps.org/protocol.html)

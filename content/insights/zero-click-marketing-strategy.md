@@ -74,8 +74,20 @@ SparkToro 창업자 Rand Fishkin은 이 상황을 이렇게 요약합니다.
 
 ## 제로클릭 비율은 얼마나 높을까?
 
-
-![제로클릭 시대의 사용자 검색 행동 변화를 통계 자료로 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/zero-click-marketing-strategy-0-1772723641087.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;border:3px solid #000;background:#fff;padding:16px">
+<div style="font-weight:800;font-size:14px;margin-bottom:12px">클릭 없이 끝나는 검색의 비율</div>
+<div style="margin-bottom:10px"><div style="font-size:12px;font-weight:700;margin-bottom:3px">AI Overviews 표시 검색 <span style="font-family:monospace">83%</span></div>
+<div style="border:2px solid #000;background:#F3F3F3;height:18px"><div style="width:83%;height:100%;background:#FF0000"></div></div></div>
+<div style="margin-bottom:10px"><div style="font-size:12px;font-weight:700;margin-bottom:3px">모바일 검색 <span style="font-family:monospace">77.2%</span></div>
+<div style="border:2px solid #000;background:#F3F3F3;height:18px"><div style="width:77.2%;height:100%;background:#FFD700"></div></div></div>
+<div style="margin-bottom:10px"><div style="font-size:12px;font-weight:700;margin-bottom:3px">전체 구글 검색 <span style="font-family:monospace">69%</span></div>
+<div style="border:2px solid #000;background:#F3F3F3;height:18px"><div style="width:69%;height:100%;background:#FFD700"></div></div></div>
+<div><div style="font-size:12px;font-weight:700;margin-bottom:3px">데스크톱 검색 <span style="font-family:monospace">46.5%</span></div>
+<div style="border:2px solid #000;background:#F3F3F3;height:18px"><div style="width:46.5%;height:100%;background:#000"></div></div></div>
+<div style="font-size:11px;margin-top:10px;color:#374151">출처: Similarweb (2025.07), Click-Vision (2026), Semrush (2025)</div>
+</div>
+</div>
 
 제로클릭이 어느 정도인지, 글로벌 주요 SEO 업체들이 공개한 연구 데이터를 종합해 보겠습니다.
 
@@ -137,9 +149,6 @@ Natividad는 **50 대 50 전략**을 제안합니다. 콘텐츠의 50%는 플랫
 핵심은 순서입니다. 먼저 가치를 제공하고 알고리즘의 신뢰를 얻은 후에, 그 신뢰를 바탕으로 전환을 요청하는 것입니다.
 
 ## 실전 전략 5가지
-
-
-![제로클릭 시대의 마케팅 실전 전략 5가지를 시각적으로 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/zero-click-marketing-strategy-1-1772723680294.png)
 
 그렇다면 플랫폼이 링크를 억제하는 상황에서 브랜드는 어떻게 도달을 확보할 수 있을까요? 이론을 실무에 적용하는 구체적인 방법입니다.
 

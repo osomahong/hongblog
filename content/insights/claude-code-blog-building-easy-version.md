@@ -81,7 +81,24 @@ Claude Code는 다릅니다. 기존에 만들어진 코드를 전부 읽어본 �
 ## 구축 과정: 빈 폴더에서 완성까지
 
 
-![Claude Code를 사용하여 빈 폴더에서 블로그를 완성해가는 단계별 구축 과정을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-code-blog-building-easy-version-0-1774367665029.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">빈 폴더에서 블로그 완성까지 4단계</div>
+<div style="padding:12px 14px;border-bottom:2px solid #000;">
+<span style="font-family:monospace;font-weight:700;">1단계</span> 기본 뼈대 세우기: 글 종류 4가지, 카테고리 3개 구조 설계
+</div>
+<div style="padding:12px 14px;border-bottom:2px solid #000;background:#F3F3F3;">
+<span style="font-family:monospace;font-weight:700;">2단계</span> 디자인 입히기: 두꺼운 테두리와 그림자가 있는 카드형 디자인
+</div>
+<div style="padding:12px 14px;border-bottom:2px solid #000;">
+<span style="font-family:monospace;font-weight:700;">3단계</span> 기능 하나씩 추가: 태그, 시리즈, 검색 최적화, 미리보기 이미지
+</div>
+<div style="padding:12px 14px;border-bottom:2px solid #000;background:#F3F3F3;">
+<span style="font-family:monospace;font-weight:700;">4단계</span> 인터넷에 공개: Vercel에 연결해 자동 배포 구조 완성
+</div>
+<div style="background:#000;color:#fff;padding:8px 14px;font-size:0.85em;">본업 틈틈이 진행해서 약 2주가 걸렸습니다</div>
+</div>
+</div>
 
 블로그를 처음부터 만드는 과정은 크게 네 단계였습니다.
 
@@ -163,9 +180,6 @@ Claude Code에는 CLAUDE.md라는 특별한 파일이 있습니다. 프로젝트
 이 분석 작업도 자동화되어 있습니다. 분석 명령을 실행하면 3개월, 1개월, 1주 단위로 방문 데이터를 분석하고, 잘 읽히는 글과 그렇지 않은 글을 분류하고, 다음에 쓰면 좋을 주제를 데이터 근거와 함께 제안합니다.
 
 ## 솔직한 평가: 좋은 점과 아쉬운 점
-
-
-![Claude Code로 블로그 만들기의 장점과 아쉬운 점을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-code-blog-building-easy-version-1-1774367701706.png)
 
 1년 가까이 Claude Code로 블로그를 운영하면서 느낀 점을 솔직하게 정리합니다.
 

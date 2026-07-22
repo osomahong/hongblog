@@ -15,7 +15,7 @@ quiz:
   - options:
       - 외부 공유 링크에 UTM 파라미터가 빠짐없이 적용되어 있는지 확인한다
       - 리디렉션 과정에서 referrer와 쿼리 파라미터가 소실되지 않는지 점검한다
-      - 이메일·메신저 등 캠페인 채널별로 전용 UTM 규칙이 있는지 확인한다
+      - 이메일, 메신저 등 캠페인 채널별로 전용 UTM 규칙이 있는지 확인한다
       - GA4의 referral exclusion 목록이 올바르게 설정되어 있는지 점검한다
     question: 'GA4에서 direct/none 트래픽 비중이 높을 때, 가장 먼저 점검해야 할 항목은 무엇이라고 생각하시나요?'
     explanation: >-
@@ -70,7 +70,38 @@ GA4 보고서에서 direct/none을 확인하려면 **보고서 → 획득 → �
 ## direct/none은 왜 발생할까? 8가지 원인
 
 
-![GA4에서 direct/none 트래픽이 발생하는 8가지 원인을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ga4-direct-none-traffic-guide-0-1771333312501.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">GA4 트래픽 획득 보고서 예시 (가상의 예시 수치)</div>
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#F3F3F3;">
+<th style="padding:8px 12px;text-align:left;border-bottom:2px solid #000;">세션 소스/매체</th>
+<th style="padding:8px 12px;text-align:right;border-bottom:2px solid #000;">세션 비중</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#FFD700;">
+<td style="padding:8px 12px;border-bottom:1px solid #000;font-family:monospace;font-weight:700;">direct / (none)</td>
+<td style="padding:8px 12px;border-bottom:1px solid #000;text-align:right;font-family:monospace;font-weight:700;">42%</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border-bottom:1px solid #000;font-family:monospace;">google / organic</td>
+<td style="padding:8px 12px;border-bottom:1px solid #000;text-align:right;font-family:monospace;">31%</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border-bottom:1px solid #000;font-family:monospace;">naver / organic</td>
+<td style="padding:8px 12px;border-bottom:1px solid #000;text-align:right;font-family:monospace;">14%</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;font-family:monospace;">기타 소스/매체</td>
+<td style="padding:8px 12px;text-align:right;font-family:monospace;">13%</td>
+</tr>
+</tbody>
+</table>
+<div style="background:#F3F3F3;border-top:2px solid #000;padding:8px 14px;font-size:0.85em;">이 예시처럼 direct/none이 40%를 넘는다면, 아래 8가지 원인 중 어디에 해당하는지 점검이 필요합니다.</div>
+</div>
+</div>
 
 direct/none은 "사용자가 URL을 직접 입력한 것"만을 의미하지 않습니다. referrer 정보가 전달되지 않거나 UTM 파라미터가 없는 모든 상황에서 발생합니다.
 
@@ -142,7 +173,23 @@ A 채널과 B 채널의 성과를 비교할 때, 실제로는 A 채널을 통해
 ## direct/none을 어떻게 줄일 수 있을까? 5가지 실무 방법
 
 
-![GA4 direct/none 트래픽을 줄이는 5가지 실무 방법을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ga4-direct-none-traffic-guide-1-1771333343476.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#000;color:#fff;padding:10px 14px;font-weight:700;">같은 카카오톡 공유, UTM 유무에 따른 GA4 기록 차이</div>
+<div style="padding:14px;border-bottom:3px solid #000;">
+<div style="font-weight:700;margin-bottom:6px;">UTM 없이 공유</div>
+<div style="font-family:monospace;font-size:0.85em;word-break:break-all;">https://yoursite.com/event</div>
+<div style="margin-top:6px;">인앱 브라우저가 referrer를 전달하지 않음</div>
+<div style="margin-top:6px;">GA4 기록: <span style="font-family:monospace;font-weight:700;background:#F3F3F3;padding:2px 6px;">direct / (none)</span></div>
+</div>
+<div style="padding:14px;background:#FFD700;">
+<div style="font-weight:700;margin-bottom:6px;">UTM을 붙여 공유</div>
+<div style="font-family:monospace;font-size:0.85em;word-break:break-all;">https://yoursite.com/event?utm_source=kakaotalk&amp;utm_medium=social</div>
+<div style="margin-top:6px;">referrer가 없어도 UTM이 소스/매체 정보를 전달</div>
+<div style="margin-top:6px;">GA4 기록: <span style="font-family:monospace;font-weight:700;background:#fff;padding:2px 6px;">kakaotalk / social</span></div>
+</div>
+</div>
+</div>
 
 그렇다면 이 미분류 트래픽은 어떻게 줄일 수 있을까요? direct/none을 완전히 없앨 수는 없습니다. 주소창 직접 입력이나 브라우저 보호 설정은 통제할 수 없는 영역이기 때문입니다. 하지만 **마케팅 활동에서 발생하는 불필요한 direct/none은 상당 부분 줄일 수 있습니다.**
 
@@ -175,7 +222,7 @@ UTM 파라미터를 정성껏 붙여도, 리디렉션 과정에서 쿼리 스트
 
 대부분의 최신 웹사이트는 이미 HTTPS를 사용하고 있지만, 간혹 서브도메인이나 특정 경로가 HTTP로 남아 있는 경우가 있습니다. 전체 도메인에 걸쳐 HTTPS가 일관되게 적용되어 있는지 점검합니다.
 
-### 4. 이메일·메신저 캠페인 전용 UTM 규칙
+### 4. 이메일, 메신저 캠페인 전용 UTM 규칙
 
 이메일과 메신저는 referrer를 전달하지 않는 경우가 많으므로, 이 채널들에 대한 **전용 UTM 규칙**을 마련합니다.
 

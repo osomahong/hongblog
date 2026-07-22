@@ -1,6 +1,6 @@
 ---
 slug: localhost-vibe-coding-beginner-guide
-title: '로컬호스트(localhost) 뜻과 배포된 웹의 차이, NPM·NPX·터미널까지 한 번에 정리'
+title: '로컬호스트(localhost) 뜻과 배포된 웹의 차이, NPM, NPX, 터미널까지 한 번에 정리'
 excerpt: >-
   AI에게 "쇼핑몰 만들어줘"라고 했더니 주소창에 `localhost:3000`이 뜹니다. 로컬호스트가 뭔지, 왜 나만 볼 수 있는지,
   NPM과 NPX는 왜 계속 등장하는지 초보자 눈높이로 정리했습니다.
@@ -14,12 +14,12 @@ highlights:
   - 로컬호스트는 '내 컴퓨터가 내 컴퓨터에 접속할 때 쓰는 주소'입니다. 인터넷에 올라간 상태가 아닙니다.
   - 'NPM은 재료 창고, NPX는 재료를 한 번만 꺼내 쓰는 도구입니다. 둘 다 Node.js라는 부엌 위에서 돌아갑니다.'
   - 터미널 창을 닫으면 서버도 꺼집니다. '남에게 보여주려면 배포'라는 별도 단계가 필요합니다.
-metaTitle: 로컬호스트(localhost) 뜻 — 바이브코딩 초보자 가이드
+metaTitle: '로컬호스트(localhost) 뜻: 바이브코딩 초보자 가이드'
 metaDescription: >-
-  AI로 만든 웹이 왜 내 컴퓨터에서만 열리는지, 로컬호스트·NPM·NPX·터미널·배포의 관계를 초보자 눈높이로 정리했습니다. 바이브코딩을 막
+  AI로 만든 웹이 왜 내 컴퓨터에서만 열리는지, 로컬호스트, NPM, NPX, 터미널, 배포의 관계를 초보자 눈높이로 정리했습니다. 바이브코딩을 막
   시작한 분들을 위한 기초 가이드입니다.
-ogTitle: 로컬호스트 뜻과 배포의 차이 — 바이브코딩 초보자가 가장 먼저 막히는 지점
-ogDescription: 'localhost:3000이 뜨는 이유, 터미널을 닫으면 왜 사이트가 꺼지는지, NPM·NPX·배포의 관계를 한 번에 정리했습니다.'
+ogTitle: '로컬호스트 뜻과 배포의 차이: 바이브코딩 초보자가 가장 먼저 막히는 지점'
+ogDescription: 'localhost:3000이 뜨는 이유, 터미널을 닫으면 왜 사이트가 꺼지는지, NPM, NPX, 배포의 관계를 한 번에 정리했습니다.'
 ogImage: /og/localhost-vibe-coding-beginner-guide.png
 quiz:
   - question: 로컬호스트(localhost)에 대한 설명으로 가장 정확한 것은 무엇인가요?
@@ -88,7 +88,7 @@ AI에게 "쇼핑몰 하나 만들어줘"라고 부탁합니다. 몇 분 뒤 AI�
 
 여기서 NPM, NPX, 터미널 같은 단어들이 쏟아집니다. 차근차근 풀어봅시다.
 
-### 1. 터미널 — 컴퓨터에게 명령을 입력하는 창
+### 1. 터미널: 컴퓨터에게 명령을 입력하는 창
 
 [터미널(Terminal)](/class/vibe-coding-basics/what-is-terminal-cli)은 **키보드로 명령어를 입력해 컴퓨터를 조작하는 창**입니다. 검은 바탕에 흰 글씨가 뜨는 그 화면이 맞습니다. 마우스 클릭 대신 텍스트로 지시하는 방식이라고 이해하면 됩니다.
 
@@ -103,13 +103,13 @@ AI에게 "쇼핑몰 하나 만들어줘"라고 부탁합니다. 몇 분 뒤 AI�
 
 터미널에서 서버가 떠 있는 동안은 **화면에 계속 글자가 쏟아집니다.** 이게 서버가 살아 있다는 신호입니다. 이 창을 닫으면 서버도 같이 꺼집니다.
 
-### 2. Node.js — 자바스크립트를 브라우저 밖에서 돌리는 부엌
+### 2. Node.js: 자바스크립트를 브라우저 밖에서 돌리는 부엌
 
 여러분이 AI에게 만든 웹 앱은 대부분 **자바스크립트(JavaScript)**로 쓰여 있습니다. 원래 자바스크립트는 브라우저 안에서만 돌아갔는데, **Node.js**라는 도구가 등장하면서 **내 컴퓨터에서 바로 실행**할 수 있게 됐습니다.
 
 요리로 비유하면 Node.js는 **부엌 자체**입니다. 레시피(코드)를 받아서 재료를 섞고 끓이는 공간이죠. 이 부엌이 없으면 NPM, NPX 같은 도구도 쓸 수 없습니다.
 
-### 3. NPM — 재료 창고이자 장보기 앱
+### 3. NPM: 재료 창고이자 장보기 앱
 
 [NPM](/class/vibe-coding-basics/what-is-npm)은 **Node Package Manager**의 약자입니다. Node.js와 함께 기본 탑재되는 도구로, 두 가지 역할을 합니다.
 
@@ -118,7 +118,7 @@ AI에게 "쇼핑몰 하나 만들어줘"라고 부탁합니다. 몇 분 뒤 AI�
 
 `npm install`을 치면, 프로젝트에 필요하다고 명시된 재료 목록을 읽어서 창고에서 자동으로 가져와 **`node_modules`라는 냉장고**에 쌓습니다. 그 뒤로 `npm run dev` 같은 명령을 치면, 냉장고에 있는 재료를 써서 서버를 띄우는 겁니다.
 
-### 4. NPX — 한 번만 꺼내 쓰고 버리는 도구
+### 4. NPX: 한 번만 꺼내 쓰고 버리는 도구
 
 NPX는 `npm install`로 냉장고에 쟁여두지 않고 **창고에서 바로 꺼내 한 번 쓰고 버리는 방식**입니다. `npx create-next-app`처럼 쓰면, 그 순간 창고에서 도구를 잠깐 빌려와 실행합니다.
 
@@ -130,7 +130,7 @@ NPX는 `npm install`로 냉장고에 쟁여두지 않고 **창고에서 바로 �
 
 정리하면, 부엌은 **Node.js**, 창고 관리자는 **NPM**, 빌려쓰는 도구 실행기가 **NPX**, 주문을 넣는 창구가 **터미널**입니다. 네 가지는 한 팀으로 움직입니다.
 
-## 실제 흐름 예시 — 바이브코딩으로 만든 쇼핑몰이 열리기까지
+## 실제 흐름 예시: 바이브코딩으로 만든 쇼핑몰이 열리기까지
 
 AI가 "쇼핑몰 만들어줬어"라고 한 순간부터 `localhost:3000`에 화면이 뜨기까지, 뒤에서는 대체로 이런 일이 벌어집니다.
 
@@ -153,9 +153,9 @@ AI가 "쇼핑몰 만들어줬어"라고 한 순간부터 `localhost:3000`에 화
 | 돌아가는 장소 | 내 노트북 | 서버 컴퓨터(데이터센터) |
 | 누가 볼 수 있나 | 나만 | 전 세계 누구나 |
 | 전원 | 노트북 끄면 꺼짐 | 24시간 켜져 있음 |
-| 비용 | 무료 | 서버·도메인 비용 발생(무료 티어도 있음) |
+| 비용 | 무료 | 서버, 도메인 비용 발생(무료 티어도 있음) |
 | 속도 반영 | 코드 고치면 즉시 반영 | 배포 과정을 다시 거쳐야 반영 |
-| 목적 | 개발·실험 | 실제 서비스 |
+| 목적 | 개발, 실험 | 실제 서비스 |
 
 최근에는 Vercel, Netlify, Cloudflare Pages 같은 서비스가 **코드를 [GitHub](/class/vibe-coding-basics/what-is-git)에 올리기만 하면 자동으로 배포**해주는 환경을 제공합니다. 바이브코딩 초보자도 몇 번의 클릭으로 진짜 도메인 주소를 얻을 수 있습니다. 다만 이건 "내 노트북에서만 돌던 걸 남의 서버 컴퓨터로 옮겼다"는 의미라는 걸 기억하면 개념이 한결 명확해집니다.
 
@@ -177,7 +177,7 @@ AI가 "쇼핑몰 만들어줬어"라고 한 순간부터 `localhost:3000`에 화
 
 ## 정리하며
 
-로컬호스트는 어려운 기술이 아니라 **"내 컴퓨터가 잠깐 웹 서버 역할을 하는 상태"**일 뿐입니다. 그 상태를 설명하는 주소가 `localhost:3000` 같은 형태이고, 이 상태는 내 컴퓨터 바깥으로는 열려 있지 않습니다. 다른 사람에게 보여주려면 배포라는 별도 단계가 필요합니다.
+로컬호스트는 어려운 기술이 아니라 **"내 컴퓨터가 잠깐 웹 서버 역할을 하는 상태"**일 뿐입니다. 그 상태를 설명하는 주소가 `localhost:3000` 같은 형태이고, 이 상태는 내 컴퓨터 바깥으로는 열려 있지 않습니다. 다른 사람에게 보여주려면 [배포](/class/vibe-coding-basics/what-is-deployment)라는 별도 단계가 필요합니다.
 
 NPM은 재료 창고, NPX는 한 번 빌려 쓰는 도구, Node.js는 부엌, 터미널은 주문 창구. 이 네 가지가 한 팀으로 움직이면서 여러분 노트북을 잠깐 웹 서버로 변신시킵니다. 바이브코딩을 시작하고 처음 며칠 동안 가장 헷갈리는 부분이 이 지점입니다. 한 번 개념을 잡아두면 이후 등장하는 배포, 환경 변수, [데이터베이스](/class/vibe-coding-basics/what-is-database) 연결 같은 주제들이 훨씬 수월하게 연결됩니다.
 
@@ -189,8 +189,8 @@ NPM은 재료 창고, NPX는 한 번 빌려 쓰는 도구, Node.js는 부엌, �
 
 ## Sources
 
-- MDN Web Docs — [Localhost](https://developer.mozilla.org/en-US/docs/Glossary/Localhost)
-- Node.js 공식 문서 — [About Node.js](https://nodejs.org/en/about)
-- npm Docs — [About npm](https://docs.npmjs.com/about-npm)
-- npm Docs — [npx](https://docs.npmjs.com/cli/v10/commands/npx)
-- Vercel 공식 가이드 — [Deploying](https://vercel.com/docs/deployments/overview)
+- MDN Web Docs: [Localhost](https://developer.mozilla.org/en-US/docs/Glossary/Localhost)
+- Node.js 공식 문서: [About Node.js](https://nodejs.org/en/about)
+- npm Docs: [About npm](https://docs.npmjs.com/about-npm)
+- npm Docs: [npx](https://docs.npmjs.com/cli/v10/commands/npx)
+- Vercel 공식 가이드: [Deploying](https://vercel.com/docs/deployments/overview)

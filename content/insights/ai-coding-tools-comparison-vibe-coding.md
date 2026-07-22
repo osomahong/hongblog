@@ -1,50 +1,61 @@
 ---
 slug: ai-coding-tools-comparison-vibe-coding
-title: AI 코딩 도구 5종 직접 써본 비교 체험기 — 바이브코딩으로 실제 프로젝트를 만들어 봤습니다
-excerpt: >-
-  Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code까지 5개 AI 코딩 도구를 실제 프로젝트에
-  써보고 비교한 체험기입니다. 디지털 마케터가 바이브코딩으로 프로덕트를 만든 경험과 AI FOMO에 대한 솔직한 이야기를 담았습니다.
+title: 'AI 코딩 도구 5종 직접 써본 비교 체험기: 바이브코딩으로 실제 프로젝트를 만들어 봤습니다'
+excerpt: Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code까지 5개 AI 코딩 도구를 실제 프로젝트에 써보고 비교한 체험기입니다. 디지털 마케터가 바이브코딩으로 프로덕트를 만든 경험과 AI FOMO에 대한 솔직한 이야기를 담았습니다.
 category: AI_TECH
 tags:
-  - 바이브코딩
-  - AI
+- 바이브코딩
+- AI
 publishedAt: '2026-02-20T05:15:26.381Z'
 quiz:
-  - options:
-      - 모델의 추론 품질 — 복잡한 맥락을 이해하고 정확한 코드를 생성하는 능력이 가장 중요하다
-      - '생태계와 확장성 — MCP, 플러그인, IDE 연동 등 다른 도구와 연결되는 범위가 넓어야 한다'
-      - 진입장벽과 비용 — 무료이거나 설정이 간단해야 더 많은 사람이 활용할 수 있다
-      - 워크플로우 체계성 — 스펙 문서와 설계를 먼저 잡아주는 구조적 접근이 실수를 줄여준다
-    question: AI 코딩 도구를 선택할 때 가장 중요한 기준은 무엇이라고 생각하시나요?
-    explanation: >-
-      이 글에서는 복잡한 프로젝트일수록 모델의 추론 품질이 결정적이라는 결론을 내립니다. 하지만 간단한 프로젝트에서는 진입장벽이, 팀
-      프로젝트에서는 체계성이 더 중요할 수 있습니다. 결국 어떤 문제를 풀고 있느냐에 따라 기준이 달라집니다.
-    correctIndex: 0
+- options:
+  - '모델의 추론 품질: 복잡한 맥락을 이해하고 정확한 코드를 생성하는 능력이 가장 중요하다'
+  - '생태계와 확장성: MCP, 플러그인, IDE 연동 등 다른 도구와 연결되는 범위가 넓어야 한다'
+  - '진입장벽과 비용: 무료이거나 설정이 간단해야 더 많은 사람이 활용할 수 있다'
+  - '워크플로우 체계성: 스펙 문서와 설계를 먼저 잡아주는 구조적 접근이 실수를 줄여준다'
+  question: AI 코딩 도구를 선택할 때 가장 중요한 기준은 무엇이라고 생각하시나요?
+  explanation: 이 글에서는 복잡한 프로젝트일수록 모델의 추론 품질이 결정적이라는 결론을 내립니다. 하지만 간단한 프로젝트에서는 진입장벽이, 팀 프로젝트에서는 체계성이 더 중요할 수 있습니다. 결국 어떤 문제를 풀고 있느냐에 따라 기준이 달라집니다.
+  correctIndex: 0
 metaTitle: AI 코딩 도구 5종 비교 체험기 | 바이브코딩 실전 리뷰
-metaDescription: >-
-  Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실제 프로젝트에 적용한 비교 체험기입니다.
-  디지털 마케터의 바이브코딩 경험과 AI FOMO에 대한 현실적인 이야기를 담았습니다.
+metaDescription: Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실제 프로젝트에 적용한 비교 체험기입니다. 디지털 마케터의 바이브코딩 경험과 AI FOMO에 대한 현실적인 이야기를 담았습니다.
 ogImage: /og/ai-coding-tools-comparison-vibe-coding.png
 ogTitle: AI 코딩 도구 5종을 바이브코딩으로 직접 써보고 비교한 마케터의 솔직 체험기
-ogDescription: >-
-  Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실전 프로젝트에 적용한 마케터의 비교
-  리뷰와 AI FOMO 이야기.
+ogDescription: Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실전 프로젝트에 적용한 마케터의 비교 리뷰와 AI FOMO 이야기.
 ---
 
 ## AI 코딩 도구가 쏟아지는 시대, 직접 다 써봤습니다
 
 2025년 들어 AI 코딩 도구가 폭발적으로 늘었습니다. Cursor, Windsurf 같은 IDE가 자리를 잡더니, 이제는 터미널에서 바로 코딩하는 CLI 도구들까지 쏟아지고 있습니다. Google의 Gemini CLI, OpenAI의 Codex CLI, AWS의 Kiro, Google의 Antigravity, 그리고 [Anthropic](/class/claude-fundamentals/what-is-anthropic)의 [Claude Code](/class/claude-code-for-everyone/what-is-claude-code)까지. 매주 새로운 도구가 발표될 때마다 "이것도 써봐야 하나" 하는 생각이 드는 건 저만은 아닐 겁니다.
 
-저는 디지털 마케터입니다. 개발자가 아닙니다. 그런데 왜 AI 코딩 도구를 5개씩이나 써봤을까요? 이유는 단순합니다. **마케팅 실무에서 반복적으로 겪는 불편함을 직접 해결하고 싶었기 때문입니다.** 광고 리포트를 자동화하고, GA4 데이터를 API로 가져오고, 나만의 대시보드를 만들고 싶었습니다. 이른바 "바이브코딩(Vibe Coding)" — AI에게 자연어로 원하는 걸 설명하면 코드를 만들어주는 방식으로 실제 프로젝트 여러 개를 완성했습니다.
+저는 디지털 마케터입니다. 개발자가 아닙니다. 그런데 왜 AI 코딩 도구를 5개씩이나 써봤을까요? 이유는 단순합니다. **마케팅 실무에서 반복적으로 겪는 불편함을 직접 해결하고 싶었기 때문입니다.** 광고 리포트를 자동화하고, GA4 데이터를 API로 가져오고, 나만의 대시보드를 만들고 싶었습니다. 이른바 "바이브코딩(Vibe Coding)": AI에게 자연어로 원하는 걸 설명하면 코드를 만들어주는 방식으로 실제 프로젝트 여러 개를 완성했습니다.
 
 이 글은 각 도구를 실제로 사용하며 느낀 솔직한 비교 리뷰입니다. 마케터의 관점에서, 비개발자가 바이브코딩으로 프로덕트를 만들면서 겪은 경험을 정리했습니다. 그리고 후반부에는 이 과정에서 빠져들게 되는 AI FOMO에 대한 이야기도 담았습니다.
 
 ## 5개 도구 비교 리뷰: 실제로 어떤 프로젝트를 만들어 보았을까요?
 
 
-![AI 코딩 도구 5종을 비교하고 실제 프로젝트 생성 과정을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ai-coding-tools-comparison-vibe-coding-0-1770952561768.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#000;color:#fff;padding:10px 14px;font-weight:700;">직접 써본 5가지 도구, 한 줄 요약</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;">
+<span style="font-family:monospace;font-weight:700;white-space:nowrap;">Gemini CLI</span><span style="text-align:right;">무료라서 입문과 간단한 작업에 최적</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;background:#F3F3F3;">
+<span style="font-family:monospace;font-weight:700;white-space:nowrap;">Codex CLI</span><span style="text-align:right;">단일 스크립트는 빠르고 깔끔</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;">
+<span style="font-family:monospace;font-weight:700;white-space:nowrap;">Kiro</span><span style="text-align:right;">스펙 문서 먼저 쓰는 체계적인 팀 프로젝트용</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;background:#F3F3F3;">
+<span style="font-family:monospace;font-weight:700;white-space:nowrap;">Antigravity</span><span style="text-align:right;">멀티 에이전트 병렬 처리, 아직 실험 단계</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;background:#FFD700;">
+<span style="font-family:monospace;font-weight:700;white-space:nowrap;">Claude Code</span><span style="text-align:right;font-weight:700;">복잡한 프로젝트에서 추론 품질이 가장 뛰어남 (최종 선택)</span>
+</div>
+</div>
+</div>
 
-### Gemini CLI — 무료라는 강력한 무기
+### Gemini CLI: 무료라는 강력한 무기
 
 Gemini CLI는 Google이 오픈소스로 공개한 터미널 기반 AI 코딩 도구입니다. Gemini 모델을 사용하며, Google 계정만 있으면 무료로 사용할 수 있다는 점이 가장 큰 장점입니다.
 
@@ -52,7 +63,7 @@ Gemini CLI는 Google이 오픈소스로 공개한 터미널 기반 AI 코딩 도
 
 다만 프로젝트가 복잡해지면 한계가 드러납니다. 여러 파일에 걸친 코드를 수정할 때 문맥을 잃거나, 이전 지시를 무시하는 경우가 있었습니다. 무료 티어의 토큰 제한도 긴 작업에는 부담이 됩니다. 가볍게 시작하기에는 최적이지만, 본격적인 프로젝트에는 아쉬움이 남습니다.
 
-### OpenAI Codex CLI — 가볍고 단순한 오픈소스
+### OpenAI Codex CLI: 가볍고 단순한 오픈소스
 
 Codex CLI는 OpenAI가 공개한 오픈소스 터미널 코딩 도구입니다. GPT 모델을 기반으로 하며, 설치와 사용법이 간단합니다. 샌드박스 모드로 시스템 안전성을 확보한 점도 특징입니다.
 
@@ -60,7 +71,7 @@ Codex CLI는 OpenAI가 공개한 오픈소스 터미널 코딩 도구입니다. 
 
 하지만 멀티 파일 프로젝트로 넘어가면 이야기가 달라집니다. 프로젝트 전체 구조를 파악하는 능력이 약해서, 파일 간의 의존성을 놓치는 경우가 잦았습니다. 또한 코드를 실행하고 에러를 스스로 수정하는 "에이전틱" 능력이 다른 도구에 비해 제한적이었습니다. 빠르게 단일 스크립트를 만들 때는 좋지만, 지속적으로 관리해야 하는 프로젝트에는 적합하지 않았습니다.
 
-### Kiro (AWS) — 스펙 먼저, 코드는 나중에
+### Kiro (AWS): 스펙 먼저, 코드는 나중에
 
 Kiro는 AWS가 발표한 IDE 형태의 AI 코딩 도구입니다. 다른 도구들과 가장 차별화되는 점은 "스펙 기반 개발(Spec-driven Development)" 접근법입니다. 코드를 바로 생성하는 대신, 먼저 요구사항 문서와 설계 문서를 작성하고 사용자의 승인을 거친 뒤에 코드를 생성합니다.
 
@@ -68,7 +79,7 @@ Kiro는 AWS가 발표한 IDE 형태의 AI 코딩 도구입니다. 다른 도구�
 
 반면 개인 프로젝트나 빠른 프로토타이핑에는 과도한 절차가 오히려 방해가 됩니다. 간단한 스크립트 하나 만드는 데 스펙 문서부터 작성해야 하는 건 배보다 배꼽이 큰 느낌이었습니다. 또한 현재 기반 모델(Claude Sonnet)의 성능이 독립적인 Claude Code에 비해 제한적으로 느껴졌습니다. 체계적인 팀 프로젝트에는 강점이 있지만, 개인의 바이브코딩 용도로는 무거운 편입니다.
 
-### Google Antigravity — 멀티 에이전트의 가능성
+### Google Antigravity: 멀티 에이전트의 가능성
 
 Antigravity는 Google이 발표한 실험적 코딩 에이전트입니다. 가장 눈에 띄는 특징은 멀티 에이전트 구조입니다. 하나의 작업을 여러 에이전트가 나눠서 병렬로 처리하는 방식으로, 복잡한 프로젝트에서 속도 이점을 가질 수 있습니다.
 
@@ -76,7 +87,7 @@ Antigravity는 Google이 발표한 실험적 코딩 에이전트입니다. 가�
 
 하지만 현재 시점에서는 아직 실험적인 단계라는 느낌이 강합니다. 에이전트 간의 작업 결과를 병합할 때 충돌이 발생하는 경우가 있었고, 전체적인 코드 일관성을 유지하기 어려웠습니다. 개별 에이전트의 추론 품질도 단일 에이전트 도구에 비해 아쉬운 부분이 있었습니다. 미래의 방향성은 흥미롭지만, 지금 당장 메인 도구로 쓰기에는 이른 감이 있습니다.
 
-### Claude Code — 추론 품질이 결국 승부를 가른다
+### Claude Code: 추론 품질이 결국 승부를 가른다
 
 Claude Code는 Anthropic의 터미널 기반 에이전틱 코딩 도구입니다. Claude 모델을 사용하며, 프로젝트 전체 맥락을 이해하고 자율적으로 파일을 읽고, 수정하고, 명령어를 실행하는 능력이 가장 뛰어났습니다.
 
@@ -114,9 +125,6 @@ Claude Code는 Anthropic의 터미널 기반 에이전틱 코딩 도구입니다
 
 ## 바이브코딩 시대의 AI FOMO
 
-
-![AI 코딩 도구 비교 체험 중 느끼는 AI FOMO를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ai-coding-tools-comparison-vibe-coding-1-1770952593797.png)
-
 ### 변화의 속도와 끝없는 불안
 
 솔직히 고백하겠습니다. 이 5개 도구를 모두 써본 것 자체가 FOMO(Fear Of Missing Out)의 결과물입니다. 새로운 AI 코딩 도구가 발표될 때마다 "저걸 안 써보면 뒤처지는 게 아닐까"라는 불안감이 밀려옵니다. 그리고 실제로 써봐야 직성이 풀립니다.
@@ -153,7 +161,7 @@ AI 코딩 도구를 둘러싼 반응은 양극단으로 갈립니다. 한쪽에�
 
 바이브코딩을 하면서 가장 조심해야 할 영역은 보안입니다. AI가 생성한 코드에 API 키가 하드코딩되어 있거나, `.env` 파일이 Git에 포함되거나, 입력값 검증 없이 데이터베이스 쿼리를 실행하는 경우를 실제로 여러 번 목격했습니다.
 
-비개발자는 이런 문제를 인지하기 어렵습니다. AI에게 "잘 만들어 줘"라고 요청하면, AI는 "동작하는 코드"를 만들어 줍니다. 하지만 "안전한 코드"와 "동작하는 코드"는 같지 않습니다. `.gitignore`에 `.env`를 추가하는 것, 환경변수로 민감 정보를 관리하는 것, CORS 설정을 확인하는 것 — 이런 보안 기본기는 AI가 알아서 챙겨주지 않는 경우가 많습니다. 바이브코딩을 시작하는 분이라면 보안 체크리스트를 반드시 별도로 관리하시기를 권합니다.
+비개발자는 이런 문제를 인지하기 어렵습니다. AI에게 "잘 만들어 줘"라고 요청하면, AI는 "동작하는 코드"를 만들어 줍니다. 하지만 "안전한 코드"와 "동작하는 코드"는 같지 않습니다. `.gitignore`에 `.env`를 추가하는 것, 환경변수로 민감 정보를 관리하는 것, CORS 설정을 확인하는 것: 이런 보안 기본기는 AI가 알아서 챙겨주지 않는 경우가 많습니다. 바이브코딩을 시작하는 분이라면 보안 체크리스트를 반드시 별도로 관리하시기를 권합니다.
 
 ## 도구는 바뀌어도 문제 정의 능력은 바뀌지 않습니다
 

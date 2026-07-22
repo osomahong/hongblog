@@ -25,7 +25,7 @@ metaDescription: >-
   AI 콘텐츠는 SEO에 불리하다는 낭설을 직접 검증했습니다. Jekyll에서 Next.js로 전환하고 AI로 글을 작성하면서 기술적 SEO를
   갖춘 결과, 2026년 검색 노출이 0에서 일일 3,000건 이상으로 성장한 실제 Search Console 데이터를 공개합니다.
 ogImage: /og/ai-content-seo-not-penalized.png
-ogTitle: 'AI 콘텐츠와 SEO — 검색 노출 0에서 일일 3,000건까지 직접 검증한 결과'
+ogTitle: 'AI 콘텐츠와 SEO: 검색 노출 0에서 일일 3,000건까지 직접 검증한 결과'
 ogDescription: >-
   이 블로그는 AI로 콘텐츠를 작성하면서 검색 노출 0에서 일일 3,000건을 달성했습니다. AI 콘텐츠 + 기술적 SEO의 실제 과정과
   데이터를 공개합니다.

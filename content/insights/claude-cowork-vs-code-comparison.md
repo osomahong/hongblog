@@ -1,34 +1,26 @@
 ---
 slug: claude-cowork-vs-code-comparison
 title: 클로드 코워크 vs 클로드 코드 비슷해보이지만 어떻게 다른지 정리했습니다.
-excerpt: >-
-  Claude Desktop의 Cowork 탭과 터미널의 Claude Code는 같은 AI 모델을 쓰지만 대상 사용자와 작업 범위가 완전히
-  다릅니다. 비개발자를 위한 Cowork과 개발자를 위한 Code의 차이를 비유와 비교표로 정리했습니다.
+excerpt: Claude Desktop의 Cowork 탭과 터미널의 Claude Code는 같은 AI 모델을 쓰지만 대상 사용자와 작업 범위가 완전히 다릅니다. 비개발자를 위한 Cowork과 개발자를 위한 Code의 차이를 비유와 비교표로 정리했습니다.
 category: AI_TECH
 tags:
-  - AI
-  - 자동화
+- AI
+- 자동화
 publishedAt: '2026-02-18T15:41:31.508Z'
 quiz:
-  - options:
-      - 클로드 코워크 — 브라우저와 로컬 파일을 다루는 반복 업무에 최적화되어 있다
-      - 클로드 코드 — 자동화 스크립트를 작성해서 완전 자동화할 수 있다
-      - 클로드 챗 — 복사-붙여넣기로 간단히 요약을 받을 수 있다
-      - 상황에 따라 다름 — 반복 빈도와 데이터 양에 따라 도구를 달리 선택해야 한다
-    question: >-
-      마케터가 매주 반복하는 '경쟁사 블로그 모니터링 → 요약 스프레드시트 작성' 업무를 AI에게 맡기려 합니다. 어떤 도구가 가장
-      적합할까요?
-    explanation: >-
-      매주 반복하는 브라우저 기반 작업은 코워크의 핵심 활용 영역입니다. 코드는 개발 작업에, 챗은 일회성 질문에 더 적합합니다. 다만
-      데이터 양이 매우 크거나 완전 자동화가 필요하다면 코드로 스크립트를 만드는 것도 좋은 선택입니다.
-    correctIndex: 0
+- options:
+  - '클로드 코워크: 브라우저와 로컬 파일을 다루는 반복 업무에 최적화되어 있다'
+  - '클로드 코드: 자동화 스크립트를 작성해서 완전 자동화할 수 있다'
+  - '클로드 챗: 복사-붙여넣기로 간단히 요약을 받을 수 있다'
+  - '상황에 따라 다름: 반복 빈도와 데이터 양에 따라 도구를 달리 선택해야 한다'
+  question: 마케터가 매주 반복하는 '경쟁사 블로그 모니터링 → 요약 스프레드시트 작성' 업무를 AI에게 맡기려 합니다. 어떤 도구가 가장 적합할까요?
+  explanation: 매주 반복하는 브라우저 기반 작업은 코워크의 핵심 활용 영역입니다. 코드는 개발 작업에, 챗은 일회성 질문에 더 적합합니다. 다만 데이터 양이 매우 크거나 완전 자동화가 필요하다면 코드로 스크립트를 만드는 것도 좋은 선택입니다.
+  correctIndex: 0
 metaTitle: 클로드 코워크 vs 클로드 코드 차이점 | 선택 가이드
-metaDescription: >-
-  Claude Cowork과 Claude Code는 같은 AI인데 왜 따로 있을까요? 대상 사용자, 인터페이스, 작업 범위 차이를 비유와
-  비교표로 정리하고, 나에게 맞는 도구 선택법을 안내합니다.
+metaDescription: Claude Cowork과 Claude Code는 같은 AI인데 왜 따로 있을까요? 대상 사용자, 인터페이스, 작업 범위 차이를 비유와 비교표로 정리하고, 나에게 맞는 도구 선택법을 안내합니다.
 ogImage: /og/claude-cowork-vs-code-comparison.png
-ogTitle: 클로드 코워크 vs 클로드 코드 — 같은 Claude인데 뭐가 다를까?
-ogDescription: 'Cowork은 비개발자를 위한 파일·브라우저 에이전트, Code는 개발자를 위한 코딩 에이전트입니다. 비유와 비교표로 차이를 정리했습니다.'
+ogTitle: '클로드 코워크 vs 클로드 코드: 같은 Claude인데 뭐가 다를까?'
+ogDescription: Cowork은 비개발자를 위한 파일, 브라우저 에이전트, Code는 개발자를 위한 코딩 에이전트입니다. 비유와 비교표로 차이를 정리했습니다.
 ---
 
 ## "같은 클로드인데 왜 세 개나 있지?"
@@ -45,12 +37,33 @@ Claude Desktop 앱을 열면 상단에 탭이 세 개 보입니다. **챗(Chat)*
 
 일반적인 AI 챗봇은 질문하면 답하고, 다시 질문하면 다시 답하는 **일문일답** 방식입니다. 전화 문의처럼 한 번에 하나의 질문만 처리합니다. 반면 AI 에이전트는 "이 일 좀 처리해 줘"라고 맡기면, AI가 **스스로 계획을 세우고, 여러 단계를 자율적으로 수행**합니다. 동료에게 업무를 위임하는 것과 비슷합니다.
 
-코워크와 코드 모두 이 에이전트 방식으로 동작합니다. 지시를 내리면 AI가 알아서 파일을 열고, 내용을 분석하고, 결과물을 만들어 냅니다. 차이는 **어떤 종류의 일을 맡기느냐**에 있습니다. 코워크는 문서·파일·브라우저 작업을 맡기는 에이전트이고, 코드는 소프트웨어 개발 작업을 맡기는 에이전트입니다.
+코워크와 코드 모두 이 에이전트 방식으로 동작합니다. 지시를 내리면 AI가 알아서 파일을 열고, 내용을 분석하고, 결과물을 만들어 냅니다. 차이는 **어떤 종류의 일을 맡기느냐**에 있습니다. 코워크는 문서, 파일, 브라우저 작업을 맡기는 에이전트이고, 코드는 소프트웨어 개발 작업을 맡기는 에이전트입니다.
 
 ## 클로드 코워크(Cowork)란
 
 
-![클로드 코워크의 핵심 개념과 주요 특징을 보여주는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-cowork-vs-code-comparison-0-1771421680577.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#000;color:#fff;padding:10px 14px;font-weight:700;">Claude Desktop의 세 탭: Ask / Do / Build</div>
+<div style="display:flex;flex-wrap:wrap;">
+<div style="flex:1 1 180px;padding:14px;">
+<div style="font-weight:700;">챗 (Ask)</div>
+<div style="font-size:0.9em;margin:6px 0;">궁금한 것을 묻고 답을 받는 대화</div>
+<div style="font-family:monospace;font-size:0.85em;background:#F3F3F3;padding:6px 8px;">"이 문장 교정해 줘"</div>
+</div>
+<div style="flex:1 1 180px;padding:14px;background:#FFD700;">
+<div style="font-weight:700;">코워크 (Do)</div>
+<div style="font-size:0.9em;margin:6px 0;">파일, 문서, 브라우저 작업을 위임</div>
+<div style="font-family:monospace;font-size:0.85em;background:#fff;padding:6px 8px;">"영수증 사진을 경비 스프레드시트로 정리해 줘"</div>
+</div>
+<div style="flex:1 1 180px;padding:14px;">
+<div style="font-weight:700;">코드 (Build)</div>
+<div style="font-size:0.9em;margin:6px 0;">코드베이스를 이해하고 개발을 위임</div>
+<div style="font-family:monospace;font-size:0.85em;background:#F3F3F3;padding:6px 8px;">"블로그에 태그 기능 추가해 줘"</div>
+</div>
+</div>
+</div>
+</div>
 
 ### 비개발자를 위한 AI 동료
 
@@ -75,7 +88,7 @@ Claude Desktop 앱을 열면 상단에 탭이 세 개 보입니다. **챗(Chat)*
 - 경쟁사 웹사이트 모니터링 → 변경 사항 정리하여 보고서 작성
 - 이메일 초안 작성, 미팅 노트 정리, 프레젠테이션 자료 준비
 
-현재 11개의 오픈소스 플러그인이 제공되어, 영업·법무·재무 등 전문 역할에 특화된 기능을 추가로 사용할 수 있습니다.
+현재 11개의 오픈소스 플러그인이 제공되어, 영업, 법무, 재무 등 전문 역할에 특화된 기능을 추가로 사용할 수 있습니다.
 
 ## 클로드 코드(Code)란
 
@@ -91,7 +104,7 @@ Claude Desktop 앱을 열면 상단에 탭이 세 개 보입니다. **챗(Chat)*
 
 실제로 저는 Claude Code로 이 블로그를 구축하고 유지보수하고 있습니다. 새 기능을 추가할 때 "기존 코드 패턴에 맞춰서" 작업해 주는 것이, 마치 프로젝트를 이해하는 팀원과 함께 일하는 느낌입니다.
 
-### 에이전트, 스킬, MCP — 코드만의 확장 체계
+### 에이전트, 스킬, MCP: 코드만의 확장 체계
 
 Claude Code가 코워크와 가장 크게 차이나는 점은 **확장 체계의 깊이**입니다. 단순히 지시를 받아 실행하는 것을 넘어, 복잡한 워크플로우를 체계적으로 구성할 수 있습니다.
 
@@ -114,9 +127,6 @@ Claude Code가 코워크와 가장 크게 차이나는 점은 **확장 체계의
 macOS뿐 아니라 Linux, Windows에서도 사용할 수 있으며, VS Code와 JetBrains IDE 확장도 지원합니다. Claude Code를 비롯한 AI 코딩 도구 5종을 실제로 사용해 본 비교기가 궁금하신 분은 [AI 코딩 도구 5종 비교 체험기](/insights/ai-coding-tools-comparison-vibe-coding)를 참고해 주세요.
 
 ## 핵심 차이 비교표
-
-
-![클로드 코워크와 클로드 코드의 주요 차이점을 비교 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-cowork-vs-code-comparison-1-1771421717494.png)
 
 개념 설명만으로는 차이가 와닿지 않을 수 있습니다. 한눈에 비교할 수 있도록 표로 정리했습니다.
 
@@ -160,14 +170,14 @@ macOS뿐 아니라 Linux, Windows에서도 사용할 수 있으며, VS Code와 J
 - **"매일 GA4 데이터를 수집해서 슬랙으로 보내는 자동화를 만들어 줘"** → 코드
 - **"오늘 날씨 알려줘" / "이 문장 교정해 줘"** → 챗
 
-한 가지 기억해 둘 점은, **같은 구독(Max)으로 둘 다 쓸 수 있다**는 것입니다. 하나만 골라야 하는 것이 아닙니다. 문서 작업은 코워크로, 개발 작업은 코드로, 빠른 질문은 챗으로 — 상황에 맞게 탭을 전환하면 됩니다.
+한 가지 기억해 둘 점은, **같은 구독(Max)으로 둘 다 쓸 수 있다**는 것입니다. 하나만 골라야 하는 것이 아닙니다. 문서 작업은 코워크로, 개발 작업은 코드로, 빠른 질문은 챗으로: 상황에 맞게 탭을 전환하면 됩니다.
 
 ## 정리: Ask, Do, Build
 
 글의 처음에 제시한 프레임워크로 돌아가겠습니다.
 
 - **Ask(질문)** → 클로드 챗: 궁금한 것을 물어보고 바로 답을 받는 대화
-- **Do(실행)** → 클로드 코워크: 파일·문서·브라우저 작업을 AI 동료에게 위임
+- **Do(실행)** → 클로드 코워크: 파일, 문서, 브라우저 작업을 AI 동료에게 위임
 - **Build(개발)** → 클로드 코드: 코드베이스를 이해하는 AI 개발자에게 개발 위임
 
 셋 다 같은 Claude이고, 같은 AI 두뇌를 공유합니다. 다른 것은 **인터페이스와 작업 범위**뿐입니다. 어느 쪽이 더 좋다, 나쁘다의 문제가 아니라 "지금 내가 해야 하는 작업에 어떤 도구가 맞는가"의 문제입니다.

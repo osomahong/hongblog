@@ -1,7 +1,7 @@
 ---
 slug: linkedin-api-auto-posting-integration-guide
 title: >-
-  블로그 관리 페이지에서 LinkedIn에 바로 글을 올리는 기능을 만들었습니다 — LinkedIn API 연동 과정을 처음부터 끝까지
+  블로그 관리 페이지에서 LinkedIn에 바로 글을 올리는 기능을 만들었습니다: LinkedIn API 연동 과정을 처음부터 끝까지
   정리합니다
 excerpt: >-
   블로그에서 AI로 LinkedIn 소개글을 생성한 뒤, 복사-붙여넣기 없이 바로 게시할 수 있도록 LinkedIn Posts API를 연동한
@@ -27,7 +27,7 @@ metaDescription: >-
   LinkedIn Posts API를 Next.js 블로그에 연동하여 관리 페이지에서 바로 게시하는 기능을 만든 과정을 OAuth 인증, 토큰
   관리, API 호출까지 단계별로 정리했습니다.
 ogImage: /og/linkedin-api-auto-posting-integration-guide.png
-ogTitle: LinkedIn에 자동으로 글 올리기 — API 연동 전 과정 공개
+ogTitle: 'LinkedIn에 자동으로 글 올리기: API 연동 전 과정 공개'
 ogDescription: 복사-붙여넣기 없이 블로그 관리 페이지에서 LinkedIn에 바로 게시하는 기능을 만든 과정을 정리했습니다.
 ---
 
@@ -65,18 +65,18 @@ ogDescription: 복사-붙여넣기 없이 블로그 관리 페이지에서 Linke
 
 코드를 쓰기 전에, 전체 흐름을 머릿속에 그리는 것이 중요합니다. LinkedIn API 연동은 크게 세 단계로 나뉩니다.
 
-**1단계: OAuth 인증** — 사용자가 LinkedIn에 로그인하고, "이 앱이 내 계정에 글을 올려도 됩니다"라고 허락하는 과정입니다.
+**1단계: OAuth 인증**: 사용자가 LinkedIn에 로그인하고, "이 앱이 내 계정에 글을 올려도 됩니다"라고 허락하는 과정입니다.
 
-**2단계: 토큰 저장** — 허락의 증거로 받은 "액세스 토큰"을 DB에 저장합니다. 이 토큰이 있어야 API를 호출할 수 있습니다.
+**2단계: 토큰 저장**: 허락의 증거로 받은 "액세스 토큰"을 DB에 저장합니다. 이 토큰이 있어야 API를 호출할 수 있습니다.
 
-**3단계: 게시** — 저장된 토큰을 사용해 LinkedIn Posts API를 호출하고, 텍스트를 게시합니다.
+**3단계: 게시**: 저장된 토큰을 사용해 LinkedIn Posts API를 호출하고, 텍스트를 게시합니다.
 
 이 세 단계를 구현하기 위해 만들어야 하는 것은 다음과 같습니다.
 
-- **DB 테이블** 1개 — 토큰을 저장할 곳
-- **서비스 레이어** 1개 — LinkedIn 관련 로직을 모아둔 파일
-- **API 라우트** 4개 — 인증 시작, 콜백 처리, 상태 조회, 게시
-- **UI 수정** — 기존 모달에 버튼과 상태 표시 추가
+- **DB 테이블** 1개: 토큰을 저장할 곳
+- **서비스 레이어** 1개: LinkedIn 관련 로직을 모아둔 파일
+- **API 라우트** 4개: 인증 시작, 콜백 처리, 상태 조회, 게시
+- **UI 수정**: 기존 모달에 버튼과 상태 표시 추가
 
 ## OAuth 2.0이 뭔가요
 
@@ -95,9 +95,6 @@ LinkedIn API를 사용하려면 OAuth 2.0 인증을 거쳐야 합니다. 처음 
 왜 인증 코드를 한 번 더 토큰으로 교환하는 걸까요? 보안 때문입니다. 인증 코드는 URL에 노출되지만 짧은 시간 안에 만료됩니다. 토큰 교환은 서버 간 통신으로 이루어지므로 외부에 노출되지 않습니다.
 
 ## 사전 준비: LinkedIn Developer App 등록
-
-
-![LinkedIn API 연동을 위한 개발자 앱 등록 절차를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/linkedin-api-auto-posting-integration-guide-0-1771426381790.png)
 
 코드를 작성하기 전에 LinkedIn Developer 포털에서 앱을 등록해야 합니다.
 
@@ -329,8 +326,20 @@ export async function GET(request: NextRequest) {
 
 ## 4단계: UI 수정
 
-
-![블로그 관리 페이지에 추가된 LinkedIn 게시 기능의 UI 요소를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/linkedin-api-auto-posting-integration-guide-1-1771426412535.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:420px;margin:0 auto;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 14px;font-weight:800;font-size:13px;display:flex;justify-content:space-between;gap:8px"><span>LinkedIn Summary</span><span style="background:#FFD700;color:#000;padding:1px 8px;font-size:11px;font-weight:800">연결됨: 홍OO</span></div>
+<div style="padding:14px">
+<div style="border:2px solid #000;background:#F3F3F3;padding:10px;font-size:12px;line-height:1.7;min-height:70px">AI가 생성한 소개글이 여기에 표시되고, 게시 전에 자유롭게 편집할 수 있습니다.</div>
+<div style="text-align:right;font-family:monospace;font-size:11px;margin-top:6px">1,240 / 3,000자</div>
+<div style="display:flex;gap:8px;margin-top:10px">
+<div style="flex:1;border:2px solid #000;background:#fff;padding:8px;text-align:center;font-size:12px;font-weight:700">복사</div>
+<div style="flex:1;border:2px solid #000;background:#FFD700;padding:8px;text-align:center;font-size:12px;font-weight:800">Post to LinkedIn</div>
+</div>
+</div>
+<div style="border-top:2px solid #000;background:#F3F3F3;padding:8px 14px;font-size:11px;line-height:1.6">3,000자 초과 시 카운터가 빨간색으로 바뀌고 게시 버튼이 비활성화됩니다.</div>
+</div>
+</div>
 
 기존 LinkedIn Summary 모달을 개선합니다. 변경 사항은 네 가지입니다.
 
@@ -380,11 +389,11 @@ LinkedIn 게시물의 최대 길이는 3,000자입니다. AI가 생성한 소개
 
 LinkedIn API 연동의 전체 흐름을 다시 정리합니다.
 
-1. **LinkedIn Developer App 등록** — Client ID/Secret 발급, Redirect URL 설정
-2. **DB 테이블 추가** — 토큰 저장용 테이블 1개
-3. **서비스 레이어** — OAuth, 토큰 관리, 게시 함수를 한 파일에 구현
-4. **API 라우트 4개** — 인증 시작, 콜백, 상태, 게시
-5. **UI 수정** — 편집, 글자 수, 게시 버튼, 상태 표시
+1. **LinkedIn Developer App 등록**: Client ID/Secret 발급, Redirect URL 설정
+2. **DB 테이블 추가**: 토큰 저장용 테이블 1개
+3. **서비스 레이어**: OAuth, 토큰 관리, 게시 함수를 한 파일에 구현
+4. **API 라우트 4개**: 인증 시작, 콜백, 상태, 게시
+5. **UI 수정**: 편집, 글자 수, 게시 버튼, 상태 표시
 
 OAuth 2.0이 처음에는 복잡해 보이지만, 핵심은 "사용자 동의 → 인증 코드 → 토큰 교환" 세 단계입니다. 이 흐름만 이해하면 LinkedIn뿐 아니라 Google, Facebook, X(Twitter) 등 대부분의 소셜 미디어 API에 동일한 패턴을 적용할 수 있습니다.
 

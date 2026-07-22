@@ -140,8 +140,17 @@ History Change 트리거를 사용할 때는 GA4 Config 태그에서 `send_page_
 
 ## 브라우저 Network 탭으로 실제 전송 확인하기
 
-
-![GTM 디버깅 시 브라우저 Network 탭에서 데이터 전송 확인 과정을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/gtm-debugging-practical-guide-0-1774262701907.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="min-width:420px;max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:8px 14px;font-weight:800;font-size:13px;font-family:monospace">DevTools > Network | 필터: collect?</div>
+<table style="width:100%;border-collapse:collapse;font-size:12px;font-family:monospace">
+<tr style="background:#F3F3F3"><th style="border:2px solid #000;padding:6px 8px;text-align:left">Name</th><th style="border:2px solid #000;padding:6px 8px;text-align:left">Status</th><th style="border:2px solid #000;padding:6px 8px;text-align:left">해석</th></tr>
+<tr><td style="border:2px solid #000;padding:6px 8px">g/collect?v=2&en=page_view...</td><td style="border:2px solid #000;padding:6px 8px;background:#FFD700;font-weight:800">204</td><td style="border:2px solid #000;padding:6px 8px;font-family:inherit">GA4 정상 전송</td></tr>
+<tr><td style="border:2px solid #000;padding:6px 8px">g/collect?v=2&en=purchase...</td><td style="border:2px solid #000;padding:6px 8px;background:#FFD700;font-weight:800">204</td><td style="border:2px solid #000;padding:6px 8px;font-family:inherit">전환 이벤트 정상 전송</td></tr>
+<tr><td style="border:2px solid #000;padding:6px 8px">(요청 없음)</td><td style="border:2px solid #000;padding:6px 8px;font-weight:800">-</td><td style="border:2px solid #000;padding:6px 8px;font-family:inherit">태그 설정 또는 차단 의심</td></tr>
+</table>
+</div>
+</div>
 
 GTM Preview에서 "Fired"로 표시되더라도, 실제로 데이터가 GA4나 광고 플랫폼 서버에 전송되지 않는 경우가 있습니다. 최종 확인은 **브라우저 개발자 도구의 Network 탭**에서 해야 합니다.
 
@@ -232,8 +241,22 @@ because it violates the following Content Security Policy directive...
 
 ## 디버깅 체크리스트 (실무용)
 
-
-![GTM 태그 미작동 시 원인 분석 및 해결을 위한 실무 디버깅 체크리스트를 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/gtm-debugging-practical-guide-1-1774262736264.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 16px;font-weight:800;font-size:14px">태그 미작동 진단 흐름</div>
+<div style="padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;text-align:center;font-size:13px">
+<div style="border:3px solid #000;background:#FFD700;padding:10px 12px;font-weight:800">Preview에서<br>Fired인가?</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">No →</span><div style="border:3px solid #000;background:#F3F3F3;padding:8px 10px">트리거 조건과<br>변수 값 대조</div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">Yes →</span><div style="border:3px solid #000;background:#FFD700;padding:8px 10px;font-weight:800">Network 탭에<br>요청이 나가는가?</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">No →</span><div style="border:3px solid #000;background:#F3F3F3;padding:8px 10px">태그 설정,<br>게시 여부 확인</div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">에러 →</span><div style="border:3px solid #000;background:#F3F3F3;padding:8px 10px">광고 차단기,<br>CSP 확인</div></div>
+</div>
+</div>
+</div>
+</div>
 
 아래 체크리스트를 순서대로 확인하면 대부분의 GTM 문제를 해결할 수 있습니다.
 

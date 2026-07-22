@@ -30,7 +30,7 @@ metaDescription: >-
   전환은 구매가 아니라 마케터가 정의한 목표 달성입니다. 전환 설정에 따라 광고 알고리즘이 찾는 사람이 완전히 달라집니다. 전환 추적 세팅부터
   잘못된 설정 진단법, 전환 캠페인 작동 원리까지 초보자 눈높이로 정리했습니다.
 ogImage: /og/conversion-and-conversion-campaign.png
-ogTitle: 전환(Conversion) 완전 정리 — 전환 설정이 광고 성과를 좌우하는 이유
+ogTitle: '전환(Conversion) 완전 정리: 전환 설정이 광고 성과를 좌우하는 이유'
 ogDescription: >-
   전환은 구매만이 아닙니다. 전환 설정에 따라 알고리즘이 찾는 사람이 달라집니다. 전환 추적 설정부터 잘못된 설정의 진단과 대처법까지
   정리했습니다.
@@ -99,8 +99,20 @@ ogDescription: >-
 
 ## 전환 추적을 설정하면 무엇이 달라질까?
 
-
-![전환 추적 설정 유무에 따른 캠페인 성과 및 데이터 분석의 차이를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/conversion-and-conversion-campaign-0-1772162962804.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 16px;font-weight:800;font-size:14px">전환 추적이 작동하는 흐름</div>
+<div style="padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;text-align:center">
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px 12px;font-size:13px"><b>1. 사용자 행동</b><br>구매 완료 페이지 도달</div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px 12px;font-size:13px"><b>2. 코드가 감지</b><br>픽셀, 태그가 행동 포착</div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px 12px;font-size:13px"><b>3. 플랫폼에 전달</b><br>전환 1건으로 기록</div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#FFD700;padding:10px 12px;font-size:13px"><b>4. 알고리즘 학습</b><br>"구매할 사람"을 찾기 시작</div>
+</div>
+</div>
+</div>
 
 전환 추적이란 웹사이트에 작은 코드(픽셀, 태그)를 심어서, **사용자가 어떤 행동을 했는지를 광고 플랫폼에 알려주는 것**입니다.
 
@@ -156,8 +168,17 @@ CPA가 500원인데 제품 가격이 50,000원이라면, "전환"으로 잡히�
 
 ## 잘못된 전환 설정, 어떻게 고치나요?
 
-
-![전환율 저하의 원인이 되는 잘못된 전환 설정을 진단하고 해결하는 과정을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/conversion-and-conversion-campaign-1-1772162997807.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 16px;font-weight:800;font-size:14px">전환 설정 수정 4단계</div>
+<div style="padding:14px 16px">
+<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:2px solid #F3F3F3"><div style="font-family:monospace;font-weight:800;background:#FFD700;border:2px solid #000;padding:2px 8px">1</div><div style="font-size:13px;line-height:1.6"><b>현재 설정 확인</b>: 어떤 이벤트가 전환으로 잡혀 있는지 본다</div></div>
+<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:2px solid #F3F3F3"><div style="font-family:monospace;font-weight:800;background:#FFD700;border:2px solid #000;padding:2px 8px">2</div><div style="font-size:13px;line-height:1.6"><b>테스트 전환 실행</b>: 직접 구매해서 전환 1건이 정확히 잡히는지 본다</div></div>
+<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:2px solid #F3F3F3"><div style="font-family:monospace;font-weight:800;background:#FFD700;border:2px solid #000;padding:2px 8px">3</div><div style="font-size:13px;line-height:1.6"><b>문제 유형별 수정</b>: 중복 집계, 잘못된 이벤트, 누락, 전환 값 오류</div></div>
+<div style="display:flex;gap:10px;align-items:flex-start;padding:8px 0"><div style="font-family:monospace;font-weight:800;background:#FFD700;border:2px solid #000;padding:2px 8px">4</div><div style="font-size:13px;line-height:1.6"><b>3~5일 모니터링</b>: 전환 수와 실제 주문 수를 매일 비교한다</div></div>
+</div>
+</div>
+</div>
 
 문제를 발견했다면 아래 순서로 대처합니다.
 

@@ -1,8 +1,8 @@
 ---
 slug: data-visualization-best-practices
-title: 데이터 시각화 베스트 프랙티스 — 2026년 실무 가이드
+title: '데이터 시각화 베스트 프랙티스: 2026년 실무 가이드'
 excerpt: >-
-  데이터 시각화의 7가지 핵심 원칙부터 차트 유형 선택 가이드, 2026년 도구 트렌드, 흔한 실수와 접근성 체크리스트까지 — 실무에서 바로
+  데이터 시각화의 7가지 핵심 원칙부터 차트 유형 선택 가이드, 2026년 도구 트렌드, 흔한 실수와 접근성 체크리스트까지: 실무에서 바로
   적용할 수 있는 시각화 베스트 프랙티스를 정리합니다.
 category: DATA
 tags:
@@ -21,12 +21,12 @@ quiz:
       데이터-잉크 비율은 시각화에서 실제 데이터를 표현하는 잉크(요소)의 비율을 최대화하라는 원칙입니다. 불필요한 격자선, 3D 효과,
       장식적 그래픽 등은 정보 전달에 기여하지 않으므로 제거하여 핵심 데이터에 집중할 수 있게 합니다.
     correctIndex: 0
-metaTitle: 데이터 시각화 베스트 프랙티스 — 2026년 실무 가이드
+metaTitle: '데이터 시각화 베스트 프랙티스: 2026년 실무 가이드'
 metaDescription: >-
   데이터 시각화의 7가지 핵심 원칙, 차트 유형 선택 가이드, 2026년 도구 트렌드, 흔한 실수 7가지와 접근성 체크리스트까지 실무 중심으로
   정리합니다.
 ogImage: /og/data-visualization-best-practices.png
-ogTitle: 데이터 시각화 베스트 프랙티스 — 7가지 원칙과 실무 가이드
+ogTitle: '데이터 시각화 베스트 프랙티스: 7가지 원칙과 실무 가이드'
 ogDescription: >-
   의사결정 속도를 5배 높이는 시각화 설계 원칙, 목적별 차트 선택 가이드, 2026년 도구 트렌드와 접근성 체크리스트를 한 페이지에
   정리합니다.
@@ -73,7 +73,29 @@ Edward Tufte가 제안한 개념으로, 시각화에서 실제 데이터를 나�
 ## 차트 유형 선택 가이드: 데이터에 맞는 옷 입히기
 
 
-![데이터에 맞는 최적의 차트 유형 선택 가이드를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/data-visualization-best-practices-0-1771563427738.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">30초 차트 선택 가이드: 무엇을 보여주고 싶은가?</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;">
+<span>항목 간 크기를 비교하고 싶다</span><span style="font-weight:700;white-space:nowrap;">막대 차트</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;background:#F3F3F3;">
+<span>시간에 따른 변화를 보고 싶다</span><span style="font-weight:700;white-space:nowrap;">꺾은선 그래프</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;">
+<span>전체에서 차지하는 비율을 보고 싶다</span><span style="font-weight:700;white-space:nowrap;">파이 차트 (3~5개까지)</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;background:#F3F3F3;">
+<span>두 변수의 관계를 보고 싶다</span><span style="font-weight:700;white-space:nowrap;">산점도</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;">
+<span>값이 어떻게 퍼져 있는지 보고 싶다</span><span style="font-weight:700;white-space:nowrap;">히스토그램</span>
+</div>
+<div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;background:#F3F3F3;">
+<span>단계별로 줄어드는 흐름을 보고 싶다</span><span style="font-weight:700;white-space:nowrap;">깔때기 차트</span>
+</div>
+</div>
+</div>
 
 올바른 차트 유형을 선택하는 것은 시각화 성공의 절반입니다. 아래 표는 분석 목적별로 적합한 차트 유형을 정리한 것입니다.
 
@@ -137,7 +159,29 @@ Edward Tufte가 제안한 개념으로, 시각화에서 실제 데이터를 나�
 ## 피해야 할 7가지 흔한 실수
 
 
-![데이터 시각화 시 피해야 할 7가지 흔한 실수를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/data-visualization-best-practices-1-1771563462334.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#000;color:#fff;padding:10px 14px;font-weight:700;">같은 데이터, 다른 Y축: 매출 100 → 105 (5% 증가)</div>
+<div style="display:flex;flex-wrap:wrap;">
+<div style="flex:1 1 240px;padding:14px;">
+<div style="font-weight:700;margin-bottom:8px;">Y축을 99에서 시작 (왜곡)</div>
+<div style="font-family:monospace;font-size:0.85em;">지난달 100</div>
+<div style="background:#000;height:12px;width:16%;margin:2px 0 8px;"></div>
+<div style="font-family:monospace;font-size:0.85em;">이번달 105</div>
+<div style="background:#FF0000;height:12px;width:96%;margin:2px 0;"></div>
+<div style="margin-top:8px;font-size:0.85em;">5% 증가가 몇 배 차이처럼 보입니다</div>
+</div>
+<div style="flex:1 1 240px;padding:14px;background:#F3F3F3;">
+<div style="font-weight:700;margin-bottom:8px;">Y축을 0에서 시작 (정상)</div>
+<div style="font-family:monospace;font-size:0.85em;">지난달 100</div>
+<div style="background:#000;height:12px;width:91%;margin:2px 0 8px;"></div>
+<div style="font-family:monospace;font-size:0.85em;">이번달 105</div>
+<div style="background:#000;height:12px;width:96%;margin:2px 0;"></div>
+<div style="margin-top:8px;font-size:0.85em;">실제 차이인 5%로 보입니다</div>
+</div>
+</div>
+</div>
+</div>
 
 아무리 좋은 데이터를 가지고 있어도, 시각화 과정에서 흔한 실수를 범하면 오히려 잘못된 의사결정을 유도할 수 있습니다.
 

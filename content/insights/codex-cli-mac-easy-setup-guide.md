@@ -2,7 +2,7 @@
 slug: codex-cli-mac-easy-setup-guide
 title: 쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(맥)
 excerpt: >-
-  맥(Mac)에 OpenAI 코덱스 CLI(Codex CLI)를 처음 설치하는 분을 위해, 터미널 실행부터 Homebrew·Node.js 사전
+  맥(Mac)에 OpenAI 코덱스 CLI(Codex CLI)를 처음 설치하는 분을 위해, 터미널 실행부터 Homebrew, Node.js 사전
   준비, 본체 설치, ChatGPT 로그인, GPT-5.5 모델 선택까지 단순하게 정리했습니다. 클로드 코드(Claude Code)와의 차이도
   마지막에 짧게 짚었습니다.
 category: AI_TECH
@@ -35,7 +35,7 @@ metaDescription: >-
 ogImage: /og/codex-cli-mac-easy-setup-guide.png
 ogTitle: 쉽게 설치하는 코덱스 CLI 세팅가이드(맥)
 ogDescription: >-
-  터미널 실행부터 Homebrew·Node.js 사전 준비, 코덱스 CLI 본체 설치, ChatGPT 로그인, GPT-5.5 모델과 xhigh
+  터미널 실행부터 Homebrew, Node.js 사전 준비, 코덱스 CLI 본체 설치, ChatGPT 로그인, GPT-5.5 모델과 xhigh
   추론 모드 선택까지. 맥 입문자를 위한 코덱스 CLI 설치 가이드입니다.
 ---
 
@@ -47,7 +47,7 @@ ogDescription: >-
 
 맥에서 코덱스 CLI는 **설치 자체가 매우 짧습니다**. 사실상 한 줄짜리 npm 명령이 본체 설치의 전부이고, 그다음은 ChatGPT 계정 로그인뿐입니다. 아래 순서대로 따라가 주세요. Apple Silicon(M1/M2/M3)과 Intel 맥 모두 동일하게 진행됩니다. 설치 도중에 막히는 메시지가 뜬다면 글 끝의 [자주 발생하는 문제](#troubleshooting) 섹션을 확인해 보세요.
 
-> 코덱스 CLI(Codex CLI)는 OpenAI가 만든 터미널 기반 AI 코딩 도구입니다. 맥에서는 Homebrew를 깔고 `brew install node`로 Node.js를 받은 뒤(이미 있다면 건너뛰어도 됩니다), `npm i -g @openai/codex` 한 줄로 본체를 받고, `codex` 명령으로 실행해 ChatGPT 계정으로 로그인하면 첫 실행 준비가 끝납니다. 모델은 기본으로 GPT-5.5가 선택되며, 추론 깊이는 medium·high·xhigh 중에서 고를 수 있습니다.
+> 코덱스 CLI(Codex CLI)는 OpenAI가 만든 터미널 기반 AI 코딩 도구입니다. 맥에서는 Homebrew를 깔고 `brew install node`로 Node.js를 받은 뒤(이미 있다면 건너뛰어도 됩니다), `npm i -g @openai/codex` 한 줄로 본체를 받고, `codex` 명령으로 실행해 ChatGPT 계정으로 로그인하면 첫 실행 준비가 끝납니다. 모델은 기본으로 GPT-5.5가 선택되며, 추론 깊이는 medium, high, xhigh 중에서 고를 수 있습니다.
 
 이 글은 맥(macOS) 기준입니다. 윈도우 PC를 쓰시는 분은 [윈도우용 가이드](/insights/codex-cli-windows-easy-setup-guide) (윈도우에서 설치하는 방법 바로가기)를 참고하세요.
 
@@ -127,7 +127,7 @@ brew install --cask codex
 codex
 ```
 
-처음 실행하면 인증 안내가 뜹니다. 기본 옵션은 **ChatGPT 계정으로 로그인**입니다. 화면의 안내를 따라 엔터를 누르면 웹 브라우저가 열리고, OpenAI 계정에 로그인하면 자동으로 코덱스 CLI 창에 인증 정보가 전달됩니다. ChatGPT Plus·Pro·Business·Enterprise 어느 플랜이든 모두 로그인 가능합니다.
+처음 실행하면 인증 안내가 뜹니다. 기본 옵션은 **ChatGPT 계정으로 로그인**입니다. 화면의 안내를 따라 엔터를 누르면 웹 브라우저가 열리고, OpenAI 계정에 로그인하면 자동으로 코덱스 CLI 창에 인증 정보가 전달됩니다. ChatGPT Plus, Pro, Business, Enterprise 어느 플랜이든 모두 로그인 가능합니다.
 
 API key를 별도로 발급해 사용하는 방식도 있지만, 처음에는 ChatGPT 계정 로그인 쪽이 훨씬 간단합니다.
 
@@ -158,7 +158,7 @@ codex
 
 ## GPT-5.5와 xhigh 추론 모드, 한눈에 정리
 
-코덱스 CLI를 처음 실행하면 기본 모델은 **GPT-5.5**입니다. 2026년 4월 23일에 공개된 OpenAI의 최신 주력 모델이며, 코딩·디버깅·문서 작성·웹 리서치 같은 작업 전반에서 이전 세대인 GPT-5.4보다 더 적은 토큰으로 더 좋은 결과를 내도록 튜닝되었습니다.
+코덱스 CLI를 처음 실행하면 기본 모델은 **GPT-5.5**입니다. 2026년 4월 23일에 공개된 OpenAI의 최신 주력 모델이며, 코딩, 디버깅, 문서 작성, 웹 리서치 같은 작업 전반에서 이전 세대인 GPT-5.4보다 더 적은 토큰으로 더 좋은 결과를 내도록 튜닝되었습니다.
 
 GPT-5.5 라인업은 다음 세 가지입니다.
 
@@ -180,7 +180,7 @@ GPT-5.5 라인업은 다음 세 가지입니다.
 
 사용자가 "GPT-5.5 xhigh" 같은 표현을 보았다면, 이것은 **모델 자체의 이름이 아니라 GPT-5.5에 xhigh 추론 모드를 적용한 조합**입니다. 어려운 버그를 잡거나, 큰 리팩토링을 부탁할 때 한 번씩 꺼내 쓰는 카드라고 이해하시면 됩니다.
 
-코덱스 CLI 안에서 모델과 추론 깊이는 `/model` 명령으로 바꿀 수 있습니다. 처음에는 기본값(GPT-5.5 · medium) 그대로 써 보시고, 결과가 얕다고 느껴지는 작업에서만 한 단계씩 올려 보시면 됩니다.
+코덱스 CLI 안에서 모델과 추론 깊이는 `/model` 명령으로 바꿀 수 있습니다. 처음에는 기본값(GPT-5.5 ,  medium) 그대로 써 보시고, 결과가 얕다고 느껴지는 작업에서만 한 단계씩 올려 보시면 됩니다.
 
 > GPT-5.5는 OpenAI의 2026년 주력 모델이고, xhigh는 추론을 가장 깊게 돌리는 설정입니다. 모델과 추론 깊이는 별도 축이며, 보통은 기본값으로 충분합니다.
 
@@ -198,7 +198,7 @@ GPT-5.5 라인업은 다음 세 가지입니다.
 | 설치 명령 | `curl -fsSL https://claude.ai/install.sh \| bash` | `npm i -g @openai/codex` |
 | 실행 명령 | `claude` | `codex` |
 | 한국어 설정 | `/config`에서 명시적 선택 | 별도 설정 없이 한국어 입력 |
-| 스킬·플러그인 | 앤트로픽 공식 마켓플레이스 | 비교적 단순한 명령 체계 |
+| 스킬, 플러그인 | 앤트로픽 공식 마켓플레이스 | 비교적 단순한 명령 체계 |
 
 즉 두 도구는 같은 카테고리의 비슷한 도구이며, 어느 한쪽만 써야 할 이유는 거의 없습니다. 보통은 **둘 다 깔아 두고 작업 성격에 따라 골라 쓰는 쪽**이 자연스럽습니다. 같은 문제에 두 모델의 답을 한 번씩 받아 보면, AI 도구 활용 감각 자체가 빠르게 좋아집니다.
 
@@ -212,7 +212,7 @@ GPT-5.5 라인업은 다음 세 가지입니다.
 
 > Q. 코덱스 CLI를 쓰려면 유료 ChatGPT 구독이 꼭 필요한가요?
 >
-> A. ChatGPT 무료 계정으로도 로그인 자체는 가능하지만, GPT-5.5 같은 최신 모델과 코덱스 기능 전반을 자유롭게 쓰려면 Plus·Pro·Business·Enterprise 중 하나의 유료 플랜이 필요합니다. API key를 직접 발급해 사용량 기반으로 쓰는 방법도 있습니다.
+> A. ChatGPT 무료 계정으로도 로그인 자체는 가능하지만, GPT-5.5 같은 최신 모델과 코덱스 기능 전반을 자유롭게 쓰려면 Plus, Pro, Business, Enterprise 중 하나의 유료 플랜이 필요합니다. API key를 직접 발급해 사용량 기반으로 쓰는 방법도 있습니다.
 
 > Q. 클로드 코드를 이미 쓰고 있는데, 코덱스 CLI를 같이 깔아도 충돌이 없나요?
 >
@@ -230,11 +230,11 @@ GPT-5.5 라인업은 다음 세 가지입니다.
 - **`npm i -g`에서 권한 오류가 납니다**: Homebrew로 설치한 Node.js는 보통 사용자 권한으로 동작합니다. 그래도 EACCES 권한 오류가 보이면 `sudo` 대신 npm의 prefix 설정을 사용자 폴더로 옮기는 편이 안전합니다. `mkdir -p ~/.npm-global && npm config set prefix '~/.npm-global'`을 한 번 적용한 뒤 다시 시도해 보세요.
 - **`codex` 명령이 인식되지 않습니다**: 설치 직후 현재 터미널에서는 인식되지 않을 수 있습니다. 터미널을 종료(`⌘ Command + Q`)하고 다시 연 뒤 `codex --version`을 시도해 주세요.
 - **ChatGPT 로그인 창이 열리지 않습니다**: 기본 브라우저 설정이 비어 있거나, 회사 네트워크가 외부 OAuth 페이지를 차단하는 경우입니다. 개인 네트워크로 옮겨 본 뒤에도 같은 증상이라면 API key 방식으로 인증을 시도해 보세요.
-- **GPT-5.5 모델이 모델 선택 목록에 보이지 않습니다**: 사용 중인 ChatGPT 계정이 GPT-5.5가 아직 롤아웃되지 않은 지역·플랜일 수 있습니다. 일단 기본 모델로 사용하고, 며칠 뒤에 다시 `/model`을 열어 보세요.
+- **GPT-5.5 모델이 모델 선택 목록에 보이지 않습니다**: 사용 중인 ChatGPT 계정이 GPT-5.5가 아직 롤아웃되지 않은 지역, 플랜일 수 있습니다. 일단 기본 모델로 사용하고, 며칠 뒤에 다시 `/model`을 열어 보세요.
 
 ## 정리
 
-- 사전 준비: 터미널을 열고 Homebrew·Node.js가 깔려 있는지 확인합니다. 없으면 Homebrew를 깐 뒤 `brew install node` 한 줄을 추가합니다.
+- 사전 준비: 터미널을 열고 Homebrew, Node.js가 깔려 있는지 확인합니다. 없으면 Homebrew를 깐 뒤 `brew install node` 한 줄을 추가합니다.
 - 본체 설치: `npm i -g @openai/codex` 한 줄과 `codex` 실행, ChatGPT 계정 로그인 한 번으로 끝납니다.
 - 첫 사용: 한국어로 바로 질문해도 한국어로 답이 옵니다. GPT-5.5 기본 모델로 시작해, 어려운 작업에서만 xhigh 추론 모드를 한 번씩 꺼내 쓰는 편이 효율적입니다.
 - 클로드 코드와는 본질적으로 같은 카테고리의 도구이므로 둘 다 깔아 두고 작업별로 골라 쓰시면 됩니다.

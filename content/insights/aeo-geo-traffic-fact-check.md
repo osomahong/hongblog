@@ -1,37 +1,27 @@
 ---
 slug: aeo-geo-traffic-fact-check
-title: 'AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다'
-excerpt: >-
-  Gartner의 '검색 25% 감소' 예측, AI 검색 대체론, SEO 종말론을 원본 데이터와 대조하여 검증했습니다. AI Overviews
-  CTR 61% 하락, 제로클릭 58.5% 등 실제 수치 기반의 팩트체크와 대응 전략을 정리합니다.
+title: AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다
+excerpt: Gartner의 '검색 25% 감소' 예측, AI 검색 대체론, SEO 종말론을 원본 데이터와 대조하여 검증했습니다. AI Overviews CTR 61% 하락, 제로클릭 58.5% 등 실제 수치 기반의 팩트체크와 대응 전략을 정리합니다.
 category: AI_TECH
 tags:
-  - AI
-  - SEO
-  - 데이터 분석
-  - 퍼포먼스마케팅
+- AI
+- SEO
+- 데이터 분석
+- 퍼포먼스마케팅
 publishedAt: '2026-02-22T12:05:58.060Z'
 quiz:
-  - options:
-      - '약 1% — Conductor 2026 리포트 기준 1.08%로, 빠르게 성장 중이지만 아직 극히 일부'
-      - 약 10% — Google 점유율이 10% 하락한 만큼 AI가 그 자리를 채움
-      - 약 25% — Gartner가 예측한 대로 전통 검색의 1/4이 AI로 이동
-    question: >-
-      2026년 현재, AI 플랫폼(ChatGPT, Perplexity 등)에서 발생하는 추천 트래픽이 전체 웹 트래픽에서 차지하는 비중은
-      얼마일까요?
-    explanation: >-
-      Conductor의 2026 AEO/GEO 벤치마크 리포트에 따르면, AI 추천 트래픽은 전체 웹 방문의 1.08%를 차지합니다.
-      빠르게 성장하고 있지만, Gartner의 25% 예측과는 큰 괴리가 있는 것이 현실입니다.
-    correctIndex: 0
-metaTitle: 'AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다'
-metaDescription: >-
-  Gartner의 검색 25% 감소 예측을 원본 데이터로 팩트체크합니다. AI 추천 트래픽 1%, CTR 61% 하락 등 실제 수치와 대응
-  전략을 정리했습니다.
+- options:
+  - '약 1%: Conductor 2026 리포트 기준 1.08%로, 빠르게 성장 중이지만 아직 극히 일부'
+  - '약 10%: Google 점유율이 10% 하락한 만큼 AI가 그 자리를 채움'
+  - '약 25%: Gartner가 예측한 대로 전통 검색의 1/4이 AI로 이동'
+  question: 2026년 현재, AI 플랫폼(ChatGPT, Perplexity 등)에서 발생하는 추천 트래픽이 전체 웹 트래픽에서 차지하는 비중은 얼마일까요?
+  explanation: Conductor의 2026 AEO/GEO 벤치마크 리포트에 따르면, AI 추천 트래픽은 전체 웹 방문의 1.08%를 차지합니다. 빠르게 성장하고 있지만, Gartner의 25% 예측과는 큰 괴리가 있는 것이 현실입니다.
+  correctIndex: 0
+metaTitle: AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다
+metaDescription: Gartner의 검색 25% 감소 예측을 원본 데이터로 팩트체크합니다. AI 추천 트래픽 1%, CTR 61% 하락 등 실제 수치와 대응 전략을 정리했습니다.
 ogImage: /og/aeo-geo-traffic-fact-check.png
-ogTitle: AEO/GEO 시대의 검색 트래픽 변화 — 데이터 기반 팩트체크
-ogDescription: >-
-  검색 25% 감소설, AI 검색 대체론, SEO 종말론을 원본 출처와 대조하여 검증합니다. 실제 수치 기반의 팩트체크와 실무 대응 전략을
-  정리했습니다.
+ogTitle: 'AEO/GEO 시대의 검색 트래픽 변화: 데이터 기반 팩트체크'
+ogDescription: 검색 25% 감소설, AI 검색 대체론, SEO 종말론을 원본 출처와 대조하여 검증합니다. 실제 수치 기반의 팩트체크와 실무 대응 전략을 정리했습니다.
 ---
 
 ## Gartner는 검색량이 25% 줄어든다고 했습니다
@@ -74,7 +64,24 @@ Gartner 예측은 방향성은 맞지만, "25%"라는 수치는 2026년 현재 �
 ## AI 검색 점유율은 아직 1%입니다
 
 
-![아직 1%에 머무는 AI 검색 시장 점유율과 기존 검색의 지배적 현황을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/aeo-geo-traffic-fact-check-0-1771571104708.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">비중으로 보는 2026년 검색 시장</div>
+<div style="padding:14px;">
+<div style="font-size:0.9em;margin-bottom:4px;">Google 글로벌 검색 점유율 (StatCounter)</div>
+<div style="border:2px solid #000;height:22px;background:#F3F3F3;">
+<div style="background:#000;height:100%;width:89.57%;"></div>
+</div>
+<div style="font-family:monospace;font-weight:700;margin:2px 0 14px;">89.57%</div>
+<div style="font-size:0.9em;margin-bottom:4px;">전체 웹 트래픽 중 AI 추천 트래픽 (Conductor 2026)</div>
+<div style="border:2px solid #000;height:22px;background:#F3F3F3;">
+<div style="background:#FF0000;height:100%;width:1.08%;min-width:4px;"></div>
+</div>
+<div style="font-family:monospace;font-weight:700;margin-top:2px;">1.08%</div>
+</div>
+<div style="background:#F3F3F3;border-top:2px solid #000;padding:8px 14px;font-size:0.85em;">AI 추천 트래픽은 빠르게 성장하고 있지만, 아직 전체 웹 트래픽의 1% 수준입니다.</div>
+</div>
+</div>
 
 "ChatGPT가 검색을 대체하고 있다", "이제 Google 대신 AI에게 물어보는 시대"라는 말을 자주 접습니다. 숫자로 확인하겠습니다.
 
@@ -113,9 +120,6 @@ Neil Patel, Backlinko 등 주요 SEO 전문가들의 공통된 의견도 동일�
 
 ## 실제로 변하고 있는 수치들
 
-
-![AEO/GEO 시대 검색 트래픽의 실제 변화 수치를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/aeo-geo-traffic-fact-check-1-1771571170764.png)
-
 과장된 공포는 걷어냈습니다. 하지만 실제로 심각한 변화가 일어나고 있는 것도 사실입니다.
 
 ### 퍼블리셔 트래픽은 확실히 하락하고 있습니다
@@ -135,7 +139,7 @@ Seer Interactive의 연구(42개 기업, 3,119개 검색어, 2,510만 노출 분
 | 구분 | AI Overviews 있음 | AI Overviews 없음 |
 |------|------------------|------------------|
 | 오가닉 CTR | **0.61%** (1.76%에서 61% 하락) | 1.62% (41% 하락) |
-| 유료 CTR | 6.34% (68% 하락) | — |
+| 유료 CTR | 6.34% (68% 하락) |: |
 
 주목할 점은 AI Overviews가 **없는** 검색에서도 [CTR](/class/digital-marketing-terms/what-is-ctr)이 41% 하락했다는 것입니다. AI Overviews만의 문제가 아니라, 검색 사용자 행동 자체가 변하고 있음을 보여줍니다.
 
@@ -161,9 +165,9 @@ Datos/SparkToro 2025 보고서(수천만 명 클릭스트림 데이터 기반):
 
 데이터가 가리키는 방향은 다음과 같습니다.
 
-1. **Google 검색 점유율은 계속 하락하지만 지배적 지위 유지** — 10년 만에 처음으로 90% 아래로 떨어졌으나(89.57%), 급락이 아닌 완만한 하락입니다. 모바일에서는 여전히 92~95%를 유지합니다.
-2. **AI 추천 트래픽은 빠르게 성장** — 현재 1%에서 월 1%씩 성장하고 있으며, 2025년 6월 기준 AI 플랫폼에서의 추천 방문이 **11.3억 건**으로 전년 대비 357% 증가했습니다.
-3. **제로클릭은 구조적 추세** — AI Overviews 확대와 함께 되돌릴 수 없는 흐름입니다.
+1. **Google 검색 점유율은 계속 하락하지만 지배적 지위 유지**: 10년 만에 처음으로 90% 아래로 떨어졌으나(89.57%), 급락이 아닌 완만한 하락입니다. 모바일에서는 여전히 92~95%를 유지합니다.
+2. **AI 추천 트래픽은 빠르게 성장**: 현재 1%에서 월 1%씩 성장하고 있으며, 2025년 6월 기준 AI 플랫폼에서의 추천 방문이 **11.3억 건**으로 전년 대비 357% 증가했습니다.
+3. **제로클릭은 구조적 추세**: AI Overviews 확대와 함께 되돌릴 수 없는 흐름입니다.
 
 ### 5가지 실무 대응 전략
 
@@ -198,18 +202,18 @@ Conductor 보고서에 따르면, AI에 인용되는 상위 10개 브랜드가 �
 **3줄 요약:**
 - Gartner의 "검색 25% 감소" 예측은 방향성은 맞지만, 2026년 현재 AI 추천 트래픽은 전체의 1% 수준이며 Google은 여전히 89.57%를 점유하고 있습니다.
 - 진짜 변화는 AI의 검색 대체가 아니라, Google AI Overviews로 인한 CTR 61% 하락과 제로클릭 검색 확대입니다.
-- SEO는 죽지 않았고, AEO/GEO는 SEO 위에 쌓이는 전략입니다 — E-E-A-T 강화, 구조화 데이터, 인용 가능한 원본 콘텐츠가 핵심 대응입니다.
+- SEO는 죽지 않았고, AEO/GEO는 SEO 위에 쌓이는 전략입니다: E-E-A-T 강화, 구조화 데이터, 인용 가능한 원본 콘텐츠가 핵심 대응입니다.
 
 ---
 
 **Sources:**
 - [Gartner 공식 보도자료 (2024.02.19)](https://www.gartner.com/en/newsroom/press-releases/2024-02-19-gartner-predicts-search-engine-volume-will-drop-25-percent-by-2026-due-to-ai-chatbots-and-other-virtual-agents)
-- [Seer Interactive — AIO Impact on Google CTR: September 2025 Update](https://www.seerinteractive.com/insights/aio-impact-on-google-ctr-september-2025-update)
-- [Conductor — 2026 AEO/GEO Benchmarks Report](https://www.conductor.com/academy/aeo-geo-benchmarks-report/)
-- [Press Gazette/Chartbeat — Global publisher Google traffic dropped by a third in 2025](https://pressgazette.co.uk/media-audience-and-business-data/google-traffic-down-2025-trends-report-2026/)
-- [Datos/SparkToro — State of Search Q2 2025](https://datos.live/report/state-of-search-q2-2025/)
-- [Search Engine Journal — 7 Reasons To Be Skeptical of 25% Search Drop](https://www.searchenginejournal.com/why-prediction-of-25-search-volume-drop-due-to-chatbots-fails-scrutiny/511270/)
-- [Princeton/KDD — GEO: Generative Engine Optimization (2024)](https://dl.acm.org/doi/10.1145/3637528.3671900)
-- [Neil Patel — Is SEO Dead in 2026?](https://neilpatel.com/blog/seo-dead/)
-- [StatCounter — Search Engine Market Share](https://gs.statcounter.com/search-engine-market-share)
-- [Search Engine Land — AI sends 1% of website traffic](https://searchengineland.com/ai-1-traffic-mostly-chatgpt-464653)
+- [Seer Interactive: AIO Impact on Google CTR: September 2025 Update](https://www.seerinteractive.com/insights/aio-impact-on-google-ctr-september-2025-update)
+- [Conductor: 2026 AEO/GEO Benchmarks Report](https://www.conductor.com/academy/aeo-geo-benchmarks-report/)
+- [Press Gazette/Chartbeat: Global publisher Google traffic dropped by a third in 2025](https://pressgazette.co.uk/media-audience-and-business-data/google-traffic-down-2025-trends-report-2026/)
+- [Datos/SparkToro: State of Search Q2 2025](https://datos.live/report/state-of-search-q2-2025/)
+- [Search Engine Journal: 7 Reasons To Be Skeptical of 25% Search Drop](https://www.searchenginejournal.com/why-prediction-of-25-search-volume-drop-due-to-chatbots-fails-scrutiny/511270/)
+- [Princeton/KDD: GEO: Generative Engine Optimization (2024)](https://dl.acm.org/doi/10.1145/3637528.3671900)
+- [Neil Patel: Is SEO Dead in 2026?](https://neilpatel.com/blog/seo-dead/)
+- [StatCounter: Search Engine Market Share](https://gs.statcounter.com/search-engine-market-share)
+- [Search Engine Land: AI sends 1% of website traffic](https://searchengineland.com/ai-1-traffic-mostly-chatgpt-464653)

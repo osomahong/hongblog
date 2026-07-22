@@ -68,8 +68,23 @@ ogDescription: 'LLM 래퍼와 AI 어그리게이터란 무엇이고, 왜 위기�
 
 ## 용어 정리: AI 어그리게이터란
 
-
-![다양한 AI 모델을 통합하여 사용자에게 제공하는 AI 어그리게이터의 개념을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/google-vp-llm-wrapper-aggregator-crisis-0-1772873174217.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 16px;font-weight:800;font-size:14px">AI 어그리게이터의 구조</div>
+<div style="padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;text-align:center;font-size:13px">
+<div style="border:3px solid #000;background:#F3F3F3;padding:12px 14px;font-weight:700">사용자</div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#FFD700;padding:12px 14px"><b>어그리게이터</b><br>하나의 인터페이스<br>+ 모델 라우팅</div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="border:3px solid #000;background:#F3F3F3;padding:6px 12px;font-family:monospace;font-size:12px">ChatGPT</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:6px 12px;font-family:monospace;font-size:12px">Claude</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:6px 12px;font-family:monospace;font-size:12px">Gemini</div>
+</div>
+</div>
+<div style="border-top:3px solid #000;background:#F3F3F3;padding:10px 16px;font-size:12px;line-height:1.7">모델 제공자가 기업용 기능을 직접 확장하면, 가운데 중개 계층의 존재 이유가 줄어드는 구조입니다.</div>
+</div>
+</div>
 
 **어그리게이터(Aggregator)**는 "모으는 사람/서비스"라는 뜻입니다. AI 어그리게이터는 여러 AI 모델을 한 곳에 모아서, 사용자가 하나의 인터페이스로 여러 모델에 접근할 수 있게 해주는 서비스입니다.
 
@@ -104,9 +119,6 @@ AWS(아마존 웹 서비스)가 성장하던 초기, AWS를 대신 팔아주는 
 지금 AI 시장에서 LLM 래퍼와 어그리게이터에게 벌어지고 있는 일이 바로 이것입니다. OpenAI가 ChatGPT Enterprise를 내놓고, 구글이 Gemini for Workspace를 확장하고, [Anthropic](/class/claude-fundamentals/what-is-anthropic)이 [Claude](/class/claude-fundamentals/what-is-claude)의 기업용 기능을 강화하면서, 중간 계층의 존재 이유가 빠르게 줄어들고 있습니다.
 
 ## 그러면 어떤 AI 스타트업이 살아남을까요?
-
-
-![AI 스타트업이 치열한 경쟁 환경에서 살아남기 위한 차별화 전략을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/google-vp-llm-wrapper-aggregator-crisis-1-1772873205109.png)
 
 모우리가 위기만 말한 것은 아닙니다. 그는 "깊고 넓은 해자를 구축하는 스타트업만이 살아남는다"고도 강조했습니다. 실제로 같은 "래퍼" 구조에서 출발했지만 살아남은, 오히려 성장하고 있는 사례가 있습니다.
 

@@ -22,12 +22,12 @@ quiz:
       있습니다. 이는 GA4의 설정 문제가 아니라 검색엔진 자체의 정책이며, 네이버도 2024년 11월부터 같은 방향으로 움직이고
       있습니다.
     correctIndex: 1
-metaTitle: GA4에서 (not provided)가 뜨는 이유 — 오류가 아닌 정상입니다
+metaTitle: 'GA4에서 (not provided)가 뜨는 이유: 오류가 아닌 정상입니다'
 metaDescription: >-
   GA4의 (not provided)는 설정 오류가 아닙니다. Google과 네이버의 검색어 차단 배경, Search Console 연결법,
   랜딩 페이지 기반 분석 대안을 실무 중심으로 정리합니다.
 ogImage: /og/ga4-not-provided-explained.png
-ogTitle: GA4 (not provided)는 오류가 아닙니다 — 검색어가 사라진 이유와 실무 대안
+ogTitle: 'GA4 (not provided)는 오류가 아닙니다: 검색어가 사라진 이유와 실무 대안'
 ogDescription: >-
   Google과 네이버 모두 검색어 전달을 중단했습니다. Search Console 연결과 랜딩 페이지 기반 의도 분석으로 전환하는 방법을
   정리합니다.
@@ -58,7 +58,38 @@ Google은 2011년부터 사용자 프라이버시를 이유로 검색어 암호�
 ## 네이버도 같은 길을 걷고 있습니다
 
 
-![네이버의 검색어 데이터 보호 정책이 GA4의 'not provided'와 유사하게 작동함을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ga4-not-provided-explained-0-1772791256865.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">GA4 보고서 형태 예시: 오가닉 검색어 (가상의 예시 수치)</div>
+<table style="width:100%;border-collapse:collapse;">
+<thead>
+<tr style="background:#F3F3F3;">
+<th style="padding:8px 12px;text-align:left;border-bottom:2px solid #000;">세션 소스/매체</th>
+<th style="padding:8px 12px;text-align:left;border-bottom:2px solid #000;">검색어</th>
+<th style="padding:8px 12px;text-align:right;border-bottom:2px solid #000;">세션 비중</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="padding:8px 12px;border-bottom:1px solid #000;font-family:monospace;">google / organic</td>
+<td style="padding:8px 12px;border-bottom:1px solid #000;font-family:monospace;font-weight:700;">(not provided)</td>
+<td style="padding:8px 12px;border-bottom:1px solid #000;text-align:right;font-family:monospace;">91%</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;border-bottom:1px solid #000;font-family:monospace;">naver / organic</td>
+<td style="padding:8px 12px;border-bottom:1px solid #000;font-family:monospace;font-weight:700;">(not provided)</td>
+<td style="padding:8px 12px;border-bottom:1px solid #000;text-align:right;font-family:monospace;">대부분</td>
+</tr>
+<tr>
+<td style="padding:8px 12px;font-family:monospace;">google / organic</td>
+<td style="padding:8px 12px;font-family:monospace;">일부 잔여 검색어</td>
+<td style="padding:8px 12px;text-align:right;font-family:monospace;">9%</td>
+</tr>
+</tbody>
+</table>
+<div style="background:#F3F3F3;border-top:2px solid #000;padding:8px 14px;font-size:0.85em;">Google과 네이버 모두 검색어를 전달하지 않아, 오가닉 검색어의 80~95%가 (not provided)로 표시됩니다.</div>
+</div>
+</div>
 
 Google만의 이야기가 아닙니다. 네이버는 2024년 11월 7일, 검색 리퍼러 정보를 제한한다고 공식 공지했습니다.
 
@@ -75,7 +106,7 @@ Google만의 이야기가 아닙니다. 네이버는 2024년 11월 7일, 검색 
 
 핵심은 이것입니다. **"유입 검색어를 GA에서 바로 볼 수 있다"는 시대는 끝났습니다.** Google과 네이버 모두 검색어 전달을 중단하는 방향으로 움직이고 있으며, 이것은 되돌릴 수 없는 흐름입니다.
 
-## 대안 1: Google Search Console 연결하기 — 단, 방식이 다릅니다
+## 대안 1: Google Search Console 연결하기: 단, 방식이 다릅니다
 
 (not provided)에 대한 가장 보편적인 대안은 **Google Search Console(GSC)을 GA4에 연결**하는 것입니다. GSC를 연결하면 GA4 내에서 "Google 오가닉 검색어" 보고서를 통해 키워드 데이터를 확인할 수 있습니다.
 
@@ -105,7 +136,29 @@ Google만의 이야기가 아닙니다. 네이버는 2024년 11월 7일, 검색 
 ## 대안 2: 검색어 없이 분석하는 프레임워크
 
 
-![검색어 없이 GA4 사용자 행동을 분석하는 대안 프레임워크를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/ga4-not-provided-explained-1-1772791289714.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#000;color:#fff;padding:10px 14px;font-weight:700;">분석의 축 이동: 검색어에서 랜딩 페이지로</div>
+<div style="display:flex;flex-wrap:wrap;">
+<div style="flex:1 1 220px;padding:14px;border-bottom:3px solid #000;background:#F3F3F3;">
+<div style="font-weight:700;margin-bottom:6px;">과거의 질문</div>
+<div>"어떤 검색어로 들어왔는가?"</div>
+<div style="margin-top:6px;font-family:monospace;">→ (not provided)로 확인 불가</div>
+</div>
+<div style="flex:1 1 220px;padding:14px;border-bottom:3px solid #000;background:#FFD700;">
+<div style="font-weight:700;margin-bottom:6px;">현재의 질문</div>
+<div>"어떤 페이지에 도착했고, 거기서 무엇을 했는가?"</div>
+<div style="margin-top:6px;font-family:monospace;">→ 랜딩 페이지 기반 의도 분석</div>
+</div>
+</div>
+<div style="padding:14px;">
+<div style="margin-bottom:6px;"><span style="font-family:monospace;font-weight:700;">1</span> 트래픽 획득 보고서에서 google / organic 필터</div>
+<div style="margin-bottom:6px;"><span style="font-family:monospace;font-weight:700;">2</span> 보조 측정기준으로 랜딩 페이지 추가</div>
+<div style="margin-bottom:6px;"><span style="font-family:monospace;font-weight:700;">3</span> 페이지별 참여율, 전환율, 평균 참여 시간 확인</div>
+<div><span style="font-family:monospace;font-weight:700;">4</span> GSC에서 해당 페이지의 상위 검색어 매칭</div>
+</div>
+</div>
+</div>
 
 GSC 연결만으로는 과거의 "검색어 → 사용자 행동 → 전환" 전체 흐름을 복원할 수 없습니다. 그렇다면 사고방식 자체를 바꿔야 합니다. **"어떤 검색어로 들어왔는가"에서 "어떤 페이지에 도착했고, 거기서 무엇을 했는가"로 분석의 축을 이동**하는 것입니다.
 

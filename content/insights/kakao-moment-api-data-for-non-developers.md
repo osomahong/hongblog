@@ -3,7 +3,7 @@ slug: kakao-moment-api-data-for-non-developers
 title: 비개발자도 쓰기 편하게 정리한 카카오모먼트 API 데이터
 excerpt: >-
   카카오모먼트 광고 데이터를 API로 가져오고 싶은 마케터를 위한 가이드입니다. 공식대행사 전용 권한 신청, 비즈 앱 전환 심사, 비즈니스
-  토큰 인증, 보고서 API의 metricsGroup 구조까지 — 카카오모먼트 API의 진입 장벽과 실전 사용법을 정리했습니다.
+  토큰 인증, 보고서 API의 metricsGroup 구조까지: 카카오모먼트 API의 진입 장벽과 실전 사용법을 정리했습니다.
 category: MARKETING
 tags:
   - 광고
@@ -13,9 +13,9 @@ tags:
   - 퍼포먼스마케팅
 publishedAt: '2026-03-04T06:16:42.250Z'
 highlights:
-  - 카카오모먼트 API는 공식대행사 또는 사전 협의된 광고주만 권한 신청이 가능 — 4개 매체 중 진입 장벽이 가장 높음
-  - 비즈 앱 전환 심사 + 비즈니스 토큰 인증 + metricsGroup 기반 보고서 구조 — 카카오 API만의 고유한 체계
-  - '4개 매체(구글·메타·네이버·카카오) API 접근 난이도, 비용 단위, 전환 구조, Rate Limit 비교표'
+  - 카카오모먼트 API는 공식대행사 또는 사전 협의된 광고주만 권한 신청이 가능: 4개 매체 중 진입 장벽이 가장 높음
+  - 비즈 앱 전환 심사 + 비즈니스 토큰 인증 + metricsGroup 기반 보고서 구조: 카카오 API만의 고유한 체계
+  - '4개 매체(구글, 메타, 네이버, 카카오) API 접근 난이도, 비용 단위, 전환 구조, Rate Limit 비교표'
 quiz:
   - options:
       - Kakao Developers에서 앱을 생성하면 누구나 바로 사용할 수 있다
@@ -29,7 +29,7 @@ quiz:
     correctIndex: 1
 seriesSlug: digitalmarketing
 seriesOrder: 5
-metaTitle: 비개발자를 위한 카카오모먼트 API 가이드 — 권한 신청·심사부터 코드 예시까지
+metaTitle: '비개발자를 위한 카카오모먼트 API 가이드: 권한 신청, 심사부터 코드 예시까지'
 metaDescription: >-
   카카오모먼트 API 권한 신청 조건, 비즈 앱 전환, 비즈니스 토큰 발급, 보고서 API 필드 매핑까지. 비개발자 마케터를 위한 카카오모먼트
   API 실전 가이드입니다.
@@ -42,12 +42,12 @@ ogImage: /og/kakao-moment-api-data-for-non-developers.png
 
 [구글 Ads API](/insights/google-ads-api-data-for-non-developers), [Meta Ads API](/insights/meta-ads-api-data-for-non-developers), [네이버 검색광고 API](/insights/naver-search-ad-api-data-for-non-developers)에 이어 카카오모먼트 API를 정리합니다.
 
-카카오모먼트 API는 네 매체 중 진입 장벽이 가장 높다고 볼 수 있습니다. 구글·메타는 개발자 앱을 만들면 바로 데이터에 접근할 수 있고, 네이버도 약관 동의만으로 즉시 키가 발급됩니다. 하지만 카카오모먼트 API는 **카카오 공식대행사이거나, 심의를 통해 카카오와 사전 협의된 광고주만 권한을 받을 수 있습니다.**
+카카오모먼트 API는 네 매체 중 진입 장벽이 가장 높다고 볼 수 있습니다. 구글, 메타는 개발자 앱을 만들면 바로 데이터에 접근할 수 있고, 네이버도 약관 동의만으로 즉시 키가 발급됩니다. 하지만 카카오모먼트 API는 **카카오 공식대행사이거나, 심의를 통해 카카오와 사전 협의된 광고주만 권한을 받을 수 있습니다.**
 
 이 글에서는 권한 신청 과정의 현실적인 과정부터 시작해서, 실제 데이터를 가져오는 방법까지 정리합니다.
 
 
-## API 접근 준비 — 6단계 (심사 포함)
+## API 접근 준비: 6단계 (심사 포함)
 
 ### 누가 신청할 수 있나요?
 
@@ -58,9 +58,9 @@ ogImage: /og/kakao-moment-api-data-for-non-developers.png
 | 대상 | 신청 가능 여부 | 경로 |
 |--------|---------------|------|
 | 카카오 광고 공식대행사 | O | 카카오 채널 담당자 또는 통합 에이전시 문의게시판 |
-| **일반 개발자·소규모 광고주** | **X** | **담당 카카오 마케터를 통해 신청** |
+| **일반 개발자, 소규모 광고주** | **X** | **담당 카카오 마케터를 통해 신청** |
 
-이 점이 구글·메타·네이버와 가장 크게 다릅니다. API를 사용하려면 먼저 카카오에 신청하여 심사에 통과되어야 합니다.
+이 점이 구글, 메타, 네이버와 가장 크게 다릅니다. API를 사용하려면 먼저 카카오에 신청하여 심사에 통과되어야 합니다.
 
 ### Step 1~6 전체 과정
 
@@ -75,7 +75,7 @@ ogImage: /og/kakao-moment-api-data-for-non-developers.png
 
 가장 시간이 걸리는 단계는 **Step 3 (비즈 앱 전환 심사)**과 **Step 6 (API 권한 승인)**입니다.
 
-### Step 3: 비즈 앱 전환 — 무엇을 심사하나요?
+### Step 3: 비즈 앱 전환: 무엇을 심사하나요?
 
 Kakao Developers에서 만든 일반 앱을 **비즈 앱(Biz App)**으로 전환해야 합니다. 이 과정에서 카카오가 심사하는 항목은 다음과 같습니다.
 
@@ -93,9 +93,9 @@ Kakao Developers에서 만든 일반 앱을 **비즈 앱(Biz App)**으로 전환
 - **Client Secret 활성화**: [REST API](/class/digital-basic/what-is-api) 키와 함께 사용
 - **비즈니스 동의항목 설정**: `moment_management` 등 필요 스코프 선택
 
-## 인증 — 비즈니스 토큰 발급 흐름
+## 인증: 비즈니스 토큰 발급 흐름
 
-구글·메타의 OAuth와 유사하지만, **비즈니스 전용 엔드포인트**를 사용하는 점이 다릅니다.
+구글, 메타의 OAuth와 유사하지만, **비즈니스 전용 엔드포인트**를 사용하는 점이 다릅니다.
 
 ```
 1. 인가 코드 요청 (브라우저에서 사용자 동의)
@@ -132,9 +132,9 @@ Kakao Developers에서 만든 일반 앱을 **비즈 앱(Biz App)**으로 전환
 | `/openapi/v4/adGroups/report` | 광고그룹 | 40개 | 1초에 1회 |
 | `/openapi/v4/creatives/report` | 소재 | 100개 | 5초에 1회 |
 
-**주의:** 캠페인 보고서는 한 번에 **최대 5개**만 조회 가능합니다. 캠페인이 20개면 4번 호출해야 하고, 각 호출 사이에 5초를 기다려야 합니다. 이 점이 구글·메타·네이버와 비교해서 데이터 수집 속도가 느린 가장 큰 원인입니다.
+**주의:** 캠페인 보고서는 한 번에 **최대 5개**만 조회 가능합니다. 캠페인이 20개면 4번 호출해야 하고, 각 호출 사이에 5초를 기다려야 합니다. 이 점이 구글, 메타, 네이버와 비교해서 데이터 수집 속도가 느린 가장 큰 원인입니다.
 
-### metricsGroup — 카카오만의 지표 분류 체계
+### metricsGroup: 카카오만의 지표 분류 체계
 
 카카오모먼트 API는 필드를 개별 지정하는 것이 아니라, **metricsGroup(지표 그룹)**을 선택하는 방식입니다.
 
@@ -145,7 +145,7 @@ Kakao Developers에서 만든 일반 앱을 **비즈 앱(Biz App)**으로 전환
 | `VIDEO` | 재생수, 3s/5s/10s/25%/50%/75%/100% 재생, VTR | 영상 캠페인 |
 | `MESSAGE` | 발송수, 열람수, 클릭수, 발송실패수 | 메시지 캠페인 |
 | `PIXEL_SDK_CONVERSION` | 구매, 회원가입, 장바구니 등 (1일/7일 기여) | 전환 추적 |
-| `BIZ_BOARD` | 비즈보드 확장 영역 노출·클릭 | 비즈보드 전용 |
+| `BIZ_BOARD` | 비즈보드 확장 영역 노출, 클릭 | 비즈보드 전용 |
 
 여러 그룹을 쉼표로 함께 요청할 수 있습니다.
 
@@ -175,7 +175,7 @@ metricsGroup=BASIC,ADDITION,PIXEL_SDK_CONVERSION
 | `DEVICE_TYPE` | 기기 유형별 |
 | `LOCATION` | 지역별 |
 
-한 번에 **1개의 dimension만** 선택할 수 있습니다 (구글·메타와 달리 조합 불가).
+한 번에 **1개의 dimension만** 선택할 수 있습니다 (구글, 메타와 달리 조합 불가).
 
 
 ## 마케터 용어 vs API 필드 매핑
@@ -186,19 +186,19 @@ metricsGroup=BASIC,ADDITION,PIXEL_SDK_CONVERSION
 | 클릭수 | `click` | `clicks` | `inline_link_clicks` | `clkCnt` |
 | 클릭률 | `ctr` | `ctr` | `inline_link_click_ctr` | `ctr` |
 | 광고비 | `cost` | `cost_micros` (÷1M) | `spend` | `salesAmt` |
-| 도달수 | `reach` | — | `reach` | — |
+| 도달수 | `reach` |: | `reach` |: |
 | CPC | `cost_per_click` | `average_cpc` | `cpc` | `cpc` |
-| CPM | `cost_per_imp` | — | `cpm` | — |
-| 영상 완료 재생 | `video_play_100p` | `video_quartile_p100_rate` | `video_p100_watched_actions` | — |
+| CPM | `cost_per_imp` |: | `cpm` |: |
+| 영상 완료 재생 | `video_play_100p` | `video_quartile_p100_rate` | `video_p100_watched_actions` |: |
 | 구매 전환 (1일) | `pixel_purchase_1d` | `conversions` | `actions` (파싱) | `ccnt` |
-| 구매 전환 (7일) | `pixel_purchase_7d` | — | — | — |
+| 구매 전환 (7일) | `pixel_purchase_7d` |: |: |: |
 
 **비용 단위:** 카카오는 네이버와 동일하게 **원화 정수**입니다. 구글처럼 마이크로 단위 변환이 필요 없습니다.
 
-**전환 지표:** 카카오는 기여 기간(1일/7일)이 필드명에 포함되어 있어, 구글·메타처럼 귀속 기간을 파라미터로 조정하는 것이 아니라 **원하는 기간의 필드를 직접 선택**하는 방식입니다.
+**전환 지표:** 카카오는 기여 기간(1일/7일)이 필드명에 포함되어 있어, 구글, 메타처럼 귀속 기간을 파라미터로 조정하는 것이 아니라 **원하는 기간의 필드를 직접 선택**하는 방식입니다.
 
 
-## Python 코드 예시 — 캠페인 성과 데이터 추출
+## Python 코드 예시: 캠페인 성과 데이터 추출
 
 ```python
 import requests
@@ -286,7 +286,7 @@ for r in result:
 
 ### 1. 직접 API 작업을 위한 신청이 까다롭습니다
 
-카카오모먼트 API는 구글·메타·네이버와 달리 **누구나 신청할 수 없습니다.** 공식대행사이거나 카카오 담당자와 사전 협의된 광고주만 권한을 받을 수 있습니다. 소규모 광고주라면 대행사를 통하거나, 카카오 비즈니스 영업팀에 문의해야 합니다.
+카카오모먼트 API는 구글, 메타, 네이버와 달리 **누구나 신청할 수 없습니다.** 공식대행사이거나 카카오 담당자와 사전 협의된 광고주만 권한을 받을 수 있습니다. 소규모 광고주라면 대행사를 통하거나, 카카오 비즈니스 영업팀에 문의해야 합니다.
 
 ### 2. 비즈 앱 전환 심사가 반드시 필요합니다
 
@@ -302,7 +302,7 @@ for r in result:
 
 ### 5. Dimension은 1개만 선택 가능합니다
 
-구글·메타는 연령+성별+디바이스를 동시에 Breakdown할 수 있지만, 카카오는 **한 번에 1개의 dimension만** 선택 가능합니다. 연령+성별 조합이 필요하면 `AGE_BAND_GENDER`라는 전용 dimension을 사용합니다.
+구글, 메타는 연령+성별+디바이스를 동시에 Breakdown할 수 있지만, 카카오는 **한 번에 1개의 dimension만** 선택 가능합니다. 연령+성별 조합이 필요하면 `AGE_BAND_GENDER`라는 전용 dimension을 사용합니다.
 
 
 ## 4개 매체 API 접근 난이도 비교
@@ -319,7 +319,7 @@ for r in result:
 | Rate Limit 체감 | 넉넉함 | 보통 | 보통 | **엄격함** |
 
 
-## AI로 카카오모먼트 API 구현하기 — 프롬프트 모음
+## AI로 카카오모먼트 API 구현하기: 프롬프트 모음
 
 ### 기본 데이터 추출
 

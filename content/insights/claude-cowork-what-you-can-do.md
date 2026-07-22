@@ -3,7 +3,7 @@ slug: claude-cowork-what-you-can-do
 title: 클로드 코워크로 할 수 있는 것 - 총 정리
 excerpt: >-
   Claude Cowork는 채팅이 아닌 '작업'을 수행하는 AI 에이전트입니다. 파일 정리부터 보고서 생성, 데이터 분석, 플러그인 기반
-  업무 자동화까지 — 코드 한 줄 없이 데스크톱에서 실행할 수 있는 실전 활용법을 정리했습니다.
+  업무 자동화까지: 코드 한 줄 없이 데스크톱에서 실행할 수 있는 실전 활용법을 정리했습니다.
 category: AI_TECH
 tags:
   - AI
@@ -27,8 +27,8 @@ metaDescription: >-
   Claude Cowork의 실전 활용법을 정리합니다. 파일 정리, 보고서 생성, 데이터 분석, 플러그인 시스템까지 비개발자도 바로 쓸 수
   있는 AI 에이전트의 모든 것.
 ogImage: /og/claude-cowork-what-you-can-do.png
-ogTitle: 클로드 코워크로 할 수 있는 것 — AI 업무 자동화 실전 가이드
-ogDescription: '파일 정리부터 보고서, 데이터 분석, 플러그인까지 — Claude Cowork로 데스크톱 업무를 자동화하는 방법을 정리했습니다.'
+ogTitle: '클로드 코워크로 할 수 있는 것: AI 업무 자동화 실전 가이드'
+ogDescription: '파일 정리부터 보고서, 데이터 분석, 플러그인까지: Claude Cowork로 데스크톱 업무를 자동화하는 방법을 정리했습니다.'
 ---
 
 ## 클로드 코워크의 핵심은 무엇일까?
@@ -67,7 +67,20 @@ Cowork에 "이 폴더의 PDF 30개를 분석해서 요약해줘"라고 요청하
 ## 실전 활용 사례 5가지 - 어떤 걸 해볼 수 있을까요?
 
 
-![클로드 코워크를 활용한 5가지 AI 업무 자동화 실전 사례를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-cowork-what-you-can-do-0-1771686918982.png)
+<div style="overflow-x:auto;margin:24px 0;">
+<div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">Cowork 작업 흐름 예시: 다운로드 폴더 정리</div>
+<div style="padding:14px;border-bottom:2px solid #000;background:#F3F3F3;">
+<span style="font-weight:700;">지시</span> "Downloads 폴더의 파일들을 파일 유형별로 정리해줘"
+</div>
+<div style="padding:14px;">
+<div style="margin-bottom:6px;"><span style="font-family:monospace;font-weight:700;">1</span> 폴더 스캔: 파일 32개 확인</div>
+<div style="margin-bottom:6px;"><span style="font-family:monospace;font-weight:700;">2</span> 이미지, 문서, 스프레드시트 등 카테고리별 폴더 생성</div>
+<div style="margin-bottom:6px;"><span style="font-family:monospace;font-weight:700;">3</span> 확장자를 분석해 유형별로 파일 이동</div>
+<div><span style="font-family:monospace;font-weight:700;">4</span> 정리 결과 보고 (삭제 같은 위험한 작업은 사용자 승인 요청)</div>
+</div>
+</div>
+</div>
 
 ### 1. 파일 정리와 일괄 이름 변경
 
@@ -130,9 +143,6 @@ Cowork의 기본 기능만으로도 많은 작업이 가능하지만, 플러그�
 ---
 
 ## 어디까지 가능하고, 어디부터 조심해야 할까요?
-
-
-![클로드 코워크를 활용한 AI 업무 자동화의 가능성과 함께 주의해야 할 지점을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/claude-cowork-what-you-can-do-1-1771686948958.png)
 
 ### Cowork가 잘하는 것
 

@@ -2,8 +2,8 @@
 slug: pmax-indirect-targeting-strategy
 title: '타겟팅에 제한이 많은 구글 Pmax, 100% 활용 전략'
 excerpt: >-
-  Performance Max는 직접 타겟팅에 제한이 많습니다. 하지만 잠재고객 시그널, 제외 전략, 에셋 그룹 분리, 피드 온리 캠페인까지
-  — 간접적으로 AI의 학습 방향을 유도하는 방법은 존재합니다. 2026년 2월 기준 최신 기능까지 반영한 실전 전략을 정리했습니다.
+  Performance Max는 직접 타겟팅에 제한이 많습니다. 하지만 잠재고객 시그널, 제외 전략, 에셋 그룹 분리, 피드 온리
+  캠페인까지, 간접적으로 AI의 학습 방향을 유도하는 방법은 존재합니다. 2026년 2월 기준 최신 기능까지 반영한 실전 전략을 정리했습니다.
 category: MARKETING
 tags:
   - Google 광고
@@ -30,7 +30,7 @@ metaDescription: >-
   캠페인까지 2026년 2월 최신 정보 기준.
 ogImage: /og/pmax-indirect-targeting-strategy.png
 ogTitle: '타겟팅에 제한이 많은 Pmax, 100% 활용 전략'
-ogDescription: '잠재고객 시그널, 제외 전략, 에셋 그룹 분리, 피드 온리 캠페인까지 — Pmax를 간접적으로 제어하는 실전 방법론을 정리했습니다.'
+ogDescription: '잠재고객 시그널, 제외 전략, 에셋 그룹 분리, 피드 온리 캠페인까지: Pmax를 간접적으로 제어하는 실전 방법론을 정리했습니다.'
 ---
 
 ## Pmax의 타겟팅 제한, 그리고 가능성
@@ -59,10 +59,10 @@ Pmax에서 가장 많이 오해하는 부분이 잠재고객 시그널(Audience 
 
 모든 시그널이 동일한 효과를 내지는 않습니다. 실무에서 검증된 우선순위는 다음과 같습니다.
 
-1. **퍼스트파티 데이터(고객 목록)** — 가장 강력한 시그널입니다. 실제 구매 고객, 고가치 리피트 구매자 목록을 업로드하면 AI가 유사한 사용자를 빠르게 찾아냅니다.
-2. **맞춤 잠재고객(Custom Segment)** — 전환 직전에 사용한 검색어를 기반으로 만든 맞춤 세그먼트가 효과적입니다. Search Terms 보고서에서 전환을 발생시킨 검색어를 추출하여 Custom Segment에 넣으면 됩니다.
-3. **구매 의도 잠재고객(In-Market)** — 특정 상품/서비스 구매를 검토 중인 사용자입니다. 보조 시그널로 활용합니다.
-4. **관심 분야 잠재고객(Affinity)** — 가장 넓은 범위의 시그널입니다. 단독으로는 효과가 약하므로, 1~3번과 조합하여 사용합니다.
+1. **퍼스트파티 데이터(고객 목록)**: 가장 강력한 시그널입니다. 실제 구매 고객, 고가치 리피트 구매자 목록을 업로드하면 AI가 유사한 사용자를 빠르게 찾아냅니다.
+2. **맞춤 잠재고객(Custom Segment)**: 전환 직전에 사용한 검색어를 기반으로 만든 맞춤 세그먼트가 효과적입니다. Search Terms 보고서에서 전환을 발생시킨 검색어를 추출하여 Custom Segment에 넣으면 됩니다.
+3. **구매 의도 잠재고객(In-Market)**: 특정 상품/서비스 구매를 검토 중인 사용자입니다. 보조 시그널로 활용합니다.
+4. **관심 분야 잠재고객(Affinity)**: 가장 넓은 범위의 시그널입니다. 단독으로는 효과가 약하므로, 1~3번과 조합하여 사용합니다.
 
 퍼스트파티 데이터를 시그널로 활용할 때, **최소 주 1회 이상 목록을 업데이트**하는 것이 중요합니다. 오래된 목록은 AI의 학습 방향을 왜곡시킬 수 있습니다.
 
@@ -109,9 +109,6 @@ Pmax에서 가장 많이 오해하는 부분이 잠재고객 시그널(Audience 
 ---
 
 ## 전략 3: 에셋 그룹 분리로 의도 전달하기
-
-
-![에셋 그룹 분리를 통해 Pmax의 타겟팅 의도를 전달하는 방법을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/pmax-indirect-targeting-strategy-0-1771688236351.png)
 
 ### 에셋 그룹은 "간접 타겟팅"의 핵심입니다
 
@@ -185,8 +182,17 @@ Pmax의 가장 큰 불만 중 하나는 예산이 어떤 채널에 얼마나 배
 
 ## 전략 6: 채널별 성과 데이터로 최적화하기
 
-
-![Pmax 캠페인의 간접 제어를 위해 채널별 성과 데이터를 분석 및 최적화하는 방법을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/pmax-indirect-targeting-strategy-1-1771688272612.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="min-width:480px;max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 16px;font-weight:800;font-size:14px">채널별 성과 보고서를 읽는 예시</div>
+<table style="width:100%;border-collapse:collapse;font-size:13px">
+<tr style="background:#F3F3F3"><th style="border:2px solid #000;padding:8px;text-align:left">채널</th><th style="border:2px solid #000;padding:8px;text-align:left">노출</th><th style="border:2px solid #000;padding:8px;text-align:left">전환</th><th style="border:2px solid #000;padding:8px;text-align:left">판단</th></tr>
+<tr><td style="border:2px solid #000;padding:8px">Shopping</td><td style="border:2px solid #000;padding:8px;font-family:monospace">보통</td><td style="border:2px solid #000;padding:8px;font-family:monospace">많음</td><td style="border:2px solid #000;padding:8px;background:#FFD700;font-weight:700">고성과 상품군 에셋 그룹 분리</td></tr>
+<tr><td style="border:2px solid #000;padding:8px">YouTube</td><td style="border:2px solid #000;padding:8px;font-family:monospace">많음</td><td style="border:2px solid #000;padding:8px;font-family:monospace">거의 없음</td><td style="border:2px solid #000;padding:8px">피드 온리 전환 검토</td></tr>
+<tr><td style="border:2px solid #000;padding:8px">Display</td><td style="border:2px solid #000;padding:8px;font-family:monospace">많음</td><td style="border:2px solid #000;padding:8px;font-family:monospace">클릭률 비정상</td><td style="border:2px solid #000;padding:8px">봇 트래픽 의심, 게재 위치 제외</td></tr>
+</table>
+</div>
+</div>
 
 ### 채널 수준 보고서 활용
 
@@ -235,6 +241,6 @@ Pmax의 모든 자동 최적화는 전환 데이터에 기반합니다. 잠재�
 
 Pmax에서 "타겟팅에 제한이 많다"는 말은 사실입니다. 검색 광고처럼 키워드를 직접 입력하거나, 디스플레이 광고처럼 특정 잠재고객에게만 노출하는 세밀한 제어는 어렵습니다.
 
-하지만 시그널로 AI의 학습 방향을 유도하고, 제외 전략으로 원하지 않는 트래픽을 차단하고, 에셋 그룹으로 메시지를 세분화하고, 전환 추적으로 AI의 나침반을 교정하면 — 직접 타겟팅 못지않은 수준의 제어가 가능합니다.
+하지만 시그널로 AI의 학습 방향을 유도하고, 제외 전략으로 원하지 않는 트래픽을 차단하고, 에셋 그룹으로 메시지를 세분화하고, 전환 추적으로 AI의 나침반을 교정하면: 직접 타겟팅 못지않은 수준의 제어가 가능합니다.
 
 Pmax 운영의 핵심은 "AI를 대체하는 것"이 아니라 **"AI가 올바른 방향으로 학습하도록 환경을 설계하는 것"**입니다.

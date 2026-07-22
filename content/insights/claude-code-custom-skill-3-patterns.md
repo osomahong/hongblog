@@ -2,7 +2,7 @@
 slug: claude-code-custom-skill-3-patterns
 title: Claude Code 커뮤니티에서 찾은 커스텀 Skill 세 가지 패턴
 excerpt: >-
-  Claude Code의 핵심은 코드 생성이 아니라 Skill 시스템입니다. TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북까지 — 전
+  Claude Code의 핵심은 코드 생성이 아니라 Skill 시스템입니다. TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북까지: 전
   세계 커뮤니티에서 실제로 쓰이는 3가지 커스텀 Skill 패턴을 정리했습니다.
 category: AI_TECH
 tags:
@@ -26,8 +26,8 @@ metaTitle: 'Claude Code 커스텀 Skill 3가지 패턴 | TDD 강제, 팀 코드 
 metaDescription: >-
   Claude Code 커스텀 Skill의 실전 패턴 3가지를 분석합니다. context: fork 기반 TDD 강제, 팀 맞춤 코드 리뷰,
   실행 가능한 런북까지 커뮤니티가 검증한 방법론입니다.
-ogTitle: Claude Code 커스텀 Skill의 진짜 힘 — 3가지 패턴
-ogDescription: 'TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북 — 커뮤니티가 검증한 커스텀 Skill 패턴을 정리했습니다.'
+ogTitle: 'Claude Code 커스텀 Skill의 진짜 힘: 3가지 패턴'
+ogDescription: 'TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북: 커뮤니티가 검증한 커스텀 Skill 패턴을 정리했습니다.'
 ogImage: /og/claude-code-custom-skill-3-patterns.png
 ---
 
@@ -79,7 +79,7 @@ Hooks는 특정 이벤트(파일 저장, 프롬프트 제출, 도구 호출 등)
 
 ---
 
-## 1. TDD 강제 스킬 — context: fork로 에이전트를 격리하는 패턴
+## 1. TDD 강제 스킬: context: fork로 에이전트를 격리하는 패턴
 
 ### 문제: LLM은 자연스럽게 TDD를 깨뜨립니다
 
@@ -172,7 +172,7 @@ Jest, Vitest, pytest, PHPUnit, Go test, Rust 등 주요 테스트 프레임워�
 
 ---
 
-## 2. 팀 맞춤 코드 리뷰 스킬 — Progressive Disclosure 패턴
+## 2. 팀 맞춤 코드 리뷰 스킬: Progressive Disclosure 패턴
 
 ### 문제: 팀마다 코드 규칙이 다릅니다
 
@@ -222,21 +222,21 @@ SKILL.md 자체는 200줄 이내로 짧게 유지합니다. 상세한 규칙은 
 
 ```
 .claude/skills/review/
-├── SKILL.md              (200줄 — 핵심 지시만)
+├── SKILL.md              (200줄: 핵심 지시만)
 └── reference/
-    ├── react-rules.md    (800줄 — React 19 패턴)
-    ├── api-rules.md      (600줄 — REST API 규칙)
-    ├── security-rules.md (400줄 — 보안 체크리스트)
-    └── typescript.md     (500줄 — TS 컨벤션)
+    ├── react-rules.md    (800줄: React 19 패턴)
+    ├── api-rules.md      (600줄: REST API 규칙)
+    ├── security-rules.md (400줄: 보안 체크리스트)
+    └── typescript.md     (500줄: TS 컨벤션)
 ```
 
 `@reference/react-rules.md`로 참조하면, Claude는 React 파일을 리뷰할 때만 해당 규칙을 로드합니다. Python 파일을 리뷰할 때는 로드하지 않습니다.
 
 이 구조의 장점은 3가지입니다.
 
-1. **컨텍스트 효율성** — 필요한 규칙만 로드하므로 토큰을 절약합니다
-2. **유지보수성** — React 규칙이 바뀌면 `react-rules.md`만 수정하면 됩니다
-3. **확장성** — 새 언어나 프레임워크 규칙을 파일 하나 추가하는 것으로 확장합니다
+1. **컨텍스트 효율성**: 필요한 규칙만 로드하므로 토큰을 절약합니다
+2. **유지보수성**: React 규칙이 바뀌면 `react-rules.md`만 수정하면 됩니다
+3. **확장성**: 새 언어나 프레임워크 규칙을 파일 하나 추가하는 것으로 확장합니다
 
 community의 code-review-skill 프로젝트는 이 패턴으로 React 19, Vue 3, Rust, TypeScript, Java, Python, Go, C, C++ 등 **9,500줄**의 리뷰 가이드라인을 관리합니다. 하지만 한 번에 로드되는 것은 메인 SKILL.md의 190줄뿐입니다.
 
@@ -256,7 +256,7 @@ community의 code-review-skill 프로젝트는 이 패턴으로 React 19, Vue 3,
 
 ---
 
-## 3. 실행 가능한 런북 — 문서가 곧 자동화인 패턴
+## 3. 실행 가능한 런북: 문서가 곧 자동화인 패턴
 
 ### 문제: 팀 지식은 사라집니다
 
@@ -307,7 +307,7 @@ context: fork
 - 신규 개발자가 읽으면 **배포 절차 문서**입니다
 - `/deploy`를 실행하면 **자동화 스크립트**입니다
 
-문서와 실행 코드가 같은 파일이기 때문에 **절대 어긋나지 않습니다**. Zack Proser(WorkOS)는 이것을 "문서와 실행이 분리될 수 없다 — 같은 산출물이기 때문이다"라고 표현했습니다.
+문서와 실행 코드가 같은 파일이기 때문에 **절대 어긋나지 않습니다**. Zack Proser(WorkOS)는 이것을 "문서와 실행이 분리될 수 없다: 같은 산출물이기 때문이다"라고 표현했습니다.
 
 ### disable-model-invocation: 위험한 작업은 수동으로만
 
@@ -374,9 +374,9 @@ npm run dev를 실행하고 정상 작동을 확인하세요.
 
 스킬은 마크다운 파일이므로 Git에 커밋됩니다. 이것은 3가지 부수 효과를 만듭니다.
 
-1. **PR 리뷰 가능** — 배포 절차가 바뀌면 해당 SKILL.md의 diff를 리뷰합니다
-2. **히스토리 추적** — "언제, 왜 이 절차가 바뀌었는가"를 git log로 확인합니다
-3. **팀 공유** — `.claude/skills/`에 넣으면 프로젝트의 모든 참여자가 자동으로 사용합니다
+1. **PR 리뷰 가능**: 배포 절차가 바뀌면 해당 SKILL.md의 diff를 리뷰합니다
+2. **히스토리 추적**: "언제, 왜 이 절차가 바뀌었는가"를 git log로 확인합니다
+3. **팀 공유**: `.claude/skills/`에 넣으면 프로젝트의 모든 참여자가 자동으로 사용합니다
 
 ---
 
@@ -401,8 +401,8 @@ SKILL.md에 지시문을 쓰고, 필요하면 `context: fork`로 격리하고, �
 ## 참고 자료
 
 - [Claude Code Skills 공식 문서](https://code.claude.com/docs/en/skills)
-- [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) — 300+ 커뮤니티 스킬 큐레이션
-- [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) — 크로스 플랫폼 스킬 모음
-- [obra/superpowers](https://github.com/obra/superpowers) — 20+ 실전 검증 스킬 프레임워크
-- [nizos/tdd-guard](https://github.com/nizos/tdd-guard) — Hook 기반 TDD 강제 도구
-- [Simon Willison: Skills are awesome](https://simonwillison.net/2025/Oct/16/claude-skills/) — "MCP보다 큰 딜일 수 있다"
+- [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills): 300+ 커뮤니티 스킬 큐레이션
+- [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills): 크로스 플랫폼 스킬 모음
+- [obra/superpowers](https://github.com/obra/superpowers): 20+ 실전 검증 스킬 프레임워크
+- [nizos/tdd-guard](https://github.com/nizos/tdd-guard): Hook 기반 TDD 강제 도구
+- [Simon Willison: Skills are awesome](https://simonwillison.net/2025/Oct/16/claude-skills/): "MCP보다 큰 딜일 수 있다"

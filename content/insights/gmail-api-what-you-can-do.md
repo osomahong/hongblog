@@ -1,37 +1,27 @@
 ---
 slug: gmail-api-what-you-can-do
 title: Gmail API를 활용해서 할 수 있는 것
-excerpt: >-
-  Gmail API가 제공하는 7개 리소스와 50개 이상의 메서드를 한눈에 정리하고, 이를 활용해 만들 수 있는 자동화 서비스 아이디어까지
-  소개합니다.
+excerpt: Gmail API가 제공하는 7개 리소스와 50개 이상의 메서드를 한눈에 정리하고, 이를 활용해 만들 수 있는 자동화 서비스 아이디어까지 소개합니다.
 category: AI_TECH
 tags:
-  - AI
-  - 자동화
-  - 도구
+- AI
+- 자동화
+- 도구
 publishedAt: '2026-02-20T09:04:11.235Z'
 quiz:
-  - options:
-      - users.watch — Google Cloud Pub/Sub와 연동하여 메일함 변경을 실시간 푸시 알림으로 받을 수 있다
-      - messages.list — 주기적으로 메시지 목록을 조회하여 새 메일을 확인한다
-      - history.list — 변경 이력을 조회하여 새로 추가된 메시지를 찾는다
-      - settings.filters.create — 필터를 만들어 특정 메일이 오면 알림을 받는다
-    question: Gmail API에서 새 이메일이 도착했을 때 실시간으로 감지하려면 어떤 메서드를 사용해야 할까요?
-    explanation: >-
-      users.watch 메서드는 Google Cloud Pub/Sub와 연동하여 메일함에 변화가 생기면 즉시 푸시 알림을 받을 수 있게
-      해줍니다. 폴링 방식(주기적 조회)보다 효율적이고 실시간 반응이 가능합니다. history.list는 변경 이력을 사후에 조회하는
-      용도이고, messages.list는 목록 조회이므로 실시간 감지에는 적합하지 않습니다.
-    correctIndex: 0
-metaTitle: Gmail API를 활용해서 할 수 있는 것 — 기능 전체 맵과 아이디어 5가지
-metaDescription: >-
-  Gmail API의 7개 리소스(Messages, Threads, Labels, Drafts, History, Users,
-  Settings)와 50개 이상의 메서드를 한눈에 정리합니다. 모닝 다이제스트 봇, 스마트 분류기, 자동 응답 시스템 등 실전 아이디어도
-  함께 소개합니다.
+- options:
+  - 'users.watch: Google Cloud Pub/Sub와 연동하여 메일함 변경을 실시간 푸시 알림으로 받을 수 있다'
+  - 'messages.list: 주기적으로 메시지 목록을 조회하여 새 메일을 확인한다'
+  - 'history.list: 변경 이력을 조회하여 새로 추가된 메시지를 찾는다'
+  - 'settings.filters.create: 필터를 만들어 특정 메일이 오면 알림을 받는다'
+  question: Gmail API에서 새 이메일이 도착했을 때 실시간으로 감지하려면 어떤 메서드를 사용해야 할까요?
+  explanation: users.watch 메서드는 Google Cloud Pub/Sub와 연동하여 메일함에 변화가 생기면 즉시 푸시 알림을 받을 수 있게 해줍니다. 폴링 방식(주기적 조회)보다 효율적이고 실시간 반응이 가능합니다. history.list는 변경 이력을 사후에 조회하는 용도이고, messages.list는 목록 조회이므로 실시간 감지에는 적합하지 않습니다.
+  correctIndex: 0
+metaTitle: 'Gmail API를 활용해서 할 수 있는 것: 기능 전체 맵과 아이디어 5가지'
+metaDescription: Gmail API의 7개 리소스(Messages, Threads, Labels, Drafts, History, Users, Settings)와 50개 이상의 메서드를 한눈에 정리합니다. 모닝 다이제스트 봇, 스마트 분류기, 자동 응답 시스템 등 실전 아이디어도 함께 소개합니다.
 ogImage: /og/gmail-api-what-you-can-do.png
-ogTitle: Gmail API 기능 전체 맵 — 바이브코딩 시대에 이메일로 만들 수 있는 것들
-ogDescription: >-
-  Gmail API의 7개 핵심 리소스와 50개 이상의 메서드를 한 페이지에 정리하고, AI와 결합해 만들 수 있는 자동화 서비스 아이디어
-  5가지를 소개합니다.
+ogTitle: 'Gmail API 기능 전체 맵: 바이브코딩 시대에 이메일로 만들 수 있는 것들'
+ogDescription: Gmail API의 7개 핵심 리소스와 50개 이상의 메서드를 한 페이지에 정리하고, AI와 결합해 만들 수 있는 자동화 서비스 아이디어 5가지를 소개합니다.
 ---
 
 ## 바이브코딩 시대, API가 곧 능력이다
@@ -44,7 +34,21 @@ AI 활용 시대가 본격화되면서 "바이브코딩(Vibe Coding)"이라는 �
 
 Gmail API는 [RESTful API](/class/vibe-coding-basics/what-is-rest-api)로, 기본 URL은 `https://gmail.googleapis.com`입니다. 인증은 [OAuth 2.0](/class/vibe-coding-basics/what-is-authentication)을 사용하며, Python, JavaScript, Java, Go, Node.js 등 다양한 언어에서 사용할 수 있습니다.
 
-![Gmail API 리소스 전체 맵 — 7개 핵심 리소스와 50개 이상의 메서드를 한눈에 보여주는 구조도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/gmail-api-what-you-can-do-0-1771578221347.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 16px;font-weight:800;font-size:14px">Gmail API 7개 리소스 한눈에 보기</div>
+<div style="padding:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;font-size:12px">
+<div style="border:3px solid #000;background:#FFD700;padding:10px"><b style="font-family:monospace">Messages</b><br>메일 조회, 발송, 삭제, 라벨 수정</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px"><b style="font-family:monospace">Threads</b><br>대화 단위 조회, 관리</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px"><b style="font-family:monospace">Labels</b><br>폴더 역할, 자동 분류의 핵심</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px"><b style="font-family:monospace">Drafts</b><br>임시저장 생성, 발송</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px"><b style="font-family:monospace">History</b><br>변경 이력 추적, 동기화</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px"><b style="font-family:monospace">Users</b><br>프로필, watch 실시간 알림</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px"><b style="font-family:monospace">Settings</b><br>필터, 서명, 포워딩, 위임</div>
+</div>
+<div style="border-top:3px solid #000;background:#F3F3F3;padding:8px 16px;font-size:12px">7개 리소스, 50개 이상의 메서드로 구성됩니다.</div>
+</div>
+</div>
 
 ### 1. Messages (메시지)
 
@@ -141,7 +145,20 @@ Gmail의 거의 모든 설정을 코드로 제어합니다. 조직 전체의 이
 
 기능 목록만 보면 감이 잘 안 올 수 있습니다. Gmail API의 메서드들을 조합하면 어떤 서비스가 가능한지, 대표적인 아이디어 5가지를 정리했습니다.
 
-![Gmail API와 AI를 결합한 5가지 서비스 아이디어 흐름도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/gmail-api-what-you-can-do-1-1771578247688.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 16px;font-weight:800;font-size:14px">아이디어 5가지에 공통되는 조합 패턴</div>
+<div style="padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;text-align:center;font-size:13px">
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px 12px"><b>1. 감지</b><br><span style="font-family:monospace;font-size:12px">watch, messages.list</span></div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px 12px"><b>2. 읽기</b><br><span style="font-family:monospace;font-size:12px">messages.get, threads.get</span></div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#FFD700;padding:10px 12px"><b>3. AI 처리</b><br>요약, 분류, 답변 생성</div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px 12px"><b>4. 행동</b><br><span style="font-family:monospace;font-size:12px">send, modify, labels</span></div>
+</div>
+</div>
+</div>
 
 ### 1. 모닝 다이제스트 봇
 

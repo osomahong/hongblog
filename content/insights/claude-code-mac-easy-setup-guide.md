@@ -2,7 +2,7 @@
 slug: claude-code-mac-easy-setup-guide
 title: 쉽게 설치하는 클로드코드 세팅가이드(맥)
 excerpt: >-
-  맥(Mac)에 클로드 코드(Claude Code)를 처음 설치하는 분을 위해, 터미널 실행부터 Homebrew·Git·Node.js 사전
+  맥(Mac)에 클로드 코드(Claude Code)를 처음 설치하는 분을 위해, 터미널 실행부터 Homebrew, Git, Node.js 사전
   준비, 본체 설치, 한국어 설정, 첫 작업 시작까지 9단계로 단순하게 정리했습니다.
 category: AI_TECH
 tags:
@@ -38,7 +38,7 @@ metaDescription: >-
 ogImage: /og/claude-code-mac-easy-setup-guide.png
 ogTitle: 쉽게 설치하는 클로드코드 세팅가이드(맥) 9단계
 ogDescription: >-
-  터미널 실행부터 Homebrew·Git·Node.js 사전 준비, 클로드 코드 본체 설치, 한국어 설정, 첫 작업 시작까지 9단계로 정리한
+  터미널 실행부터 Homebrew, Git, Node.js 사전 준비, 클로드 코드 본체 설치, 한국어 설정, 첫 작업 시작까지 9단계로 정리한
   맥 입문 가이드입니다.
 ---
 
@@ -66,7 +66,7 @@ ogDescription: >-
 
 ## Step 2. Homebrew와 Git 설치
 
-맥에는 윈도우의 winget 같은 기본 패키지 관리자가 없습니다. 그래서 먼저 **Homebrew**라는 맥용 패키지 관리자를 설치한 뒤, 그것으로 Git을 깝니다.
+맥에는 윈도우의 winget 같은 기본 패키지 관리자가 없습니다. 그래서 먼저 **Homebrew**라는 맥용 패키지 관리자를 설치한 뒤, 그것으로 [Git](/class/vibe-coding-basics/what-is-git)을 깝니다.
 
 먼저 Homebrew 설치 명령어를 터미널에 복사해서 붙여넣고 엔터를 누르세요.
 
@@ -244,7 +244,7 @@ claude
 >
 > A. 정상입니다. 맥 터미널은 보안을 위해 비밀번호 입력 시 별표(*)나 점(•)도 표시하지 않습니다. 그냥 비밀번호를 입력하고 엔터를 누르시면 됩니다.
 
-> Q. M1·M2·M3 같은 Apple Silicon 맥과 Intel 맥은 설치 방법이 다른가요?
+> Q. M1, M2, M3 같은 Apple Silicon 맥과 Intel 맥은 설치 방법이 다른가요?
 >
 > A. 본 가이드의 명령어는 두 종류 맥에서 모두 그대로 동작합니다. 다만 Homebrew의 설치 위치가 달라서, Apple Silicon은 `/opt/homebrew`에, Intel 맥은 `/usr/local`에 자리잡습니다. 만약 "brew: command not found"가 나오면 트러블슈팅 섹션의 PATH 설정 명령어를 본인 칩에 맞춰 사용하시면 됩니다.
 

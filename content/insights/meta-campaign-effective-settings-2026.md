@@ -3,7 +3,7 @@ slug: meta-campaign-effective-settings-2026
 title: '2026 메타 캠페인, 효과 좋은 최근 운영 세팅 전략'
 excerpt: >-
   2026년 메타 광고는 AI가 알아서 해주는 것이 많아졌지만, 세팅을 어떻게 하느냐에 따라 성과 차이가 큽니다. 캠페인 구조부터 타겟팅,
-  소재, 예산, 자동화 설정까지 — 지금 바로 적용할 수 있는 5가지 핵심 세팅을 정리했습니다.
+  소재, 예산, 자동화 설정까지: 지금 바로 적용할 수 있는 5가지 핵심 세팅을 정리했습니다.
 category: MARKETING
 tags:
   - Meta 광고
@@ -26,7 +26,7 @@ metaDescription: >-
   2026년 메타 광고 캠페인 세팅 전략 5가지를 정리합니다. 캠페인 구조, 타겟팅, 소재, 예산, 자동화까지 초중급 마케터도 바로 적용
   가능한 실전 가이드.
 ogTitle: '2026 메타 캠페인, 효과 좋은 최근 운영 세팅 전략'
-ogDescription: '캠페인 구조, 타겟팅, 소재, 예산, 자동화 설정까지 — 2026년 2월 기준 메타 광고 세팅 전략 5가지를 정리합니다.'
+ogDescription: '캠페인 구조, 타겟팅, 소재, 예산, 자동화 설정까지: 2026년 2월 기준 메타 광고 세팅 전략 5가지를 정리합니다.'
 ogImage: /og/meta-campaign-effective-settings-2026.png
 ---
 
@@ -40,7 +40,7 @@ ogImage: /og/meta-campaign-effective-settings-2026.png
 
 ---
 
-## 1. 캠페인 수를 줄이세요 — 적을수록 성과가 좋습니다
+## 1. 캠페인 수를 줄이세요: 적을수록 성과가 좋습니다
 
 ### 왜 캠페인이 적을수록 좋은가
 
@@ -67,10 +67,26 @@ ogImage: /og/meta-campaign-effective-settings-2026.png
 
 ---
 
-## 2. 타겟팅은 넓게 여세요 — Meta AI가 알아서 찾습니다
+## 2. 타겟팅은 넓게 여세요: Meta AI가 알아서 찾습니다
 
-
-![메타 AI가 넓은 타겟 내에서 최적의 고객을 찾는 방법을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/meta-campaign-effective-settings-2026-0-1771689798405.png)
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;display:flex;flex-wrap:wrap;gap:12px">
+<div style="flex:1;min-width:240px;border:3px solid #000;background:#fff">
+<div style="background:#F3F3F3;border-bottom:3px solid #000;padding:8px 14px;font-weight:800;font-size:13px">과거 방식: 좁은 타겟팅</div>
+<div style="padding:12px 14px;font-size:13px;line-height:1.8">
+지역 + 연령 + 성별 + 세부 관심사까지 직접 지정
+<div style="margin-top:8px;font-size:12px;color:#374151">세부 관심사 옵션 대폭 축소, 관심사 제외 기능 삭제 (2025.06)</div>
+</div>
+</div>
+<div style="flex:1;min-width:240px;border:3px solid #000;background:#fff">
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:8px 14px;font-weight:800;font-size:13px">2026 권장: 넓은 타겟팅</div>
+<div style="padding:12px 14px;font-size:13px;line-height:1.8">
+지역 + 최소 연령만 설정, 나머지는 Meta AI에 위임
+<div style="margin-top:8px;font-family:monospace;font-weight:800">전환당 비용 22.6% 감소 (메타 자체 테스트)</div>
+</div>
+</div>
+</div>
+</div>
 
 ### 관심사 타겟팅, 대부분 없어졌습니다
 
@@ -137,10 +153,21 @@ ogImage: /og/meta-campaign-effective-settings-2026.png
 
 ## 4. 예산 설정과 학습 기간을 이해하세요
 
+<div style="overflow-x:auto;margin:24px 0">
+<div style="max-width:100%;border:3px solid #000;background:#fff">
+<div style="background:#000;color:#fff;padding:10px 16px;font-weight:800;font-size:14px">학습 기간(Learning Phase)의 흐름</div>
+<div style="padding:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;text-align:center">
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px 12px;font-size:13px"><b>캠페인 시작</b><br>성과 불안정 구간</div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#FFD700;padding:10px 12px;font-size:13px"><b>학습 기간</b><br><span style="font-family:monospace;font-weight:800">1주일에 전환 50건</span> 필요</div>
+<div style="font-size:18px;font-weight:800">→</div>
+<div style="border:3px solid #000;background:#F3F3F3;padding:10px 12px;font-size:13px"><b>학습 완료</b><br>성과 안정화</div>
+</div>
+<div style="border-top:3px solid #000;padding:10px 16px;font-size:12px;line-height:1.7;background:#F3F3F3"><b>주의</b>: 예산 20% 이상 변경, 타겟팅 변경, 광고 세트 재시작을 하면 학습이 처음부터 다시 시작됩니다.</div>
+</div>
+</div>
 
-![메타 캠페인 예산 설정과 학습 기간의 중요성을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/meta-campaign-effective-settings-2026-1-1771689831420.png)
-
-### AI에게 시간을 주세요 — 최소 1주일
+### AI에게 시간을 주세요: 최소 1주일
 
 메타 광고를 시작하면 처음 며칠간 성과가 불안정할 수 있습니다. 이 기간을 **학습 기간(Learning Phase)**이라고 하는데, AI가 "이 광고를 어떤 사람에게 보여줘야 가장 효과적인지" 파악하는 시간입니다.
 
@@ -203,7 +230,7 @@ Advantage+(어드밴티지 플러스)는 메타가 2025~2026년에 걸쳐 강력
 
 앞서 타겟팅 부분에서 설명한 기능입니다. 넓은 타겟팅과 함께 사용하면, 기존 전환 데이터를 기반으로 AI가 최적 타겟을 찾아갑니다.
 
-### Advantage+ Sales 캠페인 — 이커머스라면 필수
+### Advantage+ Sales 캠페인: 이커머스라면 필수
 
 쇼핑몰이나 이커머스 비즈니스라면 **Advantage+ Sales 캠페인**(구 Advantage+ Shopping)을 사용하는 것이 좋습니다. 일반 캠페인과 다른 점은, 타겟팅부터 소재 조합까지 거의 모든 영역을 AI에게 위임한다는 것입니다.
 
@@ -221,6 +248,6 @@ Advantage+(어드밴티지 플러스)는 메타가 2025~2026년에 걸쳐 강력
 | 4 | 예산/학습 | 주당 50건 이상 전환 발생하는지, 설정을 너무 자주 바꾸지 않는지 |
 | 5 | Advantage+ | Placements, Campaign Budget, Audience, Creative 중 꺼놓은 것이 없는지 |
 
-2026년 메타 광고의 핵심은 **AI에게 좋은 환경을 만들어 주는 것**입니다. 캠페인을 단순하게 유지하고, 타겟팅은 넓게 열고, 다양한 소재를 제공하고, 학습 기간을 충분히 주고, 자동화 기능을 활용하면 — AI가 알아서 최적의 사용자를 찾아 최적의 소재를 보여줍니다.
+2026년 메타 광고의 핵심은 **AI에게 좋은 환경을 만들어 주는 것**입니다. 캠페인을 단순하게 유지하고, 타겟팅은 넓게 열고, 다양한 소재를 제공하고, 학습 기간을 충분히 주고, 자동화 기능을 활용하면: AI가 알아서 최적의 사용자를 찾아 최적의 소재를 보여줍니다.
 
 세팅에 정답이 있는 것은 아니지만, 위 5가지를 점검하는 것만으로도 불필요한 비효율을 상당 부분 줄일 수 있습니다.

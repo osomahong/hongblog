@@ -19,7 +19,7 @@ quiz:
       - 사람이 손으로 그리는 정밀 픽셀 작업을 더 빠르게 대체한다는 점
     question: 'v0, Lovable 같은 다른 AI 디자인 도구와 비교했을 때 클로드 디자인의 가장 차별적인 지점은 무엇일까요?'
     explanation: >-
-      클로드 디자인은 코드베이스를 읽어 색상·타이포그래피·컴포넌트로 구성된 디자인 시스템을 자동 추출하고, 완성된 시안을 Claude
+      클로드 디자인은 코드베이스를 읽어 색상, 타이포그래피, 컴포넌트로 구성된 디자인 시스템을 자동 추출하고, 완성된 시안을 Claude
       Code로 단일 명령에 넘겨 프로덕션 코드까지 만들어 내는 closed loop가 가장 큰 차별점입니다. 이 흐름은 The New
       Stack과 VentureBeat가 공통으로 핵심 차별점으로 지목한 부분이며, v0가 React 컴포넌트 출력에 강하고
       Lovable이 배포까지 한 번에 간다면 클로드 디자인은 그 사이에 자리해 시안과 프로덕션 코드를 같은 생태계 안에서 묶는 데
@@ -40,7 +40,7 @@ ogDescription: '클로드 디자인의 차별점과 시장 반응, 그리고 앤
 
 이번 발표가 주목받은 이유는 단순한 슬라이드 생성기가 아니라 **"프롬프트에서 프로덕션 코드까지 한 생태계 안에서 끝낸다"**는 closed loop를 처음으로 본격적으로 구현했다는 데 있습니다. 사용자의 코드베이스와 디자인 파일을 읽어 색상, 타이포그래피, 컴포넌트로 구성된 디자인 시스템을 자동 추출하고, 그 다음부터 모든 결과물에 일관되게 적용합니다. 자세한 기능 설명은 [앤트로픽 공식 발표](https://www.anthropic.com/news/claude-design-anthropic-labs)에 정리돼 있습니다.
 
-![클로드 디자인의 디자인 시스템 편집 작업 화면, 색상·타이포그래피·컴포넌트가 한 화면에 정리돼 있다](/images/insights/claude-design/claude-design-workspace.png)
+![클로드 디자인의 디자인 시스템 편집 작업 화면, 색상, 타이포그래피, 컴포넌트가 한 화면에 정리돼 있다](/images/insights/claude-design/claude-design-workspace.png)
 
 이 글에서는 클로드 디자인이 다른 AI 디자인 도구와 무엇이 다른지, 시장은 어떻게 반응했는지, 그리고 이 한 번의 출시가 앤트로픽의 어떤 큰 그림을 보여주는지 정리합니다.
 
@@ -51,7 +51,7 @@ ogDescription: '클로드 디자인의 차별점과 시장 반응, 그리고 앤
 | 도구 | 강점 영역 | 클로드 디자인과의 관계 |
 |---|---|---|
 | Figma | 픽셀 단위 협업, 정밀 디자인 | 핵심 협업 기능과 직접 경쟁 안 함 |
-| Canva | 마케팅·SNS 비주얼 자산 | 통합 파트너, 결과물을 Canva로 내보내 편집 가능 |
+| Canva | 마케팅, SNS 비주얼 자산 | 통합 파트너, 결과물을 Canva로 내보내 편집 가능 |
 | v0 | React/Next.js 컴포넌트 코드 출력 | 클로드 디자인은 더 넓은 시안 단계까지 다룸 |
 | Lovable | 프롬프트 한 번으로 배포까지 | 클로드 디자인은 시안과 핸드오프에 집중 |
 
@@ -82,7 +82,7 @@ ogDescription: '클로드 디자인의 차별점과 시장 반응, 그리고 앤
 
 이 흐름에서 세 가지 방향성이 읽힙니다.
 
-**첫째, 모델 회사에서 수직 도구 회사로의 무게 이동입니다.** 앤트로픽은 이제 Claude라는 단일 모델을 파는 데서 그치지 않고, 직무별·작업별 전문 도구를 빠르게 분화시키고 있습니다. "2025년에 Claude가 개발자의 일하는 방식을 바꿨다면, 2026년에는 나머지 모든 지식 노동을 같은 방식으로 바꿀 것"이라는 [VentureBeat 인용](https://venturebeat.com/orchestration/anthropic-says-claude-code-transformed-programming-now-claude-cowork-is)이 이 전략을 압축합니다.
+**첫째, 모델 회사에서 수직 도구 회사로의 무게 이동입니다.** 앤트로픽은 이제 Claude라는 단일 모델을 파는 데서 그치지 않고, 직무별, 작업별 전문 도구를 빠르게 분화시키고 있습니다. "2025년에 Claude가 개발자의 일하는 방식을 바꿨다면, 2026년에는 나머지 모든 지식 노동을 같은 방식으로 바꿀 것"이라는 [VentureBeat 인용](https://venturebeat.com/orchestration/anthropic-says-claude-code-transformed-programming-now-claude-cowork-is)이 이 전략을 압축합니다.
 
 **둘째, 답변 생성에서 산출물 생성으로의 전환입니다.** Code는 코드베이스를 다루고, Cowork는 파일과 폴더를 다루고, Design은 시각 시안과 코드를 다룹니다. 공통점은 모두 **결과를 텍스트로 돌려주지 않고 작업물 그 자체를 내놓는다**는 점입니다. 이 흐름은 단순 챗봇이 도달할 수 없는 영역에서 명확한 가치를 만들어 내는 방향입니다.
 
@@ -127,7 +127,7 @@ ogDescription: '클로드 디자인의 차별점과 시장 반응, 그리고 앤
 ## 정리
 
 - 클로드 디자인은 자연어로 웹 프로토타입과 디자인 시스템을 만들고 단일 명령으로 Claude Code로 넘기는 closed loop가 핵심입니다
-- 시장은 즉시 반응했습니다. Figma·Adobe·Wix 주가가 하락했고, Canva는 통합 파트너로 합류해 하류 협업 도구 자리를 택했습니다
+- 시장은 즉시 반응했습니다. Figma, Adobe, Wix 주가가 하락했고, Canva는 통합 파트너로 합류해 하류 협업 도구 자리를 택했습니다
 - Code → Cowork → Design으로 이어지는 6개월의 흐름은 앤트로픽이 모델 회사에서 "AI 작업 운영체제" 회사로 무게를 옮기고 있음을 보여줍니다
 
 자세한 내용은 [앤트로픽 공식 발표](https://www.anthropic.com/news/claude-design-anthropic-labs), [The New Stack의 분석](https://thenewstack.io/anthropic-claude-design-launch/), [VentureBeat의 Figma 비교 기사](https://venturebeat.com/technology/anthropic-just-launched-claude-design-an-ai-tool-that-turns-prompts-into-prototypes-and-challenges-figma), [PCWorld의 사용 후기](https://www.pcworld.com/article/3117811/i-tried-claude-design-for-half-an-hour-im-already-locked-out-for-a-week.html)를 참고해 직접 시도해 보시기 바랍니다.
