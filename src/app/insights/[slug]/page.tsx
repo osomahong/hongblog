@@ -7,6 +7,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
+import { classHref } from "@/lib/links";
 import { SITE_URL } from "@/lib/constants";
 import { getPostBySlug, getRelatedClassesForPost, getPublishedPosts } from "@/lib/content";
 import { extractFaqPairs } from "@/lib/extract-faq";
@@ -230,10 +231,10 @@ export default async function InsightDetailPage({ params }: Props) {
                   </NeoCardHeader>
                   <NeoCardContent className="relative z-10">
                     <ul className="space-y-2 sm:space-y-3">
-                      {relatedClasses.map((cls, index) => (
+                      {relatedClasses.filter((cls) => classHref(cls)).map((cls) => (
                         <li key={cls.id}>
                           <RelatedLink
-                            href={`/class/${cls.courseInfo?.slug || ""}/${cls.slug}`}
+                            href={classHref(cls)!}
                             relatedType="classes"
                             contentId={cls.slug}
                             contentName={cls.term}

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { CLASS_COURSE_MAP } from "@/lib/generated/class-course-map";
 
 // Jekyll 시절 URL → 현재 URL 매핑
 const LEGACY_REDIRECTS: Record<string, string> = {
@@ -63,6 +64,21 @@ export function middleware(request: NextRequest) {
   for (const [pattern, dest] of REMOVED_ROUTE_REDIRECTS) {
     if (pattern.test(pathname)) {
       const url = new URL(`https://www.digitalmarketer.co.kr${dest}`);
+      return NextResponse.redirect(url, 301);
+    }
+  }
+
+  // 클래스 슬러그는 맞지만 코스 조각이 틀린 경로 → 정규 경로로 301
+  // 과거 내부 링크 버그로 /class/{다른코스}/{클래스} 형태가 노출된 적이 있어,
+  // 이미 수집된 URL과 외부 공유 링크가 404로 끝나지 않게 한다.
+  const classPathMatch = pathname.match(/^\/class\/([^/]+)\/([^/]+)\/?$/);
+  if (classPathMatch) {
+    const [, courseSlug, classSlug] = classPathMatch;
+    const canonicalCourse = CLASS_COURSE_MAP[classSlug];
+    if (canonicalCourse && canonicalCourse !== courseSlug) {
+      const url = new URL(
+        `https://www.digitalmarketer.co.kr/class/${canonicalCourse}/${classSlug}`,
+      );
       return NextResponse.redirect(url, 301);
     }
   }

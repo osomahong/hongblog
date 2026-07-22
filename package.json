@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prebuild": "tsx scripts/generate-class-map.ts",
+    "check:links": "tsx scripts/check-links.ts",
+    "check:links:html": "tsx scripts/check-links.ts --html"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",

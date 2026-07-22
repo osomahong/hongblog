@@ -7,6 +7,7 @@ import type {
   PostWithTags, TrendingItem, CourseWithClasses, ClassWithMeta,
   CategoryStat, NextPrevResult, TagWithId, ContentByTagResult,
 } from "./types";
+import { classHref } from "./links";
 
 // ============================================
 // 경로 상수
@@ -436,13 +437,18 @@ export function getRelatedClassesByTags(tags: string[], excludeId: number, limit
 }
 
 
-export function getNextPrevClass(classId: number): NextPrevResult {
-  const all = getClasses();
-  const cls = all.find((_, i) => i + 1 === classId);
+/**
+ * 같은 코스 안에서의 이전/다음 클래스를 구한다.
+ * slug로 조회한다. 인덱스 기반으로 찾으면 호출부가 넘기는 id가 실제 정렬 순서와
+ * 어긋날 때 엉뚱한 클래스의 이웃이 나오고, 그 링크가 다른 코스 경로에 붙어 404가 된다.
+ */
+export function getNextPrevClass(classSlug: string): NextPrevResult {
+  const cls = getClassBySlug(classSlug);
   if (!cls) return { prev: null, next: null, currentIndex: 0, totalCount: 0 };
 
   const siblings = getClassesByCourse(cls.courseSlug);
   const idx = siblings.findIndex((s) => s.slug === cls.slug);
+  if (idx < 0) return { prev: null, next: null, currentIndex: 0, totalCount: siblings.length };
 
   function toNav(c: ClassItem, i: number) {
     return { id: i + 1, slug: c.slug, term: c.term, courseInfo: c.courseSlug ? { id: 1, slug: c.courseSlug } : null };
@@ -451,7 +457,7 @@ export function getNextPrevClass(classId: number): NextPrevResult {
   return {
     prev: idx > 0 ? toNav(siblings[idx - 1], idx - 1) : null,
     next: idx < siblings.length - 1 ? toNav(siblings[idx + 1], idx + 1) : null,
-    currentIndex: idx,
+    currentIndex: idx + 1,
     totalCount: siblings.length,
   };
 }
@@ -535,11 +541,13 @@ export function getFeaturedTagPreviews(limit: number): TagPreviewItem[] {
       continue;
     }
 
-    const cls = classes.find(
-      (c) => !usedHrefs.has(`/class/${c.courseInfo?.slug ?? ""}/${c.slug}`),
-    );
-    if (cls) {
-      const href = `/class/${cls.courseInfo?.slug ?? ""}/${cls.slug}`;
+    const cls = classes.find((c) => {
+      const h = classHref(c);
+      return h !== null && !usedHrefs.has(h);
+    });
+    const clsHref = cls ? classHref(cls) : null;
+    if (cls && clsHref) {
+      const href = clsHref;
       usedHrefs.add(href);
       result.push({
         tag,

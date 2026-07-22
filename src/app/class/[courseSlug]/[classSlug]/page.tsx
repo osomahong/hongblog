@@ -11,6 +11,7 @@ import { ClassProgressMarker } from "@/components/ClassProgressMarker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
 import { SITE_URL } from "@/lib/constants";
+import { classHref } from "@/lib/links";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
@@ -97,7 +98,7 @@ export default async function ClassDetailPage({ params }: Props) {
     const [classContentBeforeAd, classContentAfterAd] = splitMarkdownAtNthH2(classData.content, 2);
 
     // 이전/다음 Class 네비게이션
-    const navigation = await getNextPrevClass(classData.id);
+    const navigation = await getNextPrevClass(classSlug);
 
     // 연관 Class 추천: frontmatter relatedTerms 큐레이션 우선, 부족하면 태그 기반으로 보충
     const curatedClasses = classData.relatedTerms
@@ -373,7 +374,7 @@ export default async function ClassDetailPage({ params }: Props) {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                                 {navigation.prev ? (
                                     <RelatedLink
-                                        href={`/class/${courseSlug}/${navigation.prev.slug}`}
+                                        href={`/class/${navigation.prev.courseInfo?.slug ?? courseSlug}/${navigation.prev.slug}`}
                                         relatedType="classes"
                                         contentId={navigation.prev.slug}
                                         contentName={navigation.prev.term}
@@ -395,7 +396,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                 )}
                                 {navigation.next && (
                                     <RelatedLink
-                                        href={`/class/${courseSlug}/${navigation.next.slug}`}
+                                        href={`/class/${navigation.next.courseInfo?.slug ?? courseSlug}/${navigation.next.slug}`}
                                         relatedType="classes"
                                         contentId={navigation.next.slug}
                                         contentName={navigation.next.term}
@@ -427,10 +428,10 @@ export default async function ClassDetailPage({ params }: Props) {
                                 </NeoCardHeader>
                                 <NeoCardContent>
                                     <div className="grid gap-3">
-                                        {relatedClasses.map((related) => (
+                                        {relatedClasses.filter((related) => classHref(related)).map((related) => (
                                             <RelatedLink
                                                 key={related.id}
-                                                href={`/class/${related.courseInfo?.slug || courseSlug}/${related.slug}`}
+                                                href={classHref(related)!}
                                                 relatedType="classes"
                                                 contentId={related.slug}
                                                 contentName={related.term}

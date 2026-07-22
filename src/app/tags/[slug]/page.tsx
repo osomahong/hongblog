@@ -9,6 +9,7 @@ import { NeoTiltCard } from "@/components/neo";
 import { getAllTagsWithId, getContentByTag } from "@/lib/content";
 import { ViewTracker } from "@/components/ViewTracker";
 import { SITE_URL } from "@/lib/constants";
+import { classHref } from "@/lib/links";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -93,10 +94,10 @@ export default async function TagDetailPage(
         headline: p.title,
         url: `${SITE_URL}/insights/${p.slug}`,
       })),
-      ...content.classes.map((c) => ({
+      ...content.classes.filter((c) => classHref(c)).map((c) => ({
         "@type": "Article",
         headline: c.term,
-        url: `${SITE_URL}/class/${c.courseInfo?.slug ?? ""}/${c.slug}`,
+        url: `${SITE_URL}${classHref(c)}`,
       })),
     ],
   };
@@ -247,10 +248,10 @@ export default async function TagDetailPage(
             <BookOpen className="w-5 h-5" /> <span className="comic-emphasis">Classes ({content.classes.length})</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {content.classes.map((cls, index) => (
+            {content.classes.filter((cls) => classHref(cls)).map((cls, index) => (
               <Link
                 key={cls.id}
-                href={`/class/${cls.courseInfo?.slug ?? ""}/${cls.slug}`}
+                href={classHref(cls)!}
               >
                 <NeoTiltCard
                   className={`h-full ${index % 2 === 0 ? "rotate-0.5" : "-rotate-0.5"}`}
