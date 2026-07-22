@@ -149,6 +149,7 @@ export interface NextPrevResult {
 export interface TagWithId {
   id: number;
   name: string;
+  count: number;
 }
 
 export interface ContentByTagResult {

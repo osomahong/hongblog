@@ -444,5 +444,50 @@ export function getNextPrevClass(classId: number): NextPrevResult {
 
 
 export function getAllTagsWithId(): TagWithId[] {
-  return getAllTags().map(({ name }, i) => ({ id: i + 1, name }));
+  return getAllTags().map(({ name, count }, i) => ({ id: i + 1, name, count }));
+}
+
+export interface TagPreviewItem {
+  tag: TagWithId;
+  title: string;
+  excerpt: string;
+  href: string;
+  category: string;
+  contentType: "insight" | "class";
+}
+
+/**
+ * /tags 허브 페이지 미리보기용: 콘텐츠 수 상위 태그별로 대표 글을 1건씩 뽑는다.
+ * 인사이트를 우선하고, 인사이트가 없는 태그는 클래스로 대체한다.
+ */
+export function getFeaturedTagPreviews(limit: number): TagPreviewItem[] {
+  const topTags = getAllTagsWithId().slice(0, limit);
+  return topTags
+    .map((tag): TagPreviewItem | null => {
+      const { posts, classes } = getContentByTag(tag.name);
+      const post = posts[0];
+      if (post) {
+        return {
+          tag,
+          title: post.title,
+          excerpt: post.excerpt,
+          href: `/insights/${post.slug}`,
+          category: post.category,
+          contentType: "insight",
+        };
+      }
+      const cls = classes[0];
+      if (cls) {
+        return {
+          tag,
+          title: cls.term,
+          excerpt: cls.definition,
+          href: `/class/${cls.courseInfo?.slug ?? ""}/${cls.slug}`,
+          category: cls.category,
+          contentType: "class",
+        };
+      }
+      return null;
+    })
+    .filter((x): x is TagPreviewItem => x !== null);
 }
