@@ -87,7 +87,7 @@ ChatGPT, Claude, Perplexity 같은 도구를 쓰다 보면 "온톨로지(Ontolog
 
 온톨로지를 처음 접할 때 가장 많이 헷갈리는 것이 분류 체계(Taxonomy) 와의 차이입니다. 둘 다 무언가를 정리하는 도구지만, 본질이 다릅니다.
 
-![도서관에서 "총균쇠"같은 책을 추천해 달라고 했을 때 Taxonomy는 같은 카테고리의 책을 단순히 묶어 답하고, Ontology는 책의 속성과 관계까지 정리해 추론한다](/images/insights/ontology-concept-for-ai-era/taxonomy-vs-ontology.png)
+![도서관에서 "총균쇠"같은 책을 추천해 달라고 했을 때 Taxonomy는 같은 카테고리의 책을 단순히 묶어 답하고, Ontology는 책의 속성과 관계까지 정리해 추론한다](/images/insights/ontology-concept-for-ai-era/taxonomy-vs-ontology.webp)
 
 도서관에서 "총균쇠 같은 책을 추천해 주세요" 라고 부탁했다고 해 봅시다. Taxonomy 기반 시스템은 "국내도서 > 인문 > 인문학" 카테고리에 함께 묶여 있는 책을 그대로 추천합니다. 그래서 "손자병법" 이 추천될 수도 있습니다. 같은 카테고리에 있다는 사실 외에는 추천 근거가 없기 때문입니다.
 
@@ -114,7 +114,7 @@ AI 시대에 온톨로지가 부각되는 이유가 여기에 있습니다. 단�
 
 **Property(속성)** 는 클래스나 인스턴스의 특성을 설명하거나, 다른 개체와 연결 고리를 만드는 정의입니다. 속성은 두 갈래로 나뉩니다. 객체 속성(Object Property) 은 인스턴스와 인스턴스를 잇고, 데이터 속성(Data Property) 은 인스턴스와 구체적인 값(literal) 을 잇습니다.
 
-![객체 속성은 봉준호와 기생충 사이의 "감독했다"처럼 인스턴스와 인스턴스를 잇고, 데이터 속성은 기생충과 2019처럼 인스턴스와 구체적인 값을 잇는다](/images/insights/ontology-concept-for-ai-era/object-data-property.png)
+![객체 속성은 봉준호와 기생충 사이의 "감독했다"처럼 인스턴스와 인스턴스를 잇고, 데이터 속성은 기생충과 2019처럼 인스턴스와 구체적인 값을 잇는다](/images/insights/ontology-concept-for-ai-era/object-data-property.webp)
 
 피자 클래스를 3요소로 정리하면 이렇게 됩니다.
 
@@ -142,7 +142,7 @@ fact B: 서울은 한국의 일부이다 (partOf).
 rule:   partOf 속성은 전이적(Transitive)이다.
 ```
 
-![강남구가 서울에 속하고, 서울이 한국에 속하는 partOf 관계. 두 사실만 입력하면 시스템이 "강남구가 한국의 일부"라는 결론을 스스로 도출한다](/images/insights/ontology-concept-for-ai-era/partof-transitive.png)
+![강남구가 서울에 속하고, 서울이 한국에 속하는 partOf 관계. 두 사실만 입력하면 시스템이 "강남구가 한국의 일부"라는 결론을 스스로 도출한다](/images/insights/ontology-concept-for-ai-era/partof-transitive.webp)
 
 이 세 줄만 있으면, "강남구가 한국의 일부이다" 라는 사실을 별도로 입력하지 않아도 시스템이 스스로 결론을 만들어 냅니다. 사람이 일일이 모든 관계를 데이터에 적어 둘 필요가 없어지는 것입니다.
 
@@ -162,7 +162,7 @@ rule:   partOf 속성은 전이적(Transitive)이다.
 
 ### 구글: 2012년에 일어난 "Strings 에서 Things 로" 전환
 
-![구글에서 "레오나르도 다 빈치"를 검색했을 때 화면 우측에 표시되는 지식 패널. 생애, 대표작, 가족 관계, 연관 인물이 카드 형태로 정리되어 있다](/images/insights/ontology-concept-for-ai-era/google-knowledge-graph.png)
+![구글에서 "레오나르도 다 빈치"를 검색했을 때 화면 우측에 표시되는 지식 패널. 생애, 대표작, 가족 관계, 연관 인물이 카드 형태로 정리되어 있다](/images/insights/ontology-concept-for-ai-era/google-knowledge-graph.webp)
 
 2012년 이전의 구글 검색은 단어(Strings) 를 모아 둔 인덱스였습니다. "레오나르도 다 빈치" 를 검색하면 위키백과 링크와 블로그 글 목록이 나올 뿐이었습니다.
 
@@ -174,7 +174,7 @@ rule:   partOf 속성은 전이적(Transitive)이다.
 
 ### 넷플릭스: 콘텐츠 자체의 속성으로 추천한다
 
-![넷플릭스 "기묘한 이야기" 상세 화면 하단의 추천 행. 옥자, 글로우 같은 유사 속성 작품이 함께 노출된다](/images/insights/ontology-concept-for-ai-era/netflix-recommendation.png)
+![넷플릭스 "기묘한 이야기" 상세 화면 하단의 추천 행. 옥자, 글로우 같은 유사 속성 작품이 함께 노출된다](/images/insights/ontology-concept-for-ai-era/netflix-recommendation.webp)
 
 넷플릭스가 사용자의 취향을 잘 맞히는 비결도 온톨로지입니다. 단순한 협업 필터링("이걸 본 사람이 저것도 봤어요") 만으로는 한계가 분명합니다. 신규 가입자나 신작 영화는 데이터가 부족하기 때문입니다. 이른바 콜드 스타트 문제입니다.
 
@@ -186,7 +186,7 @@ rule:   partOf 속성은 전이적(Transitive)이다.
 
 ### 팔란티어: 디지털 트윈과 자동 관계 추적
 
-![팔란티어 로고. 파운드리(Foundry)와 디지털 트윈 플랫폼을 제공하며, 현실 세계 자산과 프로세스를 디지털 복제본으로 모델링하는 것을 지향한다](/images/insights/ontology-concept-for-ai-era/palantir-foundry.png)
+![팔란티어 로고. 파운드리(Foundry)와 디지털 트윈 플랫폼을 제공하며, 현실 세계 자산과 프로세스를 디지털 복제본으로 모델링하는 것을 지향한다](/images/insights/ontology-concept-for-ai-era/palantir-foundry.webp)
 
 팔란티어(Palantir) 의 파운드리(Foundry) 플랫폼은 여기서 한 단계 더 나아갑니다. 현실 세계의 물리적 자산, 프로세스, 조직까지 디지털 복제본으로 만드는 "디지털 트윈" 을 지향합니다.
 
