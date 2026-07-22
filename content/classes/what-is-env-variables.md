@@ -15,6 +15,8 @@ aliases:
   - .env 파일
 relatedTerms:
   - what-is-terminal-cli
+  - what-is-deployment
+  - what-is-authentication
 difficulty: BEGINNER
 quiz:
   - options:
@@ -127,6 +129,20 @@ const apiKey = process.env.OPENAI_API_KEY;
 - Railway: Variables 탭
 
 이렇게 하면 코드에는 비밀이 없고, 실행 환경에서만 안전하게 값을 읽어올 수 있습니다.
+
+## 💼 환경 변수가 문제의 원인이 되는 순간들
+
+### 공개 저장소에 키를 올려버렸을 때
+
+프로젝트를 GitHub 공개 저장소에 올린 직후, OpenAI에서 "당신의 API 키가 노출되었습니다"라는 메일을 받는 경우가 실제로 있습니다. 봇들이 공개 저장소를 자동으로 훑으며 키를 수집하기 때문에, 노출된 키는 몇 분 안에 악용될 수 있습니다. 이때는 키를 코드에서 지우는 것으로는 부족하고, 즉시 재발급해서 이전 키를 폐기해야 합니다.
+
+### 로컬에서는 되는데 배포하면 안 될 때
+
+내 컴퓨터에서는 잘 돌아가던 AI 기능이 [배포](/class/vibe-coding-basics/what-is-deployment) 후에 "API key not found" 에러를 냅니다. `.env` 파일은 내 컴퓨터에만 있고 GitHub을 거쳐 배포 서버로 전달되지 않기 때문입니다. Vercel 대시보드의 환경 변수 설정에 같은 값을 등록하면 해결됩니다.
+
+### 다른 컴퓨터에서 프로젝트를 열었을 때
+
+회사 컴퓨터에서 작업하던 프로젝트를 집에서 내려받아 실행하면 바로 에러가 납니다. `.env`가 GitHub에 올라가지 않으니, 새 컴퓨터에는 환경 변수가 하나도 없는 상태이기 때문입니다. 그래서 실무에서는 값을 비운 `.env.example` 파일을 함께 올려서, 어떤 변수가 필요한지 목록만 공유하는 방식을 씁니다. [인증](/class/vibe-coding-basics/what-is-authentication)에 쓰이는 비밀 키들도 같은 방식으로 관리합니다.
 
 ## 📋 30초 요약
 

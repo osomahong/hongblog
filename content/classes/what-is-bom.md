@@ -11,6 +11,10 @@ tags:
 publishedAt: '2026-02-11T08:47:58.303Z'
 courseSlug: digital-basic
 orderInCourse: 4
+relatedTerms:
+  - what-is-dom
+  - what-is-javascript
+  - what-is-cookie
 difficulty: BEGINNER
 quiz:
   - options:
@@ -43,12 +47,29 @@ ogImage: /og/what-is-bom.png
 
 BOM(Browser Object Model)은 웹페이지 내용(문서)이 아닌, 웹 브라우저 자체를 제어하는 리모컨입니다.
 
-쉽게 말해, 브라우저가 가진 고유의 기능들—주소창, 뒤로 가기 버튼, 즐겨찾기, 화면 크기, 브라우저 종류—을 JavaScript가 만질 수 있도록 만들어 놓은 것입니다.
+쉽게 말해, 브라우저가 가진 고유의 기능들(주소창, 뒤로 가기 버튼, 즐겨찾기, 화면 크기, 브라우저 종류)을 JavaScript가 만질 수 있도록 만들어 놓은 것입니다.
 
 ## 📺 첫 번째 비유: TV 리모컨
 
 
-![TV 리모컨으로 TV를 조작하는 비유를 통해 BOM의 브라우저 제어 방식을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-bom-0-1770799635796.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="border:3px solid #000;background:#fff;max-width:100%;font-family:sans-serif;font-size:13px;">
+    <div style="background:#FFD700;border-bottom:3px solid #000;padding:8px 10px;">
+      <span style="font-family:monospace;font-weight:bold;">← → ⟳</span>
+      <span style="border:2px solid #000;background:#fff;padding:2px 8px;margin-left:6px;font-family:monospace;">https://example.com</span>
+      <div style="margin-top:6px;font-weight:bold;">↑ 여기가 BOM의 영역 : 뒤로 가기, 주소창 등 브라우저 기계 자체</div>
+    </div>
+    <div style="padding:14px;background:#F3F3F3;">
+      <div style="border:2px solid #000;background:#fff;padding:10px;">
+        <div style="font-weight:bold;">신년 프로모션</div>
+        <div style="color:#555;margin:6px 0;">지금 가입하면 첫 달 무료!</div>
+        <span style="display:inline-block;border:2px solid #000;background:#FF0000;color:#fff;padding:4px 12px;font-weight:bold;">구매하기</span>
+      </div>
+      <div style="margin-top:8px;font-weight:bold;">↑ 여기가 DOM의 영역 : 페이지 안에 담긴 내용물(드라마 내용)</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">DOM은 화면 속 콘텐츠를, BOM은 그 콘텐츠를 감싼 브라우저(TV 기계)를 다룹니다.</div>
+</div>
 
 DOM과 BOM의 차이를 가장 쉽게 설명하는 비유는 TV입니다.
 
@@ -78,7 +99,19 @@ BOM은 바로 이 TV 기계(브라우저)를 조작하는 리모컨입니다.
 ## ⚙️ 그래서 BOM은 어떻게 작동하나요?
 
 
-![브라우저 객체 모델(BOM)이 웹 브라우저 기능을 제어하는 원리를 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-bom-1-1770799669461.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="border:3px solid #000;background:#F3F3F3;padding:14px;max-width:100%;font-family:sans-serif;font-size:13px;">
+    <div style="font-family:monospace;font-weight:bold;margin-bottom:10px;">window <span style="font-family:sans-serif;font-weight:normal;color:#555;">(브라우저 창 전체, BOM의 대장)</span></div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;">
+      <div style="flex:1 1 150px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b style="font-family:monospace;">location</b><br>주소창 정보와 페이지 이동</div>
+      <div style="flex:1 1 150px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b style="font-family:monospace;">history</b><br>뒤로 가기, 방문 기록</div>
+      <div style="flex:1 1 150px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b style="font-family:monospace;">navigator</b><br>브라우저와 기기 종류</div>
+      <div style="flex:1 1 150px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b style="font-family:monospace;">screen</b><br>화면 크기 정보</div>
+      <div style="flex:1 1 100%;border:2px solid #000;background:#fff;padding:8px 10px;"><b style="font-family:monospace;">document</b> <span style="color:#FF0000;font-weight:bold;">← 이게 바로 DOM</span><br>웹페이지 내용물도 window 안에 들어 있는 한 부분일 뿐입니다.</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">window라는 큰 상자 안에 브라우저 제어 도구들(BOM)과 페이지 내용(document, DOM)이 함께 들어 있습니다.</div>
+</div>
 
 BOM의 대장은 'window(창)'라는 녀석입니다. 브라우저 창 전체를 의미하죠.
 

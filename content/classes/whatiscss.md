@@ -10,6 +10,10 @@ tags:
 publishedAt: '2026-02-11T08:43:14.838Z'
 courseSlug: digital-basic
 orderInCourse: 2
+relatedTerms:
+  - whatishtml
+  - what-is-selector
+  - what-is-element
 difficulty: BEGINNER
 quiz:
   - options:
@@ -46,7 +50,25 @@ HTML이 "여기 제목이 있고, 여기 내용이 있어"라고 사실만 전�
 ## 🏢 첫 번째 비유: 인테리어 시공
 
 
-![웹 페이지 스타일링에 비유되는 인테리어 시공 과정을 통해 CSS의 역할을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/whatiscss-0-1770799353896.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;max-width:100%;font-family:sans-serif;">
+    <div style="flex:1 1 220px;border:3px solid #000;background:#fff;">
+      <div style="background:#F3F3F3;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">CSS 적용 전</div>
+      <div style="padding:14px;">
+        <div style="font-size:15px;">구매하기</div>
+        <div style="margin-top:10px;color:#555;font-size:13px;">HTML만 있는 상태. 내용은 있지만 검은 글자뿐입니다.</div>
+      </div>
+    </div>
+    <div style="flex:1 1 220px;border:3px solid #000;background:#fff;">
+      <div style="background:#FFD700;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">CSS 적용 후</div>
+      <div style="padding:14px;">
+        <span style="display:inline-block;background:#0054FF;color:#fff;padding:10px 22px;border-radius:10px;font-weight:bold;">구매하기</span>
+        <div style="margin-top:10px;color:#555;font-size:13px;">배경색, 글자색, 둥근 모서리가 입혀진 상태입니다.</div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">같은 HTML이라도 CSS라는 인테리어를 입히면 전혀 다른 모습이 됩니다.</div>
+</div>
 
 HTML 설명에서 건물의 '뼈대(골조)' 이야기를 했었죠? 그 뼈대만 있는 회색 콘크리트 건물에 들어간다고 상상해 보세요. 삭막하고 사람이 살 수 없을 겁니다.
 
@@ -78,7 +100,20 @@ CSS가 바로 웹사이트의 **디자인 테마**입니다.
 ## ⚙️ 그래서 CSS는 어떻게 생겼나요?
 
 
-![CSS의 기본 문법인 선택자, 속성, 값으로 구성된 규칙 세트의 구조를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/whatiscss-1-1770799383876.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;">
+    <div style="font-weight:bold;margin-bottom:10px;">CSS 규칙 한 줄 해부하기</div>
+    <pre style="font-family:monospace;font-size:14px;background:#F3F3F3;border:2px solid #000;padding:12px;margin:0;overflow-x:auto;"><span style="background:#FFD700;font-weight:bold;">.buy-button</span> {
+  <span style="color:#FF0000;font-weight:bold;">background-color</span>: <span style="text-decoration:underline;font-weight:bold;">blue</span>;
+}</pre>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:13px;">
+      <div style="flex:1 1 140px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b>선택자(Selector)</b><br>누구를 꾸밀지 지정</div>
+      <div style="flex:1 1 140px;border:2px solid #000;background:#fff;padding:8px 10px;"><b style="color:#FF0000;">속성(Property)</b><br>무엇을 바꿀지 지정</div>
+      <div style="flex:1 1 140px;border:2px solid #000;background:#F3F3F3;padding:8px 10px;"><b>값(Value)</b><br>어떻게 바꿀지 지정</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">CSS 문법은 "누구를(선택자), 무엇을(속성), 어떻게(값)" 세 부분으로 이루어집니다.</div>
+</div>
 
 CSS는 "누구(Selector)를 콕 집어서, 어떻게(Property) 꾸며줘"라고 명령하는 방식입니다.
 

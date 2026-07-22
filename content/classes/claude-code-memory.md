@@ -23,7 +23,7 @@ difficulty: BEGINNER
 quiz:
   - question: CLAUDE.md 파일은 어떤 역할을 할까요?
     options:
-      - 프로젝트 루트에 두고 Claude Code가 모든 세션 시작 시 읽어 들이는 영속 지시·표준 문서
+      - 프로젝트 루트에 두고 Claude Code가 모든 세션 시작 시 읽어 들이는 영속 지시, 표준 문서
       - Claude Code의 설치 로그
       - 자동으로 백업되는 파일
       - 한국어 번역 사전
@@ -31,7 +31,7 @@ quiz:
     explanation: >-
       CLAUDE.md는 프로젝트 루트에 두는 마크다운 파일로, Claude Code가 매 세션 시작 시 자동으로 읽어 들입니다. 회사
       코딩 표준, 아키텍처 결정, 선호 라이브러리, 검토 체크리스트 같은 영속 지시를 적어두면 매번 다시 설명할 필요가 없습니다. 설치
-      로그·백업·번역 사전과는 관련이 없습니다.
+      로그, 백업, 번역 사전과는 관련이 없습니다.
 ogImage: /og/claude-code-memory.png
 ---
 
@@ -58,7 +58,7 @@ Claude Code를 한 번 닫고 다시 열면 이전 대화를 기억하지 못합
 
 > "CLAUDE.md is a markdown file you add to your project root that Claude Code reads at the start of every session. Use it to set coding standards, architecture decisions, preferred libraries, and review checklists."
 
-비유하자면 새로 합류한 동료에게 건네는 **온보딩 문서**입니다. 회사·프로젝트의 표준을 한 번 적어두면, Claude가 매번 그 위에서 작업합니다.
+비유하자면 새로 합류한 동료에게 건네는 **온보딩 문서**입니다. 회사, 프로젝트의 표준을 한 번 적어두면, Claude가 매번 그 위에서 작업합니다.
 
 ## ✏️ CLAUDE.md에 무엇을 적을까요?
 
@@ -74,9 +74,9 @@ Claude Code를 한 번 닫고 다시 열면 이전 대화를 기억하지 못합
 - "날짜는 date-fns, 검증은 Zod"
 
 **4. 검토 체크리스트**
-- "PR 전에 lint·테스트·타입체크가 모두 통과해야 함"
+- "PR 전에 lint, 테스트, 타입체크가 모두 통과해야 함"
 
-**5. 회사·팀 컨벤션**
+**5. 회사, 팀 컨벤션**
 - "커밋 메시지는 영어, 변수명은 영어, 주석은 한국어"
 
 **6. 자주 쓰는 명령**
@@ -130,7 +130,7 @@ CLAUDE.md는 두 위치에 둘 수 있습니다.
 **4. 작업 진행**
 - 사용자가 매번 표준을 다시 알려주지 않아도 일관된 결과 생성.
 
-## 🔗 Hooks·Subagents·Skills와의 묶음
+## 🔗 Hooks, Subagents, Skills와의 묶음
 
 Memory는 다른 도구들의 **공통 토대**가 됩니다.
 
@@ -158,13 +158,13 @@ Memory가 잘 정리된 프로젝트는 다른 자동화 도구들의 효과가 
 ## ⚠️ CLAUDE.md 작성 시 주의할 점
 
 **1. 너무 길지 않게**
-- CLAUDE.md는 매 세션 [컨텍스트 윈도우](/class/claude-fundamentals/context-window-explained)에 들어가므로 길어질수록 비용·속도에 영향이 있습니다. 핵심만 압축해서 적습니다.
+- CLAUDE.md는 매 세션 [컨텍스트 윈도우](/class/claude-fundamentals/context-window-explained)에 들어가므로 길어질수록 비용, 속도에 영향이 있습니다. 핵심만 압축해서 적습니다.
 
 **2. 자주 갱신**
 - 프로젝트가 진행되면서 표준이 바뀌면 CLAUDE.md도 함께 갱신합니다. 한 번 쓰고 잊지 마세요.
 
 **3. 보안 정보 포함 금지**
-- API 키·비밀번호·고객 정보를 CLAUDE.md에 넣지 마세요. 환경 변수로 분리합니다.
+- API 키, 비밀번호, 고객 정보를 CLAUDE.md에 넣지 마세요. 환경 변수로 분리합니다.
 
 **4. git 커밋 여부 결정**
 - 프로젝트 CLAUDE.md를 git에 커밋해 팀과 공유할지, gitignore에 두고 개인 설정으로 둘지 미리 정합니다.
@@ -173,9 +173,9 @@ Memory가 잘 정리된 프로젝트는 다른 자동화 도구들의 효과가 
 
 1. **Memory는 Claude Code가 세션을 넘어 기억할 수 있게 만든 영속 컨텍스트 시스템**입니다. 사용자가 적는 CLAUDE.md와 Claude가 자동으로 쌓는 auto memory 두 갈래로 구성됩니다.
 
-2. **CLAUDE.md는 프로젝트 루트의 마크다운 파일로, 매 세션 시작 시 자동 로드**됩니다. 코딩 표준·아키텍처·라이브러리·체크리스트·회사 컨벤션을 적어두면 매번 다시 설명할 필요가 없습니다.
+2. **CLAUDE.md는 프로젝트 루트의 마크다운 파일로, 매 세션 시작 시 자동 로드**됩니다. 코딩 표준, 아키텍처, 라이브러리, 체크리스트, 회사 컨벤션을 적어두면 매번 다시 설명할 필요가 없습니다.
 
-3. **[Hooks](/class/claude-code-for-everyone/what-are-hooks)·[Subagents](/class/claude-code-for-everyone/what-are-subagents)·[Skills](/class/claude-in-practice/what-are-claude-skills)와 묶이면 자동화 효과가 커집니다.** 너무 길지 않게, 자주 갱신, 보안 정보 미포함, git 공유 여부 결정 네 가지가 표준 작성 원칙입니다.
+3. **[Hooks](/class/claude-code-for-everyone/what-are-hooks), [Subagents](/class/claude-code-for-everyone/what-are-subagents), [Skills](/class/claude-in-practice/what-are-claude-skills)와 묶이면 자동화 효과가 커집니다.** 너무 길지 않게, 자주 갱신, 보안 정보 미포함, git 공유 여부 결정 네 가지가 표준 작성 원칙입니다.
 
 ## 📚 참고 자료
 

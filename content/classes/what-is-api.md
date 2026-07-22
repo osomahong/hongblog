@@ -16,6 +16,8 @@ aliases:
 relatedTerms:
   - what-is-javascript
   - what-is-dom
+  - what-is-rest-api
+  - what-is-json-and-data-structures
 difficulty: BEGINNER
 quiz:
   - options:
@@ -47,8 +49,26 @@ ogImage: /og/what-is-api.png
 
 ## 🍽️ 레스토랑의 메뉴판과 웨이터
 
-
-![메뉴판과 웨이터를 통해 API의 기능 및 요청 처리 과정을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-api-0-1770800358160.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; display:flex; flex-wrap:wrap; gap:8px; align-items:stretch;">
+    <div style="flex:1; min-width:200px; border:3px solid #000; background:#fff; padding:10px;">
+      <div style="display:inline-block; font-weight:bold; background:#FFD700; border:2px solid #000; padding:2px 8px; margin-bottom:8px;">1. 요청 (주문)</div>
+      <div style="font-family:monospace; font-size:0.85em; background:#F3F3F3; border:2px solid #000; padding:8px;">GET /menu/carbonara</div>
+      <p style="margin:8px 0 0; color:#555;">"까르보나라 1개 주세요"</p>
+    </div>
+    <div style="align-self:center; font-weight:bold; font-size:1.2em;">→</div>
+    <div style="flex:1; min-width:160px; border:3px solid #000; background:#F3F3F3; padding:10px;">
+      <div style="display:inline-block; font-weight:bold; background:#fff; border:2px solid #000; padding:2px 8px; margin-bottom:8px;">2. 서버 (주방)</div>
+      <p style="margin:0; color:#555;">메뉴 확인, 조리 후 결과를 준비합니다</p>
+    </div>
+    <div style="align-self:center; font-weight:bold; font-size:1.2em;">→</div>
+    <div style="flex:1; min-width:200px; border:3px solid #000; background:#fff; padding:10px;">
+      <div style="display:inline-block; font-weight:bold; background:#FFD700; border:2px solid #000; padding:2px 8px; margin-bottom:8px;">3. 응답 (서빙)</div>
+      <div style="font-family:monospace; font-size:0.85em; background:#F3F3F3; border:2px solid #000; padding:8px;">{<br>&nbsp;&nbsp;"menu": "까르보나라",<br>&nbsp;&nbsp;"price": 15000,<br>&nbsp;&nbsp;"status": "완료"<br>}</div>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">API는 정해진 형식으로 요청을 받아 주방(서버)에 전달하고, 결과를 JSON으로 돌려줍니다.</p>
+</div>
 
 레스토랑에서 음식을 주문할 때를 생각해보세요.
 
@@ -71,8 +91,29 @@ ogImage: /og/what-is-api.png
 
 ## ⚙️ API는 어떤 종류가 있나요?
 
-
-![API의 다양한 종류와 각 유형의 특징을 설명하는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-api-1-1770800393921.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff; padding:16px;">
+    <div style="display:inline-block; font-weight:bold; background:#FFD700; border:3px solid #000; padding:4px 12px; margin-bottom:10px;">REST API: 하나의 주소, 네 가지 요청 방식</div>
+    <div style="font-family:monospace; font-size:0.9em; background:#F3F3F3; border:2px solid #000; padding:8px; margin-bottom:10px;">https://api.example.com/users</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="min-width:90px; text-align:center; font-family:monospace; font-weight:bold; border:2px solid #000; background:#FFD700; padding:6px;">GET</div>
+      <div style="flex:1; min-width:180px; border:2px solid #000; padding:6px 10px;">사용자 목록을 조회합니다</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="min-width:90px; text-align:center; font-family:monospace; font-weight:bold; border:2px solid #000; background:#F3F3F3; padding:6px;">POST</div>
+      <div style="flex:1; min-width:180px; border:2px solid #000; padding:6px 10px;">새 사용자를 등록합니다</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="min-width:90px; text-align:center; font-family:monospace; font-weight:bold; border:2px solid #000; background:#F3F3F3; padding:6px;">PUT</div>
+      <div style="flex:1; min-width:180px; border:2px solid #000; padding:6px 10px;">기존 사용자 정보를 수정합니다</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+      <div style="min-width:90px; text-align:center; font-family:monospace; font-weight:bold; border:2px solid #000; background:#F3F3F3; padding:6px;">DELETE</div>
+      <div style="flex:1; min-width:180px; border:2px solid #000; padding:6px 10px;">사용자를 삭제합니다</div>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">같은 엔드포인트(URL)라도 HTTP 방식에 따라 서버가 다른 작업을 수행합니다.</p>
+</div>
 
 **1. Open API (공개 API)**
 

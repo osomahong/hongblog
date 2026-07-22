@@ -1,36 +1,33 @@
 ---
 slug: what-is-domain-and-selfhosting
 term: 도메인과 셀프호스팅 (Domain & Self-hosting)
-definition: '도메인은 인터넷에서 내 서비스를 찾을 수 있는 고유 주소이고, 셀프호스팅은 남의 플랫폼 대신 내가 직접 서버를 운영하는 방식입니다.'
+definition: 도메인은 인터넷에서 내 서비스를 찾을 수 있는 고유 주소이고, 셀프호스팅은 남의 플랫폼 대신 내가 직접 서버를 운영하는 방식입니다.
 category: AI_TECH
 tags:
-  - 바이브코딩
+- 바이브코딩
 courseSlug: digital-basic
 orderInCourse: 11
 aliases:
-  - 도메인
-  - Domain
-  - DNS
-  - 셀프호스팅
-  - Self-hosting
-  - VPS
-  - 호스팅
+- 도메인
+- Domain
+- DNS
+- 셀프호스팅
+- Self-hosting
+- VPS
+- 호스팅
 relatedTerms:
-  - what-is-deployment
-  - what-is-env-variables
+- what-is-deployment
+- what-is-env-variables
 difficulty: BEGINNER
 quiz:
-  - options:
-      - MX 레코드 — 이메일 서버를 지정하는 레코드
-      - A 레코드 또는 CNAME — 도메인을 서버 IP나 다른 도메인으로 연결하는 레코드
-      - TXT 레코드 — 텍스트 정보를 저장하는 레코드
-      - PTR 레코드 — IP 주소를 도메인으로 역변환하는 레코드
-    question: 도메인을 구매하고 Vercel에 연결하려면 설정해야 하는 DNS 레코드는 무엇일까요?
-    explanation: >-
-      웹 서비스에 도메인을 연결할 때는 A 레코드(도메인 → IP 주소) 또는 CNAME(도메인 → 다른 도메인)을 사용합니다.
-      Vercel 같은 플랫폼은 보통 CNAME 설정을 안내하며, 루트 도메인에는 A 레코드를 사용합니다. 설정 후 HTTPS 인증서는
-      자동으로 발급됩니다.
-    correctIndex: 1
+- options:
+  - 'MX 레코드: 이메일 서버를 지정하는 레코드'
+  - 'A 레코드 또는 CNAME: 도메인을 서버 IP나 다른 도메인으로 연결하는 레코드'
+  - 'TXT 레코드: 텍스트 정보를 저장하는 레코드'
+  - 'PTR 레코드: IP 주소를 도메인으로 역변환하는 레코드'
+  question: 도메인을 구매하고 Vercel에 연결하려면 설정해야 하는 DNS 레코드는 무엇일까요?
+  explanation: 웹 서비스에 도메인을 연결할 때는 A 레코드(도메인 → IP 주소) 또는 CNAME(도메인 → 다른 도메인)을 사용합니다. Vercel 같은 플랫폼은 보통 CNAME 설정을 안내하며, 루트 도메인에는 A 레코드를 사용합니다. 설정 후 HTTPS 인증서는 자동으로 발급됩니다.
+  correctIndex: 1
 ogImage: /og/what-is-domain-and-selfhosting.png
 ---
 
@@ -64,8 +61,28 @@ IP 주소:  76.76.21.21        ← 컴퓨터가 이해하는 주소
 
 ## 🛒 도메인 구매부터 연결까지
 
-
-![도메인 구매부터 DNS 설정을 통해 셀프호스팅 서버에 연결하는 과정을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-domain-and-selfhosting-0-1772120006708.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; display:flex; flex-wrap:wrap; gap:8px; align-items:stretch;">
+    <div style="flex:1; min-width:180px; border:3px solid #000; background:#fff; padding:10px;">
+      <div style="display:inline-block; font-weight:bold; background:#FFD700; border:2px solid #000; padding:2px 8px; margin-bottom:8px;">1. 브라우저 입력</div>
+      <div style="font-family:monospace; font-size:0.9em; background:#F3F3F3; border:2px solid #000; padding:8px;">myapp.com</div>
+      <p style="margin:8px 0 0; color:#555;">사람이 읽는 주소</p>
+    </div>
+    <div style="align-self:center; font-weight:bold; font-size:1.2em;">→</div>
+    <div style="flex:1; min-width:190px; border:3px solid #000; background:#fff; padding:10px;">
+      <div style="display:inline-block; font-weight:bold; background:#F3F3F3; border:2px solid #000; padding:2px 8px; margin-bottom:8px;">2. DNS 조회</div>
+      <div style="font-family:monospace; font-size:0.85em; background:#F3F3F3; border:2px solid #000; padding:8px;">A 레코드<br>myapp.com<br>= 76.76.21.21</div>
+      <p style="margin:8px 0 0; color:#555;">주소를 IP로 변환</p>
+    </div>
+    <div style="align-self:center; font-weight:bold; font-size:1.2em;">→</div>
+    <div style="flex:1; min-width:180px; border:3px solid #000; background:#fff; padding:10px;">
+      <div style="display:inline-block; font-weight:bold; background:#FFD700; border:2px solid #000; padding:2px 8px; margin-bottom:8px;">3. 서버 접속</div>
+      <div style="font-family:monospace; font-size:0.9em; background:#F3F3F3; border:2px solid #000; padding:8px;">76.76.21.21</div>
+      <p style="margin:8px 0 0; color:#555;">이 IP의 서버가 웹페이지를 응답</p>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">도메인 연결의 핵심은 "도메인 → DNS → 서버 IP" 세 단계가 전부입니다.</p>
+</div>
 
 ### 1단계: 도메인 구매
 
@@ -132,8 +149,26 @@ Vercel, Netlify 같은 플랫폼 대신 **내가 직접 서버를 운영**하는
 
 ## 🛠️ 셀프호스팅 시작하기
 
-
-![도메인과 셀프호스팅 서버의 연결 관계를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-domain-and-selfhosting-1-1772120044248.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff; padding:16px;">
+    <div style="display:inline-block; font-weight:bold; background:#FFD700; border:3px solid #000; padding:4px 12px; margin-bottom:10px;">셀프호스팅에서 요청이 도착하는 길</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="flex:1; min-width:140px; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">사용자 접속<br><span style="font-family:monospace; font-size:0.85em;">myapp.com</span></div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:1; min-width:160px; border:2px solid #000; padding:6px 10px;">DNS A 레코드<br><span style="font-family:monospace; font-size:0.85em;">→ 내 VPS IP</span></div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:1; min-width:150px; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">VPS 서버<br><span style="font-size:0.85em;">방화벽: 80, 443만 개방</span></div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+      <div style="flex:1; min-width:150px; border:2px solid #000; padding:6px 10px;">Nginx<br><span style="font-size:0.85em;">HTTPS 처리, 요청 전달</span></div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:1; min-width:150px; border:2px solid #000; background:#FFD700; padding:6px 10px;">내 앱 (Node.js)<br><span style="font-size:0.85em;">PM2로 상시 실행</span></div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:1; min-width:130px; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">웹페이지 응답</div>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">플랫폼이 대신 해주던 이 전체 경로를 셀프호스팅에서는 내가 직접 구성합니다.</p>
+</div>
 
 ### VPS(가상 서버) 선택
 

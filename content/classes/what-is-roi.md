@@ -53,7 +53,18 @@ ROAS가 "광고비 대비 매출"을 보여준다면, ROI는 **"모든 비용을
 ## 🏪 분식집 창업과 같습니다
 
 
-![분식집 창업 시 투자 금액 대비 얻을 수 있는 수익률을 보여주는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-roi-0-1770881745179.png)
+<div style="overflow-x:auto; margin:1.5rem 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff;">
+    <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">분식집 창업 ROI 계산</div>
+    <div style="padding:16px; font-family:monospace;">
+      <div style="display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:2px solid #000;"><span>총 투자 비용</span><span style="font-weight:700;">1,000만원</span></div>
+      <div style="display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:2px solid #000;"><span>총 매출</span><span style="font-weight:700;">1,500만원</span></div>
+      <div style="display:flex; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:2px solid #000;"><span>총 비용 (재료비, 인건비, 임대료)</span><span style="font-weight:700;">-1,200만원</span></div>
+      <div style="display:flex; justify-content:space-between; gap:12px; padding:6px 0;"><span>순이익</span><span style="font-weight:700; color:#FF0000;">300만원</span></div>
+      <div style="border:3px solid #000; background:#FFD700; padding:10px; text-align:center; font-weight:700; font-size:1.15em; margin-top:10px;">ROI = (300만 ÷ 1,000만) × 100 = 30%</div>
+    </div>
+  </div>
+</div>
 
 분식집을 창업하는 상황을 떠올려 보세요.
 
@@ -90,16 +101,30 @@ ROI(%) = (순이익 ÷ 투자 비용) × 100
 
 | 구분 | ROAS | ROI |
 |------|------|-----|
-
-![투자 수익률(ROI)과 광고 수익률(ROAS)의 차이점을 설명하는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-roi-1-1770881772968.png)
-
 | 측정 대상 | 광고비 → 매출 | 총 투자비 → 순이익 |
-
 | 비용 범위 | 광고비만 | 광고비 + 인건비 + 원가 + 운영비 등 |
-
 | 결과 | 매출 기준 | 이익 기준 |
-
 | 활용 | 광고 캠페인 효율 비교 | 전체 비즈니스 수익성 판단 |
+
+<div style="overflow-x:auto; margin:1.5rem 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff;">
+    <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">같은 캠페인, ROAS와 ROI가 다른 이유</div>
+    <div style="display:flex; flex-wrap:wrap;">
+      <div style="flex:1; min-width:220px; padding:14px 16px; border-right:3px solid #000;">
+        <div style="font-weight:700; margin-bottom:8px;">ROAS (광고비 대비 매출)</div>
+        <div style="font-family:monospace; font-size:0.9em;">매출 500만 ÷ 광고비 100만</div>
+        <div style="font-family:monospace; font-weight:700; font-size:1.4em; margin-top:6px;">= 500%</div>
+        <div style="font-size:0.85em; color:#555; margin-top:6px;">숫자만 보면 대성공처럼 보입니다.</div>
+      </div>
+      <div style="flex:1; min-width:220px; padding:14px 16px; background:#F3F3F3;">
+        <div style="font-weight:700; margin-bottom:8px;">ROI (투자 대비 순이익)</div>
+        <div style="font-family:monospace; font-size:0.9em;">500만 - 100만 - 350만 - 50만 - 50만 = -50만</div>
+        <div style="font-family:monospace; font-weight:700; font-size:1.4em; margin-top:6px; color:#FF0000;">= -50%</div>
+        <div style="font-size:0.85em; color:#555; margin-top:6px;">모든 비용을 빼면 실제로는 적자입니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 **예시로 비교:**
 - 광고비 100만원, 매출 500만원 → **ROAS 500%** (좋아 보임)
@@ -124,10 +149,23 @@ ROI(%) = (순이익 ÷ 투자 비용) × 100
 - 브랜딩 캠페인, SEO, 콘텐츠 마케팅 등은 단기 ROAS가 낮을 수 있습니다.
 - 하지만 6개월~1년 단위로 ROI를 측정하면 장기적 가치를 확인할 수 있습니다.
 
+## 🧮 ROI 숫자가 필요해지는 실전 장면
+
+**예산 보고에서 "그래서 남는 돈은 얼마인가"라는 질문을 받았을 때**
+- 분기 보고에서 ROAS 400%를 성과로 올렸는데, 경영진이 "그래서 실제로 남는 돈이 얼마냐"고 되묻는 장면은 마케팅 부서에서 흔하게 나옵니다. 이 질문에 답하려면 광고비 외에 제품 원가, 인건비, 운영비까지 넣은 ROI가 필요합니다. ROI 기준으로 다시 계산해 가면 예산 논의가 훨씬 빨리 진행됩니다. 준비하는 지표가 다르면 회의 결과가 달라집니다.
+
+**스마트스토어 광고를 돌렸는데 통장 잔고가 그대로일 때**
+- 광고를 켠 뒤 매출 그래프는 올라가는데 정산 후 잔고는 거의 늘지 않는 경우가 있습니다. 매출에서 원가, 판매 수수료, 배송비, 광고비를 순서대로 빼 보면 순이익이 거의 0에 가깝다는 사실이 드러납니다. 이때 계산한 것이 바로 ROI입니다. 광고 관리 화면의 ROAS만 보고 있으면 이 상태를 몇 달씩 모르고 지나칠 수 있습니다.
+
+**연간 예산을 채널별로 나눌 때**
+- 연말에 내년 예산을 짜면서 검색 광고, SNS 광고, 콘텐츠 마케팅에 얼마씩 배분할지 정해야 하는 순간이 옵니다. 채널별 ROAS는 매출 기준이라 원가 구조가 다른 제품이 섞이면 비교가 왜곡됩니다. 채널별 ROI로 정리하면 실제로 이익을 남긴 채널이 드러나고, 배분 근거를 한 장으로 설명할 수 있습니다.
+
+ROAS와의 차이를 더 자세히 보려면 [ROAS](/class/digital-marketing-terms/what-is-roas)를, 고객 한 명을 데려오는 비용 관점이 궁금하면 [CAC](/class/digital-marketing-terms/what-is-cac)를 함께 읽으면 됩니다.
+
 ## 📋 30초 요약
 
 1. **ROI는 투자 대비 순이익 비율**입니다. 분식집 창업처럼 모든 비용을 빼고 실제 남는 돈이 투자 대비 얼마인지를 보여줍니다.
 
 2. **공식: ROI(%) = (순이익 ÷ 투자 비용) × 100**입니다. ROI가 양수면 수익, 0이면 본전, 음수면 적자입니다.
 
-3. **ROAS와 ROI를 함께 봐야 진짜 수익성을 판단**할 수 있습니다. ROAS가 높아도 원가·인건비를 빼면 적자일 수 있으므로, 최종 의사결정은 ROI를 기준으로 해야 합니다.
+3. **ROAS와 ROI를 함께 봐야 진짜 수익성을 판단**할 수 있습니다. ROAS가 높아도 원가, 인건비를 빼면 적자일 수 있으므로, 최종 의사결정은 ROI를 기준으로 해야 합니다.

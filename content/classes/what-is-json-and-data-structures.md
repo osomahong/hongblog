@@ -51,9 +51,9 @@ AI에게 "사용자 정보를 저장하는 기능 만들어줘"라고 했더니 
 
 실생활에서도 정보를 담는 방식이 다양합니다.
 
-- **목록**: 장보기 리스트 — 순서대로 나열
-- **사전**: 영어 사전 — 단어(키)로 뜻(값)을 찾기
-- **표**: 엑셀 시트 — 행과 열로 구조화
+- **목록**: 장보기 리스트: 순서대로 나열
+- **사전**: 영어 사전: 단어(키)로 뜻(값)을 찾기
+- **표**: 엑셀 시트: 행과 열로 구조화
 
 프로그래밍에서도 똑같습니다. 어떤 그릇에 담느냐에 따라 데이터를 다루는 방식이 달라집니다.
 
@@ -61,7 +61,7 @@ AI에게 "사용자 정보를 저장하는 기능 만들어줘"라고 했더니 
 
 바이브코딩에서 반드시 알아야 할 데이터 구조는 딱 세 가지입니다.
 
-### 1. 변수 — 이름표 붙은 상자
+### 1. 변수: 이름표 붙은 상자
 
 하나의 값을 저장하는 가장 단순한 구조입니다.
 
@@ -71,7 +71,7 @@ const age = 30                 // 숫자
 const isAdmin = true           // 불리언 (참/거짓)
 ```
 
-### 2. 배열 (Array) — 번호가 매겨진 목록
+### 2. 배열 (Array): 번호가 매겨진 목록
 
 여러 개의 값을 **순서대로** 나열한 것입니다. 대괄호 `[ ]`로 감쌉니다.
 
@@ -85,7 +85,7 @@ fruits[2]   // "딸기"
 
 **언제 쓸까요?** 태그 목록, 게시글 목록, 장바구니 상품 등 "여러 개를 순서대로 나열"할 때 사용합니다.
 
-### 3. 객체 (Object) — 이름표가 붙은 서랍장
+### 3. 객체 (Object): 이름표가 붙은 서랍장
 
 값에 **이름(키)**을 붙여서 저장하는 구조입니다. 중괄호 `{ }`로 감쌉니다.
 
@@ -104,8 +104,34 @@ user.email   // "hong@example.com"
 
 ## 🔗 배열 + 객체 = 실전 데이터
 
-
-![JSON에서 배열과 객체를 결합하여 실전 데이터를 표현하는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-json-and-data-structures-0-1772120092846.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff; padding:16px;">
+    <div style="display:inline-block; font-weight:bold; background:#FFD700; border:3px solid #000; padding:4px 12px; margin-bottom:10px;">JSON 한 덩어리 해부하기</div>
+    <div style="font-family:monospace; font-size:0.85em; background:#F3F3F3; border:2px solid #000; padding:10px; margin-bottom:10px; white-space:pre;">{
+  "title": "바이브코딩 시작하기",
+  "id": 1,
+  "tags": ["AI", "코딩"],
+  "author": { "name": "홍승협" }
+}</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="min-width:150px; font-family:monospace; border:2px solid #000; background:#FFD700; padding:4px 8px;">"title"</div>
+      <div style="flex:1; min-width:160px; padding:4px 0;">키: 반드시 큰따옴표로 감쌉니다</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="min-width:150px; font-family:monospace; border:2px solid #000; background:#F3F3F3; padding:4px 8px;">"바이브코딩 시작하기"</div>
+      <div style="flex:1; min-width:160px; padding:4px 0;">값: 문자열, 숫자, 참/거짓 등이 옵니다</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="min-width:150px; font-family:monospace; border:2px solid #000; background:#F3F3F3; padding:4px 8px;">["AI", "코딩"]</div>
+      <div style="flex:1; min-width:160px; padding:4px 0;">배열: 대괄호 안에 순서대로 나열합니다</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+      <div style="min-width:150px; font-family:monospace; border:2px solid #000; background:#F3F3F3; padding:4px 8px;">{ "name": "홍승협" }</div>
+      <div style="flex:1; min-width:160px; padding:4px 0;">객체: 중괄호 안에 키와 값의 쌍을 담습니다</div>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">하나의 JSON 안에 키, 값, 배열, 객체가 함께 조합되어 실전 데이터를 이룹니다.</p>
+</div>
 
 실제 프로젝트에서는 배열과 객체를 **조합**해서 사용합니다.
 
@@ -204,15 +230,30 @@ AI 응답:
 // 객체 → JSON 문자열 (보낼 때)
 const data = { name: "홍길동", age: 30 }
 const jsonString = JSON.stringify(data)
-
-![JSON 데이터 구조를 시각화하고, 이를 두 가지 방식으로 변환하는 과정을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-json-and-data-structures-1-1772120126920.png)
-
 // '{"name":"홍길동","age":30}'
 
 // JSON 문자열 → 객체 (받을 때)
 const parsed = JSON.parse(jsonString)
 // { name: "홍길동", age: 30 }
 ```
+
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; display:flex; flex-wrap:wrap; gap:8px; align-items:stretch;">
+    <div style="flex:1; min-width:180px; border:3px solid #000; background:#fff; padding:10px;">
+      <div style="font-weight:bold; margin-bottom:8px;">객체 (프로그램 안)</div>
+      <div style="font-family:monospace; font-size:0.85em; background:#F3F3F3; border:2px solid #000; padding:8px;">{ name: "홍길동", age: 30 }</div>
+    </div>
+    <div style="align-self:center; text-align:center; min-width:130px;">
+      <div style="font-family:monospace; font-size:0.8em; border:2px solid #000; background:#FFD700; padding:3px 6px; margin-bottom:4px;">JSON.stringify() →</div>
+      <div style="font-family:monospace; font-size:0.8em; border:2px solid #000; background:#F3F3F3; padding:3px 6px;">← JSON.parse()</div>
+    </div>
+    <div style="flex:1; min-width:180px; border:3px solid #000; background:#fff; padding:10px;">
+      <div style="font-weight:bold; margin-bottom:8px;">JSON 문자열 (주고받을 때)</div>
+      <div style="font-family:monospace; font-size:0.85em; background:#F3F3F3; border:2px solid #000; padding:8px;">'{"name":"홍길동","age":30}'</div>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">보낼 때는 stringify로 문자열로 바꾸고, 받을 때는 parse로 다시 객체로 복원합니다.</p>
+</div>
 
 `JSON.stringify`는 데이터를 JSON 텍스트로 변환하고, `JSON.parse`는 JSON 텍스트를 다시 데이터로 복원합니다. API 통신에서 이 두 함수가 항상 등장합니다.
 

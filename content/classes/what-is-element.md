@@ -11,6 +11,11 @@ tags:
 publishedAt: '2026-02-11T09:04:49.815Z'
 courseSlug: digital-basic
 orderInCourse: 6
+relatedTerms:
+  - whatishtml
+  - what-is-attribute
+  - what-is-selector
+  - what-is-dom
 difficulty: BEGINNER
 quiz:
   - options:
@@ -45,7 +50,18 @@ HTML 코드에서 `<태그>내용</태그>` 형태로 작성된 것 하나하나
 ## 🧱 첫 번째 비유: 레고 블록
 
 
-![레고 블록을 이용해 '요소'의 개념을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-element-0-1770800657287.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;">
+    <div style="font-weight:bold;margin-bottom:10px;">Element(부품) 하나의 구조</div>
+    <pre style="font-family:monospace;font-size:15px;background:#F3F3F3;border:2px solid #000;padding:12px;margin:0;overflow-x:auto;"><span style="background:#FFD700;font-weight:bold;">&lt;button&gt;</span><span style="color:#FF0000;font-weight:bold;">구매하기</span><span style="background:#FFD700;font-weight:bold;">&lt;/button&gt;</span></pre>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:13px;">
+      <div style="flex:1 1 140px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b>여는 태그</b><br>부품의 시작. 종류(button)를 알려줍니다.</div>
+      <div style="flex:1 1 140px;border:2px solid #000;background:#fff;padding:8px 10px;"><b style="color:#FF0000;">내용(콘텐츠)</b><br>블록 안에 담긴 실제 내용물입니다.</div>
+      <div style="flex:1 1 140px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b>닫는 태그</b><br>부품의 끝. 슬래시(/)가 붙습니다.</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">여는 태그부터 닫는 태그까지, 이 한 덩어리가 레고 블록 하나 즉 Element 하나입니다.</div>
+</div>
 
 웹사이트를 거대한 레고 작품이라고 상상해 보세요.
 
@@ -75,7 +91,26 @@ HTML 코드에서 `<태그>내용</태그>` 형태로 작성된 것 하나하나
 ## ⚙️ Element는 어떤 종류가 있나요?
 
 
-![Element의 주요 종류와 특징을 간략하게 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-element-1-1770800682830.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;max-width:100%;font-family:sans-serif;font-size:13px;">
+    <div style="flex:1 1 180px;border:3px solid #000;background:#fff;">
+      <div style="background:#F3F3F3;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">구조 (뼈대)</div>
+      <div style="padding:10px;font-family:monospace;line-height:1.9;">&lt;div&gt;<br>&lt;header&gt;<br>&lt;section&gt;<br>&lt;footer&gt;</div>
+      <div style="padding:0 10px 10px;color:#555;">다른 부품을 담는 투명한 상자</div>
+    </div>
+    <div style="flex:1 1 180px;border:3px solid #000;background:#fff;">
+      <div style="background:#FFD700;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">콘텐츠 (살)</div>
+      <div style="padding:10px;font-family:monospace;line-height:1.9;">&lt;h1&gt;<br>&lt;p&gt;<br>&lt;img&gt;<br>&lt;a&gt;</div>
+      <div style="padding:0 10px 10px;color:#555;">눈에 직접 보이는 내용물</div>
+    </div>
+    <div style="flex:1 1 180px;border:3px solid #000;background:#fff;">
+      <div style="background:#FF0000;color:#fff;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">상호작용 (기능)</div>
+      <div style="padding:10px;font-family:monospace;line-height:1.9;">&lt;button&gt;<br>&lt;input&gt;<br>&lt;form&gt;<br>&lt;select&gt;</div>
+      <div style="padding:0 10px 10px;color:#555;">클릭하고 입력하는 부품</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">세 종류의 Element가 조합되어 하나의 웹페이지가 완성됩니다.</div>
+</div>
 
 웹사이트에서 자주 만나는 Element를 크게 세 가지로 나눠볼 수 있습니다.
 

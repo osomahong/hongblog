@@ -5,6 +5,11 @@ definition: HTML은 무엇일까요?
 category: AI_TECH
 publishedAt: '2026-02-11T09:01:19.100Z'
 courseSlug: digital-basic
+relatedTerms:
+  - whatiscss
+  - what-is-element
+  - what-is-attribute
+  - what-is-dom
 difficulty: BEGINNER
 quiz:
   - options:
@@ -15,7 +20,7 @@ quiz:
     question: 다음 중 HTML의 역할로 올바른 것은?
     explanation: >-
       HTML은 웹페이지의 뼈대로, 브라우저에게 "이건 제목, 이건 링크, 이건 이미지"처럼 콘텐츠의 구조와 의미를 알려주는 역할을
-      합니다. 색상·레이아웃은 CSS, 동작은 JavaScript, 데이터 통신은 서버 기술이 담당합니다.
+      합니다. 색상, 레이아웃은 CSS, 동작은 JavaScript, 데이터 통신은 서버 기술이 담당합니다.
     correctIndex: 1
 metaTitle: HTML | 디지털마케팅 환경에 적응하기 위한 디지털 기초
 metaDescription: >-
@@ -43,7 +48,26 @@ ogImage: /og/whatishtml.png
 ## 🏢 첫 번째 비유: 짓다 만 건물 (골조)
 
 
-![웹페이지의 뼈대인 HTML의 기본 구조를 미완성 건물 골조에 비유하여 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/whatishtml-0-1770800432910.png)
+<div style="overflow-x:auto; border:3px solid #000; background:#F3F3F3; padding:16px; margin:8px 0;">
+  <div style="max-width:100%; display:flex; flex-wrap:wrap; gap:12px;">
+    <div style="flex:1; min-width:180px; border:3px solid #000; background:#fff; padding:12px;">
+      <div style="font-weight:bold; border-bottom:2px solid #000; padding-bottom:6px; margin-bottom:8px;">🏗️ HTML (뼈대)</div>
+      <div style="font-family:monospace; font-size:13px; line-height:1.7;">&lt;h1&gt;제목&lt;/h1&gt;<br />&lt;p&gt;본문 내용&lt;/p&gt;<br />&lt;a&gt;링크&lt;/a&gt;</div>
+      <div style="font-size:12px; margin-top:8px;">"여기는 제목, 여기는 본문" 하고 공간을 정해줍니다</div>
+    </div>
+    <div style="flex:1; min-width:180px; border:3px solid #000; background:#fff; padding:12px;">
+      <div style="font-weight:bold; border-bottom:2px solid #000; padding-bottom:6px; margin-bottom:8px;">🎨 CSS (벽지, 인테리어)</div>
+      <div style="font-family:monospace; font-size:13px; line-height:1.7;">h1 { color: red; }<br />p { font-size: 16px; }</div>
+      <div style="font-size:12px; margin-top:8px;">뼈대 위에 색과 모양을 입힙니다</div>
+    </div>
+    <div style="flex:1; min-width:180px; border:3px solid #000; background:#fff; padding:12px;">
+      <div style="font-weight:bold; border-bottom:2px solid #000; padding-bottom:6px; margin-bottom:8px;">💡 JavaScript (가구, 전기)</div>
+      <div style="font-family:monospace; font-size:13px; line-height:1.7;">button.onclick =<br />&nbsp;&nbsp;열리는 동작</div>
+      <div style="font-size:12px; margin-top:8px;">클릭하면 반응하는 움직임을 담당합니다</div>
+    </div>
+  </div>
+  <div style="font-size:12px; margin-top:10px; text-align:center;">웹페이지 한 채가 지어지는 순서: HTML 뼈대 → CSS 인테리어 → JavaScript 동작</div>
+</div>
 
 가장 유명한 비유부터 시작해볼까요? 웹사이트를 하나의 집이라고 상상해 보세요.
 
@@ -73,7 +97,23 @@ HTML이 바로 이 '라벨'입니다.
 ## ⚙️ 그래서 HTML은 어떻게 생겼나요?
 
 
-![HTML의 기본적인 구조와 태그 사용법을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/whatishtml-1-1770800472558.png)
+<div style="overflow-x:auto; border:3px solid #000; background:#fff; padding:16px; margin:8px 0;">
+  <div style="max-width:100%; display:flex; align-items:stretch; justify-content:center; gap:8px; flex-wrap:wrap; font-family:monospace; font-size:16px;">
+    <div style="border:3px solid #000; background:#FFD700; padding:10px 14px; text-align:center;">
+      <div>&lt;h1&gt;</div>
+      <div style="font-size:11px; font-family:sans-serif; margin-top:6px;">여는 태그</div>
+    </div>
+    <div style="border:3px solid #000; background:#fff; padding:10px 14px; text-align:center;">
+      <div>우리 회사 신제품 출시!</div>
+      <div style="font-size:11px; font-family:sans-serif; margin-top:6px;">내용 (사람이 읽는 부분)</div>
+    </div>
+    <div style="border:3px solid #000; background:#FFD700; padding:10px 14px; text-align:center;">
+      <div>&lt;/h1&gt;</div>
+      <div style="font-size:11px; font-family:sans-serif; margin-top:6px;">닫는 태그 (/가 붙음)</div>
+    </div>
+  </div>
+  <div style="font-size:12px; margin-top:10px; text-align:center;">태그 하나의 구조: 여는 태그와 닫는 태그가 내용을 샌드위치처럼 감쌉니다</div>
+</div>
 
 HTML은 '태그(Tag)'라고 부르는 꼬리표를 사용합니다. 생김새는 아주 단순해요. 내용물의 앞뒤에 꺽쇠 괄호 < >를 샌드위치처럼 감싸주면 됩니다.
 
@@ -116,6 +156,22 @@ HTML 구조를 알면, "아, 이 버튼은 `<a>` 태그가 아니라 `<button>` 
 
 네이버나 구글 검색 로봇은 이미지를 보지 못합니다. 오직 HTML 코드만 읽죠.
 우리가 중요한 키워드를 `<h1>` (제목 태그)에 넣어뒀는지, 그냥 `<span>` (아무 의미 없는 태그)에 넣어뒀는지에 따라 검색 노출 순위가 달라집니다. HTML을 알면 우리 사이트가 검색엔진에게 친절한지 아닌지 진단할 수 있습니다.
+
+## 💼 마케터가 HTML을 직접 여는 순간들
+
+배워두면 좋다는 말보다, 실제로 언제 쓰게 되는지 보는 편이 빠릅니다.
+
+### 뉴스레터 링크가 깨졌을 때
+
+이메일 마케팅 툴로 뉴스레터를 보냈는데, 특정 버튼의 링크가 잘못 걸린 것을 발송 후에 발견하는 경우가 있습니다. 에디터 화면에서는 어디가 문제인지 보이지 않을 때, HTML 편집 모드로 전환하면 `<a href="...">` 부분에서 잘못된 주소를 바로 찾을 수 있습니다. `href` 속성 하나만 읽을 줄 알아도 다음 발송 전에 스스로 점검할 수 있습니다.
+
+### 붙여넣은 글의 서식이 계속 깨질 때
+
+워드나 노션에서 작성한 글을 블로그 에디터에 붙여넣으면 글자 크기가 제멋대로가 되거나 이상한 여백이 생기는 일이 잦습니다. 원인은 눈에 보이지 않는 HTML 태그가 함께 복사되기 때문입니다. HTML 보기 모드에서 불필요한 태그를 지우거나, 제목이 `<h2>` 태그로 제대로 지정됐는지 확인하면 해결됩니다. 화면을 꾸미는 쪽 원리는 [CSS](/class/digital-basic/whatiscss) 클래스에서 이어집니다.
+
+### AI에게 랜딩 페이지를 만들어달라고 했을 때
+
+요즘은 마케터도 AI 코딩 도구로 이벤트 페이지를 직접 만듭니다. 이때 결과물이 HTML 파일로 나오는데, 제목이 `<h1>`에 들어갔는지, 버튼에 링크가 제대로 걸렸는지 확인하는 것은 우리 몫입니다. 태그를 읽을 줄 알면 AI에게 "두 번째 `<h2>` 아래 문단을 수정해줘"처럼 정확하게 요청할 수 있습니다. 브라우저가 이 태그들을 어떻게 다루는지는 [DOM](/class/digital-basic/what-is-dom) 클래스에서 확인할 수 있습니다.
 
 ## 📋 30초 요약
 

@@ -47,8 +47,31 @@ ogImage: /og/what-is-cookie.png
 
 ## 🏷️ 쿠키는 '웹사이트가 주는 이름표'
 
-
-![웹사이트가 사용자에게 부여하는 '이름표'로서의 쿠키 개념을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-cookie-0-1770800583098.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff; padding:16px;">
+    <div style="display:inline-block; font-weight:bold; background:#FFD700; border:3px solid #000; padding:4px 12px; margin-bottom:10px;">내 브라우저에 저장된 쿠키 (shop.example.com)</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+      <div style="flex:1; min-width:200px; font-family:monospace; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">user_id=user12345</div>
+      <div style="min-width:150px; border:2px solid #000; padding:6px 10px;">만료: 2027-07-23</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+      <div style="flex:1; min-width:200px; font-family:monospace; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">cart=sneakers_270mm</div>
+      <div style="min-width:150px; border:2px solid #000; padding:6px 10px;">브라우저 닫으면 삭제</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
+      <div style="flex:1; min-width:200px; font-family:monospace; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">login=true</div>
+      <div style="min-width:150px; border:2px solid #000; padding:6px 10px;">만료: 2026-08-23</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+      <div style="flex:1; min-width:120px; border:2px solid #000; background:#fff; padding:6px 10px;">다시 방문</div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:1; min-width:150px; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">브라우저가 쿠키를 자동 전송</div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:1; min-width:170px; border:2px solid #000; background:#FFD700; padding:6px 10px;">"user12345님, 장바구니에 신발 있어요!"</div>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">쿠키는 이름=값 형태로 저장되고, 재방문 시 브라우저가 자동으로 웹사이트에 보여줍니다.</p>
+</div>
 
 여러분이 백화점 회원카드를 만들면, 그 카드에 고객번호가 적혀있죠? 쿠키도 똑같습니다. 웹사이트가 여러분의 브라우저에 "당신은 user12345번 고객입니다"라는 작은 파일을 저장해둡니다. 다음에 그 사이트를 다시 방문하면, 브라우저가 자동으로 그 파일을 웹사이트에 보여주면서 "저 왔어요!"라고 알려주는 겁니다.
 
@@ -78,8 +101,27 @@ ogImage: /og/what-is-cookie.png
 
 ## 💡 이걸 알면 마케터에게 뭐가 좋을까요?
 
-
-![마케터의 관점에서 웹 쿠키가 사용자 데이터를 추적하고 활용하는 방식을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-cookie-1-1770800615978.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff; padding:16px;">
+    <div style="display:inline-block; font-weight:bold; background:#FFD700; border:3px solid #000; padding:4px 12px; margin-bottom:10px;">마케팅 도구가 심어두는 추적 쿠키</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+      <div style="min-width:110px; font-family:monospace; font-weight:bold; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">_ga</div>
+      <div style="flex:1; min-width:170px; border:2px solid #000; padding:6px 10px;">GA4 사용자 구분</div>
+      <div style="min-width:100px; border:2px solid #000; background:#FFD700; padding:6px 10px;">2년 유지</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+      <div style="min-width:110px; font-family:monospace; font-weight:bold; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">_gid</div>
+      <div style="flex:1; min-width:170px; border:2px solid #000; padding:6px 10px;">GA4 일 단위 세션 구분</div>
+      <div style="min-width:100px; border:2px solid #000; background:#FFD700; padding:6px 10px;">24시간</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      <div style="min-width:110px; font-family:monospace; font-weight:bold; border:2px solid #000; background:#F3F3F3; padding:6px 10px;">_fbp</div>
+      <div style="flex:1; min-width:170px; border:2px solid #000; padding:6px 10px;">메타 픽셀 전환 추적</div>
+      <div style="min-width:100px; border:2px solid #000; background:#FFD700; padding:6px 10px;">90일</div>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">이 쿠키들이 차단되면 사용자 구분이 끊겨서 전환 수치가 갑자기 줄어든 것처럼 보입니다.</p>
+</div>
 
 ### 1) **GA4와 Meta Pixel이 작동하는 원리를 이해할 수 있습니다**
 

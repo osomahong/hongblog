@@ -17,6 +17,8 @@ aliases:
 relatedTerms:
   - what-is-frontend-backend
   - what-is-env-variables
+  - what-is-json-and-data-structures
+  - what-is-database
 difficulty: BEGINNER
 quiz:
   - options:
@@ -136,6 +138,20 @@ GET  /users/123/posts → 123번 사용자의 게시글 목록
 ```
 
 URL만 봐도 "어떤 데이터에 접근하는지"를 알 수 있도록 설계하는 것이 REST API의 핵심 원칙입니다.
+
+## 💼 실무에서 API를 실감하는 상황
+
+### 광고 성과 대시보드가 멈췄을 때
+
+여러 광고 플랫폼의 성과를 한 화면에 모아주는 대시보드는 각 플랫폼의 API로 데이터를 받아옵니다. 어느 날 특정 채널 데이터만 안 들어온다면, 대부분 API 키 만료나 권한 변경이 원인입니다. "API 연동이 끊겼다"라는 말이 무슨 뜻인지 알면, 담당자에게 "키를 재발급해서 다시 연결해달라"라고 정확히 요청할 수 있습니다.
+
+### AI 기능을 앱에 붙일 때
+
+챗봇이나 자동 요약 기능을 만들려면 OpenAI 같은 서비스의 API 키를 발급받아 [환경 변수](/class/vibe-coding-basics/what-is-env-variables)에 넣는 과정을 거칩니다. 사용량에 따라 비용이 청구되고, 요청이 몰리면 429(속도 제한) 에러를 만나게 됩니다. 이 구조를 알면 "왜 키가 필요한지", "왜 갑자기 응답이 안 오는지"를 스스로 파악할 수 있습니다.
+
+### 노코드 자동화 툴을 쓸 때
+
+Zapier나 Make로 "폼 제출이 오면 슬랙에 알림 보내기" 같은 자동화를 만들 때도, 내부에서는 각 서비스의 API가 호출됩니다. 자동화가 실패하면 실행 로그에 401, 404 같은 상태 코드가 남는데, 이 숫자를 읽을 줄 알면 인증 문제인지 주소 문제인지 바로 구분할 수 있습니다. 요청을 보내는 쪽과 처리하는 쪽의 역할 구분은 [프론트엔드와 백엔드](/class/vibe-coding-basics/what-is-frontend-backend) 클래스에서 자세히 다룹니다.
 
 ## 📋 30초 요약
 

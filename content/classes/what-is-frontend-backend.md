@@ -20,6 +20,8 @@ aliases:
 relatedTerms:
   - what-is-npm
   - what-is-rest-api
+  - what-is-database
+  - what-is-deployment
 difficulty: BEGINNER
 quiz:
   - options:

@@ -12,6 +12,10 @@ tags:
 publishedAt: '2026-02-11T08:56:17.838Z'
 courseSlug: digital-basic
 orderInCourse: 7
+relatedTerms:
+  - what-is-element
+  - whatishtml
+  - what-is-selector
 difficulty: BEGINNER
 quiz:
   - options:
@@ -53,7 +57,18 @@ HTML 코드에서 여는 태그 안에 `이름="값"` 형태로 작성됩니다.
 ## 🏷️ 첫 번째 비유: 택배 상자의 송장
 
 
-![택배 상자의 송장을 통해 속성(Attribute)의 개념을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-attribute-0-1770800142952.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;">
+    <div style="font-weight:bold;margin-bottom:10px;">태그에 붙은 송장 스티커 읽기</div>
+    <pre style="font-family:monospace;font-size:14px;background:#F3F3F3;border:2px solid #000;padding:12px;margin:0;overflow-x:auto;">&lt;button <span style="background:#FFD700;font-weight:bold;">id="purchase-btn"</span> <span style="color:#FF0000;font-weight:bold;">class="primary large"</span>&gt;구매하기&lt;/button&gt;</pre>
+    <div style="margin-top:12px;font-size:13px;">
+      <div style="border:2px solid #000;background:#FFD700;padding:8px 10px;margin-bottom:6px;"><b>↑ id="purchase-btn"</b> : 운송장 번호. 이 상자(버튼)만의 고유한 이름표입니다.</div>
+      <div style="border:2px solid #000;background:#fff;padding:8px 10px;margin-bottom:6px;"><b style="color:#FF0000;">↑ class="primary large"</b> : 상품 분류 스티커. 여러 상자가 같은 분류를 공유할 수 있습니다.</div>
+      <div style="border:2px solid #000;background:#F3F3F3;padding:8px 10px;"><b>↑ 구매하기</b> : 상자 안의 내용물. Attribute가 아니라 콘텐츠입니다.</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">여는 태그 안의 이름="값" 쌍이 전부 Attribute입니다. 송장만 보면 상자를 열지 않아도 구별할 수 있습니다.</div>
+</div>
 
 이전 글에서 Element를 택배 상자에 비유했습니다. Attribute는 그 상자에 붙어 있는 **송장 스티커**입니다.
 
@@ -83,34 +98,26 @@ Attribute를 사람에게 비유하면 더 직관적입니다.
 
 ## ⚙️ 자주 만나는 Attribute 6가지
 
-![- ⚙️ Attribute 6가지를 보여주는 개념도: class, id, style, src, href, alt 속성의 시각적 표현.
-- ⚙️ 웹 페이지 요소의 속성을 설명하는 일러스트: HTML 요소에 속성을 부여하는 다양한 예시, 시각적으로 표현.
-
-![자주 만나는 6가지 속성의 개념과 종류를 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-attribute-1-1770800170982.png)
-
-- ⚙️ 6가지 Attribute (속성) 활용법을 보여주는 그림: 각 속성이 HTML 요소에 어떻게 적용되는지, 시각화된 설명.
-
-- ⚙️ 자주 사용되는 6가지 속성을 설명하는 일러스트: HTML 태그에 적용되어 웹 페이지를 구성하는 속성들 시각화.
-
-![각 속성의 개념을 시각적으로 보여주는 일러스트 (예: ID, Class, Style, Src, Alt, Title).
-
-ID 속성의 고유성을 강조하는 일러스트를 보여주는 개념도.
-
-Class 속성을 활용해 여러 요소에 스타일을 적용하는 것을 설명하는 일러스트.
-
-Style 속성을 사용하여 요소의 스타일을 직접 지정하는 방법을 보여주는 개념도.
-
-이미지 파일의 경로를 지정하는 Src 속성의 역할을 설명하는 일러스트.
-
-이미지가 로드되지 않을 때 나타나는 Alt 속성의 대체 텍스트를 보여주는 일러스트.
-
-Title 속성을 사용하여 요소에 대한 추가 정보를 제공하는 방법을 보여주는 일러스트.](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-attribute-1-1770795036238.png)
-
-- ⚙️ Attribute 6가지 개념 이해를 돕는 일러스트: HTML 속성들의 역할과 사용법을 시각적으로 표현한 그림.](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-attribute-1-1770793732528.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;">
+    <div style="font-weight:bold;margin-bottom:10px;">실제 코드에서 6가지 Attribute 찾아보기</div>
+    <pre style="font-family:monospace;font-size:13px;background:#F3F3F3;border:2px solid #000;padding:12px;margin:0;overflow-x:auto;">&lt;img <span style="background:#FFD700;font-weight:bold;">src</span>="/images/banner.jpg" <span style="background:#FFD700;font-weight:bold;">alt</span>="프로모션 배너"&gt;
+&lt;a <span style="color:#FF0000;font-weight:bold;">href</span>="/pricing" <span style="color:#FF0000;font-weight:bold;">id</span>="pricing-link" <span style="color:#FF0000;font-weight:bold;">class</span>="nav-link" <span style="color:#FF0000;font-weight:bold;">data-event</span>="click"&gt;요금제&lt;/a&gt;</pre>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:13px;">
+      <div style="flex:1 1 150px;border:2px solid #000;background:#fff;padding:8px 10px;"><b style="font-family:monospace;">id</b> : 페이지에서 딱 하나뿐인 이름</div>
+      <div style="flex:1 1 150px;border:2px solid #000;background:#fff;padding:8px 10px;"><b style="font-family:monospace;">class</b> : 여러 요소가 공유하는 분류표</div>
+      <div style="flex:1 1 150px;border:2px solid #000;background:#fff;padding:8px 10px;"><b style="font-family:monospace;">href</b> : 클릭하면 이동할 목적지 주소</div>
+      <div style="flex:1 1 150px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b style="font-family:monospace;">src</b> : 불러올 파일이 있는 경로</div>
+      <div style="flex:1 1 150px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b style="font-family:monospace;">alt</b> : 이미지 대신 보여줄 설명 텍스트</div>
+      <div style="flex:1 1 150px;border:2px solid #000;background:#F3F3F3;padding:8px 10px;"><b style="font-family:monospace;">data-*</b> : 추적용으로 자유롭게 만드는 커스텀 정보</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">여는 태그 안에서 이 6가지만 읽어낼 수 있어도 GTM 설정과 개발자 소통이 훨씬 쉬워집니다.</div>
+</div>
 
 웹에는 수십 가지 Attribute가 있지만, 마케터가 실무에서 특히 자주 마주치는 것은 아래 6가지입니다.
 
-### 1. `id` — 유일한 이름표
+### 1. `id`: 유일한 이름표
 
 페이지 전체에서 **단 하나**만 존재하는 고유 식별자입니다. 주민등록번호처럼 중복이 없어야 합니다.
 
@@ -120,7 +127,7 @@ Title 속성을 사용하여 요소에 대한 추가 정보를 제공하는 방�
 
 GTM에서 특정 버튼 하나만 추적하고 싶을 때, `id`로 정확히 지목할 수 있습니다.
 
-### 2. `class` — 분류 태그
+### 2. `class`: 분류 태그
 
 여러 Element에 **같은 이름을 공유**할 수 있는 분류표입니다. 하나의 Element에 여러 class를 띄어쓰기로 붙일 수도 있습니다.
 
@@ -131,7 +138,7 @@ GTM에서 특정 버튼 하나만 추적하고 싶을 때, `id`로 정확히 지
 
 위 두 버튼은 모두 `btn` class를 공유하지만, 하나는 `primary large`, 다른 하나는 `secondary`입니다. CSS는 이 class를 보고 각각 다른 색상과 크기를 입힙니다.
 
-### 3. `href` — 목적지 주소
+### 3. `href`: 목적지 주소
 
 링크(`<a>`) Element가 **어디로 연결되는지** 알려주는 Attribute입니다.
 
@@ -141,7 +148,7 @@ GTM에서 특정 버튼 하나만 추적하고 싶을 때, `id`로 정확히 지
 
 GA에서 외부 링크 클릭을 추적할 때, `href` 값을 기준으로 필터링하는 경우가 많습니다.
 
-### 4. `src` — 파일 경로
+### 4. `src`: 파일 경로
 
 이미지(`<img>`), 스크립트(`<script>`) 등이 **불러올 파일의 위치**를 지정합니다.
 
@@ -149,7 +156,7 @@ GA에서 외부 링크 클릭을 추적할 때, `href` 값을 기준으로 필�
 <img src="/images/banner.jpg" alt="신년 프로모션 배너">
 ```
 
-### 5. `alt` — 대체 텍스트
+### 5. `alt`: 대체 텍스트
 
 이미지가 로드되지 않을 때 보여줄 **설명 텍스트**입니다. 검색 엔진이 이미지 내용을 파악하는 데도 사용하므로 SEO에 중요합니다.
 
@@ -157,7 +164,7 @@ GA에서 외부 링크 클릭을 추적할 때, `href` 값을 기준으로 필�
 <img src="/images/chart.png" alt="2024년 분기별 매출 성장 추이 그래프">
 ```
 
-### 6. `data-*` — 사용자 정의 속성
+### 6. `data-*`: 사용자 정의 속성
 
 개발자가 자유롭게 만드는 **커스텀 Attribute**입니다. `data-` 뒤에 원하는 이름을 붙여 사용합니다.
 

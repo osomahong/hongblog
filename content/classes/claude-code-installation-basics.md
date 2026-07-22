@@ -27,9 +27,12 @@ quiz:
       - 누군가가 메일로 보내주는 zip 파일 압축 해제
     correctIndex: 0
     explanation: >-
-      앤트로픽 공식 가이드의 macOS·Linux 표준 설치 방법은 터미널에서 install.sh 한 줄 실행입니다. 데스크톱 앱은 별도
+      앤트로픽 공식 가이드의 macOS, Linux 표준 설치 방법은 터미널에서 install.sh 한 줄 실행입니다. 데스크톱 앱은 별도
       다운로드 방법이 있지만 터미널 CLI 환경 설치는 install.sh 또는 brew install --cask claude-code가
       표준입니다. App Store나 메일 첨부는 공식 채널이 아닙니다.
+metaTitle: '클로드 코드 설치 방법: 윈도우, 맥 명령어와 준비물 정리'
+metaDescription: >-
+  클로드 코드 설치 명령어(윈도우 PowerShell, 맥 터미널)와 설치 전 준비물, 로그인까지의 과정을 순서대로 정리했습니다. 설치가 안 될 때 확인할 것도 담았습니다.
 ogImage: /og/claude-code-installation-basics.png
 ---
 
@@ -52,7 +55,7 @@ ogImage: /og/claude-code-installation-basics.png
 **3. 터미널 권한**
 - 설치 명령은 사용자 폴더 안에 파일을 만듭니다. 관리자 비밀번호를 묻지 않아도 됩니다.
 
-## 💻 macOS·Linux 설치 (가장 쉬운 방법)
+## 💻 macOS, Linux 설치 (가장 쉬운 방법)
 
 **1단계. 터미널 열기 (macOS)**
 - Spotlight(Cmd + Space) 누르고 "터미널" 입력 → 엔터.
@@ -137,7 +140,7 @@ claude
 - 확장 프로그램 검색에서 "Claude Code"로 검색해 설치.
 - Cmd+Shift+P (Mac) 또는 Ctrl+Shift+P (Windows)로 명령 팔레트 열고 "Claude Code" 검색.
 
-**JetBrains (IntelliJ·PyCharm·WebStorm)**
+**JetBrains (IntelliJ, PyCharm, WebStorm)**
 - 플러그인 마켓플레이스에서 "Claude Code" 검색해 설치.
 - IDE 재시작 후 사용 가능.
 
@@ -145,7 +148,7 @@ claude
 - claude.com/download에서 macOS/Windows 앱 다운로드.
 - 시각적 diff 검토, 여러 세션 동시 실행, 스케줄 작업이 강합니다.
 
-같은 CLAUDE.md 파일·MCP 설정이 모든 환경에서 그대로 작동합니다.
+같은 CLAUDE.md 파일, MCP 설정이 모든 환경에서 그대로 작동합니다.
 
 ## 💼 비개발자를 위한 첫 작업 3가지
 
@@ -171,20 +174,20 @@ claude
 - PowerShell이 아니라 CMD에 명령을 입력한 경우입니다. PowerShell을 사용하세요.
 
 **3. 로그인 화면이 뜨지 않음**
-- 방화벽·VPN이 차단할 수 있습니다. VPN을 잠시 끄거나 다른 네트워크에서 시도해 보세요.
+- 방화벽, VPN이 차단할 수 있습니다. VPN을 잠시 끄거나 다른 네트워크에서 시도해 보세요.
 
 문제가 풀리지 않으면 공식 troubleshooting 페이지를 참고하세요(글 끝 참고 자료).
 
 ## 📋 30초 요약
 
-1. **macOS·Linux는 터미널에 `curl -fsSL https://claude.ai/install.sh | bash` 한 줄, Windows는 PowerShell에 `irm https://claude.ai/install.ps1 | iex`** 한 줄로 설치 끝납니다.
+1. **macOS, Linux는 터미널에 `curl -fsSL https://claude.ai/install.sh | bash` 한 줄, Windows는 PowerShell에 `irm https://claude.ai/install.ps1 | iex`** 한 줄로 설치 끝납니다.
 
 2. **설치 후 새 터미널을 열고 `claude` 명령으로 첫 실행** → 브라우저에서 로그인 → 작업 폴더에 들어가 다시 `claude` 실행하면 시작됩니다.
 
-3. **VS Code·JetBrains·데스크톱 앱·웹도 같은 엔진을 씁니다.** 폴더 분석, 텍스트 정리, 간단한 자동화 세 가지부터 손에 익히고 다음 클래스 [슬래시 명령](/class/claude-code-for-everyone/slash-commands-explained)으로 넘어가세요.
+3. **VS Code, JetBrains, 데스크톱 앱, 웹도 같은 엔진을 씁니다.** 폴더 분석, 텍스트 정리, 간단한 자동화 세 가지부터 손에 익히고 다음 클래스 [슬래시 명령](/class/claude-code-for-everyone/slash-commands-explained)으로 넘어가세요.
 
 ## 📚 참고 자료
 
-- Claude Code overview·설치: [https://code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview)
+- Claude Code overview, 설치: [https://code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview)
 - Quickstart: [https://code.claude.com/docs/en/quickstart](https://code.claude.com/docs/en/quickstart)
 - Troubleshooting: [https://code.claude.com/docs/en/troubleshooting](https://code.claude.com/docs/en/troubleshooting)

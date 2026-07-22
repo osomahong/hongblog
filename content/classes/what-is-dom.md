@@ -10,6 +10,11 @@ tags:
 publishedAt: '2026-02-11T08:58:45.297Z'
 courseSlug: digital-basic
 orderInCourse: 4
+relatedTerms:
+  - whatishtml
+  - what-is-javascript
+  - what-is-element
+  - what-is-bom
 difficulty: BEGINNER
 quiz:
   - options:
@@ -50,7 +55,24 @@ JavaScript나 GTM 같은 도구들은 이 DOM이라는 지도가 없으면 아�
 ## 🏢 첫 번째 비유: 회사의 '조직도'
 
 
-![HTML 문서의 각 요소를 상위-하위 관계의 회사 조직도 형태로 나타내 DOM의 계층 구조를 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-dom-0-1770800283327.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;font-size:13px;">
+    <div style="font-weight:bold;margin-bottom:10px;">DOM 트리: 상자 안의 상자 구조</div>
+    <div style="border:3px solid #000;background:#F3F3F3;padding:10px;">
+      <div style="font-family:monospace;font-weight:bold;margin-bottom:8px;">document <span style="font-family:sans-serif;font-weight:normal;color:#555;">(회사 전체)</span></div>
+      <div style="border:2px solid #000;background:#fff;padding:10px;">
+        <div style="font-family:monospace;font-weight:bold;margin-bottom:8px;">&lt;body&gt; <span style="font-family:sans-serif;font-weight:normal;color:#555;">(마케팅본부)</span></div>
+        <div style="border:2px solid #000;background:#F3F3F3;padding:10px;">
+          <div style="font-family:monospace;font-weight:bold;margin-bottom:8px;">&lt;div&gt; <span style="font-family:sans-serif;font-weight:normal;color:#555;">(퍼포먼스2팀)</span></div>
+          <div style="border:2px solid #000;background:#FFD700;padding:8px;display:inline-block;">
+            <span style="font-family:monospace;font-weight:bold;">&lt;button&gt;</span> <span style="color:#555;">(팀원: 구매 버튼)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">바깥 상자가 부모, 안쪽 상자가 자식입니다. JavaScript는 이 소속 관계를 따라 원하는 요소를 찾아갑니다.</div>
+</div>
 
 가장 이해하기 쉬운 비유는 회사의 조직도입니다.
 
@@ -82,7 +104,23 @@ DOM은 이렇게 웹페이지의 모든 요소를 부모(상위 폴더)와 자�
 ## ⚙️ 그래서 DOM은 어떻게 작동하나요?
 
 
-![웹 문서의 HTML 요소가 DOM 트리로 구성되어 브라우저가 조작하는 과정을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-dom-1-1770800315880.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;max-width:100%;font-family:sans-serif;font-size:13px;">
+    <div style="flex:1 1 220px;border:3px solid #000;background:#fff;">
+      <div style="background:#F3F3F3;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">1. HTML 원본 (텍스트 문서)</div>
+      <pre style="font-family:monospace;font-size:12px;padding:12px;margin:0;overflow-x:auto;">&lt;body&gt;
+  &lt;div&gt;
+    &lt;button&gt;구매하기&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/body&gt;</pre>
+    </div>
+    <div style="flex:1 1 220px;border:3px solid #000;background:#fff;">
+      <div style="background:#FFD700;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">2. 브라우저가 만든 DOM 지도</div>
+      <div style="padding:12px;font-family:monospace;line-height:2;">document<br>└ body <span style="font-family:sans-serif;color:#555;">(본문)</span><br>&nbsp;&nbsp;└ div <span style="font-family:sans-serif;color:#555;">(상품 구역)</span><br>&nbsp;&nbsp;&nbsp;&nbsp;└ <span style="background:#FFD700;font-weight:bold;">button</span> <span style="font-family:sans-serif;color:#FF0000;font-weight:bold;">← 여기를 찾아 '품절'로 변경</span></div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">JavaScript와 GTM은 왼쪽 텍스트가 아니라 오른쪽 지도를 보고 경로를 따라가 요소를 조작합니다.</div>
+</div>
 
 JavaScript나 GTM은 원본 HTML 파일(텍스트)을 직접 뒤지지 않습니다. 대신, 브라우저가 깔끔하게 정리해놓은 DOM이라는 입체적인 지도를 보고 움직입니다.
 

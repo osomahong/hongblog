@@ -2,7 +2,7 @@
 slug: what-is-extended-thinking
 term: Extended Thinking (확장 추론 모드) 알아보기
 definition: >-
-  Claude가 최종 답을 내기 전에 내부 추론 단계를 별도 블록으로 펼쳐 깊게 생각하는 모드입니다. 복잡한 분석·다단계 추론·코드 작성에서
+  Claude가 최종 답을 내기 전에 내부 추론 단계를 별도 블록으로 펼쳐 깊게 생각하는 모드입니다. 복잡한 분석, 다단계 추론, 코드 작성에서
   결과 품질을 끌어올리는 데 쓰입니다.
 category: CLAUDE_EDUCATION
 tags:
@@ -22,14 +22,14 @@ difficulty: BEGINNER
 quiz:
   - question: Extended Thinking이 가장 큰 효과를 내는 작업 유형은 무엇일까요?
     options:
-      - 여러 단계 추론과 검토가 필요한 복잡한 분석·코드 작업
+      - 여러 단계 추론과 검토가 필요한 복잡한 분석, 코드 작업
       - 단순 사실 답변
       - 1줄 번역
       - 안부 인사
     correctIndex: 0
     explanation: >-
       Extended Thinking은 Claude가 최종 답을 내기 전에 내부 추론 블록을 별도로 펼쳐 깊게 생각하도록 하는 모드입니다.
-      여러 단계 추론·검토가 필요한 복잡한 분석, 다중 파일 코드 작업, 긴 자료 분석 같은 작업에서 결과 품질을 끌어올립니다. 단순 사실
+      여러 단계 추론, 검토가 필요한 복잡한 분석, 다중 파일 코드 작업, 긴 자료 분석 같은 작업에서 결과 품질을 끌어올립니다. 단순 사실
       답변이나 한 줄 번역에는 일반 응답으로 충분합니다.
 ogImage: /og/what-is-extended-thinking.png
 ---
@@ -50,7 +50,7 @@ Claude 같은 모델에 같은 질문을 던졌는데 어떤 날은 답이 깊�
 
 > "Extended thinking gives Claude enhanced reasoning capabilities for complex tasks by creating thinking content blocks where it outputs internal reasoning before delivering the final answer."
 
-일반 모드에서는 모델이 답을 한 번에 만들어 내놓습니다. Extended Thinking 모드에서는 답을 만들기 전에 내부 추론을 한 단계 더 거칩니다. 사용자에게 보이는 답에는 큰 차이가 없는 듯해도, 답의 일관성·정확도·깊이가 분명히 달라집니다.
+일반 모드에서는 모델이 답을 한 번에 만들어 내놓습니다. Extended Thinking 모드에서는 답을 만들기 전에 내부 추론을 한 단계 더 거칩니다. 사용자에게 보이는 답에는 큰 차이가 없는 듯해도, 답의 일관성, 정확도, 깊이가 분명히 달라집니다.
 
 ## 🌐 어떤 모델에서 동작하나요?
 
@@ -97,11 +97,11 @@ Extended Thinking은 다음과 같은 작업에서 큰 차이를 만듭니다.
 - **여러 단계 추론**: "이 데이터의 패턴을 분석한 뒤 가설 3개를 세우고 각각 검증해 달라"
 - **복잡한 코드 작성**: 다중 파일을 한 번에 수정해야 하는 리팩터링
 - **긴 자료 분석**: 두꺼운 보고서 전체를 보고 결론을 도출
-- **수학·논리·증명**: 단계별 풀이가 필요한 문제
+- **수학, 논리, 증명**: 단계별 풀이가 필요한 문제
 
 반면 다음과 같은 작업에는 일반 모드로 충분합니다.
 
-- 단순 사실 답변, 짧은 번역, 인사·잡담
+- 단순 사실 답변, 짧은 번역, 인사, 잡담
 - 한 줄 요약, 단순 질문 응답
 
 작업이 복잡할수록 Extended Thinking의 가치가 커집니다.
@@ -112,14 +112,14 @@ Extended Thinking은 다음과 같은 작업에서 큰 차이를 만듭니다.
 - 프로젝트 안에서 정해진 자료 위에 추론을 깊게 거치면 결과 품질이 매우 안정됩니다.
 
 **2. Tool Use + Extended Thinking**
-- 외부 도구(검색·DB·계산)를 호출하는 작업에서 추론을 함께 거치면 도구 호출 사이의 일관성이 살아납니다.
+- 외부 도구(검색, DB, 계산)를 호출하는 작업에서 추론을 함께 거치면 도구 호출 사이의 일관성이 살아납니다.
 
 **3. [Claude Cowork](/class/claude-in-practice/claude-cowork-overview) + Extended Thinking**
 - 자동화 작업에 깊은 분석을 결합하고 싶다면 Cowork 안에서 Extended Thinking을 켭니다.
 
 ## ⚠️ 주의할 점 3가지
 
-**1. 비용·속도 트레이드오프**
+**1. 비용, 속도 트레이드오프**
 - 추론 블록도 토큰을 사용합니다. 비용과 응답 시간이 늘어나는 만큼, 단순 작업에는 켜지 않는 게 맞습니다.
 
 **2. thinking 블록 보존 (Tool Use 때)**
@@ -130,10 +130,10 @@ Extended Thinking은 다음과 같은 작업에서 큰 차이를 만듭니다.
 
 ## 💼 직무별 활용 시나리오
 
-**마케터·기획자**
-- 분기별 시장 분석: 깊은 추론으로 가설·검증·결론 흐름이 살아 있는 보고서 초안
+**마케터, 기획자**
+- 분기별 시장 분석: 깊은 추론으로 가설, 검증, 결론 흐름이 살아 있는 보고서 초안
 
-**디자이너·PM**
+**디자이너, PM**
 - 사용자 인터뷰 50건에서 패턴 추출: 단순 요약이 아니라 의미 있는 그룹화
 
 **개발자**
@@ -147,7 +147,7 @@ Extended Thinking은 다음과 같은 작업에서 큰 차이를 만듭니다.
 
 2. **Sonnet 4.6과 Haiku 4.5는 Extended Thinking을 지원하고, Opus 4.7은 Adaptive Thinking으로 자동 조절합니다**(2026년 4월 기준). 모델별 지원 차이를 [모델 패밀리](/class/claude-fundamentals/claude-model-family) 클래스와 함께 보세요.
 
-3. **여러 단계 추론, 복잡한 코드, 긴 자료 분석 같은 작업에서 가장 큰 효과**가 납니다. [Projects](/class/claude-in-practice/what-are-claude-projects)·Cowork와 묶으면 자동화에 깊이가 더해집니다.
+3. **여러 단계 추론, 복잡한 코드, 긴 자료 분석 같은 작업에서 가장 큰 효과**가 납니다. [Projects](/class/claude-in-practice/what-are-claude-projects), Cowork와 묶으면 자동화에 깊이가 더해집니다.
 
 ## 📚 참고 자료
 

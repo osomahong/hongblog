@@ -15,6 +15,11 @@ aliases:
   - 커맨드라인
   - Command Line Interface
   - 셸
+relatedTerms:
+  - what-is-git
+  - what-is-npm
+  - what-is-env-variables
+  - what-is-claude-code
 difficulty: BEGINNER
 quiz:
   - options:

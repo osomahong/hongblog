@@ -51,7 +51,25 @@ ogImage: /og/what-is-roas.png
 ## 🌱 씨앗과 수확량과 같습니다
 
 
-![씨앗과 수확량에 비유하여 광고 지출 대비 수익률, 즉 ROAS를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-roas-0-1770881672187.png)
+<div style="overflow-x:auto; margin:1.5rem 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff;">
+    <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">씨앗과 수확량으로 보는 ROAS</div>
+    <div style="display:flex; flex-wrap:wrap;">
+      <div style="flex:1; min-width:150px; padding:14px 16px; border-right:3px solid #000;">
+        <div style="font-size:0.9em; color:#555;">씨앗 비용 (= 광고비)</div>
+        <div style="font-family:monospace; font-weight:700; font-size:1.3em; margin-top:8px;">100,000원</div>
+      </div>
+      <div style="flex:1; min-width:150px; padding:14px 16px; background:#F3F3F3;">
+        <div style="font-size:0.9em; color:#555;">작물 판매 금액 (= 매출)</div>
+        <div style="font-family:monospace; font-weight:700; font-size:1.3em; margin-top:8px;">500,000원</div>
+      </div>
+      <div style="flex:1; min-width:150px; padding:14px 16px; background:#FFD700; border-left:3px solid #000;">
+        <div style="font-size:0.9em;">50만 ÷ 10만 × 100</div>
+        <div style="font-family:monospace; font-weight:700; font-size:1.3em; margin-top:8px; color:#FF0000;">ROAS 500%</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 농사를 짓는 상황을 떠올려 보세요.
 
@@ -92,22 +110,29 @@ ROAS(%) = (광고로 인한 매출 ÷ 광고비) × 100
 ## 💼 실무에서 어떻게 활용할까요?
 
 
-![광고 투자 수익률(ROAS)의 실무 활용 방법을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-roas-1-1770881705370.png)
+<div style="overflow-x:auto; margin:1.5rem 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff;">
+    <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">채널별 ROAS 비교</div>
+    <div style="padding:16px;">
+      <div style="font-size:0.9em; margin-bottom:4px;">Meta 광고 (광고비 300만원, 매출 900만원)</div>
+      <div style="border:3px solid #000; background:#F3F3F3; height:26px; margin-bottom:12px;">
+        <div style="width:60%; height:100%; background:#000; color:#fff; font-family:monospace; font-weight:700; font-size:0.85em; display:flex; align-items:center; padding-left:8px;">300%</div>
+      </div>
+      <div style="font-size:0.9em; margin-bottom:4px;">Google 검색 (광고비 200만원, 매출 1,000만원)</div>
+      <div style="border:3px solid #000; background:#F3F3F3; height:26px; margin-bottom:12px;">
+        <div style="width:100%; height:100%; background:#FF0000; color:#fff; font-family:monospace; font-weight:700; font-size:0.85em; display:flex; align-items:center; padding-left:8px;">500%</div>
+      </div>
+      <div style="font-size:0.9em; margin-bottom:4px;">네이버 SA (광고비 100만원, 매출 250만원)</div>
+      <div style="border:3px solid #000; background:#F3F3F3; height:26px;">
+        <div style="width:50%; height:100%; background:#000; color:#fff; font-family:monospace; font-weight:700; font-size:0.85em; display:flex; align-items:center; padding-left:8px;">250%</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 **1. 채널별 예산 배분의 기준이 됩니다**
 
 - ROAS가 높은 채널에 예산을 집중하는 것이 기본 전략입니다.
-
-![광고 지출 대비 수익률(ROAS) 계산 공식을 보여주는 개념도
-ROAS 개념을 쉽게 이해하도록 돕는 시각 자료: 광고 비용, 매출액, ROAS
-ROAS를 활용한 광고 효율 분석 과정을 설명하는 일러스트
-ROAS 계산 및 분석을 통해 광고 전략을 개선하는 방법을 보여주는 그림
-광고 성과 측정 지표 ROAS: 광고비 대비 수익률을 시각화한 개념도
-실무에서 ROAS 활용법을 보여주는, 광고 성과 분석 관련 일러스트
-ROAS 목표 설정과 성과 측정을 위한 주요 지표를 보여주는 다이어그램
-ROAS 개선 전략 수립 과정을 보여주는 그림: 광고 효율 극대화 방법 제시
-ROAS를 통해 광고 효율을 분석하고 개선하는 과정을 설명하는 일러스트
-ROAS 계산과 분석을 통해 광고 캠페인을 최적화하는 과정을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-roas-1-1770794281323.png)
 
 - 단, 신규 고객 확보 vs 기존 고객 리타겟팅의 ROAS는 다르므로 목적에 따라 판단합니다.
 
@@ -126,4 +151,4 @@ ROAS 계산과 분석을 통해 광고 캠페인을 최적화하는 과정을 �
 
 2. **공식: ROAS(%) = (매출 ÷ 광고비) × 100**입니다. 마진율을 고려한 손익분기 ROAS를 먼저 계산하면, 광고가 수익을 내고 있는지 바로 판단할 수 있습니다.
 
-3. **채널별·캠페인별 ROAS를 비교하여 예산을 배분**하는 것이 광고 최적화의 기본입니다. 단, 전체 수익성을 보려면 ROI도 함께 분석해야 합니다.
+3. **채널별, 캠페인별 ROAS를 비교하여 예산을 배분**하는 것이 광고 최적화의 기본입니다. 단, 전체 수익성을 보려면 ROI도 함께 분석해야 합니다.

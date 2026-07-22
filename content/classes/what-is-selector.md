@@ -55,7 +55,20 @@ CSS에서 스타일을 적용할 때도, GTM에서 클릭을 추적할 때도, �
 ## 📞 Selector는 사람 이름 부르기와 같습니다
 
 
-![선택자(Selector)가 특정 HTML 요소를 마치 사람 이름을 부르듯이 지정하는 원리를 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-selector-0-1770800719257.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;">
+    <div style="font-weight:bold;margin-bottom:10px;">같은 HTML, 부르는 방법 3가지</div>
+    <pre style="font-family:monospace;font-size:13px;background:#F3F3F3;border:2px solid #000;padding:12px;margin:0;overflow-x:auto;">&lt;button <span style="background:#FFD700;font-weight:bold;">id="buy-now"</span> <span style="color:#FF0000;font-weight:bold;">class="btn"</span>&gt;구매하기&lt;/button&gt;
+&lt;button <span style="color:#FF0000;font-weight:bold;">class="btn"</span>&gt;장바구니&lt;/button&gt;
+&lt;a href="/help"&gt;고객센터&lt;/a&gt;</pre>
+    <div style="margin-top:12px;font-size:13px;">
+      <div style="border:2px solid #000;padding:8px 10px;margin-bottom:6px;background:#FFD700;"><span style="font-family:monospace;font-weight:bold;">#buy-now</span> → "김철수 씨!" : '구매하기' 버튼 딱 하나만 선택</div>
+      <div style="border:2px solid #000;padding:8px 10px;margin-bottom:6px;background:#fff;"><span style="font-family:monospace;font-weight:bold;color:#FF0000;">.btn</span> → "마케팅팀 분들!" : '구매하기'와 '장바구니' 버튼 둘 다 선택</div>
+      <div style="border:2px solid #000;padding:8px 10px;background:#F3F3F3;"><span style="font-family:monospace;font-weight:bold;">button</span> → "학생 여러분!" : 페이지의 모든 button 요소 선택</div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">어떤 호칭(선택자)을 쓰느냐에 따라 잡히는 요소의 범위가 달라집니다.</div>
+</div>
 
 100명이 모인 강의실에서 특정 사람을 부를 때를 생각해보세요.
 
@@ -81,7 +94,23 @@ CSS에서 스타일을 적용할 때도, GTM에서 클릭을 추적할 때도, �
 ### 1. **Tag Selector (태그 선택자)**
 같은 종류의 Element를 모두 선택합니다.
 
-![다양한 종류의 선택자와 그 사용법, 그리고 시각적 예시를 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-selector-1-1770800747381.png)
+<div style="overflow-x:auto;margin:16px 0;">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;max-width:100%;font-family:sans-serif;">
+    <div style="flex:1 1 220px;border:3px solid #000;background:#fff;">
+      <div style="background:#F3F3F3;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">CSS 코드</div>
+      <pre style="font-family:monospace;font-size:13px;padding:12px;margin:0;overflow-x:auto;"><span style="background:#FFD700;font-weight:bold;">button</span> { color: blue; }</pre>
+    </div>
+    <div style="flex:1 1 220px;border:3px solid #000;background:#fff;">
+      <div style="background:#FFD700;border-bottom:3px solid #000;padding:6px 10px;font-weight:bold;">선택 결과</div>
+      <div style="padding:12px;font-size:13px;">
+        <div style="border:2px solid #000;display:inline-block;padding:4px 10px;color:#0054FF;font-weight:bold;margin:2px;">구매하기 ✔</div>
+        <div style="border:2px solid #000;display:inline-block;padding:4px 10px;color:#0054FF;font-weight:bold;margin:2px;">장바구니 ✔</div>
+        <div style="border:2px dashed #999;display:inline-block;padding:4px 10px;color:#555;margin:2px;">고객센터 링크 ✘</div>
+      </div>
+    </div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">Tag Selector는 같은 태그 이름을 가진 요소를 전부 선택합니다. 링크(a)는 button이 아니라서 제외됩니다.</div>
+</div>
 
 ```css
 

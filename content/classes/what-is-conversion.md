@@ -29,8 +29,8 @@ quiz:
       - 고객이 뉴스레터를 구독한 것
     question: 온라인 쇼핑몰에서 마케팅 캠페인을 분석하고 있습니다. 다음 중 '매크로 전환'에 해당하는 행동은 무엇일까요?
     explanation: >-
-      매크로 전환은 비즈니스의 핵심 목표에 해당하는 전환입니다. 이커머스에서는 '상품 구매 완료'가 매크로 전환이며, 장바구니 담기·페이지
-      조회·뉴스레터 구독은 매크로 전환으로 이어지는 과정인 '마이크로 전환'에 해당합니다.
+      매크로 전환은 비즈니스의 핵심 목표에 해당하는 전환입니다. 이커머스에서는 '상품 구매 완료'가 매크로 전환이며, 장바구니 담기, 페이지
+      조회, 뉴스레터 구독은 매크로 전환으로 이어지는 과정인 '마이크로 전환'에 해당합니다.
     correctIndex: 0
 ogImage: /og/what-is-conversion.png
 ---
@@ -60,7 +60,25 @@ ogImage: /og/what-is-conversion.png
 ## 🎯 낚시와 같습니다
 
 
-![마케팅 전환 과정을 낚시하는 모습으로 표현한 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-conversion-0-1770881524146.png)
+<div style="overflow-x:auto; margin:1.5rem 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff;">
+    <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">낚시로 보는 전환 3단계</div>
+    <div style="display:flex; flex-wrap:wrap;">
+      <div style="flex:1; min-width:140px; padding:14px 16px; border-right:3px solid #000;">
+        <div style="font-weight:700;">1. 미끼를 던진다</div>
+        <div style="font-size:0.9em; color:#555; margin-top:4px;">= 광고 노출</div>
+      </div>
+      <div style="flex:1; min-width:140px; padding:14px 16px; border-right:3px solid #000;">
+        <div style="font-weight:700;">2. 물고기가 다가온다</div>
+        <div style="font-size:0.9em; color:#555; margin-top:4px;">= 클릭</div>
+      </div>
+      <div style="flex:1; min-width:140px; padding:14px 16px; background:#FFD700;">
+        <div style="font-weight:700; color:#FF0000;">3. 미끼를 문다</div>
+        <div style="font-size:0.9em; margin-top:4px;">= 전환 (구매, 가입, 문의)</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 낚시를 하는 상황을 떠올려 보세요.
 
@@ -89,18 +107,24 @@ ogImage: /og/what-is-conversion.png
 ## 💼 실무에서 어떻게 활용할까요?
 
 
-![실무에서 전환율을 효과적으로 높이는 방법을 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-conversion-1-1770881554002.png)
+<div style="overflow-x:auto; margin:1.5rem 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff;">
+    <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">이커머스 전환 퍼널 예시</div>
+    <div style="padding:16px;">
+      <div style="border:3px solid #000; background:#F3F3F3; padding:8px 12px; max-width:100%;">사이트 방문 <span style="font-family:monospace; font-weight:700;">1,000명</span></div>
+      <div style="font-size:0.85em; color:#555; padding:4px 0 4px 24px;">↓ 700명 이탈</div>
+      <div style="border:3px solid #000; background:#F3F3F3; padding:8px 12px; width:70%;">장바구니 담기 <span style="font-family:monospace; font-weight:700;">300명</span> <span style="font-size:0.85em;">(마이크로 전환)</span></div>
+      <div style="font-size:0.85em; color:#555; padding:4px 0 4px 24px;">↓ 250명 이탈</div>
+      <div style="border:3px solid #000; background:#FFD700; padding:8px 12px; width:45%;">구매 완료 <span style="font-family:monospace; font-weight:700; color:#FF0000;">50명</span> <span style="font-size:0.85em;">(매크로 전환)</span></div>
+    </div>
+  </div>
+</div>
+
+*단계별 인원을 추적하면 사용자가 어디서 이탈하는지 바로 확인할 수 있습니다.*
 
 **1. 전환 목표를 명확히 설정해야 합니다**
 
 - 캠페인을 시작하기 전에 "이 캠페인의 전환은 무엇인가?"를 먼저 정의합니다.
-
-![잠재 고객의 구매 여정 단계별 전환율 변화를 보여주는 개념도
-💼 실무에서 A/B 테스트를 통해 전환율을 높이는 과정을 설명하는 일러스트
-💼 전환 목표 설정, 측정, 개선 방안 도출 과정을 시각적으로 보여주는 그림
-💼 다양한 마케팅 채널별 전환 기여도 분석을 나타내는 시각자료
-💼 웹사이트 방문부터 구매 완료까지의 전환 과정을 단계별로 보여주는 개념도
-💼 전환율 개선을 위한 주요 지표(CTR, CVR 등)를 시각화한 차트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-conversion-1-1770794131859.png)
 
 - 전환 정의가 불명확하면 성과 측정 자체가 불가능합니다.
 
@@ -118,4 +142,4 @@ ogImage: /og/what-is-conversion.png
 
 2. **매크로 전환(핵심 목표)과 마이크로 전환(과정 지표)**을 함께 추적하면 사용자 여정 전체를 파악할 수 있습니다.
 
-3. **전환은 모든 마케팅 성과의 최종 기준**입니다. CPM·CPC·CTR은 과정 지표이고, 전환이 실제 비즈니스 결과를 보여줍니다.
+3. **전환은 모든 마케팅 성과의 최종 기준**입니다. CPM, CPC, CTR은 과정 지표이고, 전환이 실제 비즈니스 결과를 보여줍니다.

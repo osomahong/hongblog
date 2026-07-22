@@ -10,6 +10,11 @@ tags:
 publishedAt: '2026-02-11T08:44:30.055Z'
 courseSlug: digital-basic
 orderInCourse: 3
+relatedTerms:
+  - whatishtml
+  - what-is-dom
+  - what-is-debugging
+  - what-is-frontend-backend
 difficulty: BEGINNER
 quiz:
   - options:
@@ -24,7 +29,7 @@ quiz:
     correctIndex: 2
 metaTitle: 'JavaScript(자바스크립트) 입문 | 비개발자를 위한 웹 동작 원리와 디지털 마케팅 기초'
 metaDescription: >-
-  JavaScript(자바스크립트)는 웹사이트에 생동감을 불어넣는 주인공입니다. 장바구니, 스크롤, 비밀번호 검증 같은 웹 동작이 어떻게 이뤄지는지 비개발자도 한눈에 이해할 수 있도록 풀어 드리고, GA4·GTM 등 마케팅 분석과의 연결 고리까지 정리했습니다.
+  JavaScript(자바스크립트)는 웹사이트에 생동감을 불어넣는 주인공입니다. 장바구니, 스크롤, 비밀번호 검증 같은 웹 동작이 어떻게 이뤄지는지 비개발자도 한눈에 이해할 수 있도록 풀어 드리고, GA4, GTM 등 마케팅 분석과의 연결 고리까지 정리했습니다.
 ogImage: /og/what-is-javascript.png
 ---
 
@@ -44,8 +49,27 @@ HTML이 뼈대를 만들고 CSS가 옷을 입혔다면, JavaScript는 그 웹페
 
 ## 🏢 첫 번째 비유: 최첨단 스마트 홈
 
-
-![자바스크립트가 최첨단 스마트 홈의 모든 기기를 제어하는 모습을 보여주는 개념도](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-javascript-0-1770799426198.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; border:3px solid #000; background:#fff; padding:16px;">
+    <div style="display:inline-block; font-weight:bold; background:#FFD700; border:3px solid #000; padding:4px 12px; margin-bottom:12px;">스마트 홈처럼 반응하는 JavaScript</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="flex:1; min-width:140px; border:3px solid #000; background:#F3F3F3; padding:8px;">감지: 버튼 클릭</div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:2; min-width:180px; border:3px solid #000; background:#fff; padding:8px;">실행: 장바구니 숫자를 1로 바꿉니다</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
+      <div style="flex:1; min-width:140px; border:3px solid #000; background:#F3F3F3; padding:8px;">감지: 스크롤 내림</div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:2; min-width:180px; border:3px solid #000; background:#fff; padding:8px;">실행: 숨어있던 TOP 버튼을 보여줍니다</div>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+      <div style="flex:1; min-width:140px; border:3px solid #000; background:#F3F3F3; padding:8px;">감지: 짧은 비밀번호 입력</div>
+      <div style="font-weight:bold;">→</div>
+      <div style="flex:2; min-width:180px; border:3px solid #000; background:#fff; padding:8px;">실행: "8자리 이상 입력하세요" 안내를 띄웁니다</div>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">스마트 홈 센서처럼, JavaScript는 사용자의 행동을 감지하고 정해진 동작을 실행합니다.</p>
+</div>
 
 건물 비유를 완성해 볼까요?
 
@@ -75,8 +99,24 @@ HTML과 CSS로 매장을 아주 예쁘게 지어놨습니다. 진열대도 놓�
 
 ## ⚙️ 그래서 JavaScript는 어떻게 생겼나요?
 
-
-![자바스크립트의 작동 방식과 주요 구성 요소를 시각적으로 설명하는 일러스트](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/what-is-javascript-1-1770799461097.png)
+<div style="overflow-x:auto; margin:16px 0;">
+  <div style="max-width:100%; display:flex; flex-wrap:wrap; gap:12px;">
+    <div style="flex:1; min-width:220px; border:3px solid #000; background:#fff; padding:12px;">
+      <div style="font-weight:bold; border-bottom:3px solid #000; padding-bottom:6px; margin-bottom:10px;">클릭 전</div>
+      <div style="display:inline-block; border:3px solid #000; background:#FFD700; padding:6px 16px; font-weight:bold;">구매하기</div>
+      <p style="margin:10px 0 0; color:#555;">버튼이 클릭을 기다리는 중입니다.</p>
+    </div>
+    <div style="flex:1; min-width:220px; border:3px solid #000; background:#fff; padding:12px;">
+      <div style="font-weight:bold; border-bottom:3px solid #000; padding-bottom:6px; margin-bottom:10px;">클릭 후</div>
+      <div style="border:3px solid #000; background:#F3F3F3; padding:10px;">
+        <div style="font-family:monospace; font-size:0.85em; border-bottom:2px solid #000; padding-bottom:4px; margin-bottom:6px;">알림창 (alert)</div>
+        <div>"구매해주셔서 감사합니다!"</div>
+      </div>
+      <p style="margin:10px 0 0; color:#555;">JavaScript가 클릭을 감지하고 알림창을 띄웠습니다.</p>
+    </div>
+  </div>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">같은 버튼이라도 JavaScript가 있으면 클릭 전과 후의 화면이 달라집니다.</p>
+</div>
 
 HTML이나 CSS보다 조금 더 복잡해 보이지만, 원리는 간단합니다. "언제(When), 무엇을(What), 어떻게(How) 해라"라는 대본을 짜는 것과 같습니다.
 
