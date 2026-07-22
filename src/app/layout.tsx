@@ -95,6 +95,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        {/* Google AdSense */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7390905088794850"
+          crossOrigin="anonymous"
+        />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link

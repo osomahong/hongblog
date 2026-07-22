@@ -349,17 +349,42 @@ export function getClassBySlugWithMeta(slug: string): ClassWithMeta | null {
   return classToMeta(cls, 1);
 }
 
+/**
+ * 홈 TRENDING NOW: GA4 최근 7일 조회수 기준 인기 인사이트.
+ * scripts/update-trending.ts가 생성하는 scripts/data/trending.json을 읽고,
+ * 파일이 없거나 부족하면 최신 글로 채운다.
+ */
 export function getTrendingMixed(_days: number, limit: number): TrendingItem[] {
-  return getInsights()
-    .slice(0, limit)
-    .map((i, idx) => ({
-      _type: "post" as const,
-      id: idx + 1,
-      slug: i.slug,
-      title: i.title,
-      category: i.category,
-      excerpt: i.excerpt,
-    }));
+  const insights = getInsights();
+  const bySlug = new Map(insights.map((i) => [i.slug, i]));
+
+  let picked: Insight[] = [];
+  try {
+    const raw = fs.readFileSync(
+      path.join(process.cwd(), "scripts/data/trending.json"),
+      "utf-8",
+    );
+    const data = JSON.parse(raw) as { slugs?: string[] };
+    picked = (data.slugs ?? [])
+      .map((slug) => bySlug.get(slug))
+      .filter((i): i is Insight => Boolean(i));
+  } catch {
+    // trending.json이 없으면 아래에서 최신 글로 채운다
+  }
+
+  for (const i of insights) {
+    if (picked.length >= limit) break;
+    if (!picked.includes(i)) picked.push(i);
+  }
+
+  return picked.slice(0, limit).map((i, idx) => ({
+    _type: "post" as const,
+    id: idx + 1,
+    slug: i.slug,
+    title: i.title,
+    category: i.category,
+    excerpt: i.excerpt,
+  }));
 }
 
 export function getCategoryStats(): CategoryStat[] {
@@ -433,5 +458,102 @@ export function getNextPrevClass(classId: number): NextPrevResult {
 
 
 export function getAllTagsWithId(): TagWithId[] {
-  return getAllTags().map(({ name }, i) => ({ id: i + 1, name }));
+  return getAllTags().map(({ name, count }, i) => ({ id: i + 1, name, count }));
+}
+
+export interface TagPreviewItem {
+  tag: TagWithId;
+  title: string;
+  excerpt: string;
+  href: string;
+  category: string;
+  contentType: "insight" | "class";
+}
+
+/**
+ * /tags 허브 페이지 미리보기용 추천 태그를 뽑는다.
+ * scripts/update-featured-tags.ts가 생성하는 GA4 실제 조회수 기반
+ * scripts/data/featured-tags.json을 우선 순서로 쓰고, 이후 남은 태그는
+ * 콘텐츠 개수 순으로 이어 붙여 후보 목록을 만든다.
+ *
+ * 한 글에 태그가 여러 개 붙어 있으면 같은 글이 여러 카드에 중복 노출될 수 있으므로,
+ * 이미 카드로 쓰인 글(href)은 다시 쓰지 않는다. 그 태그에 아직 안 쓴 글이 없으면
+ * 그 태그는 건너뛰고 다음 후보 태그로 넘어가 limit개를 채운다.
+ */
+function getFeaturedTagCandidates(): TagWithId[] {
+  const allTags = getAllTagsWithId();
+  const byName = new Map(allTags.map((t) => [t.name, t]));
+
+  let priorityNames: string[] = [];
+  try {
+    const raw = fs.readFileSync(
+      path.join(process.cwd(), "scripts/data/featured-tags.json"),
+      "utf-8",
+    );
+    const data = JSON.parse(raw) as { tags?: string[] };
+    priorityNames = data.tags ?? [];
+  } catch {
+    // featured-tags.json이 없으면 콘텐츠 개수 순 태그만 후보가 된다
+  }
+
+  const priorityTags = priorityNames
+    .map((name) => byName.get(name))
+    .filter((t): t is TagWithId => Boolean(t));
+  const restTags = allTags.filter((t) => !priorityNames.includes(t.name));
+  return [...priorityTags, ...restTags];
+}
+
+/**
+ * /tags 허브의 "전체 태그" 목록 위에 배치할 추천 태그 칩 목록.
+ * GA4 실제 조회수 기반 순서(getFeaturedTagCandidates)를 그대로 앞에서부터 자른다.
+ */
+export function getFeaturedTags(limit: number): TagWithId[] {
+  return getFeaturedTagCandidates().slice(0, limit);
+}
+
+export function getFeaturedTagPreviews(limit: number): TagPreviewItem[] {
+  const candidates = getFeaturedTagCandidates();
+  const usedHrefs = new Set<string>();
+  const result: TagPreviewItem[] = [];
+
+  for (const tag of candidates) {
+    if (result.length >= limit) break;
+
+    const { posts, classes } = getContentByTag(tag.name);
+    const post = posts.find((p) => !usedHrefs.has(`/insights/${p.slug}`));
+    if (post) {
+      const href = `/insights/${post.slug}`;
+      usedHrefs.add(href);
+      result.push({
+        tag,
+        title: post.title,
+        excerpt: post.excerpt,
+        href,
+        category: post.category,
+        contentType: "insight",
+      });
+      continue;
+    }
+
+    const cls = classes.find(
+      (c) => !usedHrefs.has(`/class/${c.courseInfo?.slug ?? ""}/${c.slug}`),
+    );
+    if (cls) {
+      const href = `/class/${cls.courseInfo?.slug ?? ""}/${cls.slug}`;
+      usedHrefs.add(href);
+      result.push({
+        tag,
+        title: cls.term,
+        excerpt: cls.definition,
+        href,
+        category: cls.category,
+        contentType: "class",
+      });
+      continue;
+    }
+
+    // 이 태그가 가진 글이 전부 다른 카드에 이미 쓰였음 → 태그를 건너뛰고 다음 후보로
+  }
+
+  return result;
 }

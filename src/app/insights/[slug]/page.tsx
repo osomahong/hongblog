@@ -16,6 +16,11 @@ import { AuthorCard } from "@/components/AuthorCard";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
+import { RelatedPosts } from "@/components/RelatedPosts";
+import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
+import { AD_SLOTS } from "@/lib/ads";
+import { getRelatedPosts } from "@/lib/related-posts";
+import { splitMarkdownAtNthH2 } from "@/lib/markdown-split";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -93,6 +98,12 @@ export default async function InsightDetailPage({ params }: Props) {
 
   // 연관 Class 추천 (교차 추천)
   const relatedClasses = await getRelatedClassesForPost(post.tags, post.category, 3);
+
+  // 관련 인사이트 추천 (본문 하단 카드 영역)
+  const relatedPosts = getRelatedPosts(post, 4);
+
+  // 본문 중간 광고 삽입 위치: 두 번째 H2 직전 (H2가 2개 미만이면 미삽입)
+  const [contentBeforeAd, contentAfterAd] = splitMarkdownAtNthH2(post.content, 2);
 
   const articleImage = absoluteUrl(post.ogImage || post.thumbnailUrl || "/og-default.png");
 
@@ -275,9 +286,22 @@ export default async function InsightDetailPage({ params }: Props) {
 
             <NeoCard className="prose prose-sm sm:prose-lg max-w-none">
               <NeoCardContent>
-                <MarkdownRenderer content={post.content} />
+                <MarkdownRenderer content={contentBeforeAd} />
+                {contentAfterAd && (
+                  <>
+                    <AdSenseSlot
+                      slot={AD_SLOTS.inArticle}
+                      format="fluid"
+                      layout="in-article"
+                      className="my-6 not-prose"
+                    />
+                    <MarkdownRenderer content={contentAfterAd} />
+                  </>
+                )}
               </NeoCardContent>
             </NeoCard>
+
+            <RelatedPosts posts={relatedPosts} />
 
             {post.quiz && post.quiz.length > 0 && (
               <ContentQuiz

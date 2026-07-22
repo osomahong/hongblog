@@ -525,3 +525,8 @@
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
+/* ===== AdSense ===== */
+/* 광고 미채움(unfilled) 시 슬롯 컨테이너째 숨겨 빈 공간을 남기지 않는다 */
+.adsense-slot:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none;
+}
