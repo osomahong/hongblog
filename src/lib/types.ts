@@ -108,7 +108,8 @@ export interface CourseWithClasses {
   classCount: number;
   metaTitle: string | null;
   metaDescription: string | null;
-  classes: { id: number; slug: string; term: string; definition: string }[];
+  totalReadingTime: number;
+  classes: { id: number; slug: string; term: string; definition: string; readingTime: number }[];
 }
 
 export interface ClassWithMeta {

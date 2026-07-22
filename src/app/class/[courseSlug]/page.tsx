@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, BookOpen, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
 import { getPublishedCourseBySlug as getCourseBySlug, getPublishedCourses } from "@/lib/content";
-import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
+import { NeoButton } from "@/components/neo";
+import { CourseClassList } from "@/components/CourseClassList";
 import { SITE_URL } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
 
@@ -192,38 +193,14 @@ export default async function CourseDetailPage({ params }: Props) {
                 )}
                 <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
                     <span>{course.classCount}개 개념</span>
+                    {course.totalReadingTime > 0 && (
+                        <span>총 학습 약 {course.totalReadingTime}분</span>
+                    )}
                 </div>
             </div>
 
-            {/* Classes List */}
-            <div className="space-y-2 sm:space-y-3">
-                {course.classes.map((cls, clsIndex) => (
-                    <Link
-                        key={cls.id}
-                        href={`/class/${courseSlug}/${cls.slug}`}
-                        className="group block"
-                    >
-                        <div className="flex items-center gap-3 p-3 sm:p-4 border-3 border-black bg-white hover:bg-[#FF0033] hover:text-white transition-colors neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
-                            <span className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full border-3 border-black flex items-center justify-center font-bold text-sm sm:text-base">
-                                {clsIndex + 1}
-                            </span>
-                            <div className="flex-1 min-w-0">
-                                <h3 className="font-bold text-base sm:text-lg group-hover:text-primary transition-colors">
-                                    {cls.term}
-                                </h3>
-                                {cls.definition && (
-                                    <p className="text-sm sm:text-base text-muted-foreground line-clamp-2 mt-1">
-                                        {cls.definition}
-                                    </p>
-                                )}
-                            </div>
-                            <span className="text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                                →
-                            </span>
-                        </div>
-                    </Link>
-                ))}
-            </div>
+            {/* Classes List (학습 진도 표시 포함) */}
+            <CourseClassList courseSlug={courseSlug} classes={course.classes} />
 
             {course.classes.length === 0 && (
                 <div className="text-center py-12">

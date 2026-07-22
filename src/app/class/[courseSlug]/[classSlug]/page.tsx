@@ -2,11 +2,12 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
-import { getClassBySlugWithMeta as getClassBySlug, getPublishedCourseBySlug as getCourseBySlug, getNextPrevClass, getRelatedClassesByTags, getRelatedPostsForClass, getPublishedCourses } from "@/lib/content";
+import { getClassBySlugWithMeta as getClassBySlug, getPublishedCourseBySlug as getCourseBySlug, getNextPrevClass, getRelatedClassesByTags, getRelatedPostsForClass, getPublishedCourses, getClassesBySlugs } from "@/lib/content";
 import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
+import { ClassProgressMarker } from "@/components/ClassProgressMarker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
 import { SITE_URL } from "@/lib/constants";
@@ -92,8 +93,14 @@ export default async function ClassDetailPage({ params }: Props) {
     // 이전/다음 Class 네비게이션
     const navigation = await getNextPrevClass(classData.id);
 
-    // 연관 Class 추천
-    const relatedClasses = await getRelatedClassesByTags(classData.tags, classData.id, 3);
+    // 연관 Class 추천: frontmatter relatedTerms 큐레이션 우선, 부족하면 태그 기반으로 보충
+    const curatedClasses = classData.relatedTerms
+        ? getClassesBySlugs(classData.relatedTerms).filter((c) => c.slug !== classSlug)
+        : [];
+    const tagBasedClasses = getRelatedClassesByTags(classData.tags, classData.id, 4).filter(
+        (c) => c.slug !== classSlug && !curatedClasses.some((cc) => cc.slug === c.slug)
+    );
+    const relatedClasses = [...curatedClasses, ...tagBasedClasses].slice(0, 4);
 
     // 연관 Insights 추천 (교차 추천)
     const relatedPosts = await getRelatedPostsForClass(classData.tags, classData.category, 3);
@@ -212,6 +219,7 @@ export default async function ClassDetailPage({ params }: Props) {
                     contentTitle={classData.term}
                     contentSlug={classSlug}
                 />
+                <ClassProgressMarker slug={classSlug} />
 
                 {/* Breadcrumb & Back Button */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -397,7 +405,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                 <NeoCardHeader>
                                     <NeoCardTitle className="flex items-center gap-2">
                                         <BookOpen className="w-5 h-5" />
-                                        연관 개념
+                                        이어서 배우면 좋은 개념
                                     </NeoCardTitle>
                                 </NeoCardHeader>
                                 <NeoCardContent>

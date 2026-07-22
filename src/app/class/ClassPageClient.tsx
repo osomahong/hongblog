@@ -37,6 +37,15 @@ const difficultyLabels = {
 
 const PREVIEW_COUNT = 3;
 
+const START_GUIDES = [
+    { audience: "클로드가 처음이라면", label: "Claude 기초 교육", courseSlug: "claude-fundamentals" },
+    { audience: "업무에 바로 쓰고 싶다면", label: "Claude 실무 활용", courseSlug: "claude-in-practice" },
+    { audience: "터미널 자동화가 궁금하다면", label: "비개발자를 위한 Claude Code", courseSlug: "claude-code-for-everyone" },
+    { audience: "광고 지표가 헷갈린다면", label: "디지털 마케팅 핵심 용어", courseSlug: "digital-marketing-terms" },
+    { audience: "웹 용어가 어렵다면", label: "디지털 환경 기초 지식", courseSlug: "digital-basic" },
+    { audience: "AI 코딩을 시작한다면", label: "바이브코딩 기초지식", courseSlug: "vibe-coding-basics" },
+];
+
 interface ClassPageClientProps {
     courses: CourseWithClasses[];
 }
@@ -88,6 +97,25 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                 </NeoTiltCard>
             </section>
 
+            {/* 목표별 추천 시작점 */}
+            <section className="mb-6 sm:mb-10">
+                <h2 className="text-lg sm:text-2xl font-black tracking-tight mb-3 sm:mb-4">
+                    🧭 어디서 시작할지 고민된다면
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
+                    {START_GUIDES.filter((g) => courses.some((c) => c.slug === g.courseSlug)).map((guide) => (
+                        <Link key={guide.courseSlug} href={`/class/${guide.courseSlug}`} className="block group">
+                            <div className="p-3 sm:p-4 border-2 border-black bg-white neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+                                <p className="text-xs sm:text-sm text-muted-foreground mb-1">{guide.audience}</p>
+                                <p className="font-bold text-sm sm:text-base group-hover:text-[#FF0033] transition-colors">
+                                    {guide.label} →
+                                </p>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
             {/* Results Count */}
             <div className="mb-3 sm:mb-6">
                 <span className="font-mono text-xs sm:text-sm text-muted-foreground">
@@ -101,7 +129,6 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                     const Icon = categoryIcons[course.category as keyof typeof categoryIcons];
                     const isExpanded = expandedCourseId === course.id;
                     const hasMore = course.classes.length > PREVIEW_COUNT;
-                    const visibleClasses = isExpanded ? course.classes : course.classes.slice(0, PREVIEW_COUNT);
 
                     return (
                         <div key={course.id} className="relative">
@@ -159,10 +186,16 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                                             📚 커리큘럼
                                         </h4>
 
+                                        {/* 전체 링크를 항상 DOM에 렌더링 (검색엔진 발견성), 접힘은 CSS로만 처리 */}
                                         <div className="space-y-1 sm:space-y-2">
-                                            {visibleClasses.map((cls, idx) =>
-                                                renderClassItem(cls, idx, course.slug)
-                                            )}
+                                            {course.classes.map((cls, idx) => (
+                                                <div
+                                                    key={cls.id}
+                                                    className={!isExpanded && idx >= PREVIEW_COUNT ? "hidden" : undefined}
+                                                >
+                                                    {renderClassItem(cls, idx, course.slug)}
+                                                </div>
+                                            ))}
                                         </div>
 
                                         {/* 더보기 안내 */}
@@ -219,6 +252,33 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                     <BookOpen className="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-muted-foreground mb-3 sm:mb-4" />
                     <p className="text-sm sm:text-base text-muted-foreground">아직 등록된 강의가 없습니다.</p>
                 </div>
+            )}
+
+            {/* 전체 개념 인덱스: 모든 클래스를 한 화면에서 찾아갈 수 있는 링크 모음 */}
+            {courses.length > 0 && (
+                <section className="mt-8 sm:mt-14">
+                    <h2 className="text-lg sm:text-2xl font-black tracking-tight mb-3 sm:mb-4">
+                        📖 전체 개념 인덱스
+                    </h2>
+                    <div className="border-2 border-black bg-white neo-shadow-sm p-4 sm:p-6 space-y-4">
+                        {courses.map((course) => (
+                            <div key={course.id}>
+                                <h3 className="text-sm sm:text-base font-bold mb-2">{course.title}</h3>
+                                <div className="flex flex-wrap gap-x-3 gap-y-1.5">
+                                    {course.classes.map((cls) => (
+                                        <Link
+                                            key={cls.id}
+                                            href={`/class/${course.slug}/${cls.slug}`}
+                                            className="text-xs sm:text-sm text-muted-foreground hover:text-[#FF0033] hover:underline transition-colors"
+                                        >
+                                            {cls.term}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
             )}
         </div>
     );

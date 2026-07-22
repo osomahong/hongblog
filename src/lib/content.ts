@@ -305,11 +305,13 @@ export function getPublishedCourses(): CourseWithClasses[] {
       classCount: classes.length,
       metaTitle: course.metaTitle || null,
       metaDescription: course.metaDescription || null,
+      totalReadingTime: classes.reduce((sum, cls) => sum + cls.readingTime, 0),
       classes: classes.map((cls, i) => ({
         id: i + 1,
         slug: cls.slug,
         term: cls.term,
         definition: cls.definition,
+        readingTime: cls.readingTime,
       })),
     };
   });
@@ -330,11 +332,13 @@ export function getPublishedCourseBySlug(slug: string): CourseWithClasses | null
     classCount: classes.length,
     metaTitle: course.metaTitle || null,
     metaDescription: course.metaDescription || null,
+    totalReadingTime: classes.reduce((sum, cls) => sum + cls.readingTime, 0),
     classes: classes.map((cls, i) => ({
       id: i + 1,
       slug: cls.slug,
       term: cls.term,
       definition: cls.definition,
+      readingTime: cls.readingTime,
     })),
   };
 }
@@ -386,6 +390,16 @@ export function getRelatedPostsForClass(tags: string[], _category: string, limit
     .filter((i) => i.tags.some((t) => tags.includes(t)))
     .slice(0, limit)
     .map((i, idx) => insightToPost(i, idx + 1));
+}
+
+export function getClassesBySlugs(slugs: string[]): ClassWithMeta[] {
+  const all = getClasses();
+  return slugs
+    .map((slug) => {
+      const idx = all.findIndex((c) => c.slug === slug);
+      return idx >= 0 ? classToMeta(all[idx], idx + 1) : null;
+    })
+    .filter((c): c is ClassWithMeta => c !== null);
 }
 
 export function getRelatedClassesByTags(tags: string[], excludeId: number, limit: number): ClassWithMeta[] {
