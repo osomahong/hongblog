@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Database, TrendingUp, BookOpen } from "lucide-react";
+import { ArrowRight, Sparkles, Database, TrendingUp, BookOpen, Flame } from "lucide-react";
 import { NeoTiltCard, NeoBadge } from "@/components/neo";
-import { getAllTagsWithId as getAllTags, getFeaturedTagPreviews } from "@/lib/content";
+import { getAllTagsWithId as getAllTags, getFeaturedTags, getFeaturedTagPreviews } from "@/lib/content";
 import { SITE_URL } from "@/lib/constants";
 import { ListViewTracker } from "@/components/ListViewTracker";
 
@@ -36,6 +36,7 @@ export function generateMetadata(): Metadata {
 
 export default function TagsPage() {
   const allTags = getAllTags();
+  const featuredTags = getFeaturedTags(8);
   const featured = getFeaturedTagPreviews(8);
 
   const itemListLd = {
@@ -79,8 +80,36 @@ export default function TagsPage() {
         </NeoTiltCard>
       </section>
 
+      {/* Featured tags curation: GA4 조회수 기반 추천 태그 */}
+      {featuredTags.length > 0 && (
+        <section className="mb-6 sm:mb-8">
+          <h2 className="text-sm sm:text-base font-black uppercase mb-3 flex items-center gap-2">
+            <Flame className="w-4 h-4 sm:w-5 sm:h-5 text-[#FF0033]" />
+            <span className="comic-emphasis">추천 태그</span>
+            <span className="text-[10px] sm:text-xs text-muted-foreground font-mono font-normal normal-case tracking-normal">
+              최근 30일 조회수 기준
+            </span>
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {featuredTags.map((tag) => (
+              <Link
+                key={tag.id}
+                href={`/tags/${encodeURIComponent(tag.name)}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs sm:text-sm font-bold uppercase border-2 border-black bg-[#FFD700] text-black neo-shadow-sm hover:-translate-y-1 hover:shadow-[4px_4px_0_0_#000] active:translate-y-[2px] active:shadow-none transition-all"
+              >
+                #{tag.name}
+                <span className="text-[10px] font-mono opacity-70">{tag.count}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Tag Cloud */}
       <section className="mb-8 sm:mb-10">
+        <h2 className="text-sm sm:text-base font-black uppercase mb-3 text-muted-foreground">
+          전체 태그
+        </h2>
         <div className="flex flex-wrap gap-2">
           {allTags.map((tag) => (
             <Link

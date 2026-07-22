@@ -466,7 +466,7 @@ export interface TagPreviewItem {
  * 이미 카드로 쓰인 글(href)은 다시 쓰지 않는다. 그 태그에 아직 안 쓴 글이 없으면
  * 그 태그는 건너뛰고 다음 후보 태그로 넘어가 limit개를 채운다.
  */
-export function getFeaturedTagPreviews(limit: number): TagPreviewItem[] {
+function getFeaturedTagCandidates(): TagWithId[] {
   const allTags = getAllTagsWithId();
   const byName = new Map(allTags.map((t) => [t.name, t]));
 
@@ -486,8 +486,19 @@ export function getFeaturedTagPreviews(limit: number): TagPreviewItem[] {
     .map((name) => byName.get(name))
     .filter((t): t is TagWithId => Boolean(t));
   const restTags = allTags.filter((t) => !priorityNames.includes(t.name));
-  const candidates = [...priorityTags, ...restTags];
+  return [...priorityTags, ...restTags];
+}
 
+/**
+ * /tags 허브의 "전체 태그" 목록 위에 배치할 추천 태그 칩 목록.
+ * GA4 실제 조회수 기반 순서(getFeaturedTagCandidates)를 그대로 앞에서부터 자른다.
+ */
+export function getFeaturedTags(limit: number): TagWithId[] {
+  return getFeaturedTagCandidates().slice(0, limit);
+}
+
+export function getFeaturedTagPreviews(limit: number): TagPreviewItem[] {
+  const candidates = getFeaturedTagCandidates();
   const usedHrefs = new Set<string>();
   const result: TagPreviewItem[] = [];
 
