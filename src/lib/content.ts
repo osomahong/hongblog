@@ -457,12 +457,37 @@ export interface TagPreviewItem {
 }
 
 /**
- * /tags 허브 페이지 미리보기용: 콘텐츠 수 상위 태그별로 대표 글을 1건씩 뽑는다.
- * 인사이트를 우선하고, 인사이트가 없는 태그는 클래스로 대체한다.
+ * /tags 허브 페이지 미리보기용 추천 태그를 뽑는다.
+ * scripts/update-featured-tags.ts가 생성하는 GA4 실제 조회수 기반
+ * scripts/data/featured-tags.json을 우선 쓰고, 파일이 없거나 부족하면
+ * 콘텐츠 개수 상위 태그로 채운다.
+ * 각 태그마다 대표 글을 1건씩 매칭한다 (인사이트 우선, 없으면 클래스로 대체).
  */
 export function getFeaturedTagPreviews(limit: number): TagPreviewItem[] {
-  const topTags = getAllTagsWithId().slice(0, limit);
-  return topTags
+  const allTags = getAllTagsWithId();
+  const byName = new Map(allTags.map((t) => [t.name, t]));
+
+  let picked: TagWithId[] = [];
+  try {
+    const raw = fs.readFileSync(
+      path.join(process.cwd(), "scripts/data/featured-tags.json"),
+      "utf-8",
+    );
+    const data = JSON.parse(raw) as { tags?: string[] };
+    picked = (data.tags ?? [])
+      .map((name) => byName.get(name))
+      .filter((t): t is TagWithId => Boolean(t));
+  } catch {
+    // featured-tags.json이 없으면 아래에서 콘텐츠 개수 순으로 채운다
+  }
+
+  for (const tag of allTags) {
+    if (picked.length >= limit) break;
+    if (!picked.includes(tag)) picked.push(tag);
+  }
+
+  return picked
+    .slice(0, limit)
     .map((tag): TagPreviewItem | null => {
       const { posts, classes } = getContentByTag(tag.name);
       const post = posts[0];

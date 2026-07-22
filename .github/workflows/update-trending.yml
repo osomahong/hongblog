@@ -22,20 +22,26 @@ jobs:
 
       - run: npm ci
 
-      - name: GA4 트렌딩 갱신
+      - name: GA4 트렌딩 갱신 (홈 TRENDING NOW)
         run: npx tsx scripts/update-trending.ts
+        env:
+          GA4_SERVICE_ACCOUNT_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_KEY }}
+          GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+
+      - name: GA4 추천 태그 갱신 (/tags 허브)
+        run: npx tsx scripts/update-featured-tags.ts
         env:
           GA4_SERVICE_ACCOUNT_KEY: ${{ secrets.GA4_SERVICE_ACCOUNT_KEY }}
           GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
 
       - name: 변경 시 커밋 및 푸시
         run: |
-          if git diff --quiet scripts/data/trending.json; then
-            echo "trending.json 변경 없음, 종료"
+          if git diff --quiet scripts/data/trending.json scripts/data/featured-tags.json; then
+            echo "변경 없음, 종료"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/data/trending.json
-          git commit -m "chore(trending): GA4 주간 트렌딩 자동 갱신"
+          git add scripts/data/trending.json scripts/data/featured-tags.json
+          git commit -m "chore(trending): GA4 주간 트렌딩/추천 태그 자동 갱신"
           git push
