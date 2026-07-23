@@ -13,6 +13,7 @@ import { getPostBySlug, getRelatedClassesForPost, getPublishedPosts } from "@/li
 import { extractFaqPairs } from "@/lib/extract-faq";
 import { ViewTracker } from "@/components/ViewTracker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import { ContentHeroImage } from "@/components/ContentHeroImage";
 import { AuthorCard } from "@/components/AuthorCard";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { RelatedLink } from "@/components/RelatedLink";
@@ -102,6 +103,10 @@ export default async function InsightDetailPage({ params }: Props) {
 
   // 관련 인사이트 추천 (본문 하단 카드 영역)
   const relatedPosts = getRelatedPosts(post, 4);
+
+  // 대표 이미지: og:image가 로컬 경로일 때만 본문 상단에 노출한다.
+  // 외부 호스트(thumbnailUrl)는 next/image 도메인 설정 대상이라 여기서는 제외한다.
+  const heroImage = post.ogImage?.startsWith("/") ? post.ogImage : null;
 
   // 본문 중간 광고 삽입 위치: 두 번째 H2 직전 (H2가 2개 미만이면 미삽입)
   const [contentBeforeAd, contentAfterAd] = splitMarkdownAtNthH2(post.content, 2);
@@ -284,6 +289,10 @@ export default async function InsightDetailPage({ params }: Props) {
                 </div>
               </div>
             </header>
+
+            {heroImage && (
+              <ContentHeroImage src={heroImage} alt={`${post.title} 대표 이미지`} />
+            )}
 
             <NeoCard className="prose prose-sm sm:prose-lg max-w-none">
               <NeoCardContent>
