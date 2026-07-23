@@ -91,6 +91,50 @@ GSC 90일 실데이터 진단(4/21~7/20) 기반으로 진행한 개선 작업 �
 | 문제 URL `/class/claude-fundamentals/what-is-mcp` | 301 → `/class/claude-code-for-everyone/what-is-mcp` |
 | 깨진 링크 주입 시 빌드 | 중단됨 (exit 1, 페이지 생성 도달 못 함) |
 
+## 5차 작업: 기술적 SEO 전면 검수 (2026-07-23)
+
+### 색인 현황 (GSC URL Inspection 182개 전수 조회)
+
+| 상태 | 건수 |
+|---|---|
+| 제출되고 색인이 생성되었습니다 | 177 |
+| Google에 아직 알려지지 않은 URL | 2 (what-is-element, whatishtml) |
+| 발견됨, 현재 색인이 생성되지 않음 | 1 (what-is-json-and-data-structures) |
+| 크롤링됨, 현재 색인이 생성되지 않음 | 1 (/tags/DOM, 이번에 noindex 처리) |
+| 찾을 수 없음(404) | 1 (/tags/노코드, 4월 크롤 기록. 현재 200 정상) |
+
+7월 23일 이전 미색인 15개 중 12개가 색인 완료됐다. 구글이 선택한 canonical이
+선언 canonical과 다른 페이지는 0건이다.
+
+### 조치한 항목
+
+- [x] 얇은 태그 페이지 15개 noindex, follow (90일 노출 344회에 클릭 0회, 항목 2개 이하)
+- [x] noindex URL을 사이트맵에서 제외해 제출 의도와 색인 의도를 일치
+- [x] 사이트맵 lastmod와 Article dateModified가 실제 수정일을 반영하도록 `updatedAt` 필드 도입
+      (실질 개편한 콘텐츠 90개에 기록, 라이브 사이트맵에서 46개 URL 갱신 확인)
+- [x] 홈, 인사이트 목록의 중복되고 짧던 description 차별화
+- [x] 홈에 WebSite/Person, 인사이트 목록에 CollectionPage/ItemList/Breadcrumb JSON-LD 추가
+- [x] 태그 38개, about, 태그 허브에 og:image와 twitter 카드 추가
+- [x] 검색 결과에서 잘리던 title 7건 축약, 본문 중복 h1 제거, 짧은 description 보강
+- [x] robots.txt에서 `/_next/static/media` 차단 해제 (폰트는 렌더링 리소스)
+- [x] llms.txt 문장 부호 정리, 기준 시점 갱신
+- [x] 300KB 초과 본문 이미지 7개 WebP 변환: 8.3MB -> 649KB (92% 감소)
+
+### 검증 결과
+
+| 항목 | 결과 |
+|---|---|
+| 자체 SEO 검수 이슈 | 80건 -> 15건 (잔여는 전부 의도된 noindex 태그) |
+| 라이브 크롤링 182페이지 | 404 0건, 의도치 않은 리디렉트 0건 |
+| 홈 기준 클릭 깊이 | 최대 2클릭, 도달 불가 페이지 0건 |
+| URL 정규화 | non-www, http, 트레일링 슬래시 모두 1~2홉 내 정착 |
+| 구글 선택 canonical 불일치 | 0건 |
+
+### 도구
+
+`npx tsx scripts/seo-audit.ts` (빌드 후 실행): 메타, canonical, 중복, 구조화 데이터,
+고아 페이지, 사이트맵 정합성, 얇은 콘텐츠를 전수 검사한다.
+
 ## 최종 검증 상태 (2026-07-23 배포 시점)
 
 - 본문 추상 일러스트: 0건 (85개 전량 HTML 예시 교체 또는 삭제)

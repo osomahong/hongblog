@@ -15,8 +15,11 @@ npx tsx scripts/generate-og.ts --slug <slug>   # 단일 썸네일 생성
 npx tsx scripts/generate-og.ts --all           # 전체 썸네일 생성
 
 # 내부 링크 검사 (prebuild에서 자동 실행, 실패 시 빌드 중단)
-npm run check:links        # 콘텐츠 소스의 링크·relatedTerms·courseSlug 검사
+npm run check:links        # 콘텐츠 소스의 링크, relatedTerms, courseSlug 검사
 npm run check:links:html   # 빌드 산출물 HTML의 모든 내부 링크까지 검사
+
+# 기술적 SEO 검수 (빌드 후 실행)
+npx tsx scripts/seo-audit.ts   # 메타, canonical, 중복, 구조화 데이터, 고아 페이지, 사이트맵 정합성
 
 # SEO 점검
 npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 리포트
@@ -30,7 +33,18 @@ npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 �
 - 링크는 항상 `src/lib/links.ts`의 `classHref()`로 만든다. 코스 정보가 없으면 `null`을
   반환하므로 호출부에서 링크를 렌더링하지 않는다.
 - `content/classes/*.md`는 `courseSlug`가 필수이고 `relatedTerms`는 실재하는 슬러그만 쓴다.
-- 클래스를 추가·이동하면 `npm run build`(prebuild)가 `src/lib/generated/class-course-map.ts`를
+
+### SEO 규칙
+
+- 콘텐츠를 **실질적으로 개편**하면 frontmatter에 `updatedAt`을 기록한다. 사이트맵 `lastmod`와
+  Article `dateModified`가 이 값을 쓰므로 재크롤링 우선순위에 직접 영향을 준다.
+  오탈자 수정 같은 사소한 변경에는 쓰지 않는다.
+- 태그 페이지는 콘텐츠가 `MIN_TAG_ITEMS_FOR_INDEX`(3) 미만이면 자동으로 `noindex, follow`가 되고
+  사이트맵에서도 빠진다. noindex 페이지를 사이트맵에 넣지 않는다는 원칙을 코드가 강제한다.
+- 새 페이지 타입을 만들면 canonical, og:image, 구조화 데이터를 반드시 넣는다.
+  `scripts/seo-audit.ts`가 누락을 잡아준다.
+
+- 클래스를 추가, 이동하면 `npm run build`(prebuild)가 `src/lib/generated/class-course-map.ts`를
   다시 생성한다. 이 매핑은 미들웨어가 잘못된 코스 경로를 정규 경로로 301 보낼 때 쓴다.
 
 ## Architecture
