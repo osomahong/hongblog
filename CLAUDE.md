@@ -21,6 +21,9 @@ npm run check:links:html   # 빌드 산출물 HTML의 모든 내부 링크까지
 # 기술적 SEO 검수 (빌드 후 실행)
 npx tsx scripts/seo-audit.ts   # 메타, canonical, 중복, 구조화 데이터, 고아 페이지, 사이트맵 정합성
 
+# 콘텐츠 윤문 검사 (새 글은 HARD 0건이 배포 조건)
+npm run check:prose -- content/insights/{slug}.md   # 번역투·과장·AI식 지시문·비문 패턴 검출
+
 # SEO 점검
 npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 리포트
 ```
@@ -107,6 +110,14 @@ Orchestrator skill at `.claude/skills/content-ops/SKILL.md`. Sub-agents in `.cla
 | `gtm-inspector` | GTM/GA4 설정 코드 감사 |
 
 Pipeline: topic suggestion → content creation → review → SEO → deploy (with user approval gates at each phase).
+
+### 콘텐츠 배포 게이트 (배포 후 수정 금지 원칙)
+
+새 글과 대규모 개정은 반드시 이 순서를 지킨다. 배포 후 반복 수정을 막기 위한 규칙이다.
+
+1. `npm run check:prose -- <파일>` HARD 0건
+2. 낭독 검수 1회 (`writing-style-guide.md`의 비문 유형 체크리스트)
+3. **전문을 사용자에게 출력하고 승인받은 뒤에만 커밋·배포** ("써줘"는 초안 요청이지 배포 승인이 아니다)
 
 ## Conventions
 
