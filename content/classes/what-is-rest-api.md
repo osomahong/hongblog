@@ -7,6 +7,7 @@ tags:
   - 바이브코딩
   - API
 publishedAt: '2026-02-18T15:19:54.507Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: vibe-coding-basics
 orderInCourse: 6
 aliases:

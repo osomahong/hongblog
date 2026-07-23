@@ -44,10 +44,10 @@ function validDate(dateStr: string | undefined): string | undefined {
 function buildInsightsSitemap(): SitemapEntry[] {
   const insights = getInsights();
   return [
-    { url: `${SITE_URL}/insights`, lastModified: validDate(insights[0]?.publishedAt), changefreq: "daily", priority: 0.9 },
+    { url: `${SITE_URL}/insights`, lastModified: validDate(insights[0]?.updatedAt ?? insights[0]?.publishedAt), changefreq: "daily", priority: 0.9 },
     ...insights.map((i) => ({
       url: `${SITE_URL}/insights/${i.slug}`,
-      lastModified: validDate(i.publishedAt),
+      lastModified: validDate(i.updatedAt ?? i.publishedAt),
       changefreq: "weekly" as const,
       priority: 0.8,
     })),
@@ -71,7 +71,7 @@ function buildClassSitemap(): SitemapEntry[] {
     })),
     ...classes.map((cls) => ({
       url: `${SITE_URL}/class/${cls.courseSlug}/${cls.slug}`,
-      lastModified: validDate(cls.publishedAt),
+      lastModified: validDate(cls.updatedAt ?? cls.publishedAt),
       changefreq: "weekly" as const,
       priority: 0.7,
     })),

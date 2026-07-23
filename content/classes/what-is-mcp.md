@@ -9,6 +9,7 @@ tags:
   - AI
   - 자동화
 publishedAt: '2026-04-27T09:36:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: claude-code-for-everyone
 orderInCourse: 7
 aliases:

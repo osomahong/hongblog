@@ -10,6 +10,7 @@ tags:
   - GTM
   - DOM
 publishedAt: '2026-02-11T08:56:17.838Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
 orderInCourse: 7
 relatedTerms:

@@ -8,6 +8,7 @@ category: CLAUDE_EDUCATION
 tags:
   - AI
 publishedAt: '2026-04-27T09:15:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: claude-fundamentals
 orderInCourse: 6
 aliases:

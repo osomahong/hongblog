@@ -7,6 +7,7 @@ tags:
   - 광고
   - CPM
 publishedAt: '2026-02-12T07:30:23.261Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-marketing-terms
 orderInCourse: 1
 aliases:

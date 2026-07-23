@@ -69,8 +69,32 @@ export default async function HomePage() {
   const categoryStats = getCategoryStats();
   const allTags = getAllTagsWithId();
 
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: "준이아빠블로그",
+    description:
+      "AI 도구 활용법, 클로드 코드와 바이브코딩 입문, GA4와 디지털 마케팅 실무를 다루는 기술 블로그입니다.",
+    inLanguage: "ko",
+    publisher: { "@id": `${SITE_URL}/#person` },
+  };
+
+  const personLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${SITE_URL}/#person`,
+    name: "준이아빠",
+    url: `${SITE_URL}/about`,
+    jobTitle: "데이터 마케터",
+    knowsAbout: ["디지털 마케팅", "GA4", "AI 도구 활용", "바이브코딩", "데이터 분석"],
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 relative">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
       {/* Background Graphic Decorations — Homepage Only */}
       <div className="bg-graphic-1 hidden sm:block" />
       <div className="bg-graphic-2 hidden sm:block" />

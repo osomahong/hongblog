@@ -9,6 +9,7 @@ tags:
   - 광고
   - 전환
 publishedAt: '2026-02-12T07:32:44.819Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-marketing-terms
 orderInCourse: 4
 aliases:

@@ -10,6 +10,7 @@ tags:
 - 노코드
 - SEO
 publishedAt: '2026-02-21T14:26:07.041Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 quiz:
 - options:
   - 'CLAUDE.md: 프로젝트 규칙을 마크다운으로 작성하면 AI가 자동으로 읽고 따른다'

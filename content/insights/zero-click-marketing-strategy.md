@@ -12,6 +12,7 @@ tags:
   - AI
   - 마케팅 실무
 publishedAt: '2026-03-06T08:01:38.991Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 highlights:
   - >-
     Similarweb 2025년 7월 보고서 기준, 구글 검색의 69%가 클릭 없이 끝나며, AI Overviews가 표시된 검색어는

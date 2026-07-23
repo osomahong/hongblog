@@ -7,6 +7,7 @@ tags:
 - 광고
 - CTR
 publishedAt: '2026-02-11T08:57:33.519Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-marketing-terms
 orderInCourse: 3
 aliases:

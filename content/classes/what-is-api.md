@@ -8,6 +8,7 @@ tags:
   - 자동화
   - 마케팅 실무
 publishedAt: '2026-02-11T09:00:03.586Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
 orderInCourse: 9
 aliases:

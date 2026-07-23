@@ -8,6 +8,7 @@ category: AI_TECH
 tags:
   - JavaScript
 publishedAt: '2026-02-11T08:44:30.055Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
 orderInCourse: 3
 relatedTerms:

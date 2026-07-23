@@ -10,6 +10,7 @@ tags:
   - 바이브코딩
   - 자동화
 publishedAt: '2026-07-21T00:00:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 highlights:
   - '에이전트 하나로 충분한 동안은 도구를 늘리지 말고, AI가 일하는 동안 기다리는 시간이 아까워지기 시작할 때 tmux부터 익히면 됩니다.'
   - macOS에서 AI 에이전트 여러 개를 동시에 관리한다면 tmux 대신 cmux 같은 전용 앱을 검토해 볼 만합니다.
@@ -83,7 +84,7 @@ Claude Code 같은 AI 코딩 에이전트는 일을 시키면 수십 분씩 혼�
 
 이 방식은 개인적인 사용을 넘어 공식적인 기능으로 자리잡으려 하고 있습니다. Anthropic의 Claude Code 공식 문서에는 여러 세션을 팀으로 운영하는 기능과 tmux 연동이 문서화되어 있습니다. 커뮤니티에서는 에이전트마다 git worktree(같은 저장소를 폴더별로 분리한 작업 공간)를 하나씩 주고 tmux 페인마다 배치하는 사례들이 공유되고 있습니다.
 
-![cmux 실행 화면. 왼쪽 사이드바에 작업 공간이 세로 탭으로 나열되고, 가운데에 codex와 Claude Code 세션이 분할 화면으로 실행 중이며, 오른쪽에 내장 브라우저가 열려 있음](/images/insights/tmux-cmux-basics/cmux-main-ui.png)
+![cmux 실행 화면. 왼쪽 사이드바에 작업 공간이 세로 탭으로 나열되고, 가운데에 codex와 Claude Code 세션이 분할 화면으로 실행 중이며, 오른쪽에 내장 브라우저가 열려 있음](/images/insights/tmux-cmux-basics/cmux-main-ui.webp)
 
 ## cmux는 무엇이고 tmux와 무엇이 다를까요?
 
@@ -103,7 +104,7 @@ tmux와 cmux는 이름은 비슷하지만 형태가 다릅니다. 2026년 7월 �
 
 핵심 차이는 **알림**입니다. AI 에이전트는 작업 중간에 "이렇게 진행할까요?"라고 사람의 확인을 기다리는 순간이 자주 생기는데, tmux는 어느 페인이 대기 중인지 직접 눈으로 확인해야 합니다. cmux는 입력이 필요한 화면에 파란 테두리를 표시하고 macOS 알림을 보내 줍니다. 아래 이미지가 그 기능의 실제 화면입니다.
 
-![cmux의 알림 링 기능 화면. 화면이 4분할로 나뉘어 여러 Claude Code와 codex 에이전트가 동시에 실행 중이고, 사람의 입력이 필요한 구역에 파란색 테두리가 표시됨](/images/insights/tmux-cmux-basics/cmux-notification-rings.png)
+![cmux의 알림 링 기능 화면. 화면이 4분할로 나뉘어 여러 Claude Code와 codex 에이전트가 동시에 실행 중이고, 사람의 입력이 필요한 구역에 파란색 테두리가 표시됨](/images/insights/tmux-cmux-basics/cmux-notification-rings.webp)
 
 둘은 대체 관계라기보다 용도가 다른 도구입니다. 원격 서버에서 작업을 유지하는 데는 여전히 tmux가 표준 대안이고, cmux도 원격 tmux 세션에 붙는 기능을 지원합니다. 로컬 맥에서 에이전트 여러 개를 GUI로 관리하고 싶다면 cmux, 서버 위에서 가볍게 쓰거나 macOS가 아니라면 tmux라는 구분이 실제 사용에 가깝습니다.
 

@@ -4,6 +4,7 @@ term: ' HTML'
 definition: HTML은 무엇일까요?
 category: AI_TECH
 publishedAt: '2026-02-11T09:01:19.100Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
 relatedTerms:
   - whatiscss

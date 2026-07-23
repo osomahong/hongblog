@@ -10,6 +10,7 @@ tags:
 - 자동화
 - 퍼포먼스마케팅
 publishedAt: '2026-02-24T08:29:43.724Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 highlights:
 - Meta API의 clicks에는 좋아요, 공유까지 포함됩니다: 웹사이트 유입은 반드시 inline_link_clicks를 사용하세요
 - 전환 데이터가 단일 숫자가 아닌 actions 배열로 반환되는 Meta API의 구조와 파싱 방법

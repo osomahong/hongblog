@@ -8,6 +8,7 @@ tags:
 - 자동화
 - 도구
 publishedAt: '2026-02-20T09:04:11.235Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 quiz:
 - options:
   - 'users.watch: Google Cloud Pub/Sub와 연동하여 메일함 변경을 실시간 푸시 알림으로 받을 수 있다'

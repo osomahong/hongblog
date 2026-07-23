@@ -11,6 +11,7 @@ tags:
   - 바이브코딩
   - 자동화
 publishedAt: '2026-05-14T10:00:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 highlights:
   - PowerShell 관리자 모드에서 winget으로 Node.js 한 줄 설치만 끝내면 사전 준비가 끝납니다.
   - >-

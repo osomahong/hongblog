@@ -12,6 +12,7 @@ tags:
   - 퍼포먼스마케팅
   - CTR
 publishedAt: '2026-05-01T12:00:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 quiz:
   - options:
       - GA4 → 획득 → 트래픽 획득에서 chatgpt.com / referral 같은 referrer를 찾는다
@@ -84,7 +85,7 @@ SEO 성과가 6개월 이상 걸린다는 인식은 콘텐츠 분량과 도메�
 
 ## 자연 검색 80%, AI 검색엔진 첫 측정
 
-![GA4 맞춤 채널 그룹: 자연 검색 79.87%, 직접 방문 16.71%, AI 검색엔진 2.06%](/images/insights/seo-aeo-geo-2-months-real-data/03-ga4-channel-group.png)
+![GA4 맞춤 채널 그룹: 자연 검색 79.87%, 직접 방문 16.71%, AI 검색엔진 2.06%](/images/insights/seo-aeo-geo-2-months-real-data/03-ga4-channel-group.webp)
 
 > **AI 검색엔진 트래픽은 GA4에서 별도 채널 그룹으로 분리할 수 있습니다. 신생 블로그도 2달이면 첫 트래픽이 잡히기 시작합니다.**
 
@@ -108,7 +109,7 @@ GA4 기본 채널 그룹에는 AI 검색엔진이 분리되어 있지 않습니�
 
 ## 소스/매체에 찍힌 chatgpt.com: GEO가 작동한다는 직접 증거
 
-![GA4 소스/매체 분포: google/organic 69.73%, chatgpt.com/referral 1.06%, naver/organic 3.54%, bing/organic 3.36%](/images/insights/seo-aeo-geo-2-months-real-data/04-ga4-source-medium.png)
+![GA4 소스/매체 분포: google/organic 69.73%, chatgpt.com/referral 1.06%, naver/organic 3.54%, bing/organic 3.36%](/images/insights/seo-aeo-geo-2-months-real-data/04-ga4-source-medium.webp)
 
 > **chatgpt.com이 GA4 referrer로 잡힌다는 것은, ChatGPT가 본인 사이트의 본문을 답변에 인용했고 사용자가 그 출처 링크를 클릭해 들어왔다는 직접 증거입니다.**
 

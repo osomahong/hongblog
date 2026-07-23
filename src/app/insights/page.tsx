@@ -31,17 +31,65 @@ import { ListViewTracker } from "@/components/ListViewTracker";
 
 export const dynamic = "force-static";
 
+const PAGE_TITLE = "Insights";
+const PAGE_DESCRIPTION =
+  "AI 코딩 도구 사용법부터 GA4 분석, 광고 운영까지 실무에서 검증한 인사이트 글 모음입니다. 클로드 코드, Codex, 바이브코딩, 데이터 마케팅 주제를 다룹니다.";
+
 export const metadata: Metadata = {
-  title: "Insights",
-  description: "디지털 마케팅, AI, 데이터 분석 전문가의 인사이트를 담는 지식 아카이브",
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/insights` },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    type: "website",
+    url: `${SITE_URL}/insights`,
+    images: [{ url: `${SITE_URL}/og-default.png`, width: 1200, height: 630 }],
+  },
 };
 
 export default async function InsightsPage() {
   const posts = await getPublishedPosts();
 
+  const collectionLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${SITE_URL}/insights`,
+    url: `${SITE_URL}/insights`,
+    name: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    inLanguage: "ko",
+    isPartOf: { "@type": "WebSite", name: "준이아빠블로그", url: SITE_URL },
+  };
+
+  const itemListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "전체 인사이트 글",
+    numberOfItems: posts.length,
+    itemListOrder: "https://schema.org/ItemListOrderDescending",
+    itemListElement: posts.slice(0, 30).map((post, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${SITE_URL}/insights/${post.slug}`,
+      name: post.title,
+    })),
+  };
+
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
+      { "@type": "ListItem", position: 2, name: "Insights", item: `${SITE_URL}/insights` },
+    ],
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <ListViewTracker eventName="view_insights_list" />
       {/* Hero Section */}
       <section className="mb-6 sm:mb-12">

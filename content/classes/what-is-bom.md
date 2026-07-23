@@ -9,6 +9,7 @@ category: AI_TECH
 tags:
   - DOM
 publishedAt: '2026-02-11T08:47:58.303Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
 orderInCourse: 4
 relatedTerms:

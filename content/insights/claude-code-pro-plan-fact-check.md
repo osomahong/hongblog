@@ -11,6 +11,7 @@ tags:
   - 바이브코딩
   - 자동화
 publishedAt: '2026-04-22T10:00:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 quiz:
   - options:
       - >-

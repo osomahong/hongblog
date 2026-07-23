@@ -10,6 +10,7 @@ tags:
   - 자동화
   - 바이브코딩
 publishedAt: '2026-04-27T09:30:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: claude-code-for-everyone
 orderInCourse: 1
 aliases:

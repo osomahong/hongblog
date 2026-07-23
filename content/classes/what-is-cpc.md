@@ -8,6 +8,7 @@ tags:
 - CPC
 - CTR
 publishedAt: '2026-02-12T07:31:34.213Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-marketing-terms
 orderInCourse: 2
 aliases:

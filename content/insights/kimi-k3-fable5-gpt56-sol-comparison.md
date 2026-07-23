@@ -11,6 +11,7 @@ tags:
   - API
   - 자동화
 publishedAt: '2026-07-20T00:00:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 highlights:
   - >-
     복잡한 장기 작업은 Fable 5, 비용 효율이 중요한 코딩은 GPT-5.6 Sol, 자체 서버 운영이 필요하면 Kimi K3처럼 작업

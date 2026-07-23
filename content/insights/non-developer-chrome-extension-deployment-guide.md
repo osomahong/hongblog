@@ -7,6 +7,7 @@ tags:
 - SEO
 - AI
 publishedAt: '2026-02-11T03:54:45.886Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 quiz:
 - options:
   - 'Yes: 외부 서버와 통신하므로 원격 코드에 해당한다'

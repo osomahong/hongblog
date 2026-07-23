@@ -11,6 +11,7 @@ tags:
   - 바이브코딩
   - 자동화
 publishedAt: '2026-05-14T10:05:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 highlights:
   - 터미널에서 Homebrew와 Node.js 한 줄씩만 깔면 사전 준비가 끝납니다.
   - >-

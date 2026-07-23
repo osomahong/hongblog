@@ -7,6 +7,7 @@ tags:
   - 광고
   - ROAS
 publishedAt: '2026-02-12T07:35:12.141Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-marketing-terms
 orderInCourse: 6
 aliases:

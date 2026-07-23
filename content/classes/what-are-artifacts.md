@@ -9,6 +9,7 @@ tags:
   - AI
   - 자동화
 publishedAt: '2026-04-27T09:21:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: claude-in-practice
 orderInCourse: 2
 aliases:

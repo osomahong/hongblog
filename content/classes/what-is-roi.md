@@ -9,6 +9,7 @@ tags:
   - 광고
   - ROI
 publishedAt: '2026-02-12T07:36:21.914Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-marketing-terms
 orderInCourse: 7
 aliases:

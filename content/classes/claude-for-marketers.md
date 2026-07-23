@@ -10,6 +10,7 @@ tags:
   - 자동화
   - 마케팅 실무
 publishedAt: '2026-04-27T09:25:00.000Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: claude-in-practice
 orderInCourse: 6
 aliases:

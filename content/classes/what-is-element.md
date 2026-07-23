@@ -9,6 +9,7 @@ tags:
   - HTML
   - DOM
 publishedAt: '2026-02-11T09:04:49.815Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
 orderInCourse: 6
 relatedTerms:

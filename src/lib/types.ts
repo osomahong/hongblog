@@ -12,6 +12,8 @@ export interface Insight {
   category: "MARKETING" | "AI_TECH" | "DATA";
   tags: string[];
   publishedAt: string;
+  /** 실질적 내용 수정일. 없으면 publishedAt을 쓴다. */
+  updatedAt?: string;
   highlights?: string[];
   quiz?: Quiz[];
   seriesSlug?: string;
@@ -33,6 +35,8 @@ export interface ClassItem {
   category: "MARKETING" | "AI_TECH" | "CLAUDE_EDUCATION";
   tags: string[];
   publishedAt: string;
+  /** 실질적 내용 수정일. 없으면 publishedAt을 쓴다. */
+  updatedAt?: string;
   courseSlug: string;
   orderInCourse: number;
   aliases?: string[];

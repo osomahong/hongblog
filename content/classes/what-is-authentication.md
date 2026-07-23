@@ -6,6 +6,7 @@ category: AI_TECH
 tags:
   - 바이브코딩
 publishedAt: '2026-02-18T15:19:55.525Z'
+updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: vibe-coding-basics
 orderInCourse: 8
 aliases:

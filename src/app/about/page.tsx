@@ -31,13 +31,25 @@ const REFERENCE_YEAR = 2026;
 const YEARS_OF_EXPERIENCE = REFERENCE_YEAR - BASE_YEAR + 1;
 const CLIENT_COUNT_LABEL = "120곳+";
 
+const ABOUT_TITLE = "About | GA4, GTM, AEO 전문가";
+const ABOUT_DESCRIPTION = `${YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 데이터 분석가입니다. 한국관광공사, 교보문고, 유진투자증권 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 설명 가능한 마케팅과 AEO, GEO 전문성을 공유합니다.`;
+
 export const metadata: Metadata = {
-  title: "About | GA4·GTM·AEO 전문가",
-  description: `${YEARS_OF_EXPERIENCE}년차 디지털 마케터·데이터 분석가. 한국관광공사, 교보문고, 유진투자증권 등 ${CLIENT_COUNT_LABEL} 기업·기관의 GA4·GTM 환경 구축, 누적 1,000명 이상 실무 교육. 설명 가능한 마케팅과 AEO·GEO 전문성을 공유합니다.`,
+  title: ABOUT_TITLE,
+  description: ABOUT_DESCRIPTION,
   alternates: { canonical: `${SITE_URL}/about` },
   openGraph: {
-    title: "About | 준이아빠블로그",
-    description: `${YEARS_OF_EXPERIENCE}년차 마케터·데이터 분석가. GA4·GTM 분석 환경 구축, AEO·GEO 실무 전문가.`,
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
+    type: "profile",
+    url: `${SITE_URL}/about`,
+    images: [{ url: `${SITE_URL}/og-default.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
+    images: [`${SITE_URL}/og-default.png`],
   },
 };
 
