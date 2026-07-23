@@ -43,3 +43,8 @@ next-env.d.ts
 # uploads
 /public/uploads/
 .env*.local
+
+# 미공개 초안 (준비되면 개별적으로 add)
+content/insights/gemini-3-6-flash.md
+public/og/gemini-3-6-flash.png
+public/images/insights/gemini-3-6-flash/
