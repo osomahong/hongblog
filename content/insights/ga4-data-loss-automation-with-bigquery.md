@@ -30,8 +30,6 @@ metaDescription: >-
 ogImage: /og/ga4-data-loss-automation-with-bigquery.png
 ---
 
-# [데이터 전처리] GA4 유실 데이터 맵핑 자동화: 스프레드시트 수동 관리에서 Bigquery로 자동화
-
 ## 1. 배경: 데이터 분석 환경의 확장과 한계
 초기 데이터 분석 환경 구축 시, 구글 스프레드시트(Google Sheets)와 루커 스튜디오(Looker Studio)의 조합은 쉽고 유효한 선택지였습니다. 별도의 데이터 웨어하우징 없이도 데이터 소스를 연결하고 시각화할 수 있었기 때문입니다.
 

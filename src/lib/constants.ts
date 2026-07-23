@@ -35,3 +35,10 @@ export const CANONICAL_TAGS = {
 
 export const CANONICAL_TAGS_FLAT = Object.values(CANONICAL_TAGS).flat() as readonly string[];
 export type CanonicalTag = (typeof CANONICAL_TAGS_FLAT)[number];
+
+/**
+ * 태그 페이지를 색인 대상으로 삼는 최소 콘텐츠 수.
+ * 항목이 2개 이하인 태그 페이지는 내용이 얇고, 90일 실측에서 노출 344회에 클릭 0회였다.
+ * 색인에서 빼되 follow는 유지해 내부 링크 가치는 그대로 흐르게 한다.
+ */
+export const MIN_TAG_ITEMS_FOR_INDEX = 3;

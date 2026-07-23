@@ -30,7 +30,19 @@ export function generateMetadata(): Metadata {
     title,
     description,
     alternates: { canonical: `${SITE_URL}/tags` },
-    openGraph: { title, description, url: `${SITE_URL}/tags`, type: "website" },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/tags`,
+      type: "website",
+      images: [{ url: `${SITE_URL}/og-default.png`, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`${SITE_URL}/og-default.png`],
+    },
   };
 }
 

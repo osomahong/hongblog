@@ -29,7 +29,7 @@ quiz:
       GTM은 이 DOM을 통해 특정 요소를 찾고 수정할 수 있습니다. HTML 원본 파일 그 자체가 아닌, 브라우저가 해석한
       결과물입니다.
     correctIndex: 2
-metaTitle: DOM (Document Object Model) | 비개발자도 쉽게 배우는 디지털 환경 기초 지식
+metaTitle: 'DOM 뜻: 브라우저가 HTML을 다루는 구조'
 metaDescription: >-
   웹 개발, DOM이 궁금하다면? 버튼, 텍스트, 이미지까지, 웹 페이지의 모든 요소를 이해하고 다룰 수 있도록 돕는 DOM의 개념과 활용법을
   지금 바로 확인하세요! 클릭 한 번으로 디지털 이해력과 실력을 성장시킬 수 있습니다.

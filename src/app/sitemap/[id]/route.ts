@@ -1,5 +1,5 @@
-import { getInsights, getClasses, getCourses, getAllTagsWithId } from "@/lib/content";
-import { SITE_URL } from "@/lib/constants";
+import { getInsights, getClasses, getCourses, getAllTagsWithId, getContentByTag } from "@/lib/content";
+import { SITE_URL, MIN_TAG_ITEMS_FOR_INDEX } from "@/lib/constants";
 
 export const dynamic = "force-static";
 
@@ -57,7 +57,11 @@ function buildInsightsSitemap(): SitemapEntry[] {
 function buildClassSitemap(): SitemapEntry[] {
   const courses = getCourses();
   const classes = getClasses();
-  const tags = getAllTagsWithId();
+  // 색인 대상 태그만 사이트맵에 넣는다 (noindex URL은 제출하지 않는다)
+  const tags = getAllTagsWithId().filter((t) => {
+    const { posts, classes } = getContentByTag(t.name);
+    return posts.length + classes.length >= MIN_TAG_ITEMS_FOR_INDEX;
+  });
   return [
     { url: SITE_URL, changefreq: "daily", priority: 1.0 },
     { url: `${SITE_URL}/class`, changefreq: "weekly", priority: 0.9 },

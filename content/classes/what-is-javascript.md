@@ -28,7 +28,7 @@ quiz:
       JavaScript는 웹페이지에 '동작'을 부여합니다. 버튼 클릭 반응, 실시간 입력 검증, 팝업 표시 등 사용자와 상호작용하는 모든
       기능을 담당합니다. 디자인은 CSS, 구조는 HTML의 역할입니다.
     correctIndex: 2
-metaTitle: 'JavaScript(자바스크립트) 입문 | 비개발자를 위한 웹 동작 원리와 디지털 마케팅 기초'
+metaTitle: '자바스크립트(JavaScript) 뜻과 하는 일'
 metaDescription: >-
   JavaScript(자바스크립트)는 웹사이트에 생동감을 불어넣는 주인공입니다. 장바구니, 스크롤, 비밀번호 검증 같은 웹 동작이 어떻게 이뤄지는지 비개발자도 한눈에 이해할 수 있도록 풀어 드리고, GA4, GTM 등 마케팅 분석과의 연결 고리까지 정리했습니다.
 ogImage: /og/what-is-javascript.png

@@ -10,6 +10,7 @@ import { getAllTagsWithId, getContentByTag } from "@/lib/content";
 import { ViewTracker } from "@/components/ViewTracker";
 import { SITE_URL } from "@/lib/constants";
 import { classHref } from "@/lib/links";
+import { MIN_TAG_ITEMS_FOR_INDEX } from "@/lib/constants";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -52,6 +53,10 @@ export async function generateMetadata(
     title,
     description,
     alternates: { canonical },
+    robots:
+      totalCount < MIN_TAG_ITEMS_FOR_INDEX
+        ? { index: false, follow: true }
+        : undefined,
     openGraph: {
       title,
       description,

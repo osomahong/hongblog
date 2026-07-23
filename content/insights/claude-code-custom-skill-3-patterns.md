@@ -23,7 +23,7 @@ quiz:
       계획을 모른 채 요구사항만 보고 테스트를 써야 하고, 구현자는 테스트만 보고 코드를 작성해야 하기 때문입니다. 맥락이 섞이면 LLM은
       '코드에 맞는 테스트'를 쓰게 되어 TDD의 의미가 사라집니다.
     correctIndex: 0
-metaTitle: 'Claude Code 커스텀 Skill 3가지 패턴 | TDD 강제, 팀 코드 리뷰, 런북 자동화'
+metaTitle: 'Claude Code 커스텀 Skill 3가지 패턴'
 metaDescription: >-
   Claude Code 커스텀 Skill의 실전 패턴 3가지를 분석합니다. context: fork 기반 TDD 강제, 팀 맞춤 코드 리뷰,
   실행 가능한 런북까지 커뮤니티가 검증한 방법론입니다.

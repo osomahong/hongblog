@@ -23,7 +23,7 @@ quiz:
       Google이 목록에 표시해주지만, 실제 데이터 수집은 CRM 연동이나 GTM 설정을 통해 직접 구현해야 합니다.
       generate_lead 이후의 이벤트는 웹사이트 밖(CRM, 오프라인 영업)에서 발생하므로 구현 난이도가 높습니다.
     correctIndex: 1
-metaTitle: 'GA4 disqualify_lead, close_unconvert_lead 뜻과 현실적인 활용 가이드'
+metaTitle: 'GA4 리드 이벤트 뜻: disqualify_lead 정리'
 metaDescription: >-
   GA4 리드 이벤트 6가지(generate_lead, qualify_lead, disqualify_lead, working_lead,
   close_convert_lead, close_unconvert_lead)의 의미, 왜 구현이 어려운지, 현실적인 단계별 접근법을

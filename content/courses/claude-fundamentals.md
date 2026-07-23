@@ -4,7 +4,7 @@ title: 'Claude 기초 교육, AI를 제대로 쓰는 첫걸음'
 category: CLAUDE_EDUCATION
 difficulty: BEGINNER
 publishedAt: '2026-04-27T09:00:00.000Z'
-metaTitle: 클로드 기초 교육 | Claude 입문자를 위한 AI 첫걸음 (앤트로픽 공식 자료 한국어 정리)
+metaTitle: '클로드 기초 교육: Claude 입문 첫걸음'
 metaDescription: >-
   클로드 기초 교육 코스입니다. 앤트로픽이 운영하는 Anthropic Academy의 AI Fluency 트랙을 한국 입문자 눈높이로
   정리했습니다. Claude의 정체부터 환각, 아부, 4D 프레임워크까지 10개 개념을 다룹니다.

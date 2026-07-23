@@ -17,7 +17,7 @@ highlights:
     복잡한 장기 작업은 Fable 5, 비용 효율이 중요한 코딩은 GPT-5.6 Sol, 자체 서버 운영이 필요하면 Kimi K3처럼 작업
     성격에 따라 모델을 나눠 쓰는 것이 좋습니다.
   - '벤치마크 수치만 보고 결정하지 말고, 실제로 쓰는 작업 한두 개로 직접 비교해 본 뒤 선택하세요.'
-metaTitle: 'Kimi K3 vs Claude Fable 5 vs GPT-5.6 Sol 비교: 모델별 장점 정리 (2026)'
+metaTitle: 'Kimi K3 vs Fable 5 vs GPT-5.6 Sol 비교'
 metaDescription: >-
   2026년 7월 출시된 Kimi K3와 Claude Fable 5, GPT-5.6 Sol을 비교합니다. 벤치마크, 가격, 오픈 웨이트,
   커뮤니티 반응까지 정리하고 작업별 모델 선택 기준을 제시합니다.

@@ -1,6 +1,7 @@
 ---
 slug: four-ds-of-ai-fluency
 term: AI Fluency 4D 프레임워크 (Delegation, Description, Discernment, Diligence) 알아보기
+metaTitle: 'AI Fluency 4D 프레임워크 뜻과 4단계 정리'
 definition: >-
   앤트로픽이 제안하는 AI 활용 행동 프레임워크입니다. 무엇을 맡길지(Delegation), 어떻게 설명할지(Description), 결과를
   어떻게 분별할지(Discernment), 책임감 있게 다룰지(Diligence) 네 단계로 구성됩니다.

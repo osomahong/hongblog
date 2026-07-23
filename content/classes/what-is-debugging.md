@@ -1,6 +1,7 @@
 ---
 slug: what-is-debugging
 term: 디버깅 (Debugging)
+metaDescription: '디버깅은 코드에서 생긴 오류의 원인을 찾아 고치는 과정입니다. AI가 만든 코드가 동작하지 않을 때 어디를 확인해야 하는지, 브라우저 콘솔과 에러 메시지를 읽는 방법을 비개발자 눈높이로 정리했습니다.'
 definition: 코드에서 발생한 오류(버그)의 원인을 찾아내고 수정하는 과정입니다.
 category: AI_TECH
 tags:

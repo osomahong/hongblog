@@ -5,9 +5,10 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
+        // /_next/static/media 에는 폰트가 들어간다. 렌더링에 쓰이는 리소스를 막으면
+        // 검색엔진이 실제와 다른 화면으로 페이지를 평가하므로 차단하지 않는다.
         userAgent: "*",
         allow: "/",
-        disallow: ["/_next/static/media/"],
       },
       {
         userAgent: "Yeti",
