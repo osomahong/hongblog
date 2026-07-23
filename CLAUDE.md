@@ -33,6 +33,8 @@ npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 �
 - 링크는 항상 `src/lib/links.ts`의 `classHref()`로 만든다. 코스 정보가 없으면 `null`을
   반환하므로 호출부에서 링크를 렌더링하지 않는다.
 - `content/classes/*.md`는 `courseSlug`가 필수이고 `relatedTerms`는 실재하는 슬러그만 쓴다.
+- 클래스를 추가, 이동하면 `npm run build`(prebuild)가 `src/lib/generated/class-course-map.ts`를
+  다시 생성한다. 이 매핑은 미들웨어가 잘못된 코스 경로를 정규 경로로 301 보낼 때 쓴다.
 
 ### SEO 규칙
 
@@ -44,8 +46,6 @@ npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 �
 - 새 페이지 타입을 만들면 canonical, og:image, 구조화 데이터를 반드시 넣는다.
   `scripts/seo-audit.ts`가 누락을 잡아준다.
 
-- 클래스를 추가, 이동하면 `npm run build`(prebuild)가 `src/lib/generated/class-course-map.ts`를
-  다시 생성한다. 이 매핑은 미들웨어가 잘못된 코스 경로를 정규 경로로 301 보낼 때 쓴다.
 
 ## Architecture
 
