@@ -11,12 +11,20 @@ interface ContentFocusLayoutProps {
     children: React.ReactNode;
     sidebar: React.ReactNode;
     contentTitle?: string;
+    /**
+     * 포커스 모드에서 사이드바 대신 본문 아래에 놓을 내용.
+     * 포커스 모드 진입은 집중해서 읽겠다는 신호라, 이 자리에 다음 학습 경로를 둔다.
+     * 넘기지 않으면 기존처럼 sidebar를 그대로 내려 보여준다.
+     */
+    focusSidebar?: React.ReactNode;
 }
 
-export function ContentFocusLayout({ children, sidebar, contentTitle }: ContentFocusLayoutProps) {
+export function ContentFocusLayout({ children, sidebar, contentTitle, focusSidebar }: ContentFocusLayoutProps) {
     const [isFocusMode, setIsFocusMode] = useState(false);
     const [showGuide, setShowGuide] = useState(false);
     const [hasDismissed, setHasDismissed] = useState(false);
+
+    const usesFocusSidebar = isFocusMode && Boolean(focusSidebar);
 
     const toggleFocusMode = useCallback(() => {
         const willExpand = !isFocusMode;
@@ -91,11 +99,13 @@ export function ContentFocusLayout({ children, sidebar, contentTitle }: ContentF
                 {/* Sidebar Area */}
                 <div className={cn(
                     "transition-all duration-300",
-                    isFocusMode
-                        ? "block opacity-100 scale-100 mt-12 sm:mt-16 w-full border-t-2 border-dashed border-gray-200 pt-8 [&>div]:grid [&>div]:grid-cols-1 [&>div]:md:grid-cols-2 [&>div]:gap-6 [&>div>*:not(:first-child)]:mt-0 [&>div>*]:h-full"
-                        : "block opacity-100 scale-100 lg:col-span-1 mt-4 lg:mt-0"
+                    usesFocusSidebar
+                        ? "block w-full mt-12 sm:mt-16 border-t-2 border-dashed border-gray-200 pt-8"
+                        : isFocusMode
+                            ? "block opacity-100 scale-100 mt-12 sm:mt-16 w-full border-t-2 border-dashed border-gray-200 pt-8 [&>div]:grid [&>div]:grid-cols-1 [&>div]:md:grid-cols-2 [&>div]:gap-6 [&>div>*:not(:first-child)]:mt-0 [&>div>*]:h-full"
+                            : "block opacity-100 scale-100 lg:col-span-1 mt-4 lg:mt-0"
                 )}>
-                    {sidebar}
+                    {usesFocusSidebar ? focusSidebar : sidebar}
                 </div>
             </div>
 

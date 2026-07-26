@@ -1,3 +1,14 @@
+/**
+ * 발행 후 사실이 달라져 본문을 고쳤을 때 글 상단에 남기는 변경 기록.
+ * 개발 노트의 Notice처럼 무엇이 추가되고 삭제됐는지만 담백하게 적는다.
+ */
+export interface UpdateNotice {
+  /** 표기용 시점. "2026-07" 형식 */
+  date: string;
+  /** 변경 항목. 한 줄에 하나씩 */
+  items: string[];
+}
+
 export interface Quiz {
   question: string;
   options: string[];
@@ -42,6 +53,7 @@ export interface ClassItem {
   aliases?: string[];
   relatedTerms?: string[];
   difficulty: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
+  updateNotice?: UpdateNotice;
   quiz?: Quiz[];
   metaTitle?: string;
   metaDescription?: string;
@@ -134,6 +146,7 @@ export interface ClassWithMeta {
   metaTitle: string | null;
   metaDescription: string | null;
   quiz: Quiz[] | null;
+  updateNotice: UpdateNotice | null;
   courseInfo: { id: number; slug: string } | null;
 }
 

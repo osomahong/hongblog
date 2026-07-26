@@ -109,6 +109,7 @@ function toClassItem(data: Record<string, unknown>, content: string): ClassItem 
     aliases: data.aliases as string[] | undefined,
     relatedTerms: data.relatedTerms as string[] | undefined,
     difficulty: (data.difficulty as ClassItem["difficulty"]) || "BEGINNER",
+    updateNotice: data.updateNotice as ClassItem["updateNotice"],
     quiz: data.quiz as ClassItem["quiz"],
     metaTitle: data.metaTitle as string | undefined,
     metaDescription: data.metaDescription as string | undefined,
@@ -279,6 +280,7 @@ function classToMeta(cls: ClassItem, index?: number): ClassWithMeta {
     ogImage: cls.ogImage || null,
     metaTitle: cls.metaTitle || null,
     metaDescription: cls.metaDescription || null,
+    updateNotice: cls.updateNotice || null,
     quiz: cls.quiz || null,
     courseInfo: cls.courseSlug ? { id: 1, slug: cls.courseSlug } : null,
   };

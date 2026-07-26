@@ -16,6 +16,8 @@ import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
+import { CourseCurriculumPanel } from "@/components/CourseCurriculumPanel";
+import { ContentUpdateNotice } from "@/components/ContentUpdateNotice";
 import { extractFaqPairs } from "@/lib/extract-faq";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
@@ -256,6 +258,19 @@ export default async function ClassDetailPage({ params }: Props) {
 
                 <ContentFocusLayout
                     contentTitle={classData.term}
+                    focusSidebar={
+                        course && course.classes.length > 0 ? (
+                            <div className="space-y-4 sm:space-y-6">
+                                <CourseCurriculumPanel
+                                    courseSlug={courseSlug}
+                                    courseTitle={course.title}
+                                    classes={course.classes}
+                                    currentSlug={classSlug}
+                                />
+                                <AuthorCard />
+                            </div>
+                        ) : undefined
+                    }
                     sidebar={
                         <div className="lg:sticky lg:top-24 space-y-4 sm:space-y-6">
                             {/* Course Info */}
@@ -343,6 +358,9 @@ export default async function ClassDetailPage({ params }: Props) {
                         {/* Content */}
                         <NeoCard className="prose prose-sm sm:prose-lg max-w-none sm:p-8 mb-6 sm:mb-8">
                             <NeoCardContent>
+                                {classData.updateNotice && (
+                                    <ContentUpdateNotice notice={classData.updateNotice} />
+                                )}
                                 <MarkdownRenderer content={classContentBeforeAd} />
                                 {classContentAfterAd && (
                                     <>

@@ -13,6 +13,7 @@ import {
 import { NeoBadge } from "@/components/neo";
 import type { CourseWithClasses } from "@/lib/types";
 import { NeoTiltCard } from "@/components/neo";
+import { ResumeLearningCard } from "@/components/ResumeLearningCard";
 import { useState } from "react";
 
 const categoryIcons = {
@@ -96,6 +97,9 @@ export default function ClassPageClient({ courses }: ClassPageClientProps) {
                     </div>
                 </NeoTiltCard>
             </section>
+
+            {/* 이어서 학습하기 (방문 기록이 있을 때만 노출) */}
+            <ResumeLearningCard courses={courses} />
 
             {/* 목표별 추천 시작점 */}
             <section className="mb-6 sm:mb-10">
