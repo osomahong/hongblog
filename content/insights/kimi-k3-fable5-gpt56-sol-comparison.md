@@ -38,7 +38,7 @@ quiz:
       웨이트 모델이 됩니다. Fable 5와 GPT-5.6 Sol은 API와 앱으로만 제공됩니다.
 ---
 
-2026년 6월과 7월 사이에 최상위 AI 모델 세 개가 연이어 나왔습니다. 6월 9일 Anthropic의 Claude Fable 5, 7월 9일 OpenAI의 GPT-5.6 Sol, 그리고 7월 16일 중국 Moonshot AI의 Kimi K3입니다. 세 모델의 공식 발표 자료와 벤치마크, 커뮤니티 반응을 바탕으로 각 모델의 장점과 선택 기준을 정리했습니다.
+2026년 6월과 7월 사이에 최상위 AI 모델 세 개가 연이어 나왔습니다. 6월 9일 Anthropic의 [Claude Fable 5](/class/claude-fundamentals/claude-model-family), 7월 9일 OpenAI의 GPT-5.6 Sol, 그리고 7월 16일 중국 Moonshot AI의 Kimi K3입니다. 세 모델의 공식 발표 자료와 벤치마크, 커뮤니티 반응을 바탕으로 각 모델의 장점과 선택 기준을 정리했습니다.
 
 ![앤트로픽 공식 벤치마크 표. Claude Fable 5가 SWE-Bench Pro 80.3%, GDPval-AA 1932점 등 대부분 항목에서 Claude Opus 4.8, GPT-5.5, Gemini 3.1 Pro를 앞서는 결과](/images/insights/kimi-k3-fable5-gpt56-sol-comparison/fable5-benchmark-table.png)
 
@@ -98,7 +98,7 @@ Sol의 장점은 효율입니다. OpenAI는 Artificial Analysis Coding Agent Ind
 - **사이버보안 방어 작업**: 위협 모델링, 코드 리뷰, 패치, 방어 훈련 시뮬레이션 같은 방어 목적 보안 업무에 특화됐다고 소개합니다.
 - **제품군 구성**: 최상위 Sol 아래에 Terra($2.50/$15), Luna($1/$6)가 있어 작업 난도에 따라 같은 제품군 안에서 등급을 내려 비용을 줄일 수 있습니다.
 
-## Kimi K3에 대한 커뮤니티 반응은 어떨까요?
+## Kimi K3 커뮤니티 반응은 어떨까요?
 
 Hacker News 등 개발자 커뮤니티의 반응을 종합하면 기대와 회의가 함께 존재합니다. 커뮤니티 의견은 개인 경험 기반이므로 참고 수준으로 보는 것이 좋습니다.
 

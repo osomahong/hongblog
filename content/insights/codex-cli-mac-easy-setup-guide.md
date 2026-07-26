@@ -42,11 +42,11 @@ ogDescription: >-
 
 ## 터미널 기반 AI 코딩 도구가 표준이 되는 시기
 
-2025년부터 2026년 사이, 코딩을 거드는 AI 도구의 무게중심이 빠르게 바뀌었습니다. Cursor 같은 IDE 안의 자동완성에서 출발해, 이제는 터미널 안에서 직접 일을 시키는 에이전트 형태가 표준에 가까워졌습니다. 앤트로픽의 [클로드 코드(Claude Code)](/insights/claude-code-mac-easy-setup-guide)가 그 흐름의 한 축이었다면, OpenAI 진영에서 그에 대응해 정리한 도구가 **코덱스 CLI(Codex CLI)** 입니다.
+2025년부터 2026년 사이, 코딩을 거드는 AI 도구의 무게중심이 빠르게 바뀌었습니다. Cursor 같은 IDE 안의 자동완성에서 출발해, 이제는 [터미널](/class/vibe-coding-basics/what-is-terminal-cli) 안에서 직접 일을 시키는 에이전트 형태가 표준에 가까워졌습니다. 앤트로픽의 [클로드 코드(Claude Code)](/insights/claude-code-mac-easy-setup-guide)가 그 흐름의 한 축이었다면, OpenAI 진영에서 그에 대응해 정리한 도구가 **코덱스 CLI(Codex CLI)** 입니다.
 
 맥에서 코덱스 CLI를 처음 깔 때 마주치는 화면은 클로드 코드와 마찬가지로 **터미널(Terminal)** 입니다. 평소 Spotlight와 Finder로만 일을 처리해 오신 분이라면 낯설게 느껴지지만, 클릭과 드래그 대신 짧은 한 줄로 컴퓨터에 일을 시키는 방식이라는 점만 다를 뿐입니다. 클로드 코드를 이미 설치한 적이 있다면 Homebrew와 Node.js가 그대로 있어, 코덱스 CLI 설치는 한 줄로 끝납니다.
 
-맥에서 코덱스 CLI는 **설치 자체가 매우 짧습니다**. 사실상 한 줄짜리 npm 명령이 본체 설치의 전부이고, 그다음은 ChatGPT 계정 로그인뿐입니다. 아래 순서대로 따라가 주세요. Apple Silicon(M1/M2/M3)과 Intel 맥 모두 동일하게 진행됩니다. 설치 도중에 막히는 메시지가 뜬다면 글 끝의 [자주 발생하는 문제](#troubleshooting) 섹션을 확인해 보세요.
+맥에서 코덱스 CLI는 **설치 자체가 매우 짧습니다**. 사실상 한 줄짜리 [npm](/class/vibe-coding-basics/what-is-npm) 명령이 본체 설치의 전부이고, 그다음은 ChatGPT 계정 로그인뿐입니다. 아래 순서대로 따라가 주세요. Apple Silicon(M1/M2/M3)과 Intel 맥 모두 동일하게 진행됩니다. 설치 도중에 막히는 메시지가 뜬다면 글 끝의 [자주 발생하는 문제](#troubleshooting) 섹션을 확인해 보세요.
 
 > 코덱스 CLI(Codex CLI)는 OpenAI가 만든 터미널 기반 AI 코딩 도구입니다. 맥에서는 Homebrew를 깔고 `brew install node`로 Node.js를 받은 뒤(이미 있다면 건너뛰어도 됩니다), `npm i -g @openai/codex` 한 줄로 본체를 받고, `codex` 명령으로 실행해 ChatGPT 계정으로 로그인하면 첫 실행 준비가 끝납니다. 모델은 기본으로 GPT-5.5가 선택되며, 추론 깊이는 medium, high, xhigh 중에서 고를 수 있습니다.
 
