@@ -9,7 +9,7 @@ tags:
   - AI
   - 자동화
 publishedAt: '2026-04-27T09:27:00.000Z'
-updatedAt: '2026-07-23T00:00:00.000Z'
+updatedAt: '2026-07-26T00:00:00.000Z'
 courseSlug: claude-in-practice
 orderInCourse: 8
 aliases:
@@ -20,6 +20,10 @@ relatedTerms:
   - what-are-artifacts
   - what-are-claude-projects
   - context-window-explained
+updateNotice:
+  date: '2026-07'
+  items:
+    - 보고서 분석 시나리오의 권장 모델을 Sonnet 5, Opus 5로 교체했습니다.
 difficulty: BEGINNER
 quiz:
   - question: 두꺼운 PDF 보고서 100쪽을 정리할 때 결과 품질을 가장 안정적으로 만드는 흐름은 무엇일까요?
@@ -93,7 +97,7 @@ OCR 변환이나 별도 전처리 없이 바로 업로드해 분석을 시킬 �
 
 100쪽 분량의 보고서를 분석하는 흐름입니다.
 
-- **모델 선택**: [1M 컨텍스트](/class/claude-fundamentals/context-window-explained) 모델(Sonnet 4.6 또는 Opus 4.7)
+- **모델 선택**: [1M 컨텍스트](/class/claude-fundamentals/context-window-explained) 모델(Sonnet 5 또는 Opus 5)
 - **단계 분리**:
   - "전체 5줄 요약"
   - "주제별 3~5개 키 인사이트"

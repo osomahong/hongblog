@@ -9,7 +9,7 @@ tags:
   - AI
   - 자동화
 publishedAt: '2026-04-27T09:24:00.000Z'
-updatedAt: '2026-07-23T00:00:00.000Z'
+updatedAt: '2026-07-26T00:00:00.000Z'
 courseSlug: claude-in-practice
 orderInCourse: 5
 aliases:
@@ -19,6 +19,11 @@ aliases:
 relatedTerms:
   - claude-model-family
   - what-are-claude-projects
+updateNotice:
+  date: '2026-07'
+  items:
+    - 모델별 지원 표를 현행 세대인 Fable 5, Opus 5, Sonnet 5, Haiku 4.5로 교체했습니다.
+    - 현행 세대에서 Extended Thinking을 지원하는 모델이 Haiku 4.5뿐이라는 내용으로 수정했습니다. 이전에는 Sonnet 4.6도 지원 모델로 적혀 있었습니다.
 difficulty: BEGINNER
 quiz:
   - question: Extended Thinking이 가장 큰 효과를 내는 작업 유형은 무엇일까요?
@@ -55,12 +60,13 @@ Claude 같은 모델에 같은 질문을 던졌는데 어떤 날은 답이 깊�
 
 ## 🌐 어떤 모델에서 동작하나요?
 
-(2026년 4월 기준) 모델별 지원 상황은 다음과 같습니다.
+(2026년 7월 기준) 모델별 지원 상황은 다음과 같습니다.
 
 | 모델 | Adaptive Thinking | Extended Thinking |
 |---|---|---|
-| **Claude Opus 4.7** | 지원 (권장) | 미지원 |
-| **Claude Sonnet 4.6** | 지원 (권장) | 지원 |
+| **Claude Fable 5** | 지원 (항상 켜짐) | 미지원 |
+| **Claude Opus 5** | 지원 (권장) | 미지원 |
+| **Claude Sonnet 5** | 지원 (권장) | 미지원 |
 | **Claude Haiku 4.5** | 미지원 | 지원 |
 
 **Adaptive Thinking**과 **Extended Thinking**은 사촌 관계입니다.
@@ -68,7 +74,7 @@ Claude 같은 모델에 같은 질문을 던졌는데 어떤 날은 답이 깊�
 - **Extended Thinking**: 사용자가 추론 깊이(`budget_tokens`)를 직접 정하는 수동 모드
 - **Adaptive Thinking**: Claude가 작업 난이도에 맞춰 추론 깊이를 자동 조절하는 모드
 
-Opus 4.7부터는 Adaptive 방식만 지원하고, 그 이전 모델은 둘 다 사용 가능합니다.
+현행 세대에서는 Extended Thinking을 쓸 수 있는 모델이 Haiku 4.5뿐입니다. Fable 5, Opus 5, Sonnet 5는 Adaptive 방식만 지원하고, Fable 5는 끄고 켜는 선택 없이 항상 켜진 상태로 동작합니다. Sonnet 4.6 같은 이전 세대 모델에서는 두 방식을 모두 쓸 수 있었습니다.
 
 ## ⚙️ 동작 방식
 
@@ -146,7 +152,7 @@ Extended Thinking은 다음과 같은 작업에서 큰 차이를 만듭니다.
 
 1. **Extended Thinking은 Claude가 답을 내기 전 내부 추론을 별도 thinking 블록으로 펼쳐 깊게 생각하는 모드**입니다. 일반 응답에는 없는 추론 단계가 추가됩니다.
 
-2. **Sonnet 4.6과 Haiku 4.5는 Extended Thinking을 지원하고, Opus 4.7은 Adaptive Thinking으로 자동 조절합니다**(2026년 4월 기준). 모델별 지원 차이를 [모델 패밀리](/class/claude-fundamentals/claude-model-family) 클래스와 함께 보세요.
+2. **현행 세대에서 Extended Thinking을 지원하는 모델은 Haiku 4.5뿐이고, Fable 5, Opus 5, Sonnet 5는 Adaptive Thinking으로 자동 조절합니다**(2026년 7월 기준). 모델별 지원 차이를 [모델 패밀리](/class/claude-fundamentals/claude-model-family) 클래스와 함께 보세요.
 
 3. **여러 단계 추론, 복잡한 코드, 긴 자료 분석 같은 작업에서 가장 큰 효과**가 납니다. [Projects](/class/claude-in-practice/what-are-claude-projects), Cowork와 묶으면 자동화에 깊이가 더해집니다.
 

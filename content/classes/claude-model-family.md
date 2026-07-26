@@ -9,7 +9,7 @@ tags:
   - AI
   - 자동화
 publishedAt: '2026-04-27T09:12:00.000Z'
-updatedAt: '2026-07-23T00:00:00.000Z'
+updatedAt: '2026-07-26T00:00:00.000Z'
 courseSlug: claude-fundamentals
 orderInCourse: 3
 aliases:
@@ -18,12 +18,19 @@ aliases:
   - Claude Haiku
   - Claude Fable 5
   - Claude Mythos 5
+  - Opus 5
   - Opus 4.8
   - Sonnet 5
   - Haiku 4.5
 relatedTerms:
   - what-is-claude
   - what-is-anthropic
+updateNotice:
+  date: '2026-07'
+  items:
+    - 2026년 7월 24일 공개된 Claude Opus 5를 현행 라인업에 반영했습니다. 비교표와 선택 기준의 Opus 4.8을 Opus 5로 교체했습니다.
+    - Opus 4.8을 레거시 모델 목록으로 옮겼습니다. 가격은 Opus 5와 같습니다.
+    - Opus 5의 신뢰 가능한 지식 기준일을 2026년 5월로 반영했습니다.
 difficulty: BEGINNER
 quiz:
   - question: >-
@@ -32,17 +39,17 @@ quiz:
     options:
       - Claude Haiku 4.5
       - Claude Sonnet 5
-      - Claude Opus 4.8
+      - Claude Opus 5
       - Claude Fable 5
     correctIndex: 0
     explanation: >-
       Claude Haiku 4.5는 현행 라인업 중 가장 빠르고 저렴한 모델입니다(2026년 7월 기준 입력 1M 토큰당 1달러, 출력
       1M 토큰당 5달러). 정확도가 일정 수준만 충족되면 되는 대량 자동 분류, 1차 응대처럼 빠른 속도와 낮은 비용이 더 중요한 작업에
-      적합합니다. 정가 기준으로 Sonnet 5는 3배, Opus 4.8은 5배, Fable 5는 10배 더 비싸므로 단순 분류 용도로는
+      적합합니다. 정가 기준으로 Sonnet 5는 3배, Opus 5는 5배, Fable 5는 10배 더 비싸므로 단순 분류 용도로는
       과합니다.
 metaTitle: '클로드 모델 비교: Opus, Sonnet, Haiku 차이와 선택 기준'
 metaDescription: >-
-  클로드 Fable 5부터 Opus 4.8, Sonnet 5, Haiku 4.5까지 현행 라인업의 성능, 속도, 비용 차이를 표로 비교하고 직무별 선택 기준을 정리했습니다. 2026년 7월 기준 공식 문서 수치를 담았습니다.
+  클로드 Fable 5부터 Opus 5, Sonnet 5, Haiku 4.5까지 현행 라인업의 성능, 속도, 비용 차이를 표로 비교하고 직무별 선택 기준을 정리했습니다. 2026년 7월 기준 공식 문서 수치를 담았습니다.
 ogImage: /og/claude-model-family.png
 ---
 
@@ -52,7 +59,7 @@ ogImage: /og/claude-model-family.png
 
 2026년 6월 9일, 앤트로픽이 Claude 5 세대의 첫 모델인 **Claude Fable 5**와 **Claude Mythos 5**를 발표했습니다. "Claude 5가 나왔다는데 그럼 Opus는 이제 못 쓰는 건가?" 하는 혼란이 생기기 쉬운 시점입니다.
 
-답은 단순합니다. **Claude는 여전히 한 모델이 아닙니다**. Opus, Sonnet, Haiku 세 라인업은 그대로 운영되고, 그 위에 최상위 라인업인 Fable 5가 더해졌습니다. 어떤 라인업을 고를지가 먼저고, 모델 번호(Opus 4.8, Sonnet 5 같은 표기)는 그 라인업 안에서의 세대를 가리킵니다.
+답은 단순합니다. **Claude는 여전히 한 모델이 아닙니다**. Opus, Sonnet, Haiku 세 라인업은 그대로 운영되고, 그 위에 최상위 라인업인 Fable 5가 더해졌습니다. 어떤 라인업을 고를지가 먼저고, 모델 번호(Opus 5, Sonnet 5 같은 표기)는 그 라인업 안에서의 세대를 가리킵니다.
 
 ## 🔑 Claude는 한 모델이 아닌 패밀리입니다
 
@@ -71,19 +78,19 @@ Fable 5와 같은 사양의 **Claude Mythos 5**도 함께 발표되었지만, �
 
 ## 📊 현행 라인업 한눈에 비교 (2026년 7월 기준)
 
-| 항목 | Claude Fable 5 | Claude Opus 4.8 | Claude Sonnet 5 | Claude Haiku 4.5 |
+| 항목 | Claude Fable 5 | Claude Opus 5 | Claude Sonnet 5 | Claude Haiku 4.5 |
 |---|---|---|---|---|
-| **API 모델 ID** | claude-fable-5 | claude-opus-4-8 | claude-sonnet-5 | claude-haiku-4-5 |
+| **API 모델 ID** | claude-fable-5 | claude-opus-5 | claude-sonnet-5 | claude-haiku-4-5 |
 | **가격(입력)** | $10 / 1M 토큰 | $5 / 1M 토큰 | $3 / 1M 토큰 | $1 / 1M 토큰 |
 | **가격(출력)** | $50 / 1M 토큰 | $25 / 1M 토큰 | $15 / 1M 토큰 | $5 / 1M 토큰 |
 | **컨텍스트 윈도우** | 1M 토큰 | 1M 토큰 | 1M 토큰 | 200K 토큰 |
 | **최대 출력** | 128K 토큰 | 128K 토큰 | 128K 토큰 | 64K 토큰 |
 | **상대적 속도** | 느림 | 보통 | 빠름 | 가장 빠름 |
-| **신뢰 가능한 지식 기준일** | 2026년 1월 | 2026년 1월 | 2026년 1월 | 2025년 2월 |
+| **신뢰 가능한 지식 기준일** | 2026년 1월 | 2026년 5월 | 2026년 1월 | 2025년 2월 |
 | **Adaptive thinking** | 지원(항상 켜짐) | 지원 | 지원 | 미지원 |
 | **Extended thinking** | 미지원 | 미지원 | 미지원 | 지원 |
 
-> **참고**: 위 수치는 platform.claude.com/docs 공식 모델 개요 문서를 옮긴 것입니다. Sonnet 5는 2026년 8월 31일까지 입력 $2, 출력 $10의 도입 가격이 적용됩니다. 시점이 지나면 모델 번호와 가격이 모두 달라질 수 있으니, 글 끝 참고 자료의 원문 페이지를 함께 확인하세요. 이전 세대인 Opus 4.7, Sonnet 4.6 등은 레거시 모델로 여전히 사용할 수 있습니다.
+> **참고**: 위 수치는 platform.claude.com/docs 공식 모델 개요 문서를 옮긴 것입니다. Sonnet 5는 2026년 8월 31일까지 입력 $2, 출력 $10의 도입 가격이 적용됩니다. 시점이 지나면 모델 번호와 가격이 모두 달라질 수 있으니, 글 끝 참고 자료의 원문 페이지를 함께 확인하세요. 이전 세대인 Opus 4.8, Opus 4.7, Sonnet 4.6 등은 레거시 모델로 여전히 사용할 수 있습니다.
 
 ## 🚀 Fable 5와 Mythos 5, 새로 더해진 최상위 라인업
 
@@ -91,14 +98,14 @@ Claude Fable 5는 앤트로픽이 일반 공급하는 모델 가운데 **가장 
 
 두 모델의 차이는 성능이 아니라 **접근 방식과 안전장치**입니다.
 
-- **Fable 5**: 모든 사용자에게 일반 제공됩니다. 사이버 보안, 생물학 등 영역별 안전 분류기가 함께 작동하며, 분류기가 작동한 요청은 거절 대신 Claude Opus 4.8이 대신 응답합니다.
+- **Fable 5**: 모든 사용자에게 일반 제공됩니다. 사이버 보안, 생물학 등 영역별 안전 분류기가 함께 작동하며, 분류기가 작동한 요청은 거절 대신 Claude Opus 계열 모델이 대신 응답합니다.
 - **Mythos 5**: 일반 제공되지 않습니다. Project Glasswing에 참여하는 승인된 사이버 보안 조직, 신뢰 접근 프로그램에 참여하는 생의학 연구자 등 제한된 대상에게 일부 안전장치를 해제한 상태로 제공됩니다. 사양과 가격은 Fable 5와 같습니다.
 
-가격은 입력 $10, 출력 $50으로 Opus 4.8의 2배입니다. 일상 업무보다는 최고 난도 작업, 오래 도는 에이전트 작업에 맞는 라인업입니다.
+가격은 입력 $10, 출력 $50으로 Opus 5의 2배입니다. 일상 업무보다는 최고 난도 작업, 오래 도는 에이전트 작업에 맞는 라인업입니다.
 
-## 🎯 Opus 4.8, 복잡한 실무의 표준 라인업
+## 🎯 Opus 5, 복잡한 실무의 표준 라인업
 
-Claude Opus 4.8은 Fable 5 등장 전까지 최상위였던 라인업의 현행 세대입니다. 공식 문서는 이 모델을 **"For complex agentic coding and enterprise work"**(복잡한 에이전트형 코딩과 기업 업무용)로 소개하며, 어떤 모델을 쓸지 확신이 없을 때 복잡한 코딩과 기업 업무라면 Opus 4.8로 시작하라고 권합니다.
+Claude Opus 5는 2026년 7월 24일 공개된 Opus 라인업의 현행 세대입니다. 공식 문서는 이 모델을 **"For complex agentic coding and enterprise work"**(복잡한 에이전트형 코딩과 기업 업무용)로 소개하며, 어떤 모델을 쓸지 확신이 없을 때 복잡한 코딩과 기업 업무라면 Opus 5로 시작하라고 권합니다. 직전 세대인 Opus 4.8은 같은 가격으로 레거시 목록에 남아 있습니다.
 
 쓰임새가 분명합니다.
 
@@ -118,7 +125,7 @@ Claude Sonnet 5는 공식 문서에서 **"The best combination of speed and inte
 - 코드 리뷰, 디버깅, 리팩터링
 - 회의록 정리, 자료 요약, 외국어 번역
 
-컨텍스트 윈도우는 Fable 5, Opus 4.8과 같은 1M 토큰입니다. 두꺼운 책 한 권 분량을 통째로 입력해도 잘라 보낼 필요가 없습니다. 2026년 8월 31일까지는 입력 $2, 출력 $10의 도입 가격이 적용되어 정가보다 저렴하게 쓸 수 있습니다.
+컨텍스트 윈도우는 Fable 5, Opus 5와 같은 1M 토큰입니다. 두꺼운 책 한 권 분량을 통째로 입력해도 잘라 보낼 필요가 없습니다. 2026년 8월 31일까지는 입력 $2, 출력 $10의 도입 가격이 적용되어 정가보다 저렴하게 쓸 수 있습니다.
 
 ## ⚡ Haiku 4.5, 가장 빠른 라인업
 
@@ -159,8 +166,8 @@ Claude Haiku 4.5는 공식 문서에서 **"The fastest model with near-frontier 
 **1. 일상 실무는 Sonnet 5로 시작합니다**
 - 가격, 속도, 지능의 균형이 가장 좋은 라인업입니다. 2026년 8월 말까지는 도입 가격까지 적용되어 부담이 더 적습니다.
 
-**2. 결과 품질이 부족하다고 느끼면 Opus 4.8, 그래도 부족하면 Fable 5로 올립니다**
-- 앤트로픽 공식 문서도 복잡한 에이전트형 코딩과 기업 업무에는 Opus 4.8을, 가장 높은 성능이 필요한 작업에는 Fable 5를 권합니다.
+**2. 결과 품질이 부족하다고 느끼면 Opus 5, 그래도 부족하면 Fable 5로 올립니다**
+- 앤트로픽 공식 문서도 복잡한 에이전트형 코딩과 기업 업무에는 Opus 5를, 가장 높은 성능이 필요한 작업에는 Fable 5를 권합니다.
 - 같은 프롬프트를 상위 모델에 다시 넣어 결과를 비교해 보면 차이를 확인할 수 있습니다.
 
 **3. 비용, 속도가 가장 중요하면 Haiku로 내립니다**
@@ -170,14 +177,14 @@ Claude Haiku 4.5는 공식 문서에서 **"The fastest model with near-frontier 
 
 1. **Claude는 단일 모델이 아니라 Fable 5, Opus, Sonnet, Haiku 라인업의 모델 패밀리**입니다. 2026년 6월 Claude 5 세대의 Fable 5(일반 제공)와 Mythos 5(승인된 조직 전용)가 기존 세 라인업 위에 더해졌습니다.
 
-2. **Fable 5는 최상위 성능, Opus는 복잡한 실무, Sonnet은 균형, Haiku는 가장 빠름**으로 기억하면 됩니다. 가격은 Fable 5($10/$50) > Opus 4.8($5/$25) > Sonnet 5($3/$15) > Haiku 4.5($1/$5) 순입니다(2026년 7월 기준 1M 토큰 입력/출력 정가).
+2. **Fable 5는 최상위 성능, Opus는 복잡한 실무, Sonnet은 균형, Haiku는 가장 빠름**으로 기억하면 됩니다. 가격은 Fable 5($10/$50) > Opus 5($5/$25) > Sonnet 5($3/$15) > Haiku 4.5($1/$5) 순입니다(2026년 7월 기준 1M 토큰 입력/출력 정가).
 
-3. **일상 실무는 Sonnet 5로 시작**하고, 복잡한 작업은 Opus 4.8, 가장 높은 성능이 필요한 작업은 Fable 5로 올립니다. 비용, 속도가 우선되는 작업은 Haiku로 내려도 됩니다.
+3. **일상 실무는 Sonnet 5로 시작**하고, 복잡한 작업은 Opus 5, 가장 높은 성능이 필요한 작업은 Fable 5로 올립니다. 비용, 속도가 우선되는 작업은 Haiku로 내려도 됩니다.
 
 ## 📚 참고 자료
 
 - Claude Fable 5, Mythos 5 공식 발표문: [https://www.anthropic.com/news/claude-fable-5-mythos-5](https://www.anthropic.com/news/claude-fable-5-mythos-5)
 - Claude 모델 개요 문서: [https://platform.claude.com/docs/en/about-claude/models/overview](https://platform.claude.com/docs/en/about-claude/models/overview)
 - Claude 가격 정책: [https://platform.claude.com/docs/en/about-claude/pricing](https://platform.claude.com/docs/en/about-claude/pricing)
-- Opus 4.8 마이그레이션 가이드: [https://platform.claude.com/docs/en/about-claude/models/migration-guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide)
+- Opus 5 마이그레이션 가이드: [https://platform.claude.com/docs/en/about-claude/models/migration-guide](https://platform.claude.com/docs/en/about-claude/models/migration-guide)
 - 모델 사용 중단 일정: [https://platform.claude.com/docs/en/about-claude/model-deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations)

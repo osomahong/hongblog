@@ -8,7 +8,7 @@ category: CLAUDE_EDUCATION
 tags:
   - AI
 publishedAt: '2026-04-27T09:19:00.000Z'
-updatedAt: '2026-07-23T00:00:00.000Z'
+updatedAt: '2026-07-26T00:00:00.000Z'
 courseSlug: claude-fundamentals
 orderInCourse: 10
 aliases:
@@ -18,9 +18,15 @@ aliases:
 relatedTerms:
   - claude-model-family
   - prompt-engineering-basics
+updateNotice:
+  date: '2026-07'
+  items:
+    - 모델별 컨텍스트 표를 현행 세대인 Fable 5, Opus 5, Sonnet 5, Haiku 4.5로 교체했습니다.
+    - 1M 토큰의 영어 환산치를 현행 세대 기준인 약 55만 5천 단어로 수정했습니다. 이전 표기는 75만 단어였습니다.
+    - Opus 4.7 세대부터 토크나이저가 바뀌어 같은 글의 토큰 수가 약 30% 늘어난다는 설명을 추가했습니다.
 difficulty: BEGINNER
 quiz:
-  - question: Claude Sonnet 4.6의 컨텍스트 윈도우 1M 토큰은 한국어 기준 대략 어느 정도 분량일까요?
+  - question: Claude Sonnet 5의 컨텍스트 윈도우 1M 토큰은 한국어 기준 대략 어느 정도 분량일까요?
     options:
       - 단행본 한 권에서 두 권 사이
       - 단편 소설 한 편 분량
@@ -28,7 +34,7 @@ quiz:
       - 이메일 한 통 분량
     correctIndex: 0
     explanation: >-
-      1M 토큰은 영어 기준 약 75만 단어, 약 340만 유니코드 글자에 해당합니다. 한국어로 환산하면 평균 분량의 단행본 한 권에서 두
+      현행 세대 기준 1M 토큰은 영어 약 55만 5천 단어, 약 250만 유니코드 글자에 해당합니다. 한국어로 환산하면 평균 분량의 단행본 한 권에서 두
       권 사이입니다. 두꺼운 보고서, 논문 PDF, 회의록 모음을 통째로 던져도 잘라 보낼 필요가 없는 규모입니다.
 metaTitle: '컨텍스트 윈도우 뜻: AI가 한 번에 기억하는 양의 한계'
 metaDescription: >-
@@ -36,7 +42,7 @@ metaDescription: >-
 ogImage: /og/context-window-explained.png
 ---
 
-이 글은 앤트로픽이 운영하는 platform.claude.com/docs의 컨텍스트, 토큰 관련 자료를 한국 입문자가 보기 편하게 정리한 글입니다. 수치는 **2026년 4월 기준** 공식 문서를 그대로 옮겼습니다.
+이 글은 앤트로픽이 운영하는 platform.claude.com/docs의 컨텍스트, 토큰 관련 자료를 한국 입문자가 보기 편하게 정리한 글입니다. 수치는 **2026년 7월 기준** 공식 문서를 그대로 옮겼습니다.
 
 ## 🤔 왜 긴 PDF를 통째로 못 받을 때가 있을까요?
 
@@ -62,17 +68,20 @@ ogImage: /og/context-window-explained.png
 
 이 환산을 머릿속에 두면 자료 분량과 모델 한도를 빠르게 비교할 수 있습니다.
 
-## 📊 Claude 모델별 컨텍스트 (2026년 4월 기준)
+## 📊 Claude 모델별 컨텍스트 (2026년 7월 기준)
 
 [Claude 모델 패밀리](/class/claude-fundamentals/claude-model-family) 클래스에서 자세히 다뤘지만, 컨텍스트 관점만 다시 정리하면 다음과 같습니다.
 
 | 모델 | 컨텍스트 윈도우 | 한국어 환산 |
 |---|---|---|
-| **Claude Opus 4.7** | 1M 토큰 | 단행본 1~2권 |
-| **Claude Sonnet 4.6** | 1M 토큰 | 단행본 1~2권 |
+| **Claude Fable 5** | 1M 토큰 | 단행본 1~2권 |
+| **Claude Opus 5** | 1M 토큰 | 단행본 1~2권 |
+| **Claude Sonnet 5** | 1M 토큰 | 단행본 1~2권 |
 | **Claude Haiku 4.5** | 200K 토큰 | 단행본 절반~1권 |
 
-Opus와 Sonnet은 같은 1M 토큰을 가집니다. 단행본 한 권을 통째로 입력해도 잘라 보낼 필요가 없는 규모입니다.
+Fable, Opus, Sonnet은 같은 1M 토큰을 가집니다. 단행본 한 권을 통째로 입력해도 잘라 보낼 필요가 없는 규모입니다.
+
+같은 1M 토큰이라도 세대에 따라 담기는 글자 수는 다릅니다. Opus 4.7 세대부터 새 토크나이저를 쓰기 때문에, 같은 글이 이전 모델보다 약 30% 많은 토큰으로 계산됩니다. 그래서 현행 세대의 1M 토큰은 영어 약 55만 5천 단어에 해당하고, 이전 세대에서는 약 75만 단어였습니다.
 
 ## 🪟 컨텍스트가 작동하는 방식
 
@@ -116,7 +125,7 @@ Opus와 Sonnet은 같은 1M 토큰을 가집니다. 단행본 한 권을 통째�
 
 1. **컨텍스트 윈도우는 AI가 한 번에 처리하는 토큰 총량**입니다. 입력, 출력, 첨부 자료가 모두 같은 컨텍스트에 누적됩니다.
 
-2. **Claude Opus 4.7과 Sonnet 4.6은 1M 토큰**(단행본 1~2권), **Haiku 4.5는 200K 토큰**(단행본 절반~1권)입니다(2026년 4월 기준).
+2. **Claude Fable 5, Opus 5, Sonnet 5는 1M 토큰**(단행본 1~2권), **Haiku 4.5는 200K 토큰**(단행본 절반~1권)입니다(2026년 7월 기준).
 
 3. **새 대화 시작, 자료 미리 요약, 핵심만 첨부, 모델 골라 쓰기 네 가지가 컨텍스트 관리의 표준 방법**입니다. [모델 패밀리](/class/claude-fundamentals/claude-model-family) 클래스의 직무별 가이드와 함께 보면 어떤 모델로 어떤 작업을 보낼지가 분명해집니다.
 

@@ -7,7 +7,7 @@ tags:
   - AI
   - 자동화
 publishedAt: '2026-04-27T09:10:00.000Z'
-updatedAt: '2026-07-23T00:00:00.000Z'
+updatedAt: '2026-07-26T00:00:00.000Z'
 courseSlug: claude-fundamentals
 orderInCourse: 1
 aliases:
@@ -20,6 +20,10 @@ aliases:
 relatedTerms:
   - what-is-anthropic
   - claude-model-family
+updateNotice:
+  date: '2026-07'
+  items:
+    - 1M 컨텍스트 설명의 모델 이름을 현행 세대인 Opus 5, Sonnet 5로 교체했습니다.
 difficulty: BEGINNER
 metaTitle: Claude 입문 | 앤트로픽 AI 어시스턴트, 초보자 첫걸음 가이드
 metaDescription: >-
@@ -89,7 +93,7 @@ ogImage: /og/what-is-claude.png
 - 디자인이 끝나면 Claude Code로 곧장 핸드오프해 디자인 의도를 유지한 채 구현 단계로 넘어갑니다.
 
 **4. 1M 토큰 컨텍스트 (긴 문서 분석)**
-- Claude Opus 4.7과 Sonnet 4.6은 한 번에 단행본 한 권 분량(약 1M 토큰)을 그대로 입력받습니다.
+- Claude Opus 5와 Sonnet 5는 한 번에 단행본 한 권 분량(약 1M 토큰)을 그대로 입력받습니다.
 - 두꺼운 보고서, 논문 PDF, 회의록 모음을 통째로 던져도 잘라 보낼 필요가 없습니다.
 - 모델별 차이는 클래스 3(Claude 모델 패밀리)에서 자세히 다룹니다.
 
