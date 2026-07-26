@@ -22,9 +22,10 @@ relatedTerms:
   - what-is-claude
   - claude-model-family
 difficulty: BEGINNER
-metaTitle: '앤트로픽(Anthropic)은 어떤 회사? 클로드 만든 회사 정리'
+metaTitle: '앤트로픽(Anthropic) 뜻: 클로드 만든 회사 정리'
 metaDescription: >-
-  앤트로픽은 AI 챗봇 클로드(Claude)를 만든 미국 AI 회사입니다. 회사 이름의 뜻, 창업 배경, OpenAI와의 관계, 주요 제품과 안전 중심 철학까지 처음 듣는 분도 이해할 수 있게 정리했습니다.
+  앤트로픽은 AI 챗봇 클로드(Claude)를 만든 미국 AI 회사입니다. 회사 이름의 뜻, 창업 배경, OpenAI와의 관계, 주요 제품과 안전 중심 철학까지 처
+  음 듣는 분도 이해할 수 있게 정리했습니다.
 quiz:
   - question: >-
       앤트로픽이 일반 영리법인이 아닌 Public Benefit Corporation(공익 회사) 형태로 설립된 이유와 가장 가까운 것은
@@ -42,7 +43,7 @@ quiz:
 ogImage: /og/what-is-anthropic.png
 ---
 
-이 글은 앤트로픽이 운영하는 Anthropic Academy(anthropic.com/learn), claude.com/resources, platform.claude.com/docs의 공식 교육 자료 중 회사 자체에 대한 소개를 한국어 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.
+이 글은 앤트로픽이 운영하는 Anthropic Academy(anthropic.com/learn), claude.com/resources, platform.claude.com/docs의 공식 교육 자료 중 회사 소개를 한국어 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.
 
 ## 🤔 Claude는 알았는데 회사도 알아야 하나요?
 
@@ -54,7 +55,7 @@ Claude를 처음 써 보면 "그래서 이 AI는 누가 만든 거야?"라는 �
 
 **Anthropic(앤트로픽)**은 미국 샌프란시스코에 본사를 둔 **AI 안전 연구 회사**입니다. 우리가 매일 쓰는 AI 어시스턴트 Claude를 만든 곳이며, 일반 영리법인이 아닌 **Public Benefit Corporation**(공익 회사) 형태로 운영됩니다.
 
-알아야 하는 이유는 단순합니다. 앤트로픽은 AI를 빠르게 만드는 회사이면서, 동시에 그 위험을 측정하고 통제하는 방법을 회사 핵심 미션으로 둡니다. "AI safety as a systematic science"(체계적 과학으로서의 AI 안전성)라는 표현이 공식 문서에 반복되는 회사라는 사실을 알면, Claude가 다른 AI와 답변, 정책에서 왜 다르게 움직이는지 이해가 빨라집니다.
+알아야 하는 이유는 단순합니다. 앤트로픽은 AI를 빠르게 만드는 회사이면서, 동시에 그 위험을 측정하고 통제하는 방법을 회사 핵심 미션으로 둡니다. "AI safety as a systematic science"(체계적 과학으로서의 AI 안전성)라는 표현이 공식 문서에 반복되는 회사인 점을 알면, Claude가 다른 AI와 답변, 정책에서 왜 다르게 움직이는지 이해가 빨라집니다.
 
 ## 👥 누가, 언제 만든 회사일까요?
 
