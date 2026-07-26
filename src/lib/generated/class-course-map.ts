@@ -11,6 +11,7 @@ export const CLASS_COURSE_MAP: Record<string, string> = {
   "claude-for-educators": "claude-in-practice",
   "claude-for-marketers": "claude-in-practice",
   "claude-model-family": "claude-fundamentals",
+  "claude-plans-comparison": "claude-in-practice",
   "claude-vs-other-llms": "claude-fundamentals",
   "context-window-explained": "claude-fundamentals",
   "four-ds-of-ai-fluency": "claude-fundamentals",
