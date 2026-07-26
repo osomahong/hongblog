@@ -5,6 +5,7 @@ export const CLASS_COURSE_MAP: Record<string, string> = {
   "claude-code-installation-basics": "claude-code-for-everyone",
   "claude-code-memory": "claude-code-for-everyone",
   "claude-code-plan-mode": "claude-code-for-everyone",
+  "claude-code-plans-and-limits": "claude-code-for-everyone",
   "claude-cowork-overview": "claude-in-practice",
   "claude-document-workflow": "claude-in-practice",
   "claude-for-educators": "claude-in-practice",
