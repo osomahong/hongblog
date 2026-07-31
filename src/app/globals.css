@@ -533,6 +533,11 @@
   display: none;
 }
 
+/* 자동 광고가 body에 직접 삽입한 컨테이너도 미채움이면 숨겨 푸터 아래 빈 공간을 없앤다 */
+ins.adsbygoogle-noablate[data-ad-status="unfilled"] {
+  display: none !important;
+}
+
 
 /* AI-Practice 유도 팝업: 아래에서 살짝 떠오르는 진입 애니메이션 */
 @keyframes aip-promo-up {

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import Script from "next/script";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { SITE_URL } from "@/lib/constants";
 import "./globals.css";
 
@@ -95,12 +96,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        {/* Google AdSense */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7390905088794850"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link
@@ -111,6 +107,8 @@ export default function RootLayout({
         />
       </head>
       <body className={`${pretendard.variable} antialiased min-h-screen flex flex-col`}>
+        {/* Google AdSense: AI-Practice 경로에서는 로드하지 않는다 */}
+        <AdSenseLoader />
         {/* Google Tag Manager */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
