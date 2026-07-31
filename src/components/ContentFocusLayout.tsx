@@ -34,7 +34,7 @@ export function ContentFocusLayout({ children, sidebar, contentTitle, focusSideb
         // Send GTM event based on action
         if (contentTitle) {
             const eventName = willExpand ? "click_expand" : "click_compress";
-            sendGAEvent(eventName, { content_title: contentTitle });
+            sendGAEvent(eventName, { content_name: contentTitle });
         }
     }, [isFocusMode, contentTitle]);
 

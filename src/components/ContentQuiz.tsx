@@ -33,7 +33,7 @@ export function ContentQuiz({ quiz, contentType, contentSlug, contentName }: Con
       content_type: contentType,
       content_id: contentSlug,
       content_name: contentName,
-      question_index: 0,
+      position: 0,
       selected_option: optionIndex,
       is_correct: q.correctIndex === optionIndex,
     });

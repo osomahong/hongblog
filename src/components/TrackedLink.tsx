@@ -18,7 +18,7 @@ export function TrackedLink({ href, eventName, contentTitle, contentId, classNam
         <Link
             href={href}
             className={className}
-            onClick={() => sendGAEvent(eventName, { content_title: contentTitle, content_id: contentId })}
+            onClick={() => sendGAEvent(eventName, { content_name: contentTitle, content_id: contentId })}
         >
             {children}
         </Link>
