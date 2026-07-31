@@ -3,7 +3,7 @@
 hongblog(GTM-5H3Z6ZLZ, GA4 G-ZR3B2C2QG1)의 이벤트 수집 체계를 관리하는 기준 문서다.
 새 이벤트나 매개변수를 추가하기 전에 반드시 이 문서를 먼저 확인하고, 변경 후에는 이 문서를 갱신한다.
 
-- 기준 시점: 2026-07-31, GTM 라이브 버전 v10 (param-consolidation)
+- 기준 시점: 2026-07-31, GTM 라이브 버전 v11 (aipractice-promo-events)
 - GTM 컨테이너: 준이아빠블로그 `GTM-5H3Z6ZLZ` (accounts/6334092009/containers/240704263)
 - 전송 함수: `src/lib/gtm.ts`의 `sendGAEvent(eventName, params)` (dataLayer.push)
 
@@ -58,7 +58,10 @@ GA4 측정기준은 과거 조회를 위해 남겨 두었다.
 `content_id`, `content_name`
 
 view_insights, view_class, view_faq, view_life, view_logs, view_tag, view_about,
-related_insights, related_classes, related_faqs, related_logs
+related_insights, related_classes, related_faqs, related_logs,
+view_aipractice_promo, close_aipractice_promo (AI-Practice 유도 팝업 노출과 닫기.
+content_id는 팝업이 뜬 글의 슬러그. 전송: `AiPracticePromo.tsx`.
+CTA 클릭은 click_aipractice_start에 button_name "content_popup"으로 수집)
 
 ### GA4 - Event - 메인이벤트 관련
 `content_id`, `content_name`
@@ -122,4 +125,5 @@ scroll (`scroll_depth`)
 ## 변경 이력
 
 - 2026-07-31: v8 AI-Practice 이벤트 세팅, v9 퀴즈 태그 content_title → content_name 정정. GA4 이벤트 범위 맞춤 측정기준 10개 등록(mission_index, mission_name, quiz_score, question_index, position, course_slug, is_new_course, method, share_transport, item_id). 이 문서 최초 작성.
+- 2026-07-31: v11 aipractice-promo-events 게시. AI 관련 인사이트, 클래스에서 50% 스크롤 시 노출되는 AI-Practice 유도 팝업 이벤트(view_aipractice_promo, close_aipractice_promo) 수집 추가. 두 트리거를 기존 콘텐츠 관련 태그에 연결 (새 매개변수 없음).
 - 2026-07-31: v10 param-consolidation 게시. 서수 통합(mission_index, question_index → position), dataLayer 키 content_name 통일과 DLV - content_title 삭제, click_compress 트리거 추가, share 태그 content_name 추가, aipbl_start resume_from 매핑과 측정기준 등록, 미사용 addToCart 트리거 삭제. `sendGAEvent`가 dataLayer 큐를 직접 초기화하도록 수정해 GTM 로드 전 이벤트 유실 제거.

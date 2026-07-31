@@ -7,6 +7,8 @@ import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from 
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
+import { AiPracticePromo } from "@/components/AiPracticePromo";
+import { isAiPracticeTopic } from "@/lib/aipractice-topic";
 import { ClassProgressMarker } from "@/components/ClassProgressMarker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
@@ -238,6 +240,10 @@ export default async function ClassDetailPage({ params }: Props) {
                     contentSlug={classSlug}
                 />
                 <ClassProgressMarker slug={classSlug} />
+                {/* AI 관련 클래스에서 50% 스크롤 시 AI-Practice 유도 팝업 */}
+                {isAiPracticeTopic(classData.category, classData.tags) && (
+                    <AiPracticePromo contentId={classSlug} contentName={classData.term} />
+                )}
 
                 {/* Breadcrumb & Back Button */}
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
