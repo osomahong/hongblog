@@ -61,25 +61,45 @@ export function Nav() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <div className="hidden sm:flex items-center gap-1">
-            {NAV_LINKS.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => sendGAEvent("click_nav", { menu_name: label })}
-                className={cn(
-                  "px-4 py-2 font-bold uppercase text-sm tracking-wide transition-colors",
-                  isApTheme
-                    ? cn(
-                        "text-gray-300 hover:text-[#ffd700]",
-                        pathname?.startsWith(href) && "text-[#ff5c7d]"
-                      )
-                    : "hover:bg-[#FF0033] hover:text-white hover:border-black border-2 border-transparent"
-                )}
-              >
-                {label}
-              </Link>
-            ))}
+          <div className="hidden sm:flex items-center gap-1.5">
+            {NAV_LINKS.map(({ href, label }) => {
+              // AI-Practice는 핵심 메뉴라 다크 필 + 히어로 그라데이션 텍스트로 강조한다
+              if (href === "/ai-practice") {
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                    className={cn(
+                      "nav-aip-pill px-4 py-2 mr-1.5 font-bold uppercase text-sm tracking-wide transition-all hover:brightness-125",
+                      isApTheme
+                        ? "border border-white/20"
+                        : "neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+                    )}
+                  >
+                    <span className="nav-aip-text">{label}</span>
+                  </Link>
+                );
+              }
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                  className={cn(
+                    "px-4 py-2 font-bold uppercase text-sm tracking-wide transition-colors",
+                    isApTheme
+                      ? cn(
+                          "text-gray-300 hover:text-[#ffd700]",
+                          pathname?.startsWith(href) && "text-[#ff5c7d]"
+                        )
+                      : "hover:bg-[#FF0033] hover:text-white hover:border-black border-2 border-transparent"
+                  )}
+                >
+                  {label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,21 +125,38 @@ export function Nav() {
               isApTheme ? "border-t border-white/10" : "border-t-2 border-black"
             )}
           >
-            {NAV_LINKS.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
-                className={cn(
-                  "block px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
-                  isApTheme
-                    ? "text-gray-200 hover:text-[#ffd700]"
-                    : "hover:bg-[#FF0033] hover:text-white"
-                )}
-              >
-                {label}
-              </Link>
-            ))}
+            {NAV_LINKS.map(({ href, label }) => {
+              if (href === "/ai-practice") {
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
+                    className={cn(
+                      "nav-aip-pill block text-center mx-2 my-2 px-4 py-2.5 font-bold uppercase text-sm tracking-wide",
+                      isApTheme && "border border-white/20"
+                    )}
+                  >
+                    <span className="nav-aip-text">{label}</span>
+                  </Link>
+                );
+              }
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
+                  className={cn(
+                    "block px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
+                    isApTheme
+                      ? "text-gray-200 hover:text-[#ffd700]"
+                      : "hover:bg-[#FF0033] hover:text-white"
+                  )}
+                >
+                  {label}
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>

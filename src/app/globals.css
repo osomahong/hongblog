@@ -554,3 +554,18 @@ ins.adsbygoogle-noablate[data-ad-status="unfilled"] {
 .aip-promo-in {
   animation: aip-promo-up 0.35s ease-out both;
 }
+
+/* ===== 내비 AI-Practice 강조 버튼 =====
+ * 다크 필 위에 AI-Practice 히어로와 같은 그라데이션 텍스트를 얹는다.
+ */
+.nav-aip-pill {
+  background-color: #111215;
+  border-radius: 999px;
+}
+
+.nav-aip-text {
+  background: linear-gradient(95deg, #7dd3fc 0%, #a78bfa 35%, #ff5c7d 70%, #ffd700 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
