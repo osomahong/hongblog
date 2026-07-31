@@ -48,6 +48,11 @@ npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 �
   사이트맵에서도 빠진다. noindex 페이지를 사이트맵에 넣지 않는다는 원칙을 코드가 강제한다.
 - 새 페이지 타입을 만들면 canonical, og:image, 구조화 데이터를 반드시 넣는다.
   `scripts/seo-audit.ts`가 누락을 잡아준다.
+- **모든 문장 생성(콘텐츠, UI 카피, 메타 필드)에 AEO/GEO 정의 문장 규칙을 적용한다.**
+  페이지 도입부와 metaDescription의 첫 문장은 핵심 개체를 포함한 "X는 Y입니다" 단정형
+  정의로 쓰고, 메타·본문·JSON-LD 세 곳의 개체와 정의 표현을 일치시킨다. 행동 유도
+  문구는 쓰지 않는다. 상세: `.claude/skills/content-ops/references/writing-style-guide.md`의
+  "페이지 정의 문장 규칙" 섹션.
 
 
 ## Architecture
@@ -94,6 +99,17 @@ scripts/
 - `NeoCard` on mobile: transparent bg, no border/shadow; on sm+: white bg with full neo styling
 - Font: Pretendard (Korean-optimized, loaded in root layout)
 - Mobile base font: `16px`; desktop `html { font-size: 110% }`
+
+### 정렬 규칙 (AI-Practice 포함 전 페이지 공통)
+
+**정렬은 매우 중요하다.** 한 섹션 안의 블록 요소(카드, 그리드, 목업, `pre` 등)는
+좌우 끝을 모두 컨테이너 폭에 맞춘다.
+
+- 같은 섹션의 카드/그리드가 여러 개면 **전부 같은 폭**을 쓴다. 단일 카드에만
+  `max-w-*`를 걸어 위 그리드와 오른쪽 끝이 어긋나게 하지 말 것.
+- `max-w-3xl`은 **본문 문단(가독성 목적)에만** 허용한다. 카드, 코드 블록, 목업 같은
+  시각 블록에는 쓰지 않는다.
+- 새 섹션을 만들면 커밋 전에 위아래 섹션과 좌우 가장자리가 일치하는지 스크린샷으로 확인한다.
 
 ### Content agent system
 

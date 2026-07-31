@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { sendGAEvent } from "@/lib/gtm";
 
-export type ContentType = "post" | "class" | "tags" | "about";
+export type ContentType = "post" | "class" | "tags" | "about" | "ai_practice";
 
 type Props = {
   contentType: ContentType;
@@ -38,6 +38,7 @@ export function ViewTracker({
       post: "view_insights",
       tags: "view_tag",
       about: "view_about",
+      ai_practice: "view_ai_practice",
     };
 
     const eventName = eventMapping[contentType];
