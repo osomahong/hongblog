@@ -360,6 +360,7 @@ export default async function InsightDetailPage({ params }: Props) {
                 contentType="post"
                 contentSlug={slug}
                 contentName={post.title}
+                practiceBanner={isAiPracticeTopic(post.category, post.tags)}
               />
             )}
           </article>

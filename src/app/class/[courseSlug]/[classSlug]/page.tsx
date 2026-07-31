@@ -431,6 +431,7 @@ export default async function ClassDetailPage({ params }: Props) {
                                     contentType="class"
                                     contentSlug={classSlug}
                                     contentName={classData.term}
+                                    practiceBanner={isAiPracticeTopic(classData.category, classData.tags)}
                                 />
                             </div>
                         )}

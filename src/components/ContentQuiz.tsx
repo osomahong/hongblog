@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { CircleHelp, CircleCheck, CircleX, RotateCcw } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CircleHelp, CircleCheck, CircleX, RotateCcw } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
@@ -12,11 +13,19 @@ interface ContentQuizProps {
   contentType?: string;
   contentSlug?: string;
   contentName?: string;
+  /** AI 관련 글이면 퀴즈 풀이 후 AI-Practice 이동 배너를 보여 준다 (팝업 억제와 무관하게 항상) */
+  practiceBanner?: boolean;
 }
 
 const LABELS = ["A", "B", "C", "D", "E", "F"];
 
-export function ContentQuiz({ quiz, contentType, contentSlug, contentName }: ContentQuizProps) {
+export function ContentQuiz({
+  quiz,
+  contentType,
+  contentSlug,
+  contentName,
+  practiceBanner,
+}: ContentQuizProps) {
   const [selected, setSelected] = useState<number | null>(null);
 
   const q = quiz[0];
@@ -127,6 +136,28 @@ export function ContentQuiz({ quiz, contentType, contentSlug, contentName }: Con
             {q.explanation}
           </p>
         </div>
+      )}
+
+      {/* AI-Practice 이동 배너: 퀴즈를 풀면 노출. 팝업을 닫았어도 여기서 이동할 수 있다 */}
+      {answered && practiceBanner && (
+        <Link
+          href="/ai-practice"
+          onClick={() =>
+            sendGAEvent("click_aipractice_start", {
+              content_id: "ai-practice",
+              content_name: "AI-Practice",
+              button_name: "quiz_banner",
+            })
+          }
+          className="mt-4 sm:mt-5 flex items-center justify-between gap-3 rounded-full bg-[#111215] border-2 border-black px-4 sm:px-5 py-2.5 group transition-all neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+        >
+          <span className="text-xs sm:text-sm font-bold text-white truncate">
+            AI 기초부터 무료 실습 교육, <span className="nav-aip-text">AI-PRACTICE</span>
+          </span>
+          <span className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-gray-300 group-hover:text-white flex-shrink-0 transition-colors">
+            실습하러 가기 <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.2} />
+          </span>
+        </Link>
       )}
 
       {/* 퀴즈 결과 하단 광고: 답 선택 후에만 자연 노출 (클릭 조건 없음) */}

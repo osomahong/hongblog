@@ -61,7 +61,8 @@ view_insights, view_class, view_faq, view_life, view_logs, view_tag, view_about,
 related_insights, related_classes, related_faqs, related_logs,
 view_aipractice_promo, close_aipractice_promo (AI-Practice 유도 팝업 노출과 닫기.
 content_id는 팝업이 뜬 글의 슬러그. 전송: `AiPracticePromo.tsx`.
-CTA 클릭은 click_aipractice_start에 button_name "content_popup"으로 수집)
+CTA 클릭은 click_aipractice_start에 button_name "content_popup",
+퀴즈 풀이 후 이동 배너 클릭은 button_name "quiz_banner"로 수집)
 
 ### GA4 - Event - 메인이벤트 관련
 `content_id`, `content_name`

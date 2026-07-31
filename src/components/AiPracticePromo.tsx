@@ -3,7 +3,7 @@
 /**
  * AI-Practice 유도 팝업 (CRM 스타일).
  * AI 관련 인사이트, 클래스 글에서 본문 50% 스크롤 시 한 번 나타나 AI-Practice로 안내한다.
- * 노출 억제: 세션당 1회, 닫으면 7일, CTA 클릭이면 30일 동안 다시 보이지 않는다.
+ * 노출 억제: 세션당 1회(그냥 닫기 포함), "오늘 하루 보지 않기"와 CTA 클릭은 오늘 자정까지.
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -13,14 +13,11 @@ import { sendGAEvent } from "@/lib/gtm";
 
 const STORAGE_KEY = "hongblog-aipractice-promo";
 const SESSION_KEY = "hongblog-aipractice-promo-session";
-const DISMISS_HIDE_DAYS = 7;
-const CLICK_HIDE_DAYS = 30;
-const DAY_MS = 24 * 60 * 60 * 1000;
 const SCROLL_THRESHOLD = 0.5;
 
 interface PromoState {
-  dismissedAt?: number;
-  clickedAt?: number;
+  /** 이 시각(오늘 자정)까지 미노출 */
+  hideUntil?: number;
 }
 
 function readState(): PromoState {
@@ -35,9 +32,12 @@ function readState(): PromoState {
   }
 }
 
-function writeState(patch: PromoState): void {
+/** 오늘 자정까지 미노출로 저장한다 */
+function hideForToday(): void {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...readState(), ...patch }));
+    const midnight = new Date();
+    midnight.setHours(23, 59, 59, 999);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ hideUntil: midnight.getTime() }));
   } catch {
     // localStorage를 쓸 수 없는 환경에서는 조용히 건너뛴다
   }
@@ -58,9 +58,7 @@ export function AiPracticePromo({ contentId, contentName }: AiPracticePromoProps
     try {
       if (sessionStorage.getItem(SESSION_KEY)) return;
       const state = readState();
-      const now = Date.now();
-      if (state.clickedAt && now - state.clickedAt < CLICK_HIDE_DAYS * DAY_MS) return;
-      if (state.dismissedAt && now - state.dismissedAt < DISMISS_HIDE_DAYS * DAY_MS) return;
+      if (state.hideUntil && Date.now() < state.hideUntil) return;
     } catch {
       return;
     }
@@ -84,14 +82,21 @@ export function AiPracticePromo({ contentId, contentName }: AiPracticePromoProps
     return () => window.removeEventListener("scroll", onScroll);
   }, [contentId, contentName]);
 
+  // 그냥 닫기: 이 세션에서만 숨긴다 (노출 시 저장된 세션 키가 재노출을 막는다)
   const dismiss = () => {
     setVisible(false);
-    writeState({ dismissedAt: Date.now() });
+    sendGAEvent("close_aipractice_promo", { content_id: contentId, content_name: contentName });
+  };
+
+  // 오늘 하루 보지 않기: 자정까지 숨긴다
+  const dismissToday = () => {
+    setVisible(false);
+    hideForToday();
     sendGAEvent("close_aipractice_promo", { content_id: contentId, content_name: contentName });
   };
 
   const clickCta = () => {
-    writeState({ clickedAt: Date.now() });
+    hideForToday();
     sendGAEvent("click_aipractice_start", {
       content_id: "ai-practice",
       content_name: "AI-Practice",
@@ -138,13 +143,22 @@ export function AiPracticePromo({ contentId, contentName }: AiPracticePromoProps
           공간입니다. 프롬프트 기초부터 심화까지 열려 있고, AI 셀프 교육 콘텐츠가 계속
           추가됩니다.
         </p>
-        <Link
-          href="/ai-practice"
-          onClick={clickCta}
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FF0000] text-white text-sm font-bold border-2 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
-        >
-          AI-Practice 살펴보기 <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
-        </Link>
+        <div className="flex items-center justify-between gap-3">
+          <Link
+            href="/ai-practice"
+            onClick={clickCta}
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FF0000] text-white text-sm font-bold border-2 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+          >
+            AI-Practice 살펴보기 <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
+          </Link>
+          <button
+            type="button"
+            onClick={dismissToday}
+            className="text-xs text-gray-500 hover:text-black underline underline-offset-2 transition-colors flex-shrink-0"
+          >
+            오늘 하루 보지 않기
+          </button>
+        </div>
         </div>
       </div>
     </div>
