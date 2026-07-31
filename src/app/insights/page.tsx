@@ -122,7 +122,7 @@ export default async function InsightsPage() {
           const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
           return (
             <Link key={post.id} href={`/insights/${post.slug}`}>
-              <NeoTiltCard className={`h-full ${index % 3 === 0 ? 'tape-top mt-4' : index % 3 === 1 ? 'zigzag-bottom mb-4' : ''}`}>
+              <NeoTiltCard className={`h-full ${index % 3 === 0 ? 'tape-top mt-4' : index % 3 === 1 ? 'zigzag-bottom sm:mb-4' : ''}`}>
                 <NeoCardHeader>
                   <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap relative z-10">
                     <NeoBadge

@@ -18,6 +18,7 @@ import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 import { CourseCurriculumPanel } from "@/components/CourseCurriculumPanel";
 import { ContentUpdateNotice } from "@/components/ContentUpdateNotice";
+import { ShareBar } from "@/components/ShareBar";
 import { extractFaqPairs } from "@/lib/extract-faq";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
@@ -118,6 +119,14 @@ export default async function ClassDetailPage({ params }: Props) {
     // Schema.org JSON-LD
     const articleImage = classData.ogImage ? absoluteUrl(classData.ogImage) : absoluteUrl("/og-default.png");
     const classUrl = absoluteUrl(`/class/${courseSlug}/${classSlug}`);
+
+    // 공유 카드(제목/설명/이미지)는 og 메타와 같은 값을 쓴다.
+    const sharePayload = {
+        title: classData.metaTitle || classData.term,
+        description: classData.metaDescription || classData.definition,
+        image: articleImage,
+        path: `/class/${courseSlug}/${classSlug}`,
+    };
 
     const jsonLd = {
         "@context": "https://schema.org",
@@ -268,11 +277,18 @@ export default async function ClassDetailPage({ params }: Props) {
                                     currentSlug={classSlug}
                                 />
                                 <AuthorCard />
+                                <ShareBar
+                                    payload={sharePayload}
+                                    contentType="class"
+                                    contentId={classSlug}
+                                    variant="panel"
+                                    className="hidden lg:block"
+                                />
                             </div>
                         ) : undefined
                     }
                     sidebar={
-                        <div className="lg:sticky lg:top-24 space-y-4 sm:space-y-6">
+                        <div className="lg:sticky lg:top-24 space-y-4 sm:space-y-6 lg:space-y-4 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
                             {/* Course Info */}
                             {course && (
                                 <NeoCard className="p-4 sm:p-6">
@@ -314,6 +330,15 @@ export default async function ClassDetailPage({ params }: Props) {
 
                             {/* Author Card */}
                             <AuthorCard />
+
+                            {/* PC 전용 공유 패널. 모바일은 글 상단 compact 바를 그대로 쓴다. */}
+                            <ShareBar
+                                payload={sharePayload}
+                                contentType="class"
+                                contentId={classSlug}
+                                variant="panel"
+                                className="hidden lg:block"
+                            />
                         </div>
                     }
                 >
@@ -355,6 +380,15 @@ export default async function ClassDetailPage({ params }: Props) {
                             </div>
                         </header>
 
+                        {/* 모바일 전용. PC에서는 사이드바 하단 패널로 옮겨진다. */}
+                        <ShareBar
+                            payload={sharePayload}
+                            contentType="class"
+                            contentId={classSlug}
+                            variant="compact"
+                            className="mb-4 sm:mb-6 lg:hidden"
+                        />
+
                         {/* Content */}
                         <NeoCard className="prose prose-sm sm:prose-lg max-w-none sm:p-8 mb-6 sm:mb-8">
                             <NeoCardContent>
@@ -375,6 +409,14 @@ export default async function ClassDetailPage({ params }: Props) {
                                 )}
                             </NeoCardContent>
                         </NeoCard>
+
+                        <ShareBar
+                            payload={sharePayload}
+                            contentType="class"
+                            contentId={classSlug}
+                            variant="full"
+                            className="mb-6 sm:mb-8"
+                        />
 
                         {classData.quiz && classData.quiz.length > 0 && (
                             <div className="mb-6 sm:mb-8">

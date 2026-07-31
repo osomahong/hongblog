@@ -19,6 +19,7 @@ import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 import { RelatedPosts } from "@/components/RelatedPosts";
+import { ShareBar } from "@/components/ShareBar";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
 import { getRelatedPosts } from "@/lib/related-posts";
@@ -112,6 +113,14 @@ export default async function InsightDetailPage({ params }: Props) {
   const [contentBeforeAd, contentAfterAd] = splitMarkdownAtNthH2(post.content, 2);
 
   const articleImage = absoluteUrl(post.ogImage || post.thumbnailUrl || "/og-default.png");
+
+  // 공유 카드(제목/설명/이미지)는 og 메타와 같은 값을 쓴다.
+  const sharePayload = {
+    title: post.ogTitle || post.metaTitle || post.title,
+    description: post.ogDescription || post.metaDescription || post.excerpt || "",
+    image: articleImage,
+    path: `/insights/${slug}`,
+  };
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -224,7 +233,7 @@ export default async function InsightDetailPage({ params }: Props) {
         <ContentFocusLayout
           contentTitle={post.title}
           sidebar={
-            <div className="lg:sticky lg:top-24 space-y-3 sm:space-y-6">
+            <div className="lg:sticky lg:top-24 space-y-3 sm:space-y-6 lg:space-y-4 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
               {/* Related Classes */}
               {relatedClasses.length > 0 && (
                 <NeoCard className="bg-white p-3 sm:p-6 bg-stripes neo-border-thick">
@@ -257,6 +266,15 @@ export default async function InsightDetailPage({ params }: Props) {
 
               {/* Author Card */}
               <AuthorCard />
+
+              {/* PC 전용 공유 패널. 모바일은 글 상단 compact 바를 그대로 쓴다. */}
+              <ShareBar
+                payload={sharePayload}
+                contentType="post"
+                contentId={slug}
+                variant="panel"
+                className="hidden lg:block"
+              />
             </div>
           }
         >
@@ -290,6 +308,15 @@ export default async function InsightDetailPage({ params }: Props) {
               </div>
             </header>
 
+            {/* 모바일 전용. PC에서는 사이드바 하단 패널로 옮겨진다. */}
+            <ShareBar
+              payload={sharePayload}
+              contentType="post"
+              contentId={slug}
+              variant="compact"
+              className="mb-4 sm:mb-6 lg:hidden"
+            />
+
             {heroImage && (
               <ContentHeroImage src={heroImage} alt={`${post.title} 대표 이미지`} />
             )}
@@ -310,6 +337,14 @@ export default async function InsightDetailPage({ params }: Props) {
                 )}
               </NeoCardContent>
             </NeoCard>
+
+            <ShareBar
+              payload={sharePayload}
+              contentType="post"
+              contentId={slug}
+              variant="full"
+              className="mt-6 sm:mt-8"
+            />
 
             <RelatedPosts posts={relatedPosts} />
 
