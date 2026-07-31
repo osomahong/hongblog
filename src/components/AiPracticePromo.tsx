@@ -108,11 +108,21 @@ export function AiPracticePromo({ contentId, contentName }: AiPracticePromoProps
       role="dialog"
       aria-label="AI-Practice 실습 안내"
     >
-      <div className="border-4 border-black bg-white neo-shadow-lg p-5">
+      <div className="border-4 border-black bg-white neo-shadow-lg overflow-hidden">
+        {/* 썸네일: AI-Practice 히어로 */}
+        <Link href="/ai-practice" onClick={clickCta} className="block border-b-4 border-black">
+          <img
+            src="/images/ai-practice/promo-thumb.png"
+            alt="AI-PRACTICE: 실습으로 배우는 PBL 기반 AI Self Education"
+            className="w-full block"
+            loading="lazy"
+          />
+        </Link>
+        <div className="p-5">
         <div className="flex items-start justify-between gap-3 mb-2">
           <p className="flex items-center gap-2 font-black text-base tracking-tight">
             <Sparkles className="w-4 h-4 text-[#FF0000] flex-shrink-0" strokeWidth={2.2} />
-            읽은 내용, 실습으로 이어가기
+            AI 기초부터 무료 실습 교육
           </p>
           <button
             type="button"
@@ -135,6 +145,7 @@ export function AiPracticePromo({ contentId, contentName }: AiPracticePromoProps
         >
           AI-Practice 살펴보기 <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
         </Link>
+        </div>
       </div>
     </div>
   );
