@@ -29,15 +29,21 @@ const ELEMENT_DEFINITIONS = [
 export const dynamic = "force-static";
 
 const PAGE_TITLE = "프롬프트 기초 AIPBL: 역할, 맥락, 형식으로 완성하는 첫 프롬프트";
+// AEO 정의 문장: 헤더 도입부, JSON-LD description과 삼중 정렬
 const PAGE_DESC =
-  "프롬프트 기초 AIPBL에서는 AI에게 요청할 프롬프트를 작성하는 맥락을 실습으로 배울 수 있습니다. 이런 방식을 흔히 프롬프트 엔지니어링이라고 하며, 내가 어떻게 요청해야 AI에게 원하는 답변을 받을 수 있을지 생각하며 실습을 진행해 보세요.";
+  "프롬프트 기초 AIPBL은 역할, 맥락, 형식 3요소를 갖춘 첫 프롬프트를 실습 채팅에서 완성하는 프로젝트 실습입니다. 같은 질문이라도 요청 방법에 따라 AI 답변이 어떻게 달라지는지 직접 비교하며 프롬프트 엔지니어링의 기본기를 익힙니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/ai-practice/prompt-basics` },
-  // 초안 단계: 공개 확정 시 noindex 제거
-  robots: { index: false, follow: false },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
+    type: "website",
+    url: `${SITE_URL}/ai-practice/prompt-basics`,
+    images: [{ url: `${SITE_URL}/og-default.png`, width: 1200, height: 630 }],
+  },
 };
 
 export default function PromptBasicsPage() {
@@ -77,7 +83,7 @@ export default function PromptBasicsPage() {
         index="01"
         code="Prompt Basics"
         title="프롬프트 기초"
-        description="프롬프트 기초 AIPBL에서는 AI에게 요청할 프롬프트를 작성하는 맥락을 실습으로 배울 수 있습니다. 이런 방식을 흔히 프롬프트 엔지니어링이라고 하며, 내가 어떻게 요청해야 AI에게 원하는 답변을 받을 수 있을지 생각하며 실습을 진행해 보세요."
+        description={PAGE_DESC}
         meta={[
           { iconSrc: "/images/ai-practice/icons/difficulty.png", text: "난이도 기초" },
           { iconSrc: "/images/ai-practice/icons/time.png", text: "약 15분" },

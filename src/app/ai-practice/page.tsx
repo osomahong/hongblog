@@ -10,13 +10,22 @@ import { ListViewTracker } from "@/components/ListViewTracker";
 
 export const dynamic = "force-static";
 
+const PAGE_TITLE = "AI-Practice: PBL 기반 AI Self Education";
+// AEO 정의 문장: 히어로 도입부, JSON-LD description과 삼중 정렬
+const PAGE_DESC =
+  "AI-PRACTICE는 실습으로 AI와 AX(AI 전환)를 배우는 PBL 기반 AI Self Education 웹사이트입니다. 모든 교육은 웹사이트 안의 실습 화면에서 정해진 패턴의 AIPBL(프로젝트 기반 AI 실습)로 진행됩니다.";
+
 export const metadata: Metadata = {
-  title: "AI-Practice: PBL 기반 AI Self Education",
-  description:
-    "실습으로 AI와 AX를 배우는 PBL 기반 AI Self Education 웹사이트입니다. AI 교육을 웹사이트 안의 실습 화면에서 정해진 패턴의 AIPBL(프로젝트 기반 AI 실습)로 진행합니다.",
+  title: PAGE_TITLE,
+  description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/ai-practice` },
-  // 초안 단계: 공개 확정 시 noindex 제거
-  robots: { index: false, follow: false },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
+    type: "website",
+    url: `${SITE_URL}/ai-practice`,
+    images: [{ url: `${SITE_URL}/og-default.png`, width: 1200, height: 630 }],
+  },
 };
 
 /** AIPBL의 고정 진행 패턴 */
@@ -71,14 +80,13 @@ export default function AiPracticePage() {
     "@context": "https://schema.org",
     "@type": "LearningResource",
     "@id": `${SITE_URL}/ai-practice#learningresource`,
-    name: "AI-Practice: PBL 기반 AI Self Education",
+    name: PAGE_TITLE,
     url: `${SITE_URL}/ai-practice`,
-    description:
-      "실습으로 AI와 AX를 배우는 PBL 기반 AI Self Education 웹사이트입니다. AI 교육을 웹사이트 안의 실습 화면에서 정해진 패턴의 AIPBL(프로젝트 기반 AI 실습)로 진행합니다.",
+    description: PAGE_DESC,
     inLanguage: "ko",
     learningResourceType: "프로젝트 기반 학습(PBL)",
-    teaches: ["AI 활용", "AX", "프롬프트 기초", "AI 업무 자동화", "바이브코딩"],
-    educationalLevel: "입문",
+    teaches: ["AI 활용", "AX", "프롬프트 엔지니어링", "AI 업무 자동화", "바이브코딩"],
+    educationalLevel: "입문부터 심화",
     isPartOf: { "@id": `${SITE_URL}/#website` },
   };
 

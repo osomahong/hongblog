@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${track.title}: AI-Practice 실습`,
     description: track.subtitle,
     alternates: { canonical: `${SITE_URL}/ai-practice/${track.slug}` },
-    // 초안 단계: 공개 확정 시 noindex 제거
+    // 레거시 텍스트 트랙: AIPBL 실습으로 대체되어 비색인 유지 (사이트맵 미포함)
     robots: { index: false, follow: false },
   };
 }

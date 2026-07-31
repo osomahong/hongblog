@@ -20,6 +20,7 @@
 
 - **Insights** (`/insights/{slug}`): 마케팅, AI, 데이터 분석에 대한 심화 인사이트
 - **Class** (`/class/{courseSlug}/{classSlug}`): 체계적으로 정리된 개념 학습 콘텐츠
+- **AI-Practice** (`/ai-practice`): PBL 기반 AI Self Education. 프롬프트 기초, 중급, 심화 AIPBL(프로젝트 기반 AI 실습)을 웹 실습 화면에서 진행
 
 ## 핵심 전문 분야
 

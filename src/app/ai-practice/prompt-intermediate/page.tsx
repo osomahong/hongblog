@@ -29,15 +29,21 @@ const ELEMENT_DEFINITIONS = [
 export const dynamic = "force-static";
 
 const PAGE_TITLE = "프롬프트 중급 AIPBL: 예시, 단계, 질문으로 끌어올리는 답변 수준";
+// AEO 정의 문장: 헤더 도입부, JSON-LD description과 삼중 정렬
 const PAGE_DESC =
-  "프롬프트 중급 AIPBL에서는 예시 제시, 단계 나누기, 질문 유도 세 가지 프롬프트 기술을 실습으로 배울 수 있습니다. 기초에서 익힌 역할, 맥락, 형식 위에 이 세 기술을 더하면 답변의 톤과 깊이를 원하는 방향으로 끌어올릴 수 있습니다.";
+  "프롬프트 중급 AIPBL은 예시 제시, 단계 나누기, 질문 유도 세 가지 기술로 AI 답변의 수준을 끌어올리는 프로젝트 실습입니다. 기초에서 익힌 역할, 맥락, 형식 위에 세 기술을 더해 답변의 톤과 깊이를 원하는 방향으로 조정합니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/ai-practice/prompt-intermediate` },
-  // 초안 단계: 공개 확정 시 noindex 제거
-  robots: { index: false, follow: false },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
+    type: "website",
+    url: `${SITE_URL}/ai-practice/prompt-intermediate`,
+    images: [{ url: `${SITE_URL}/og-default.png`, width: 1200, height: 630 }],
+  },
 };
 
 export default function PromptIntermediatePage() {
@@ -81,7 +87,7 @@ export default function PromptIntermediatePage() {
         index="02"
         code="Prompt Intermediate"
         title="프롬프트 중급"
-        description="프롬프트 중급 AIPBL에서는 예시 제시, 단계 나누기, 질문 유도 세 가지 프롬프트 기술을 실습으로 배울 수 있습니다. 기초에서 익힌 역할, 맥락, 형식 위에 이 세 기술을 더하면 답변의 톤과 깊이를 원하는 방향으로 끌어올릴 수 있습니다."
+        description={PAGE_DESC}
         meta={[
           { iconSrc: "/images/ai-practice/icons/difficulty.png", text: "난이도 중급" },
           { iconSrc: "/images/ai-practice/icons/time.png", text: "약 20분" },

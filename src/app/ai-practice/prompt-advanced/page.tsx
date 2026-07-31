@@ -29,15 +29,21 @@ const ELEMENT_DEFINITIONS = [
 export const dynamic = "force-static";
 
 const PAGE_TITLE = "프롬프트 심화 AIPBL: 제약 조건, 자기 점검, 메타 프롬프트";
+// AEO 정의 문장: 헤더 도입부, JSON-LD description과 삼중 정렬
 const PAGE_DESC =
-  "프롬프트 심화 AIPBL에서는 제약 조건 걸기, 스스로 점검하게 하기, 메타 프롬프트 세 가지 기술을 실습으로 배울 수 있습니다. 결과물의 기준을 정하고 AI가 스스로 검토하게 만들면, 사람이 결과를 다듬는 시간을 크게 줄일 수 있습니다.";
+  "프롬프트 심화 AIPBL은 제약 조건, 자기 점검, 메타 프롬프트 세 가지 기술로 AI 결과물의 품질을 관리하는 프로젝트 실습입니다. 결과물의 기준을 미리 정하고 AI가 스스로 검토하게 만들어, 사람이 결과를 다듬는 시간을 줄입니다.";
 
 export const metadata: Metadata = {
   title: PAGE_TITLE,
   description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/ai-practice/prompt-advanced` },
-  // 초안 단계: 공개 확정 시 noindex 제거
-  robots: { index: false, follow: false },
+  openGraph: {
+    title: PAGE_TITLE,
+    description: PAGE_DESC,
+    type: "website",
+    url: `${SITE_URL}/ai-practice/prompt-advanced`,
+    images: [{ url: `${SITE_URL}/og-default.png`, width: 1200, height: 630 }],
+  },
 };
 
 export default function PromptAdvancedPage() {
@@ -81,7 +87,7 @@ export default function PromptAdvancedPage() {
         index="03"
         code="Prompt Advanced"
         title="프롬프트 심화"
-        description="프롬프트 심화 AIPBL에서는 제약 조건 걸기, 스스로 점검하게 하기, 메타 프롬프트 세 가지 기술을 실습으로 배울 수 있습니다. 결과물의 기준을 정하고 AI가 스스로 검토하게 만들면, 사람이 결과를 다듬는 시간을 크게 줄일 수 있습니다."
+        description={PAGE_DESC}
         meta={[
           { iconSrc: "/images/ai-practice/icons/difficulty.png", text: "난이도 심화" },
           { iconSrc: "/images/ai-practice/icons/time.png", text: "약 20분" },

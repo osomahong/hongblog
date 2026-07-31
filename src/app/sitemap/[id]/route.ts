@@ -67,6 +67,11 @@ function buildClassSitemap(): SitemapEntry[] {
     { url: `${SITE_URL}/class`, changefreq: "weekly", priority: 0.9 },
     { url: `${SITE_URL}/about`, changefreq: "monthly", priority: 0.6 },
     { url: `${SITE_URL}/tags`, changefreq: "weekly", priority: 0.7 },
+    // AI-Practice: AIPBL 실습 (레거시 [slug] 트랙은 noindex라 제외)
+    { url: `${SITE_URL}/ai-practice`, changefreq: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/ai-practice/prompt-basics`, changefreq: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/ai-practice/prompt-intermediate`, changefreq: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/ai-practice/prompt-advanced`, changefreq: "monthly", priority: 0.8 },
     ...courses.map((c) => ({
       url: `${SITE_URL}/class/${c.slug}`,
       lastModified: validDate(c.publishedAt),
