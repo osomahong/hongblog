@@ -196,6 +196,25 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
               console.warn(`[MarkdownRenderer] 이미지 alt 속성 누락: ${src}`);
             }
             const effectiveAlt = alt || title || "";
+
+            // 영상 파일은 GIF 대체용 무음 자동 반복 재생으로 렌더링한다.
+            // 같은 길이 기준 GIF보다 용량이 10분의 1 수준이고 화질도 낫다.
+            if (typeof src === "string" && /\.(mp4|webm)$/i.test(src)) {
+              return (
+                <video
+                  src={src}
+                  aria-label={effectiveAlt}
+                  title={title}
+                  className="max-w-full h-auto my-3 sm:my-4 border-2 border-black rounded"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+              );
+            }
+
             return (
               <img
                 src={src}
