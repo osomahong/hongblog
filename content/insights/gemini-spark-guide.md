@@ -109,7 +109,20 @@ Google I/O 2026 발표 시점부터 Gemini Enterprise와 구글 워크스페이�
 
 연동 범위도 구글 서비스 바깥으로 넓어지고 있습니다. 이 확장은 [MCP(Model Context Protocol)](/class/claude-code-for-everyone/what-is-mcp)라는 개방형 표준 위에서 이뤄집니다. 앤트로픽이 2024년 11월 공개한 규격으로, AI가 외부 데이터와 서비스에 접근하는 방식을 통일한 것입니다. 구글도 이를 채택해 출시 시점에 Canva, OpenTable, Instacart를 MCP로 연결했고, 2026년 7월 macOS 앱 업데이트에서는 개발자가 직접 도구를 붙이는 MCP 지원이 들어왔습니다. Adobe, 삼성, Spotify, GitHub, Notion, Slack도 파트너로 예고돼 있습니다.
 
-한 가지 짚을 점은 연결 방식입니다. 소비자용 제미나이 앱의 스파크 커넥터는 파트너십 기반이라, 임의의 MCP 서버를 직접 붙이는 구조가 아닙니다. 내가 만든 MCP 서버를 연결하려면 Gemini Enterprise 쪽을 써야 합니다.
+파트너 목록에 없는 도구는 커스텀 앱으로 직접 등록합니다. MCP 서버 URL만 있으면 됩니다.
+
+1. gemini.google.com에서 설정 및 도움말, 연동된 앱(Connected Apps)으로 들어갑니다.
+2. "Custom apps for Spark" 항목에서 커스텀 앱 추가를 누릅니다.
+3. MCP 서버 URL을 입력합니다. 서버가 표준 MCP 사양을 따라야 하고, Dynamic Client Registration을 지원하지 않으면 고급 설정에서 인증 정보를 함께 넣습니다.
+
+웹에서 한 번 연결해 두면 모바일 앱의 스파크에서도 그대로 쓰입니다. 다만 조건이 붙습니다.
+
+- **개인 구글 계정에서만 됩니다**: 회사나 학교 계정으로 로그인한 상태에서는 이 항목이 나오지 않습니다.
+- **활동 저장이 켜져 있어야 합니다**: 이 설정을 꺼 두면 커스텀 앱 연결이 막힙니다.
+- **지역과 연령 조건**: 만 18세 이상이어야 하고, 미국을 시작으로 열리는 중입니다.
+- **보안 책임**: 구글은 커스텀 MCP 서버를 통제하거나 모니터링하지 않습니다. 데이터가 스파크를 떠난 뒤에는 해당 서버의 개인정보 처리 방침이 적용됩니다.
+
+앞서 본 워크스페이스 연동과 방향이 반대라는 점이 눈에 띕니다. Gmail과 Drive를 읽는 개인 인텔리전스는 회사 계정에서도 쓰지만, 커스텀 MCP는 개인 계정에서만 열립니다.
 
 이와 별개로 2026년 6월 업데이트에서 Canva, Dropbox, Instacart, OpenTable, Zillow Rentals 연동이 추가되었고, 7월에는 Chrome 브라우저와 직접 통합되었습니다. 허용해 두면 로그인된 계정과 저장된 비밀번호를 활용해 항공편 조회나 예약 시작 같은 웹 작업까지 대신 처리합니다. 구글은 이 통합에 프롬프트 인젝션 같은 보안 위협을 막는 보호 장치를 함께 적용했고, 결제 단계에서는 제어권을 다시 넘겨준다고 설명합니다.
 
@@ -152,4 +165,5 @@ Google I/O 2026 발표 시점부터 Gemini Enterprise와 구글 워크스페이�
 - [Gemini Spark updates: macOS launch, connected apps and more (구글 공식 블로그)](https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-june-2026/)
 - [Gemini Spark: new Chrome browsing integration (구글 공식 블로그)](https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-july-2026/)
 - [Connect your Google apps to personalize your Gemini experience (Gemini 앱 공식 도움말)](https://support.google.com/gemini/answer/16598406)
+- [Connect & manage custom apps for Gemini Spark in the Gemini web app (Gemini 앱 공식 도움말)](https://support.google.com/gemini/answer/17209137)
 - [Gemini에서 Google 앱 사용 또는 사용 중지하기 (구글 워크스페이스 관리자 도움말)](https://knowledge.workspace.google.com/admin/gemini/turn-google-apps-in-gemini-on-or-off?hl=ko)
