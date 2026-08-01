@@ -2,8 +2,8 @@
 slug: gemini-spark-guide
 title: 제미나이 스파크(Gemini Spark) 사용법과 제미나이 모델의 장점
 excerpt: >-
-  구글 클라우드에서 24시간 실행되는 에이전트형 AI 비서, 제미나이 스파크의 Task, Schedule, Skill 사용법과 요금제, 기반이
-  되는 제미나이 모델의 장점을 정리합니다.
+  구글 클라우드에서 24시간 실행되는 에이전트형 AI 비서, 제미나이 스파크의 Task, Schedule, Skill 사용법과 요금제, 그리고 구글
+  워크스페이스의 Gmail과 Drive를 읽어 맥락을 파악하는 개인 인텔리전스를 정리합니다.
 category: AI_TECH
 tags:
   - AI
@@ -17,7 +17,7 @@ highlights:
 metaTitle: 제미나이 스파크(Gemini Spark) 사용법과 제미나이 모델의 장점
 metaDescription: >-
   제미나이 스파크(Gemini Spark)는 구글이 2026년 5월 공개한 24시간 에이전트형 AI 비서입니다. Task, Schedule,
-  Skill 세 구성 요소로 반복 업무를 자동화하는 사용법과 요금제, 기반 모델인 제미나이 3.5의 장점을 정리합니다.
+  Skill 사용법과 요금제, 구글 워크스페이스의 Gmail과 Drive를 읽어 맥락을 파악하는 개인 인텔리전스를 정리합니다.
 ogTitle: 제미나이 스파크(Gemini Spark) 사용법과 제미나이 3.5 모델의 장점 정리
 ogDescription: >-
   구글 클라우드에서 24시간 실행되는 AI 에이전트, 제미나이 스파크의 Task, Schedule, Skill 사용법과 요금제, 기반 모델인
@@ -35,7 +35,7 @@ quiz:
       작업 방식을 담은 재사용 지침이라는 점에서 역할이 다릅니다.
 ---
 
-제미나이 스파크(Gemini Spark)는 구글이 2026년 5월 Google I/O에서 공개한 24시간 에이전트형 AI 비서입니다. 채팅창을 열어야만 답을 받는 기존 제미나이 앱과 달리, 스파크는 구글 클라우드의 전용 가상 머신에서 실행되므로 노트북을 덮거나 휴대폰을 잠가도 맡긴 작업이 계속 진행됩니다. 이 글은 스파크의 세 가지 핵심 구성 요소인 Task, Schedule, Skill 사용법과 함께, 스파크의 기반이 되는 제미나이 모델의 장점을 정리합니다.
+제미나이 스파크(Gemini Spark)는 구글이 2026년 5월 Google I/O에서 공개한 24시간 에이전트형 AI 비서입니다. 채팅창을 열어야만 답을 받는 기존 제미나이 앱과 달리, 스파크는 구글 클라우드의 전용 가상 머신에서 실행되므로 노트북을 덮거나 휴대폰을 잠가도 맡긴 작업이 계속 진행됩니다. 특히 구글 워크스페이스를 쓰고 있다면 Gmail과 Drive, Docs를 읽어 맥락을 파악한다는 점이 실무에서 크게 작용합니다. 이 글은 스파크의 세 가지 핵심 구성 요소인 Task, Schedule, Skill 사용법과 워크스페이스 연동, 그리고 스파크의 기반이 되는 제미나이 모델의 장점을 정리합니다.
 
 아래 이미지는 구글 공식 블로그에 실린 소개 화면으로, 제미나이 앱 안에 기존 Chat과 별도로 Spark 탭이 추가된 모습을 보여줍니다.
 
@@ -63,9 +63,23 @@ quiz:
 
 - **상시 실행**: 스파크는 구글 클라우드의 전용 가상 머신에서 돌아갑니다. 브라우저를 닫거나 휴대폰 화면을 잠가도 작업이 멈추지 않습니다.
 - **능동적 작업 수행**: 매번 지시하지 않아도, 등록해 둔 규칙에 따라 반복 업무를 알아서 처리합니다. 구글이 공식 발표에서 든 예시는 카드 명세서에서 놓치고 있던 구독료 찾기, 자녀 학교 이메일을 하루 한 번 요약하기, 회의 기록을 모아 Google Docs 문서와 후속 이메일 초안 만들기입니다.
-- **연결 앱 실행 권한**: Gmail, Calendar, Docs, Sheets, Slides, Drive, Keep, Tasks 같은 구글 워크스페이스 앱과 검색, 원격 웹 브라우저, 코드 실행 환경을 조합해 작업을 끝까지 진행합니다.
+- **연결 앱 읽기와 실행 권한**: Gmail, Calendar, Docs, Sheets, Slides, Drive, Keep, Tasks 같은 구글 워크스페이스 앱을 읽어 맥락을 파악하고, 검색과 원격 웹 브라우저, 코드 실행 환경을 조합해 작업을 끝까지 진행합니다.
 
 다만 모든 작업을 무제한으로 맡기는 구조는 아닙니다. 결제처럼 민감한 단계에서는 스파크가 작업을 멈추고 확인을 요청하며, 구글은 이 동작 원칙을 "항상 사용자의 지시 아래(always under your direction)"라고 설명합니다.
+
+## 구글 워크스페이스를 쓰면 무엇이 달라질까요?
+
+스파크의 장점이 가장 크게 드러나는 곳은 구글 워크스페이스를 이미 쓰고 있는 환경입니다. 별도 연동 작업 없이 Gmail, Drive, Docs, Sheets, Calendar를 읽어 그 안에서 맥락을 가져오기 때문입니다.
+
+구글은 이 기능을 개인 인텔리전스(Personal Intelligence)라고 부릅니다. 연결한 구글 계정의 데이터를 조회해 답변에 반영하는 기능이고, Gmail, Calendar, Drive, Keep, Photos, Maps, YouTube가 대상입니다. 연결해 두면 세 가지가 달라집니다.
+
+- **지시를 짧게 써도 됩니다**: "지난주 받은 견적서" 같은 표현을 그대로 알아듣습니다. 파일을 찾아 첨부하는 과정이 사라집니다.
+- **결과물이 내 자료를 반영합니다**: 팀에서 쓰던 문서 양식이나 지난 메일의 문체를 참고해 초안을 만듭니다.
+- **여러 앱에 걸친 작업이 한 번에 끝납니다**: 메일에서 일정을 찾아 캘린더에 넣고 관련 문서를 Drive에서 꺼내 요약하는 흐름이 하나의 Task로 묶입니다.
+
+Google I/O 2026 발표 시점부터 Gemini Enterprise와 구글 워크스페이스 고객에게 제공됐습니다. Gemini Enterprise 구독자는 추가 라이선스 비용 없이 씁니다.
+
+주의할 점도 있습니다. 이 연결은 기본으로 꺼져 있고, 어떤 앱을 연결할지는 사용자가 직접 고릅니다. 회사 계정이라면 관리자가 조직 단위로 제미나이의 구글 앱 접근을 켜고 끌 수 있으므로, 항목이 보이지 않을 때는 관리자 설정을 확인해야 합니다.
 
 ## 제미나이 스파크는 어떻게 시작할 수 있을까요?
 
@@ -125,6 +139,7 @@ quiz:
 **3줄 요약:**
 - 제미나이 스파크는 구글 클라우드에서 24시간 실행되는 에이전트형 AI 비서로, 기기를 꺼도 맡긴 작업이 계속 진행됩니다.
 - 사용법의 핵심은 목표(Task), 실행 시점(Schedule), 재사용 지침(Skill) 세 요소의 조합이며, 동시 실행은 15개 Task까지입니다.
+- 구글 워크스페이스를 쓰고 있다면 Gmail, Drive, Docs를 읽어 맥락을 파악하는 개인 인텔리전스가 가장 큰 장점입니다. 다만 기본은 꺼져 있어 연결할 앱을 직접 골라야 합니다.
 - 기반이 되는 제미나이 3.5 모델은 에이전트 벤치마크 성능, 네이티브 멀티모달, 100만 토큰 이상의 컨텍스트가 강점입니다.
 
 **Sources:**
@@ -132,3 +147,5 @@ quiz:
 - [The Gemini app becomes more agentic, delivering proactive, 24/7 help (구글 공식 블로그)](https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/)
 - [Gemini Spark updates: macOS launch, connected apps and more (구글 공식 블로그)](https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-june-2026/)
 - [Gemini Spark: new Chrome browsing integration (구글 공식 블로그)](https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-july-2026/)
+- [Connect your Google apps to personalize your Gemini experience (Gemini 앱 공식 도움말)](https://support.google.com/gemini/answer/16598406)
+- [Gemini에서 Google 앱 사용 또는 사용 중지하기 (구글 워크스페이스 관리자 도움말)](https://knowledge.workspace.google.com/admin/gemini/turn-google-apps-in-gemini-on-or-off?hl=ko)
