@@ -1,6 +1,6 @@
 ---
 slug: google-ads-api-data-for-non-developers
-title: 비개발자도 쓰기 편하게 정리한 구글 Ads API 데이터
+title: 'Google Ads API 데이터 활용 정리: 구글 애즈 API 필드와 지표 매핑'
 excerpt: >-
   구글 Ads API로 가져올 수 있는 필드, 마케터가 보는 지표와 API 필드명 매핑, 연결 과정, 주의사항, 그리고 AI로 쉽게 구현하는
   팁까지. 비개발자를 위한 실전 가이드.
@@ -26,11 +26,11 @@ quiz:
     correctIndex: 0
 seriesSlug: digitalmarketing
 seriesOrder: 9
-metaTitle: 비개발자도 쓰기 편하게 정리한 구글 Ads API 데이터 | 실전 가이드
+metaTitle: 'Google Ads API 데이터 활용 정리: 구글 애즈 API 필드와 지표 매핑'
 metaDescription: >-
   구글 Ads API 필드 구조, 마케팅 지표 매핑, 연결 과정, PMax, 디멘드젠 소재 성과 추출법, AI 프롬프트 활용 팁까지. 비개발자
   마케터를 위한 실전 정리.
-ogTitle: 비개발자도 쓰기 편하게 정리한 구글 Ads API 데이터
+ogTitle: 'Google Ads API 데이터 활용 정리: 구글 애즈 API 필드와 지표 매핑'
 ogDescription: '마케터가 알아야 할 구글 Ads API 핵심만 정리. 필드 매핑표, 연결 과정, PMax 소재 성과 추출, AI 활용 팁까지.'
 ogImage: /og/google-ads-api-data-for-non-developers.png
 ---
