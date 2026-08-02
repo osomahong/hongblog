@@ -48,3 +48,7 @@ next-env.d.ts
 content/insights/gemini-3-6-flash.md
 public/og/gemini-3-6-flash.png
 public/images/insights/gemini-3-6-flash/
+
+# SEO 스킬 운영용 사본 (자격증명은 ~/.seo-title-advisor.env에 있고 코드에는 없음)
+# 배포판은 dist/skills/ 에 커밋한다. 갱신: ./dist/skills/sync.sh
+.claude/skills/seo-topic-finder/
