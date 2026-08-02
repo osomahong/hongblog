@@ -34,7 +34,8 @@ const RULES: Rule[] = [
     { pattern: /[을를] 통해/g, label: "번역투 '~을 통해': '~로'로", severity: "HARD" },
     { pattern: /에 있어서?\s/g, label: "번역투 '~에 있어서': '~에서'로", severity: "HARD" },
     { pattern: /되어지|보여집니다|여겨집니다/g, label: "이중 피동: 능동이나 단일 피동으로", severity: "HARD" },
-    { pattern: /에 의해\s/g, label: "번역투 '~에 의해': 행위 주어를 주어 자리로", severity: "HARD" },
+    // 서치 콘솔 등 제품 UI에 그대로 표시되는 문구는 예외. 화면 문구를 바꾸면 교육 자료가 틀려진다.
+    { pattern: /에 의해\s/g, label: "번역투 '~에 의해': 행위 주어를 주어 자리로", severity: "HARD", allowContext: /태그에 의해|txt에 의해/ },
     { pattern: /라는 사실[을이]/g, label: "번역투 '~라는 사실': '~인 것', '~인 점'으로", severity: "HARD" },
     { pattern: /당신/g, label: "'당신' 금지: '여러분' 또는 주어 생략", severity: "HARD" },
     { pattern: /에도 불구하고/g, label: "번역투 '~에도 불구하고': '~인데도'로", severity: "HARD" },
