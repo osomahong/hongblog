@@ -22,10 +22,12 @@ import {
   Smartphone,
   Database,
   Workflow,
+  ExternalLink,
 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
+import { BrandIcon } from "@/components/icons/BrandIcons";
 
 const BASE_YEAR = 2017;
 const REFERENCE_YEAR = 2026;
@@ -33,9 +35,12 @@ const YEARS_OF_EXPERIENCE = REFERENCE_YEAR - BASE_YEAR + 1;
 const CLIENT_COUNT_LABEL = "120곳+";
 /** 경력, 고객사, 교육 수치를 마지막으로 확인한 시점 */
 const CREDENTIAL_AS_OF = "2026년 4월";
+/** 화면의 프로필 버튼과 Person, Organization JSON-LD의 sameAs가 같은 값을 쓴다 */
+const LINKEDIN_PROFILE_URL =
+  "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/";
 
 const ABOUT_TITLE = "About | GA4, GTM 분석 환경 구축";
-const ABOUT_DESCRIPTION = `${YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 데이터 분석가입니다. 한국관광공사, 교보문고, 유진투자증권 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 마케팅 성과를 데이터로 확인하는 방법과 AEO, GEO 실무를 정리합니다.`;
+const ABOUT_DESCRIPTION = `${YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 데이터 분석가입니다. 공공기관, 금융, 유통, 대학 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 마케팅 성과를 데이터로 확인하는 방법과 AEO, GEO 실무를 정리합니다.`;
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -112,28 +117,28 @@ function buildStats(counts: ContentCounts) {
   ];
 }
 
-const representativeClients = [
-  "신세계면세점",
-  "신세계사이먼",
-  "혼다코리아모터사이클",
-  "안랩",
-  "베스핀글로벌",
-  "반다이남코코리아",
-  "스케쳐스코리아",
-  "이벤터스",
-  "도매꾹",
-  "고려대학교",
-  "연세대학교",
-  "한림대학교",
-  "사이버한국외국어대학교",
-  "한국관광공사(KTO)",
-  "교보문고",
-  "유진투자증권",
+/**
+ * 고객사는 실명 대신 산업군과 조직 유형으로 적는다.
+ * 개별 계약의 공개 범위가 서로 달라, 이름을 빼고 규모와 업종만 남긴다.
+ */
+const clientSectors = [
+  "관광 분야 공공기관",
+  "면세, 아울렛 유통 대기업",
+  "도서 유통 대기업",
+  "증권사",
+  "정보보안 상장사",
+  "클라우드 관리 서비스(MSP) 기업",
+  "글로벌 모빌리티 브랜드 한국 법인",
+  "글로벌 스포츠 브랜드 한국 법인",
+  "글로벌 엔터테인먼트 기업 한국 법인",
+  "B2B 이커머스 플랫폼",
+  "이벤트 플랫폼 스타트업",
+  "4년제 대학과 사이버대학",
 ];
 
 const educationPartners = [
-  "KOTRA 아카데미",
-  "사회적기업진흥원",
+  "무역 진흥 공공기관 아카데미",
+  "사회적경제 지원 공공기관",
   "기업 내부 담당자 교육",
 ];
 
@@ -186,7 +191,7 @@ const workItems = [
   {
     icon: Workflow,
     title: "대형 프로젝트 리드와 교육",
-    desc: "한국관광공사 2023년부터 4년 연속 컨설턴트. 이벤트 정합성 90% KPI와 5단계 산출물 워크플로우로 참여 기업을 지원하고, 누적 1,000명 이상 실무자를 교육했습니다.",
+    desc: "관광 분야 공공기관의 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 이벤트 정합성 90% KPI와 5단계 산출물 워크플로우로 참여 기업을 지원하고, 누적 1,000명 이상 실무자를 교육했습니다.",
   },
 ];
 
@@ -222,10 +227,7 @@ export default async function AboutPage() {
       occupationLocation: { "@type": "Country", name: "대한민국" },
       skills: "GA4, GTM, BigQuery, LookerStudio, AEO, GEO, LLM, Python",
     },
-    sameAs: [
-      SITE_URL,
-      "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/",
-    ],
+    sameAs: [SITE_URL, LINKEDIN_PROFILE_URL],
   };
 
   const organizationLd = {
@@ -237,9 +239,7 @@ export default async function AboutPage() {
     founder: { "@type": "Person", name: "준이아빠" },
     description:
       "GA4, GTM, AEO, GEO 실무 인사이트를 정리한 디지털 마케팅 지식 사이트.",
-    sameAs: [
-      "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/",
-    ],
+    sameAs: [LINKEDIN_PROFILE_URL],
   };
 
   return (
@@ -289,11 +289,22 @@ export default async function AboutPage() {
               <span className="text-[#FF0033]">데이터로 확인하는</span> 일을 합니다.
             </h1>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              <strong>{YEARS_OF_EXPERIENCE}년차 디지털 마케터</strong>입니다. 신세계면세점, 혼다코리아, 안랩, 베스핀글로벌 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
+              <strong>{YEARS_OF_EXPERIENCE}년차 디지털 마케터</strong>입니다. 면세 유통, 정보보안, 클라우드, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
               <span className="block mt-2 text-xs text-gray-500">
                 경력 수치는 {CREDENTIAL_AS_OF} 기준
               </span>
             </p>
+            {/* 고객사를 업종 표기로 바꾼 만큼, 경력을 직접 확인할 경로를 남긴다 */}
+            <a
+              href={LINKEDIN_PROFILE_URL}
+              target="_blank"
+              rel="me noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 px-4 py-2.5 bg-[#0A66C2] text-white text-sm font-black border-3 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+            >
+              <BrandIcon name="linkedin" className="w-4 h-4 shrink-0" />
+              링크드인 프로필에서 경력 보기
+              <ExternalLink className="w-3.5 h-3.5 shrink-0" strokeWidth={2.2} />
+            </a>
           </div>
         </NeoTiltCard>
       </section>
@@ -355,15 +366,15 @@ export default async function AboutPage() {
             </h2>
           </div>
           <p className="text-base sm:text-lg text-gray-700 mb-4 leading-relaxed">
-            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다.
+            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다. 계약별로 공개 범위가 달라 개별 기업명 대신 업종과 조직 유형으로 적습니다.
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
-            {representativeClients.map((client) => (
+            {clientSectors.map((sector) => (
               <span
-                key={client}
+                key={sector}
                 className="inline-block bg-gray-50 border-2 border-black text-black text-xs sm:text-sm font-bold px-3 py-1.5"
               >
-                {client}
+                {sector}
               </span>
             ))}
             <span className="inline-block bg-black text-white border-2 border-black text-xs sm:text-sm font-bold px-3 py-1.5">
