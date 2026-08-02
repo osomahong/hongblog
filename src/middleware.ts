@@ -9,10 +9,27 @@ const LEGACY_REDIRECTS: Record<string, string> = {
 
 // Jekyll 시절 /tags?tag=X 쿼리스트링 → 정규 태그 경로 매핑
 // 매핑되지 않은 값은 /tags 로 308 (중복 콘텐츠 색인 거부 해결)
+// 값은 CANONICAL_TAGS에 실재하는 태그로만 연결한다. 실재하지 않으면 /tags 로 보낸다.
 const LEGACY_TAG_QUERY_MAP: Record<string, string> = {
   "메타 어트리뷰션": "/tags/%EC%96%B4%ED%8A%B8%EB%A6%AC%EB%B7%B0%EC%85%98",
   "메타어트리뷰션": "/tags/%EC%96%B4%ED%8A%B8%EB%A6%AC%EB%B7%B0%EC%85%98",
   "투자수익률": "/tags/ROI",
+  // GSC에 노출 기록이 남아 있는 값들. 전부 /tags 로 보내면 링크 가치가 흩어지므로
+  // 대응하는 태그 페이지가 있으면 그쪽으로 직접 연결한다.
+  AI: "/tags/AI",
+  SEO: "/tags/SEO",
+  GA4: "/tags/GA4",
+  GTM: "/tags/GTM",
+  CAC: "/tags/CAC",
+  CVR: "/tags/CVR",
+  JS: "/tags/JavaScript",
+  "자동화": "/tags/%EC%9E%90%EB%8F%99%ED%99%94",
+  "퍼포먼스마케팅": "/tags/%ED%8D%BC%ED%8F%AC%EB%A8%BC%EC%8A%A4%EB%A7%88%EC%BC%80%ED%8C%85",
+  "리타게팅": "/tags/%EB%A6%AC%ED%83%80%EA%B2%8C%ED%8C%85",
+  "전환율": "/tags/%EC%A0%84%ED%99%98",
+  "고객생애가치": "/tags/LTV",
+  "데이터": "/tags/%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D",
+  "마케팅전략": "/tags/%EB%A7%88%EC%BC%80%ED%8C%85%20%EC%8B%A4%EB%AC%B4",
 };
 
 // SSG 리팩토링으로 삭제된 라우트 → 301 리디렉트
@@ -26,6 +43,13 @@ const REMOVED_ROUTE_REDIRECTS: [RegExp, string][] = [
   [/^\/search$/, "/"],
   [/^\/vibecoding-1$/, "/insights/vibe-coding-vs-ai-agent-difference"],
   [/^\/tags\/index\.html$/, "/tags"],
+  // GSC 404로 잡힌 경로. 문의 페이지는 About의 연락처 영역으로 흡수됐다.
+  [/^\/contact(\/.*)?$/, "/about"],
+  // Jekyll 시절 피드 주소. 현재 피드는 /rss.xml 하나다.
+  [/^\/(rss|feed|feed\.xml|atom\.xml|index\.xml)$/, "/rss.xml"],
+  [/^\/index\.html$/, "/"],
+  // 네이버 블로그 시절 숫자 포스트 ID. 대응하는 글이 없으므로 목록으로 보낸다.
+  [/^\/\d{9,}$/, "/insights"],
   [/^\/([\$%].*)$/, "/"],
 ];
 
