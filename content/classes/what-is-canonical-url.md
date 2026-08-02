@@ -33,6 +33,9 @@ quiz:
       정규 URL을 지정하지 않아도 검색엔진은 대표 주소를 나름대로 고릅니다. 문제는 그 판단이 내 의도와 다를 수 있다는 점입니다.
       게다가 같은 내용을 가리키는 링크와 평가가 주소별로 나뉘어 어느 쪽도 충분히 쌓이지 않습니다. 노출 기회가 늘어나는 것이 아니라
       오히려 줄어듭니다.
+metaTitle: '정규 URL(canonical) 설정 방법: 중복 주소 정리와 흔한 실수'
+metaDescription: >-
+  정규 URL은 같은 내용이 여러 주소로 열릴 때 어느 것을 대표 주소로 삼을지 지정하는 표시입니다. 주소가 갈라지는 다섯 가지 경우, 지정하지 않았을 때 벌어지는 일, 실무에서 자주 나오는 설정 실수를 정리했습니다.
 ogImage: /og/what-is-canonical-url.png
 ---
 
@@ -95,7 +98,7 @@ ogImage: /og/what-is-canonical-url.png
 
 세 번째 줄이 실무에서 자주 문제가 됩니다. 광고 추적 값이 붙은 주소가 검색 결과에 노출되는 경우입니다. 방문자에게는 지저분해 보이고, 클릭 데이터도 엉키게 됩니다.
 
-네 번째 줄은 앞에서 본 크롤링 예산과 이어집니다. 필터 조합으로 주소가 수천 개 만들어지는 구조라면, 크롤러가 그 조합을 도는 데 시간을 다 씁니다.
+네 번째 줄은 앞에서 본 [크롤링 예산](/class/seo-fundamentals/what-is-search-crawler)과 이어집니다. 필터 조합으로 주소가 수천 개 만들어지는 구조라면, 크롤러가 그 조합을 도는 데 시간을 다 씁니다.
 
 ## 🚫 정규 URL에서 자주 나오는 실수
 
@@ -125,7 +128,7 @@ ogImage: /og/what-is-canonical-url.png
 
 이 표기는 대개 정상입니다. 이 페이지는 다른 주소를 정본으로 지정했고 검색엔진이 그 지정을 받아들였다는 뜻입니다. 다만 **정본으로 지정된 주소가 내가 의도한 주소가 맞는지는 확인해야 합니다.** 의도와 다르면 표시를 잘못 넣은 것입니다.
 
-다음 글에서는 주소 자체를 어떻게 설계하고 페이지끼리 어떻게 잇는지 봅니다.
+다음 글에서는 주소 자체를 어떻게 설계하고 페이지끼리 어떻게 잇는지를 [내부 링크](/class/seo-fundamentals/what-is-internal-link)에서 봅니다.
 
 ## 📋 30초 요약
 
@@ -136,6 +139,8 @@ ogImage: /og/what-is-canonical-url.png
 3. **지정하지 않으면 검색엔진이 임의로 고릅니다.** 그 판단이 의도와 다를 수 있고, 광고 추적 값이 붙은 주소가 검색 결과에 뜨기도 합니다. 각 페이지가 자기 주소를 가리키게 해 두는 것이 기본입니다.
 
 ## 참고 자료
+
+아래 공식 문서는 2026년 8월 기준으로 확인했습니다. 검색엔진 정책은 바뀔 수 있으므로 최신 내용은 원문에서 확인하시면 됩니다.
 
 - [중복 URL 통합 방법 (Google 검색 센터)](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls?hl=ko)
 - [표준 URL 지정 방법 (Google 검색 센터)](https://developers.google.com/search/docs/crawling-indexing/canonicalization?hl=ko)

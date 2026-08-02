@@ -30,6 +30,9 @@ quiz:
     explanation: >-
       robots.txt는 크롤링을 막는 파일이지 색인을 지우는 파일이 아닙니다. 오히려 크롤러가 페이지에 들어가지 못하면 그 안에 적힌
       색인 삭제 표시도 읽지 못합니다. 검색 결과에서 빼려면 크롤링은 열어 둔 채 페이지에 noindex 표시를 넣어야 합니다.
+metaTitle: 'robots.txt 작성법과 주의점: 크롤링 차단과 색인 차단의 차이'
+metaDescription: >-
+  robots.txt는 검색엔진 크롤러에게 어느 경로를 방문하지 말라고 알려 주는 파일입니다. 파일 구조와 작성법, 크롤링 차단이 색인 차단이 되지 못하는 이유, 배포 사고를 포함해 실무에서 자주 나오는 세 가지 상황을 정리했습니다.
 ogImage: /og/what-is-robots-txt.png
 ---
 
@@ -95,7 +98,7 @@ Sitemap: https://example.com/sitemap.xml
 - **Allow**: 차단한 폴더 안에서 예외로 열어 둘 경로입니다
 - **Sitemap**: 사이트맵 주소를 알려 줍니다. 차단과는 무관하고, 발견을 돕는 줄입니다
 
-마지막 줄은 눈여겨볼 만합니다. 이 파일은 막는 일만 하지 않고 **길을 알려 주는 역할도 함께 합니다.** 사이트맵은 다음 글에서 다룹니다.
+마지막 줄은 눈여겨볼 만합니다. 이 파일은 막는 일만 하지 않고 **길을 알려 주는 역할도 함께 합니다.** [사이트맵](/class/seo-fundamentals/what-is-sitemap)은 다음 글에서 다룹니다.
 
 ## ⚠️ 크롤링 차단과 색인 차단의 차이
 
@@ -130,7 +133,7 @@ Sitemap: https://example.com/sitemap.xml
 
 세 사고 모두 **파일 한 줄이 사이트 전체를 결정합니다.** 짧은 파일이지만 배포 전에 확인할 가치가 큽니다.
 
-다음 글에서는 반대 방향의 신호인 사이트맵을 봅니다.
+다음 글에서는 반대 방향의 신호인 [사이트맵](/class/seo-fundamentals/what-is-sitemap)을 봅니다.
 
 ## 📋 30초 요약
 
@@ -141,6 +144,8 @@ Sitemap: https://example.com/sitemap.xml
 3. **크롤링 차단과 색인 차단은 다릅니다.** 검색 결과에서 빼려면 robots.txt로 막지 말고 페이지에 noindex를 넣어야 합니다. 막아 버리면 삭제 신호를 읽지 못해 오히려 색인이 남습니다.
 
 ## 참고 자료
+
+아래 공식 문서는 2026년 8월 기준으로 확인했습니다. 검색엔진 정책은 바뀔 수 있으므로 최신 내용은 원문에서 확인하시면 됩니다.
 
 - [robots.txt 소개 및 가이드 (Google 검색 센터)](https://developers.google.com/search/docs/crawling-indexing/robots/intro?hl=ko)
 - [robots.txt 작성 및 제출 방법 (Google 검색 센터)](https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt?hl=ko)

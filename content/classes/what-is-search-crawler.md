@@ -33,6 +33,9 @@ quiz:
       두 가지는 이름만 같고 주체와 목적이 다릅니다. 검색엔진 크롤러는 구글이나 네이버가 검색 결과에 넣을 페이지를 모으려고 돌리므로 잘
       다니도록 길을 열어 주는 것이 목표입니다. 데이터 수집용 크롤링은 개인이나 기업이 가격, 리뷰 같은 데이터를 얻으려고 돌리는 경우가
       많아 사이트 입장에서는 차단을 검토하게 됩니다.
+metaTitle: '검색엔진 크롤러(구글봇)란: 페이지를 찾아오는 3가지 경로 정리'
+metaDescription: >-
+  검색엔진 크롤러는 링크를 따라다니며 페이지를 찾아 읽어 오는 자동 프로그램입니다. 구글봇이 페이지에 도착하는 세 가지 경로, 데이터 수집용 크롤링과 목적이 다른 이유, 크롤링 예산이라는 한도까지 공식 문서 기준으로 정리했습니다.
 ogImage: /og/what-is-search-crawler.png
 ---
 
@@ -87,7 +90,7 @@ ogImage: /og/what-is-search-crawler.png
 
 세 경로는 서로를 대신하지 못합니다. 사이트맵에 주소를 올려 두어도 어디서도 링크되지 않은 페이지는 발견이 늦어질 수 있습니다. **링크가 우선이고 사이트맵은 그것을 돕는 수단입니다.**
 
-사이트맵과 내부 링크는 각각 따로 자세히 다룹니다.
+[사이트맵](/class/seo-fundamentals/what-is-sitemap)과 [내부 링크](/class/seo-fundamentals/what-is-internal-link)는 각각 따로 자세히 다룹니다.
 
 ## ⚖️ 데이터 수집용 크롤링과 다른 점
 
@@ -132,7 +135,7 @@ ogImage: /og/what-is-search-crawler.png
 
 세 상황 모두 **글을 고쳐서는 풀리지 않습니다.** 크롤러가 오는 길이 막힌 것이기 때문입니다.
 
-크롤러가 페이지를 받아 온 다음에 무슨 일이 벌어지는지는 다음 글에서 이어집니다.
+크롤러 봇이 페이지를 받아 온 다음에 무슨 일이 벌어지는지는 [색인](/class/seo-fundamentals/what-is-indexing)에서 이어집니다.
 
 ## 📋 30초 요약
 
@@ -143,6 +146,8 @@ ogImage: /og/what-is-search-crawler.png
 3. **크롤링 예산이라는 한도가 있습니다.** 중복 주소, 끊어진 링크, 느린 응답이 한도를 갉아먹으면 정작 중요한 페이지가 뒤로 밀립니다.
 
 ## 참고 자료
+
+아래 공식 문서는 2026년 8월 기준으로 확인했습니다. 검색엔진 정책은 바뀔 수 있으므로 최신 내용은 원문에서 확인하시면 됩니다.
 
 - [Google 크롤러 개요 (Google 검색 센터)](https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers?hl=ko)
 - [크롤링 예산 관리 (Google 크롤링 인프라 문서)](https://developers.google.com/crawling/docs/crawl-budget)

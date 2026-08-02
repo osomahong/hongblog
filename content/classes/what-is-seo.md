@@ -6,6 +6,7 @@ category: MARKETING
 tags:
   - SEO
   - 마케팅 실무
+  - 데이터 분석
 publishedAt: '2026-08-02T00:00:00.000Z'
 courseSlug: seo-fundamentals
 orderInCourse: 1
@@ -29,6 +30,9 @@ quiz:
       두 번째 선택지는 발견(크롤링), 세 번째는 표시(게재) 단계입니다. 저장은 크롤러가 받아 온 내용을 분석해 색인에 넣는 단계이고,
       구글 공식 문서에서는 색인 생성이라고 부릅니다. 세 단계는 순서대로 일어나므로 저장을 통과하지 못한 페이지는 표시 단계로 넘어가지
       않습니다.
+metaTitle: '검색엔진 최적화(SEO) 기초 정리: 발견, 저장, 표시 3단계와 흔한 오해'
+metaDescription: >-
+  검색엔진 최적화(SEO)는 검색엔진이 페이지를 발견하고 저장하고 보여주는 과정에 맞춰 사이트를 정리하는 일입니다. 3단계가 순서대로 일어나는 이유, 테크니컬과 콘텐츠와 AEO의 구분, 실무에서 자주 겪는 상황을 정리했습니다.
 ogImage: /og/what-is-seo.png
 ---
 
@@ -149,7 +153,7 @@ AI가 한 번에 읽을 수 있는 분량은 정해져 있습니다. 사이트 �
 
 세 경우 모두 **글을 잘 썼는지와는 상관이 없습니다.** 어디가 막혔는지 먼저 확인하는 것이 SEO의 첫 단계입니다.
 
-크롤러 봇이 페이지를 어떻게 찾아오는지는 다음 글에서 이어집니다. 참고로 데이터를 모으는 용도의 [웹 크롤링](/class/digital-basic/what-is-web-crawling)과는 목적이 다른 개념입니다.
+크롤러 봇이 페이지를 어떻게 찾아오는지는 [검색엔진 크롤러](/class/seo-fundamentals/what-is-search-crawler)에서, 받아 온 뒤 저장되는 과정은 [색인](/class/seo-fundamentals/what-is-indexing)에서 이어집니다. 참고로 데이터를 모으는 용도의 [웹 크롤링](/class/digital-basic/what-is-web-crawling)과는 목적이 다른 개념입니다.
 
 ## 📋 30초 요약
 
@@ -160,6 +164,8 @@ AI가 한 번에 읽을 수 있는 분량은 정해져 있습니다. 사이트 �
 3. **SEO는 테크니컬 SEO, 콘텐츠 SEO, AEO와 GEO 세 가지로 나뉩니다.** 이 코스는 검색엔진이 페이지를 발견하고 저장하는 테크니컬 SEO를 다룹니다.
 
 ## 참고 자료
+
+아래 공식 문서는 2026년 8월 기준으로 확인했습니다. 검색엔진 정책은 바뀔 수 있으므로 최신 내용은 원문에서 확인하시면 됩니다.
 
 - [Google 검색의 작동 방식 (Google 검색 센터)](https://developers.google.com/search/docs/fundamentals/how-search-works)
 - [검색의 작동 방식 기본사항 (Search Console 고객센터)](https://support.google.com/webmasters/answer/9128586?hl=ko)

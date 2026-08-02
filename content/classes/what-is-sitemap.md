@@ -33,6 +33,9 @@ quiz:
       사이트맵은 발견 단계를 돕는 장치이지 색인을 보장하는 장치가 아닙니다. 주소를 알려 준 뒤에도 검색엔진은 내용이 겹치지 않는지, 따로
       저장할 이유가 있는지를 별도로 판단합니다. 등록했는데 색인되지 않았다면 발견이 아니라 저장 단계에서 걸린 것이므로 페이지 내용을 봐야
       합니다.
+metaTitle: '사이트맵(sitemap.xml) 제출 방법과 lastmod 활용법 정리'
+metaDescription: >-
+  사이트맵은 사이트에 있는 페이지 주소를 모아 검색엔진에 제출하는 목록입니다. 파일 구조와 네 가지 항목, 제출 경로 두 가지, lastmod가 재방문에 미치는 영향, 사이트맵이 색인을 보장하지 못하는 이유를 정리했습니다.
 ogImage: /og/what-is-sitemap.png
 ---
 
@@ -106,7 +109,7 @@ https://example.com/sitemap.xml
 | 서치 콘솔 제출 | 사이트맵 메뉴에서 주소를 등록 | 처리 상태와 오류를 확인할 수 있습니다 |
 | robots.txt에 명시 | `Sitemap:` 줄에 주소를 적음 | 여러 검색엔진이 함께 읽습니다 |
 
-두 방법은 함께 써도 됩니다. 앞에서 본 robots.txt의 마지막 줄이 여기에 쓰입니다. 막는 파일 안에 길을 알려 주는 줄이 같이 들어가는 구조입니다.
+두 방법은 함께 써도 됩니다. 앞에서 본 [robots.txt](/class/seo-fundamentals/what-is-robots-txt)의 마지막 줄이 여기에 쓰입니다. 막는 파일 안에 길을 알려 주는 줄이 같이 들어가는 구조입니다.
 
 **색인에서 뺄 페이지는 사이트맵에 넣지 않습니다.** noindex를 걸어 둔 페이지를 사이트맵에도 올려 두면 검색엔진에게 서로 반대되는 신호를 보내는 셈입니다. 넣지 말라고 하면서 여기 있다고 알려 주는 상태가 됩니다.
 
@@ -126,7 +129,7 @@ https://example.com/sitemap.xml
 
 세 상황을 관통하는 원칙은 하나입니다. **사이트맵은 발견을 돕고, 색인은 내용이 결정합니다.**
 
-다음 글에서는 같은 페이지에 주소가 여러 개일 때 무엇을 대표 주소로 삼는지 봅니다.
+다음 글에서는 같은 페이지에 주소가 여러 개일 때 무엇을 대표 주소로 삼는지를 [정규 URL](/class/seo-fundamentals/what-is-canonical-url)에서 봅니다.
 
 ## 📋 30초 요약
 
@@ -137,6 +140,8 @@ https://example.com/sitemap.xml
 3. **사이트맵은 색인을 보장하지 않습니다.** 넣었는데 색인이 안 된다면 발견이 아니라 저장 단계의 문제이므로 페이지 내용을 봐야 합니다. 네 항목 중에서는 lastmod가 실제로 영향을 줍니다.
 
 ## 참고 자료
+
+아래 공식 문서는 2026년 8월 기준으로 확인했습니다. 검색엔진 정책은 바뀔 수 있으므로 최신 내용은 원문에서 확인하시면 됩니다.
 
 - [사이트맵 만들기 및 제출 방법 (Google 검색 센터)](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap?hl=ko)
 - [사이트맵 알아보기 (Google 검색 센터)](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview?hl=ko)

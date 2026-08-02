@@ -8,6 +8,7 @@ category: MARKETING
 tags:
   - SEO
   - 마케팅 실무
+  - 데이터 분석
 publishedAt: '2026-08-02T00:00:00.000Z'
 courseSlug: seo-fundamentals
 orderInCourse: 3
@@ -32,6 +33,9 @@ quiz:
       크롤링은 주소를 알아내 페이지 내용을 받아 오는 단계이고, 색인은 그 내용을 분석해 저장할지 판단하는 단계입니다. 순서는 크롤링이
       먼저입니다. 두 단계가 나뉘어 있기 때문에 크롤링은 됐는데 색인은 안 되는 상태가 실제로 생기며, 서치 콘솔에는 "크롤링됨, 현재
       색인이 생성되지 않음"으로 표시됩니다.
+metaTitle: '색인(인덱싱)이란: 크롤링과의 차이와 색인 안 되는 이유 5가지'
+metaDescription: >-
+  색인은 검색엔진이 크롤러가 받아 온 페이지를 분석해 데이터베이스에 저장하는 단계입니다. 크롤링과 색인이 어떻게 다른지, 서치 콘솔 표기를 어떻게 읽는지, noindex와 중복 내용 등 색인되지 않는 다섯 가지 이유를 정리했습니다.
 ogImage: /og/what-is-indexing.png
 ---
 
@@ -106,7 +110,7 @@ ogImage: /og/what-is-indexing.png
 
 **정규 URL이 다른 주소를 가리키는 경우**
 
-이 페이지 대신 저 페이지를 대표 주소로 삼으라고 지정해 두면, 검색엔진은 지정된 쪽을 저장하고 이 페이지는 저장하지 않습니다. 정규 URL을 다룰 때 자세히 설명합니다.
+이 페이지 대신 저 페이지를 대표 주소로 삼으라고 지정해 두면, 검색엔진은 지정된 쪽을 저장하고 이 페이지는 저장하지 않습니다. [정규 URL](/class/seo-fundamentals/what-is-canonical-url)에서 자세히 설명합니다.
 
 **내용이 다른 페이지와 겹치는 경우**
 
@@ -134,7 +138,7 @@ ogImage: /og/what-is-indexing.png
 
 태그에 걸린 글이 한두 개뿐인 페이지는 본문이 거의 없습니다. 이런 페이지는 색인되지 않아도 크게 아쉽지 않습니다. 검색하는 사람이 그 페이지에서 얻을 것이 거의 없기 때문입니다. **색인은 많을수록 좋은 것이 아니라, 저장될 만한 페이지가 저장되는 것이 목표입니다.**
 
-색인 여부를 서치 콘솔에서 직접 확인하는 방법은 이 코스 마지막에 다룹니다. 다음 글에서는 크롤러에게 어디를 다니지 말라고 알려 주는 robots.txt를 봅니다.
+색인 여부를 확인하는 방법은 [서치 콘솔로 색인 상태 확인하기](/class/seo-fundamentals/how-to-check-indexing-status)에서 다룹니다. 다음 글에서는 크롤러 봇에게 어디를 다니지 말라고 알려 주는 [robots.txt](/class/seo-fundamentals/what-is-robots-txt)를 봅니다.
 
 ## 📋 30초 요약
 
@@ -145,6 +149,8 @@ ogImage: /og/what-is-indexing.png
 3. **색인에서 걸린 페이지는 링크를 더 걸어도 풀리지 않습니다.** noindex 표시, 정규 URL 지정, 내용 중복, 얇은 본문 가운데 무엇에 걸렸는지 확인하고 페이지 자체를 손봐야 합니다.
 
 ## 참고 자료
+
+아래 공식 문서는 2026년 8월 기준으로 확인했습니다. 검색엔진 정책은 바뀔 수 있으므로 최신 내용은 원문에서 확인하시면 됩니다.
 
 - [Google 검색의 작동 방식 (Google 검색 센터)](https://developers.google.com/search/docs/fundamentals/how-search-works)
 - [페이지 색인 생성 보고서 (Search Console 고객센터)](https://support.google.com/webmasters/answer/7440203?hl=ko)
