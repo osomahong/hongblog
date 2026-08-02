@@ -5,21 +5,22 @@
 디지털 마케팅, AI, 데이터 분석 전문가의 인사이트를 담는 지식 아카이브입니다.
 마케팅을 데이터로 설명하고, AI로 확장하는 실무 콘텐츠를 제공합니다.
 
-## 작성자 프로필 (2026년 7월 기준)
+## 작성자 프로필 (2026년 8월 기준)
 
 - 이름: 준이아빠
 - 경력: 10년차 디지털 마케터, 데이터 분석가 (2017년~2026년)
 - 구축 경험: 120곳 이상의 기업, 기관에서 이벤트 택소노미 설계, dataLayer, GTM, GA4 파이프라인 구축, Client-ID/User-ID 해시 설계(SHA256+salt), Firebase Analytics 웹, 앱 통합(logEvent, setUserProperty), BigQuery 로우데이터 어트리뷰션 분석을 수행. 고객사당 평균 20~30개, 누적 3,000개 안팎의 이벤트, 파라미터 운영
-- 대형 프로젝트: 한국관광공사 데이터 분석 환경 구축 사업 2023년부터 4년 연속 컨설턴트. 이벤트 정합성 90% KPI + 5단계 산출물(기업 분석 보고서, AI 컨설팅 계획서, 이벤트 정의서, 시각화 대시보드, 최종 보고서) 워크플로우
-- 공개 가능 대표 고객사: 신세계면세점, 신세계사이먼, 혼다코리아모터사이클, 안랩, 베스핀글로벌, 반다이남코코리아, 스케쳐스코리아, 이벤터스, 도매꾹, 고려대학교, 연세대학교, 한림대학교, 사이버한국외국어대학교, 한국관광공사(KTO), 교보문고, 유진투자증권 외 다수
-- 교육 경험: 기업 내부 담당자 교육, KOTRA 아카데미, 사회적기업진흥원 등에서 누적 1,000명 이상 실무 교육
+- 대형 프로젝트: 관광 분야 공공기관의 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 이벤트 정합성 90% KPI + 5단계 산출물(기업 분석 보고서, AI 컨설팅 계획서, 이벤트 정의서, 시각화 대시보드, 최종 보고서) 워크플로우
+- 고객사 유형: 관광 분야 공공기관, 면세와 아울렛 유통 대기업, 도서 유통 대기업, 증권사, 정보보안 상장사, 클라우드 관리 서비스(MSP) 기업, 글로벌 모빌리티/스포츠/엔터테인먼트 브랜드 한국 법인, B2B 이커머스 플랫폼, 이벤트 플랫폼 스타트업, 4년제 대학과 사이버대학 외 다수. 계약별 공개 범위가 달라 개별 기업명은 표기하지 않음
+- 교육 경험: 기업 내부 담당자 교육, 무역 진흥 공공기관 아카데미, 사회적경제 지원 공공기관 등에서 누적 1,000명 이상 실무 교육
 - 산업군: 공공, 금융, 리테일, 이커머스, 제조, 엔터, 보안, 패션, 플랫폼, 면세, 유통, 대학교육 등 12개 이상
 - 상세: https://www.digitalmarketer.co.kr/about
 
-## 콘텐츠 구조
+## 콘텐츠 구조 (2026년 8월 기준 159편)
 
-- **Insights** (`/insights/{slug}`): 마케팅, AI, 데이터 분석에 대한 심화 인사이트
-- **Class** (`/class/{courseSlug}/{classSlug}`): 체계적으로 정리된 개념 학습 콘텐츠
+- **Insights** (`/insights/{slug}`): 마케팅, AI, 데이터 분석에 대한 심화 인사이트 91편
+- **Class** (`/class/{courseSlug}/{classSlug}`): 체계적으로 정리된 개념 학습 콘텐츠 62편
+- **Courses** (`/class/{courseSlug}`): 주제별 학습 경로 6개
 - **AI-Practice** (`/ai-practice`): PBL 기반 AI Self Education. 프롬프트 기초, 중급, 심화 AIPBL(프로젝트 기반 AI 실습)을 웹 실습 화면에서 진행
 
 ## 핵심 전문 분야
@@ -27,7 +28,8 @@
 - GA4 분석 환경 구축 및 디버깅
 - GTM 태깅 설계, dataLayer 구조화
 - Answer Engine Optimization (AEO), Generative Engine Optimization (GEO)
-- AI/LLM 활용 마케팅 자동화 (Claude Code, Gemini)
+- 터미널 기반 AI 코딩 도구 (Claude Code, Codex CLI, Gemini CLI, Orca)
+- AI/LLM 활용 마케팅 자동화 (MCP 기반 광고 리포트 자동화 포함)
 - 클로드 기초 교육, Claude/Anthropic 입문 (Anthropic Academy 한국어 정리)
 - 퍼포먼스 마케팅 전략 (Meta 광고, Google 광고, Kakao Moment)
 - 그로스해킹, 퍼널 분석, 데이터 시각화
@@ -35,26 +37,39 @@
 
 ## 주요 콘텐츠
 
+Search Console 실측 노출 기준 상위 문서입니다.
+
 - [클로드 코워크로 할 수 있는 것 - 총 정리](https://www.digitalmarketer.co.kr/insights/claude-cowork-what-you-can-do)
-- [Claude Code 실전 가이드: 설치부터 첫 프로젝트까지](https://www.digitalmarketer.co.kr/insights/claude-code-practical-guide)
-- [CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?](https://www.digitalmarketer.co.kr/insights/cli-meaning-claude-code-guide)
-- [VS Code에서 클로드 코드 설치하기: 맥 사용자를 위한 안내](https://www.digitalmarketer.co.kr/insights/install-claude-code-vscode-mac)
-- [VS Code에서 클로드 코드 설치하기: 윈도우 사용자를 위한 안내](https://www.digitalmarketer.co.kr/insights/install-claude-code-vscode-windows)
 - [클로드코드와 Codex 사용자를 위한 Orca 사용법 총정리](https://www.digitalmarketer.co.kr/insights/orca-ide-easy-guide)
+- [쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(윈도우)](https://www.digitalmarketer.co.kr/insights/codex-cli-windows-easy-setup-guide)
+- [쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(맥)](https://www.digitalmarketer.co.kr/insights/codex-cli-mac-easy-setup-guide)
+- [로컬호스트(localhost) 뜻과 배포된 웹의 차이, NPM, NPX, 터미널까지 한 번에 정리](https://www.digitalmarketer.co.kr/insights/localhost-vibe-coding-beginner-guide)
+- [CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?](https://www.digitalmarketer.co.kr/insights/cli-meaning-claude-code-guide)
+- [Claude Opus 5 업데이트 방법과 사용법 정리](https://www.digitalmarketer.co.kr/insights/claude-opus-5-update-and-usage)
+- [정말 클로드 코드를 Pro플랜에서 쓸 수 없을까요?](https://www.digitalmarketer.co.kr/insights/claude-code-pro-plan-fact-check)
+- [쉽게 설치하는 클로드코드 세팅가이드(맥)](https://www.digitalmarketer.co.kr/insights/claude-code-mac-easy-setup-guide)
+- [하네스 엔지니어링 입문 가이드: AI 에이전트 시대에 사람이 하는 일](https://www.digitalmarketer.co.kr/insights/harness-engineering-beginner-guide)
+
+## 최근 추가 콘텐츠
+
+- [제미나이 CLI 설치와 사용법: 하루 1,000회 무료 한도와 Gemini 4 준비 상황](https://www.digitalmarketer.co.kr/insights/gemini-cli-install-guide)
+- [클링 AI와 Veo 3.1 비교: 초당 단가 7.5배 차이를 실제 영상으로 확인](https://www.digitalmarketer.co.kr/insights/ai-video-generator-recommendation-2026)
+- [구글 애즈 MCP 리포트 자동화 가이드](https://www.digitalmarketer.co.kr/insights/google-ads-mcp-report-automation-guide)
+- [메타 MCP 광고 리포트 자동화 가이드](https://www.digitalmarketer.co.kr/insights/meta-mcp-ads-automation-guide)
 
 ## 학습 코스
 
 ### 마케팅, 웹 기초
 
-- [디지털 마케팅 용어 사전](https://www.digitalmarketer.co.kr/class/digital-marketing-terms): 마케팅 핵심 용어 11개 개념 정리
-- [디지털 기초](https://www.digitalmarketer.co.kr/class/digital-basic): 웹 기술 기초 개념 13개
-- [바이브코딩 기초](https://www.digitalmarketer.co.kr/class/vibe-coding-basics): AI 코딩 입문 10개 개념
+- [디지털 마케팅 핵심 용어](https://www.digitalmarketer.co.kr/class/digital-marketing-terms): 마케팅 핵심 용어 11개 개념 정리
+- [비개발자도 쉽게 배우는 디지털 환경 기초 지식](https://www.digitalmarketer.co.kr/class/digital-basic): 웹 기술 기초 개념 13개
+- [바이브코딩을 위한 기초지식](https://www.digitalmarketer.co.kr/class/vibe-coding-basics): AI 코딩 입문 10개 개념
 
 ### 클로드 교육 (Claude/Anthropic 입문)
 
-- [클로드 기초 교육](https://www.digitalmarketer.co.kr/class/claude-fundamentals): Claude 입문자를 위한 10개 개념 (앤트로픽 공식 AI Fluency 트랙 한국어 정리). Claude 정체, 환각, 아부, 4D 프레임워크, 프롬프트 엔지니어링, 컨텍스트 윈도우 포함
-- [비개발자를 위한 Claude Code](https://www.digitalmarketer.co.kr/class/claude-code-for-everyone): 터미널 입문자를 위한 Claude Code 8개 개념 (설치, 슬래시 명령, Plan Mode, 서브에이전트, 훅, MCP, 메모리)
-- [Claude 실무 활용](https://www.digitalmarketer.co.kr/class/claude-in-practice): Projects, Artifacts, Skills, Cowork 등 Claude.ai 핵심 기능 8개 활용법 (마케터, 교육 종사자 직무별 시나리오 포함)
+- [Claude 기초 교육, AI를 제대로 쓰는 첫걸음](https://www.digitalmarketer.co.kr/class/claude-fundamentals): Claude 입문자를 위한 10개 개념 (앤트로픽 공식 AI Fluency 트랙 한국어 정리). Claude 정체, 환각, 아부, 4D 프레임워크, 프롬프트 엔지니어링, 컨텍스트 윈도우 포함
+- [비개발자를 위한 Claude Code](https://www.digitalmarketer.co.kr/class/claude-code-for-everyone): 터미널 입문자를 위한 Claude Code 9개 개념 (설치, 슬래시 명령, Plan Mode, 서브에이전트, 훅, MCP, 메모리)
+- [Claude 실무 활용, 매일 쓰는 도구로 만들기](https://www.digitalmarketer.co.kr/class/claude-in-practice): Projects, Artifacts, Skills, Cowork 등 Claude.ai 핵심 기능 9개 활용법 (마케터, 교육 종사자 직무별 시나리오 포함)
 
 ## 사이트 정보
 
@@ -62,3 +77,4 @@
 - 작성자: 준이아빠
 - 기술 스택: Next.js, Vercel
 - 콘텐츠 갱신: 수시
+- 이 파일 갱신: 2026-08-02
