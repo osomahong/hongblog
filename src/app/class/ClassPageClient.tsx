@@ -39,6 +39,7 @@ const difficultyLabels = {
 const PREVIEW_COUNT = 3;
 
 const START_GUIDES = [
+    { audience: "검색에 안 나오는 이유가 궁금하다면", label: "비개발자를 위한 검색엔진 최적화(SEO) 기초", courseSlug: "seo-fundamentals" },
     { audience: "클로드가 처음이라면", label: "Claude 기초 교육", courseSlug: "claude-fundamentals" },
     { audience: "업무에 바로 쓰고 싶다면", label: "Claude 실무 활용", courseSlug: "claude-in-practice" },
     { audience: "터미널 자동화가 궁금하다면", label: "비개발자를 위한 Claude Code", courseSlug: "claude-code-for-everyone" },
