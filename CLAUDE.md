@@ -132,8 +132,13 @@ Pipeline: topic suggestion → content creation → review → SEO → deploy (w
 새 글과 대규모 개정은 반드시 이 순서를 지킨다. 배포 후 반복 수정을 막기 위한 규칙이다.
 
 1. `npm run check:prose -- <파일>` HARD 0건
-2. 낭독 검수 1회 (`writing-style-guide.md`의 비문 유형 체크리스트)
-3. **전문을 사용자에게 출력하고 승인받은 뒤에만 커밋·배포** ("써줘"는 초안 요청이지 배포 승인이 아니다)
+2. `node .claude/skills/prose-inspector/scripts/check-literary.mjs <파일>` HARD 0건
+3. 낭독 검수 1회 (`prose-inspector` 스킬의 7개 항목. 표와 HTML 도표 안 문장까지 본다)
+4. **전문을 사용자에게 출력하고 승인받은 뒤에만 커밋·배포** ("써줘"는 초안 요청이지 배포 승인이 아니다)
+
+> **1번 통과는 문체 검증이 아니다.** `check-prose.ts`는 정규식 20여 개만 본다. 문어체 어휘(`갈래`,
+> `얹히다`, `비로소` 등)는 2번이 잡고, 호응과 주어 누락은 3번이 잡는다. 2026-08에 1번만 믿고
+> 배포했다가 9강을 전량 재수정했다. 사용자가 새 표현을 지적하면 `prose-inspector` 사전에 등록한다.
 
 ## Conventions
 
