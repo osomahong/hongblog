@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { SITE_URL } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
+import { getInsights, getClasses, getCourses } from "@/lib/content";
 import {
   ArrowRight,
   MessageSquare,
@@ -30,9 +31,11 @@ const BASE_YEAR = 2017;
 const REFERENCE_YEAR = 2026;
 const YEARS_OF_EXPERIENCE = REFERENCE_YEAR - BASE_YEAR + 1;
 const CLIENT_COUNT_LABEL = "120곳+";
+/** 경력, 고객사, 교육 수치를 마지막으로 확인한 시점 */
+const CREDENTIAL_AS_OF = "2026년 4월";
 
-const ABOUT_TITLE = "About | GA4, GTM, AEO 전문가";
-const ABOUT_DESCRIPTION = `${YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 데이터 분석가입니다. 한국관광공사, 교보문고, 유진투자증권 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 설명 가능한 마케팅과 AEO, GEO 전문성을 공유합니다.`;
+const ABOUT_TITLE = "About | GA4, GTM 분석 환경 구축";
+const ABOUT_DESCRIPTION = `${YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 데이터 분석가입니다. 한국관광공사, 교보문고, 유진투자증권 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 마케팅 성과를 데이터로 확인하는 방법과 AEO, GEO 실무를 정리합니다.`;
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -53,44 +56,61 @@ export const metadata: Metadata = {
   },
 };
 
-const stats = [
-  {
-    icon: CalendarDays,
-    value: `${YEARS_OF_EXPERIENCE}년차`,
-    label: "디지털 마케팅 경력",
-    sub: `${BASE_YEAR}년~${REFERENCE_YEAR}년 기준`,
-  },
-  {
-    icon: Building2,
-    value: CLIENT_COUNT_LABEL,
-    label: "누적 고객사 프로젝트",
-    sub: "최근 5년 누적 기준",
-  },
-  {
-    icon: Tag,
-    value: "3,000+",
-    label: "누적 설계 이벤트·파라미터",
-    sub: "고객사당 20~30개 × 120곳+",
-  },
-  {
-    icon: Users,
-    value: "1,000명+",
-    label: "누적 실무 교육 수강자",
-    sub: "기업 담당자·공공 아카데미",
-  },
-  {
-    icon: BookOpen,
-    value: "93편",
-    label: "공개 인사이트·Class",
-    sub: "GA4·AEO·GEO·AI 실전 해설",
-  },
-  {
-    icon: GraduationCap,
-    value: "12개+",
-    label: "산업군 경험",
-    sub: "공공·금융·이커머스·제조 외",
-  },
-];
+interface ContentCounts {
+  insights: number;
+  classes: number;
+  courses: number;
+  total: number;
+}
+
+function getContentCounts(): ContentCounts {
+  const insights = getInsights().length;
+  const classes = getClasses().length;
+  const courses = getCourses().length;
+
+  return { insights, classes, courses, total: insights + classes + courses };
+}
+
+function buildStats(counts: ContentCounts) {
+  return [
+    {
+      icon: CalendarDays,
+      value: `${YEARS_OF_EXPERIENCE}년차`,
+      label: "디지털 마케팅 경력",
+      sub: `${BASE_YEAR}년~${REFERENCE_YEAR}년 기준`,
+    },
+    {
+      icon: Building2,
+      value: CLIENT_COUNT_LABEL,
+      label: "누적 고객사 프로젝트",
+      sub: "최근 5년 누적 기준",
+    },
+    {
+      icon: Tag,
+      value: "3,000+",
+      label: "누적 설계 이벤트와 파라미터",
+      sub: "고객사당 20~30개 × 120곳+",
+    },
+    {
+      icon: Users,
+      value: "1,000명+",
+      label: "누적 실무 교육 수강자",
+      sub: "기업 담당자, 공공 아카데미",
+    },
+    {
+      icon: BookOpen,
+      value: `${counts.total}편`,
+      label: "공개 콘텐츠",
+      sub: "GA4, AEO, GEO, AI 실무 해설",
+    },
+    {
+      icon: GraduationCap,
+      value: "12개+",
+      label: "산업군 경험",
+      sub: "공공, 금융, 이커머스, 제조 외",
+    },
+  ];
+}
 
 const representativeClients = [
   "신세계면세점",
@@ -119,20 +139,61 @@ const educationPartners = [
 
 const principles = [
   {
-    title: "감으로 설명하지 않습니다",
-    desc: "마케팅 성과는 데이터로 증명하고, 구조로 설명합니다. 결과가 나온 이유를 재현 가능한 형태로 남깁니다.",
+    title: "성과가 나온 이유를 남깁니다",
+    desc: "마케팅 성과를 데이터로 증명하고 구조로 설명합니다. 같은 방법으로 다시 확인할 수 있는 형태로 기록을 남깁니다.",
   },
   {
-    title: "전문가 용어로 숨기지 않습니다",
-    desc: "담당자·경영진·실무진 누구나 읽을 수 있는 언어로 정리합니다. 낯선 개념은 비유와 예시로 먼저 연결합니다.",
+    title: "누구나 읽을 수 있게 씁니다",
+    desc: "담당자와 경영진이 같은 문서를 읽고 같은 결론에 도달하도록 정리합니다. 낯선 개념은 비유와 예시를 먼저 두고 설명합니다.",
   },
   {
-    title: "직접 쓰고, 직접 운영합니다",
-    desc: "이 사이트의 기획·구현·콘텐츠를 직접 운영합니다. 일반 기업이 겪는 문제를 같은 자리에서 부딪쳐 배웁니다.",
+    title: "직접 쓰고 직접 운영합니다",
+    desc: "이 사이트의 기획, 구현, 콘텐츠를 직접 운영합니다. 일반 기업이 겪는 문제를 같은 자리에서 겪으며 배웁니다.",
+  },
+];
+
+const workItems = [
+  {
+    icon: FileText,
+    title: "이벤트 택소노미와 정의서 설계",
+    desc: "비즈니스가 신경 써야 하는 순간을 일관된 네이밍과 계층 파라미터로 정의합니다. 고객사당 20~30개, 누적 3,000개 안팎 운영.",
+  },
+  {
+    icon: GitBranch,
+    title: "dataLayer → GTM → GA4 파이프라인 구축",
+    desc: "개발자용 스크립트 가이드를 작성하고, 반영 후 콘솔 디버깅과 누락 역추적까지 직접 수행합니다.",
+  },
+  {
+    icon: UserCheck,
+    title: "Client-ID, User-ID 사용자 식별 설계",
+    desc: "개인정보(PII) 노출 없이 같은 사용자의 방문을 하나의 여정으로 이어 붙입니다.",
+  },
+  {
+    icon: Lock,
+    title: "Enhanced Conversions와 사용자 제공 데이터",
+    desc: "3rd-party 쿠키 제한 환경에서 전환 정확도를 지키기 위한 해시 기반 전송 구조를 설계합니다.",
+  },
+  {
+    icon: Smartphone,
+    title: "Firebase와 GA4 웹, 앱 통합",
+    desc: "logEvent와 setUserProperty를 웹 스키마와 동일한 네이밍으로 맞춰, 웹과 앱을 한 사용자 여정으로 묶습니다.",
+  },
+  {
+    icon: Database,
+    title: "BigQuery 기반 로우데이터 분석",
+    desc: "GA4 UI에서 표현되지 않는 어트리뷰션을 SQL로 재정의하고, 예약 쿼리와 대시보드로 자동 리포트를 구성합니다.",
+  },
+  {
+    icon: Workflow,
+    title: "대형 프로젝트 리드와 교육",
+    desc: "한국관광공사 2023년부터 4년 연속 컨설턴트. 이벤트 정합성 90% KPI와 5단계 산출물 워크플로우로 참여 기업을 지원하고, 누적 1,000명 이상 실무자를 교육했습니다.",
   },
 ];
 
 export default async function AboutPage() {
+  const counts = getContentCounts();
+  const stats = buildStats(counts);
+
   const personLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -140,8 +201,8 @@ export default async function AboutPage() {
     alternateName: "Hong (준이아빠)",
     url: absoluteUrl("/about"),
     image: absoluteUrl("/profile-illustration.png"),
-    jobTitle: "디지털 마케팅·데이터 분석 컨설턴트",
-    description: `${YEARS_OF_EXPERIENCE}년차 디지털 마케터. ${CLIENT_COUNT_LABEL} 고객사의 GA4·GTM 분석 환경 구축, AEO·GEO 실무 전문가. 누적 1,000명 이상 교육 경력.`,
+    jobTitle: "디지털 마케팅, 데이터 분석 컨설턴트",
+    description: `${YEARS_OF_EXPERIENCE}년차 디지털 마케터. ${CLIENT_COUNT_LABEL} 고객사의 GA4와 GTM 분석 환경 구축, AEO와 GEO 실무. 누적 1,000명 이상 교육 경력.`,
     knowsAbout: [
       "Google Analytics 4",
       "Google Tag Manager",
@@ -157,7 +218,7 @@ export default async function AboutPage() {
     knowsLanguage: ["ko", "en"],
     hasOccupation: {
       "@type": "Occupation",
-      name: "디지털 마케팅 컨설턴트 · 데이터 분석가",
+      name: "디지털 마케팅 컨설턴트, 데이터 분석가",
       occupationLocation: { "@type": "Country", name: "대한민국" },
       skills: "GA4, GTM, BigQuery, LookerStudio, AEO, GEO, LLM, Python",
     },
@@ -174,7 +235,8 @@ export default async function AboutPage() {
     url: SITE_URL,
     logo: absoluteUrl("/favicon.ico"),
     founder: { "@type": "Person", name: "준이아빠" },
-    description: "GA4·GTM·AEO·GEO 실무 인사이트를 공유하는 디지털 마케팅 지식 아카이브.",
+    description:
+      "GA4, GTM, AEO, GEO 실무 인사이트를 정리한 디지털 마케팅 지식 사이트.",
     sameAs: [
       "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/",
     ],
@@ -222,14 +284,14 @@ export default async function AboutPage() {
               </span>
             </div>
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-black leading-tight mb-4">
-              디지털 환경의 문제에 답을 찾고,
+              마케팅 성과를
               <br />
-              <span className="text-[#FF0033]">근거와 지식으로</span> 컨설팅하고 있습니다.
+              <span className="text-[#FF0033]">데이터로 확인하는</span> 일을 합니다.
             </h1>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              <strong>{YEARS_OF_EXPERIENCE}년차 디지털 마케터</strong>입니다. 신세계면세점·혼다코리아·안랩·베스핀글로벌 등 <strong>120곳 이상의 기업·기관</strong>에서 <strong>이벤트 택소노미 설계·GA4·GTM 분석 환경 구축·BigQuery 로우데이터 분석</strong>까지, 데이터로 마케팅을 설명 가능하게 만드는 일을 해왔습니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육해왔고, 이 사이트는 그 과정에서 정리한 실무 인사이트 아카이브입니다.
+              <strong>{YEARS_OF_EXPERIENCE}년차 디지털 마케터</strong>입니다. 신세계면세점, 혼다코리아, 안랩, 베스핀글로벌 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
               <span className="block mt-2 text-xs text-gray-500">
-                {REFERENCE_YEAR}년 4월 기준
+                경력 수치는 {CREDENTIAL_AS_OF} 기준
               </span>
             </p>
           </div>
@@ -242,9 +304,7 @@ export default async function AboutPage() {
           <div className="bg-black border-2 border-black p-1.5 -rotate-3">
             <Award className="w-5 h-5 text-white" />
           </div>
-          <h2 className="text-xl sm:text-2xl font-black uppercase">
-            어떤 경력을 쌓아왔을까요?
-          </h2>
+          <h2 className="text-xl sm:text-2xl font-black">경력</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
           {stats.map((stat, index) => {
@@ -276,7 +336,7 @@ export default async function AboutPage() {
           })}
         </div>
         <p className="mt-4 text-xs text-gray-500">
-          수치는 {REFERENCE_YEAR}년 4월 기준이며, 공개 가능한 레퍼런스와 내부 기록을 근거로 집계했습니다.
+          경력, 고객사, 교육 수치는 {CREDENTIAL_AS_OF} 기준이며 공개 가능한 레퍼런스와 내부 기록을 근거로 집계했습니다. 공개 콘텐츠 편수는 현재 사이트에 올라와 있는 글의 수입니다.
         </p>
       </section>
 
@@ -290,12 +350,12 @@ export default async function AboutPage() {
             <div className="bg-primary border-2 border-black p-1.5 rotate-2">
               <Building2 className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-xl sm:text-2xl font-black uppercase">
-              어떤 기업·기관과 일해왔을까요?
+            <h2 className="text-xl sm:text-2xl font-black">
+              함께 일한 기업과 기관
             </h2>
           </div>
           <p className="text-base sm:text-lg text-gray-700 mb-4 leading-relaxed">
-            공공·금융·이커머스·제조·유통·면세·대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다.
+            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다.
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
             {representativeClients.map((client) => (
@@ -326,7 +386,7 @@ export default async function AboutPage() {
         </NeoTiltCard>
       </section>
 
-      {/* The Question Section */}
+      {/* Why this work */}
       <section className="mb-12 sm:mb-16">
         <NeoTiltCard
           className="bg-white border-4 border-black p-6 sm:p-8 rotate-0.5"
@@ -334,71 +394,31 @@ export default async function AboutPage() {
         >
           <h2 className="text-xl sm:text-2xl font-black tracking-tight mb-6 border-b-4 border-black pb-2 flex items-center gap-3">
             <span className="w-4 h-4 bg-[#FF0033] inline-block" />
-            왜 마케팅 성과를 데이터로 설명해야 할까요?
+            이 일을 시작한 이유
           </h2>
           <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
-            <p>광고를 집행하고, 콘텐츠를 만들고, 캠페인을 설계해왔습니다.</p>
-            <p>하지만 성과가 나왔는지에 대한 질문 앞에서는 늘 같은 생각을 했습니다.</p>
-            <div className="bg-black text-white p-4 sm:p-6 border-4 border-black -rotate-0.5 my-6">
-              <p className="text-lg sm:text-xl font-black italic">
-                “그래서, 무엇이 실제로 바뀌었는가?”
-              </p>
-            </div>
             <p>
-              그 질문에 답하기 위해 마케팅을 <strong className="text-primary">데이터의 언어</strong>로 정리하기 시작했고, AI와 기술의 변화를 마케팅 실무에 연결하는 작업으로 확장해왔습니다.
+              광고를 집행하고, 콘텐츠를 만들고, 캠페인을 설계해왔습니다. 그러면서 매번 같은 질문을 받았습니다. 무엇이 실제로 바뀌었는지 묻는 질문이었습니다.
             </p>
             <p>
-              지금 이 사이트는 그 과정에서 쌓인 인사이트를 정리한 <strong className="text-primary">지식 아카이브</strong>입니다.
+              광고비를 얼마 썼고 클릭이 몇 번 일어났는지는 답할 수 있었습니다. 그래서 매출이 늘었는지, 어떤 소재가 그 매출을 만들었는지는 답하지 못했습니다.
+            </p>
+            <p>
+              GA4와 GTM으로 그 사이를 메우는 일을 시작한 것이 지금 하는 일의 출발점입니다. 이후 AI와 기술의 변화를 마케팅 실무에 연결하는 쪽으로 범위를 넓혔고, 이 사이트에는 그 과정에서 정리한 것을 올리고 있습니다.
             </p>
           </div>
         </NeoTiltCard>
       </section>
 
-      {/* Approach Section */}
+      {/* What I do */}
       <section className="mb-12 sm:mb-16">
         <div className="bg-white border-4 border-black p-6 sm:p-8 neo-shadow-lg">
           <h2 className="text-xl sm:text-2xl font-black tracking-tight mb-6 border-b-4 border-black pb-2 flex items-center gap-3">
             <span className="w-4 h-4 bg-black inline-block transform rotate-45" />
-            어떤 일들을 하고 있을까요?
+            하는 일
           </h2>
           <div className="space-y-3">
-            {[
-              {
-                icon: FileText,
-                title: "이벤트 택소노미·정의서 설계",
-                desc: "비즈니스가 신경 써야 하는 순간을 일관된 네이밍과 계층 파라미터로 정의합니다. 고객사당 20~30개, 누적 3,000개 안팎 운영.",
-              },
-              {
-                icon: GitBranch,
-                title: "dataLayer → GTM → GA4 파이프라인 구축",
-                desc: "개발자용 스크립트 가이드를 작성하고, 반영 후 콘솔 디버깅·누락 역추적까지 직접 수행합니다.",
-              },
-              {
-                icon: UserCheck,
-                title: "Client-ID · User-ID 사용자 식별 설계",
-                desc: "개인정보(PII) 노출 없이 같은 사용자의 방문을 하나의 여정으로 이어 붙입니다.",
-              },
-              {
-                icon: Lock,
-                title: "Enhanced Conversions · 사용자 제공 데이터",
-                desc: "3rd-party 쿠키 제한 환경에서 전환 정확도를 지키기 위한 해시 기반 전송 구조를 설계합니다.",
-              },
-              {
-                icon: Smartphone,
-                title: "Firebase ↔ GA4 웹·앱 통합",
-                desc: "logEvent·setUserProperty를 웹 스키마와 동일한 네이밍으로 맞춰, 웹·앱을 한 사용자 여정으로 묶습니다.",
-              },
-              {
-                icon: Database,
-                title: "BigQuery 기반 로우데이터 분석",
-                desc: "GA4 UI에서 표현되지 않는 어트리뷰션을 SQL로 재정의하고, 예약 쿼리·대시보드로 자동 리포트를 구성합니다.",
-              },
-              {
-                icon: Workflow,
-                title: "대형 프로젝트 리드 · 교육",
-                desc: "한국관광공사 2023년부터 4년 연속 컨설턴트. 이벤트 정합성 90% KPI와 5단계 산출물 워크플로우로 참여 기업을 지원하고, 누적 1,000명 이상 실무자를 교육했습니다.",
-              },
-            ].map((item, index) => {
+            {workItems.map((item, index) => {
               const Icon = item.icon;
               return (
                 <div
@@ -422,7 +442,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* What I Build Section */}
+      {/* What is published here */}
       <section className="mb-12 sm:mb-16">
         <NeoTiltCard
           className="bg-white border-4 border-black p-6 sm:p-8 -rotate-0.5"
@@ -432,18 +452,27 @@ export default async function AboutPage() {
             <div className="bg-primary border-2 border-black p-1.5 rotate-2">
               <Layers className="w-5 h-5 text-white" />
             </div>
-            <h2 className="text-xl sm:text-2xl font-black uppercase">
-              무엇을 만들고 있나요?
+            <h2 className="text-xl sm:text-2xl font-black">
+              이 사이트에 쌓인 것
             </h2>
           </div>
           <p className="text-base sm:text-lg text-gray-700 mb-4">
-            이 사이트에서 공개하고 있는 결과물은 {REFERENCE_YEAR}년 4월 기준 <strong>93편</strong>입니다.
+            지금까지 공개한 글은 <strong>{counts.total}편</strong>입니다.
           </p>
           <div className="space-y-3">
             {[
-              { name: "Insights", desc: "마케팅·AI·데이터 분석 심화 해설 56편" },
-              { name: "Class", desc: "개념을 체계적으로 정리한 학습 콘텐츠 34편" },
-              { name: "Courses", desc: "주제별 학습 경로 3개" },
+              {
+                name: "Insights",
+                desc: `마케팅, AI, 데이터 분석 심화 해설 ${counts.insights}편`,
+              },
+              {
+                name: "Class",
+                desc: `개념을 체계적으로 정리한 학습 콘텐츠 ${counts.classes}편`,
+              },
+              {
+                name: "Courses",
+                desc: `주제별 학습 경로 ${counts.courses}개`,
+              },
             ].map((item) => (
               <div
                 key={item.name}
@@ -461,7 +490,7 @@ export default async function AboutPage() {
               href="/insights?category=AI_TECH"
               className="underline decoration-2 underline-offset-2 font-bold text-black hover:text-primary"
             >
-              AI·기술 인사이트 →
+              AI와 기술 인사이트 →
             </Link>
             <Link
               href="/insights?category=MARKETING"
@@ -485,9 +514,7 @@ export default async function AboutPage() {
           <div className="bg-black border-2 border-black p-1.5 rotate-2">
             <MessageSquare className="w-5 h-5 text-white" />
           </div>
-          <h2 className="text-xl sm:text-2xl font-black uppercase">
-            어떤 원칙으로 일하나요?
-          </h2>
+          <h2 className="text-xl sm:text-2xl font-black">일하는 원칙</h2>
         </div>
         <div className="space-y-4">
           {principles.map((principle, index) => {
@@ -513,42 +540,23 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Mission Statement */}
-      <section className="mb-12 sm:mb-16">
-        <NeoTiltCard
-          className="bg-gradient-to-br from-neutral-800 to-neutral-950 text-white border-4 border-black p-6 sm:p-10 rotate-0.5 text-center"
-          intensity={20}
-        >
-          <p className="text-lg sm:text-xl md:text-2xl font-black leading-relaxed">
-            “<span className="text-[#FF0033]">설명할 수 있는 마케팅</span>,
-            <br />
-            누구나 배울 수 있는 기술을
-            <br />
-            만들고 기록하는 사람입니다.”
-          </p>
-        </NeoTiltCard>
-      </section>
-
       {/* CTA Section */}
-      <section className="text-center">
-        <p className="text-gray-600 mb-6">더 많은 인사이트가 궁금하시다면</p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/insights">
-            <NeoButton size="lg">
-              Insights 보기 <ArrowRight className="w-4 h-4 ml-2" />
-            </NeoButton>
-          </Link>
-          <Link href="/class">
-            <NeoButton size="lg">
-              Class 보기 <ArrowRight className="w-4 h-4 ml-2" />
-            </NeoButton>
-          </Link>
-          <Link href="/tags">
-            <NeoButton variant="outline" size="lg">
-              Tags 둘러보기 <ArrowRight className="w-4 h-4 ml-2" />
-            </NeoButton>
-          </Link>
-        </div>
+      <section className="flex flex-col sm:flex-row gap-3 justify-center">
+        <Link href="/insights">
+          <NeoButton size="lg">
+            Insights 보기 <ArrowRight className="w-4 h-4 ml-2" />
+          </NeoButton>
+        </Link>
+        <Link href="/class">
+          <NeoButton size="lg">
+            Class 보기 <ArrowRight className="w-4 h-4 ml-2" />
+          </NeoButton>
+        </Link>
+        <Link href="/tags">
+          <NeoButton variant="outline" size="lg">
+            Tags 둘러보기 <ArrowRight className="w-4 h-4 ml-2" />
+          </NeoButton>
+        </Link>
       </section>
     </div>
   );
