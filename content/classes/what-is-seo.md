@@ -54,7 +54,7 @@ ogImage: /og/what-is-seo.png
 
 SEO가 아닌 것도 함께 적어 두겠습니다. 도구를 한 번 돌려서 끝나는 작업이 아니고, 같은 단어를 본문에 여러 번 넣는 기법과도 다릅니다. 순위를 직접 조작하는 방법과는 더 거리가 멉니다.
 
-## 🏪 새로 연 가게가 손님에게 발견되기까지
+## 🏪 SEO의 세 단계, 새로 연 가게가 손님을 만나기까지
 
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
@@ -99,25 +99,25 @@ SEO는 하나의 작업이 아니라 성격이 다른 세 가지로 나뉩니다
 
 순서에는 이유가 있습니다. 검색어를 아무리 잘 골라도 페이지가 색인되지 않으면 소용이 없고, AI 답변에 인용되려면 그 전에 검색엔진이 페이지를 읽을 수 있어야 합니다. **첫 번째가 되어 있어야 나머지 둘도 소용이 있습니다.**
 
-## 🧱 이 코스 아홉 강의 흐름
+## 🧱 이 코스가 다루는 순서
 
-이 코스는 앞에서 본 발견과 저장 두 단계를 아홉 개로 나눠 다룹니다. 순서대로 따라가면 하나씩 쌓입니다.
+이 코스는 앞에서 본 발견과 저장 두 단계를 아홉 편으로 나눠 다룹니다. 순서대로 따라가면 하나씩 쌓입니다.
 
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
-    <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">아홉 강이 다루는 구간</div>
+    <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">이 코스가 다루는 순서</div>
     <div style="padding:16px;">
-      <div style="border:3px solid #000; background:#F3F3F3; padding:8px 12px; margin-bottom:8px;"><strong>1강</strong> 전체 지도. 지금 읽고 있는 강입니다</div>
-      <div style="border-left:8px solid #FF0000; border-top:3px solid #000; border-right:3px solid #000; border-bottom:3px solid #000; background:#fff; padding:8px 12px; margin-bottom:4px;"><strong>2~3강</strong> 발견과 저장이 일어나는 방식</div>
-      <div style="border-left:8px solid #FF0000; border-top:3px solid #000; border-right:3px solid #000; border-bottom:3px solid #000; background:#fff; padding:8px 12px; margin-bottom:4px;"><strong>4~5강</strong> 검색엔진에게 보내는 두 가지 신호</div>
-      <div style="border-left:8px solid #FF0000; border-top:3px solid #000; border-right:3px solid #000; border-bottom:3px solid #000; background:#fff; padding:8px 12px; margin-bottom:4px;"><strong>6~7강</strong> 주소가 여러 개일 때의 정리와 페이지끼리 잇는 방법</div>
-      <div style="border-left:8px solid #FF0000; border-top:3px solid #000; border-right:3px solid #000; border-bottom:3px solid #000; background:#fff; padding:8px 12px; margin-bottom:8px;"><strong>8강</strong> 느린 페이지가 받는 불이익</div>
-      <div style="border:3px solid #000; background:#F3F3F3; padding:8px 12px;"><strong>9강</strong> 지금까지 배운 것을 서치 콘솔에서 직접 확인</div>
+      <div style="border:3px solid #000; background:#F3F3F3; padding:8px 12px; margin-bottom:8px;"><strong>시작</strong> 전체 지도. 지금 읽고 있는 글입니다</div>
+      <div style="border-left:8px solid #FF0000; border-top:3px solid #000; border-right:3px solid #000; border-bottom:3px solid #000; background:#fff; padding:8px 12px; margin-bottom:4px;"><strong>크롤러와 색인</strong> 발견과 저장이 일어나는 방식</div>
+      <div style="border-left:8px solid #FF0000; border-top:3px solid #000; border-right:3px solid #000; border-bottom:3px solid #000; background:#fff; padding:8px 12px; margin-bottom:4px;"><strong>robots.txt와 사이트맵</strong> 검색엔진에게 보내는 두 가지 신호</div>
+      <div style="border-left:8px solid #FF0000; border-top:3px solid #000; border-right:3px solid #000; border-bottom:3px solid #000; background:#fff; padding:8px 12px; margin-bottom:4px;"><strong>정규 URL과 내부 링크</strong> 주소가 여러 개일 때의 정리와 페이지끼리 잇는 방법</div>
+      <div style="border-left:8px solid #FF0000; border-top:3px solid #000; border-right:3px solid #000; border-bottom:3px solid #000; background:#fff; padding:8px 12px; margin-bottom:8px;"><strong>페이지 속도</strong> 느린 페이지가 받는 불이익</div>
+      <div style="border:3px solid #000; background:#F3F3F3; padding:8px 12px;"><strong>마무리</strong> 지금까지 배운 것을 서치 콘솔에서 직접 확인</div>
     </div>
   </div>
 </div>
 
-2강부터 8강까지는 개념을 하나씩 익히고, 9강에서 그 개념들을 실제 화면에 대입해 봅니다. 중간에 막히면 앞 강으로 돌아가면 됩니다.
+크롤러부터 페이지 속도까지는 개념을 하나씩 익히고, 마지막에 그 개념들을 실제 화면에 대입해 봅니다. 중간에 막히면 앞으로 돌아가면 됩니다.
 
 ## ⚠️ SEO를 둘러싼 흔한 오해 세 가지
 
@@ -149,7 +149,7 @@ AI가 한 번에 읽을 수 있는 분량은 정해져 있습니다. 사이트 �
 
 세 경우 모두 **글을 잘 썼는지와는 상관이 없습니다.** 어디가 막혔는지 먼저 확인하는 것이 SEO의 첫 단계입니다.
 
-수집 프로그램이 페이지를 어떻게 찾아오는지는 다음 강에서 이어집니다. 참고로 데이터를 모으는 용도의 [웹 크롤링](/class/digital-basic/what-is-web-crawling)과는 목적이 다른 개념입니다.
+수집 프로그램이 페이지를 어떻게 찾아오는지는 다음 글에서 이어집니다. 참고로 데이터를 모으는 용도의 [웹 크롤링](/class/digital-basic/what-is-web-crawling)과는 목적이 다른 개념입니다.
 
 ## 📋 30초 요약
 
