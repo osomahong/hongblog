@@ -12,7 +12,6 @@ import { SITE_URL } from "@/lib/constants";
 import { getPostBySlug, getRelatedClassesForPost, getPublishedPosts } from "@/lib/content";
 import { extractFaqPairs } from "@/lib/extract-faq";
 import { ViewTracker } from "@/components/ViewTracker";
-import { AiPracticePromo } from "@/components/AiPracticePromo";
 import { isAiPracticeTopic } from "@/lib/aipractice-topic";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { ContentHeroImage } from "@/components/ContentHeroImage";
@@ -216,10 +215,6 @@ export default async function InsightDetailPage({ params }: Props) {
           contentTitle={post.title}
           contentSlug={slug}
         />
-        {/* AI 관련 글에서 50% 스크롤 시 AI-Practice 유도 팝업 */}
-        {isAiPracticeTopic(post.category, post.tags) && (
-          <AiPracticePromo contentId={slug} contentName={post.title} />
-        )}
 
         {/* 상단 네비게이션 바 */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
