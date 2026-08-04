@@ -2,6 +2,11 @@ export const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.digital
 
 export const GTM_ID = "GTM-5H3Z6ZLZ";
 
+// 스티비 뉴스레터 구독 페이지 (무료 플랜: API 미지원이라 외부 페이지로 연결)
+export const NEWSLETTER_URL = "https://digitalmarketer.stibee.com/";
+
+export const KAKAO_INQUIRY_URL = "https://open.kakao.com/o/pvUCYfci";
+
 export const POST_CATEGORIES = ["MARKETING", "AI_TECH", "DATA"] as const;
 export const CLASS_CATEGORIES = ["MARKETING", "AI_TECH", "CLAUDE_EDUCATION"] as const;
 

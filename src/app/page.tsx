@@ -23,6 +23,7 @@ import {
 } from "@/lib/content";
 import type { TrendingItem } from "@/lib/types";
 import { TrackedLink } from "@/components/TrackedLink";
+import { NewsletterCta } from "@/components/NewsletterCta";
 
 const categoryIcons: Record<string, any> = {
   AI_TECH: Sparkles,
@@ -304,6 +305,9 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      {/* Newsletter CTA */}
+      <NewsletterCta location="home" className="mb-6 sm:mb-12" />
 
       {/* About Author CTA */}
       <section>

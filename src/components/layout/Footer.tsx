@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { User, MessageCircle } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
+import { NewsletterFooterButton } from "@/components/NewsletterCta";
+import { KAKAO_INQUIRY_URL } from "@/lib/constants";
 
 const EXPLORE_LINKS = [
   { href: "/ai-practice", label: "AI-Practice" },
@@ -93,20 +95,21 @@ export function Footer() {
               마케팅을 데이터로 설명하는 사람
             </p>
             <a
-              href="https://open.kakao.com/o/pvUCYfci"
+              href={KAKAO_INQUIRY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => sendGAEvent("click_footer", { menu_name: "KakaoTalk" })}
+              onClick={() => sendGAEvent("click_footer", { menu_name: "Community" })}
               className={cn(
-                "mt-3 inline-flex items-center gap-2 px-4 py-2 bg-[#FEE500] text-black text-xs font-black transition-all sm:self-start",
+                "mt-3 inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-xs font-black transition-all sm:self-start",
                 isApTheme
-                  ? "rounded-[10px] border border-[rgba(255,215,0,0.5)] hover:shadow-[0_0_18px_rgba(255,215,0,0.35)]"
-                  : "border-2 border-white hover:bg-[#F7E600] neo-shadow-sm"
+                  ? "rounded-[10px] border border-[rgba(255,92,125,0.5)] hover:shadow-[0_0_18px_rgba(255,92,125,0.35)]"
+                  : "border-2 border-white hover:bg-[#CC0000] neo-shadow-sm"
               )}
             >
               <MessageCircle className="w-4 h-4" />
-              카카오톡 문의하기
+              커뮤니티 입장하기
             </a>
+            <NewsletterFooterButton apTheme={isApTheme} />
           </div>
         </div>
 

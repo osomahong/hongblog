@@ -21,6 +21,7 @@ import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 import { RelatedPosts } from "@/components/RelatedPosts";
 import { ShareBar } from "@/components/ShareBar";
+import { NewsletterCta } from "@/components/NewsletterCta";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
 import { getRelatedPosts } from "@/lib/related-posts";
@@ -346,6 +347,8 @@ export default async function InsightDetailPage({ params }: Props) {
               variant="full"
               className="mt-6 sm:mt-8"
             />
+
+            <NewsletterCta location="post_bottom" className="mt-6 sm:mt-8" />
 
             <RelatedPosts posts={relatedPosts} />
 
