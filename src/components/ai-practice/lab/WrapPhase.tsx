@@ -4,7 +4,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check, Copy, RotateCcw, X } from "lucide-react";
+import { Check, Copy, Mail, MessageCircle, RotateCcw, X } from "lucide-react";
+import { KAKAO_INQUIRY_URL, NEWSLETTER_URL } from "@/lib/constants";
 import { sendGAEvent } from "@/lib/gtm";
 import { BTN_GHOST, Callout } from "./ui";
 import type { LabEventParams } from "./LabShell";
@@ -125,6 +126,27 @@ export function WrapPhase({
         >
           {content.primary.label}
         </Link>
+        {/* 실습을 마쳐도 궁금증이 남을 수 있어, 상단 내비와 같은 뉴스레터·커뮤니티 입장을 유도한다 */}
+        <a
+          href={NEWSLETTER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => sendGAEvent("click_newsletter", { location: "aipbl_wrap", ...eventParams })}
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#ffd700] text-black text-sm font-semibold hover:shadow-[0_0_18px_rgba(255,215,0,0.35)] transition-all"
+        >
+          <Mail className="w-4 h-4 flex-shrink-0" strokeWidth={1.8} /> 뉴스레터 구독하기
+        </a>
+        <a
+          href={KAKAO_INQUIRY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() =>
+            sendGAEvent("click_nav", { menu_name: "Community", location: "aipbl_wrap", ...eventParams })
+          }
+          className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-[rgba(255,92,125,0.5)] text-[#ff8fa3] text-sm font-semibold hover:shadow-[0_0_18px_rgba(255,92,125,0.35)] transition-all"
+        >
+          <MessageCircle className="w-4 h-4 flex-shrink-0" strokeWidth={1.8} /> 커뮤니티 입장하기
+        </a>
       </div>
     </div>
   );

@@ -1,0 +1,230 @@
+<!doctype html>
+<!--
+  GEO 심화 AIPBL 실습용 목업 사이트 (구조화 데이터 반영판).
+  중급 구조 보강판(momofarm-v2.html)과 화면은 완전히 같고,
+  head에 JSON-LD 구조화 데이터(Product, FAQPage, Organization)만 추가된 버전.
+  "사람의 눈에는 변화가 없고 AI의 눈에서만 달라진다"는 것이 미션의 핵심 장치다.
+  사진: Wikimedia Commons (자유 라이선스).
+-->
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>모모팜 : 산지직송 복숭아</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "name": "모모팜 딱딱이 복숭아 4.5kg",
+        "description": "당도 13브릭스 이상만 선별해 수확 당일 오후에 발송하는 산지직송 딱딱이 복숭아",
+        "brand": { "@type": "Brand", "name": "모모팜" },
+        "offers": {
+          "@type": "Offer",
+          "price": "32000",
+          "priceCurrency": "KRW",
+          "availability": "https://schema.org/InStock"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "128"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "배송은 얼마나 걸리나요?",
+            "acceptedAnswer": { "@type": "Answer", "text": "발송 다음 날 도착하는 지역이 대부분입니다." }
+          },
+          {
+            "@type": "Question",
+            "name": "단단한 복숭아인가요?",
+            "acceptedAnswer": { "@type": "Answer", "text": "아삭한 식감의 단단한 품종만 재배합니다." }
+          },
+          {
+            "@type": "Question",
+            "name": "단단한 복숭아 당일 발송 되나요?",
+            "acceptedAnswer": { "@type": "Answer", "text": "오전 수확분은 그날 오후에 발송합니다. 오후 2시 이전 주문까지 당일 발송입니다." }
+          },
+          {
+            "@type": "Question",
+            "name": "당도 13브릭스는 어떻게 확인하나요?",
+            "acceptedAnswer": { "@type": "Answer", "text": "비파괴 당도 선별기를 전 물량이 통과하며, 13브릭스 미만은 출하하지 않습니다." }
+          }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "name": "모모팜",
+        "description": "모모팜은 경북 영천에서 딱딱이 복숭아만 재배하는 산지직송 가족 농장입니다.",
+        "telephone": "010-2345-6789"
+      }
+    ]
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif; background: #ffffff; color: #17181c; padding-bottom: 84px; }
+    .topbar { background: #000000; color: #ffffff; text-align: center; font-size: 11px; padding: 8px 12px; }
+    .topbar b { text-decoration: underline; font-weight: 600; }
+    header { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #ffffff; border-bottom: 1px solid #f0f0f2; }
+    .menu { font-size: 18px; color: #17181c; }
+    .logo { font-size: 21px; font-weight: 900; letter-spacing: -0.03em; color: #000000; }
+    .hicons { margin-left: auto; display: flex; gap: 13px; font-size: 16px; }
+    .crumb { padding: 14px 18px 0; font-size: 12px; color: #9ca3af; }
+    .crumb b { color: #17181c; font-weight: 500; }
+    .newsletter { margin: 26px 16px 6px; background: #000000; border-radius: 20px; padding: 24px 20px; }
+    .newsletter .n-title { color: #ffffff; font-size: 22px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.3; margin-bottom: 16px; }
+    .newsletter .n-input { background: #ffffff; border-radius: 999px; padding: 11px 16px; font-size: 13px; color: #9ca3af; margin-bottom: 10px; }
+    .newsletter .n-btn { background: #ffffff; border-radius: 999px; padding: 11px 16px; font-size: 13px; font-weight: 700; text-align: center; }
+    .hero { margin: 12px 16px 0; border-radius: 20px; overflow: hidden; background: #f0eeed; }
+    .hero img { display: block; width: 100%; height: auto; }
+    .product { padding: 18px 18px 6px; }
+    .badges span { display: inline-block; padding: 5px 12px; border-radius: 999px; background: #f0f0f2; color: #17181c; font-size: 11px; font-weight: 700; margin-right: 6px; }
+    h1 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin: 10px 0 6px; }
+    .rating { font-size: 13px; color: #6b7280; margin-bottom: 12px; }
+    .rating .stars { color: #ffc633; letter-spacing: 2px; }
+    .rating b { color: #17181c; }
+    .price { display: flex; align-items: baseline; gap: 8px; padding-bottom: 16px; border-bottom: 1px solid #f0f0f2; }
+    .price strong { font-size: 24px; font-weight: 800; }
+    .price del { font-size: 16px; font-weight: 700; color: #c4c4c4; }
+    .price .off { font-size: 12px; font-weight: 700; color: #ff3333; background: rgba(255, 51, 51, 0.1); border-radius: 999px; padding: 4px 10px; }
+    .price span.ship { font-size: 13px; color: #9ca3af; margin-left: auto; }
+    .detail-label { padding: 18px 18px 10px; font-size: 15px; font-weight: 700; }
+    .detail img { display: block; width: 100%; height: auto; }
+    section.text { padding: 22px 18px 6px; }
+    h2 { font-size: 19px; font-weight: 900; letter-spacing: -0.03em; margin: 30px 0 12px; text-align: center; }
+    p, li, td, th { font-size: 14px; line-height: 1.7; }
+    .brand-card { display: flex; gap: 12px; align-items: flex-start; background: #000000; border-radius: 20px; padding: 16px; }
+    .brand-card .b-ico { width: 30px; height: 30px; border-radius: 999px; background: #ffffff; font-size: 15px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .brand-card p { font-weight: 600; flex: 1; min-width: 0; color: #ffffff; }
+    .feature-list { list-style: none; }
+    .feature-list li { display: flex; gap: 12px; align-items: flex-start; padding: 15px 16px; border: 1px solid #f0f0f2; border-radius: 20px; margin-bottom: 10px; }
+    .f-ico { width: 26px; height: 26px; border-radius: 999px; background: #000000; color: #ffffff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .f-body { flex: 1; min-width: 0; }
+    .f-body .main { font-weight: 600; }
+    .f-basis { margin-top: 3px; font-size: 12px; color: #9ca3af; }
+    .f-basis b { font-weight: 700; color: #6b7280; }
+    .chip-new { flex-shrink: 0; margin-top: 3px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; color: #ff3333; background: rgba(255, 51, 51, 0.12); border-radius: 999px; padding: 3px 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 2px; }
+    th { font-size: 12px; font-weight: 600; color: #9ca3af; text-align: left; padding: 8px 14px 8px 0; border-bottom: 1px solid #e5e7eb; }
+    td { padding: 10px 14px 10px 0; border-bottom: 1px solid #f4f4f6; white-space: nowrap; }
+    td:first-child { white-space: normal; }
+    .faq-card { border: 1px solid #f0f0f2; border-radius: 20px; padding: 14px 16px; margin-top: 10px; }
+    .faq-card .q { font-weight: 700; display: flex; align-items: baseline; gap: 8px; }
+    .faq-card .q span.txt { flex: 1; min-width: 0; }
+    .faq-card .q .arr { color: #d1d5db; }
+    .faq-card .a { margin-top: 4px; color: #4b5563; font-size: 13.5px; }
+    footer { padding: 26px 18px; font-size: 12px; color: #9ca3af; background: #fafafa; border-top: 1px solid #f0f0f2; }
+    .cta { position: fixed; left: 0; right: 0; bottom: 0; display: flex; gap: 10px; padding: 12px 18px; background: #ffffff; border-top: 1px solid #f0f0f2; }
+    .cta .like { width: 52px; border: 1px solid #e5e7eb; border-radius: 14px; background: #ffffff; font-size: 18px; }
+    .cta .buy { flex: 1; border: 0; border-radius: 14px; background: #17181c; color: #ffffff; font-size: 15px; font-weight: 700; padding: 14px 0; }
+  </style>
+</head>
+<body>
+  <div class="topbar">여름 복숭아 시즌 오픈, 첫 주문 <b>10% 할인</b></div>
+  <header>
+    <span class="menu" aria-hidden>&#9776;</span>
+    <span class="logo">모모팜</span>
+    <span class="hicons" aria-hidden><span>&#128269;</span><span>&#128722;</span></span>
+  </header>
+  <nav class="crumb">홈 &gt; 과일 &gt; <b>복숭아</b></nav>
+
+  <div class="hero">
+    <img src="/ai-practice/mock/img/hero-peach.webp" alt="반으로 자른 단면이 보이는 모모팜 딱딱이 복숭아" />
+  </div>
+
+  <section class="product">
+    <p class="badges"><span>산지직송</span><span>당일 수확</span></p>
+    <h1>모모팜 딱딱이 복숭아 4.5kg</h1>
+    <p class="rating"><span class="stars" aria-hidden>&#9733;&#9733;&#9733;&#9733;&#9733;</span> <b>4.9/5</b> (후기 128개)</p>
+    <p class="price"><strong>32,000원</strong><del>39,000원</del><span class="off">-18%</span><span class="ship">무료배송</span></p>
+  </section>
+
+  <section class="text">
+    <div class="brand-card">
+      <span class="b-ico" aria-hidden>&#127825;</span>
+      <p>모모팜은 경북 영천에서 딱딱이 복숭아만 재배하는 산지직송 가족 농장입니다.</p>
+      <span class="chip-new">NEW</span>
+    </div>
+
+    <h2>모모팜이 맛을 지키는 방법</h2>
+    <ul class="feature-list">
+      <li>
+        <span class="f-ico" aria-hidden>&#10003;</span>
+        <div class="f-body">
+          <p class="main">모모팜은 오전에 수확한 복숭아를 그날 오후에 발송합니다.</p>
+          <p class="f-basis"><b>산출 기준</b> 2026년 7월에서 8월 수확분 발송 기록</p>
+        </div>
+        <span class="chip-new">NEW</span>
+      </li>
+      <li>
+        <span class="f-ico" aria-hidden>&#10003;</span>
+        <div class="f-body">
+          <p class="main">당도 13브릭스 이상인 복숭아만 선별기로 골라 포장합니다.</p>
+          <p class="f-basis"><b>측정 방법</b> 비파괴 당도 선별기 전수 통과</p>
+        </div>
+        <span class="chip-new">NEW</span>
+      </li>
+      <li>
+        <span class="f-ico" aria-hidden>&#10003;</span>
+        <div class="f-body">
+          <p class="main">지난해 주문 고객의 재구매율은 41%로, 10명 중 4명이 다시 주문했습니다.</p>
+          <p class="f-basis"><b>산출 기준</b> 2025년 시즌 주문 고객 재주문 비율</p>
+        </div>
+        <span class="chip-new">NEW</span>
+      </li>
+    </ul>
+
+    <h2>판매 상품 정보</h2>
+    <table>
+      <tr><th>구성</th><th>가격</th><th>판매 기간</th></tr>
+      <tr><td>가정용 4.5kg (15과 내외)</td><td>32,000원</td><td>매년 8월 초, 약 2주간</td></tr>
+    </table>
+
+    <h2>자주 묻는 질문</h2>
+    <div class="faq-card">
+      <p class="q"><span class="txt">배송은 얼마나 걸리나요?</span> <span class="arr" aria-hidden>&#8964;</span></p>
+      <p class="a">발송 다음 날 도착하는 지역이 대부분입니다.</p>
+    </div>
+    <div class="faq-card">
+      <p class="q"><span class="txt">단단한 복숭아인가요?</span> <span class="arr" aria-hidden>&#8964;</span></p>
+      <p class="a">아삭한 식감의 단단한 품종만 재배합니다.</p>
+    </div>
+    <div class="faq-card">
+      <p class="q"><span class="txt">단단한 복숭아 당일 발송 되나요?</span> <span class="chip-new">NEW</span></p>
+      <p class="a">오전 수확분은 그날 오후에 발송합니다. 오후 2시 이전 주문까지 당일 발송입니다.</p>
+    </div>
+    <div class="faq-card">
+      <p class="q"><span class="txt">당도 13브릭스는 어떻게 확인하나요?</span> <span class="chip-new">NEW</span></p>
+      <p class="a">비파괴 당도 선별기를 전 물량이 통과하며, 13브릭스 미만은 출하하지 않습니다.</p>
+    </div>
+  </section>
+
+  <p class="detail-label">상세정보</p>
+  <div class="detail">
+    <img src="/ai-practice/mock/momofarm-detail.png" alt="모모팜 복숭아 상세정보. 당도 13브릭스 이상 선별, 수확 당일 오후 발송, 재구매율 41% 안내와 과수원, 포장 사진" />
+  </div>
+
+  <div class="newsletter">
+    <p class="n-title">복숭아 시즌<br />소식 받기</p>
+    <div class="n-input">&#9993; 이메일 주소 입력</div>
+    <div class="n-btn">시즌 오픈 알림 신청</div>
+  </div>
+
+  <footer>
+    <p>고객센터 010-2345-6789</p>
+    <p>© 모모팜</p>
+  </footer>
+
+  <div class="cta">
+    <button type="button" class="like" aria-label="찜하기">&#9825;</button>
+    <button type="button" class="buy">구매하기</button>
+  </div>
+</body>
+</html>

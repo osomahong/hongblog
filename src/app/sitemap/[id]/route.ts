@@ -72,6 +72,9 @@ function buildClassSitemap(): SitemapEntry[] {
     { url: `${SITE_URL}/ai-practice/prompt-basics`, changefreq: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/ai-practice/prompt-intermediate`, changefreq: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/ai-practice/prompt-advanced`, changefreq: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/ai-practice/geo-basics`, changefreq: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/ai-practice/geo-intermediate`, changefreq: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/ai-practice/geo-advanced`, changefreq: "monthly", priority: 0.8 },
     ...courses.map((c) => ({
       url: `${SITE_URL}/class/${c.slug}`,
       lastModified: validDate(c.publishedAt),

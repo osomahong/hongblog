@@ -619,3 +619,32 @@ main:has(> .ap-root) > .ap-root {
     animation: none;
   }
 }
+
+/* GEO 기초: AI의 눈 탭 클릭 유도. 누르기 전까지 시안 펄스로 시선을 끈다 */
+.ap-tab-cue {
+  animation: ap-tab-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes ap-tab-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(125, 211, 252, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 9px rgba(125, 211, 252, 0);
+  }
+}
+
+.ap-cue-badge {
+  animation: ap-cue-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes ap-cue-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}

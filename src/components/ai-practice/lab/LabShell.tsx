@@ -50,6 +50,10 @@ interface LabShellProps {
   wrap: WrapContent;
   /** 정리 단계 헤더 설명 오버라이드. 기본값은 "오늘 익힌 세 기술을 ..." */
   wrapDesc?: string;
+  /** 점검 단계 헤더 제목 오버라이드. 기본값은 "점검: 프롬프트 고르기" */
+  quizTitle?: string;
+  /** 점검 단계 헤더 설명 오버라이드. 기본값은 "두 프롬프트 중 더 나은 쪽을 ..." */
+  quizDesc?: string;
 }
 
 type Phase = "brief" | "mission" | "quiz" | "wrap";
@@ -67,7 +71,8 @@ function phaseDesc(
   phase: Phase,
   missions: LabMission[],
   missionIndex: number,
-  wrapDesc?: string
+  wrapDesc?: string,
+  quizDesc?: string
 ): string {
   if (phase === "brief") {
     return "이번 AIPBL에서 만들 결과물과 진행 순서를 확인하고, 미션 1 시작 버튼을 누릅니다.";
@@ -76,7 +81,9 @@ function phaseDesc(
     return missions[missionIndex].meta.goal;
   }
   if (phase === "quiz") {
-    return "두 프롬프트 중 더 나은 쪽을 고릅니다. 모두 3문항이고, 고르면 해설이 바로 표시됩니다.";
+    return (
+      quizDesc ?? "두 프롬프트 중 더 나은 쪽을 고릅니다. 모두 3문항이고, 고르면 해설이 바로 표시됩니다."
+    );
   }
   return (
     wrapDesc ??
@@ -92,6 +99,8 @@ export function LabShell({
   quiz,
   wrap,
   wrapDesc,
+  quizTitle,
+  quizDesc,
 }: LabShellProps) {
   const [phase, setPhase] = useState<Phase>("brief");
   const [missionIndex, setMissionIndex] = useState(0);
@@ -183,7 +192,7 @@ export function LabShell({
       : phase === "mission"
         ? missions[missionIndex].meta.title
         : phase === "quiz"
-          ? "점검: 프롬프트 고르기"
+          ? (quizTitle ?? "점검: 프롬프트 고르기")
           : "정리";
 
   const Mission = missions[missionIndex].Component;
@@ -247,7 +256,7 @@ export function LabShell({
               {headerTitle}
             </h2>
             <p className="text-sm text-[var(--ap-muted)] leading-relaxed">
-              {phaseDesc(phase, missions, missionIndex, wrapDesc)}
+              {phaseDesc(phase, missions, missionIndex, wrapDesc, quizDesc)}
             </p>
           </header>
 

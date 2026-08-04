@@ -61,6 +61,12 @@ const CURRICULUM = [
     href: "/ai-practice/prompt-basics",
   },
   {
+    iconSrc: "/images/ai-practice/icons/sparkle-ai.png",
+    title: "GEO 기초",
+    body: "가상의 복숭아 농장 목업 사이트를 AI 답변에 인용되게 만들어 보는 AIPBL입니다. GEO 트랙은 기초, 중급, 심화 3단계가 모두 열려 있습니다.",
+    href: "/ai-practice/geo-basics",
+  },
+  {
     iconSrc: "/images/ai-practice/icons/curriculum-automation.png",
     title: "AI 업무 자동화",
     body: "요약, 초안, 정리처럼 매주 반복되는 업무를 AI에게 맡기는 구조를 만듭니다.",
@@ -262,9 +268,9 @@ export default function AiPracticePage() {
               AIPBL 커리큘럼
             </h2>
             <p className="text-sm sm:text-base leading-relaxed text-[var(--ap-muted)] max-w-3xl mb-10">
-              프롬프트 트랙의 기초, 중급, 심화 AIPBL이 열렸습니다. 나머지 영역도 순서대로
-              준비하고 있으며, 새 AIPBL이 열리면 이 페이지에서 안내합니다. AIPBL 실습 화면은 PC
-              브라우저에서 제공됩니다.
+              프롬프트 트랙과 GEO 트랙의 기초, 중급, 심화 AIPBL이 모두 열렸습니다.
+              나머지 영역도 순서대로 준비하고 있으며, 새 AIPBL이 열리면 이 페이지에서
+              안내합니다. AIPBL 실습 화면은 PC 브라우저에서 제공됩니다.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
               {CURRICULUM.map(({ iconSrc, title, body, href }, i) =>
