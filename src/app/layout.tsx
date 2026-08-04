@@ -1,43 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import Script from "next/script";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { SITE_URL } from "@/lib/constants";
+// 다이내믹 서브셋: 92개 유니코드 슬라이스 중 페이지에 쓰인 글리프의 슬라이스만 다운로드된다.
+// 전체 웨이트 5종 셀프 호스팅(약 3.9MB/신규 방문) 대비 전송량이 1/10 이하로 줄어든다.
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
-
-const pretendard = localFont({
-  src: [
-    {
-      path: "../../node_modules/pretendard/dist/web/static/woff2/Pretendard-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../node_modules/pretendard/dist/web/static/woff2/Pretendard-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../node_modules/pretendard/dist/web/static/woff2/Pretendard-SemiBold.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../node_modules/pretendard/dist/web/static/woff2/Pretendard-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../node_modules/pretendard/dist/web/static/woff2/Pretendard-ExtraBold.woff2",
-      weight: "800",
-      style: "normal",
-    },
-  ],
-  variable: "--font-pretendard",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.digitalmarketer.co.kr"),
@@ -106,7 +76,7 @@ export default function RootLayout({
           title="준이아빠블로그 RSS"
         />
       </head>
-      <body className={`${pretendard.variable} antialiased min-h-screen flex flex-col`}>
+      <body className="antialiased min-h-screen flex flex-col">
         {/* Google AdSense: AI-Practice 경로에서는 로드하지 않는다 */}
         <AdSenseLoader />
         {/* Google Tag Manager */}
