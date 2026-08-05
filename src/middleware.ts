@@ -50,6 +50,12 @@ const REMOVED_ROUTE_REDIRECTS: [RegExp, string][] = [
   [/^\/index\.html$/, "/"],
   // 네이버 블로그 시절 숫자 포스트 ID. 대응하는 글이 없으므로 목록으로 보낸다.
   [/^\/\d{9,}$/, "/insights"],
+  // 도구 명칭을 Ads CLI에서 Meta CLI로 통일하며 슬러그를 바꿨다.
+  // 배포 직후 교체라 색인 전이지만, 사이트맵에 한 번 올라간 경로라 남겨 둔다.
+  [
+    /^\/insights\/meta-mcp-vs-ads-cli-comparison\/?$/,
+    "/insights/meta-mcp-vs-meta-cli-comparison",
+  ],
   [/^\/([\$%].*)$/, "/"],
 ];
 

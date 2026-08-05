@@ -1,5 +1,5 @@
 ---
-slug: meta-mcp-vs-ads-cli-comparison
+slug: meta-mcp-vs-meta-cli-comparison
 title: 'Meta MCP와 Meta CLI 차이: 가벼운 쪽과 무거운 쪽 정리'
 excerpt: >-
   Meta MCP와 Meta CLI는 같은 광고 API를 서로 다른 방식으로 여는 두 가지 연결 통로입니다. 말로 시키는 쪽과 명령으로 시키는
@@ -32,14 +32,14 @@ metaDescription: >-
   작업의 처리 순서 차이, 서로에게 없는 기능을 한자리에 모아 비교합니다.
 ogTitle: 'Meta MCP와 Meta CLI 차이: 무엇이 가볍고 무엇이 무거운가'
 ogDescription: '메타가 함께 공개한 두 연결 방식의 차이를 시작 부담, 실행 부담, 반복 부담 세 가지로 나눠 정리했습니다.'
-ogImage: /og/meta-mcp-vs-ads-cli-comparison.png
+ogImage: /og/meta-mcp-vs-meta-cli-comparison.png
 ---
 
 Meta MCP와 Meta CLI는 같은 광고 API를 서로 다른 방식으로 여는 두 가지 연결 통로입니다. 하나는 대화창에서 말로 시키는 쪽이고, 다른 하나는 터미널에서 명령으로 시키는 쪽입니다.
 
 메타는 2026년 4월 29일 두 가지를 함께 공개했습니다. MCP 서버는 `https://mcp.facebook.com/ads` 주소로 운영되고, Meta CLI는 내 컴퓨터에 설치하는 프로그램입니다. 메타는 발표 글에서 이 도구를 Ads CLI라고 적었고, 설치 패키지 이름은 `meta-ads`, 실제 명령은 `meta ads`로 시작합니다. 이 글에서는 Meta MCP와 짝을 맞춰 Meta CLI로 적습니다. 둘은 경쟁 관계가 아닙니다. 같은 기능을 놓고 다루는 방법만 다르게 만든 것에 가깝습니다.
 
-![메타 개발자 블로그의 Meta CLI 발표 글 화면, 2026년 4월 29일 날짜와 Introducing Ads CLI: A Command-Line Interface for Meta Ads and Commerce 제목이 표시된 모습](/images/insights/meta-mcp-vs-ads-cli-comparison/meta-ads-cli-official-announcement.png)
+![메타 개발자 블로그의 Meta CLI 발표 글 화면, 2026년 4월 29일 날짜와 Introducing Ads CLI: A Command-Line Interface for Meta Ads and Commerce 제목이 표시된 모습](/images/insights/meta-mcp-vs-meta-cli-comparison/meta-cli-official-announcement.png)
 
 위 화면은 메타 개발자 블로그의 발표 글입니다. 첫 문단에서 메타는 개발자와 AI 에이전트가 직접 명령줄에서 캠페인을 만들고 수정하고 분석하게 되었다고 설명합니다.
 
@@ -86,7 +86,7 @@ CLI는 명령 한 줄이 전부입니다. 도구 설명을 미리 읽을 필요�
 
 말로만 비교하면 감이 잘 오지 않습니다. 실무에서 자주 하는 작업 하나를 두 방식으로 처리하는 순서로 정리하면 다음과 같습니다. 작업은 "지난 7일 성과를 확인하고, CPA가 목표보다 높은 광고 세트의 일예산을 20% 줄인다"입니다.
 
-![Meta MCP와 Meta CLI로 같은 작업을 처리하는 순서를 나란히 비교한 도표, 왼쪽 MCP는 커넥터 주소 입력과 로그인으로 시작해 매번 대화 세션과 질문과 승인 클릭을 거치고 오른쪽 CLI는 설치와 환경 변수 설정 후 명령 세 줄로 처리하며 다음 날에는 예약 실행으로 넘어가는 흐름](/images/insights/meta-mcp-vs-ads-cli-comparison/mcp-vs-cli-workflow.png)
+![Meta MCP와 Meta CLI로 같은 작업을 처리하는 순서를 나란히 비교한 도표, 왼쪽 MCP는 커넥터 주소 입력과 로그인으로 시작해 매번 대화 세션과 질문과 승인 클릭을 거치고 오른쪽 CLI는 설치와 환경 변수 설정 후 명령 세 줄로 처리하며 다음 날에는 예약 실행으로 넘어가는 흐름](/images/insights/meta-mcp-vs-meta-cli-comparison/mcp-vs-cli-workflow.png)
 
 왼쪽 흐름에서 눈여겨볼 자리는 3번입니다. 대화 세션을 새로 열 때마다 도구 설명이 먼저 올라갑니다. 질문을 던지기 전에 이미 비용이 발생하는 구조입니다. 그리고 마지막 칸을 보면 다음 날 다시 3번부터 시작합니다. 어제의 작업이 오늘의 준비물이 되어 주지 않습니다.
 
@@ -106,7 +106,7 @@ CLI는 명령 한 줄이 전부입니다. 도구 설명을 미리 읽을 필요�
 - **예약 실행에 들어갑니다.** 메타가 CI/CD 파이프라인 사용을 명시한 만큼, 정해진 시각에 사람 없이 도는 작업에 맞습니다.
 - **묻지 않고 진행하는 선택지가 있습니다.** 확인 절차를 끄는 옵션을 붙이면 자동 실행 중간에 멈추지 않습니다.
 
-![메타 공식 문서의 Meta CLI 명령 예시 화면, 캠페인 생성부터 광고 세트, 소재, 광고 연결까지 명령이 이어지고 마지막에 Go live 주석 아래 상태를 ACTIVE로 바꾸는 명령 세 줄이 표시된 모습](/images/insights/meta-mcp-vs-ads-cli-comparison/meta-ads-cli-command-examples.png)
+![메타 공식 문서의 Meta CLI 명령 예시 화면, 캠페인 생성부터 광고 세트, 소재, 광고 연결까지 명령이 이어지고 마지막에 Go live 주석 아래 상태를 ACTIVE로 바꾸는 명령 세 줄이 표시된 모습](/images/insights/meta-mcp-vs-meta-cli-comparison/meta-cli-command-examples.png)
 
 위 화면이 CLI의 성격을 잘 보여 줍니다. 캠페인, 광고 세트, 소재, 광고를 각각 만들고 마지막에 상태를 바꿔서 집행을 시작합니다. 소재 생성 명령에 `--image ./banner.jpg`가 들어간 부분이 로컬 파일을 직접 읽는 대목입니다.
 
@@ -141,7 +141,7 @@ CLI는 명령 한 줄이 전부입니다. 도구 설명을 미리 읽을 필요�
 
 **만들어진 리소스는 일시중지 상태로 시작합니다.** 메타는 Meta CLI 문서에서 리소스가 기본적으로 일시중지 상태로 생성되어 준비되기 전에는 아무것도 집행되지 않는다고 명시합니다. 실제로 공식 예시도 캠페인을 만든 뒤 상태를 바꾸는 명령을 따로 실행합니다. 다만 상태를 지정하는 인자가 존재하는 만큼, 자동화를 짤 때는 생성 직후 상태를 눈으로 확인하는 편이 안전합니다.
 
-![메타 공식 문서에서 리소스가 기본적으로 PAUSED 상태로 생성된다고 설명하고 출력 형식으로 JSON과 탭 구분 값을 지원한다고 적은 부분](/images/insights/meta-mcp-vs-ads-cli-comparison/meta-ads-cli-paused-default.png)
+![메타 공식 문서에서 리소스가 기본적으로 PAUSED 상태로 생성된다고 설명하고 출력 형식으로 JSON과 탭 구분 값을 지원한다고 적은 부분](/images/insights/meta-mcp-vs-meta-cli-comparison/meta-cli-paused-default.png)
 
 나머지 공통 제한은 다음과 같습니다.
 
