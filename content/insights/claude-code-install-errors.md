@@ -35,7 +35,7 @@ quiz:
       목록에 갖고 있지 않은 상태라서, PATH에 한 줄 추가하면 해결됩니다.
 ---
 
-Claude Code 설치 중 만나는 오류를 OS별로 정리했습니다. 화면에 뜬 오류 문구로 케이스를 찾아 대응법을 따라 하면 됩니다. 대응법에 자주 등장하는 "네이티브 설치"는 아래 한 줄 명령을 말하며, Node.js와 Git이 없어도 됩니다.
+Claude Code 설치 중 만나는 오류를 OS별로 정리했습니다. 화면에 뜬 오류 문구로 케이스를 찾아 대응법을 따라 하면 됩니다. 아직 설치를 시작하지 않았다면 [윈도우 설치 가이드](/insights/claude-code-windows-easy-setup-guide) (윈도우에서 설치하는 순서 바로가기)나 [맥 설치 가이드](/insights/claude-code-mac-easy-setup-guide) (맥에서 설치하는 순서 바로가기)를 먼저 보시는 편이 빠릅니다. 대응법에 자주 등장하는 "네이티브 설치"는 아래 한 줄 명령을 말하며, Node.js와 Git이 없어도 됩니다.
 
 ![2026년 기준 Claude Code 공식 권장 설치 방법 도판. macOS와 리눅스, WSL은 curl 한 줄, Windows는 PowerShell에서 irm 한 줄이며, 막힐 때의 대안으로 Homebrew와 WinGet 명령이 정리됨](/images/insights/claude-code-install-errors/ko-install-methods.png)
 

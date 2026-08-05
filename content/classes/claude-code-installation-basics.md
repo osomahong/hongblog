@@ -9,11 +9,10 @@ tags:
   - AI
   - 바이브코딩
 publishedAt: '2026-04-27T09:31:00.000Z'
-updatedAt: '2026-07-23T00:00:00.000Z'
+updatedAt: '2026-08-05T11:30:00.000Z'
 courseSlug: claude-code-for-everyone
 orderInCourse: 2
 aliases:
-  - Claude Code 설치
   - claude code 시작
 relatedTerms:
   - what-is-claude-code
@@ -44,6 +43,8 @@ ogImage: /og/claude-code-installation-basics.png
 비개발자에게 Claude Code의 가장 큰 장벽은 도구 자체가 아니라 **터미널**이라는 단어입니다. 검은 화면에 글자만 나오는 그 창을 처음 보면 막막합니다.
 
 터미널은 컴퓨터에게 글자로 명령을 내리는 창입니다. 마우스로 폴더를 더블클릭하는 대신 키보드로 "이 폴더 열어"라고 글자로 적는 방식입니다. 익숙해지면 마우스보다 빠릅니다.
+
+이 클래스는 설치의 뼈대를 개념 위주로 설명합니다. 화면을 그대로 따라 하는 단계별 절차가 필요하시면 [윈도우 설치 가이드](/insights/claude-code-windows-easy-setup-guide) (윈도우 설치 순서 바로가기)와 [맥 설치 가이드](/insights/claude-code-mac-easy-setup-guide) (맥 설치 순서 바로가기)에 더 자세히 적어 두었습니다.
 
 ## 🔑 설치 전에 알아둘 3가지
 
@@ -164,7 +165,7 @@ claude
 **3. 간단한 자동화**
 - "downloads 폴더의 PDF만 골라 documents 폴더로 옮겨 줘" 같은 폴더 정리.
 
-이 작업을 통해 Claude Code가 실제로 파일을 다루는 모습을 직접 보게 됩니다. 다음 클래스의 [슬래시 명령](/class/claude-code-for-everyone/slash-commands-explained)부터는 좀 더 본격적인 작업 방식을 다룹니다.
+이 작업으로 Claude Code가 실제로 파일을 다루는 모습을 직접 보게 됩니다. 다음 클래스의 [슬래시 명령](/class/claude-code-for-everyone/slash-commands-explained)부터는 좀 더 본격적인 작업 방식을 다룹니다.
 
 ## ⚠️ 자주 마주치는 에러 3가지
 
