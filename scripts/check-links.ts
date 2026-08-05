@@ -52,7 +52,18 @@ const validRoutes = new Set<string>([
     "/sitemap.xml",
     "/robots.txt",
     "/llms.txt",
+    "/ai-practice",
 ]);
+
+// AI-Practice 하위 페이지는 앱 디렉터리에서 파생시킨다 (새 AIPBL이 생겨도 자동 반영)
+const AI_PRACTICE_DIR = path.join(ROOT, "src/app/ai-practice");
+if (fs.existsSync(AI_PRACTICE_DIR)) {
+    for (const entry of fs.readdirSync(AI_PRACTICE_DIR, { withFileTypes: true })) {
+        if (entry.isDirectory() && fs.existsSync(path.join(AI_PRACTICE_DIR, entry.name, "page.tsx"))) {
+            validRoutes.add(`/ai-practice/${entry.name}`);
+        }
+    }
+}
 
 const classBySlug = new Map<string, { courseSlug: string }>();
 for (const c of classes) {

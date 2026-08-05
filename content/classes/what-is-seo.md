@@ -17,6 +17,8 @@ aliases:
   - 서치엔진 최적화
 relatedTerms:
   - what-is-web-crawling
+  - what-is-aeo
+  - what-is-geo
 difficulty: BEGINNER
 quiz:
   - question: 발견, 저장, 표시 세 단계 가운데 '저장' 단계에서 일어나는 일은 무엇일까요?
