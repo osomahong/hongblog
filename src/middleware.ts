@@ -118,7 +118,13 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // 정적 파일, _next, api 제외
-    "/((?!_next/static|_next/image|favicon.ico|api/).*)",
+    // 미들웨어는 Node 런타임 함수로 돌아서 매칭되는 요청마다 호출 비용이 붙는다.
+    // 이전 matcher는 `_next/` 두 갈래만 걸러서 public/ 아래 이미지 376개가 전부
+    // 미들웨어를 통과했다. 이미지 5장 붙은 글 하나를 열면 호출이 6번 일어났다.
+    //
+    // 확장자로 거르되 .xml, .html은 일부러 남긴다. REMOVED_ROUTE_REDIRECTS의
+    // /atom.xml, /index.xml, /index.html, /tags/index.html 규칙이 미들웨어에 있어서
+    // 여기서 빼면 그 리디렉트가 죽는다.
+    "/((?!_next/|api/|.*\\.(?:png|jpe?g|webp|avif|gif|svg|ico|bmp|woff2?|ttf|otf|eot|mp4|webm|mp3|txt|map|pdf)$).*)",
   ],
 };
