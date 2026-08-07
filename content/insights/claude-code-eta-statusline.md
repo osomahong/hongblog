@@ -159,13 +159,25 @@ quiz:
 
 ## 설치 방법과 남은 한계
 
-만든 플러그인은 `claude-eta-hud`라는 이름으로 공개해 뒀습니다. 클로드 코드 안에서 세 줄이면 설치됩니다.
+만든 플러그인은 `claude-eta-hud`라는 이름으로 공개해 뒀습니다. 클로드 코드 안에서 세 단계로 설치하며, 한 번에 하나씩 넣어야 합니다.
+
+먼저 `/plugin marketplace add`를 실행합니다. 소스를 묻는 칸에는 저장소 경로만 넣습니다.
 
 ```
-/plugin marketplace add osomahong/claude-eta-hud
+osomahong/claude-eta-hud
+```
+
+다음으로 설치하고 설정을 실행합니다.
+
+```
 /plugin install claude-eta-hud
+```
+
+```
 /claude-eta-hud:setup
 ```
+
+세 줄을 첫 입력창에 한꺼번에 붙여 넣으면 `Invalid marketplace source format` 오류가 납니다. 소스 칸은 저장소 경로만 받습니다.
 
 설치 과정에서 기존 상태 표시줄 설정을 백업 파일로 옮겨 두므로 되돌리기도 한 줄입니다. 통계는 로컬에 쌓이고 밖으로 나가는 통신은 없습니다. 저장하는 값은 도구 이름, 타임스탬프, 호출 횟수뿐이고 대화 내용은 넣지 않습니다.
 
