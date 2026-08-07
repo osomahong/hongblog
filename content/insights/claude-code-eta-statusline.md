@@ -159,22 +159,22 @@ quiz:
 
 ## 설치 방법과 남은 한계
 
-만든 플러그인은 `claude-eta-hud`라는 이름으로 공개해 뒀습니다. 클로드 코드 안에서 세 단계로 설치하며, 한 번에 하나씩 넣어야 합니다.
+만든 플러그인은 `claude-code-eta`라는 이름으로 공개해 뒀습니다. 클로드 코드 안에서 세 단계로 설치하며, 한 번에 하나씩 넣어야 합니다.
 
 먼저 `/plugin marketplace add`를 실행합니다. 소스를 묻는 칸에는 저장소 경로만 넣습니다.
 
 ```
-osomahong/claude-eta-hud
+osomahong/claude-code-eta
 ```
 
 다음으로 설치하고 설정을 실행합니다.
 
 ```
-/plugin install claude-eta-hud
+/plugin install claude-code-eta
 ```
 
 ```
-/claude-eta-hud:setup
+/claude-code-eta:setup
 ```
 
 세 줄을 첫 입력창에 한꺼번에 붙여 넣으면 `Invalid marketplace source format` 오류가 납니다. 소스 칸은 저장소 경로만 받습니다.
