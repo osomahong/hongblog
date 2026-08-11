@@ -1,19 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Mail, MessageCircle } from "lucide-react";
+import { Menu, X, Mail, MessageCircle, Search } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
 import { NEWSLETTER_URL, KAKAO_INQUIRY_URL } from "@/lib/constants";
+import { SearchDialog } from "@/components/search/SearchDialog";
 
+// Tags는 사이트 내 검색으로 대체해 내비에서 뺐다. /tags 페이지와 푸터 링크는
+// 색인과 내부 링크 경로를 위해 그대로 둔다.
 const NAV_LINKS = [
   { href: "/ai-practice", label: "AI-Practice" },
   { href: "/class", label: "Class" },
   { href: "/insights", label: "Insights" },
-  { href: "/tags", label: "Tags" },
   { href: "/about", label: "About" },
 ];
 
@@ -70,11 +72,48 @@ function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps)
   );
 }
 
+/** 내비 돋보기 버튼. 데스크톱과 모바일이 같은 오버레이를 연다. */
+function SearchTrigger({ apTheme, onOpen }: { apTheme: boolean; onOpen: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      aria-label="사이트 내 검색 열기"
+      className={cn(
+        "p-2 border-2 transition-all flex-shrink-0",
+        apTheme
+          ? "border-white/25 text-white rounded-[8px] hover:border-[#ffd700] hover:text-[#ffd700]"
+          : "border-black neo-shadow-sm hover:bg-[#FFD700] active:shadow-none active:translate-x-0.5 active:translate-y-0.5"
+      )}
+    >
+      <Search className="w-4 h-4 sm:w-[18px] sm:h-[18px]" />
+    </button>
+  );
+}
+
 export function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
   // AI-Practice 하위 경로에서는 다크/네온 테마 변형을 쓴다 (구조는 동일)
   const isApTheme = pathname?.startsWith("/ai-practice") ?? false;
+
+  function openSearch() {
+    sendGAEvent("click_nav", { menu_name: "Search" });
+    setIsMenuOpen(false);
+    setIsSearchOpen(true);
+  }
+
+  // Cmd/Ctrl+K로도 열 수 있게 한다. 입력 중에는 가로채지 않는다.
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "k" || !(event.metaKey || event.ctrlKey)) return;
+      event.preventDefault();
+      setIsSearchOpen(true);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <nav
@@ -119,6 +158,8 @@ export function Nav() {
           <div className="flex items-center gap-3 min-w-0">
           {/* Desktop Navigation Links. CTA 버튼과 한 줄에 공존해야 해서 lg 미만에서는 밀도를 줄인다 */}
           <div className="hidden sm:flex items-center gap-1 lg:gap-1.5">
+            {/* 돋보기는 AI-Practice 왼쪽에 둔다 */}
+            <SearchTrigger apTheme={isApTheme} onOpen={openSearch} />
             {NAV_LINKS.map(({ href, label }) => {
               // AI-Practice는 핵심 메뉴라 다크 필 + 히어로 그라데이션 텍스트로 강조한다
               if (href === "/ai-practice") {
@@ -162,6 +203,11 @@ export function Nav() {
           {/* Desktop CTA Buttons */}
           <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
             <NavCtaButtons apTheme={isApTheme} location="nav" compactLabels />
+          </div>
+
+          {/* Mobile: 검색은 햄버거를 열지 않고 바로 닿아야 해서 밖에 둔다 */}
+          <div className="sm:hidden">
+            <SearchTrigger apTheme={isApTheme} onOpen={openSearch} />
           </div>
 
           {/* Mobile Menu Button */}
@@ -230,6 +276,10 @@ export function Nav() {
           </div>
         )}
       </div>
+
+      {/* 닫으면 언마운트한다. 검색어와 선택 상태가 매번 초기화되고, 열기 전에는
+          인덱스 요청이 아예 나가지 않는다. */}
+      {isSearchOpen && <SearchDialog onClose={() => setIsSearchOpen(false)} />}
     </nav>
   );
 }

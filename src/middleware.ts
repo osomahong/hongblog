@@ -40,7 +40,8 @@ const REMOVED_ROUTE_REDIRECTS: [RegExp, string][] = [
   [/^\/logs(\/.*)?$/, "/"],
   [/^\/about\/life(\/.*)?$/, "/about"],
   [/^\/about\/portfolio$/, "/about"],
-  [/^\/search$/, "/"],
+  // /search는 사이트 내 검색 페이지로 다시 쓰므로 리디렉트 규칙을 두지 않는다.
+  // (과거 검색 라우트를 지웠을 때 넣었던 `[/^\/search$/, "/"]` 규칙을 제거했다.)
   [/^\/vibecoding-1$/, "/insights/vibe-coding-vs-ai-agent-difference"],
   [/^\/tags\/index\.html$/, "/tags"],
   // GSC 404로 잡힌 경로. 문의 페이지는 About의 연락처 영역으로 흡수됐다.
@@ -125,6 +126,9 @@ export const config = {
     // 확장자로 거르되 .xml, .html은 일부러 남긴다. REMOVED_ROUTE_REDIRECTS의
     // /atom.xml, /index.xml, /index.html, /tags/index.html 규칙이 미들웨어에 있어서
     // 여기서 빼면 그 리디렉트가 죽는다.
-    "/((?!_next/|api/|.*\\.(?:png|jpe?g|webp|avif|gif|svg|ico|bmp|woff2?|ttf|otf|eot|mp4|webm|mp3|txt|map|pdf)$).*)",
+    //
+    // .json도 뺀다. 검색 인덱스(/search-index.json, /search-body.json)를 받을 때마다
+    // 미들웨어가 도는 것을 막기 위해서다. .json으로 끝나는 리디렉트 규칙은 없다.
+    "/((?!_next/|api/|.*\\.(?:png|jpe?g|webp|avif|gif|svg|ico|bmp|woff2?|ttf|otf|eot|mp4|webm|mp3|txt|map|pdf|json)$).*)",
   ],
 };
