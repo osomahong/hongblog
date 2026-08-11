@@ -1,13 +1,17 @@
 ---
-slug: whatishtml
-term: ' HTML'
-definition: HTML은 무엇일까요?
+slug: what-is-html
+term: HTML (HyperText Markup Language)
+definition: '웹페이지의 구조와 의미를 정의하는 마크업 언어입니다. 제목, 링크, 이미지 같은 요소로 페이지의 뼈대를 만듭니다.'
 category: AI_TECH
+tags:
+  - HTML
+  - CSS
 publishedAt: '2026-02-11T09:01:19.100Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
+orderInCourse: 2
 relatedTerms:
-  - whatiscss
+  - what-is-css
   - what-is-element
   - what-is-attribute
   - what-is-dom
@@ -23,11 +27,11 @@ quiz:
       HTML은 웹페이지의 뼈대로, 브라우저에게 "이건 제목, 이건 링크, 이건 이미지"처럼 콘텐츠의 구조와 의미를 알려주는 역할을
       합니다. 색상, 레이아웃은 CSS, 동작은 JavaScript, 데이터 통신은 서버 기술이 담당합니다.
     correctIndex: 1
-metaTitle: HTML | 디지털마케팅 환경에 적응하기 위한 디지털 기초
+metaTitle: 'HTML 뜻: 웹페이지의 뼈대를 만드는 마크업 언어'
 metaDescription: >-
-  웹 페이지의 기본 구조를 만드는 HTML의 모든 것! 클릭 가능한 텍스트, '구매하기' 버튼, 검색 엔진이 웹 페이지를 이해하는 원리까지,
-  HTML의 비밀을 파헤쳐 보세요. 웹 개발 초보도 쉽게 이해할 수 있는 비유와 함께 HTML의 핵심을 배워보세요.
-ogImage: /og/whatishtml.png
+  HTML은 웹페이지의 구조와 의미를 정의하는 마크업 언어입니다. 브라우저와 검색 엔진이 페이지를 이해하는 원리와 기본 태그 구조를 초보자
+  눈높이로 정리했습니다.
+ogImage: /og/what-is-html.png
 ---
 
 ## 🤔 혹시 인터넷을 하면서 이런 생각해 본 적 없나요?
@@ -168,7 +172,7 @@ HTML 구조를 알면, "아, 이 버튼은 `<a>` 태그가 아니라 `<button>` 
 
 ### 붙여넣은 글의 서식이 계속 깨질 때
 
-워드나 노션에서 작성한 글을 블로그 에디터에 붙여넣으면 글자 크기가 제멋대로가 되거나 이상한 여백이 생기는 일이 잦습니다. 원인은 눈에 보이지 않는 HTML 태그가 함께 복사되기 때문입니다. HTML 보기 모드에서 불필요한 태그를 지우거나, 제목이 `<h2>` 태그로 제대로 지정됐는지 확인하면 해결됩니다. 화면을 꾸미는 쪽 원리는 [CSS](/class/digital-basic/whatiscss) 클래스에서 이어집니다.
+워드나 노션에서 작성한 글을 블로그 에디터에 붙여넣으면 글자 크기가 제멋대로가 되거나 이상한 여백이 생기는 일이 잦습니다. 원인은 눈에 보이지 않는 HTML 태그가 함께 복사되기 때문입니다. HTML 보기 모드에서 불필요한 태그를 지우거나, 제목이 `<h2>` 태그로 제대로 지정됐는지 확인하면 해결됩니다. 화면을 꾸미는 쪽 원리는 [CSS](/class/digital-basic/what-is-css) 클래스에서 이어집니다.
 
 ### AI에게 랜딩 페이지를 만들어달라고 했을 때
 

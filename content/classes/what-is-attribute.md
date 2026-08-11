@@ -12,10 +12,10 @@ tags:
 publishedAt: '2026-02-11T08:56:17.838Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
-orderInCourse: 7
+orderInCourse: 8
 relatedTerms:
   - what-is-element
-  - whatishtml
+  - what-is-html
   - what-is-selector
 difficulty: BEGINNER
 quiz:
@@ -30,6 +30,8 @@ quiz:
       class="primary">에서 id와 class가 Attribute입니다. 같은 종류의 Element를 구별하거나 동작을 지정하는
       역할을 합니다.
     correctIndex: 1
+metaTitle: 'HTML 속성(Attribute) 뜻: 태그에 붙는 추가 정보'
+metaDescription: '속성(Attribute)은 HTML 요소에 붙는 추가 정보입니다. 대표 속성의 역할과 GTM 태깅에서 속성이 쓰이는 방식을 정리했습니다.'
 ogImage: /og/what-is-attribute.png
 ---
 

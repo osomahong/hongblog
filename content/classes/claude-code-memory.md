@@ -33,6 +33,8 @@ quiz:
       CLAUDE.md는 프로젝트 루트에 두는 마크다운 파일로, Claude Code가 매 세션 시작 시 자동으로 읽어 들입니다. 회사
       코딩 표준, 아키텍처 결정, 선호 라이브러리, 검토 체크리스트 같은 영속 지시를 적어두면 매번 다시 설명할 필요가 없습니다. 설치
       로그, 백업, 번역 사전과는 관련이 없습니다.
+metaTitle: '클로드 코드 메모리 사용법: CLAUDE.md와 자동 메모리 정리'
+metaDescription: '클로드 코드 메모리는 Claude Code가 세션을 넘어 기억하도록 만든 영속 컨텍스트 시스템입니다. CLAUDE.md와 자동 메모리의 차이, 관리 방법을 정리했습니다.'
 ogImage: /og/claude-code-memory.png
 ---
 

@@ -34,6 +34,8 @@ quiz:
       Claude Design은 앤트로픽이 디자이너, PM 전용으로 만든 도구로, 깃허브 리포 연결 후 실제 코드베이스의 컴포넌트를 써서
       인터랙티브 프로토타입을 만드는 데 특화되어 있습니다. ChatGPT GPTs와 Gemini Gems는 비슷한 워크플로 자동화를
       제공하지만, 코드베이스 통합 후 동작 프로토타입 핸드오프까지 묶인 도구는 아닙니다.
+metaTitle: '클로드 ChatGPT 제미나이 비교: 차이와 선택 기준'
+metaDescription: '클로드, ChatGPT, 제미나이는 만든 회사와 강조점, 도구 구성이 서로 다른 AI 어시스턴트입니다. 작업 성격별로 어떤 것을 고를지 비교 기준을 정리했습니다.'
 ogImage: /og/claude-vs-other-llms.png
 ---
 

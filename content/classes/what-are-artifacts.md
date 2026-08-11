@@ -31,6 +31,8 @@ quiz:
       Artifacts는 코드, HTML, SVG, 문서 같은 결과물을 별도 패널로 띄워 즉시 보고 다듬을 수 있는 기능입니다. 한 페이지
       HTML이나 다이어그램처럼 결과물을 시각으로 확인하며 반복 수정해야 하는 작업에서 가장 효과가 큽니다. 단순 사실 답변이나 짧은
       번역은 일반 답변 형식으로 충분합니다.
+metaTitle: '클로드 아티팩트(Artifacts) 뜻과 사용법, 활용 예시'
+metaDescription: '아티팩트(Artifacts)는 claude.ai 화면 한쪽 패널에 코드, 문서, HTML 같은 결과물을 띄워 주는 기능입니다. 여는 방법과 활용 예시를 정리했습니다.'
 ogImage: /og/what-are-artifacts.png
 ---
 

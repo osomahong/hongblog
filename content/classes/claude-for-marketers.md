@@ -33,6 +33,8 @@ quiz:
       반복 업무 자동화의 표준 조합은 Cowork(스케줄과 실행) + Skills(회사 형식, 체크리스트의 재사용) + Projects(공유
       자료, 가이드라인의 컨테이너)입니다. 세 도구가 묶이면 매주 같은 품질의 결과물이 자동으로 생성됩니다. 매주 다시 지시하거나 엑셀
       매크로만으로는 회사 형식, 검증 흐름이 빠집니다.
+metaTitle: '마케터 클로드 활용법: Projects, Skills, Cowork 실무 적용'
+metaDescription: '마케터를 위한 클로드 활용은 Projects, Skills, Cowork, Artifacts를 마케팅 실무에 쓰는 방법입니다. 업무별 적용 사례와 시작 순서를 정리했습니다.'
 ogImage: /og/claude-for-marketers.png
 ---
 

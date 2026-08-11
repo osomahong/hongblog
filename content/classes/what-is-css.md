@@ -1,18 +1,17 @@
 ---
-slug: whatiscss
-term: ' CSS'
-definition: >-
-  웹 디자인의 비밀, CSS! 웹사이트를 매력적으로 바꾸고 싶으신가요? CSS가 바로 그 해답입니다. 폰트, 색상, 레이아웃까지, CSS를
-  통해 웹사이트의 디자인을 완벽하게 제어해보세요. 지금 바로 CSS의 매력에 빠져보세요! 
+slug: what-is-css
+term: CSS (Cascading Style Sheets)
+definition: 'HTML로 만든 웹페이지의 색상, 글꼴, 배치를 꾸미는 스타일 언어입니다.'
 category: AI_TECH
 tags:
   - CSS
+  - HTML
 publishedAt: '2026-02-11T08:43:14.838Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
-orderInCourse: 2
+orderInCourse: 3
 relatedTerms:
-  - whatishtml
+  - what-is-html
   - what-is-selector
   - what-is-element
 difficulty: BEGINNER
@@ -27,11 +26,11 @@ quiz:
       CSS는 HTML로 만든 뼈대 위에 색상, 글꼴, 크기, 배치 등 디자인 규칙을 입히는 스타일링 언어입니다. 구조는 HTML, 동작은
       JavaScript가 담당합니다.
     correctIndex: 2
-metaTitle: ' CSS | 디지털 환경에 적응하기 위한 디지털 기초 | 준이아빠블로그'
+metaTitle: 'CSS 뜻: 웹페이지를 꾸미는 스타일 언어 기본기'
 metaDescription: >-
-  웹 디자인의 비밀, CSS! 웹사이트를 매력적으로 바꾸고 싶으신가요? CSS가 바로 그 해답입니다. 폰트, 색상, 레이아웃까지, CSS를
-  통해 웹사이트의 디자인을 완벽하게 제어해보세요. 지금 바로 CSS의 매력에 빠져보세요! 
-ogImage: /og/whatiscss.png
+  CSS는 HTML로 만든 웹페이지의 색상, 글꼴, 배치를 꾸미는 스타일 언어입니다. HTML과 역할이 나뉘는 지점과 기본 문법 구조를 초보자
+  눈높이로 정리했습니다.
+ogImage: /og/what-is-css.png
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

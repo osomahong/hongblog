@@ -1,18 +1,16 @@
 ---
 slug: what-is-dom
 term: DOM (Document Object Model)
-definition: >-
-  웹 개발, DOM이 궁금하다면? 버튼, 텍스트, 이미지까지, 웹 페이지의 모든 요소를 이해하고 다룰 수 있도록 돕는 DOM의 개념과 활용법을
-  지금 바로 확인하세요! 클릭 한 번으로 디지털 이해력과 실력을 성장시킬 수 있습니다.
+definition: '브라우저가 HTML 문서를 읽어 만든 트리 구조로, 자바스크립트가 웹페이지의 요소를 찾고 조작할 때 쓰는 통로입니다.'
 category: AI_TECH
 tags:
   - DOM
 publishedAt: '2026-02-11T08:58:45.297Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
-orderInCourse: 4
+orderInCourse: 6
 relatedTerms:
-  - whatishtml
+  - what-is-html
   - what-is-javascript
   - what-is-element
   - what-is-bom
@@ -30,9 +28,7 @@ quiz:
       결과물입니다.
     correctIndex: 2
 metaTitle: 'DOM 뜻: 브라우저가 HTML을 다루는 구조'
-metaDescription: >-
-  웹 개발, DOM이 궁금하다면? 버튼, 텍스트, 이미지까지, 웹 페이지의 모든 요소를 이해하고 다룰 수 있도록 돕는 DOM의 개념과 활용법을
-  지금 바로 확인하세요! 클릭 한 번으로 디지털 이해력과 실력을 성장시킬 수 있습니다.
+metaDescription: 'DOM은 브라우저가 HTML 문서를 읽어 만든 트리 구조입니다. 자바스크립트가 웹페이지 요소를 찾고 바꾸는 원리를 초보자 눈높이로 정리했습니다.'
 ogImage: /og/what-is-dom.png
 ---
 

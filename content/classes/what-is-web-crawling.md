@@ -7,6 +7,7 @@ tags:
 - AI
 - 자동화
 - 노코드
+publishedAt: '2026-04-11T01:18:07.000Z'
 courseSlug: digital-basic
 orderInCourse: 1
 aliases:

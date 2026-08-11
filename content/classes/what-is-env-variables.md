@@ -31,6 +31,8 @@ quiz:
       GitHub에 그대로 공개됩니다. 코드에 직접 복사하거나 NEXT_PUBLIC_ 접두사를 붙이면 오히려 브라우저에서 노출되므로
       위험합니다.
     correctIndex: 0
+metaTitle: '환경 변수와 .env 파일 뜻: API 키를 안전하게 두는 방법'
+metaDescription: '환경 변수는 API 키나 비밀번호 같은 민감한 정보를 코드와 분리해 저장하는 설정값입니다. .env 파일의 역할과 유출을 막는 관리 방법을 정리했습니다.'
 ogImage: /og/what-is-env-variables.png
 ---
 

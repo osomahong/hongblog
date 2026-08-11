@@ -10,10 +10,10 @@ tags:
 publishedAt: '2026-02-11T09:00:03.586Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
-orderInCourse: 9
+orderInCourse: 10
 aliases:
-  - REST API
   - 웹 API
+  - Application Programming Interface
 relatedTerms:
   - what-is-javascript
   - what-is-dom
@@ -31,6 +31,8 @@ quiz:
       API는 서로 다른 서비스를 연결하는 통로입니다. GA4 API로 데이터를 요청하고, Google Sheets API로 저장하는
       과정을 자동화 도구로 연결하면 수동 작업 없이 자동으로 데이터를 수집할 수 있습니다. 이것이 API의 가장 실용적인 활용 방법입니다.
     correctIndex: 0
+metaTitle: 'API 뜻: 프로그램끼리 소통하는 약속된 통로'
+metaDescription: 'API는 서로 다른 프로그램이 소통하고 데이터를 주고받도록 만들어진 약속된 연결 통로입니다. 일상 비유와 실제 예시로 작동 원리를 정리했습니다.'
 ogImage: /og/what-is-api.png
 ---
 

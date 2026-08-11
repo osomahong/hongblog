@@ -27,6 +27,8 @@ quiz:
   question: 웹사이트 트래픽을 늘리기 위해 광고를 집행 중입니다. 예산 100만원으로 A 소재(CPC 200원)와 B 소재(CPC 500원)를 테스트했을 때, 어떤 소재가 더 많은 방문자를 확보할 수 있을까요?
   explanation: CPC = 총 광고비 ÷ 총 클릭수이므로, 예산 100만원일 때 A 소재(CPC 200원)는 5,000회, B 소재(CPC 500원)는 2,000회 클릭을 확보할 수 있습니다. 같은 예산으로 더 많은 방문자를 얻으려면 CPC가 낮은 광고 소재를 선택해야 합니다.
   correctIndex: 0
+metaTitle: 'CPC 뜻: 클릭당 비용 계산 공식과 예시'
+metaDescription: 'CPC(Cost Per Click)는 광고를 클릭할 때마다 지불하는 비용입니다. 계산 공식과 예시, 클릭당 비용을 판단하는 기준을 정리했습니다.'
 ogImage: /og/what-is-cpc.png
 ---
 

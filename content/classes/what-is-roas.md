@@ -32,6 +32,8 @@ quiz:
       ROAS = (600만 ÷ 300만) × 100 = 200%입니다. 마진율 40%일 때 손익분기 ROAS = 1 ÷ 0.4 × 100
       = 250%이므로, ROAS 200%는 손익분기에 미달합니다. 매출은 발생했지만 마진을 고려하면 광고비를 회수하지 못한 상태입니다.
     correctIndex: 0
+metaTitle: 'ROAS 뜻: 광고 수익률 계산 공식과 판단 기준'
+metaDescription: 'ROAS(Return On Ad Spend)는 광고비 대비 발생한 매출의 비율입니다. 계산 공식과 예시, 목표 ROAS를 잡는 기준을 정리했습니다.'
 ogImage: /og/what-is-roas.png
 ---
 

@@ -11,10 +11,8 @@ updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: vibe-coding-basics
 orderInCourse: 6
 aliases:
-  - API
   - RESTful API
-  - 웹 API
-  - Application Programming Interface
+  - REST
 relatedTerms:
   - what-is-frontend-backend
   - what-is-env-variables
@@ -35,6 +33,8 @@ quiz:
       게시글을 작성하는 경우 모두 POST를 사용합니다. GET은 기존 데이터를 조회할 때, PUT은 기존 데이터를 수정할 때,
       DELETE는 삭제할 때 사용합니다.
     correctIndex: 1
+metaTitle: 'REST API 뜻: 데이터를 주고받는 기본 규칙'
+metaDescription: 'REST API는 서로 다른 프로그램이 인터넷으로 데이터를 주고받도록 정해진 규칙으로 소통하는 방식입니다. 기본 규칙과 API와의 관계를 정리했습니다.'
 ogImage: /og/what-is-rest-api.png
 ---
 

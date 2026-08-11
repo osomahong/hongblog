@@ -33,6 +33,8 @@ quiz:
       재설정 기능 등)는 보안의 큰 부담인데, Google이나 GitHub 같은 대형 서비스에 이 책임을 위임할 수 있습니다.
       바이브코딩처럼 보안 전문 지식이 부족한 상황에서 특히 유용한 방식입니다.
     correctIndex: 1
+metaTitle: '인증(Authentication) 뜻: 로그인과 보안의 기본 구조'
+metaDescription: '인증은 사용자가 누구인지 확인하고 허가된 사람만 데이터에 접근하게 보호하는 시스템입니다. 로그인과 권한의 기본 구조를 초보자 눈높이로 정리했습니다.'
 ogImage: /og/what-is-authentication.png
 ---
 

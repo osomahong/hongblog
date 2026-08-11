@@ -34,6 +34,8 @@ quiz:
       Skills는 SKILL.md 파일을 핵심으로 한 폴더로, 보조 스크립트, 자료를 함께 담을 수 있고 Claude가 작업 맥락에 맞는
       스킬을 자동으로 골라 호출합니다. 일반 프롬프트는 매번 사용자가 다시 적어야 하지만, Skills는 한 번 만들면 작업 환경 전체에서
       재사용 됩니다. 가격, 언어, 접속 기능과는 직접 관련이 없습니다.
+metaTitle: '클로드 스킬(Claude Skills) 뜻과 만드는 방법'
+metaDescription: '클로드 스킬(Claude Skills)은 자주 시키는 작업을 폴더 단위로 묶어 Claude가 자동으로 불러 쓰게 만든 재사용 단위입니다. 구조와 만드는 순서를 정리했습니다.'
 ogImage: /og/what-are-claude-skills.png
 ---
 

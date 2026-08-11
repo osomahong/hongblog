@@ -32,6 +32,8 @@ quiz:
       터미널은 컴퓨터에게 텍스트 명령어를 전달하는 도구입니다. AI가 알려주는 명령어는 터미널에 입력해야 실행됩니다. VS Code나
       Cursor에서는 하단의 내장 터미널(Ctrl + `)을 열어 바로 입력할 수 있습니다.
     correctIndex: 0
+metaTitle: '터미널과 CLI 뜻: 명령어 입력이 필요한 이유'
+metaDescription: '터미널은 컴퓨터에 텍스트 명령어를 입력해 작업을 수행하는 도구입니다. AI 코딩 도구가 알려 주는 명령어를 이해하고 실행하는 기본기를 정리했습니다.'
 ogImage: /og/what-is-terminal-cli.png
 ---
 

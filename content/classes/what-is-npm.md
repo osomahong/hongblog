@@ -32,6 +32,8 @@ quiz:
       package.json에 필요한 패키지 목록이 기록되어 있으므로, npm install을 실행하면 이 목록을 보고 모든 패키지를 다시
       설치합니다. node_modules는 언제든 재생성 가능하기 때문에 GitHub에도 올리지 않습니다.
     correctIndex: 0
+metaTitle: 'npm 뜻: 패키지 매니저가 하는 일과 기본 개념'
+metaDescription: 'npm은 다른 개발자가 만든 코드 패키지를 설치하고 관리하는 패키지 매니저입니다. 패키지 설치의 원리와 AI 코딩에서 자주 만나는 상황을 정리했습니다.'
 ogImage: /og/what-is-npm.png
 ---
 

@@ -12,7 +12,7 @@ tags:
 publishedAt: '2026-02-11T09:05:59.355Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
-orderInCourse: 8
+orderInCourse: 9
 aliases:
   - CSS Selector
   - CSS 선택자
@@ -20,7 +20,7 @@ aliases:
 relatedTerms:
   - what-is-element
   - what-is-attribute
-  - whatiscss
+  - what-is-css
 difficulty: BEGINNER
 quiz:
   - options:
@@ -36,6 +36,8 @@ quiz:
       GTM의 Click Classes 필드에는 점(.) 없이 클래스 이름만 입력합니다. CSS 코드에서는 .btn-purchase로
       쓰지만, GTM 트리거 설정에서는 btn-purchase만 입력하면 됩니다. #는 ID Selector에 사용되는 기호입니다.
     correctIndex: 0
+metaTitle: '선택자(Selector) 뜻: CSS와 GTM에서 요소를 찾는 방법'
+metaDescription: '선택자는 웹페이지에서 특정 요소를 찾아내는 주소 역할을 하는 표기법입니다. CSS 스타일 적용과 GTM 태깅에서 선택자를 쓰는 방법을 정리했습니다.'
 ogImage: /og/what-is-selector.png
 ---
 

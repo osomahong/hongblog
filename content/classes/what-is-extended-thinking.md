@@ -37,6 +37,8 @@ quiz:
       Extended Thinking은 Claude가 최종 답을 내기 전에 내부 추론 블록을 별도로 펼쳐 깊게 생각하도록 하는 모드입니다.
       여러 단계 추론, 검토가 필요한 복잡한 분석, 다중 파일 코드 작업, 긴 자료 분석 같은 작업에서 결과 품질을 끌어올립니다. 단순 사실
       답변이나 한 줄 번역에는 일반 응답으로 충분합니다.
+metaTitle: '클로드 확장 추론(Extended Thinking) 뜻과 작동 방식'
+metaDescription: '확장 추론(Extended Thinking)은 Claude가 답하기 전에 내부 추론을 별도 블록으로 펼쳐 깊게 생각하는 모드입니다. 작동 방식과 잘 맞는 작업 유형을 정리했습니다.'
 ogImage: /og/what-is-extended-thinking.png
 ---
 

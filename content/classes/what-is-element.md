@@ -11,9 +11,9 @@ tags:
 publishedAt: '2026-02-11T09:04:49.815Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
-orderInCourse: 6
+orderInCourse: 7
 relatedTerms:
-  - whatishtml
+  - what-is-html
   - what-is-attribute
   - what-is-selector
   - what-is-dom
@@ -29,6 +29,8 @@ quiz:
       Element(요소)는 HTML에서 <태그>내용</태그> 형태로 작성된 웹페이지의 가장 작은 단위의 부품입니다. <h1>,
       <button>, <img> 등이 모두 Element이며, 눈에 보이지 않는 <div> 같은 투명한 상자도 Element입니다.
     correctIndex: 2
+metaTitle: 'HTML 요소(Element) 뜻: 웹페이지를 만드는 기본 부품'
+metaDescription: '요소(Element)는 버튼, 이미지, 텍스트처럼 웹페이지를 구성하는 가장 작은 부품입니다. 태그와의 관계와 화면에서 하는 역할을 초보자 눈높이로 정리했습니다.'
 ogImage: /og/what-is-element.png
 ---
 

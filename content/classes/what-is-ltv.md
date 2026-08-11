@@ -34,6 +34,8 @@ quiz:
       LTV:CAC = 3:1로 이상적인 비율입니다. 이 공식은 고객이 평균적으로 이탈률의 역수만큼(1 ÷ 0.10 = 10개월) 서비스를
       이용한다는 의미입니다.
     correctIndex: 0
+metaTitle: 'LTV 뜻: 고객 생애 가치 계산 공식과 활용 기준'
+metaDescription: 'LTV(Lifetime Value)는 고객 한 명이 이용 기간 전체에 가져다주는 총수익입니다. 계산 공식과 마케팅 예산 판단에 쓰는 방법을 정리했습니다.'
 ogImage: /og/what-is-ltv.png
 ---
 

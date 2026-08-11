@@ -10,7 +10,7 @@ tags:
 publishedAt: '2026-02-11T09:03:46.046Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
-orderInCourse: 10
+orderInCourse: 11
 aliases:
   - 웹 쿠키
   - HTTP Cookie
@@ -33,6 +33,8 @@ quiz:
       서드파티 쿠키이기 때문에 크롬의 차단 정책에 영향을 받습니다. 이것이 바로 마케터들이 퍼스트파티 데이터 수집(회원가입, 이메일
       수집)에 집중하는 이유입니다.
     correctIndex: 0
+metaTitle: '쿠키(Cookie) 뜻: 브라우저가 나를 기억하는 방식'
+metaDescription: '쿠키는 웹사이트가 사용자의 브라우저에 저장하는 작은 텍스트 파일입니다. 로그인 유지와 광고 추적에 쿠키가 쓰이는 원리를 정리했습니다.'
 ogImage: /og/what-is-cookie.png
 ---
 

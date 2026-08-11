@@ -7,8 +7,9 @@ definition: >-
 category: AI_TECH
 tags:
   - 바이브코딩
+publishedAt: '2026-04-11T01:18:07.000Z'
 courseSlug: digital-basic
-orderInCourse: 12
+orderInCourse: 13
 aliases:
   - JSON
   - 제이슨

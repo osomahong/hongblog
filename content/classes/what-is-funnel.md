@@ -37,6 +37,8 @@ quiz:
       전환(MOFU→BOFU)입니다. 랜딩 페이지의 설득력, 결제 과정의 편의성, 가격 경쟁력 등 BOFU 단계의 요소를 점검하고 개선해야
       합니다.
     correctIndex: 0
+metaTitle: '마케팅 퍼널 뜻: 인지부터 구매까지 단계 설계'
+metaDescription: '퍼널은 잠재 고객이 브랜드 인지부터 구매까지 거치는 여정을 깔때기 형태로 나눈 모델입니다. 단계별 지표와 이탈 구간을 찾는 방법을 정리했습니다.'
 ogImage: /og/what-is-funnel.png
 ---
 
