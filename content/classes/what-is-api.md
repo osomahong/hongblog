@@ -70,7 +70,7 @@ ogImage: /og/what-is-api.png
       <div style="font-family:monospace; font-size:0.85em; background:#F3F3F3; border:2px solid #000; padding:8px;">{<br>&nbsp;&nbsp;"menu": "까르보나라",<br>&nbsp;&nbsp;"price": 15000,<br>&nbsp;&nbsp;"status": "완료"<br>}</div>
     </div>
   </div>
-  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">API는 정해진 형식으로 요청을 받아 주방(서버)에 전달하고, 결과를 JSON으로 돌려줍니다.</p>
+  <p style="margin:8px 0 0; font-size:0.9em; color:#555;">API는 정해진 형식으로 요청을 받아 주방(서버)에 전달하고, 결과를 [JSON](/class/digital-basic/what-is-json-and-data-structures)으로 돌려줍니다.</p>
 </div>
 
 레스토랑에서 음식을 주문할 때를 생각해보세요.
@@ -96,7 +96,7 @@ ogImage: /og/what-is-api.png
 
 <div style="overflow-x:auto; margin:16px 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff; padding:16px;">
-    <div style="display:inline-block; font-weight:bold; background:#FFD700; border:3px solid #000; padding:4px 12px; margin-bottom:10px;">REST API: 하나의 주소, 네 가지 요청 방식</div>
+    <div style="display:inline-block; font-weight:bold; background:#FFD700; border:3px solid #000; padding:4px 12px; margin-bottom:10px;">[REST API](/class/vibe-coding-basics/what-is-rest-api): 하나의 주소, 네 가지 요청 방식</div>
     <div style="font-family:monospace; font-size:0.9em; background:#F3F3F3; border:2px solid #000; padding:8px; margin-bottom:10px;">https://api.example.com/users</div>
     <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:8px;">
       <div style="min-width:90px; text-align:center; font-family:monospace; font-weight:bold; border:2px solid #000; background:#FFD700; padding:6px;">GET</div>
@@ -166,3 +166,7 @@ ogImage: /og/what-is-api.png
 2. **REST API는 URL 주소(엔드포인트)로 요청을 보내고 응답을 받는 방식**입니다. Google Maps API, Meta Ads API 등 대부분의 웹 서비스가 이 방식을 사용합니다.
 
 3. **마케터는 API를 통해 툴 간 자동화 연결, 광고 데이터 수집, 개발자와의 협업**을 훨씬 효율적으로 할 수 있습니다. Zapier, n8n 같은 도구가 API를 활용한 대표적인 예시입니다.
+
+## 참고 자료
+
+- [MDN Web API 문서](https://developer.mozilla.org/ko/docs/Web/API)

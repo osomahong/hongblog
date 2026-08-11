@@ -142,3 +142,9 @@ CPC = 총 광고비 ÷ 총 클릭수
 2. **공식: CPC = 총 광고비 ÷ 총 클릭수**입니다. CPC가 낮을수록 같은 예산으로 더 많은 방문자를 확보할 수 있습니다.
 
 3. **웹사이트 트래픽 유도에 적합**하며, CTR을 높여서 CPC를 낮추는 것이 광고 최적화의 핵심입니다.
+
+노출 기준 과금은 [CPM](/class/digital-marketing-terms/what-is-cpm) 클래스에서, 클릭률은 [CTR](/class/digital-marketing-terms/what-is-ctr) 클래스에서 이어집니다.
+
+## 참고 자료
+
+- [클릭당비용(CPC) 정의, Google Ads 고객센터](https://support.google.com/google-ads/answer/116495?hl=ko)

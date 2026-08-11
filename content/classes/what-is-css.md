@@ -43,7 +43,7 @@ ogImage: /og/what-is-css.png
 
 ## 🔑 CSS, 한마디로 뭘까요?
 
-CSS는 HTML로 만든 뼈대 위에 디자인 규칙을 입혀주는 스타일링 언어입니다.
+CSS는 [HTML](/class/digital-basic/what-is-html)로 만든 뼈대 위에 디자인 규칙을 입혀주는 스타일링 언어입니다.
 
 HTML이 "여기 제목이 있고, 여기 내용이 있어"라고 사실만 전달한다면, CSS는 "제목은 파란색으로 하고, 내용은 폰트를 키워서 보기 좋게 만들어"라고 꾸며주는 역할을 합니다.
 
@@ -107,7 +107,7 @@ CSS가 바로 웹사이트의 **디자인 테마**입니다.
   <span style="color:#FF0000;font-weight:bold;">background-color</span>: <span style="text-decoration:underline;font-weight:bold;">blue</span>;
 }</pre>
     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;font-size:13px;">
-      <div style="flex:1 1 140px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b>선택자(Selector)</b><br>누구를 꾸밀지 지정</div>
+      <div style="flex:1 1 140px;border:2px solid #000;background:#FFD700;padding:8px 10px;"><b>[선택자](/class/digital-basic/what-is-selector)(Selector)</b><br>누구를 꾸밀지 지정</div>
       <div style="flex:1 1 140px;border:2px solid #000;background:#fff;padding:8px 10px;"><b style="color:#FF0000;">속성(Property)</b><br>무엇을 바꿀지 지정</div>
       <div style="flex:1 1 140px;border:2px solid #000;background:#F3F3F3;padding:8px 10px;"><b>값(Value)</b><br>어떻게 바꿀지 지정</div>
     </div>
@@ -173,3 +173,7 @@ CSS를 입히면 (디자인 적용된 PPT):
 3. CSS를 이해하면 개발자/디자이너에게 "더 예쁘게"가 아니라 "구체적으로 어떻게" 수정할지 말할 수 있는 프로 마케터가 됩니다.
 
 웹사이트가 갑자기 예뻐 보인다면? "아, CSS가 열일하고 있구나!" 하고 생각해 주세요! 
+
+## 참고 자료
+
+- [MDN CSS 문서](https://developer.mozilla.org/ko/docs/Web/CSS)

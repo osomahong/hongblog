@@ -49,7 +49,7 @@ ogImage: /og/what-is-selector.png
 
 ## 🔑 Selector, 한마디로 뭘까요?
 
-**Selector(선택자)**는 웹페이지에서 특정 Element를 찾아내기 위한 **'주소'** 같은 것입니다.
+**Selector(선택자)**는 웹페이지에서 특정 [Element](/class/digital-basic/what-is-element)를 찾아내기 위한 **'주소'** 같은 것입니다.
 
 마치 "서울시 강남구 테헤란로 123번지"처럼 건물의 주소를 알려주면 그 건물을 찾을 수 있듯이, Selector는 "이 버튼", "저 이미지", "이 텍스트"를 정확하게 지정하는 방법입니다.
 
@@ -140,7 +140,7 @@ button { color: blue; }
 → `id="login-button"`를 가진 **단 하나의 Element** 선택
 
 ### 4. **Attribute Selector (속성 선택자)**
-특정 Attribute를 가진 Element를 선택합니다.
+특정 [Attribute](/class/digital-basic/what-is-attribute)를 가진 Element를 선택합니다.
 ```css
 [data-event="click"] { ... }
 ```
@@ -166,3 +166,7 @@ GTM 태그가 안 작동할 때, 개발자 도구(F12)로 Element를 확인하�
 2. **주요 종류는 Tag(button), Class(.btn-primary), ID(#login-button)가 있으며,** GTM에서는 주로 Class와 ID Selector를 사용해 클릭 이벤트를 추적합니다.
 
 3. **Selector를 알면 GTM 설정을 직접 할 수 있고,** 개발자와 정확하게 소통할 수 있으며, 추적 오류를 스스로 해결할 수 있습니다.
+
+## 참고 자료
+
+- [MDN CSS 선택자 문서](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_selectors)

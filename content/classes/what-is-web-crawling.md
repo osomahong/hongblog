@@ -128,3 +128,9 @@ ogImage: /og/what-is-web-crawling.png
 2. **세 가지 방식**이 있습니다. 페이지를 통째로 받아오는 간단한 방식, 크롬 브라우저를 조종하는 브라우저 방식, 그리고 공식 통로인 API 방식입니다. 차단 걱정이 없는 건 API, 사람처럼 보이는 건 브라우저 방식입니다.
 
 3. **비개발자도 시작할 수 있습니다.** Google 스프레드시트, 크롬 확장, 노코드 도구, AI 코드 생성 등 코딩 없이 크롤링하는 방법이 다양합니다. 단, 개인정보 수집 금지와 robots.txt 확인은 반드시 지켜야 합니다.
+
+프로그램끼리 데이터를 주고받는 정식 통로는 [REST API](/class/vibe-coding-basics/what-is-rest-api) 클래스에서 다룹니다.
+
+## 참고 자료
+
+- [Google 검색센터, 크롤러 개요](https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers?hl=ko)

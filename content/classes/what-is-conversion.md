@@ -135,7 +135,7 @@ ogImage: /og/what-is-conversion.png
 - GA4 이벤트 설정, Meta 픽셀, Google Ads 전환 추적 태그 등
 - 전환을 정의했다면, 실제로 측정할 수 있도록 기술적 세팅이 필요합니다.
 
-**3. CVR, ROAS와 함께 종합적으로 분석합니다**
+**3. [CVR](/class/digital-marketing-terms/what-is-cvr), ROAS와 함께 종합적으로 분석합니다**
 - 전환 수만 보면 안 됩니다. CVR(전환율)로 효율을, ROAS로 수익성을 함께 봐야 합니다.
 - 전환 수가 많아도 광고비 대비 수익이 낮으면 개선이 필요합니다.
 
@@ -145,4 +145,8 @@ ogImage: /og/what-is-conversion.png
 
 2. **매크로 전환(핵심 목표)과 마이크로 전환(과정 지표)**을 함께 추적하면 사용자 여정 전체를 파악할 수 있습니다.
 
-3. **전환은 모든 마케팅 성과의 최종 기준**입니다. CPM, CPC, CTR은 과정 지표이고, 전환이 실제 비즈니스 결과를 보여줍니다.
+3. **전환은 모든 마케팅 성과의 최종 기준**입니다. CPM, [CPC](/class/digital-marketing-terms/what-is-cpc), CTR은 과정 지표이고, 전환이 실제 비즈니스 결과를 보여줍니다.
+
+## 참고 자료
+
+- [전환 정의, Google Ads 고객센터](https://support.google.com/google-ads/answer/6365?hl=ko)

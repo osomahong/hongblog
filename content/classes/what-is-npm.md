@@ -143,3 +143,9 @@ npm uninstall axios      # axios 패키지 제거
 2. **package.json은 재료 목록, node_modules는 재료 창고**입니다. node_modules는 삭제해도 `npm install`로 복구됩니다. GitHub에는 package.json만 올리고, node_modules는 올리지 않습니다.
 
 3. **AI가 가장 먼저 `npm install`을 시키는 이유**는 프로젝트에 필요한 모든 패키지를 설치하기 위해서입니다. 이게 안 되면 프로젝트가 실행되지 않으므로, Node.js 설치 여부와 현재 폴더 위치를 확인하세요.
+
+명령어를 입력하는 창은 [터미널과 CLI](/class/vibe-coding-basics/what-is-terminal-cli) 클래스에서, 코드 이력 관리는 [Git](/class/vibe-coding-basics/what-is-git) 클래스에서 이어집니다.
+
+## 참고 자료
+
+- [npm 공식 문서, About npm](https://docs.npmjs.com/about-npm)

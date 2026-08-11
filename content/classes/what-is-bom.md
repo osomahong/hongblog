@@ -48,7 +48,7 @@ ogImage: /og/what-is-bom.png
 
 BOM(Browser Object Model)은 웹페이지 내용(문서)이 아닌, 웹 브라우저 자체를 제어하는 리모컨입니다.
 
-쉽게 말해, 브라우저가 가진 고유의 기능들(주소창, 뒤로 가기 버튼, 즐겨찾기, 화면 크기, 브라우저 종류)을 JavaScript가 만질 수 있도록 만들어 놓은 것입니다.
+쉽게 말해, 브라우저가 가진 고유의 기능들(주소창, 뒤로 가기 버튼, 즐겨찾기, 화면 크기, 브라우저 종류)을 [JavaScript](/class/digital-basic/what-is-javascript)가 만질 수 있도록 만들어 놓은 것입니다.
 
 ## 📺 첫 번째 비유: TV 리모컨
 
@@ -66,7 +66,7 @@ BOM(Browser Object Model)은 웹페이지 내용(문서)이 아닌, 웹 브라�
         <div style="color:#555;margin:6px 0;">지금 가입하면 첫 달 무료!</div>
         <span style="display:inline-block;border:2px solid #000;background:#FF0000;color:#fff;padding:4px 12px;font-weight:bold;">구매하기</span>
       </div>
-      <div style="margin-top:8px;font-weight:bold;">↑ 여기가 DOM의 영역 : 페이지 안에 담긴 내용물(드라마 내용)</div>
+      <div style="margin-top:8px;font-weight:bold;">↑ 여기가 [DOM](/class/digital-basic/what-is-dom)의 영역 : 페이지 안에 담긴 내용물(드라마 내용)</div>
     </div>
   </div>
   <div style="font-size:13px;color:#555;margin-top:6px;font-family:sans-serif;">DOM은 화면 속 콘텐츠를, BOM은 그 콘텐츠를 감싼 브라우저(TV 기계)를 다룹니다.</div>
@@ -158,3 +158,7 @@ GA4(구글 애널리틱스4)는 항상 브라우저 주소창을 쓱 훑어보�
 이제 주소창을 볼 때 그냥 주소로 보지 마세요.
 "아, 지금 BOM의 location 객체가 열일하고 있구나!"
 이게 바로 데이터의 출처를 아는 마케터의 올바른 시선입니다! 🕵️‍♀️
+
+## 참고 자료
+
+- [MDN Window API 문서](https://developer.mozilla.org/ko/docs/Web/API/Window)

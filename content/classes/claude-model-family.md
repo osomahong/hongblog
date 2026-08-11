@@ -54,11 +54,11 @@ metaDescription: >-
 ogImage: /og/claude-model-family.png
 ---
 
-이 글은 앤트로픽이 운영하는 platform.claude.com/docs의 모델 개요 문서와 공식 발표문을 한국어 입문자가 보기 편하게 정리한 글입니다. 가격, 컨텍스트 같은 수치는 **2026년 7월 기준** 공식 문서를 그대로 옮겼고, 원문 링크는 글 끝 참고 자료에 모았습니다.
+이 글은 [앤트로픽](/class/claude-fundamentals/what-is-anthropic)이 운영하는 platform.claude.com/docs의 모델 개요 문서와 공식 발표문을 한국어 입문자가 보기 편하게 정리한 글입니다. 가격, 컨텍스트 같은 수치는 **2026년 7월 기준** 공식 문서를 그대로 옮겼고, 원문 링크는 글 끝 참고 자료에 모았습니다.
 
 ## 🤔 Claude 5 등장 이후의 모델 이름 구조
 
-2026년 6월 9일, 앤트로픽이 Claude 5 세대의 첫 모델인 **Claude Fable 5**와 **Claude Mythos 5**를 발표했습니다. "Claude 5가 나왔다는데 그럼 Opus는 이제 못 쓰는 건가?" 하는 혼란이 생기기 쉬운 시점입니다.
+2026년 6월 9일, 앤트로픽이 [Claude](/class/claude-fundamentals/what-is-claude) 5 세대의 첫 모델인 **Claude Fable 5**와 **Claude Mythos 5**를 발표했습니다. "Claude 5가 나왔다는데 그럼 Opus는 이제 못 쓰는 건가?" 하는 혼란이 생기기 쉬운 시점입니다.
 
 답은 단순합니다. **Claude는 여전히 한 모델이 아닙니다**. Opus, Sonnet, Haiku 세 라인업은 그대로 운영되고, 그 위에 최상위 라인업인 Fable 5가 더해졌습니다. 어떤 라인업을 고를지가 먼저고, 모델 번호(Opus 5, Sonnet 5 같은 표기)는 그 라인업 안에서의 세대를 가리킵니다.
 

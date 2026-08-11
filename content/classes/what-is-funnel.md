@@ -77,7 +77,7 @@ ogImage: /og/what-is-funnel.png
 
 - 잠재 고객이 브랜드나 제품의 존재를 처음 알게 됩니다.
 - 목표: 최대한 많은 사람에게 노출하기
-- 핵심 지표: **CPM**, 도달 수, 노출 수
+- 핵심 지표: **[CPM](/class/digital-marketing-terms/what-is-cpm)**, 도달 수, 노출 수
 - 주요 전략: 브랜드 광고, SNS 콘텐츠, 블로그 SEO, 유튜브 영상
 
 ### 🔶 MOFU (Middle of Funnel): 고려 단계
@@ -86,7 +86,7 @@ ogImage: /og/what-is-funnel.png
 
 - 잠재 고객이 우리 제품에 관심을 보이고, 경쟁사와 비교합니다.
 - 목표: 관심을 신뢰로 전환하기
-- 핵심 지표: **CTR**, **CPC**, 페이지 체류 시간, 이메일 오픈율
+- 핵심 지표: **[CTR](/class/digital-marketing-terms/what-is-ctr)**, **CPC**, 페이지 체류 시간, 이메일 오픈율
 - 주요 전략: 사례 연구, 비교 콘텐츠, 무료 체험, 이메일 뉴스레터, 웨비나
 
 ### 🔻 BOFU (Bottom of Funnel): 전환 단계

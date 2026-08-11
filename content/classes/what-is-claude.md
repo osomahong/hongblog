@@ -46,7 +46,7 @@ quiz:
 ogImage: /og/what-is-claude.png
 ---
 
-이 글은 앤트로픽이 운영하는 Anthropic Academy(anthropic.com/learn), claude.com/resources, platform.claude.com/docs의 공식 교육 자료 중 Claude의 정체와 기능을 한국 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.
+이 글은 [앤트로픽](/class/claude-fundamentals/what-is-anthropic)이 운영하는 Anthropic Academy(anthropic.com/learn), claude.com/resources, platform.claude.com/docs의 공식 교육 자료 중 Claude의 정체와 기능을 한국 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.
 
 ## 🤔 혹시 이런 경험 있나요?
 
@@ -93,7 +93,7 @@ ogImage: /og/what-is-claude.png
 - 디자인이 끝나면 Claude Code로 곧장 핸드오프해 디자인 의도를 유지한 채 구현 단계로 넘어갑니다.
 
 **4. 1M 토큰 컨텍스트 (긴 문서 분석)**
-- Claude Opus 5와 Sonnet 5는 한 번에 단행본 한 권 분량(약 1M 토큰)을 그대로 입력받습니다.
+- Claude [Opus](/class/claude-fundamentals/claude-model-family) 5와 Sonnet 5는 한 번에 단행본 한 권 분량(약 1M 토큰)을 그대로 입력받습니다.
 - 두꺼운 보고서, 논문 PDF, 회의록 모음을 통째로 던져도 잘라 보낼 필요가 없습니다.
 - 모델별 차이는 클래스 3(Claude 모델 패밀리)에서 자세히 다룹니다.
 

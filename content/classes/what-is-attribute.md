@@ -41,13 +41,13 @@ ogImage: /og/what-is-attribute.png
 - "개발자가 'class명이 뭔가요?'라고 물어보는데, 무슨 말인지 감이 안 온다."
 - "웹사이트 소스를 보면 `id`, `class`, `href` 같은 게 잔뜩 붙어 있는데, 각각 무슨 역할인지 궁금하다."
 
-이전 글에서 Element(요소)가 웹페이지를 이루는 부품이라고 배웠습니다. 그런데 같은 종류의 부품이 한 페이지에 수십 개씩 있다면, 어떻게 서로 구별할 수 있을까요?
+이전 글에서 [Element](/class/digital-basic/what-is-element)(요소)가 웹페이지를 이루는 부품이라고 배웠습니다. 그런데 같은 종류의 부품이 한 페이지에 수십 개씩 있다면, 어떻게 서로 구별할 수 있을까요?
 
 바로 **Attribute(속성)** 덕분입니다. Attribute는 각 Element에 붙는 이름표이자 설명서입니다.
 
 ## 🔑 Attribute, 한마디로 뭘까요?
 
-Attribute(속성)는 HTML Element에 **추가 정보를 부여하는 이름=값 쌍**입니다.
+Attribute(속성)는 [HTML](/class/digital-basic/what-is-html) Element에 **추가 정보를 부여하는 이름=값 쌍**입니다.
 
 HTML 코드에서 여는 태그 안에 `이름="값"` 형태로 작성됩니다. 예를 들어 아래 코드를 보겠습니다.
 
@@ -209,3 +209,7 @@ GA나 히트맵 도구에서 "이 Element를 추적합니다"라는 메시지와
 3. GTM의 Click ID, Click Classes, Click URL은 모두 **클릭된 Element의 Attribute 값**입니다. 이 연결 고리를 이해하면 이벤트 추적 설정이 훨씬 쉬워집니다.
 
 다음에 GTM에서 트리거를 설정할 때, "이 변수가 어떤 Attribute를 읽어오는 거지?"라고 한번 생각해 보세요. 그 순간, 단순한 설정 따라하기에서 원리를 이해하는 단계로 올라서게 됩니다!
+
+## 참고 자료
+
+- [MDN HTML 속성 문서](https://developer.mozilla.org/ko/docs/Web/HTML/Attributes)

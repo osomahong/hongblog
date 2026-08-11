@@ -140,7 +140,7 @@ GA4를 설치하면 **_ga, _gid** 같은 쿠키가 자동으로 생깁니다. �
 
 ## 🔄 쿠키의 대안: LocalStorage와 SessionStorage
 
-쿠키가 점점 제한받으면서, **BOM(Browser Object Model)**의 다른 저장 방식도 주목받고 있습니다.
+쿠키가 점점 제한받으면서, **[BOM](/class/digital-basic/what-is-bom)(Browser Object Model)**의 다른 저장 방식도 주목받고 있습니다.
 
 - **LocalStorage**: 브라우저에 영구적으로 저장. 쿠키보다 용량이 크고(5MB vs 4KB), 자동으로 서버에 전송되지 않습니다.
 - **SessionStorage**: 탭을 닫으면 사라지는 임시 저장소.
@@ -154,3 +154,7 @@ GA4를 설치하면 **_ga, _gid** 같은 쿠키가 자동으로 생깁니다. �
 2. **GA4의 _ga 쿠키, 메타 픽셀의 _fbp 쿠키**가 바로 쿠키입니다. 크롬의 서드파티 쿠키 차단으로 리타게팅 광고가 어려워지고 있습니다.
 
 3. **개인정보 보호 강화로 쿠키 동의가 필수**가 되었고, 퍼스트파티 데이터 수집(이메일 수집, CRM 구축)이 마케팅의 핵심 전략이 되었습니다.
+
+## 참고 자료
+
+- [MDN HTTP 쿠키 문서](https://developer.mozilla.org/ko/docs/Web/HTTP/Cookies)

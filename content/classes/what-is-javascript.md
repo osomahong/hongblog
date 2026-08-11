@@ -46,7 +46,7 @@ ogImage: /og/what-is-javascript.png
 
 JavaScript는 웹페이지의 뇌와 근육입니다.
 
-HTML이 뼈대를 만들고 CSS가 옷을 입혔다면, JavaScript는 그 웹페이지가 춤을 추고, 노래하고, 계산하고, 사용자와 대화할 수 있게 만드는 프로그래밍 언어입니다. 정적인 그림을 동적인 영상으로 바꿔주는 마법사라고 볼 수 있죠.
+[HTML](/class/digital-basic/what-is-html)이 뼈대를 만들고 CSS가 옷을 입혔다면, JavaScript는 그 웹페이지가 춤을 추고, 노래하고, 계산하고, 사용자와 대화할 수 있게 만드는 프로그래밍 언어입니다. 정적인 그림을 동적인 영상으로 바꿔주는 마법사라고 볼 수 있죠.
 
 ## 🏢 첫 번째 비유: 최첨단 스마트 홈
 
@@ -172,3 +172,7 @@ button.addEventListener('click', function() {
 3. 이 원리를 알면 GTM 데이터 추적과 마케팅 자동화 기능을 자유자재로 다루는 능력자가 됩니다.
 
 웹사이트에서 뭔가가 움직이거나 튀어나왔나요? "오, 방금 JavaScript가 작동했네!"라고 아는 척 한번 해주세요! 🚀
+
+## 참고 자료
+
+- [MDN JavaScript 문서](https://developer.mozilla.org/ko/docs/Web/JavaScript)
