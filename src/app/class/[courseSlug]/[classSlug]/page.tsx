@@ -132,7 +132,8 @@ export default async function ClassDetailPage({ params }: Props) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Article",
-        headline: classData.term,
+        // 검색 결과 제목(metaTitle)과 구조화 데이터 headline을 일치시킨다 (삼중 정렬)
+        headline: classData.metaTitle || classData.term,
         description: classData.definition,
         image: articleImage,
         inLanguage: "ko",

@@ -43,6 +43,9 @@ const REMOVED_ROUTE_REDIRECTS: [RegExp, string][] = [
   // /search는 사이트 내 검색 페이지로 다시 쓰므로 리디렉트 규칙을 두지 않는다.
   // (과거 검색 라우트를 지웠을 때 넣었던 `[/^\/search$/, "/"]` 규칙을 제거했다.)
   [/^\/vibecoding-1$/, "/insights/vibe-coding-vs-ai-agent-difference"],
+  // 슬러그 관례 정비(2026-08). 옛 kebab-case 미준수 슬러그를 정규 슬러그로 보낸다.
+  [/^\/class\/[^/]+\/whatiscss$/, "/class/digital-basic/what-is-css"],
+  [/^\/class\/[^/]+\/whatishtml$/, "/class/digital-basic/what-is-html"],
   [/^\/tags\/index\.html$/, "/tags"],
   // GSC 404로 잡힌 경로. 문의 페이지는 About의 연락처 영역으로 흡수됐다.
   [/^\/contact(\/.*)?$/, "/about"],

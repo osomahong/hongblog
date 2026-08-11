@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-29T14:23:33.201Z",
-  "totalClasses": 60,
+  "generatedAt": "2026-08-11T16:17:21.350Z",
+  "totalClasses": 73,
   "denyList": [
     "AI",
     "API",
@@ -287,12 +287,11 @@
       "category": "AI_TECH",
       "term": "API (Application Programming Interface)",
       "aliases": [
-        "REST API",
-        "웹 API"
+        "웹 API",
+        "Application Programming Interface"
       ],
       "searchTerms": [
         "Application Programming Interface",
-        "REST API",
         "웹 API",
         "API"
       ],
@@ -344,6 +343,20 @@
         "Cookie",
         "웹 쿠키",
         "쿠키"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-css",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-css",
+      "category": "AI_TECH",
+      "term": "CSS (Cascading Style Sheets)",
+      "aliases": [],
+      "searchTerms": [
+        "Cascading Style Sheets",
+        "CSS"
       ],
       "linkPriority": 1,
       "enabled": true
@@ -407,14 +420,29 @@
       "enabled": true
     },
     {
+      "slug": "what-is-html",
+      "courseSlug": "digital-basic",
+      "url": "/class/digital-basic/what-is-html",
+      "category": "AI_TECH",
+      "term": "HTML (HyperText Markup Language)",
+      "aliases": [],
+      "searchTerms": [
+        "HyperText Markup Language",
+        "HTML"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
       "slug": "what-is-javascript",
       "courseSlug": "digital-basic",
       "url": "/class/digital-basic/what-is-javascript",
       "category": "AI_TECH",
-      "term": " Javascript",
+      "term": "JavaScript (자바스크립트) 이해하기",
       "aliases": [],
       "searchTerms": [
-        "Javascript"
+        "JavaScript",
+        "자바스크립트"
       ],
       "linkPriority": 1,
       "enabled": true
@@ -488,6 +516,28 @@
         "데이터 수집",
         "웹 크롤러",
         "웹 크롤링"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-aeo",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-aeo",
+      "category": "MARKETING",
+      "term": "답변 엔진 최적화 (AEO) 이해하기",
+      "aliases": [
+        "AEO",
+        "답변엔진최적화",
+        "앤서 엔진 최적화",
+        "Answer Engine Optimization"
+      ],
+      "searchTerms": [
+        "Answer Engine Optimization",
+        "앤서 엔진 최적화",
+        "답변 엔진 최적화",
+        "답변엔진최적화",
+        "AEO"
       ],
       "linkPriority": 1,
       "enabled": true
@@ -659,6 +709,28 @@
       "enabled": true
     },
     {
+      "slug": "what-is-geo",
+      "courseSlug": "digital-marketing-terms",
+      "url": "/class/digital-marketing-terms/what-is-geo",
+      "category": "MARKETING",
+      "term": "생성형 엔진 최적화 (GEO) 이해하기",
+      "aliases": [
+        "GEO",
+        "생성형엔진최적화",
+        "GEO 마케팅",
+        "Generative Engine Optimization"
+      ],
+      "searchTerms": [
+        "Generative Engine Optimization",
+        "생성형 엔진 최적화",
+        "생성형엔진최적화",
+        "GEO 마케팅",
+        "GEO"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
       "slug": "what-is-ltv",
       "courseSlug": "digital-marketing-terms",
       "url": "/class/digital-marketing-terms/what-is-ltv",
@@ -705,7 +777,7 @@
       "courseSlug": "digital-marketing-terms",
       "url": "/class/digital-marketing-terms/what-is-roi",
       "category": "MARKETING",
-      "term": "ROI (Return On Investment)",
+      "term": "ROI (Return On Investment) 이해하기",
       "aliases": [
         "투자 수익률",
         "투자 대비 수익"
@@ -715,6 +787,194 @@
         "투자 대비 수익",
         "투자 수익률",
         "ROI"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-canonical-url",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/what-is-canonical-url",
+      "category": "MARKETING",
+      "term": "정규 URL (Canonical) 이해하기",
+      "aliases": [
+        "canonical",
+        "캐노니컬",
+        "표준 URL",
+        "rel canonical"
+      ],
+      "searchTerms": [
+        "rel canonical",
+        "canonical",
+        "Canonical",
+        "표준 URL",
+        "정규 URL",
+        "캐노니컬",
+        "URL"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-core-web-vitals",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/what-is-core-web-vitals",
+      "category": "MARKETING",
+      "term": "페이지 속도와 코어 웹 바이탈 알아보기",
+      "aliases": [
+        "Core Web Vitals",
+        "코어 웹 바이탈",
+        "LCP",
+        "INP",
+        "CLS",
+        "페이지 속도"
+      ],
+      "searchTerms": [
+        "페이지 속도와 코어 웹 바이탈",
+        "Core Web Vitals",
+        "코어 웹 바이탈",
+        "페이지 속도",
+        "LCP",
+        "INP",
+        "CLS"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-indexing",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/what-is-indexing",
+      "category": "MARKETING",
+      "term": "색인 (Indexing) 이해하기",
+      "aliases": [
+        "인덱싱",
+        "indexing",
+        "구글 색인",
+        "인덱스 등록"
+      ],
+      "searchTerms": [
+        "indexing",
+        "Indexing",
+        "인덱스 등록",
+        "구글 색인",
+        "인덱싱",
+        "색인"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-internal-link",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/what-is-internal-link",
+      "category": "MARKETING",
+      "term": "URL 구조와 내부 링크 이해하기",
+      "aliases": [
+        "내부 링크",
+        "internal link",
+        "URL 구조",
+        "사이트 구조"
+      ],
+      "searchTerms": [
+        "internal link",
+        "URL 구조와 내부 링크",
+        "URL 구조",
+        "사이트 구조",
+        "내부 링크",
+        "URL"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-robots-txt",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/what-is-robots-txt",
+      "category": "MARKETING",
+      "term": "robots.txt 알아보기",
+      "aliases": [
+        "로봇 텍스트",
+        "robots 파일",
+        "크롤링 차단",
+        "로봇 배제 표준"
+      ],
+      "searchTerms": [
+        "robots.txt",
+        "robots 파일",
+        "로봇 배제 표준",
+        "로봇 텍스트",
+        "크롤링 차단"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-search-crawler",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/what-is-search-crawler",
+      "category": "MARKETING",
+      "term": "검색엔진 크롤러 (Search Crawler) 이해하기",
+      "aliases": [
+        "크롤러",
+        "구글봇",
+        "Googlebot",
+        "검색봇",
+        "검색엔진 봇"
+      ],
+      "searchTerms": [
+        "Search Crawler",
+        "Googlebot",
+        "검색엔진 크롤러",
+        "검색엔진 봇",
+        "크롤러",
+        "구글봇",
+        "검색봇"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-seo",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/what-is-seo",
+      "category": "MARKETING",
+      "term": "검색엔진 최적화 (SEO) 이해하기",
+      "aliases": [
+        "SEO",
+        "검색엔진최적화",
+        "구글 SEO",
+        "서치엔진 최적화"
+      ],
+      "searchTerms": [
+        "서치엔진 최적화",
+        "검색엔진 최적화",
+        "검색엔진최적화",
+        "구글 SEO",
+        "SEO"
+      ],
+      "linkPriority": 1,
+      "enabled": true
+    },
+    {
+      "slug": "what-is-sitemap",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/what-is-sitemap",
+      "category": "MARKETING",
+      "term": "사이트맵 (Sitemap) 알아보기",
+      "aliases": [
+        "sitemap.xml",
+        "XML 사이트맵",
+        "사이트맵 제출",
+        "사이트 맵"
+      ],
+      "searchTerms": [
+        "sitemap.xml",
+        "XML 사이트맵",
+        "사이트맵 제출",
+        "Sitemap",
+        "사이트 맵",
+        "사이트맵"
       ],
       "linkPriority": 1,
       "enabled": true
@@ -921,17 +1181,13 @@
       "category": "AI_TECH",
       "term": "REST API",
       "aliases": [
-        "API",
         "RESTful API",
-        "웹 API",
-        "Application Programming Interface"
+        "REST"
       ],
       "searchTerms": [
-        "Application Programming Interface",
         "RESTful API",
         "REST API",
-        "웹 API",
-        "API"
+        "REST"
       ],
       "linkPriority": 1,
       "enabled": true
@@ -1005,6 +1261,30 @@
       "enabled": true
     },
     {
+      "slug": "claude-code-plans-and-limits",
+      "courseSlug": "claude-code-for-everyone",
+      "url": "/class/claude-code-for-everyone/claude-code-plans-and-limits",
+      "category": "CLAUDE_EDUCATION",
+      "term": "클로드 코드 플랜과 사용량 한도 이해하기",
+      "aliases": [
+        "클로드 코드 프로",
+        "클로드 코드 플랜",
+        "클로드 코드 구독",
+        "세션 한도",
+        "주간 한도"
+      ],
+      "searchTerms": [
+        "클로드 코드 플랜과 사용량 한도",
+        "클로드 코드 프로",
+        "클로드 코드 플랜",
+        "클로드 코드 구독",
+        "세션 한도",
+        "주간 한도"
+      ],
+      "linkPriority": 2,
+      "enabled": true
+    },
+    {
       "slug": "slash-commands-explained",
       "courseSlug": "claude-code-for-everyone",
       "url": "/class/claude-code-for-everyone/slash-commands-explained",
@@ -1029,23 +1309,29 @@
       "courseSlug": "claude-fundamentals",
       "url": "/class/claude-fundamentals/claude-model-family",
       "category": "CLAUDE_EDUCATION",
-      "term": "Claude 모델 패밀리 (Opus·Sonnet·Haiku) 비교하기",
+      "term": "Claude 모델 패밀리 (Opus, Sonnet, Haiku) 비교하기",
       "aliases": [
         "Claude Opus",
         "Claude Sonnet",
         "Claude Haiku",
-        "Opus 4.7",
-        "Sonnet 4.6",
+        "Claude Fable 5",
+        "Claude Mythos 5",
+        "Opus 5",
+        "Opus 4.8",
+        "Sonnet 5",
         "Haiku 4.5"
       ],
       "searchTerms": [
+        "Claude Mythos 5",
+        "Claude Fable 5",
         "Claude Sonnet",
         "Claude 모델 패밀리",
         "Claude Haiku",
         "Claude Opus",
-        "Sonnet 4.6",
         "Haiku 4.5",
-        "Opus 4.7",
+        "Opus 4.8",
+        "Sonnet 5",
+        "Opus 5",
         "Sonnet",
         "Claude",
         "Haiku",
@@ -1102,7 +1388,7 @@
       "courseSlug": "claude-fundamentals",
       "url": "/class/claude-fundamentals/four-ds-of-ai-fluency",
       "category": "CLAUDE_EDUCATION",
-      "term": "AI Fluency 4D 프레임워크 (Delegation·Description·Discernment·Diligence) 알아보기",
+      "term": "AI Fluency 4D 프레임워크 (Delegation, Description, Discernment, Diligence) 알아보기",
       "aliases": [
         "4D 프레임워크",
         "AI Fluency",
@@ -1166,7 +1452,7 @@
       "courseSlug": "claude-in-practice",
       "url": "/class/claude-in-practice/claude-cowork-overview",
       "category": "CLAUDE_EDUCATION",
-      "term": "Claude Cowork (작업 자동화·Dispatch) 활용하기",
+      "term": "Claude Cowork (작업 자동화, Dispatch) 활용하기",
       "aliases": [
         "Cowork",
         "Claude Dispatch",
@@ -1187,14 +1473,14 @@
       "courseSlug": "claude-in-practice",
       "url": "/class/claude-in-practice/claude-document-workflow",
       "category": "CLAUDE_EDUCATION",
-      "term": "문서·자료 정리 워크플로 (PDF·이미지·표) 익히기",
+      "term": "문서, 자료 정리 워크플로 (PDF, 이미지, 표) 익히기",
       "aliases": [
         "문서 워크플로",
         "PDF 분석",
         "자료 정리"
       ],
       "searchTerms": [
-        "문서·자료 정리 워크플로 익히기",
+        "문서, 자료 정리 워크플로 익히기",
         "문서 워크플로",
         "PDF 분석",
         "자료 정리",
@@ -1246,27 +1532,52 @@
       "enabled": true
     },
     {
-      "slug": "whatiscss",
-      "courseSlug": "digital-basic",
-      "url": "/class/digital-basic/whatiscss",
-      "category": "AI_TECH",
-      "term": " CSS",
-      "aliases": [],
+      "slug": "claude-plans-comparison",
+      "courseSlug": "claude-in-practice",
+      "url": "/class/claude-in-practice/claude-plans-comparison",
+      "category": "CLAUDE_EDUCATION",
+      "term": "클로드 플랜 비교 (Free, Pro, Max) 고르기",
+      "aliases": [
+        "클로드 프로",
+        "클로드 플랜",
+        "클로드 요금제",
+        "Claude Pro",
+        "Claude Max"
+      ],
       "searchTerms": [
-        "CSS"
+        "클로드 플랜 비교 고르기",
+        "Claude Pro",
+        "Claude Max",
+        "클로드 요금제",
+        "클로드 프로",
+        "클로드 플랜",
+        "Free",
+        "Pro",
+        "Max"
       ],
       "linkPriority": 2,
       "enabled": true
     },
     {
-      "slug": "whatishtml",
-      "courseSlug": "digital-basic",
-      "url": "/class/digital-basic/whatishtml",
-      "category": "AI_TECH",
-      "term": " HTML",
-      "aliases": [],
+      "slug": "how-to-check-indexing-status",
+      "courseSlug": "seo-fundamentals",
+      "url": "/class/seo-fundamentals/how-to-check-indexing-status",
+      "category": "MARKETING",
+      "term": "서치 콘솔로 색인 상태 확인하기",
+      "aliases": [
+        "구글 서치 콘솔",
+        "Search Console",
+        "서치콘솔",
+        "URL 검사",
+        "색인 요청"
+      ],
       "searchTerms": [
-        "HTML"
+        "서치 콘솔로 색인 상태 확인하기",
+        "Search Console",
+        "구글 서치 콘솔",
+        "URL 검사",
+        "색인 요청",
+        "서치콘솔"
       ],
       "linkPriority": 2,
       "enabled": true
@@ -1278,12 +1589,10 @@
       "category": "CLAUDE_EDUCATION",
       "term": "Claude Code 설치 첫걸음 (터미널 입문 포함) 따라하기",
       "aliases": [
-        "Claude Code 설치",
         "claude code 시작"
       ],
       "searchTerms": [
         "Claude Code 설치 첫걸음 따라하기",
-        "Claude Code 설치",
         "claude code 시작",
         "Claude Code",
         "터미널 입문 포함"

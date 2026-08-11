@@ -40,6 +40,7 @@ export const CLASS_COURSE_MAP: Record<string, string> = {
   "what-is-core-web-vitals": "seo-fundamentals",
   "what-is-cpc": "digital-marketing-terms",
   "what-is-cpm": "digital-marketing-terms",
+  "what-is-css": "digital-basic",
   "what-is-ctr": "digital-marketing-terms",
   "what-is-cvr": "digital-marketing-terms",
   "what-is-database": "vibe-coding-basics",
@@ -55,6 +56,7 @@ export const CLASS_COURSE_MAP: Record<string, string> = {
   "what-is-geo": "digital-marketing-terms",
   "what-is-git": "vibe-coding-basics",
   "what-is-hallucination": "claude-fundamentals",
+  "what-is-html": "digital-basic",
   "what-is-indexing": "seo-fundamentals",
   "what-is-internal-link": "seo-fundamentals",
   "what-is-javascript": "digital-basic",
@@ -73,6 +75,4 @@ export const CLASS_COURSE_MAP: Record<string, string> = {
   "what-is-sycophancy": "claude-fundamentals",
   "what-is-terminal-cli": "vibe-coding-basics",
   "what-is-web-crawling": "digital-basic",
-  "whatiscss": "digital-basic",
-  "whatishtml": "digital-basic",
 };
