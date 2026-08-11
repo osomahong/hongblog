@@ -2,6 +2,7 @@
 // content/classes/*.md의 slug와 courseSlug에서 생성됩니다.
 
 export const CLASS_COURSE_MAP: Record<string, string> = {
+  "app-store-and-play-store": "app-marketing-basics",
   "claude-code-installation-basics": "claude-code-for-everyone",
   "claude-code-memory": "claude-code-for-everyone",
   "claude-code-plan-mode": "claude-code-for-everyone",
@@ -27,6 +28,7 @@ export const CLASS_COURSE_MAP: Record<string, string> = {
   "what-is-aeo": "digital-marketing-terms",
   "what-is-anthropic": "claude-fundamentals",
   "what-is-api": "digital-basic",
+  "what-is-app-marketing": "app-marketing-basics",
   "what-is-attribute": "digital-basic",
   "what-is-attribution": "digital-marketing-terms",
   "what-is-authentication": "vibe-coding-basics",

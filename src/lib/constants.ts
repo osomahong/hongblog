@@ -29,7 +29,7 @@ export const DIFFICULTY_LABELS: Record<string, string> = {
 // 정규 태그 목록 (카테고리별)
 export const CANONICAL_TAGS = {
   metrics: ["CPC", "CPM", "CTR", "CVR", "CPA", "CAC", "LTV", "ROAS", "ROI"],
-  strategy: ["퍼널", "어트리뷰션", "전환", "리타게팅", "퍼포먼스마케팅", "SEO"],
+  strategy: ["퍼널", "어트리뷰션", "전환", "리타게팅", "퍼포먼스마케팅", "SEO", "앱마케팅"],
   tools: ["GA4", "GTM", "BigQuery"],
   webTech: ["HTML", "CSS", "JavaScript", "React", "DOM", "API"],
   ai: ["AI", "자동화", "노코드", "바이브코딩"],
