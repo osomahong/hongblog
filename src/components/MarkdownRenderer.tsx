@@ -205,7 +205,7 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
                   src={src}
                   aria-label={effectiveAlt}
                   title={title}
-                  className="max-w-full h-auto my-3 sm:my-4 border-2 border-black rounded"
+                  className="block max-w-[min(80%,640px)] h-auto mx-auto my-3 sm:my-4 border-2 border-black rounded"
                   autoPlay
                   muted
                   loop
@@ -216,11 +216,12 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
             }
 
             return (
+              // 폭 80% + 절대 상한 640px: 포커스 모드에서 본문이 넓어져도 이미지는 커지지 않는다
               <img
                 src={src}
                 alt={effectiveAlt}
                 title={title}
-                className="max-w-full h-auto my-3 sm:my-4 border-2 border-black rounded"
+                className="block max-w-[min(80%,640px)] h-auto mx-auto my-3 sm:my-4 border-2 border-black rounded"
                 loading="lazy"
                 decoding="async"
               />

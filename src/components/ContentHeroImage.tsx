@@ -17,14 +17,15 @@ interface ContentHeroImageProps {
 export function ContentHeroImage({ src, alt }: ContentHeroImageProps) {
     return (
         <figure className="mb-4 sm:mb-8">
+            {/* 폭 80% + 절대 상한: 포커스 모드로 본문이 넓어져도 이미지는 커지지 않고 여백만 남는다 */}
             <Image
                 src={src}
                 alt={alt}
                 width={1200}
                 height={630}
                 priority
-                sizes="(max-width: 640px) 100vw, 768px"
-                className="w-full h-auto border-2 sm:border-3 border-black sm:neo-shadow-sm"
+                sizes="(max-width: 640px) 80vw, 640px"
+                className="w-full max-w-[min(80%,640px)] h-auto mx-auto border-2 sm:border-3 border-black sm:neo-shadow-sm"
             />
         </figure>
     );
