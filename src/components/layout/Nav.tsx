@@ -4,11 +4,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Mail, MessageCircle, Search } from "lucide-react";
+import {
+  Menu, X, Mail, MessageCircle, Search,
+  Smartphone, Terminal, Rocket, Bot, Briefcase, BarChart3, Globe, BookOpen,
+  type LucideIcon,
+} from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
 import { NEWSLETTER_URL, KAKAO_INQUIRY_URL } from "@/lib/constants";
 import { SearchDialog } from "@/components/search/SearchDialog";
+import type { CourseLink } from "@/lib/promotions";
 
 // Tags는 사이트 내 검색으로 대체해 내비에서 뺐다. /tags 페이지와 푸터 링크는
 // 색인과 내부 링크 경로를 위해 그대로 둔다.
@@ -91,7 +96,78 @@ function SearchTrigger({ apTheme, onOpen }: { apTheme: boolean; onOpen: () => vo
   );
 }
 
-export function Nav() {
+/**
+ * 코스를 한눈에 구분하는 아이콘.
+ * 선으로만 그려진 것을 골라 메뉴가 번잡해지지 않게 한다.
+ * 목록에 없는 코스는 책 아이콘을 쓴다.
+ */
+const COURSE_ICONS: Record<string, LucideIcon> = {
+  "app-marketing-basics": Smartphone,
+  "seo-fundamentals": Search,
+  "claude-code-for-everyone": Terminal,
+  "claude-in-practice": Briefcase,
+  "claude-fundamentals": Bot,
+  "vibe-coding-basics": Rocket,
+  "digital-marketing-terms": BarChart3,
+  "digital-basic": Globe,
+};
+
+/**
+ * Class 메뉴에 붙는 코스 목록.
+ * 검색으로 들어오기 어려운 코스 페이지에 모든 페이지에서 닿는 링크를 만든다.
+ * 여닫기를 CSS(hover, focus-within)로만 처리해 키보드로 탭해도 열린다.
+ */
+function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: boolean }) {
+  if (courses.length === 0) return null;
+
+  return (
+    <div
+      className={cn(
+        "absolute left-0 top-full pt-2 w-[18rem] z-50",
+        "invisible opacity-0 group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100 transition-opacity"
+      )}
+    >
+      <div
+        className={cn(
+          "p-2",
+          apTheme
+            ? "bg-[#0b0b10] border border-white/15 rounded-[10px]"
+            : "bg-white border-4 border-black neo-shadow"
+        )}
+      >
+        {courses.map((course) => {
+          const Icon = COURSE_ICONS[course.slug] ?? BookOpen;
+
+          return (
+            <Link
+              key={course.slug}
+              href={course.href}
+              onClick={() => sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` })}
+              className={cn(
+                "group/row flex items-center gap-2.5 px-3 py-2 text-xs font-bold transition-colors",
+                apTheme ? "text-gray-200 hover:text-[#ffd700]" : "hover:bg-[#FFD700]"
+              )}
+            >
+              <Icon
+                className={cn(
+                  "w-4 h-4 flex-shrink-0 transition-colors",
+                  // 평소에는 빨강을 옅게 깔아 두고, 마우스가 올라간 줄에서만 원색으로 올린다
+                  apTheme
+                    ? "text-[#ff5c7d]/40 group-hover/row:text-[#ff5c7d]"
+                    : "text-[#FF0033]/35 group-hover/row:text-[#FF0033]"
+                )}
+                strokeWidth={1.75}
+              />
+              <span className="truncate normal-case tracking-normal">{course.title}</span>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
@@ -177,7 +253,7 @@ export function Nav() {
                   </Link>
                 );
               }
-              return (
+              const menuLink = (
                 <Link
                   key={href}
                   href={href}
@@ -195,6 +271,18 @@ export function Nav() {
                   {label}
                 </Link>
               );
+
+              // Class 메뉴에만 코스 목록을 펼친다
+              if (href === "/class") {
+                return (
+                  <div key={href} className="relative group/nav">
+                    {menuLink}
+                    <CourseDropdown courses={courses} apTheme={isApTheme} />
+                  </div>
+                );
+              }
+
+              return menuLink;
             })}
           </div>
 
@@ -250,7 +338,7 @@ export function Nav() {
                   </Link>
                 );
               }
-              return (
+              const mobileLink = (
                 <Link
                   key={href}
                   href={href}
@@ -265,6 +353,40 @@ export function Nav() {
                   {label}
                 </Link>
               );
+
+              // 모바일에서는 코스 8개를 늘 펼쳐 두면 메뉴가 길어진다. 접어 둔다.
+              if (href === "/class" && courses.length > 0) {
+                return (
+                  <div key={href}>
+                    {mobileLink}
+                    <details className="px-4 pb-2">
+                      <summary className="cursor-pointer text-xs font-bold text-muted-foreground py-1">
+                        코스 {courses.length}개 펼치기
+                      </summary>
+                      <div className="pl-2 pt-1">
+                        {courses.map((course) => (
+                          <Link
+                            key={course.slug}
+                            href={course.href}
+                            onClick={() => {
+                              sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
+                              setIsMenuOpen(false);
+                            }}
+                            className={cn(
+                              "block py-1.5 text-xs transition-colors",
+                              isApTheme ? "text-gray-300 hover:text-[#ffd700]" : "hover:text-[#FF0033]"
+                            )}
+                          >
+                            {course.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </details>
+                  </div>
+                );
+              }
+
+              return mobileLink;
             })}
             </div>
 
