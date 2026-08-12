@@ -158,8 +158,6 @@ export function Nav() {
           <div className="flex items-center gap-3 min-w-0">
           {/* Desktop Navigation Links. CTA 버튼과 한 줄에 공존해야 해서 lg 미만에서는 밀도를 줄인다 */}
           <div className="hidden sm:flex items-center gap-1 lg:gap-1.5">
-            {/* 돋보기는 AI-Practice 왼쪽에 둔다 */}
-            <SearchTrigger apTheme={isApTheme} onOpen={openSearch} />
             {NAV_LINKS.map(({ href, label }) => {
               // AI-Practice는 핵심 메뉴라 다크 필 + 히어로 그라데이션 텍스트로 강조한다
               if (href === "/ai-practice") {
@@ -200,8 +198,9 @@ export function Nav() {
             })}
           </div>
 
-          {/* Desktop CTA Buttons */}
+          {/* Desktop CTA Buttons. 돋보기는 뉴스레터 버튼 왼쪽에 둔다 */}
           <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+            <SearchTrigger apTheme={isApTheme} onOpen={openSearch} />
             <NavCtaButtons apTheme={isApTheme} location="nav" compactLabels />
           </div>
 

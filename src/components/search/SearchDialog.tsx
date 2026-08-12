@@ -12,6 +12,9 @@ import { useSearchIndex } from "./useSearchIndex";
 /** 오버레이에 보여줄 결과 수. 나머지는 전체 결과 페이지로 넘긴다. */
 const PREVIEW_LIMIT = 8;
 
+/** 빈 상태에서 보여줄 추천 검색어. 실제 태그가 아니라 검색 유도용 단어다. */
+const SUGGESTED_TERMS = ["GA4", "GEO", "클로드", "챗GPT", "SEO", "앱마케팅"];
+
 interface SearchDialogProps {
   onClose: () => void;
 }
@@ -138,9 +141,31 @@ export function SearchDialog({ onClose }: SearchDialogProps) {
           {error && <p className="p-4 text-sm text-gray-600">{error}</p>}
 
           {!error && terms.length === 0 && (
-            <p className="p-4 text-sm text-gray-500">
-              검색어를 입력하면 인사이트, 클래스, 코스를 한 번에 찾습니다.
-            </p>
+            <div className="p-4">
+              <p className="text-xs font-black uppercase tracking-wide text-gray-500 mb-2.5">
+                추천 검색어
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {SUGGESTED_TERMS.map((term) => (
+                  <button
+                    key={term}
+                    type="button"
+                    onClick={() => {
+                      sendGAEvent("search", {
+                        search_term: term,
+                        location: "nav_overlay_suggest",
+                      });
+                      setQuery(term);
+                      setActiveIndex(-1);
+                      inputRef.current?.focus();
+                    }}
+                    className="px-3 py-1.5 text-xs font-bold border-2 border-black neo-shadow-sm bg-white hover:bg-[#FFD700] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                  >
+                    {term}
+                  </button>
+                ))}
+              </div>
+            </div>
           )}
 
           {!error && terms.length > 0 && isLoading && (
