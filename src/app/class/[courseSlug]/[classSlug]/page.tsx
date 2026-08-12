@@ -114,7 +114,7 @@ export default async function ClassDetailPage({ params }: Props) {
     const relatedClasses = [...curatedClasses, ...tagBasedClasses].slice(0, 4);
 
     // 연관 Insights 추천 (교차 추천)
-    const relatedPosts = await getRelatedPostsForClass(classData.tags, classData.category, 3);
+    const relatedPosts = await getRelatedPostsForClass(classData.tags, classData.category, 6);
 
 
     // Schema.org JSON-LD
@@ -511,7 +511,7 @@ export default async function ClassDetailPage({ params }: Props) {
                             </NeoCard>
                         )}
 
-                        {/* Related Insights */}
+                        {/* Related Insights. 카드 대신 줄로 쌓아 같은 높이에 두 배를 노출한다 */}
                         {relatedPosts.length > 0 && (
                             <NeoCard className="bg-white bg-stripes neo-border-thick p-4 sm:p-6 mb-6 sm:mb-8">
                                 <NeoCardHeader>
@@ -521,25 +521,28 @@ export default async function ClassDetailPage({ params }: Props) {
                                     </NeoCardTitle>
                                 </NeoCardHeader>
                                 <NeoCardContent>
-                                    <div className="grid gap-3">
+                                    <ul className="divide-y divide-gray-200">
                                         {relatedPosts.map((post) => (
-                                            <RelatedLink
-                                                key={post.id}
-                                                href={`/insights/${post.slug}`}
-                                                relatedType="insights"
-                                                contentId={post.slug}
-                                                contentName={post.title}
-                                                className="block p-3 sm:p-4 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
-                                            >
-                                                <h3 className="font-bold text-sm sm:text-base mb-1">{post.title}</h3>
-                                                {post.excerpt && (
-                                                    <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
-                                                        {post.excerpt}
-                                                    </p>
-                                                )}
-                                            </RelatedLink>
+                                            <li key={post.id}>
+                                                <RelatedLink
+                                                    href={`/insights/${post.slug}`}
+                                                    relatedType="insights"
+                                                    contentId={post.slug}
+                                                    contentName={post.title}
+                                                    className="block py-2.5 group"
+                                                >
+                                                    <span className="block font-bold text-sm sm:text-base leading-snug line-clamp-2 group-hover:text-[#FF0033] transition-colors">
+                                                        {post.title}
+                                                    </span>
+                                                    {post.excerpt && (
+                                                        <span className="block text-xs sm:text-sm text-muted-foreground line-clamp-1 mt-0.5">
+                                                            {post.excerpt}
+                                                        </span>
+                                                    )}
+                                                </RelatedLink>
+                                            </li>
                                         ))}
-                                    </div>
+                                    </ul>
                                 </NeoCardContent>
                             </NeoCard>
                         )}
