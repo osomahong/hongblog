@@ -73,11 +73,11 @@ write-insight 스킬의 워크플로우를 그대로 따른다. 아래 모든 �
 
 | 규칙 | 기준 | 참조 문서 |
 |------|------|----------|
-| 어투 | 존댓말(~습니다/~합니다) 통일 | writing-style-guide.md |
-| 금지 | em dash(—), 수평 구분선(---) | writing-style-guide.md |
+| 어투 | 존댓말(~습니다/~합니다) 통일 | prose-rules.md |
+| 금지 | em dash, 수평 구분선 | prose-rules.md |
 | 제목 | 담백체 서술문 (마케팅 수사 금지) | write-insight SKILL.md |
-| 구조 | H2 3개 이상, 본문 1000자 이상 | writing-style-guide.md |
-| 문단 | 3~4문장 (최소 2, 최대 5) | writing-style-guide.md |
+| 구조 | H2 3개 이상, 본문 1000자 이상 | writing-craft.md |
+| 문단 | 3~4문장 (최소 2, 최대 5) | writing-craft.md |
 | 요약 | 마지막에 3줄 요약 필수 | write-insight SKILL.md |
 | AEO | 첫 문단에 직접 답변, 질문형 헤딩 | aeo-checklist.md |
 | GEO | 출처 인용 2개+, 통계 2개+, 구조화 데이터 | geo-checklist.md |
@@ -95,7 +95,7 @@ frontmatter 필수 필드:
 
 **3-4. 검수**
 
-content-reviewer 기준으로 자체 검수:
+아래 기준으로 자체 검수한다. 문체는 `prose-inspector`, 검색 구조는 `inspect-content`가 담당하므로 여기서는 사실과 구조만 본다.
 - 사실확인: 웹 리서치와 대조
 - 한국어: 맞춤법, 외래어 표기법
 - 구조: 도입부→본론→결론, H2 계층
@@ -135,11 +135,13 @@ seo-checklist.md 기준으로 SEO 필드 점검:
 
 | 문서 | 경로 |
 |------|------|
-| 작성 스타일 | `.claude/skills/content-ops/references/writing-style-guide.md` |
-| SEO 체크리스트 | `.claude/skills/content-ops/references/seo-checklist.md` |
-| AEO 체크리스트 | `.claude/skills/content-ops/references/aeo-checklist.md` |
-| GEO 체크리스트 | `.claude/skills/content-ops/references/geo-checklist.md` |
-| GA4 용어 가이드 | `.claude/skills/content-ops/references/ga4-metrics-guide.md` |
+| 문체 규칙 | `.claude/skills/write-insight/references/prose-rules.md` |
+| 작성 기법 | `.claude/skills/write-insight/references/writing-craft.md` |
+| 타입별 규칙 | `.claude/references/content/writing-style-guide.md` |
+| SEO 체크리스트 | `.claude/references/content/seo-checklist.md` |
+| AEO 체크리스트 | `.claude/references/content/aeo-checklist.md` |
+| GEO 체크리스트 | `.claude/references/content/geo-checklist.md` |
+| GA4 용어 가이드 | `.claude/references/content/ga4-metrics-guide.md` |
 | MD 스키마 | `.claude/skills/write-insight/references/post-schema.md` |
 
 ## 사전 조건

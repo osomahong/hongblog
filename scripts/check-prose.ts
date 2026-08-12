@@ -7,7 +7,7 @@
  * Run: npx tsx scripts/check-prose.ts content/insights/{slug}.md
  *      npx tsx scripts/check-prose.ts --all        (전체 콘텐츠 검사, 리포트용)
  *
- * 규칙 출처: .claude/skills/content-ops/references/writing-style-guide.md
+ * 규칙 출처: .claude/references/content/writing-style-guide.md
  *           사용자 교정 이력 (2026-07 비문 교정 세션)
  */
 import fs from "node:fs";

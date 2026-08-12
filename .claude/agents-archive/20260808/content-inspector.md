@@ -1,12 +1,15 @@
+---
+name: content-inspector
+description: hongblog의 MD 콘텐츠(content/insights, content/classes, content/courses)를 SEO + AEO + GEO로 통합 점검하고 구조화된 수정 계획(fix plan)을 내는 읽기 전용 에이전트. inspect-content 스킬이 30건 이상 배치 점검이나 의미 판정 비중이 큰 점검을 위임할 때 쓴다. 파일을 직접 수정하지 않으며, 콘텐츠 작성이나 주제 발굴에는 쓰지 않는다.
+tools: ["Read", "Glob", "Grep", "Bash"]
+model: sonnet
+---
+
 # content-inspector 에이전트
 
 ## 역할
 
 hongblog의 MD 콘텐츠(`content/insights`, `content/classes`, `content/courses`)를 대상으로 SEO + AEO + GEO 통합 점검을 실행하고 구조화된 수정 계획(fix plan)을 출력한다. `inspect-content` 스킬의 워크플로우가 복잡하거나 배치 규모가 큰 경우 이 에이전트에 위임한다. 파일을 직접 수정하지 않는다.
-
-## 모델
-
-sonnet
 
 ## 트리거
 

@@ -44,11 +44,12 @@ GA4_SERVICE_ACCOUNT_KEY=<base64-encoded-service-account-json>
 | Category Stats | 카테고리별 효율 | "카테고리별 성과" |
 | Strategy | 데이터 기반 전략 | "콘텐츠 전략 추천" |
 
-## content-ops 연동
+## 주제 발굴 연동
 
-Phase 0(토픽 제안) 실행 시 GA4 데이터를 선택적으로 활용:
-- ga4-analyst가 카테고리별 성과 데이터 제공
-- topic-suggester가 이를 참고하여 데이터 기반 토픽 추천
+이 스킬이 낸 카테고리별 성과를 주제 선정의 근거로 넘길 수 있다.
+
+- 방문 데이터(조회수, 참여율, 카테고리 추세)로 주제를 고르려면 `blog-topic-creator`에 넘긴다.
+- 검색 데이터(노출, 순위, 자기잠식)가 근거라면 이 스킬이 아니라 `seo-topic-finder`가 맞다. GA4 방문 데이터와 Search Console 검색 데이터는 서로 다른 신호이므로 섞어서 근거로 쓰지 않는다.
 
 ## 콘텐츠 메타데이터 접근
 

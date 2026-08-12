@@ -51,7 +51,7 @@ npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 �
 - **모든 문장 생성(콘텐츠, UI 카피, 메타 필드)에 AEO/GEO 정의 문장 규칙을 적용한다.**
   페이지 도입부와 metaDescription의 첫 문장은 핵심 개체를 포함한 "X는 Y입니다" 단정형
   정의로 쓰고, 메타·본문·JSON-LD 세 곳의 개체와 정의 표현을 일치시킨다. 행동 유도
-  문구는 쓰지 않는다. 상세: `.claude/skills/content-ops/references/writing-style-guide.md`의
+  문구는 쓰지 않는다. 상세: `.claude/references/content/writing-style-guide.md`의
   "페이지 정의 문장 규칙" 섹션.
 
 
@@ -111,21 +111,25 @@ scripts/
   시각 블록에는 쓰지 않는다.
 - 새 섹션을 만들면 커밋 전에 위아래 섹션과 좌우 가장자리가 일치하는지 스크린샷으로 확인한다.
 
-### Content agent system
+### Content skill system
 
-Orchestrator skill at `.claude/skills/content-ops/SKILL.md`. Sub-agents in `.claude/agents/`:
+콘텐츠 작업은 스킬로 나뉘어 있고, 각각을 필요할 때 따로 부른다. 오케스트레이터는 없다.
+`.claude/agents/`에 서브에이전트를 두지 않는다.
 
-| Agent | Role |
-|-------|------|
-| `topic-suggester` | Content gap analysis, topic recommendations |
-| `content-creator` | Generate content matching existing style |
-| `content-reviewer` | Fact-check, grammar, structure validation |
-| `seo-manager` | SEO field optimization |
-| `content-inspector` | SEO+AEO+GEO 통합 심층 점검 |
-| `ga4-analyst` | GA4 데이터 분석 |
-| `gtm-inspector` | GTM/GA4 설정 코드 감사 |
+| 단계 | 스킬 | 하는 일 |
+|---|---|---|
+| 주제 | `blog-topic-creator` | 핫토픽·SNS·직접 지정 중 방향을 고르고 주제를 확정 |
+| 주제 | `seo-topic-finder` | Search Console 검색 데이터로 빈자리 발굴 |
+| 작성 | `write-insight` | 리서치 → 작성 → 문체 검수 → MD 생성 |
+| 작성 | `newcontent` | GA4 성과를 근거로 주제 선정 후 작성 |
+| 검수 | `prose-inspector` | 문체, 번역투, 문어체, 비문 |
+| 검수 | `inspect-content` | SEO + AEO + GEO 구조 점검 |
+| 제목 | `seo-title-creator` | 검색 경쟁력 있는 제목 3안 |
+| 배포 | `generate-thumbnail` | og:image 생성 |
+| 확산 | `sns-writer` | 쓰레드·인스타·링크드인 카피 |
 
-Pipeline: topic suggestion → content creation → review → SEO → deploy (with user approval gates at each phase).
+공용 참조 문서는 `.claude/references/content/`에 있다 (작성 스타일, SEO/AEO/GEO 체크리스트,
+GA4 용어, 썸네일 규격). 특정 스킬 전용 규칙은 그 스킬의 `references/`에 둔다.
 
 ### 콘텐츠 배포 게이트 (배포 후 수정 금지 원칙)
 

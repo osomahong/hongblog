@@ -80,7 +80,7 @@ argument-hint: 'add|list|write|done|remove [--priority HIGH|MID|LOW] [--category
 | reason | 선택 | 이 토픽을 선정한 근거 (GA4 데이터, 갭 분석 등) |
 | tags | 선택 | 예상 태그 (CANONICAL_TAGS에서) |
 | contentType | 선택 | post, faq, class (기본: post) |
-| source | 선택 | 토픽 출처 (ga4-analysis, manual, topic-suggester) |
+| source | 선택 | 토픽 출처 (ga4-analysis, seo-topic-finder, blog-topic-creator, manual) |
 | addedAt | 자동 | 추가 날짜 |
 | status | 자동 | pending, writing, done |
 

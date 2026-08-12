@@ -1,12 +1,29 @@
 ---
 name: inspect-content
-description: hongblog의 MD 기반 콘텐츠(content/insights, content/classes, content/courses)를 대상으로 SEO + AEO(Answer Engine Optimization) + GEO(Generative Engine Optimization) 통합 점검을 수행하고, 각 위반 항목에 대한 구체적인 수정 계획(fix plan)을 제안한다. 트리거는 "콘텐츠 점검", "SEO 분석", "AEO 점검", "GEO 분석", "인사이트 점검", "심층 분석", "inspect-content", "/inspect-content" 등이며, 단일 콘텐츠 분석과 타입별 배치 점검 두 모드를 모두 지원한다. 이 스킬은 파일을 직접 수정하지 않고 구조화된 제안만 출력한다.
+description: hongblog의 MD 기반 콘텐츠(content/insights, content/classes, content/courses)를 대상으로 SEO + AEO(Answer Engine Optimization) + GEO(Generative Engine Optimization) 통합 점검을 수행하고, 각 위반 항목에 대한 구체적인 수정 계획(fix plan)을 제안한다. 단일 콘텐츠 분석과 타입별 배치 점검 두 모드를 지원하며, 파일을 직접 수정하지 않고 구조화된 제안만 출력한다. 문체와 번역투 검수는 다루지 않는다.
+when_to_use: |
+  (1) "콘텐츠 점검", "SEO 분석", "AEO 점검", "GEO 분석", "인사이트 점검", "심층 분석",
+  (2) /inspect-content [slug] 또는 --batch 직접 호출,
+  (3) 검색 노출이나 AI 답변 인용이 안 되는 원인을 구조에서 찾을 때.
+  문체, 번역투, 문어체 어휘, 비문 검수는 prose-inspector로 간다.
+  새 주제 발굴은 seo-topic-finder, 제목 추천은 seo-title-creator로 간다.
 argument-hint: '[slug] | --batch [--type insights|classes|courses]'
+model: opus
+effort: high
+allowed-tools: Read, Glob, Grep, Bash(npx tsx *), Agent, AskUserQuestion
 ---
 
 # inspect-content
 
 hongblog MD 콘텐츠의 SEO + AEO + GEO 통합 점검 스킬. 검증과 수정 계획(fix plan) 제안을 한 번에 수행한다.
+
+## 진입 확인
+
+"점검해줘", "검수해줘"는 구조 점검일 수도 문체 검수일 수도 있다. 시작 전에 순서대로 확인하고, 앞 단계에서 갈리면 묻지 않는다.
+
+1. **요청에 신호가 있으면 그대로 따른다.** SEO, AEO, GEO, 메타, 태그, 검색 노출, 슬러그, 구조가 언급되면 이 스킬이 맞다. 문체, 번역투, 문어체, 비문, 어투, 낭독이 언급되면 이 스킬이 아니다. `prose-inspector`로 넘긴다.
+2. **`--batch`나 `--type` 인자가 있으면 이 스킬이 맞다.** 문체 검수에는 배치 모드가 없다.
+3. **둘 다 없으면 한 번 묻는다.** `AskUserQuestion`으로 "검색 구조 점검(SEO/AEO/GEO)"과 "문체 검수" 중 고르게 한다. 답을 받기 전에는 파일을 읽지 않는다. 둘 다 필요하다고 하면 이 스킬을 먼저 돌리고 `prose-inspector`로 넘긴다. 구조를 고치면 문장이 바뀌므로 순서가 반대면 검수를 두 번 하게 된다.
 
 ## 범위
 
@@ -92,9 +109,13 @@ courses는 목차 페이지 성격이므로 SEO 필드 검증(metaTitle/metaDesc
 
 규칙 파일은 점검을 시작할 때 한 번에 모두 읽지 말고, 해당 영역(SEO/AEO/GEO)을 점검하는 단계에서 필요한 파일만 순차적으로 Read한다. 배치 점검 시에는 세 영역 규칙 파일을 먼저 모두 읽어 캐시해 두는 게 효율적이다.
 
-## 에이전트 위임
+## 배치 점검 병렬화
 
-복잡한 배치 점검(30건 이상) 또는 의미 판정 비중이 큰 단일 점검은 `content-inspector` 서브에이전트(`.claude/agents/content-inspector.md`)에 위임할 수 있다. 서브에이전트는 이 스킬의 references를 동일하게 사용한다.
+30건이 넘는 배치는 파일을 순차로 읽지 않는다. 본문 전체가 메인 컨텍스트에 쌓여 뒤쪽 파일의 판정이 흐려진다.
+
+`Explore` 에이전트를 **10건 단위로 나눠 병렬로** 띄우고, 각 에이전트에 이 스킬의 `references/` 규칙 파일 경로와 담당 파일 목록을 그대로 넘긴다. 규칙은 한 곳(`references/`)에만 두고 에이전트는 그것을 읽는다. 규칙을 프롬프트에 복사하지 않는다.
+
+각 에이전트가 돌려주는 것은 담당 파일의 위반 목록과 영역별 점수뿐이다. 본문은 돌려받지 않는다. 취합과 우선순위 정렬은 이 스킬이 한다.
 
 ## 출력
 
@@ -109,6 +130,6 @@ courses는 목차 페이지 성격이므로 SEO 필드 검증(metaTitle/metaDesc
 
 ## 주의
 
-- `.claude/skills/content-ops/references/{seo,aeo,geo}-checklist.md`는 **작성 가이드**이고, 이 스킬의 `references/` 파일은 **점검 실행 규칙**이다. 두 문서는 분리를 유지한다
+- `.claude/references/content/{seo,aeo,geo}-checklist.md`는 **작성 가이드**이고, 이 스킬의 `references/` 파일은 **점검 실행 규칙**이다. 두 문서는 분리를 유지한다
 - 현재 저장소에는 `src/lib/ai.ts`, `src/lib/queries.ts`가 존재하지 않는다. 이 스킬의 어느 파일도 해당 경로를 참조해서는 안 된다
 - `CANONICAL_TAGS`의 원본은 `src/lib/constants.ts`다. `hongblog-context.md`의 스냅샷은 주기적으로 원본과 diff 대조해야 한다
