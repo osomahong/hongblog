@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import { Maximize2, Minimize2 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
-import { FocusGuideBubble } from "./FocusGuideBubble";
 import { cn } from "@/lib/utils";
 import { sendGAEvent } from "@/lib/gtm";
 
@@ -21,62 +20,16 @@ interface ContentFocusLayoutProps {
 
 export function ContentFocusLayout({ children, sidebar, contentTitle, focusSidebar }: ContentFocusLayoutProps) {
     const [isFocusMode, setIsFocusMode] = useState(false);
-    const [showGuide, setShowGuide] = useState(false);
-    const [hasDismissed, setHasDismissed] = useState(false);
 
     const usesFocusSidebar = isFocusMode && Boolean(focusSidebar);
 
-    const toggleFocusMode = useCallback(() => {
+    const toggleFocusMode = () => {
         const willExpand = !isFocusMode;
         setIsFocusMode(willExpand);
-        setShowGuide(false);
 
-        // Send GTM event based on action
         if (contentTitle) {
-            const eventName = willExpand ? "click_expand" : "click_compress";
-            sendGAEvent(eventName, { content_name: contentTitle });
+            sendGAEvent(willExpand ? "click_expand" : "click_compress", { content_name: contentTitle });
         }
-    }, [isFocusMode, contentTitle]);
-
-    useEffect(() => {
-        const checkVisibility = () => {
-            // Only for PC (lg breakpoint: 1024px)
-            if (window.innerWidth < 1024 || isFocusMode || hasDismissed) {
-                setShowGuide(false);
-                return;
-            }
-
-            const hideFocusGuide = sessionStorage.getItem("hideFocusGuide");
-            if (hideFocusGuide === new Date().toDateString()) {
-                setHasDismissed(true);
-                setShowGuide(false);
-                return;
-            }
-
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercentage = (window.scrollY / scrollHeight) * 100;
-
-            if (scrollPercentage > 60) {
-                setShowGuide(true);
-            } else {
-                setShowGuide(false);
-            }
-        };
-
-        window.addEventListener("scroll", checkVisibility);
-        window.addEventListener("resize", checkVisibility);
-        // Initial check
-        checkVisibility();
-
-        return () => {
-            window.removeEventListener("scroll", checkVisibility);
-            window.removeEventListener("resize", checkVisibility);
-        };
-    }, [isFocusMode, hasDismissed]);
-
-    const handleCloseGuide = () => {
-        setShowGuide(false);
-        setHasDismissed(true);
     };
 
     return (
@@ -93,6 +46,32 @@ export function ContentFocusLayout({ children, sidebar, contentTitle, focusSideb
                     "transition-all duration-300",
                     isFocusMode ? "w-full" : "lg:col-span-2"
                 )}>
+                    {/*
+                      본문 오른쪽 위에 붙여 두는 넓게 보기 버튼.
+                      화면 오른쪽 아래는 구글 동의 위젯과 애드센스 앵커 광고가 차지하는 자리라
+                      그곳에 띄우면 가려진다. 스크롤을 내려도 따라오도록 sticky로 둔다.
+                    */}
+                    <div className="hidden lg:flex justify-end sticky top-20 z-30 mb-2">
+                        <NeoButton
+                            variant="outline"
+                            size="sm"
+                            onClick={toggleFocusMode}
+                            className="bg-white flex items-center gap-1.5 text-xs"
+                        >
+                            {isFocusMode ? (
+                                <>
+                                    <Minimize2 className="w-4 h-4" />
+                                    원래대로
+                                </>
+                            ) : (
+                                <>
+                                    <Maximize2 className="w-4 h-4" />
+                                    넓게 보기
+                                </>
+                            )}
+                        </NeoButton>
+                    </div>
+
                     {children}
                 </div>
 
@@ -107,29 +86,6 @@ export function ContentFocusLayout({ children, sidebar, contentTitle, focusSideb
                 )}>
                     {usesFocusSidebar ? focusSidebar : sidebar}
                 </div>
-            </div>
-
-            {/* Focus Guide Bubble */}
-            <FocusGuideBubble
-                isVisible={showGuide}
-                onOpen={toggleFocusMode}
-                onClose={handleCloseGuide}
-            />
-
-            {/* Floating Action Button */}
-            <div className="hidden lg:block fixed bottom-8 right-8 z-50">
-                <NeoButton
-                    variant="primary"
-                    onClick={toggleFocusMode}
-                    className="rounded-full w-12 h-12 sm:w-14 sm:h-14 p-0 flex items-center justify-center neo-shadow-lg hover:rotate-12 transition-transform duration-200"
-                    title={isFocusMode ? "Exit Focus Mode" : "Enter Focus Mode"}
-                >
-                    {isFocusMode ? (
-                        <Minimize2 className="w-6 h-6 sm:w-7 sm:h-7" />
-                    ) : (
-                        <Maximize2 className="w-6 h-6 sm:w-7 sm:h-7" />
-                    )}
-                </NeoButton>
             </div>
         </div>
     );
