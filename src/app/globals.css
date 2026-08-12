@@ -562,6 +562,16 @@ ins.adsbygoogle-noablate[data-ad-status="unfilled"] {
   color: transparent;
 }
 
+/* 다크 필의 테두리에 히어로 그라데이션을 두르는 변형. 안쪽은 검정, 글자는 흰색으로 쓴다.
+ * border-image는 border-radius와 함께 못 쓰므로 이중 background로 테두리 띠를 만든다. */
+.nav-aip-pill-gradient-border {
+  border: 2.5px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(#111215, #111215) padding-box,
+    linear-gradient(95deg, #7dd3fc 0%, #a78bfa 35%, #ff5c7d 70%, #ffd700 100%) border-box;
+}
+
 /* 갈무리14 (quiple, SIL OFL 1.1). 원본 565KB에서 한글 음절과 라틴만 남겨 162KB로 줄였다.
    문구에 새 글자를 써도 빠지지 않도록 한글 음절 전체(U+AC00-D7A3)를 담았다.
    14px 격자로 그려진 글자라 크기를 14의 배수로 줘야 픽셀이 고르게 떨어진다. */

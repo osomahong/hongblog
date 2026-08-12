@@ -139,7 +139,7 @@ export default async function InsightDetailPage({ params }: Props) {
         })),
     },
     {
-      title: "코스로 이어 보기",
+      title: "무료 셀프 교육으로 배워보세요",
       items: courseLinks.map((course) => ({
         id: course.slug,
         href: course.href,

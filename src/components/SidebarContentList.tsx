@@ -60,11 +60,13 @@ export function SidebarContentList({ groups }: SidebarContentListProps) {
                   }
                   className="block py-2 group"
                 >
-                  <span className="block text-[13px] sm:text-sm font-bold leading-snug line-clamp-2 group-hover:text-[#FF0033] transition-colors">
+                  {/* 제목은 줄바꿈 없이 한 줄에서 말줄임(...)으로 자른다 */}
+                  <span className="block text-[13px] sm:text-sm font-bold leading-snug truncate group-hover:text-[#FF0033] transition-colors">
                     {item.title}
                   </span>
+                  {/* line-clamp가 display:-webkit-box를 쓰므로 block을 같이 두면 클램프가 풀린다 */}
                   {item.description && (
-                    <span className="block text-[11px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">
+                    <span className="line-clamp-2 text-[11px] sm:text-xs text-muted-foreground mt-0.5">
                       {item.description}
                     </span>
                   )}

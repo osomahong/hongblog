@@ -38,7 +38,7 @@ export default function NotFound() {
         </Link>
       </div>
 
-      <CourseSuggestList courses={courses} location="not_found" title="코스로 이어 보기" />
+      <CourseSuggestList courses={courses} location="not_found" title="무료 셀프 교육으로 배워보세요" />
     </div>
   );
 }

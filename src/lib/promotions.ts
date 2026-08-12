@@ -97,7 +97,7 @@ const HERO_COPY: {
   {
     slug: "claude-fundamentals",
     bgColor: "#f5f5f2",
-    headline: "Claude가 처음이면\n여기서 시작하세요",
+    headline: "Claude 아직 어렵다면\n쉽게 배워보세요",
     title: "Claude 기초 교육",
     description:
       "환각과 아부를 알아채는 법부터\n검증하며 쓰는 순서까지 익힙니다.",
@@ -105,7 +105,7 @@ const HERO_COPY: {
   {
     slug: "claude-code-for-everyone",
     bgColor: "#f8f6f2",
-    headline: "반복 업무가 많다면\n코딩 없이 맡기세요",
+    headline: "반복 업무 지친다면\n코딩 없이 맡겨보세요",
     title: "비개발자를 위한 Claude Code",
     description:
       "설치와 권한 설정에서 대부분 막힙니다.\n터미널을 처음 열어도 따라올 수 있습니다.",
@@ -113,7 +113,7 @@ const HERO_COPY: {
   {
     slug: "seo-fundamentals",
     bgColor: "#f4f1eb",
-    headline: "내 글이 안 보인다면\n원인부터 찾으세요",
+    headline: "내 글 검색이 안 되면\n원인부터 찾아보세요",
     title: "비개발자를 위한 검색엔진 최적화(SEO) 기초",
     description:
       "색인, 구조, 콘텐츠 가운데 어디서 막혔는지\n개발자 도움 없이 찾는 순서를 다룹니다.",
@@ -121,7 +121,7 @@ const HERO_COPY: {
   {
     slug: "digital-marketing-terms",
     bgColor: "#f4f0ea",
-    headline: "광고 지표 헷갈리면\n용어부터 잡으세요",
+    headline: "광고 지표 헷갈리면\n용어부터 익혀보세요",
     title: "디지털 마케팅 핵심 용어",
     description:
       "CPC가 낮은데 매출이 늘지 않는 이유를\n정의와 계산식으로 묶어 풀었습니다.",
@@ -129,7 +129,7 @@ const HERO_COPY: {
   {
     slug: "vibe-coding-basics",
     bgColor: "#f7f5f2",
-    headline: "바이브코딩 한다면\n기초부터 채우세요",
+    headline: "바이브코딩 어렵다면\n기초부터 배워보세요",
     title: "바이브코딩 기초지식",
     description:
       "AI가 만든 코드를 고치려면\n터미널, Git, 환경 변수, 배포를 알아야 합니다.",
