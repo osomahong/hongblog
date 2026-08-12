@@ -4,6 +4,8 @@
 export const CLASS_COURSE_MAP: Record<string, string> = {
   "app-store-and-play-store": "app-marketing-basics",
   "app-types-for-marketers": "app-marketing-basics",
+  "aso-in-practice": "app-marketing-campaigns",
+  "chart-boosting-strategy": "app-marketing-campaigns",
   "claude-code-installation-basics": "claude-code-for-everyone",
   "claude-code-memory": "claude-code-for-everyone",
   "claude-code-plan-mode": "claude-code-for-everyone",
