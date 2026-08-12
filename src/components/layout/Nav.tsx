@@ -322,124 +322,116 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
         {isMenuOpen && (
           <div
             className={cn(
-              "sm:hidden py-2 flex items-start gap-2",
+              "sm:hidden py-2",
               isApTheme ? "border-t border-white/10" : "border-t-2 border-black"
             )}
           >
-            <div className="flex-1 min-w-0">
-            {NAV_LINKS.map(({ href, label }) => {
-              if (href === "/ai-practice") {
-                return (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
-                    className={cn(
-                      "nav-aip-pill block text-center mx-2 my-2 px-4 py-2.5 font-bold uppercase text-sm tracking-wide",
-                      isApTheme && "border border-white/20"
-                    )}
-                  >
-                    <span className="nav-aip-text">{label}</span>
-                  </Link>
-                );
-              }
-              const mobileLink = (
+            {/* 상단: 왼쪽 링크, 오른쪽 여백에 CTA 버튼을 두는 2단 구조 */}
+            <div className="flex items-start gap-2">
+              <div className="flex-1 min-w-0">
                 <Link
-                  key={href}
-                  href={href}
-                  onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
+                  href="/ai-practice"
+                  onClick={() => { sendGAEvent("click_nav", { menu_name: "AI-Practice" }); setIsMenuOpen(false); }}
                   className={cn(
-                    "block px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
+                    "nav-aip-pill block text-center mx-2 my-2 px-4 py-2.5 font-bold uppercase text-sm tracking-wide",
+                    isApTheme && "border border-white/20"
+                  )}
+                >
+                  <span className="nav-aip-text">AI-Practice</span>
+                </Link>
+
+                {/* Class는 누르면 코스 목록이 펼쳐지는 토글이다 */}
+                <button
+                  type="button"
+                  onClick={() => setIsClassOpen(!isClassOpen)}
+                  aria-expanded={isClassOpen}
+                  className={cn(
+                    "w-full flex items-center justify-between px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
                     isApTheme
                       ? "text-gray-200 hover:text-[#ffd700]"
                       : "hover:bg-[#FF0033] hover:text-white"
                   )}
                 >
-                  {label}
-                </Link>
-              );
+                  <span>Class</span>
+                  <Plus
+                    className={cn("w-4 h-4 transition-transform", isClassOpen && "rotate-45")}
+                  />
+                </button>
+              </div>
 
-              // 모바일에서 Class는 누르면 코스 목록이 펼쳐지는 토글이다.
-              // 목록은 6줄 높이까지만 보여주고 나머지는 스크롤로 내린다.
-              // /class 페이지는 목록 맨 아래 전체 보기 링크로 연결한다.
-              if (href === "/class" && courses.length > 0) {
-                return (
-                  <div key={href}>
-                    <button
-                      type="button"
-                      onClick={() => setIsClassOpen(!isClassOpen)}
-                      aria-expanded={isClassOpen}
+              {/* 모바일 메뉴 우측 여백에 배치하는 CTA 버튼 */}
+              <div className="flex flex-col items-stretch gap-2 pt-2 pr-1 flex-shrink-0">
+                <NavCtaButtons apTheme={isApTheme} location="nav_mobile" />
+              </div>
+            </div>
+
+            {/* 펼친 코스 목록은 2단 구조 밖에 두어 우측 여백까지 전체 폭을 쓴다.
+                6줄 높이까지만 보여주고 나머지는 스크롤로 내린다.
+                /class 페이지는 목록 맨 아래 전체 보기 링크로 연결한다. */}
+            {isClassOpen && courses.length > 0 && (
+              <div
+                className={cn(
+                  "mx-4 mb-2 border-2",
+                  isApTheme ? "border-white/15" : "border-black"
+                )}
+              >
+                <div className="max-h-56 overflow-y-auto overscroll-contain">
+                  {courses.map((course) => (
+                    <Link
+                      key={course.slug}
+                      href={course.href}
+                      onClick={() => {
+                        sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
+                        setIsMenuOpen(false);
+                        setIsClassOpen(false);
+                      }}
                       className={cn(
-                        "w-full flex items-center justify-between px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
+                        "block px-3 py-2.5 text-xs font-bold transition-colors",
                         isApTheme
-                          ? "text-gray-200 hover:text-[#ffd700]"
-                          : "hover:bg-[#FF0033] hover:text-white"
+                          ? "text-gray-300 hover:text-[#ffd700]"
+                          : "hover:bg-[#FFD700]"
                       )}
                     >
-                      <span>{label}</span>
-                      <Plus
-                        className={cn("w-4 h-4 transition-transform", isClassOpen && "rotate-45")}
-                      />
-                    </button>
-                    {isClassOpen && (
-                      <div
-                        className={cn(
-                          "mx-4 mb-2 border-2",
-                          isApTheme ? "border-white/15" : "border-black"
-                        )}
-                      >
-                        <div className="max-h-56 overflow-y-auto overscroll-contain">
-                          {courses.map((course) => (
-                            <Link
-                              key={course.slug}
-                              href={course.href}
-                              onClick={() => {
-                                sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
-                                setIsMenuOpen(false);
-                                setIsClassOpen(false);
-                              }}
-                              className={cn(
-                                "block px-3 py-2.5 text-xs font-bold transition-colors",
-                                isApTheme
-                                  ? "text-gray-300 hover:text-[#ffd700]"
-                                  : "hover:bg-[#FFD700]"
-                              )}
-                            >
-                              {course.title}
-                            </Link>
-                          ))}
-                        </div>
-                        <Link
-                          href="/class"
-                          onClick={() => {
-                            sendGAEvent("click_nav", { menu_name: "Class" });
-                            setIsMenuOpen(false);
-                            setIsClassOpen(false);
-                          }}
-                          className={cn(
-                            "flex items-center gap-1 px-3 py-2 text-xs font-black border-t-2",
-                            isApTheme
-                              ? "border-white/15 text-[#ff5c7d]"
-                              : "border-black text-[#FF0033]"
-                          )}
-                        >
-                          코스 전체 보기
-                          <ArrowRight className="w-3 h-3" />
-                        </Link>
-                      </div>
-                    )}
-                  </div>
-                );
-              }
+                      {course.title}
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/class"
+                  onClick={() => {
+                    sendGAEvent("click_nav", { menu_name: "Class" });
+                    setIsMenuOpen(false);
+                    setIsClassOpen(false);
+                  }}
+                  className={cn(
+                    "flex items-center gap-1 px-3 py-2 text-xs font-black border-t-2",
+                    isApTheme
+                      ? "border-white/15 text-[#ff5c7d]"
+                      : "border-black text-[#FF0033]"
+                  )}
+                >
+                  코스 전체 보기
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            )}
 
-              return mobileLink;
-            })}
-            </div>
-
-            {/* 모바일 메뉴 우측 여백에 배치하는 CTA 버튼 */}
-            <div className="flex flex-col items-stretch gap-2 pt-2 pr-1 flex-shrink-0">
-              <NavCtaButtons apTheme={isApTheme} location="nav_mobile" />
-            </div>
+            {/* 나머지 링크는 전체 폭을 쓴다 */}
+            {NAV_LINKS.filter(({ href }) => href === "/insights" || href === "/about").map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
+                className={cn(
+                  "block px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
+                  isApTheme
+                    ? "text-gray-200 hover:text-[#ffd700]"
+                    : "hover:bg-[#FF0033] hover:text-white"
+                )}
+              >
+                {label}
+              </Link>
+            ))}
           </div>
         )}
       </div>
