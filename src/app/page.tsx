@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Sparkles, Database, TrendingUp } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
 import {
@@ -22,8 +21,11 @@ import {
   getAllTagsWithId,
 } from "@/lib/content";
 import type { TrendingItem } from "@/lib/types";
+import { getHeroSlots, getCourseCards } from "@/lib/promotions";
 import { TrackedLink } from "@/components/TrackedLink";
 import { NewsletterCta } from "@/components/NewsletterCta";
+import { HeroCarousel } from "@/components/home/HeroCarousel";
+import { CourseCarousel } from "@/components/home/CourseCarousel";
 
 const categoryIcons: Record<string, any> = {
   AI_TECH: Sparkles,
@@ -69,6 +71,8 @@ export default async function HomePage() {
   const trending = getTrendingMixed(7, 4);
   const categoryStats = getCategoryStats();
   const allTags = getAllTagsWithId();
+  const heroSlots = getHeroSlots();
+  const courseCards = getCourseCards();
 
   const websiteLd = {
     "@context": "https://schema.org",
@@ -100,39 +104,17 @@ export default async function HomePage() {
       <div className="bg-graphic-1 hidden sm:block" />
       <div className="bg-graphic-2 hidden sm:block" />
 
-      {/* Hero Section — White Edition */}
-      <section className="mb-6 sm:mb-12 animate-stamp">
-        <NeoTiltCard className="bg-white neo-border-thick neo-shadow-lg p-4 sm:p-8 md:p-12 relative overflow-hidden text-left" intensity={20} shadowIntensity={10}>
-          {/* 우측 빨간 사선 장식 */}
-          <div className="absolute top-0 right-0 w-24 sm:w-32 h-full bg-[#FF0033] hidden sm:block" style={{ clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)", zIndex: 0 }} />
+      {/* 히어로 카드를 걷어내면서 페이지의 유일한 h1이 사라진다. 화면에는 보이지 않되
+          검색엔진과 화면 낭독기에는 남도록 제목만 따로 둔다. */}
+      <h1 className="sr-only">
+        준이아빠블로그는 디지털 마케팅, AI 도구 활용, 데이터 분석을 다루는 기술 블로그입니다.
+      </h1>
 
-          <div className="flex items-center justify-between relative z-10">
-            <div className="flex-1">
-              <h1 className="text-2xl sm:text-4xl md:text-6xl font-black uppercase text-black tracking-tighter mb-2 sm:mb-4 leading-tight">
-                준이아빠 <span className="text-[113%] text-[#FF0033] align-baseline">Insights</span>
-              </h1>
-              <p className="inline-block bg-black text-white font-bold px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm uppercase tracking-widest border-2 border-black transform -skew-x-6 mb-4 sm:mb-6">
-                AI-Enhanced Tech Wiki
-              </p>
-              <p className="text-sm sm:text-base md:text-lg text-[#222] font-medium max-w-lg border-l-4 border-[#FF0033] pl-4 leading-relaxed">
-                디지털 마케팅, AI, 데이터 분석 전문가의 인사이트를 담는 지식 아카이브
-              </p>
-            </div>
-            {/* Profile Illustration */}
-            <div className="hidden md:block relative z-10 flex-shrink-0">
-              <div className="relative w-28 h-28 lg:w-36 lg:h-36 xl:w-40 xl:h-40 bg-white rounded-full border-4 border-black overflow-hidden neo-shadow">
-                <Image
-                  src="/profile-illustration.png"
-                  alt="Author Profile"
-                  fill
-                  className="object-cover object-top scale-125"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-        </NeoTiltCard>
-      </section>
+      {/* 추천 코스 배너 */}
+      <HeroCarousel slots={heroSlots} />
+
+      {/* 코스 캐러셀 */}
+      <CourseCarousel courses={courseCards} />
 
       {/* Trending Section */}
       {trending.length > 0 && (

@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
       { source: "/images/:path*", headers: ASSET_CACHE_HEADERS },
       // og:image 썸네일
       { source: "/og/:path*", headers: ASSET_CACHE_HEADERS },
+      // 코스 추천 배너 (메인 히어로 슬라이드, 코스 캐러셀 카드)
+      { source: "/banners/:path*", headers: ASSET_CACHE_HEADERS },
       // AI-Practice 실습용 목업 자산 (HTML, 이미지)
       { source: "/ai-practice/mock/:path*", headers: ASSET_CACHE_HEADERS },
       // 루트에 놓인 고정 이미지

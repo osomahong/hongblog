@@ -52,3 +52,6 @@ public/images/insights/gemini-3-6-flash/
 # SEO 스킬 운영용 사본 (자격증명은 ~/.seo-title-advisor.env에 있고 코드에는 없음)
 # 배포판은 dist/skills/ 에 커밋한다. 갱신: ./dist/skills/sync.sh
 .claude/skills/seo-topic-finder/
+
+# 이미지 드롭 작업 폴더 (원본 소재 보관용, 배포에 쓰지 않는다)
+/.orca/
