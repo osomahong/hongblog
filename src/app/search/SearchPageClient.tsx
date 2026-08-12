@@ -8,6 +8,8 @@ import { parseTerms, search, type SearchDocType } from "@/lib/search";
 import { SearchResultList } from "@/components/search/SearchResultList";
 import { useSearchIndex } from "@/components/search/useSearchIndex";
 import { cn } from "@/lib/utils";
+import { CourseSuggestList } from "@/components/CourseSuggestList";
+import type { CourseLink } from "@/lib/promotions";
 
 const RESULT_LIMIT = 60;
 
@@ -24,7 +26,7 @@ const TYPE_FILTERS: { value: SearchDocType | "all"; label: string }[] = [
  * 검색어를 URL에 두면 결과를 그대로 공유할 수 있고, GA4 search 이벤트의
  * search_term으로 어떤 질의가 들어오는지 그대로 쌓인다.
  */
-export function SearchPageClient() {
+export function SearchPageClient({ courses = [] }: { courses?: CourseLink[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryParam = searchParams.get("q") ?? "";
@@ -143,9 +145,12 @@ export function SearchPageClient() {
           </p>
 
           {!isLoading && hits.length === 0 && (
-            <p className="text-sm text-gray-600">
-              검색 결과가 없습니다. 더 짧은 단어로 다시 찾아 보세요.
-            </p>
+            <>
+              <p className="text-sm text-gray-600">
+                검색 결과가 없습니다. 더 짧은 단어로 다시 찾아 보세요.
+              </p>
+              <CourseSuggestList courses={courses} location="search_empty" />
+            </>
           )}
 
           {hits.length > 0 && (

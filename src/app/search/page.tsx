@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { SITE_URL } from "@/lib/constants";
 import { SearchPageClient } from "./SearchPageClient";
+import { getCourseLinks } from "@/lib/promotions";
 
 export const dynamic = "force-static";
 
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
 };
 
 export default function SearchPage() {
+  // 결과가 없을 때 되돌아가지 않고 코스로 이어 가게 한다
+  const courses = getCourseLinks();
+
   return (
     <Suspense
       fallback={
@@ -29,7 +33,7 @@ export default function SearchPage() {
         </div>
       }
     >
-      <SearchPageClient />
+      <SearchPageClient courses={courses} />
     </Suspense>
   );
 }
