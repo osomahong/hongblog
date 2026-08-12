@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import {
-  Menu, X, Mail, MessageCircle, Search,
+  Menu, X, Mail, MessageCircle, Search, Plus, ArrowRight,
   Smartphone, Terminal, Rocket, Bot, Briefcase, BarChart3, Globe, BookOpen,
   type LucideIcon,
 } from "lucide-react";
@@ -135,6 +135,8 @@ function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: 
             : "bg-white border-4 border-black neo-shadow"
         )}
       >
+        {/* 코스가 늘어도 메뉴 높이는 8줄에서 멈추고 나머지는 스크롤로 내린다 */}
+        <div className="max-h-64 overflow-y-auto overscroll-contain">
         {courses.map((course) => {
           const Icon = COURSE_ICONS[course.slug] ?? BookOpen;
 
@@ -162,6 +164,7 @@ function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: 
             </Link>
           );
         })}
+        </div>
       </div>
     </div>
   );
@@ -170,6 +173,8 @@ function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: 
 export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // 모바일 메뉴 안에서 Class 코스 목록을 펼쳤는지
+  const [isClassOpen, setIsClassOpen] = useState(false);
   const pathname = usePathname();
   // AI-Practice 하위 경로에서는 다크/네온 테마 변형을 쓴다 (구조는 동일)
   const isApTheme = pathname?.startsWith("/ai-practice") ?? false;
@@ -354,34 +359,75 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                 </Link>
               );
 
-              // 모바일에서는 코스 8개를 늘 펼쳐 두면 메뉴가 길어진다. 접어 둔다.
+              // 모바일에서 Class는 누르면 코스 목록이 펼쳐지는 토글이다.
+              // 목록은 6줄 높이까지만 보여주고 나머지는 스크롤로 내린다.
+              // /class 페이지는 목록 맨 아래 전체 보기 링크로 연결한다.
               if (href === "/class" && courses.length > 0) {
                 return (
                   <div key={href}>
-                    {mobileLink}
-                    <details className="px-4 pb-2">
-                      <summary className="cursor-pointer text-xs font-bold text-muted-foreground py-1">
-                        코스 {courses.length}개 펼치기
-                      </summary>
-                      <div className="pl-2 pt-1">
-                        {courses.map((course) => (
-                          <Link
-                            key={course.slug}
-                            href={course.href}
-                            onClick={() => {
-                              sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
-                              setIsMenuOpen(false);
-                            }}
-                            className={cn(
-                              "block py-1.5 text-xs transition-colors",
-                              isApTheme ? "text-gray-300 hover:text-[#ffd700]" : "hover:text-[#FF0033]"
-                            )}
-                          >
-                            {course.title}
-                          </Link>
-                        ))}
+                    <button
+                      type="button"
+                      onClick={() => setIsClassOpen(!isClassOpen)}
+                      aria-expanded={isClassOpen}
+                      className={cn(
+                        "w-full flex items-center justify-between px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
+                        isApTheme
+                          ? "text-gray-200 hover:text-[#ffd700]"
+                          : "hover:bg-[#FF0033] hover:text-white"
+                      )}
+                    >
+                      <span>{label}</span>
+                      <Plus
+                        className={cn("w-4 h-4 transition-transform", isClassOpen && "rotate-45")}
+                      />
+                    </button>
+                    {isClassOpen && (
+                      <div
+                        className={cn(
+                          "mx-4 mb-2 border-2",
+                          isApTheme ? "border-white/15" : "border-black"
+                        )}
+                      >
+                        <div className="max-h-56 overflow-y-auto overscroll-contain">
+                          {courses.map((course) => (
+                            <Link
+                              key={course.slug}
+                              href={course.href}
+                              onClick={() => {
+                                sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
+                                setIsMenuOpen(false);
+                                setIsClassOpen(false);
+                              }}
+                              className={cn(
+                                "block px-3 py-2.5 text-xs font-bold transition-colors",
+                                isApTheme
+                                  ? "text-gray-300 hover:text-[#ffd700]"
+                                  : "hover:bg-[#FFD700]"
+                              )}
+                            >
+                              {course.title}
+                            </Link>
+                          ))}
+                        </div>
+                        <Link
+                          href="/class"
+                          onClick={() => {
+                            sendGAEvent("click_nav", { menu_name: "Class" });
+                            setIsMenuOpen(false);
+                            setIsClassOpen(false);
+                          }}
+                          className={cn(
+                            "flex items-center gap-1 px-3 py-2 text-xs font-black border-t-2",
+                            isApTheme
+                              ? "border-white/15 text-[#ff5c7d]"
+                              : "border-black text-[#FF0033]"
+                          )}
+                        >
+                          코스 전체 보기
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
                       </div>
-                    </details>
+                    )}
                   </div>
                 );
               }
