@@ -22,7 +22,18 @@ const COURSES_DIR = path.join(CONTENT_DIR, "courses");
 // 범용 파일 읽기
 // ============================================
 
-function readMdFiles<T>(dir: string, transform: (data: Record<string, unknown>, content: string) => T): T[] {
+// 빌드 중에는 content/*.md가 바뀌지 않는데도 페이지마다 디렉터리 전체를 다시 읽고
+// gray-matter와 reading-time을 다시 돌리고 있었다. getCourses()처럼 코스마다
+// getClassesByCourse()를 부르는 자리에서는 같은 파싱이 코스 수만큼 겹친다.
+// 정적 페이지가 290개까지 늘면서 Vercel 빌드 워커가 페이지당 60초 제한에 걸려
+// 배포가 간헐적으로 실패했다. 파싱 결과를 워커 프로세스 안에 한 번만 만들어 둔다.
+// dev에서는 md를 고치면 바로 보여야 하므로 캐시를 쓰지 않는다.
+const USE_CONTENT_CACHE = process.env.NODE_ENV === "production";
+
+const dirCache = new Map<string, unknown[]>();
+const fileCache = new Map<string, unknown>();
+
+function parseMdFiles<T>(dir: string, transform: (data: Record<string, unknown>, content: string) => T): T[] {
   if (!fs.existsSync(dir)) return [];
 
   return fs
@@ -35,13 +46,36 @@ function readMdFiles<T>(dir: string, transform: (data: Record<string, unknown>, 
     });
 }
 
-function readMdFile<T>(dir: string, slug: string, transform: (data: Record<string, unknown>, content: string) => T): T | null {
+// 호출부가 결과를 그대로 sort하므로 캐시 원본이 아니라 복사본을 돌려준다.
+function readMdFiles<T>(dir: string, transform: (data: Record<string, unknown>, content: string) => T): T[] {
+  if (!USE_CONTENT_CACHE) return parseMdFiles(dir, transform);
+
+  const hit = dirCache.get(dir);
+  if (hit) return hit.slice() as T[];
+
+  const parsed = parseMdFiles(dir, transform);
+  dirCache.set(dir, parsed);
+  return parsed.slice();
+}
+
+function parseMdFile<T>(dir: string, slug: string, transform: (data: Record<string, unknown>, content: string) => T): T | null {
   const filePath = path.join(dir, `${slug}.md`);
   if (!fs.existsSync(filePath)) return null;
 
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
   return transform(data, content);
+}
+
+function readMdFile<T>(dir: string, slug: string, transform: (data: Record<string, unknown>, content: string) => T): T | null {
+  if (!USE_CONTENT_CACHE) return parseMdFile(dir, slug, transform);
+
+  const key = `${dir}/${slug}`;
+  if (fileCache.has(key)) return fileCache.get(key) as T | null;
+
+  const parsed = parseMdFile(dir, slug, transform);
+  fileCache.set(key, parsed);
+  return parsed;
 }
 
 // ============================================

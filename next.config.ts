@@ -15,6 +15,12 @@ const ASSET_CACHE_HEADERS = [
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  // 정적 페이지 한 장이 이 시간을 넘기면 빌드가 실패한다. 기본값은 60초다.
+  // Vercel 빌드 머신은 로컬보다 코어가 적어 워커가 서로 밀리고, 그 상태에서
+  // 페이지 수가 290을 넘기며 배포가 간헐적으로 이 제한에 걸렸다.
+  // src/lib/content.ts의 파싱 캐시가 근본 원인을 없앴고, 이 값은 콘텐츠가 더
+  // 늘었을 때를 대비한 여유다.
+  staticPageGenerationTimeout: 180,
   // Legacy redirects는 src/middleware.ts에서 통합 처리 (리디렉트 hop 수 최소화)
   async headers() {
     return [
