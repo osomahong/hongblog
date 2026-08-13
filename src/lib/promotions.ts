@@ -209,6 +209,7 @@ const COURSE_BANNER_INTRO: Record<string, string> = {
   "digital-marketing-terms": "광고 지표를 정의와\n계산식으로 정리",
   "vibe-coding-basics": "AI에게 맡기기 전\n채워야 할 기초",
   "app-marketing-basics": "설치부터 결제까지\n앱 사용자 여정",
+  "app-marketing-campaigns": "앱 캠페인을 직접\n운영하는 순서",
   "digital-basic": "웹이 어떻게 도는지\n비개발자 눈높이로",
 };
 
