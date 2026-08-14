@@ -6,8 +6,12 @@ import { getPublishedCourses } from "@/lib/content";
  * 배너 파일을 같은 경로로 갈아끼워도 방문자 브라우저가 옛 이미지를 붙들고 있지 않게 하는
  * 버전 값이다. `/banners/*`에 30일 캐시가 걸려 있어서 파일만 바꾸면 반영되지 않는다.
  * 배너를 다시 만들 때마다 이 숫자를 올린다.
+ *
+ * 파일을 바꾸지 않아도 올려야 하는 경우가 있다. 배너가 없던 시점에 그 주소로 요청이 들어가면
+ * 404 응답이 CDN에 남고, 나중에 파일을 올려도 같은 주소로는 계속 404가 돌아온다.
+ * 2026-08-14에 app-marketing-campaigns 카드가 이 상태였다. 주소를 바꿔야 캐시를 벗어난다.
  */
-const BANNER_VERSION = "4";
+const BANNER_VERSION = "5";
 
 const bannerUrl = (kind: "hero" | "card" | "page", slug: string) =>
   `/banners/${kind}/${slug}.webp?v=${BANNER_VERSION}`;
