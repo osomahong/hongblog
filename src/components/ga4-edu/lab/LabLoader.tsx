@@ -30,6 +30,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/engagement-and-bounce"),
     { loading: LoadingBox }
   ),
+  "users-sessions-events": dynamic(
+    () => import("../labs/users-sessions-events"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
