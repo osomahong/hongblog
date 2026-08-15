@@ -13,11 +13,13 @@ import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
 import { NEWSLETTER_URL, KAKAO_INQUIRY_URL } from "@/lib/constants";
 import { SearchDialog } from "@/components/search/SearchDialog";
+import { Ga4Logo } from "@/components/icons/Ga4Logo";
 import type { CourseLink } from "@/lib/promotions";
 
 // Tags는 사이트 내 검색으로 대체해 내비에서 뺐다. /tags 페이지와 푸터 링크는
 // 색인과 내부 링크 경로를 위해 그대로 둔다.
 const NAV_LINKS = [
+  { href: "/ga4-edu", label: "GA4 Edu" },
   { href: "/ai-practice", label: "AI-Practice" },
   { href: "/class", label: "Class" },
   { href: "/insights", label: "Insights" },
@@ -240,6 +242,25 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
           {/* Desktop Navigation Links. CTA 버튼과 한 줄에 공존해야 해서 lg 미만에서는 밀도를 줄인다 */}
           <div className="hidden sm:flex items-center gap-1 lg:gap-1.5">
             {NAV_LINKS.map(({ href, label }) => {
+              // GA4 Edu는 GA4 로고 색을 그대로 입힌 필로 구분한다
+              if (href === "/ga4-edu") {
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                    className={cn(
+                      "nav-ga4-pill inline-flex items-center gap-1.5 px-3 lg:px-4 py-2 mr-1.5 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-all",
+                      isApTheme
+                        ? "border border-white/20"
+                        : "border-2 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+                    )}
+                  >
+                    <Ga4Logo className="w-3.5 h-3.5 flex-shrink-0" monochrome />
+                    <span>{label}</span>
+                  </Link>
+                );
+              }
               // AI-Practice는 핵심 메뉴라 다크 필 + 히어로 그라데이션 텍스트로 강조한다
               if (href === "/ai-practice") {
                 return (
@@ -329,6 +350,18 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
             {/* 상단: 왼쪽 링크, 오른쪽 여백에 CTA 버튼을 두는 2단 구조 */}
             <div className="flex items-start gap-2">
               <div className="flex-1 min-w-0">
+                <Link
+                  href="/ga4-edu"
+                  onClick={() => { sendGAEvent("click_nav", { menu_name: "GA4 Edu" }); setIsMenuOpen(false); }}
+                  className={cn(
+                    "nav-ga4-pill flex items-center justify-center gap-1.5 mx-2 my-2 px-4 py-2.5 font-bold uppercase text-sm tracking-wide",
+                    isApTheme ? "border border-white/20" : "border-2 border-black neo-shadow-sm"
+                  )}
+                >
+                  <Ga4Logo className="w-4 h-4 flex-shrink-0" monochrome />
+                  <span>GA4 Edu</span>
+                </Link>
+
                 <Link
                   href="/ai-practice"
                   onClick={() => { sendGAEvent("click_nav", { menu_name: "AI-Practice" }); setIsMenuOpen(false); }}
