@@ -3128,3 +3128,135 @@ main:has(> .ga4-root) > .ga4-root {
   line-height: 1.7;
   color: var(--ga4-muted);
 }
+
+/* =========================================================================
+ * 기간 선택기
+ * 기본 껍데기의 기간 목록과 달리, 고른 값을 적용을 눌러야 표에 옮기는 선택기다.
+ * 기간 비교를 다루는 편에서만 쓴다.
+ * ========================================================================= */
+
+.ga4-daterange-main { display: inline-flex; align-items: center; gap: 8px; }
+.ga4-daterange-cmp {
+  padding-left: 10px;
+  border-left: 1px solid var(--ga4-line);
+  color: var(--ga4-muted);
+}
+
+.ga4-datepanel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 45;
+  width: 300px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  box-shadow: 0 2px 10px rgba(60, 64, 67, 0.28);
+  text-align: left;
+}
+.ga4-datepanel-label {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-datepanel-presets { display: flex; flex-direction: column; gap: 2px; }
+.ga4-datepanel-preset {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-datepanel-preset:hover { background: #f1f3f4; }
+.ga4-datepanel-preset-on { background: #e8f0fe; color: var(--ga4-blue); }
+.ga4-datepanel-range {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-datepanel-divider {
+  height: 1px;
+  margin: 14px 0;
+  background: var(--ga4-line);
+}
+.ga4-datepanel-compare {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 6px 4px 2px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: none;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-datepanel-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #5f6368;
+  border-radius: 2px;
+  color: #fff;
+}
+.ga4-datepanel-box-on { border-color: var(--ga4-blue); background: var(--ga4-blue); }
+.ga4-datepanel-base { position: relative; margin-top: 10px; }
+.ga4-datepanel-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-datepanel-base .ga4-menu { left: 0; right: auto; width: 100%; }
+.ga4-datepanel-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 18px;
+}
+.ga4-datepanel-cancel,
+.ga4-datepanel-apply {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-blue);
+  cursor: pointer;
+}
+.ga4-datepanel-cancel:hover,
+.ga4-datepanel-apply:hover { background: #e8f0fe; }
+
+/* 기간 비교를 걸면 채널 하나가 세 줄로 나뉜다. 묶음 끝에 선을 그어 구분한다 */
+.ga4-gtr-groupend td { border-bottom: 1px solid var(--ga4-line); }
+
+/* 비교 기간은 점선으로 그리므로 범례도 테두리만 남긴다 */
+.ga4-legend-swatch-dash {
+  background: none;
+  border: 1.5px dashed currentColor;
+  border-radius: 0;
+  height: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-top-width: 2px;
+  border-top-style: dashed;
+  align-self: center;
+}

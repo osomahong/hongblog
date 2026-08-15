@@ -31,6 +31,18 @@ export interface TableRow {
   key?: string;
   /** 보조 측정기준을 붙였을 때 그 줄의 두 번째 값 */
   secondary?: string;
+  /**
+   * 그 줄에만 쓰는 표기. 열 형식기를 덮어쓴다.
+   * 기간 비교의 % 변화 줄처럼 같은 열이라도 다른 단위로 찍히는 줄에 쓴다.
+   */
+  valueFormat?: (value: number) => string;
+  /** 묶음의 마지막 줄. 아래에 구분선을 긋는다 */
+  groupEnd?: boolean;
+  /**
+   * 이름 앞에 적을 순번. 넘기지 않으면 줄 순서를 그대로 쓴다.
+   * null이면 비운다. 기간 비교처럼 한 측정기준 값이 여러 줄로 나뉠 때 쓴다.
+   */
+  index?: number | null;
 }
 
 export interface DimensionOption {
@@ -56,6 +68,15 @@ interface Ga4ReportTableProps {
   markRow?: string | null;
   /** 비교를 걸었을 때만 넘긴다. 표 왼쪽에 비교 열이 생긴다 */
   showComparison?: boolean;
+  /**
+   * 비교 열의 머리글. 세그먼트 비교는 "비교"이고, 기간 비교는 GA4 화면처럼 비워 둔다.
+   */
+  comparisonLabel?: string;
+  /**
+   * 아래쪽 쪽 이동에 적을 줄 수. 기간 비교처럼 측정기준 하나가 여러 줄로 나뉘면
+   * 화면의 줄 수와 GA4가 세는 줄 수가 달라진다.
+   */
+  rowCount?: number;
 
   /** 아래 넷은 측정기준 옆 더하기로 보조 측정기준을 붙이는 편에서만 넘긴다 */
   secondaryOptions?: DimensionOption[];
@@ -83,6 +104,8 @@ export function Ga4ReportTable({
   onSelectRow,
   markRow,
   showComparison,
+  comparisonLabel = "비교",
+  rowCount,
   secondaryOptions,
   secondaryDimension,
   secondaryMenuOpen,
@@ -117,7 +140,7 @@ export function Ga4ReportTable({
           <span>이동:</span>
           <span className="ga4-foot-goto">1</span>
           <span className="ga4-foot-range">
-            1~{rows.length} / {rows.length}
+            1~{rowCount ?? rows.length} / {rowCount ?? rows.length}
           </span>
           <span className="ga4-foot-arrows" aria-hidden>
             <ChevronLeft className="w-4 h-4" strokeWidth={1.8} />
@@ -133,7 +156,7 @@ export function Ga4ReportTable({
               <th className="ga4-gth-check">
                 <span className="ga4-check ga4-check-all" aria-hidden />
               </th>
-              {showComparison && <th className="ga4-gth-cmp">비교</th>}
+              {showComparison && <th className="ga4-gth-cmp">{comparisonLabel}</th>}
               <th className="ga4-gth-dim">
                 <span className="ga4-dim-wrap">
                   <button
@@ -201,6 +224,7 @@ export function Ga4ReportTable({
                 clickable ? "ga4-gtr-clickable" : "",
                 selectedRow === rowKey ? "ga4-gtr-selected" : "",
                 markRow === rowKey ? "ga4-gtr-marked" : "",
+                row.groupEnd ? "ga4-gtr-groupend" : "",
               ]
                 .filter(Boolean)
                 .join(" ");
@@ -215,7 +239,9 @@ export function Ga4ReportTable({
                   </td>
                   {showComparison && <td className="ga4-gtd-cmp">{row.comparison ?? ""}</td>}
                   <td className="ga4-gtd-dim">
-                    <span className="ga4-grow-index">{i + 1}</span>
+                    <span className="ga4-grow-index">
+                      {row.index === undefined ? i + 1 : (row.index ?? "")}
+                    </span>
                     {/* 줄 전체가 눌리지만 tr에는 키보드 초점이 가지 않는다.
                         이름을 단추로 감싸 탭으로도 같은 줄을 고를 수 있게 한다.
                         줄의 onClick과 겹치지 않도록 여기서 전파를 끊는다 */}
@@ -243,8 +269,9 @@ export function Ga4ReportTable({
                     const sum = col.total ?? sums.get(col.key) ?? 0;
                     return (
                       <td key={col.key} className="ga4-gtd">
-                        {(col.format ?? comma)(value)}
-                        {col.share && sum > 0 && (
+                        {(row.valueFormat ?? col.format ?? comma)(value)}
+                        {/* 줄 표기를 따로 쓰는 줄은 단위가 달라 전체 대비 비율을 적지 않는다 */}
+                        {col.share && !row.valueFormat && sum > 0 && (
                           <span className="ga4-gshare">
                             {" "}
                             ({((value / sum) * 100).toFixed(2)}%)

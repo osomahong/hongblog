@@ -21,6 +21,28 @@ export const DATE_RANGE_SUB: Record<DateRangeKey, string> = {
   "90d": "5월 16일~2026년 8월 13일",
 };
 
+/** 기간 선택기의 비교 대상. GA4 화면의 이름을 그대로 쓴다 */
+export type CompareBase = "previous" | "yearAgo";
+
+export const COMPARE_BASE_LABEL: Record<CompareBase, string> = {
+  previous: "이전 기간",
+  yearAgo: "이전 연도",
+};
+
+/** 비교 대상으로 잡히는 실제 날짜 구간 */
+export const COMPARE_BASE_SUB: Record<CompareBase, Record<DateRangeKey, string>> = {
+  previous: {
+    "7d": "7월 31일~2026년 8월 6일",
+    "28d": "6월 19일~2026년 7월 16일",
+    "90d": "2월 15일~2026년 5월 15일",
+  },
+  yearAgo: {
+    "7d": "2025년 8월 7일~2025년 8월 13일",
+    "28d": "2025년 7월 17일~2025년 8월 13일",
+    "90d": "2025년 5월 16일~2025년 8월 13일",
+  },
+};
+
 export interface Ga4State {
   /** 열려 있는 보고서 식별자 */
   report: string;
@@ -54,6 +76,19 @@ export interface Ga4State {
   /** 아래 둘은 보조 측정기준을 붙이는 편에서만 쓴다 */
   secondaryDimension?: string | null;
   secondaryMenuOpen?: boolean;
+
+  /**
+   * 아래 다섯은 기간 선택기에서 기간 비교를 거는 편에서만 쓴다.
+   * 선택기 안에서 고르는 중인 값은 draft로 두고, 적용을 눌러야 dateRange와 appliedBase에 옮긴다.
+   */
+  datePanelOpen?: boolean;
+  draftRange?: DateRangeKey;
+  draftCompare?: boolean;
+  draftBase?: CompareBase;
+  /** 비교 대상 목록이 펼쳐져 있는지 */
+  baseListOpen?: boolean;
+  /** 표에 반영된 비교 대상. null이면 비교를 걸지 않은 상태 */
+  appliedBase?: CompareBase | null;
 
   /** 아래 다섯은 필터를 거는 편에서만 쓴다 */
   filterOpen?: boolean;

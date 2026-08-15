@@ -42,6 +42,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/secondary-dimension"),
     { loading: LoadingBox }
   ),
+  "date-range-comparison": dynamic(
+    () => import("../labs/date-range-comparison"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

@@ -13,6 +13,8 @@ export interface Series {
   /** 파랑 계열 안에서의 밝기 단계 (0이 가장 진하다) */
   shade: number;
   points: number[];
+  /** 기간 비교의 비교 기간처럼 점선으로 그릴 계열 */
+  dashed?: boolean;
 }
 
 /** 파랑 한 색의 밝기 단계. GA4는 강조색을 파랑으로만 쓴다 */
@@ -110,6 +112,7 @@ export function Ga4LineCard({
             fill="none"
             stroke={blueOf(s.shade)}
             strokeWidth={1.8}
+            strokeDasharray={s.dashed ? "5 4" : undefined}
           />
         ))}
 
@@ -132,7 +135,11 @@ export function Ga4LineCard({
       <ul className="ga4-chart-legend">
         {series.map((s) => (
           <li key={s.name}>
-            <span className="ga4-legend-swatch" style={{ background: blueOf(s.shade) }} aria-hidden />
+            <span
+              className={`ga4-legend-swatch${s.dashed ? " ga4-legend-swatch-dash" : ""}`}
+              style={s.dashed ? { borderColor: blueOf(s.shade) } : { background: blueOf(s.shade) }}
+              aria-hidden
+            />
             {s.name}
           </li>
         ))}

@@ -123,6 +123,11 @@ interface Ga4ShellProps {
   comparisonPanel?: ReactNode;
   /** 필터를 다루는 편에서만 넘긴다. 필터 줄 자리에 그대로 놓인다 */
   filterEditor?: ReactNode;
+  /**
+   * 기간 선택기를 갈아 끼울 때 넘긴다.
+   * 기본 선택기는 기간만 고르지만, 기간 비교를 다루는 편은 적용 단추가 있는 선택기를 쓴다.
+   */
+  datePanel?: ReactNode;
   children: ReactNode;
 }
 
@@ -143,6 +148,7 @@ export function Ga4Shell({
   comparisonChip,
   comparisonPanel,
   filterEditor,
+  datePanel,
   children,
 }: Ga4ShellProps) {
   return (
@@ -174,12 +180,14 @@ export function Ga4Shell({
             </span>
             {comparisonChip && <span className="ga4-seg-chip ga4-seg-chip-cmp">{comparisonChip}</span>}
             <ComparisonChip onOpen={onOpenComparison} />
-            <DateRange
-              value={state.dateRange}
-              open={state.openMenu === "date"}
-              onToggle={() => onToggleMenu(state.openMenu === "date" ? null : "date")}
-              onPick={onPickDate}
-            />
+            {datePanel ?? (
+              <DateRange
+                value={state.dateRange}
+                open={state.openMenu === "date"}
+                onToggle={() => onToggleMenu(state.openMenu === "date" ? null : "date")}
+                onPick={onPickDate}
+              />
+            )}
           </div>
 
           <div className="ga4-report-head">
