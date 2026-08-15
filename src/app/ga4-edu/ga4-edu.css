@@ -1011,6 +1011,16 @@ main:has(> .ga4-root) > .ga4-root {
   color: var(--ga4-muted);
   font-size: 12px;
 }
+/* 표 줄 안의 이름 단추. 보이기에는 글자 그대로지만 탭으로 닿는다 */
+.ga4-grow-pick {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
 .ga4-gtr-clickable { cursor: pointer; }
 .ga4-gtr-clickable:hover td { background: #f8f9fa; }
 .ga4-gtr-selected td { background: #e8f0fe; }

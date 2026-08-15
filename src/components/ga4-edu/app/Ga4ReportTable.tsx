@@ -216,7 +216,24 @@ export function Ga4ReportTable({
                   {showComparison && <td className="ga4-gtd-cmp">{row.comparison ?? ""}</td>}
                   <td className="ga4-gtd-dim">
                     <span className="ga4-grow-index">{i + 1}</span>
-                    {row.name}
+                    {/* 줄 전체가 눌리지만 tr에는 키보드 초점이 가지 않는다.
+                        이름을 단추로 감싸 탭으로도 같은 줄을 고를 수 있게 한다.
+                        줄의 onClick과 겹치지 않도록 여기서 전파를 끊는다 */}
+                    {clickable ? (
+                      <button
+                        type="button"
+                        className="ga4-grow-pick"
+                        aria-pressed={selectedRow === rowKey}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectRow?.(rowKey);
+                        }}
+                      >
+                        {row.name}
+                      </button>
+                    ) : (
+                      row.name
+                    )}
                   </td>
                   {secondaryLabel && <td className="ga4-gtd-sub">{row.secondary ?? ""}</td>}
                   {columns.map((col) => {

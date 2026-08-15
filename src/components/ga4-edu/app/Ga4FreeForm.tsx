@@ -267,13 +267,24 @@ function Slot({
   return (
     <div className="ga4-ff-field">
       <p className="ga4-ff-field-label">{SLOT_LABEL[slot]}</p>
+      {/* 끌어다 놓는 칸이라 원래는 초점이 가지 않는다.
+          집어 든 변수를 엔터로도 놓을 수 있게 초점과 키 처리를 붙인다 */}
       <div
         data-tour={`slot:${slot}`}
+        role="button"
+        tabIndex={0}
+        aria-label={`${SLOT_LABEL[slot]} 칸에 놓기`}
         onDragOver={(e) => {
           if (open) e.preventDefault();
         }}
         onDrop={() => onDropTo(slot)}
         onClick={() => onDropTo(slot)}
+        onKeyDown={(e) => {
+          if (e.key !== "Enter" && e.key !== " ") return;
+          if (e.target !== e.currentTarget) return;
+          e.preventDefault();
+          onDropTo(slot);
+        }}
         className={`ga4-ff-slot${open ? " ga4-ff-slot-open" : ""}${ring}`}
       >
         {keys.map((key) => (
