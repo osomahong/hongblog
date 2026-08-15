@@ -42,7 +42,7 @@ const START_STATE: Ga4State = {
 const STEPS: TourStep<Ga4State>[] = [
   {
     id: "open_date_menu",
-    instruction: "지금 기간이 지난 7일로 잡혀 있습니다. 오른쪽 위 그 글자를 눌러 목록을 폅니다.",
+    instruction: "지금 기간이 지난 7일로 잡혀 있습니다. 오른쪽 위 지난 7일이라고 적힌 곳을 눌러 목록을 폅니다.",
     ring: "date-chip",
     isDone: (s) => s.openMenu === "date",
   },

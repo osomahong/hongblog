@@ -66,7 +66,7 @@ const STEPS: TourStep<Ga4State>[] = [
     reset: { selectedRow: null },
     isDone: (s) => s.selectedRow === ONCE_PER_USER_EVENT,
     isMiss: (s) => s.selectedRow !== null && s.selectedRow !== ONCE_PER_USER_EVENT,
-    missText: "두 칸에 똑같은 값이 찍힌 줄은 하나뿐입니다. 숫자를 나란히 견주며 내려갑니다.",
+    missText: "두 칸에 똑같은 값이 찍힌 줄은 하나뿐입니다. 표를 따라 내려가며 두 칸의 숫자를 나란히 견줍니다.",
   },
   {
     id: "pick_our_top",

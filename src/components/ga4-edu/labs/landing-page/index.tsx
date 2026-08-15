@@ -57,7 +57,7 @@ const STEPS: TourStep<Ga4State>[] = [
   },
   {
     id: "open_comparison",
-    instruction: "채널별로 나눠 보겠습니다. 표 위쪽 비교 추가를 누릅니다.",
+    instruction: "채널별로 나눠 봅니다. 표 위쪽 비교 추가를 누릅니다.",
     ring: "comparison-add",
     isDone: (s) => s.comparisonOpen === true,
   },
@@ -88,7 +88,7 @@ const STEPS: TourStep<Ga4State>[] = [
     isDone: (s) => s.selectedRow === rowKey(PAID_SEARCH, PAID_TOP_PAGE),
     isMiss: (s) => s.selectedRow !== null && s.selectedRow !== rowKey(PAID_SEARCH, PAID_TOP_PAGE),
     missText:
-      "왼쪽 비교 칸이 Paid Search라고 적힌 줄만 놓고 견줍니다. 모든 사용자 줄은 광고로 들어온 세션이 아닙니다.",
+      "왼쪽 비교 칸이 Paid Search라고 적힌 줄만 놓고 견줍니다. 모든 사용자 줄에는 광고 밖에서 온 세션이 섞여 있습니다.",
   },
   {
     id: "pick_paid_best",

@@ -65,7 +65,7 @@ const STEPS: TourStep<Ga4State>[] = [
     reset: { selectedRow: null },
     isDone: (s) => s.selectedRow === NOT_SET_TYPE,
     isMiss: (s) => s.selectedRow !== null && s.selectedRow !== NOT_SET_TYPE,
-    missText: "new와 returning 말고 이름 자리에 값이 붙지 않은 줄이 있습니다.",
+    missText: "new와 returning 말고 (not set)이라고 적힌 줄이 있습니다.",
   },
   {
     id: "sort_key_events",
