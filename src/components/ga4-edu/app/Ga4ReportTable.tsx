@@ -29,6 +29,8 @@ export interface TableRow {
   comparison?: string;
   /** 고를 때 쓰는 식별자. 비교가 걸리면 같은 이름이 여러 줄이 되므로 따로 준다 */
   key?: string;
+  /** 보조 측정기준을 붙였을 때 그 줄의 두 번째 값 */
+  secondary?: string;
 }
 
 export interface DimensionOption {
@@ -54,6 +56,15 @@ interface Ga4ReportTableProps {
   markRow?: string | null;
   /** 비교를 걸었을 때만 넘긴다. 표 왼쪽에 비교 열이 생긴다 */
   showComparison?: boolean;
+
+  /** 아래 넷은 측정기준 옆 더하기로 보조 측정기준을 붙이는 편에서만 넘긴다 */
+  secondaryOptions?: DimensionOption[];
+  secondaryDimension?: string | null;
+  secondaryMenuOpen?: boolean;
+  onToggleSecondaryMenu?: () => void;
+  onPickSecondary?: (key: string) => void;
+  /** 보조 측정기준 열에 붙는 이름 */
+  secondaryLabel?: string | null;
 }
 
 const comma = (v: number) => v.toLocaleString("ko-KR");
@@ -72,6 +83,12 @@ export function Ga4ReportTable({
   onSelectRow,
   markRow,
   showComparison,
+  secondaryOptions,
+  secondaryDimension,
+  secondaryMenuOpen,
+  onToggleSecondaryMenu,
+  onPickSecondary,
+  secondaryLabel,
 }: Ga4ReportTableProps) {
   const dimensionLabel =
     dimensionOptions.find((d) => d.key === dimension)?.label ?? dimensionOptions[0].label;
@@ -141,11 +158,16 @@ export function Ga4ReportTable({
                       ))}
                     </span>
                   )}
-                  <span className="ga4-dim-plus" aria-hidden>
-                    <Plus className="w-3.5 h-3.5" strokeWidth={2} />
-                  </span>
+                  <SecondaryPlus
+                    options={secondaryOptions ?? []}
+                    current={secondaryDimension ?? null}
+                    menuOpen={secondaryMenuOpen === true}
+                    onToggle={onToggleSecondaryMenu}
+                    onPick={onPickSecondary}
+                  />
                 </span>
               </th>
+              {secondaryLabel && <th className="ga4-gth-sub">{secondaryLabel}</th>}
               {columns.map((col) => (
                 <MetricHead
                   key={col.key}
@@ -163,6 +185,7 @@ export function Ga4ReportTable({
               </td>
               {showComparison && <td className="ga4-gtd-cmp">모든 사용자</td>}
               <td className="ga4-gtd-dim">합계</td>
+              {secondaryLabel && <td className="ga4-gtd-sub" />}
               {columns.map((col) => (
                 <td key={col.key} className="ga4-gtd">
                   {(col.format ?? comma)(col.total ?? sums.get(col.key) ?? 0)}
@@ -195,6 +218,7 @@ export function Ga4ReportTable({
                     <span className="ga4-grow-index">{i + 1}</span>
                     {row.name}
                   </td>
+                  {secondaryLabel && <td className="ga4-gtd-sub">{row.secondary ?? ""}</td>}
                   {columns.map((col) => {
                     const value = row.values[col.key] ?? 0;
                     // 비율의 분모는 합계 줄에 찍힌 값과 같아야 한다.
@@ -219,6 +243,85 @@ export function Ga4ReportTable({
         </table>
       </div>
     </section>
+  );
+}
+
+/**
+ * 측정기준 이름 옆 더하기. 누르면 보조 측정기준으로 붙일 항목이 나온다.
+ * 보조 측정기준을 다루지 않는 편에서는 실제 화면처럼 표시만 남긴다.
+ */
+function SecondaryPlus({
+  options,
+  current,
+  menuOpen,
+  onToggle,
+  onPick,
+}: {
+  options: DimensionOption[];
+  current: string | null;
+  menuOpen: boolean;
+  onToggle?: () => void;
+  onPick?: (key: string) => void;
+}) {
+  const ring = useRing("secondary-plus");
+
+  if (!onToggle) {
+    return (
+      <span className="ga4-dim-plus" aria-hidden>
+        <Plus className="w-3.5 h-3.5" strokeWidth={2} />
+      </span>
+    );
+  }
+
+  return (
+    <span className="ga4-dim-plus-wrap">
+      <button
+        type="button"
+        data-tour="secondary-plus"
+        onClick={onToggle}
+        className={`ga4-dim-plus ga4-dim-plus-btn${ring}`}
+        aria-expanded={menuOpen}
+        aria-label="보조 측정기준 추가"
+      >
+        <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
+      </button>
+      {menuOpen && (
+        <span className="ga4-menu ga4-menu-sub" role="listbox" aria-label="보조 측정기준 선택">
+          {options.map((option) => (
+            <SecondaryOptionItem
+              key={option.key}
+              option={option}
+              current={current}
+              onPick={onPick}
+            />
+          ))}
+        </span>
+      )}
+    </span>
+  );
+}
+
+function SecondaryOptionItem({
+  option,
+  current,
+  onPick,
+}: {
+  option: DimensionOption;
+  current: string | null;
+  onPick?: (key: string) => void;
+}) {
+  const ring = useRing(`secondary:${option.key}`);
+  return (
+    <button
+      type="button"
+      role="option"
+      aria-selected={option.key === current}
+      data-tour={`secondary:${option.key}`}
+      onClick={() => onPick?.(option.key)}
+      className={`ga4-menu-item${option.key === current ? " ga4-menu-item-on" : ""}${ring}`}
+    >
+      {option.label}
+    </button>
   );
 }
 

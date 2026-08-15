@@ -38,6 +38,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/landing-page"),
     { loading: LoadingBox }
   ),
+  "secondary-dimension-and-filter": dynamic(
+    () => import("../labs/secondary-dimension"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

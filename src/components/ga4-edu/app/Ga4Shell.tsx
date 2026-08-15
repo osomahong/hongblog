@@ -82,6 +82,8 @@ interface Ga4ShellProps {
   comparisonChip?: string | null;
   /** 비교 만들기 패널. 열려 있을 때만 넘긴다 */
   comparisonPanel?: ReactNode;
+  /** 필터를 다루는 편에서만 넘긴다. 필터 줄 자리에 그대로 놓인다 */
+  filterEditor?: ReactNode;
   children: ReactNode;
 }
 
@@ -101,6 +103,7 @@ export function Ga4Shell({
   onOpenComparison,
   comparisonChip,
   comparisonPanel,
+  filterEditor,
   children,
 }: Ga4ShellProps) {
   return (
@@ -159,9 +162,11 @@ export function Ga4Shell({
           </div>
 
           <div className="ga4-filterbar">
-            <span className="ga4-tool-chip">
-              필터 추가 <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
-            </span>
+            {filterEditor ?? (
+              <span className="ga4-tool-chip">
+                필터 추가 <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
+              </span>
+            )}
           </div>
 
           <div className="ga4-report-canvas">{children}</div>

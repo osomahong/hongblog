@@ -50,6 +50,17 @@ export interface Ga4State {
   comparisonApplied?: boolean;
   /** 비교 만들기 패널에서 펼쳐진 목록 */
   comparisonList?: "dimension" | "value" | null;
+
+  /** 아래 둘은 보조 측정기준을 붙이는 편에서만 쓴다 */
+  secondaryDimension?: string | null;
+  secondaryMenuOpen?: boolean;
+
+  /** 아래 다섯은 필터를 거는 편에서만 쓴다 */
+  filterOpen?: boolean;
+  filterDimension?: string | null;
+  filterValue?: string | null;
+  filterApplied?: boolean;
+  filterList?: "dimension" | "value" | null;
 }
 
 export const INITIAL_STATE: Ga4State = {
