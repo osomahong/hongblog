@@ -15,7 +15,6 @@ export const SITE_NAME = "준이아빠블로그";
  */
 export const SECTION_LABELS = {
   class: "Class",
-  ga4Edu: "GA4 Edu",
   aiPractice: "AI-Practice",
 } as const;
 

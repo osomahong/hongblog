@@ -1,6 +1,5 @@
 import { getInsights, getClasses, getCourses, getAllTagsWithId, getContentByTag } from "@/lib/content";
 import { SITE_URL, MIN_TAG_ITEMS_FOR_INDEX } from "@/lib/constants";
-import { getIndexableTutorials } from "@/app/ga4-edu/data";
 
 export const dynamic = "force-static";
 
@@ -76,13 +75,6 @@ function buildClassSitemap(): SitemapEntry[] {
     { url: `${SITE_URL}/ai-practice/geo-basics`, changefreq: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/ai-practice/geo-intermediate`, changefreq: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/ai-practice/geo-advanced`, changefreq: "monthly", priority: 0.8 },
-    // GA4 Edu: 허브와 공개 튜토리얼만 넣는다 (구독자 전용 편은 noindex라 제외)
-    { url: `${SITE_URL}/ga4-edu`, changefreq: "weekly", priority: 0.9 },
-    ...getIndexableTutorials().map((t) => ({
-      url: `${SITE_URL}/ga4-edu/${t.slug}`,
-      changefreq: "monthly" as const,
-      priority: 0.8,
-    })),
     ...courses.map((c) => ({
       url: `${SITE_URL}/class/${c.slug}`,
       lastModified: validDate(c.publishedAt),
