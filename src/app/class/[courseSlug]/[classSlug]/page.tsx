@@ -11,7 +11,7 @@ import { isAiPracticeTopic } from "@/lib/aipractice-topic";
 import { ClassProgressMarker } from "@/components/ClassProgressMarker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { classHref } from "@/lib/links";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
 import { AuthorCard } from "@/components/AuthorCard";
@@ -60,8 +60,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const effectiveDescription = classData.metaDescription || classData.definition;
     const ogImage = classData.ogImage ? absoluteUrl(classData.ogImage) : undefined;
 
+    // 클래스 상세는 검색 유입의 실제 착지점이라 `Class |` 라벨을 붙이지 않는다.
+    // metaTitle 중앙값이 32자여서 라벨을 붙이면 SERP에서 잘리는 키워드가 늘어난다.
+    // 라벨은 /class와 /class/[courseSlug]에만 걸린다.
     return {
-        title: effectiveTitle,
+        title: { absolute: `${effectiveTitle} | ${SITE_NAME}` },
         description: effectiveDescription,
         keywords: classData.tags,
         alternates: {

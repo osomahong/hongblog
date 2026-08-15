@@ -1,14 +1,14 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { SECTION_BRANDS } from "@/lib/constants";
+import { SECTION_LABELS, SITE_NAME } from "@/lib/constants";
 import "./ai-practice.css";
 
-// 이 섹션 아래 title 접미사를 루트의 "준이아빠블로그"에서 섹션 브랜드로 바꾼다.
-// og:site_name과 JSON-LD publisher는 루트 값(SITE_NAME)을 그대로 상속한다.
+// `AI-Practice | (페이지 제목) | 준이아빠블로그` 형태로 맞춘다.
+// 섹션 layout의 template은 루트 template을 덮어쓰므로 브랜드를 여기에 직접 넣는다.
 export const metadata: Metadata = {
   title: {
-    default: `AI 실습 교육 | ${SECTION_BRANDS.aiPractice}`,
-    template: `%s | ${SECTION_BRANDS.aiPractice}`,
+    default: `${SECTION_LABELS.aiPractice} | PBL 기반 AI Self Education | ${SITE_NAME}`,
+    template: `${SECTION_LABELS.aiPractice} | %s | ${SITE_NAME}`,
   },
 };
 

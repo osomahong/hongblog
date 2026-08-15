@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Lock, PlayCircle, Radio } from "lucide-react";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, SITE_NAME, SECTION_LABELS } from "@/lib/constants";
 import { Ga4Logo } from "@/components/icons/Ga4Logo";
 import {
   getTutorialsByLevel,
@@ -14,18 +14,21 @@ import {
 
 export const dynamic = "force-static";
 
-const PAGE_TITLE = "GA4 Edu: GA4 실습 튜토리얼 30편";
+const PAGE_TITLE = "GA4 실습 튜토리얼 30편";
+// layout의 title template은 하위 세그먼트에만 적용되고 같은 세그먼트의 page는 건너뛴다.
+// 그래서 섹션 루트인 이 페이지는 라벨과 브랜드를 붙인 완성형을 직접 지정한다.
+const FULL_TITLE = `${SECTION_LABELS.ga4Edu} | ${PAGE_TITLE} | ${SITE_NAME}`;
 // AEO 정의 문장: 도입부, metaDescription, JSON-LD를 같은 개체와 정의로 맞춘다
 const PAGE_DEFINITION =
   "GA4 Edu는 GA4와 같은 모양의 데모 화면을 정해진 순서대로 조작하면서 GA4 사용법과 데이터 해석법을 배우는 준이아빠블로그의 실습 학습 코스입니다.";
 const PAGE_DESC = `${PAGE_DEFINITION} 초급, 중급, 심화 각 10편씩 모두 30편으로 이뤄지고, 보고서 읽기부터 탐색 보고서 제작, 수집 설정 변경까지 다룹니다.`;
 
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+  title: { absolute: FULL_TITLE },
   description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/ga4-edu` },
   openGraph: {
-    title: PAGE_TITLE,
+    title: FULL_TITLE,
     description: PAGE_DESC,
     type: "website",
     url: `${SITE_URL}/ga4-edu`,
