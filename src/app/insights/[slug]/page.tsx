@@ -222,7 +222,8 @@ export default async function InsightDetailPage({ params }: Props) {
   };
 
   const faqPairs = extractFaqPairs(post.content);
-  const faqLd = faqPairs.length >= 2
+  // FAQPage는 질문 1개도 유효한 스키마이므로 1개부터 발행한다 (클래스 쪽과 기준 통일)
+  const faqLd = faqPairs.length >= 1
     ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
