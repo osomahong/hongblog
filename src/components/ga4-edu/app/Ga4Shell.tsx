@@ -58,6 +58,45 @@ export const REPORT_TREE: ReportNode[] = [
   { id: "library", label: "라이브러리" },
 ];
 
+/**
+ * 보고서 머리에 적는 온전한 이름.
+ * 트리 라벨은 자리에 맞춰 줄인 것이라 제목에 그대로 쓰면 말줄임표가 따라온다.
+ */
+const REPORT_TITLE: Record<string, string> = {
+  "reports-overview": "보고서 개요",
+  realtime: "실시간 개요",
+  "acquisition-overview": "개요",
+  "user-acquisition": "사용자 획득",
+  "traffic-acquisition": "트래픽 획득: 세션 기본 채널 그룹(기본 채널 그룹)",
+  "landing-page": "방문 페이지",
+  "page-and-screen": "페이지 및 화면: 페이지 경로 및 화면 클래스",
+  cohort: "사용자 획득 동질 집단",
+  demographics: "사용자 속성",
+  tech: "기술",
+  library: "라이브러리",
+};
+
+/** 학습자가 트리에서 고른 보고서의 이름. 제목과 트리 선택이 어긋나지 않게 한다 */
+export function reportTitleOf(id: string): string {
+  return REPORT_TITLE[id] ?? "보고서";
+}
+
+/**
+ * 그 편이 다루지 않는 보고서를 눌렀을 때 보여 주는 안내.
+ * 30편이 모든 보고서를 재현하지는 않기 때문에, 빈 화면 대신 돌아갈 길을 알려 준다.
+ */
+export function Ga4OtherReport({ label }: { label: string }) {
+  return (
+    <div className="ga4-other-report">
+      <p className="ga4-other-report-title">{label}</p>
+      <p className="ga4-other-report-desc">
+        이 편에서는 이 보고서를 다루지 않습니다. 왼쪽 메뉴에서 원래 보던 보고서를 다시 누르면
+        하던 자리에서 이어집니다.
+      </p>
+    </div>
+  );
+}
+
 /* ===================== 껍데기 ===================== */
 
 interface Ga4ShellProps {

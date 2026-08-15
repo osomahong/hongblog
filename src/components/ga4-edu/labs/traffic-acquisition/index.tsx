@@ -8,7 +8,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { Ga4Shell } from "../../app/Ga4Shell";
+import { Ga4Shell, Ga4OtherReport, reportTitleOf } from "../../app/Ga4Shell";
 import { Ga4ReportTable } from "../../app/Ga4ReportTable";
 import { Ga4LineCard, Ga4BarCard } from "../../app/Ga4Charts";
 import { RingProvider, Ga4Guide } from "../../app/tour";
@@ -31,11 +31,6 @@ import {
 
 const LAB_ID = "traffic-acquisition-channels";
 const LAB_TITLE = "유입 정보(마케팅 채널 전략) 분석하기";
-
-const REPORT_TITLES: Record<string, string> = {
-  "reports-overview": "보고서 개요",
-  "traffic-acquisition": "트래픽 획득: 세션 기본 채널 그룹(기본 채널 그룹)",
-};
 
 /* ===================== 스텝 ===================== */
 
@@ -128,7 +123,7 @@ export default function TrafficAcquisitionLab() {
           state={state}
           pinned={pinned}
           onTogglePin={() => setPinned((v) => !v)}
-          reportTitle={REPORT_TITLES[state.report] ?? "보고서"}
+          reportTitle={reportTitleOf(state.report)}
           onOpenReport={(id) => apply({ report: id, openMenu: null })}
           onToggleMenu={(menu) => apply({ openMenu: menu })}
           onPickDate={(key: DateRangeKey) => apply({ dateRange: key, openMenu: null })}
@@ -164,8 +159,10 @@ export default function TrafficAcquisitionLab() {
                 markRow={done ? WEAKEST_PAID_CHANNEL : null}
               />
             </>
-          ) : (
+          ) : state.report === "reports-overview" ? (
             <ReportsOverview />
+          ) : (
+            <Ga4OtherReport label={reportTitleOf(state.report)} />
           )}
         </Ga4Shell>
 

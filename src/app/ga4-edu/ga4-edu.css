@@ -3095,3 +3095,26 @@ main:has(> .ga4-root) > .ga4-root {
   color: #9aa0a6;
   cursor: default;
 }
+
+/* 그 편이 다루지 않는 보고서로 옮겼을 때 놓이는 안내 */
+.ga4-other-report {
+  margin: 40px auto;
+  max-width: 520px;
+  padding: 28px 30px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  text-align: center;
+}
+.ga4-other-report-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-other-report-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ga4-muted);
+}

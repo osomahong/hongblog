@@ -8,7 +8,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { Ga4Shell } from "../../app/Ga4Shell";
+import { Ga4Shell, Ga4OtherReport, reportTitleOf } from "../../app/Ga4Shell";
 import { Ga4ReportTable } from "../../app/Ga4ReportTable";
 import { Ga4FilterEditor } from "../../app/Ga4FilterEditor";
 import { RingProvider, Ga4Guide } from "../../app/tour";
@@ -185,7 +185,7 @@ export default function SecondaryDimensionLab() {
           state={state}
           pinned={pinned}
           onTogglePin={() => setPinned((v) => !v)}
-          reportTitle="트래픽 획득: 세션 기본 채널 그룹(기본 채널 그룹)"
+          reportTitle={reportTitleOf(state.report)}
           onOpenReport={(id) => apply({ report: id, openMenu: null })}
           onToggleMenu={(menu) => apply({ openMenu: menu })}
           onPickDate={(key: DateRangeKey) => apply({ dateRange: key, openMenu: null })}
@@ -218,8 +218,10 @@ export default function SecondaryDimensionLab() {
               }
               secondaryLabel={secondaryLabelOf(secondary)}
             />
-          ) : (
+          ) : state.report === "reports-overview" ? (
             <ReportsOverview />
+          ) : (
+            <Ga4OtherReport label={reportTitleOf(state.report)} />
           )}
         </Ga4Shell>
 

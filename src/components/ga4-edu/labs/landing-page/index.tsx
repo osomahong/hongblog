@@ -8,7 +8,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { Ga4Shell } from "../../app/Ga4Shell";
+import { Ga4Shell, Ga4OtherReport, reportTitleOf } from "../../app/Ga4Shell";
 import { Ga4ReportTable } from "../../app/Ga4ReportTable";
 import { Ga4ComparisonPanel } from "../../app/Ga4ComparisonPanel";
 import { RingProvider, Ga4Guide } from "../../app/tour";
@@ -169,7 +169,7 @@ export default function LandingPageLab() {
           state={state}
           pinned={pinned}
           onTogglePin={() => setPinned((v) => !v)}
-          reportTitle={state.report === "landing-page" ? "방문 페이지" : "보고서 개요"}
+          reportTitle={reportTitleOf(state.report)}
           onOpenReport={(id) => apply({ report: id, openMenu: null })}
           onToggleMenu={(menu) => apply({ openMenu: menu })}
           onPickDate={(key: DateRangeKey) => apply({ dateRange: key, openMenu: null })}
@@ -193,8 +193,10 @@ export default function LandingPageLab() {
               markRow={done ? rowKey(PAID_SEARCH, PAID_BEST_PAGE) : null}
               showComparison={applied}
             />
-          ) : (
+          ) : state.report === "reports-overview" ? (
             <ReportsOverview />
+          ) : (
+            <Ga4OtherReport label={reportTitleOf(state.report)} />
           )}
         </Ga4Shell>
 

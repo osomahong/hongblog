@@ -9,7 +9,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { Ga4Shell } from "../../app/Ga4Shell";
+import { Ga4Shell, Ga4OtherReport, reportTitleOf } from "../../app/Ga4Shell";
 import { Ga4Overview } from "../../app/Ga4Overview";
 import { RingProvider, Ga4Guide } from "../../app/tour";
 import { INITIAL_STATE, type Ga4State, type TourStep, type DateRangeKey } from "../../app/types";
@@ -132,11 +132,12 @@ export default function UsersSessionsEventsLab() {
           state={state}
           pinned={pinned}
           onTogglePin={() => setPinned((v) => !v)}
-          reportTitle="보고서 개요"
+          reportTitle={reportTitleOf(state.report)}
           onOpenReport={(id) => apply({ report: id, openMenu: null })}
           onToggleMenu={(menu) => apply({ openMenu: menu })}
           onPickDate={(key: DateRangeKey) => apply({ dateRange: key, openMenu: null })}
         >
+          {state.report === "reports-overview" ? (
           <Ga4Overview
             cards={buildCards(state.dateRange)}
             eventRows={buildEventRows(state.dateRange)}
@@ -145,6 +146,9 @@ export default function UsersSessionsEventsLab() {
             onSelect={(key) => apply({ selectedRow: key })}
             markKey={done ? REAL_ACTION_EVENT : null}
           />
+          ) : (
+            <Ga4OtherReport label={reportTitleOf(state.report)} />
+          )}
         </Ga4Shell>
 
         <Ga4Guide

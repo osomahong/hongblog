@@ -9,7 +9,7 @@
  */
 
 import { useEffect, useState } from "react";
-import { Ga4Shell } from "../../app/Ga4Shell";
+import { Ga4Shell, Ga4OtherReport, reportTitleOf } from "../../app/Ga4Shell";
 import { Ga4ReportTable } from "../../app/Ga4ReportTable";
 import { Ga4LineCard, Ga4BarCard } from "../../app/Ga4Charts";
 import { RingProvider, Ga4Guide } from "../../app/tour";
@@ -35,11 +35,6 @@ import {
 
 const LAB_ID = "page-and-screen-report";
 const LAB_TITLE = "페이지 및 화면 보고서에서 조회수 상위 콘텐츠 찾기";
-
-const REPORT_TITLES: Record<string, string> = {
-  "reports-overview": "보고서 개요",
-  "page-and-screen": "페이지 및 화면: 페이지 경로 및 화면 클래스",
-};
 
 /** 이 편은 기간을 건드리지 않는다. 콘텐츠 점검의 기본값인 28일로 열어 둔다 */
 const START_STATE: Ga4State = {
@@ -140,7 +135,7 @@ export default function PageAndScreenLab() {
   const reportTitle =
     state.report === "page-and-screen"
       ? `페이지 및 화면: ${dimensionLabel}`
-      : (REPORT_TITLES[state.report] ?? "보고서");
+      : reportTitleOf(state.report);
 
   return (
     <RingProvider value={ring}>
@@ -188,8 +183,10 @@ export default function PageAndScreenLab() {
                 markRow={done ? REPEAT_TITLE : null}
               />
             </>
-          ) : (
+          ) : state.report === "reports-overview" ? (
             <ReportsOverview />
+          ) : (
+            <Ga4OtherReport label={reportTitleOf(state.report)} />
           )}
         </Ga4Shell>
 
