@@ -7,7 +7,9 @@ import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
-const PAGE_TITLE = "Class | 강의 & 개념 학습";
+// 접미사는 layout의 title template이 "| 준이아빠클래스"로 붙인다.
+// 여기에 "Class"를 다시 넣으면 구분자 세 칸짜리 제목이 된다.
+const PAGE_TITLE = "AI마케팅 개념학습";
 const PAGE_DESCRIPTION = "체계적으로 정리된 개념 강의로 기초부터 고급까지 학습하세요. 바이브코딩, 디지털 마케팅, 웹 기술, 클로드 교육의 핵심 개념을 쉽게 이해할 수 있습니다.";
 const PAGE_OG_IMAGE = absoluteUrl("/og-default.png");
 

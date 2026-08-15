@@ -8,9 +8,8 @@ import { NeoTagBadge } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
 import { getAllTagsWithId, getContentByTag } from "@/lib/content";
 import { ViewTracker } from "@/components/ViewTracker";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, SITE_NAME, MIN_TAG_ITEMS_FOR_INDEX } from "@/lib/constants";
 import { classHref } from "@/lib/links";
-import { MIN_TAG_ITEMS_FOR_INDEX } from "@/lib/constants";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -43,7 +42,10 @@ export async function generateMetadata(
   const { posts, classes } = getContentByTag(tagName);
   const totalCount = posts.length + classes.length;
 
-  const title = `#${tagName} 태그 인사이트와 클래스 ${totalCount}건 모음 | 준이아빠 디지털 마케팅 블로그`;
+  // 브랜드는 루트 layout의 title template이 붙인다. 여기에 다시 넣으면 접미사가 두 번 붙는다.
+  const title = `#${tagName} 태그 인사이트와 클래스 ${totalCount}건 모음`;
+  // og와 twitter의 title에는 template이 적용되지 않으므로 브랜드를 직접 붙인다.
+  const socialTitle = `${title} | ${SITE_NAME}`;
   const description = totalCount > 0
     ? `${tagName} 태그가 붙은 인사이트 ${posts.length}건과 클래스 ${classes.length}건을 한곳에 모았습니다. 디지털 마케팅, GA4, GTM, AI 활용 관점에서 ${tagName} 주제를 입문자도 이해하기 쉽게 풀어 드립니다.`
     : `${tagName} 태그 관련 콘텐츠 모음입니다. 디지털 마케팅, AI, 데이터 분석 주제에서 ${tagName} 키워드를 다룬 글을 모았습니다.`;
@@ -58,7 +60,7 @@ export async function generateMetadata(
         ? { index: false, follow: true }
         : undefined,
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       url: canonical,
       type: "website",
@@ -66,7 +68,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: socialTitle,
       description,
       images: [`${SITE_URL}/og-default.png`],
     },
@@ -97,7 +99,7 @@ export default async function TagDetailPage(
     inLanguage: "ko",
     isPartOf: {
       "@type": "WebSite",
-      name: "준이아빠 디지털 마케팅 블로그",
+      name: SITE_NAME,
       url: SITE_URL,
     },
     hasPart: [
