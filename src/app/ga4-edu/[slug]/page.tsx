@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Monitor, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
-import { LabLoader } from "@/components/ga4-edu/lab/LabLoader";
+import { LabStage } from "@/components/ga4-edu/lab/LabStage";
 import { SubscribeGate } from "@/components/ga4-edu/SubscribeGate";
 import { StepsSection, FaqSection } from "@/components/ga4-edu/TutorialSections";
 import { BottomHero } from "@/components/ga4-edu/BottomHero";
@@ -176,24 +176,10 @@ export default async function Ga4EduTutorialPage(props: {
             <SubscribeGate slug={t.slug} title={t.title} teaches={t.teaches ?? []} />
           </div>
         ) : (
-          <>
-            <div className="lg:hidden ga4-wrap">
-              <div className="ga4-pc-only">
-                <span className="ga4-pc-icon" aria-hidden>
-                  <Monitor className="w-6 h-6" strokeWidth={1.5} />
-                </span>
-                <h2>PC에서 여세요</h2>
-                <p>GA4 화면을 그대로 옮긴 실습이라 가로 폭이 넓은 화면이 필요합니다.</p>
-                <p className="ga4-pc-url">
-                  {SITE_URL.replace(/^https?:\/\//, "")}
-                  {tutorialHref(t.slug)}
-                </p>
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <LabLoader slug={t.slug} />
-            </div>
-          </>
+          <LabStage
+            slug={t.slug}
+            url={`${SITE_URL.replace(/^https?:\/\//, "")}${tutorialHref(t.slug)}`}
+          />
         )}
       </div>
 

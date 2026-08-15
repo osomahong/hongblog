@@ -35,7 +35,9 @@ interface NavCtaButtonsProps {
 
 /** 상단 내비, 모바일 메뉴 공용 뉴스레터·커뮤니티 CTA 버튼 쌍 */
 function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps) {
-  const labelClass = compactLabels ? "hidden lg:inline" : undefined;
+  // 내비에 GA4 Edu가 들어오면서 1024~1279 구간의 항목이 가로로 넘쳤다.
+  // 그 구간에서는 두 CTA를 아이콘만 남긴다. 두 버튼 모두 aria-label이 있어 이름은 남는다.
+  const labelClass = compactLabels ? "hidden xl:inline" : undefined;
   const baseClass = "inline-flex items-center gap-1.5 px-3 py-2 text-xs font-black transition-all";
   const shapeClass = apTheme
     ? "rounded-[10px] border"
