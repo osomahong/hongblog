@@ -62,6 +62,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/custom-event-and-key-event"),
     { loading: LoadingBox }
   ),
+  "custom-dimension-registration": dynamic(
+    () => import("../labs/custom-dimension-registration"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

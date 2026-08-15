@@ -106,6 +106,13 @@ export interface Ga4State {
   /** 한 번이라도 표시했던 이벤트 이름. 주요 이벤트 목록에서 줄이 사라지지 않게 한다 */
   keyEventsTouched?: string[];
 
+  /** 아래 셋은 맞춤 정의를 다루는 편에서만 쓴다. 만들기 패널의 초안 값은 위 create* 자리를 같이 쓴다 */
+  customDims?: string[];
+  /** 더보기 메뉴가 열려 있는 측정기준 이름 */
+  dimMenuFor?: string | null;
+  /** 보관 처리한 측정기준 이름 */
+  archivedDims?: string[];
+
   /** 아래 다섯은 필터를 거는 편에서만 쓴다 */
   filterOpen?: boolean;
   filterDimension?: string | null;

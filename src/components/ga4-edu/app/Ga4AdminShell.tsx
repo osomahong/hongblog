@@ -62,13 +62,13 @@ export function adminTitleOf(id: string): string {
 }
 
 /** 이 편이 다루지 않는 설정 화면으로 옮겼을 때 보여 주는 안내 */
-export function Ga4OtherAdmin({ label }: { label: string }) {
+export function Ga4OtherAdmin({ label, backTo = "이벤트" }: { label: string; backTo?: string }) {
   return (
     <div className="ga4-other-report">
       <p className="ga4-other-report-title">{label}</p>
       <p className="ga4-other-report-desc">
-        이 편에서는 이 설정을 다루지 않습니다. 왼쪽 메뉴에서 이벤트를 다시 누르면 하던 자리에서
-        이어집니다.
+        이 편에서는 이 설정을 다루지 않습니다. 왼쪽 메뉴에서 {backTo}를 다시 누르면 하던
+        자리에서 이어집니다.
       </p>
     </div>
   );
