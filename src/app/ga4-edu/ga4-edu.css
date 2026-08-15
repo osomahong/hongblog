@@ -2502,3 +2502,178 @@ main:has(> .ga4-root) > .ga4-root {
   font-size: 11px;
   color: var(--ga4-muted);
 }
+
+/* =========================================================================
+ * 보고서 맞춤설정 패널
+ * 오른쪽 위 연필을 누르면 오른쪽에서 밀려 나온다.
+ * 실제 Google Analytics 화면처럼 측정항목을 더하고 빼서 적용한다.
+ * ========================================================================= */
+
+.ga4-head-pencil {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.ga4-head-pencil:hover { background: #f1f3f4; }
+
+.ga4-cz {
+  width: 330px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  box-shadow: -2px 0 8px rgba(60, 64, 67, 0.1);
+}
+
+.ga4-cz-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-cz-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-cz-close {
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 4px;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-cz-close:hover { color: var(--ga4-ink); }
+
+.ga4-cz-body {
+  flex: 1;
+  min-height: 0;
+  padding: 16px 18px 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ga4-cz-section {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-cz-note {
+  margin: 0 0 22px;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+
+.ga4-cz-list {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
+.ga4-cz-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+.ga4-cz-list li span { flex: 1; min-width: 0; }
+.ga4-cz-list li button {
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-cz-list li button:hover { color: var(--ga4-ink); }
+.ga4-cz-grip { color: #9aa0a6; cursor: grab; }
+
+.ga4-cz-add-wrap { position: relative; }
+.ga4-cz-add {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-blue);
+  cursor: pointer;
+}
+.ga4-cz-add:hover { background: #f8f9fa; }
+.ga4-cz-add-caret { margin-left: auto; color: var(--ga4-muted); }
+
+/* 목록은 추가 단추 바로 아래에 붙는다 */
+.ga4-cz-menu {
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  min-width: 0;
+}
+.ga4-cz-empty {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+
+.ga4-cz-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--ga4-line);
+}
+.ga4-cz-cancel,
+.ga4-cz-apply {
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ga4-cz-cancel {
+  border: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  color: var(--ga4-blue);
+}
+.ga4-cz-cancel:hover { background: #f8f9fa; }
+.ga4-cz-apply {
+  border: 1px solid var(--ga4-blue);
+  background: var(--ga4-blue);
+  color: #fff;
+}
+.ga4-cz-apply:hover { background: #1765cc; }
+
+/* 맞춤설정 패널이 열려 있는 동안에는 도우미를 왼쪽으로 옮긴다.
+ * 패널이 오른쪽에서 나오기 때문에 그대로 두면 적용 단추를 덮는다.
+ * 화면 고정일 때는 오른쪽 기준으로 붙어 있어서 그 값도 함께 풀어 준다. */
+.ga4-stage-panel .ga4-guide {
+  margin-right: auto;
+  margin-left: 22px;
+}
+.ga4-stage-panel.ga4-stage-pinned .ga4-guide {
+  right: auto;
+  left: 22px;
+}

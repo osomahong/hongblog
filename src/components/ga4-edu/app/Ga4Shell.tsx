@@ -72,6 +72,10 @@ interface Ga4ShellProps {
   /** 화면 고정(전체 화면) 상태와 토글 */
   pinned: boolean;
   onTogglePin: () => void;
+  /** 오른쪽 위 연필로 맞춤설정을 여는 편에서만 넘긴다 */
+  onOpenCustomize?: () => void;
+  /** 맞춤설정 패널. 열려 있을 때만 넘긴다 */
+  customizePanel?: ReactNode;
   children: ReactNode;
 }
 
@@ -86,6 +90,8 @@ export function Ga4Shell({
   reportTitle,
   pinned,
   onTogglePin,
+  onOpenCustomize,
+  customizePanel,
   children,
 }: Ga4ShellProps) {
   return (
@@ -134,13 +140,13 @@ export function Ga4Shell({
               </span>
               <ChevronDown className="w-4 h-4 ga4-title-caret" strokeWidth={2} aria-hidden />
             </h2>
-            <span className="ga4-head-icons" aria-hidden>
-              <StickyNote className="w-4 h-4" strokeWidth={1.7} />
-              <Columns2 className="w-4 h-4" strokeWidth={1.7} />
-              <TrendingUp className="w-4 h-4" strokeWidth={1.7} />
-              <Share2 className="w-4 h-4" strokeWidth={1.7} />
-              <ChartLine className="w-4 h-4" strokeWidth={1.7} />
-              <Pencil className="w-4 h-4" strokeWidth={1.7} />
+            <span className="ga4-head-icons">
+              <StickyNote className="w-4 h-4" strokeWidth={1.7} aria-hidden />
+              <Columns2 className="w-4 h-4" strokeWidth={1.7} aria-hidden />
+              <TrendingUp className="w-4 h-4" strokeWidth={1.7} aria-hidden />
+              <Share2 className="w-4 h-4" strokeWidth={1.7} aria-hidden />
+              <ChartLine className="w-4 h-4" strokeWidth={1.7} aria-hidden />
+              <CustomizeButton onOpen={onOpenCustomize} />
             </span>
           </div>
 
@@ -152,8 +158,32 @@ export function Ga4Shell({
 
           <div className="ga4-report-canvas">{children}</div>
         </div>
+
+        {customizePanel}
       </div>
     </div>
+  );
+}
+
+/**
+ * 오른쪽 위 연필. 맞춤설정을 다루는 편에서만 눌린다.
+ * 다른 편에서는 실제 화면처럼 아이콘만 놓인다.
+ */
+function CustomizeButton({ onOpen }: { onOpen?: () => void }) {
+  const ring = useRing("customize-btn");
+
+  if (!onOpen) return <Pencil className="w-4 h-4" strokeWidth={1.7} aria-hidden />;
+
+  return (
+    <button
+      type="button"
+      data-tour="customize-btn"
+      onClick={onOpen}
+      className={`ga4-head-pencil${ring}`}
+      aria-label="보고서 맞춤설정"
+    >
+      <Pencil className="w-4 h-4" strokeWidth={1.7} aria-hidden />
+    </button>
   );
 }
 

@@ -34,6 +34,13 @@ export interface Ga4State {
   selectedRow: string | null;
   /** 열려 있는 드롭다운 */
   openMenu: "date" | "dimension" | null;
+  /**
+   * 아래 둘은 보고서 맞춤설정을 다루는 편에서만 쓴다.
+   * 쓰지 않는 편의 상태를 넓히지 않으려고 선택 항목으로 둔다.
+   */
+  customizeOpen?: boolean;
+  /** 맞춤설정에서 더한 측정항목 키. 표의 오른쪽 끝에 그 순서대로 붙는다 */
+  addedMetrics?: string[];
 }
 
 export const INITIAL_STATE: Ga4State = {

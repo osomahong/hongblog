@@ -26,6 +26,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/page-and-screen"),
     { loading: LoadingBox }
   ),
+  "engagement-rate-and-bounce": dynamic(
+    () => import("../labs/engagement-and-bounce"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
