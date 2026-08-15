@@ -3260,3 +3260,205 @@ main:has(> .ga4-root) > .ga4-root {
   border-top-style: dashed;
   align-self: center;
 }
+
+/* =========================================================================
+ * 관리 화면
+ * 보고서 트리 대신 설정 메뉴가 들어오고, 본문은 표 하나와 단추 줄로 이뤄진다.
+ * ========================================================================= */
+
+.ga4-adminnav {
+  width: 250px;
+  flex-shrink: 0;
+  padding: 16px 10px;
+  border-right: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  overflow-y: auto;
+}
+.ga4-adminnav-title {
+  margin: 0 0 12px 12px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-adminnav-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 6px 16px;
+  padding: 7px 10px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+.ga4-adminnav-group { margin-bottom: 14px; }
+.ga4-adminnav-grouphead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-adminnav-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px 8px 22px;
+  border: 1px solid transparent;
+  border-radius: 0 999px 999px 0;
+  background: none;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-adminnav-item:hover { background: #f1f3f4; }
+.ga4-adminnav-on { background: #e8f0fe; color: var(--ga4-blue); font-weight: 500; }
+
+.ga4-adminmain {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 28px;
+  overflow: auto;
+  background: var(--ga4-bg);
+}
+.ga4-admin-page {
+  padding: 20px 22px;
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.18);
+}
+.ga4-admin-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.ga4-admin-title { margin: 0; font-size: 17px; font-weight: 500; color: var(--ga4-ink); }
+.ga4-admin-actions { display: flex; gap: 8px; }
+.ga4-admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-blue);
+  white-space: nowrap;
+}
+.ga4-admin-btn-main { cursor: pointer; }
+.ga4-admin-btn-main:hover { background: #e8f0fe; }
+.ga4-admin-subhead {
+  margin: 20px 0 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-admin-hint,
+.ga4-admin-empty {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ga4-muted);
+}
+.ga4-admin-custom {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  background: #f8f9fa;
+}
+.ga4-admin-custom-head {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-admin-custom-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; align-items: baseline; }
+.ga4-admin-custom-name { font-size: 13px; color: var(--ga4-ink); }
+.ga4-admin-custom-note { font-size: 12px; color: var(--ga4-muted); }
+
+.ga4-admin-table { table-layout: auto; }
+.ga4-gth-admin {
+  padding: 10px 14px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  white-space: nowrap;
+}
+.ga4-gth-switch { text-align: center; }
+.ga4-gtd-switch { text-align: center; }
+.ga4-gtd-down { color: #d93025; }
+
+/* 주요 이벤트로 표시 스위치 */
+.ga4-switch {
+  display: inline-flex;
+  align-items: center;
+  width: 34px;
+  height: 14px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: #bdc1c6;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ga4-switch-knob {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-left: -1px;
+  border-radius: 50%;
+  background: var(--ga4-surface);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.4);
+  transition: transform 0.15s;
+}
+.ga4-switch-on { background: #aecbfa; }
+.ga4-switch-on .ga4-switch-knob { transform: translateX(15px); background: var(--ga4-blue); }
+
+/* 이벤트 만들기 패널 */
+.ga4-createpanel { width: 340px; }
+.ga4-panel-body-note { display: none; }
+.ga4-panel-label {
+  margin: 14px 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-panel-field { position: relative; }
+.ga4-panel-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-panel-field .ga4-menu { left: 0; right: auto; width: 100%; }
+.ga4-panel-cond { display: flex; gap: 6px; margin-bottom: 8px; }
+.ga4-panel-fixed {
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: #f1f3f4;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+.ga4-panel-note {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--ga4-muted);
+}

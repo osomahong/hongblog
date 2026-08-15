@@ -58,6 +58,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/geo-and-device"),
     { loading: LoadingBox }
   ),
+  "custom-event-and-key-event": dynamic(
+    () => import("../labs/custom-event-and-key-event"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

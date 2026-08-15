@@ -25,7 +25,7 @@ import {
 import { useRing } from "./tour";
 
 /** 아이콘 줄에서 지금 열려 있는 영역 */
-export type Ga4Section = "reports" | "explore";
+export type Ga4Section = "reports" | "explore" | "admin";
 
 interface Ga4TopBarProps {
   /** 계정 이름. 속성 위 작은 줄에 놓인다 */
@@ -111,6 +111,7 @@ interface Ga4IconRailProps {
 export function Ga4IconRail({ section, onOpenSection }: Ga4IconRailProps) {
   const reportsRing = useRing("iconrail:reports");
   const exploreRing = useRing("iconrail:explore");
+  const adminRing = useRing("iconrail:admin");
 
   return (
     <nav className="ga4-iconrail" aria-label="Analytics 메뉴">
@@ -144,7 +145,14 @@ export function Ga4IconRail({ section, onOpenSection }: Ga4IconRailProps) {
       <button type="button" className="ga4-iconrail-btn" aria-label="계정 진단">
         <CircleCheck className="w-5 h-5" strokeWidth={1.7} aria-hidden />
       </button>
-      <button type="button" className="ga4-iconrail-btn" aria-label="관리">
+      <button
+        type="button"
+        data-tour="iconrail:admin"
+        onClick={() => onOpenSection?.("admin")}
+        className={`ga4-iconrail-btn${section === "admin" ? " ga4-iconrail-on" : ""}${adminRing}`}
+        aria-label="관리"
+        aria-current={section === "admin"}
+      >
         <Settings className="w-5 h-5" strokeWidth={1.7} aria-hidden />
       </button>
     </nav>

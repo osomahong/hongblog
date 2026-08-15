@@ -90,6 +90,22 @@ export interface Ga4State {
   /** 표에 반영된 비교 대상. null이면 비교를 걸지 않은 상태 */
   appliedBase?: CompareBase | null;
 
+  /**
+   * 아래 여섯은 관리 화면에서 이벤트를 만들고 주요 이벤트로 표시하는 편에서만 쓴다.
+   * 만들기 패널 안에서 고르는 중인 값은 draft로 두고, 만들기를 눌러야 목록에 올린다.
+   */
+  adminPage?: string;
+  createOpen?: boolean;
+  createName?: string | null;
+  createValue?: string | null;
+  createList?: "name" | "value" | null;
+  /** 만들어 둔 맞춤 이벤트 이름 */
+  customEvents?: string[];
+  /** 주요 이벤트로 표시한 이벤트 이름 */
+  keyEvents?: string[];
+  /** 한 번이라도 표시했던 이벤트 이름. 주요 이벤트 목록에서 줄이 사라지지 않게 한다 */
+  keyEventsTouched?: string[];
+
   /** 아래 다섯은 필터를 거는 편에서만 쓴다 */
   filterOpen?: boolean;
   filterDimension?: string | null;
