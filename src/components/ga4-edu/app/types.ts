@@ -41,6 +41,15 @@ export interface Ga4State {
   customizeOpen?: boolean;
   /** 맞춤설정에서 더한 측정항목 키. 표의 오른쪽 끝에 그 순서대로 붙는다 */
   addedMetrics?: string[];
+
+  /** 아래 넷은 비교를 다루는 편에서만 쓴다 */
+  comparisonOpen?: boolean;
+  comparisonDimension?: string | null;
+  comparisonValue?: string | null;
+  /** 적용을 눌러 표가 두 벌로 나뉜 상태인지 */
+  comparisonApplied?: boolean;
+  /** 비교 만들기 패널에서 펼쳐진 목록 */
+  comparisonList?: "dimension" | "value" | null;
 }
 
 export const INITIAL_STATE: Ga4State = {

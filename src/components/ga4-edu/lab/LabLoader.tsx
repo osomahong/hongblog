@@ -34,6 +34,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/users-sessions-events"),
     { loading: LoadingBox }
   ),
+  "landing-page-report": dynamic(
+    () => import("../labs/landing-page"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

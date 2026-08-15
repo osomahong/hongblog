@@ -76,6 +76,12 @@ interface Ga4ShellProps {
   onOpenCustomize?: () => void;
   /** 맞춤설정 패널. 열려 있을 때만 넘긴다 */
   customizePanel?: ReactNode;
+  /** 위쪽 비교 추가를 누를 수 있는 편에서만 넘긴다 */
+  onOpenComparison?: () => void;
+  /** 비교를 적용한 뒤 세그먼트 줄에 붙는 이름 */
+  comparisonChip?: string | null;
+  /** 비교 만들기 패널. 열려 있을 때만 넘긴다 */
+  comparisonPanel?: ReactNode;
   children: ReactNode;
 }
 
@@ -92,6 +98,9 @@ export function Ga4Shell({
   onTogglePin,
   onOpenCustomize,
   customizePanel,
+  onOpenComparison,
+  comparisonChip,
+  comparisonPanel,
   children,
 }: Ga4ShellProps) {
   return (
@@ -121,9 +130,8 @@ export function Ga4Shell({
             <span className="ga4-seg-chip">
               <UserRound className="w-3.5 h-3.5" strokeWidth={2} aria-hidden /> 모든 사용자
             </span>
-            <span className="ga4-tool-chip">
-              비교 추가 <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
-            </span>
+            {comparisonChip && <span className="ga4-seg-chip ga4-seg-chip-cmp">{comparisonChip}</span>}
+            <ComparisonChip onOpen={onOpenComparison} />
             <DateRange
               value={state.dateRange}
               open={state.openMenu === "date"}
@@ -160,8 +168,35 @@ export function Ga4Shell({
         </div>
 
         {customizePanel}
+        {comparisonPanel}
       </div>
     </div>
+  );
+}
+
+/**
+ * 위쪽 비교 추가. 비교를 다루는 편에서만 눌린다.
+ * 다른 편에서는 실제 화면처럼 글자만 놓인다.
+ */
+function ComparisonChip({ onOpen }: { onOpen?: () => void }) {
+  const ring = useRing("comparison-add");
+  const inner = (
+    <>
+      비교 추가 <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
+    </>
+  );
+
+  if (!onOpen) return <span className="ga4-tool-chip">{inner}</span>;
+
+  return (
+    <button
+      type="button"
+      data-tour="comparison-add"
+      onClick={onOpen}
+      className={`ga4-tool-chip ga4-tool-chip-btn${ring}`}
+    >
+      {inner}
+    </button>
   );
 }
 

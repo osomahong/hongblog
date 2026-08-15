@@ -25,6 +25,10 @@ export interface MetricColumn {
 export interface TableRow {
   name: string;
   values: Record<string, number>;
+  /** 비교를 걸었을 때 그 줄이 속한 비교 이름. 왼쪽에 열이 하나 더 생긴다 */
+  comparison?: string;
+  /** 고를 때 쓰는 식별자. 비교가 걸리면 같은 이름이 여러 줄이 되므로 따로 준다 */
+  key?: string;
 }
 
 export interface DimensionOption {
@@ -48,6 +52,8 @@ interface Ga4ReportTableProps {
   onSelectRow?: (name: string) => void;
   /** 정답 행에 표시를 남길 때 쓴다 */
   markRow?: string | null;
+  /** 비교를 걸었을 때만 넘긴다. 표 왼쪽에 비교 열이 생긴다 */
+  showComparison?: boolean;
 }
 
 const comma = (v: number) => v.toLocaleString("ko-KR");
@@ -65,6 +71,7 @@ export function Ga4ReportTable({
   selectedRow,
   onSelectRow,
   markRow,
+  showComparison,
 }: Ga4ReportTableProps) {
   const dimensionLabel =
     dimensionOptions.find((d) => d.key === dimension)?.label ?? dimensionOptions[0].label;
@@ -109,6 +116,7 @@ export function Ga4ReportTable({
               <th className="ga4-gth-check">
                 <span className="ga4-check ga4-check-all" aria-hidden />
               </th>
+              {showComparison && <th className="ga4-gth-cmp">비교</th>}
               <th className="ga4-gth-dim">
                 <span className="ga4-dim-wrap">
                   <button
@@ -153,6 +161,7 @@ export function Ga4ReportTable({
               <td className="ga4-gtd-check">
                 <span className="ga4-check ga4-check-on" aria-hidden />
               </td>
+              {showComparison && <td className="ga4-gtd-cmp">모든 사용자</td>}
               <td className="ga4-gtd-dim">합계</td>
               {columns.map((col) => (
                 <td key={col.key} className="ga4-gtd">
@@ -163,30 +172,34 @@ export function Ga4ReportTable({
             </tr>
 
             {rows.map((row, i) => {
+              const rowKey = row.key ?? row.name;
               const clickable = Boolean(onSelectRow);
               const cls = [
                 clickable ? "ga4-gtr-clickable" : "",
-                selectedRow === row.name ? "ga4-gtr-selected" : "",
-                markRow === row.name ? "ga4-gtr-marked" : "",
+                selectedRow === rowKey ? "ga4-gtr-selected" : "",
+                markRow === rowKey ? "ga4-gtr-marked" : "",
               ]
                 .filter(Boolean)
                 .join(" ");
               return (
                 <tr
-                  key={row.name}
+                  key={rowKey}
                   className={cls}
-                  onClick={clickable ? () => onSelectRow?.(row.name) : undefined}
+                  onClick={clickable ? () => onSelectRow?.(rowKey) : undefined}
                 >
                   <td className="ga4-gtd-check">
                     <span className="ga4-check ga4-check-on" aria-hidden />
                   </td>
+                  {showComparison && <td className="ga4-gtd-cmp">{row.comparison ?? ""}</td>}
                   <td className="ga4-gtd-dim">
                     <span className="ga4-grow-index">{i + 1}</span>
                     {row.name}
                   </td>
                   {columns.map((col) => {
                     const value = row.values[col.key] ?? 0;
-                    const sum = sums.get(col.key) ?? 0;
+                    // 비율의 분모는 합계 줄에 찍힌 값과 같아야 한다.
+                    // 비교를 걸면 줄이 두 벌이 되므로 단순 합을 쓰면 어긋난다
+                    const sum = col.total ?? sums.get(col.key) ?? 0;
                     return (
                       <td key={col.key} className="ga4-gtd">
                         {(col.format ?? comma)(value)}

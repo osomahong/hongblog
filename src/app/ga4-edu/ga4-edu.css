@@ -2792,3 +2792,172 @@ main:has(> .ga4-root) > .ga4-root {
   font-size: 12.5px;
   color: var(--ga4-blue);
 }
+
+/* =========================================================================
+ * 비교 만들기 패널과 비교 열
+ * 위쪽 비교 추가를 누르면 오른쪽에서 밀려 나온다.
+ * 적용하면 세그먼트 줄에 이름이 붙고 표 왼쪽에 비교 열이 생긴다.
+ * ========================================================================= */
+
+.ga4-tool-chip-btn {
+  border: 1px solid var(--ga4-line);
+  cursor: pointer;
+}
+.ga4-tool-chip-btn:hover { background: #f1f3f4; }
+
+/* 적용된 비교 이름. 모든 사용자 칩과 나란히 놓인다 */
+.ga4-seg-chip-cmp {
+  background: #e6f4ea;
+  color: #137333;
+}
+
+.ga4-cmp {
+  width: 330px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  box-shadow: -2px 0 8px rgba(60, 64, 67, 0.1);
+}
+
+.ga4-cmp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-cmp-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-cmp-close {
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 4px;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-cmp-close:hover { color: var(--ga4-ink); }
+
+.ga4-cmp-body {
+  flex: 1;
+  min-height: 0;
+  padding: 16px 18px 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.ga4-cmp-section {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+
+.ga4-cmp-cond {
+  padding: 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+}
+.ga4-cmp-include {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--ga4-blue-soft);
+  font-size: 12px;
+  color: #174ea6;
+}
+
+.ga4-cmp-field { position: relative; margin-bottom: 12px; }
+.ga4-cmp-field:last-child { margin-bottom: 0; }
+.ga4-cmp-label {
+  margin: 0 0 5px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+.ga4-cmp-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-cmp-select:hover:not(:disabled) { background: #f8f9fa; }
+.ga4-cmp-select:disabled { color: #9aa0a6; cursor: default; }
+.ga4-cmp-empty { color: #9aa0a6; }
+
+.ga4-cmp-menu {
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  min-width: 0;
+}
+
+.ga4-cmp-note {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ga4-muted);
+}
+
+.ga4-cmp-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--ga4-line);
+}
+.ga4-cmp-cancel,
+.ga4-cmp-apply {
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ga4-cmp-cancel {
+  border: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  color: var(--ga4-blue);
+}
+.ga4-cmp-cancel:hover { background: #f8f9fa; }
+.ga4-cmp-apply {
+  border: 1px solid var(--ga4-blue);
+  background: var(--ga4-blue);
+  color: #fff;
+}
+.ga4-cmp-apply:hover:not(:disabled) { background: #1765cc; }
+.ga4-cmp-apply:disabled {
+  border-color: var(--ga4-line);
+  background: #f1f3f4;
+  color: #9aa0a6;
+  cursor: default;
+}
+
+/* 표 왼쪽에 붙는 비교 열 */
+.ga4-gth-cmp,
+.ga4-gtd-cmp {
+  width: 150px;
+  padding: 10px 12px 10px 0;
+  text-align: left;
+  white-space: nowrap;
+}
+.ga4-gth-cmp {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-gtd-cmp { font-size: 13px; color: var(--ga4-muted); }
