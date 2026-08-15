@@ -44,6 +44,8 @@ export const REPORT_TREE: ReportNode[] = [
       { id: "traffic-acquisition", label: "트래픽 획득: 세션 기본 채널 그…" },
       { id: "landing-page", label: "방문 페이지" },
       { id: "page-and-screen", label: "페이지 및 화면: 페이지 경로 및…" },
+      { id: "events", label: "이벤트: 이벤트 이름" },
+      { id: "retention", label: "유지" },
       { id: "cohort", label: "사용자 획득 동질 집단" },
     ],
   },
@@ -70,6 +72,8 @@ const REPORT_TITLE: Record<string, string> = {
   "traffic-acquisition": "트래픽 획득: 세션 기본 채널 그룹(기본 채널 그룹)",
   "landing-page": "방문 페이지",
   "page-and-screen": "페이지 및 화면: 페이지 경로 및 화면 클래스",
+  events: "이벤트: 이벤트 이름",
+  retention: "유지",
   cohort: "사용자 획득 동질 집단",
   demographics: "사용자 속성",
   tech: "기술",
@@ -347,7 +351,7 @@ function DateRange({
               key={key}
               value={key}
               current={value}
-              ringName={key === "28d" ? "date-28d" : ""}
+              ringName={`date-${key}`}
               onPick={onPick}
             />
           ))}

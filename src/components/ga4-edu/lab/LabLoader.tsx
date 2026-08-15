@@ -46,6 +46,18 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/date-range-comparison"),
     { loading: LoadingBox }
   ),
+  "automatic-events": dynamic(
+    () => import("../labs/automatic-events"),
+    { loading: LoadingBox }
+  ),
+  "new-vs-returning": dynamic(
+    () => import("../labs/new-vs-returning"),
+    { loading: LoadingBox }
+  ),
+  "geo-and-device": dynamic(
+    () => import("../labs/geo-and-device"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
