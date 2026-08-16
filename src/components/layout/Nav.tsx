@@ -11,8 +11,9 @@ import {
 } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
-import { NEWSLETTER_URL, KAKAO_INQUIRY_URL } from "@/lib/constants";
+import { KAKAO_INQUIRY_URL } from "@/lib/constants";
 import { SearchDialog } from "@/components/search/SearchDialog";
+import { NewsletterModal } from "@/components/NewsletterModal";
 import type { CourseLink } from "@/lib/promotions";
 
 // Tags는 사이트 내 검색으로 대체해 내비에서 뺐다. /tags 페이지와 푸터 링크는
@@ -33,6 +34,7 @@ interface NavCtaButtonsProps {
 
 /** 상단 내비, 모바일 메뉴 공용 뉴스레터·커뮤니티 CTA 버튼 쌍 */
 function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps) {
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
   // 내비에 GA4 Edu가 들어오면서 1024~1279 구간의 항목이 가로로 넘쳤다.
   // 그 구간에서는 두 CTA를 아이콘만 남긴다. 두 버튼 모두 aria-label이 있어 이름은 남는다.
   const labelClass = compactLabels ? "hidden xl:inline" : undefined;
@@ -43,11 +45,12 @@ function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps)
 
   return (
     <>
-      <a
-        href={NEWSLETTER_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => sendGAEvent("click_newsletter", { location })}
+      <button
+        type="button"
+        onClick={() => {
+          sendGAEvent("click_newsletter", { location });
+          setNewsletterOpen(true);
+        }}
         aria-label="뉴스레터 구독하기"
         className={cn(
           baseClass,
@@ -58,7 +61,12 @@ function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps)
       >
         <Mail className="w-4 h-4 flex-shrink-0" />
         <span className={labelClass}>뉴스레터 구독하기</span>
-      </a>
+      </button>
+      <NewsletterModal
+        open={newsletterOpen}
+        onClose={() => setNewsletterOpen(false)}
+        signupSource={location}
+      />
       <a
         href={KAKAO_INQUIRY_URL}
         target="_blank"

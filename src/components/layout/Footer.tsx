@@ -140,6 +140,10 @@ export function Footer({ courses = [] }: { courses?: CourseLink[] }) {
         >
           <p className="text-xs text-gray-500">
             &copy; {new Date().getFullYear()} 준이아빠블로그. All rights reserved.
+            <span className="mx-2 text-gray-700">|</span>
+            <Link href="/privacy" className={cn("underline", linkHover)}>
+              개인정보처리방침
+            </Link>
           </p>
         </div>
       </div>
