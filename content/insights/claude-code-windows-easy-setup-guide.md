@@ -10,7 +10,7 @@ tags:
   - 바이브코딩
   - 자동화
 publishedAt: '2026-05-08T15:37:58.000Z'
-updatedAt: '2026-08-05T11:00:00.000Z'
+updatedAt: '2026-08-17T00:00:00.000Z'
 highlights:
   - 설치를 시작하기 전에 유료 구독부터 확인합니다. 무료 계정으로는 클로드 코드에 로그인되지 않습니다.
   - >-
@@ -88,6 +88,22 @@ winget install --id Git.Git -e --accept-package-agreements --accept-source-agree
 
 **Git for Windows는 선택 사항입니다.** Git이 없으면 클로드 코드는 PowerShell 도구로 명령을 실행하고, Git이 있으면 Git Bash로 Bash 도구를 씁니다. 다만 뒤에서 다룰 데스크톱 앱을 쓸 계획이라면 Git이 반드시 필요합니다.
 
+## winget으로 설치하는 방법
+
+앞의 통합 명령 대신 winget으로 클로드 코드 본체를 깔 수도 있습니다. 공식 문서가 함께 안내하는 방식입니다.
+
+```powershell
+winget install Anthropic.ClaudeCode
+```
+
+한 가지 차이를 알고 고르셔야 합니다. **설치 스크립트로 깔면 새 버전이 나올 때 백그라운드에서 알아서 갱신되지만, winget으로 깔면 자동 갱신이 되지 않습니다.** 이때는 아래 명령을 가끔 직접 실행해야 합니다.
+
+```powershell
+winget upgrade Anthropic.ClaudeCode
+```
+
+클로드 코드가 실행 중이면 윈도우가 실행 파일을 잠가서 갱신이 실패할 수 있습니다. 그런 경우에는 클로드 코드를 종료하고 다시 시도하면 됩니다. 처음 설치하시는 분께는 자동 갱신이 되는 설치 스크립트 쪽을 권합니다.
+
 ## 설치 확인과 첫 실행
 
 새로 연 PowerShell 창에서 아래를 입력합니다.
@@ -96,7 +112,7 @@ winget install --id Git.Git -e --accept-package-agreements --accept-source-agree
 claude --version
 ```
 
-`2.1.211 (Claude Code)`처럼 버전 번호와 이름이 나오면 설치가 끝난 것입니다. 숫자는 설치 시점에 따라 달라집니다. 설치 상태를 더 자세히 보고 싶다면 `claude doctor`를 실행하면 설정 오류까지 함께 점검해 줍니다.
+`2.1.233 (Claude Code)`처럼 버전 번호와 이름이 나오면 설치가 끝난 것입니다. 숫자는 설치 시점에 따라 달라지며, 2026년 8월 17일 확인 시점의 최신 버전이 2.1.233이었습니다. 설치 상태를 더 자세히 보고 싶다면 `claude doctor`를 실행하면 설정 오류까지 함께 점검해 줍니다.
 
 이제 실행합니다.
 
@@ -177,6 +193,8 @@ claude
 - 창을 새로 연 뒤 `claude --version`으로 확인하고, 로그인과 `/config` 한국어 설정까지 마치면 바로 쓸 수 있습니다.
 
 윈도우의 winget은 마이크로소프트가 공식으로 제공하는 설치 도구입니다. 한 번 익혀 두면 다른 개발 도구도 같은 방식으로 깔 수 있습니다. 우선 여기까지 마치고 클로드 코드와 첫 대화를 나눠 보신 다음, 스킬이나 플러그인 같은 확장은 필요할 때 골라서 추가하셔도 충분합니다.
+
+OpenAI 쪽 도구도 함께 써 보고 싶다면 [코덱스 CLI 윈도우 세팅 가이드](/insights/codex-cli-windows-easy-setup-guide)를 이어서 보세요. 같은 작업을 두 도구에 시켜 결과를 비교한 기록은 [코덱스 CLI와 클로드 코드 비교](/insights/codex-cli-vs-claude-code)에 정리해 두었습니다.
 
 ## Sources
 
