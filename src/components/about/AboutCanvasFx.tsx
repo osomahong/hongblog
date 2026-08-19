@@ -8,7 +8,6 @@ import {
   dissolveElement,
   glitchElement,
   renderNodeToPngDataUrl,
-  scanInElement,
   supportsHtmlInCanvas,
 } from "@/lib/canvas-fx";
 
@@ -16,9 +15,7 @@ import {
 // 1) 디지털 명함 저장/복사: 실물 명함 디자인(미니멀, 하늘색 포인트)을 그대로 옮기되
 //    전화번호와 주소는 빼고 블로그, 링크드인 QR을 넣는다
 // 2) 경력 수치 카운트업 + 도달 시 글리치
-// 3) 프로필 사진 이스터에그 (호버 글리치, 클릭 시 흩어졌다 재조립)
-// 4) 히어로 강조문 글리치 (첫 진입 1회)
-// 5) 소개 섹션 카드 스캔 등장 (스크롤 진입 1회)
+// 3) 프로필 사진 이스터에그 (클릭 시 흩어졌다 재조립)
 // 명함 기능은 사용자가 직접 누르는 기능이라 회선 게이트를 타지 않고,
 // 연출들은 기존 게이트를 그대로 따른다.
 
@@ -173,61 +170,21 @@ export function AboutCanvasFx({ blogUrl, linkedinUrl }: AboutCanvasFxProps) {
       cleanups.push(() => io.disconnect());
     }
 
-    // 5) 이후 소개 섹션 카드들 스캔 등장 (스크롤 진입 1회)
-    const laterCards = Array.from(document.querySelectorAll<HTMLElement>("section"))
-      .filter((s) => {
-        const h2 = s.querySelector("h2")?.textContent?.trim();
-        return h2 && h2 !== "경력";
-      })
-      // 카드 본문은 섹션의 마지막 div (틸트 래퍼 또는 카드 자체)
-      .map((s) => {
-        const divs = s.querySelectorAll<HTMLElement>(":scope > div");
-        return divs.length ? divs[divs.length - 1] : null;
-      })
-      .filter((el): el is HTMLElement => Boolean(el));
-    if (laterCards.length) {
-      const seen = new WeakSet<HTMLElement>();
-      const io = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            const el = entry.target as HTMLElement;
-            if (!entry.isIntersecting || seen.has(el)) continue;
-            seen.add(el);
-            void scanInElement(el);
-            io.unobserve(el);
-          }
-        },
-        { threshold: 0.25 }
-      );
-      laterCards.forEach((c) => io.observe(c));
-      cleanups.push(() => io.disconnect());
-    }
-
     // 3) 프로필 사진 이스터에그
     const photo = document.querySelector<HTMLElement>(
       "section img[alt*='프로필']"
     )?.parentElement;
     if (photo) {
-      const onEnter = () => void glitchElement(photo);
       const onClick = async () => {
         if (photo.dataset.fxRunning === "1") return;
         await dissolveElement(photo);
         await assembleElement(photo);
       };
-      photo.addEventListener("mouseenter", onEnter);
       photo.addEventListener("click", onClick);
       photo.style.cursor = "pointer";
       cleanups.push(() => {
-        photo.removeEventListener("mouseenter", onEnter);
         photo.removeEventListener("click", onClick);
       });
-    }
-
-    // 4) 히어로 강조문 글리치 (첫 진입 1회)
-    const emphasis = document.querySelector<HTMLElement>("h1 span");
-    if (emphasis) {
-      const timer = window.setTimeout(() => void glitchElement(emphasis), 900);
-      cleanups.push(() => window.clearTimeout(timer));
     }
 
     return () => cleanups.forEach((fn) => fn());

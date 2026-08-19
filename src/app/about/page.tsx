@@ -346,7 +346,6 @@ export default async function AboutPage() {
                 <div className="font-bold text-sm text-black mb-1">
                   {stat.label}
                 </div>
-                <div className="text-xs text-gray-500">{stat.sub}</div>
               </NeoTiltCard>
             );
           })}
