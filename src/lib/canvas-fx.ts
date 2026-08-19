@@ -126,6 +126,13 @@ interface NetworkInfo {
  */
 function environmentAllowsFx(): boolean {
   if (typeof navigator === "undefined") return false;
+  // 소유자 테스트용 강제 스위치. 콘솔에서 localStorage.setItem("canvas-fx-force", "1")
+  // 을 실행하면 그 브라우저에서만 아래 게이트를 전부 무시한다.
+  try {
+    if (window.localStorage.getItem("canvas-fx-force") === "1") return true;
+  } catch {
+    // 저장소가 막힌 환경이면 일반 게이트로 진행한다
+  }
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
   const conn = (navigator as { connection?: NetworkInfo }).connection;
   if (conn) {
