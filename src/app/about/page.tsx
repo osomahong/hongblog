@@ -207,7 +207,7 @@ const milestones: {
   {
     year: "2022",
     title: "정보보안 소프트웨어 분석 환경 구축과 SEO",
-    orgs: [{ name: "지란지교" }],
+    orgs: [{ name: "지란지교", logo: "jiran" }],
   },
   {
     year: "2022",
@@ -233,7 +233,10 @@ const milestones: {
   {
     year: "2023",
     title: "면세, 아울렛 유통 분석 환경 구축",
-    orgs: [{ name: "신세계면세점" }, { name: "신세계사이먼" }],
+    orgs: [
+      { name: "신세계면세점", logo: "ssgdfs" },
+      { name: "신세계사이먼", logo: "ssgsimon" },
+    ],
   },
   {
     year: "2023",
@@ -246,12 +249,15 @@ const milestones: {
   {
     year: "2023",
     title: "호텔, 리조트 분석 프로젝트",
-    orgs: [{ name: "한화호텔앤리조트" }, { name: "더플라자" }],
+    orgs: [
+      { name: "한화호텔앤리조트" },
+      { name: "더플라자", logo: "theplaza" },
+    ],
   },
   {
     year: "2023",
     title: "글로벌 브랜드 한국 법인 분석",
-    orgs: [{ name: "스케쳐스코리아" }, { name: "ABC마트" }],
+    orgs: [{ name: "스케쳐스코리아" }, { name: "ABC마트", logo: "abcmart" }],
   },
   {
     year: "2023",
@@ -287,7 +293,7 @@ const milestones: {
   {
     year: "2024",
     title: "GA4 활용 교육",
-    orgs: [{ name: "이노션" }],
+    orgs: [{ name: "이노션", logo: "innocean" }],
   },
   {
     year: "2025",
@@ -317,12 +323,12 @@ const milestones: {
   {
     year: "2026",
     title: "클라우드 MSP 분석 환경과 데이터 파이프라인 구축",
-    orgs: [{ name: "베스핀글로벌" }],
+    orgs: [{ name: "베스핀글로벌", logo: "bespin" }],
   },
   {
     year: "2026",
     title: "호텔 GA4 구축 컨설팅",
-    orgs: [{ name: "네스트호텔" }],
+    orgs: [{ name: "네스트호텔", logo: "nesthotel" }],
   },
 ];
 
@@ -332,7 +338,7 @@ const milestonesByYear = milestones.reduce<Record<string, typeof milestones>>(
     (acc[m.year] ??= []).push(m);
     return acc;
   },
-  {}
+  {},
 );
 const milestoneYears = Object.keys(milestonesByYear).sort();
 
@@ -374,7 +380,8 @@ export default async function AboutPage() {
       "@type": "Occupation",
       name: "디지털 마케팅 컨설턴트, 데이터 분석가",
       occupationLocation: { "@type": "Country", name: "대한민국" },
-      skills: "AEO, GEO, LLM, AI 에이전트, GA4, GTM, BigQuery, LookerStudio, Python",
+      skills:
+        "AEO, GEO, LLM, AI 에이전트, GA4, GTM, BigQuery, LookerStudio, Python",
     },
     sameAs: [SITE_URL, LINKEDIN_PROFILE_URL],
   };
@@ -444,7 +451,10 @@ export default async function AboutPage() {
         >
           <div
             className="absolute top-0 right-0 w-24 sm:w-32 h-full bg-[#FF0033] hidden sm:block"
-            style={{ clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)", zIndex: 0 }}
+            style={{
+              clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
+              zIndex: 0,
+            }}
           />
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
@@ -463,10 +473,23 @@ export default async function AboutPage() {
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-black leading-tight mb-4">
               마케팅 성과를
               <br />
-              <span className="text-[#FF0033]">데이터로 확인하는</span> 일을 합니다.
+              <span className="text-[#FF0033]">데이터로 확인하는</span> 일을
+              합니다.
             </h1>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로, 오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는 <strong>홍승협(준이아빠)</strong>입니다. 공공기관, 면세 유통, 정보보안, 클라우드, 호텔, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
+              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로,
+              오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는{" "}
+              <strong>홍승협(준이아빠)</strong>입니다. 공공기관, 면세 유통,
+              정보보안, 클라우드, 호텔, 글로벌 브랜드 한국 법인 등{" "}
+              <strong>120곳 이상의 기업과 기관</strong>에서{" "}
+              <strong>
+                이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery
+                로우데이터 분석
+              </strong>
+              을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게
+              만드는 일입니다. 기업 담당자와 공공 아카데미에서{" "}
+              <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그
+              과정에서 정리한 실무 인사이트를 올리고 있습니다.
               <span className="block mt-2 text-xs text-gray-500">
                 경력 수치는 {CREDENTIAL_AS_OF} 기준
               </span>
@@ -481,10 +504,16 @@ export default async function AboutPage() {
               >
                 <BrandIcon name="linkedin" className="w-4 h-4 shrink-0" />
                 링크드인 프로필에서 경력 보기
-                <ExternalLink className="w-3.5 h-3.5 shrink-0" strokeWidth={2.2} />
+                <ExternalLink
+                  className="w-3.5 h-3.5 shrink-0"
+                  strokeWidth={2.2}
+                />
               </a>
               {/* 디지털 명함 저장/복사와 About 전용 연출 (지원 브라우저에서만 렌더) */}
-              <AboutCanvasFx blogUrl={SITE_URL} linkedinUrl={LINKEDIN_PROFILE_URL} />
+              <AboutCanvasFx
+                blogUrl={SITE_URL}
+                linkedinUrl={LINKEDIN_PROFILE_URL}
+              />
             </div>
           </div>
         </NeoTiltCard>
@@ -520,7 +549,9 @@ export default async function AboutPage() {
           })}
         </div>
         <p className="mt-4 text-xs text-gray-500">
-          경력, 고객사, 교육 수치는 {CREDENTIAL_AS_OF} 기준이며 공개 가능한 레퍼런스와 내부 기록을 근거로 집계했습니다. 공개 콘텐츠 편수는 현재 사이트에 올라와 있는 글의 수입니다.
+          경력, 고객사, 교육 수치는 {CREDENTIAL_AS_OF} 기준이며 공개 가능한
+          레퍼런스와 내부 기록을 근거로 집계했습니다. 공개 콘텐츠 편수는 현재
+          사이트에 올라와 있는 글의 수입니다.
         </p>
       </section>
 
@@ -597,18 +628,25 @@ export default async function AboutPage() {
           intensity={15}
         >
           <h2 className="text-xl sm:text-2xl font-black tracking-tight mb-6 border-b-4 border-black pb-2 flex items-center gap-3">
-            <span className="w-4 h-4 bg-[#FF0033] inline-block" />
-            이 일을 시작한 이유
+            <span className="w-4 h-4 bg-[#FF0033] inline-block" />이 일을 시작한
+            이유
           </h2>
           <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
             <p>
-              광고를 집행하고, 콘텐츠를 만들고, 캠페인을 설계해왔습니다. 그러면서 매번 같은 질문을 받았습니다. 무엇이 실제로 바뀌었는지 묻는 질문이었습니다.
+              광고를 집행하고, 콘텐츠를 만들고, 캠페인을 설계해왔습니다.
+              그러면서 매번 같은 질문을 받았습니다. 무엇이 실제로 바뀌었는지
+              묻는 질문이었습니다.
             </p>
             <p>
-              광고비를 얼마 썼고 클릭이 몇 번 일어났는지는 답할 수 있었습니다. 그래서 매출이 늘었는지, 어떤 소재가 그 매출을 만들었는지는 답하지 못했습니다.
+              광고비를 얼마 썼고 클릭이 몇 번 일어났는지는 답할 수 있었습니다.
+              그래서 매출이 늘었는지, 어떤 소재가 그 매출을 만들었는지는 답하지
+              못했습니다.
             </p>
             <p>
-              GA4와 GTM으로 그 사이를 메우는 일을 시작한 것이 지금 하는 일의 출발점입니다. 이후 AI와 기술의 변화를 마케팅 실무에 연결하는 쪽으로 범위를 넓혔고, 이 사이트에는 그 과정에서 정리한 것을 올리고 있습니다.
+              GA4와 GTM으로 그 사이를 메우는 일을 시작한 것이 지금 하는 일의
+              출발점입니다. 이후 AI와 기술의 변화를 마케팅 실무에 연결하는
+              쪽으로 범위를 넓혔고, 이 사이트에는 그 과정에서 정리한 것을 올리고
+              있습니다.
             </p>
           </div>
         </NeoTiltCard>
@@ -640,9 +678,13 @@ export default async function AboutPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <Icon className="w-4 h-4 text-primary shrink-0" />
-                      <h3 className="font-black text-sm sm:text-base">{item.title}</h3>
+                      <h3 className="font-black text-sm sm:text-base">
+                        {item.title}
+                      </h3>
                     </div>
-                    <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               );
@@ -690,7 +732,9 @@ export default async function AboutPage() {
                 <span className="bg-accent text-black text-xs font-bold px-2 py-0.5 border-2 border-black shrink-0">
                   {item.name}
                 </span>
-                <span className="text-sm sm:text-base text-gray-700">{item.desc}</span>
+                <span className="text-sm sm:text-base text-gray-700">
+                  {item.desc}
+                </span>
               </div>
             ))}
           </div>
@@ -759,22 +803,31 @@ export default async function AboutPage() {
         </div>
         <div className="space-y-4">
           <div className="bg-white border-4 border-black p-4 sm:p-5 neo-shadow-sm">
-            <h3 className="font-black text-base sm:text-lg mb-2">어떤 일을 의뢰할 수 있나요?</h3>
+            <h3 className="font-black text-base sm:text-lg mb-2">
+              어떤 일을 의뢰할 수 있나요?
+            </h3>
             <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-              GA4와 GTM 분석 환경 구축, 이벤트 택소노미 설계, BigQuery 로우데이터 분석,
-              AEO와 GEO 컨설팅, 기업 실무 교육을 의뢰할 수 있습니다.{" "}
-              <a href="mailto:hong@oso.ma" className="font-bold underline">hong@oso.ma</a>로
-              문의하면 됩니다.
+              GA4와 GTM 분석 환경 구축, 이벤트 택소노미 설계, BigQuery
+              로우데이터 분석, AEO와 GEO 컨설팅, 기업 실무 교육을 의뢰할 수
+              있습니다.{" "}
+              <a href="mailto:hong@oso.ma" className="font-bold underline">
+                hong@oso.ma
+              </a>
+              로 문의하면 됩니다.
             </p>
           </div>
           <div className="bg-white border-4 border-black p-4 sm:p-5 neo-shadow-sm">
-            <h3 className="font-black text-base sm:text-lg mb-2">강의나 교육은 어떻게 요청하나요?</h3>
+            <h3 className="font-black text-base sm:text-lg mb-2">
+              강의나 교육은 어떻게 요청하나요?
+            </h3>
             <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-              기업과 공공기관 출강, 온라인 강의 모두 가능합니다. KOTRA아카데미와 대학
-              강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다. 교육 대상과
-              인원, 희망 일정을{" "}
-              <a href="mailto:hong@oso.ma" className="font-bold underline">hong@oso.ma</a>로
-              보내 주시면 커리큘럼안으로 회신합니다.
+              기업과 공공기관 출강, 온라인 강의 모두 가능합니다. KOTRA아카데미와
+              대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다.
+              교육 대상과 인원, 희망 일정을{" "}
+              <a href="mailto:hong@oso.ma" className="font-bold underline">
+                hong@oso.ma
+              </a>
+              로 보내 주시면 커리큘럼안으로 회신합니다.
             </p>
           </div>
         </div>
