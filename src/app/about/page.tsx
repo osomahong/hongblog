@@ -545,17 +545,22 @@ export default async function AboutPage() {
           {milestoneYears.map((year) => (
             <div
               key={year}
-              className="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[9rem_1fr] gap-x-4 sm:gap-x-10 border-b-2 border-black/15 py-6 sm:py-8"
+              className="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[7rem_1fr] border-b-2 border-black"
             >
               <time
                 dateTime={year}
-                className="block font-black text-2xl sm:text-4xl leading-none tracking-tight self-start sm:sticky sm:top-24"
+                className="block font-black text-2xl sm:text-4xl leading-none tracking-tight self-start pt-6 sm:pt-7 pr-3 sm:pr-6 sm:text-right sm:sticky sm:top-24"
               >
                 {year}
               </time>
-              <ol className="space-y-5 sm:space-y-6">
+              <ol className="space-y-5 sm:space-y-6 border-l-2 border-black/25 pl-4 sm:pl-8 py-6 sm:py-7">
                 {milestonesByYear[year].map((m) => (
-                  <li key={m.title}>
+                  <li key={m.title} className="relative">
+                    {/* 축 위에 계약 하나를 찍는 노드 */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute -left-4 sm:-left-8 top-[0.4rem] w-3 h-3 -translate-x-1/2 rounded-full bg-white border-[3px] border-black"
+                    />
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
                       {m.orgs.map((org) => (
                         <span
@@ -623,7 +628,7 @@ export default async function AboutPage() {
             <span className="w-4 h-4 bg-black inline-block transform rotate-45" />
             하는 일
           </h2>
-          <div className="space-y-3">
+          <div className="grid sm:grid-cols-2 gap-3">
             {workItems.map((item, index) => {
               const Icon = item.icon;
               return (
