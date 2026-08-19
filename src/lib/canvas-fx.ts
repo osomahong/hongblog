@@ -583,3 +583,200 @@ export async function dissolvePageAndNavigate(navigate: () => void): Promise<voi
     overlay.remove();
   }
 }
+
+/**
+ * DOM 노드 하나를 화면에 보이지 않게 렌더해 PNG dataURL로 뜬다.
+ * 인용 카드처럼 HTML/CSS로 디자인한 결과물을 이미지로 내보내는 기능용이라
+ * 통신 환경 게이트는 타지 않는다 (사용자가 직접 요청한 기능이므로).
+ */
+export async function renderNodeToPngDataUrl(
+  node: HTMLElement,
+  cssWidth: number
+): Promise<string | null> {
+  if (!supportsHtmlInCanvas()) return null;
+  const dpr = Math.max(2, window.devicePixelRatio || 1); // 공유 이미지는 최소 2배 해상도
+  const cv = document.createElement("canvas");
+  cv.setAttribute("layoutsubtree", "");
+  // 화면 밖에 두면 렌더링이 생략되므로 화면 안에 두되, 그리기 전까지 투명이라 보이지 않는다
+  cv.style.cssText = `position:fixed;right:0;bottom:0;width:${cssWidth}px;height:10px;pointer-events:none;z-index:-1;`;
+  node.style.width = `${cssWidth}px`;
+  cv.appendChild(node);
+  document.body.appendChild(cv);
+  try {
+    await raceTimeout(
+      new Promise<void>((r) =>
+        requestAnimationFrame(() => requestAnimationFrame(() => r()))
+      ),
+      300
+    );
+    const h = Math.ceil(node.getBoundingClientRect().height);
+    if (!h) return null;
+    cv.width = Math.ceil(cssWidth * dpr);
+    cv.height = Math.ceil(h * dpr);
+    cv.style.height = `${h}px`;
+    await raceTimeout(
+      new Promise<void>((r) => requestAnimationFrame(() => r())),
+      150
+    );
+    const ctx = cv.getContext("2d") as DrawElementCtx | null;
+    if (!ctx || typeof ctx.drawElementImage !== "function") return null;
+    ctx.drawElementImage(node, 0, 0);
+    const data = ctx.getImageData(0, 0, cv.width, cv.height);
+    if (isBlank(data)) return null;
+    return cv.toDataURL("image/png");
+  } catch {
+    return null;
+  } finally {
+    cv.remove();
+  }
+}
+
+/**
+ * 요소의 잔상이 목표 지점으로 빨려 들어가며 사라진다. 원본은 그대로 둔다.
+ * 코드 복사처럼 "어디로 갔는지" 보여 주는 확인 연출용.
+ */
+export async function suckElement(el: HTMLElement, target: HTMLElement): Promise<void> {
+  if (el.dataset.fxRunning === "1") return;
+  el.dataset.fxRunning = "1";
+  try {
+    const cap = await captureInOverlay(el, 10);
+    if (!cap) return;
+    const { overlay, ctx, src, dpr, pad } = cap;
+    const elRect = el.getBoundingClientRect();
+    const tRect = target.getBoundingClientRect();
+    // 오버레이 좌표계(물리 픽셀)에서의 목표 중심
+    const tx = (tRect.left + tRect.width / 2 - (elRect.left - pad)) * dpr;
+    const ty = (tRect.top + tRect.height / 2 - (elRect.top - pad)) * dpr;
+
+    const dur = 520;
+    await raceTimeout(new Promise<void>((resolve) => {
+      const t0 = performance.now();
+      const tick = (t: number) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const ease = p * p; // 갈수록 빨라진다
+        ctx.clearRect(0, 0, overlay.width, overlay.height);
+        const scale = 1 - ease * 0.92;
+        const w = src.width * scale;
+        const h = src.height * scale;
+        // 원래 자리에서 목표 중심으로 옮겨 가며 줄어든다
+        const x = (1 - ease) * 0 + ease * (tx - w / 2);
+        const y = (1 - ease) * 0 + ease * (ty - h / 2);
+        ctx.globalAlpha = (1 - p) * 0.9;
+        ctx.drawImage(src, x, y, w, h);
+        ctx.globalAlpha = 1;
+        if (p < 1) requestAnimationFrame(tick);
+        else resolve();
+      };
+      requestAnimationFrame(tick);
+    }), dur + 600);
+    overlay.remove();
+  } finally {
+    delete el.dataset.fxRunning;
+  }
+}
+
+/**
+ * 요소가 중심에서 사방으로 짧게 터지는 파편 연출. 원본은 그대로 둔다.
+ * 클릭 직후 상태가 바뀌는 버튼(피드백 등)의 확인 피드백용.
+ */
+export async function burstElement(el: HTMLElement): Promise<void> {
+  if (el.dataset.fxRunning === "1") return;
+  el.dataset.fxRunning = "1";
+  try {
+    const cap = await captureInOverlay(el, 60);
+    if (!cap) return;
+    const { overlay, ctx, src, dpr } = cap;
+    const cx = src.width / 2;
+    const cy = src.height / 2;
+    const block = Math.max(4, Math.round(5 * dpr));
+    const cells: { x: number; y: number; vx: number; vy: number; spin: number }[] = [];
+    for (let y = 0; y < src.height; y += block) {
+      for (let x = 0; x < src.width; x += block) {
+        const ang = Math.atan2(y - cy, x - cx) + (Math.random() - 0.5) * 0.9;
+        const speed = (40 + Math.random() * 120) * dpr;
+        cells.push({
+          x,
+          y,
+          vx: Math.cos(ang) * speed,
+          vy: Math.sin(ang) * speed - 30 * dpr,
+          spin: Math.random(),
+        });
+      }
+    }
+    const dur = 480;
+    await raceTimeout(new Promise<void>((resolve) => {
+      const t0 = performance.now();
+      const tick = (t: number) => {
+        const p = Math.min(1, (t - t0) / dur);
+        ctx.clearRect(0, 0, overlay.width, overlay.height);
+        for (const c of cells) {
+          const size = block * (1 - p);
+          if (size < 0.6) continue;
+          ctx.globalAlpha = 1 - p;
+          ctx.drawImage(
+            src,
+            c.x,
+            c.y,
+            block,
+            block,
+            c.x + c.vx * p,
+            c.y + c.vy * p + 60 * dpr * p * p, // 중력
+            size,
+            size
+          );
+        }
+        ctx.globalAlpha = 1;
+        if (p < 1) requestAnimationFrame(tick);
+        else resolve();
+      };
+      requestAnimationFrame(tick);
+    }), dur + 600);
+    overlay.remove();
+  } finally {
+    delete el.dataset.fxRunning;
+  }
+}
+
+/**
+ * 요소가 위에서 아래로 스캔 띠와 함께 드러난다. 검색 결과 목록 등장용.
+ */
+export async function scanInElement(el: HTMLElement): Promise<void> {
+  if (el.dataset.fxRunning === "1") return;
+  el.dataset.fxRunning = "1";
+  try {
+    const cap = await captureInOverlay(el, 6);
+    if (!cap) return;
+    const { overlay, ctx, src, dpr } = cap;
+    const prevVisibility = el.style.visibility;
+    el.style.visibility = "hidden";
+
+    const dur = 450;
+    await raceTimeout(new Promise<void>((resolve) => {
+      const t0 = performance.now();
+      const tick = (t: number) => {
+        const p = Math.min(1, (t - t0) / dur);
+        const revealY = src.height * p;
+        ctx.clearRect(0, 0, overlay.width, overlay.height);
+        // 드러난 부분
+        ctx.drawImage(src, 0, 0, src.width, revealY, 0, 0, src.width, revealY);
+        // 경계의 스캔 띠
+        if (p < 1) {
+          const bandH = 14 * dpr;
+          const grad = ctx.createLinearGradient(0, revealY - bandH, 0, revealY + bandH);
+          grad.addColorStop(0, "rgba(0,200,150,0)");
+          grad.addColorStop(0.5, "rgba(0,220,170,0.5)");
+          grad.addColorStop(1, "rgba(0,200,150,0)");
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, revealY - bandH, overlay.width, bandH * 2);
+        }
+        if (p < 1) requestAnimationFrame(tick);
+        else resolve();
+      };
+      requestAnimationFrame(tick);
+    }), dur + 600);
+    el.style.visibility = prevVisibility;
+    overlay.remove();
+  } finally {
+    delete el.dataset.fxRunning;
+  }
+}
