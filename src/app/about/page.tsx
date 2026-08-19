@@ -326,6 +326,16 @@ const milestones: {
   },
 ];
 
+/** 연혁을 연도로 묶는다. 배열 순서를 유지하므로 같은 해 안에서도 입력 순서가 곧 계약 순서다 */
+const milestonesByYear = milestones.reduce<Record<string, typeof milestones>>(
+  (acc, m) => {
+    (acc[m.year] ??= []).push(m);
+    return acc;
+  },
+  {}
+);
+const milestoneYears = Object.keys(milestonesByYear).sort();
+
 export default async function AboutPage() {
   const counts = getContentCounts();
   const stats = buildStats(counts);
@@ -521,76 +531,65 @@ export default async function AboutPage() {
         </p>
       </section>
 
-      {/* 대표 이력 타임라인. 제3자가 검증할 수 있는 기관명과 로고를 계약 시작 연도 순으로 적는다.
-          시맨틱 ol/li와 텍스트 기관명을 유지해 검색엔진과 AI가 그대로 읽을 수 있게 한다 */}
+      {/* 연혁. 연도를 왼쪽 축에 고정하고 그해 계약을 한 열에 순서대로 쌓는다.
+          기업 연혁 페이지의 통용 구조로, 시맨틱 ol/li와 텍스트 기관명을 유지해
+          검색엔진과 AI가 계약 순서를 그대로 읽을 수 있게 한다 */}
       <section className="mb-12 sm:mb-16">
         <div className="flex items-center gap-2 mb-8">
           <div className="bg-black border-2 border-black p-1.5 rotate-2">
             <Briefcase className="w-5 h-5 text-white" />
           </div>
-          <h2 className="text-xl sm:text-2xl font-black">대표 프로젝트와 강의</h2>
+          <h2 className="text-xl sm:text-2xl font-black">연혁</h2>
         </div>
-        <ol className="relative">
-          {/* 중앙(모바일은 왼쪽) 세로선 */}
-          <div
-            aria-hidden="true"
-            className="absolute left-[19px] sm:left-1/2 top-0 bottom-0 w-1 bg-black sm:-translate-x-1/2"
-          />
-          {milestones.map((m, index) => {
-            const isLeft = index % 2 === 0;
-            return (
-              <li key={m.title} className="relative mb-8 sm:mb-10 last:mb-0">
-                {/* 노드 점 */}
-                <span
-                  aria-hidden="true"
-                  className="absolute left-[19px] sm:left-1/2 top-1 w-5 h-5 -translate-x-1/2 rounded-full bg-white border-4 border-black"
-                />
-                <div
-                  className={`ml-12 sm:ml-0 sm:w-[calc(50%-2.5rem)] ${
-                    isLeft ? "sm:mr-auto sm:text-right" : "sm:ml-auto"
-                  }`}
-                >
-                  <time
-                    dateTime={m.year}
-                    className="inline-block bg-primary text-white font-black text-sm px-3 py-1 border-2 border-black neo-shadow-sm mb-2"
-                  >
-                    {m.year}
-                  </time>
-                  <h3 className="font-black text-base sm:text-lg leading-snug mb-2">
-                    {m.title}
-                  </h3>
-                  <div
-                    className={`flex flex-wrap gap-2 ${isLeft ? "sm:justify-end" : ""}`}
-                  >
-                    {m.orgs.map((org) => (
-                      <span
-                        key={org.name}
-                        className="inline-flex items-center gap-1.5 bg-white border-2 border-black px-2 py-1 text-xs sm:text-sm font-bold"
-                      >
-                        {org.logo && (
-                          /* eslint-disable-next-line @next/next/no-img-element */
-                          <img
-                            src={`/images/about/logos/${org.logo}.logo.png`}
-                            alt={`${org.name} 로고`}
-                            width={18}
-                            height={18}
-                            className="w-[18px] h-[18px] object-contain shrink-0"
-                          />
-                        )}
-                        {org.name}
-                      </span>
-                    ))}
-                  </div>
-                  {m.note && (
-                    <p className="mt-2 text-xs sm:text-sm text-gray-600 leading-relaxed">
-                      {m.note}
-                    </p>
-                  )}
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+        <div className="border-t-4 border-black">
+          {milestoneYears.map((year) => (
+            <div
+              key={year}
+              className="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[9rem_1fr] gap-x-4 sm:gap-x-10 border-b-2 border-black/15 py-6 sm:py-8"
+            >
+              <time
+                dateTime={year}
+                className="block font-black text-2xl sm:text-4xl leading-none tracking-tight self-start sm:sticky sm:top-24"
+              >
+                {year}
+              </time>
+              <ol className="space-y-5 sm:space-y-6">
+                {milestonesByYear[year].map((m) => (
+                  <li key={m.title}>
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      {m.orgs.map((org) => (
+                        <span
+                          key={org.name}
+                          className="inline-flex items-center gap-1.5 bg-white border-2 border-black px-2 py-1 text-xs sm:text-sm font-bold"
+                        >
+                          {org.logo && (
+                            /* eslint-disable-next-line @next/next/no-img-element */
+                            <img
+                              src={`/images/about/logos/${org.logo}.logo.png`}
+                              alt={`${org.name} 로고`}
+                              width={20}
+                              height={20}
+                              className="w-5 h-5 object-contain shrink-0"
+                            />
+                          )}
+                          {org.name}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="font-black text-base sm:text-lg leading-snug">
+                      {m.title}
+                    </h3>
+                    {m.note && (
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        {m.note}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Why this work */}
