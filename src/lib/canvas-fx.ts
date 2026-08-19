@@ -189,7 +189,12 @@ async function captureInOverlay(
   ].join(";");
 
   const clone = el.cloneNode(true) as HTMLElement;
-  // 부모에게 물려받던 서체와 색을 잃지 않도록 계산값을 박아 둔다
+  // 복제본에는 :hover 상태가 없어 평상시 모습으로 그려진다. 내비 링크처럼
+  // hover에서 배경이 바뀌는 요소는 "빨간 버튼 → 평상시 모습 출렁임 → 빨간 버튼"
+  // 순서가 되어 잔상처럼 보이므로, 원본의 지금 계산된 스타일(hover 반영값)을
+  // 통째로 박아 둔다. transition을 잠깐 꺼서 전환 중간값이 아니라 최종값을 읽는다.
+  const prevTransition = el.style.transition;
+  el.style.transition = "none";
   const cs = getComputedStyle(el);
   clone.style.width = `${w}px`;
   clone.style.margin = "0";
@@ -198,6 +203,11 @@ async function captureInOverlay(
   clone.style.color = cs.color;
   clone.style.letterSpacing = cs.letterSpacing;
   clone.style.textTransform = cs.textTransform;
+  clone.style.backgroundColor = cs.backgroundColor;
+  clone.style.border = cs.border;
+  clone.style.borderRadius = cs.borderRadius;
+  clone.style.boxShadow = cs.boxShadow;
+  el.style.transition = prevTransition;
   overlay.appendChild(clone);
   document.body.appendChild(overlay);
 
