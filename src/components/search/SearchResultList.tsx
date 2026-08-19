@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { ashNavigate } from "@/lib/canvas-fx";
 import { CATEGORY_LABELS } from "@/lib/constants";
 import { highlight, type SearchDocType, type SearchHit } from "@/lib/search";
 import { cn } from "@/lib/utils";
@@ -58,6 +60,7 @@ export function SearchResultList({
   activeIndex = -1,
   onNavigate,
 }: SearchResultListProps) {
+  const router = useRouter();
   const isCompact = variant === "compact";
 
   return (
@@ -66,7 +69,11 @@ export function SearchResultList({
         <li key={hit.doc.href} data-search-result={index}>
           <Link
             href={hit.doc.href}
-            onClick={() => onNavigate?.(hit)}
+            onClick={(e) => {
+              onNavigate?.(hit);
+              // 오버레이가 닫힌 뒤 화면이 재로 흩어지며 글로 넘어간다
+              ashNavigate(e, () => router.push(hit.doc.href));
+            }}
             className={cn(
               "block transition-colors",
               isCompact

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Menu, X, Mail, MessageCircle, Search, Plus, ArrowRight,
   Smartphone, Terminal, Rocket, Bot, Briefcase, BarChart3, Globe, BookOpen,
@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
-import { jellyElement } from "@/lib/canvas-fx";
+import { ashNavigate, jellyElement } from "@/lib/canvas-fx";
 import { KAKAO_INQUIRY_URL } from "@/lib/constants";
 import { SearchDialog } from "@/components/search/SearchDialog";
 import { NewsletterModal } from "@/components/NewsletterModal";
@@ -187,6 +187,7 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
   // 모바일 메뉴 안에서 Class 코스 목록을 펼쳤는지
   const [isClassOpen, setIsClassOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   // AI-Practice 하위 경로에서는 다크/네온 테마 변형을 쓴다 (구조는 동일)
   const isApTheme = pathname?.startsWith("/ai-practice") ?? false;
 
@@ -257,7 +258,10 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                   <Link
                     key={href}
                     href={href}
-                    onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                    onClick={(e) => {
+                      sendGAEvent("click_nav", { menu_name: label });
+                      ashNavigate(e, () => router.push(href));
+                    }}
                     className={cn(
                       "nav-aip-pill px-3 lg:px-4 py-2 mr-1.5 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-all hover:brightness-125",
                       isApTheme
@@ -273,7 +277,11 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                 <Link
                   key={href}
                   href={href}
-                  onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                  onClick={(e) => {
+                    sendGAEvent("click_nav", { menu_name: label });
+                    // 재 날림 전환으로 섹션 이동
+                    ashNavigate(e, () => router.push(href));
+                  }}
                   // HTML in Canvas 지원 브라우저에서만 글자가 출렁이는 장식.
                   // 미지원이면 jellyElement가 아무 일도 하지 않는다.
                   onMouseEnter={(e) => void jellyElement(e.currentTarget)}

@@ -292,8 +292,10 @@ export async function jellyElement(el: HTMLElement): Promise<void> {
     const cap = await captureInOverlay(el, 26);
     if (!cap) return;
     const { overlay, ctx, src, dpr } = cap;
-    const prevVisibility = el.style.visibility;
-    el.style.visibility = "hidden";
+    // visibility:hidden은 클릭 판정까지 없애 애니메이션 동안 링크가 눌리지 않는다.
+    // opacity:0은 보이지만 않을 뿐 클릭이 그대로 동작한다.
+    const prevOpacity = el.style.opacity;
+    el.style.opacity = "0";
 
     const band = Math.max(2, Math.round(2 * dpr));
     const dur = 680;
@@ -312,7 +314,7 @@ export async function jellyElement(el: HTMLElement): Promise<void> {
       };
       requestAnimationFrame(tick);
     }), dur + 600);
-    el.style.visibility = prevVisibility;
+    el.style.opacity = prevOpacity;
     overlay.remove();
   } finally {
     delete el.dataset.jellyRunning;
@@ -754,8 +756,9 @@ export async function scanInElement(el: HTMLElement): Promise<void> {
     const cap = await captureInOverlay(el, 6);
     if (!cap) return;
     const { overlay, ctx, src, dpr } = cap;
-    const prevVisibility = el.style.visibility;
-    el.style.visibility = "hidden";
+    // 등장 연출 중에도 결과를 바로 클릭할 수 있어야 하므로 opacity로 숨긴다
+    const prevOpacity = el.style.opacity;
+    el.style.opacity = "0";
 
     const dur = 450;
     await raceTimeout(new Promise<void>((resolve) => {
@@ -781,9 +784,31 @@ export async function scanInElement(el: HTMLElement): Promise<void> {
       };
       requestAnimationFrame(tick);
     }), dur + 600);
-    el.style.visibility = prevVisibility;
+    el.style.opacity = prevOpacity;
     overlay.remove();
   } finally {
     delete el.dataset.fxRunning;
   }
+}
+
+/**
+ * 링크 클릭을 재 날림 전환으로 바꾸는 공용 핸들러.
+ * 수정키(새 탭)와 보조 버튼은 브라우저 기본 동작을 그대로 둔다.
+ */
+export function ashNavigate(
+  e: {
+    metaKey: boolean;
+    ctrlKey: boolean;
+    shiftKey: boolean;
+    altKey: boolean;
+    button: number;
+    defaultPrevented: boolean;
+    preventDefault: () => void;
+  },
+  navigate: () => void
+): void {
+  if (e.defaultPrevented) return;
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+  e.preventDefault();
+  void dissolvePageAndNavigate(navigate);
 }
