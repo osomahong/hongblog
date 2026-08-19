@@ -499,20 +499,13 @@ export default async function AboutPage() {
           <h2 className="text-xl sm:text-2xl font-black">경력</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-          {stats.map((stat, index) => {
+          {stats.map((stat) => {
             const Icon = stat.icon;
-            const rotations = [
-              "-rotate-1",
-              "rotate-1",
-              "rotate-0.5",
-              "-rotate-0.5",
-              "rotate-1",
-              "-rotate-1",
-            ];
             return (
+              /* 수치는 나란히 읽혀야 비교가 되므로 카드를 기울이지 않는다 */
               <NeoTiltCard
                 key={stat.label}
-                className={`bg-white border-4 border-black p-4 sm:p-5 ${rotations[index]}`}
+                className="bg-white border-4 border-black p-4 sm:p-5"
                 intensity={10}
               >
                 <Icon className="w-6 h-6 mb-2 text-primary" />
@@ -634,7 +627,12 @@ export default async function AboutPage() {
               return (
                 <div
                   key={item.title}
-                  className="bg-white border-2 border-black p-4 sm:p-5 flex gap-4 items-start"
+                  className={`bg-white border-2 border-black p-4 sm:p-5 flex gap-4 items-start ${
+                    /* 홀수 개일 때 마지막 항목이 빈칸을 남기지 않도록 두 칸을 쓴다 */
+                    workItems.length % 2 === 1 && index === workItems.length - 1
+                      ? "sm:col-span-2"
+                      : ""
+                  }`}
                 >
                   <span className="bg-primary text-white font-black text-sm px-2.5 py-1 border-2 border-black shrink-0 leading-none self-start mt-1">
                     {String(index + 1).padStart(2, "0")}
