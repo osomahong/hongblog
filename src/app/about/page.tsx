@@ -25,6 +25,8 @@ import {
   ExternalLink,
   Briefcase,
   CircleHelp,
+  Bot,
+  Sparkles,
 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
@@ -42,8 +44,8 @@ const CREDENTIAL_AS_OF = "2026년 4월";
 const LINKEDIN_PROFILE_URL =
   "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/";
 
-const ABOUT_TITLE = "홍승협(준이아빠) | GA4, AEO, GEO 컨설턴트";
-const ABOUT_DESCRIPTION = `홍승협(준이아빠)은 ${YEARS_OF_EXPERIENCE}년차 디지털 마케팅, 데이터 분석 컨설턴트입니다. 공공기관, 금융, 유통, 대학 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 마케팅 성과를 데이터로 확인하는 방법과 AEO, GEO 실무를 정리합니다.`;
+const ABOUT_TITLE = "AI, 데이터 분석 컨설턴트 홍승협(준이아빠) 소개";
+const ABOUT_DESCRIPTION = `홍승협(준이아빠)은 ${YEARS_OF_EXPERIENCE}년차 AI/AX, 데이터 분석 컨설턴트입니다. AEO와 GEO, AI 업무 자동화 컨설팅과 함께 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 분석 환경을 구축했고 누적 1,000명 이상을 교육했습니다.`;
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -125,22 +127,16 @@ function buildStats(counts: ContentCounts) {
  * 개별 계약의 공개 범위가 서로 달라, 이름을 빼고 규모와 업종만 남긴다.
  */
 const clientSectors = [
-  "관광 분야 공공기관",
-  "면세, 아울렛 유통 대기업",
-  "도서 유통 대기업",
   "증권사",
-  "정보보안 상장사",
   "클라우드 관리 서비스(MSP) 기업",
   "글로벌 모빌리티 브랜드 한국 법인",
-  "글로벌 스포츠 브랜드 한국 법인",
   "글로벌 엔터테인먼트 기업 한국 법인",
   "B2B 이커머스 플랫폼",
   "이벤트 플랫폼 스타트업",
-  "4년제 대학과 사이버대학",
+  "건강기능식품, 여행, 보안 소프트웨어 기업",
 ];
 
 const educationPartners = [
-  "무역 진흥 공공기관 아카데미",
   "사회적경제 지원 공공기관",
   "기업 내부 담당자 교육",
 ];
@@ -161,6 +157,16 @@ const principles = [
 ];
 
 const workItems = [
+  {
+    icon: Bot,
+    title: "AI/AX 컨설팅과 업무 자동화 설계",
+    desc: "기업의 반복 업무를 AI 에이전트와 워크플로우로 옮기는 전환(AX)을 설계합니다. 진단, 도입 우선순위, 실무 정착까지 함께 잡습니다.",
+  },
+  {
+    icon: Sparkles,
+    title: "AEO, GEO 컨설팅",
+    desc: "AI 검색과 생성형 답변에 인용되도록 콘텐츠 구조, 구조화 데이터, 엔티티를 정비합니다. 이 사이트가 실측 실험장입니다.",
+  },
   {
     icon: FileText,
     title: "이벤트 택소노미와 정의서 설계",
@@ -194,7 +200,74 @@ const workItems = [
   {
     icon: Workflow,
     title: "대형 프로젝트 리드와 교육",
-    desc: "관광 분야 공공기관의 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 이벤트 정합성 90% KPI와 5단계 산출물 워크플로우로 참여 기업을 지원하고, 누적 1,000명 이상 실무자를 교육했습니다.",
+    desc: "한국관광공사 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 기업과 공공기관에서 AI 활용과 데이터 분석 실무를 누적 1,000명 이상 교육했습니다.",
+  },
+];
+
+/** 대표 이력. 연도는 계약 시작 기준, 로고는 공식 소스에서 확보한 것만 넣는다 */
+const milestones: {
+  year: string;
+  title: string;
+  orgs: { name: string; logo?: string }[];
+}[] = [
+  {
+    year: "2022",
+    title: "참여 스타트업 그로스, 분석 컨설팅",
+    orgs: [{ name: "삼성 C랩", logo: "samsung" }],
+  },
+  {
+    year: "2023",
+    title: "한국관광 데이터랩 활성화와 자동화 컨설팅 (4년 연속)",
+    orgs: [{ name: "한국관광공사", logo: "knto" }],
+  },
+  {
+    year: "2023",
+    title: "디지털 마케팅 과정 출강 (SNS 수출마케팅 전략 등)",
+    orgs: [{ name: "KOTRA아카데미", logo: "kotra" }],
+  },
+  {
+    year: "2023",
+    title: "GA4 분석 환경 구축과 유지보수",
+    orgs: [{ name: "교보문고", logo: "kyobo" }],
+  },
+  {
+    year: "2023",
+    title: "면세, 아울렛 유통 분석 환경 구축",
+    orgs: [{ name: "신세계면세점" }, { name: "신세계사이먼" }],
+  },
+  {
+    year: "2023",
+    title: "금융, 식품 제조 분석 프로젝트",
+    orgs: [
+      { name: "부산은행", logo: "busanbank" },
+      { name: "동원", logo: "dongwon" },
+      { name: "풀무원녹즙", logo: "pulmuone" },
+    ],
+  },
+  {
+    year: "2023",
+    title: "호텔, 리조트 분석 프로젝트",
+    orgs: [{ name: "한화호텔앤리조트" }, { name: "더플라자" }],
+  },
+  {
+    year: "2023",
+    title: "글로벌 브랜드 한국 법인 분석",
+    orgs: [{ name: "스케쳐스코리아" }, { name: "ABC마트" }],
+  },
+  {
+    year: "2024",
+    title: "데이터 분석 컨설팅",
+    orgs: [{ name: "AhnLab", logo: "ahnlab" }],
+  },
+  {
+    year: "2024",
+    title: "디지털 마케팅과 데이터 분석 강의",
+    orgs: [
+      { name: "연세대학교", logo: "yonsei" },
+      { name: "고려대학교", logo: "korea-univ" },
+      { name: "사이버한국외국어대학교", logo: "cufs" },
+      { name: "한양사이버대학교", logo: "hycu" },
+    ],
   },
 ];
 
@@ -217,25 +290,26 @@ export default async function AboutPage() {
       name: "오픈소스마케팅",
       url: "https://osoma.kr",
     },
-    description: `${YEARS_OF_EXPERIENCE}년차 디지털 마케터. ${CLIENT_COUNT_LABEL} 고객사의 GA4와 GTM 분석 환경 구축, AEO와 GEO 실무. 누적 1,000명 이상 교육 경력.`,
+    description: `${YEARS_OF_EXPERIENCE}년차 AI/AX, 데이터 분석 컨설턴트. AEO와 GEO, AI 업무 자동화 컨설팅과 ${CLIENT_COUNT_LABEL} 고객사의 GA4, GTM 분석 환경 구축. 누적 1,000명 이상 교육 경력.`,
     knowsAbout: [
-      "Google Analytics 4",
-      "Google Tag Manager",
+      "AI 업무 자동화(AX)",
       "Answer Engine Optimization",
       "Generative Engine Optimization",
+      "AI 워크플로우",
+      "프롬프트 엔지니어링",
+      "Google Analytics 4",
+      "Google Tag Manager",
       "퍼포먼스 마케팅",
       "그로스해킹",
       "퍼널 분석",
       "데이터 시각화",
-      "AI 워크플로우",
-      "프롬프트 엔지니어링",
     ],
     knowsLanguage: ["ko", "en"],
     hasOccupation: {
       "@type": "Occupation",
       name: "디지털 마케팅 컨설턴트, 데이터 분석가",
       occupationLocation: { "@type": "Country", name: "대한민국" },
-      skills: "GA4, GTM, BigQuery, LookerStudio, AEO, GEO, LLM, Python",
+      skills: "AEO, GEO, LLM, AI 에이전트, GA4, GTM, BigQuery, LookerStudio, Python",
     },
     sameAs: [SITE_URL, LINKEDIN_PROFILE_URL],
   };
@@ -327,7 +401,7 @@ export default async function AboutPage() {
               <span className="text-[#FF0033]">데이터로 확인하는</span> 일을 합니다.
             </h1>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              <strong>홍승협(준이아빠)</strong>은 {YEARS_OF_EXPERIENCE}년차 디지털 마케팅, 데이터 분석 컨설턴트로, 오픈소스마케팅 AX 컨설팅 랩 차장으로 일하고 있습니다. 면세 유통, 정보보안, 클라우드, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
+              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로, 오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는 <strong>홍승협(준이아빠)</strong>입니다. 면세 유통, 정보보안, 클라우드, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
               <span className="block mt-2 text-xs text-gray-500">
                 경력 수치는 {CREDENTIAL_AS_OF} 기준
               </span>
@@ -392,40 +466,73 @@ export default async function AboutPage() {
         </p>
       </section>
 
-      {/* 대표 이력. 제3자가 검증할 수 있는 기관명 위주로 적는다 (AEO, GEO 근거) */}
+      {/* 대표 이력 타임라인. 제3자가 검증할 수 있는 기관명과 로고를 계약 시작 연도 순으로 적는다.
+          시맨틱 ol/li와 텍스트 기관명을 유지해 검색엔진과 AI가 그대로 읽을 수 있게 한다 */}
       <section className="mb-12 sm:mb-16">
-        <div className="flex items-center gap-2 mb-6">
+        <div className="flex items-center gap-2 mb-8">
           <div className="bg-black border-2 border-black p-1.5 rotate-2">
             <Briefcase className="w-5 h-5 text-white" />
           </div>
           <h2 className="text-xl sm:text-2xl font-black">대표 프로젝트와 강의</h2>
         </div>
-        <div className="space-y-3">
-          {[
-            ["2023~2026", "한국관광공사, 한국관광 데이터랩 활성화와 자동화 컨설팅"],
-            ["2023~2026", "KOTRA아카데미 디지털 마케팅 과정 출강 (SNS 수출마케팅 전략 등)"],
-            ["2023~2026", "교보문고 GA4 분석 환경 구축과 유지보수"],
-            ["2022~2023", "삼성 C랩 참여 스타트업 그로스 컨설팅"],
-            ["2024~2026", "연세대, 고려대, 사이버한국외대, 한양사이버대 강의"],
-            ["2023~2024", "신세계면세점, 신세계사이먼 분석 환경 구축"],
-            ["2024~2025", "AhnLab 데이터 분석 컨설팅"],
-            ["2023~2026", "스케쳐스코리아, ABC마트 등 글로벌 브랜드 한국 법인 분석"],
-            ["2023~2025", "부산은행, 동원, 풀무원녹즙 등 금융과 식품 제조 프로젝트"],
-            ["2023~2026", "한화호텔앤리조트, 더플라자 등 호텔 분석 프로젝트"],
-          ].map(([year, desc]) => (
-            <div
-              key={desc}
-              className="flex items-start gap-3 bg-gray-50 border-2 border-black p-3"
-            >
-              <span className="bg-accent text-black text-xs font-bold px-2 py-0.5 border-2 border-black shrink-0 font-mono">
-                {year}
-              </span>
-              <span className="text-sm sm:text-base text-gray-700">{desc}</span>
-            </div>
-          ))}
-        </div>
-        <p className="mt-4 text-xs text-gray-500">
-          기관명은 공개 가능한 프로젝트만 적었습니다. 민간 고객사 다수는 계약에 따라 업종으로만 표기합니다.
+        <ol className="relative">
+          {/* 중앙(모바일은 왼쪽) 세로선 */}
+          <div
+            aria-hidden="true"
+            className="absolute left-[19px] sm:left-1/2 top-0 bottom-0 w-1 bg-black sm:-translate-x-1/2"
+          />
+          {milestones.map((m, index) => {
+            const isLeft = index % 2 === 0;
+            return (
+              <li key={m.title} className="relative mb-8 sm:mb-10 last:mb-0">
+                {/* 노드 점 */}
+                <span
+                  aria-hidden="true"
+                  className="absolute left-[19px] sm:left-1/2 top-1 w-5 h-5 -translate-x-1/2 rounded-full bg-white border-4 border-black"
+                />
+                <div
+                  className={`ml-12 sm:ml-0 sm:w-[calc(50%-2.5rem)] ${
+                    isLeft ? "sm:mr-auto sm:text-right" : "sm:ml-auto"
+                  }`}
+                >
+                  <time
+                    dateTime={m.year}
+                    className="inline-block bg-primary text-white font-black text-sm px-3 py-1 border-2 border-black neo-shadow-sm mb-2"
+                  >
+                    {m.year}
+                  </time>
+                  <h3 className="font-black text-base sm:text-lg leading-snug mb-2">
+                    {m.title}
+                  </h3>
+                  <div
+                    className={`flex flex-wrap gap-2 ${isLeft ? "sm:justify-end" : ""}`}
+                  >
+                    {m.orgs.map((org) => (
+                      <span
+                        key={org.name}
+                        className="inline-flex items-center gap-1.5 bg-white border-2 border-black px-2 py-1 text-xs sm:text-sm font-bold"
+                      >
+                        {org.logo && (
+                          /* eslint-disable-next-line @next/next/no-img-element */
+                          <img
+                            src={`/images/about/logos/${org.logo}.logo.png`}
+                            alt={`${org.name} 로고`}
+                            width={18}
+                            height={18}
+                            className="w-[18px] h-[18px] object-contain shrink-0"
+                          />
+                        )}
+                        {org.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+        <p className="mt-6 text-xs text-gray-500">
+          연도는 계약 시작 기준입니다. 기관명과 로고는 공개 가능한 프로젝트만 적었고, 그 외 고객사는 아래에 업종으로 표기합니다.
         </p>
       </section>
 
@@ -444,7 +551,7 @@ export default async function AboutPage() {
             </h2>
           </div>
           <p className="text-base sm:text-lg text-gray-700 mb-4 leading-relaxed">
-            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다. 계약별로 공개 범위가 달라 개별 기업명 대신 업종과 조직 유형으로 적습니다.
+            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다. 대표 프로젝트는 위 타임라인에 기관명으로 적었고, 그 외 고객사는 계약에 따라 업종과 조직 유형으로만 표기합니다.
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
             {clientSectors.map((sector) => (
