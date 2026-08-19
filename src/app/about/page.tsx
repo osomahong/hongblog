@@ -37,9 +37,9 @@ import { AboutCanvasFx } from "@/components/about/AboutCanvasFx";
 const BASE_YEAR = 2017;
 const REFERENCE_YEAR = 2026;
 const YEARS_OF_EXPERIENCE = REFERENCE_YEAR - BASE_YEAR + 1;
-const CLIENT_COUNT_LABEL = "120곳+";
+const CLIENT_COUNT_LABEL = "130곳+";
 /** 경력, 고객사, 교육 수치를 마지막으로 확인한 시점 */
-const CREDENTIAL_AS_OF = "2026년 4월";
+const CREDENTIAL_AS_OF = "2026년 8월";
 /** 화면의 프로필 버튼과 Person, Organization JSON-LD의 sameAs가 같은 값을 쓴다 */
 const LINKEDIN_PROFILE_URL =
   "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/";
@@ -99,7 +99,7 @@ function buildStats(counts: ContentCounts) {
       icon: Tag,
       value: "3,000+",
       label: "누적 설계 이벤트와 파라미터",
-      sub: "고객사당 20~30개 × 120곳+",
+      sub: `고객사당 20~30개 × ${CLIENT_COUNT_LABEL}`,
     },
     {
       icon: Users,
@@ -123,22 +123,230 @@ function buildStats(counts: ContentCounts) {
 }
 
 /**
- * 고객사는 실명 대신 산업군과 조직 유형으로 적는다.
- * 개별 계약의 공개 범위가 서로 달라, 이름을 빼고 규모와 업종만 남긴다.
+ * 직접 계약으로 분석 구축, 컨설팅, 교육을 수행한 기업과 기관.
+ * 업종별로 묶어 어떤 산업을 겪었는지 한눈에 보이게 한다.
  */
-const clientSectors = [
-  "증권사",
-  "클라우드 관리 서비스(MSP) 기업",
-  "글로벌 모빌리티 브랜드 한국 법인",
-  "글로벌 엔터테인먼트 기업 한국 법인",
-  "B2B 이커머스 플랫폼",
-  "이벤트 플랫폼 스타트업",
-  "건강기능식품, 여행, 보안 소프트웨어 기업",
+const clientGroups = [
+  {
+    label: "공공기관",
+    items: ["한국관광공사", "KOTRA"],
+  },
+  {
+    label: "대학과 기업 교육",
+    items: [
+      "연세대학교",
+      "고려대학교",
+      "사이버한국외국어대학교",
+      "한양사이버대학교",
+      "부산은행",
+      "이노션",
+      "이피엘컴퍼니",
+    ],
+  },
+  {
+    label: "보안, 클라우드, SaaS",
+    items: [
+      "안랩",
+      "지란지교",
+      "오피스키퍼",
+      "베스핀글로벌",
+      "LG CNS",
+      "유니드컴즈",
+      "오픈서베이",
+    ],
+  },
+  {
+    label: "유통, 커머스, 제조",
+    items: [
+      "교보문고",
+      "신세계면세점",
+      "신세계사이먼",
+      "ABC마트",
+      "스케쳐스코리아",
+      "반다이남코코리아몰",
+      "동원",
+      "풀무원녹즙",
+      "안국건강",
+      "SK매직",
+      "KT알파",
+      "경동나비엔",
+      "파크시스템스",
+      "지앤지커머스",
+      "라이트바겐",
+    ],
+  },
+  {
+    label: "호텔, 리조트, 여행",
+    items: ["한화호텔앤리조트", "더플라자", "네스트호텔", "줌줌투어"],
+  },
+  {
+    label: "플랫폼과 스타트업",
+    items: [
+      "이벤터스",
+      "그리니어",
+      "하우스버디",
+      "애기야가자",
+      "호퍼스",
+      "로이쿠",
+      "승우여행사",
+      "세상에없는세상",
+      "알브이에이치",
+      "트리니티디앤씨",
+      "포어스",
+      "가시림수목원",
+      "에스앤가든",
+      "코코리",
+      "한국드림관광",
+      "레프트아이템딜리버리",
+      "뭉클랩",
+      "인피니티타워",
+      "비바이노베이션",
+    ],
+  },
+  {
+    label: "비영리와 재단",
+    items: ["컴패션", "사랑밭"],
+  },
 ];
 
-const educationPartners = [
-  "사회적경제 지원 공공기관",
-  "기업 내부 담당자 교육",
+/**
+ * 공공, 대기업 지원 사업을 운영하며 컨설팅한 참여 기업.
+ * 직접 계약과 관계가 다르므로 사업명과 연도를 함께 밝힌다.
+ */
+const programGroups = [
+  {
+    org: "한국관광공사 관광기업 데이터, AI 활용 지원 사업",
+    role: "2023년부터 2026년까지 4년 연속 수행, 사업 총괄과 컨설팅",
+    cohorts: [
+      {
+        label: "2023 그로스해킹 컨설팅",
+        items: [
+          "스테이폴리오",
+          "하이메디",
+          "굿럭컴퍼니",
+          "네이처모빌리티",
+          "누아",
+          "캐플릭스",
+        ],
+      },
+      {
+        label: "2024 데이터 분석 환경 구축, 그로스해킹",
+        items: [
+          "나그네들",
+          "위드재팬투어",
+          "가이드맨",
+          "청개구리",
+          "피치바이피치",
+          "노랑풍선시티버스",
+          "다이빙버디",
+          "본디",
+          "버킷트래블",
+          "데이오프컴퍼니",
+          "트립빌더",
+          "남도마켓",
+          "코스모진여행사",
+          "에이지엘",
+          "커런시유나이티드",
+          "트립소다",
+          "에어텔닷컴",
+          "원밀리언",
+          "이벤터스",
+          "호놀룰루컴퍼니",
+          "텐핑거스",
+          "위더스콘텐츠",
+          "캐리골프투어",
+          "크리에이트립",
+        ],
+      },
+      {
+        label: "2025 데이터 분석, 마케팅 자동화, 그로스해킹",
+        items: [
+          "그리니어",
+          "셀레트립",
+          "하우스버디",
+          "세상에없는세상",
+          "소셜투어",
+          "짐캐리",
+          "디옴니버스",
+          "블루웨일컴퍼니",
+          "써클투어",
+          "커플패스",
+          "이지백",
+          "트래블레이블",
+          "산호오션테크",
+          "밴플",
+          "올더스트릿",
+          "로컬로",
+          "씨앤",
+          "와이키키컴퍼니",
+          "요즘피플",
+          "코리아트래블이지",
+          "트래블메이커스",
+          "맘스테이",
+          "바닐라컴퍼니",
+          "펜타토닉",
+          "마운틴듀오",
+          "오붓",
+          "펫츠고트래블",
+        ],
+      },
+      {
+        label: "2026 데이터, AI 활용 지원",
+        items: [
+          "위데어",
+          "스테디윈스",
+          "업타운",
+          "마이스태프",
+          "가제트코리아",
+          "승우여행사",
+          "아이콘캐스팅",
+          "지구촌농업교류센터",
+          "에스앤가든",
+          "가시림수목원",
+          "스튜디오갈릴레이",
+          "코코리색채연구소",
+          "하우스버디",
+          "그리니어",
+          "애기야가자",
+          "알브이에이치",
+          "세상에없는세상",
+          "요모랩스",
+          "타운즈",
+          "레프트아이템딜리버리",
+          "트리니티디앤씨",
+          "호퍼스",
+          "네스티아",
+          "포어스딜라이트",
+          "로이쿠",
+          "한국드림관광",
+          "프리피아",
+        ],
+      },
+    ],
+  },
+  {
+    org: "삼성 C랩 디지털 마케팅 프로그램",
+    role: "2022년부터 2023년까지, 선발 스타트업 그로스 컨설팅",
+    cohorts: [
+      {
+        label: "2022~2023 선발 스타트업",
+        items: [
+          "뤼튼테크놀로지",
+          "코딧",
+          "포티파이",
+          "투게더아트",
+          "플라스크",
+          "엔닷라이트",
+          "이너시아",
+          "네오폰스",
+          "무니스",
+          "돌봄드림",
+          "클레어오디언스",
+          "인트플로우",
+        ],
+      },
+    ],
+  },
 ];
 
 const principles = [
@@ -414,7 +622,7 @@ export default async function AboutPage() {
               <span className="text-[#FF0033]">데이터로 확인하는</span> 일을 합니다.
             </h1>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로, 오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는 <strong>홍승협(준이아빠)</strong>입니다. 면세 유통, 정보보안, 클라우드, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
+              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로, 오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는 <strong>홍승협(준이아빠)</strong>입니다. 공공기관, 면세 유통, 정보보안, 클라우드, 호텔, 글로벌 브랜드 한국 법인 등 <strong>130곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
               <span className="block mt-2 text-xs text-gray-500">
                 경력 수치는 {CREDENTIAL_AS_OF} 기준
               </span>
@@ -560,35 +768,59 @@ export default async function AboutPage() {
               함께 일한 기업과 기관
             </h2>
           </div>
-          <p className="text-base sm:text-lg text-gray-700 mb-4 leading-relaxed">
-            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다. 대표 프로젝트는 위 타임라인에 기관명으로 적었고, 그 외 고객사는 계약에 따라 업종과 조직 유형으로만 표기합니다.
+          <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
+            공공, 금융, 보안, 이커머스, 유통, 면세, 호텔, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 기업과 기관</strong>의 분석 환경 구축, 그로스 컨설팅, 실무 교육을 맡았습니다.
           </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {clientSectors.map((sector) => (
-              <span
-                key={sector}
-                className="inline-block bg-gray-50 border-2 border-black text-black text-xs sm:text-sm font-bold px-3 py-1.5"
-              >
-                {sector}
-              </span>
+          <div className="space-y-4">
+            {clientGroups.map((group) => (
+              <div key={group.label}>
+                <p className="text-xs sm:text-sm font-black mb-2 text-black/70">
+                  {group.label}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((name) => (
+                    <span
+                      key={name}
+                      className="inline-block bg-gray-50 border-2 border-black text-black text-xs sm:text-sm font-bold px-3 py-1.5"
+                    >
+                      {name}
+                    </span>
+                  ))}
+                </div>
+              </div>
             ))}
-            <span className="inline-block bg-black text-white border-2 border-black text-xs sm:text-sm font-bold px-3 py-1.5">
-              외 다수
-            </span>
           </div>
-          <div className="pt-4 border-t-2 border-black/20">
-            <p className="text-sm text-gray-600 mb-2 font-bold">교육 협력 기관</p>
-            <div className="flex flex-wrap gap-2">
-              {educationPartners.map((partner) => (
-                <span
-                  key={partner}
-                  className="inline-block bg-accent border-2 border-black text-black text-xs font-bold px-3 py-1"
-                >
-                  {partner}
-                </span>
-              ))}
+
+          {programGroups.map((program) => (
+            <div
+              key={program.org}
+              className="mt-6 pt-5 border-t-2 border-black/20"
+            >
+              <p className="text-sm sm:text-base font-black">{program.org}</p>
+              <p className="text-xs sm:text-sm text-gray-600 mb-3">
+                {program.role}
+              </p>
+              <div className="space-y-3">
+                {program.cohorts.map((cohort) => (
+                  <div key={cohort.label}>
+                    <p className="text-xs font-bold mb-1.5 text-black/60">
+                      {cohort.label}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {cohort.items.map((name) => (
+                        <span
+                          key={name}
+                          className="inline-block bg-accent border-2 border-black text-black text-xs font-bold px-2.5 py-1"
+                        >
+                          {name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          ))}
         </NeoTiltCard>
       </section>
 
