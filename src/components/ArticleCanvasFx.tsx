@@ -34,8 +34,9 @@ interface QuoteButtonState {
 // 한 페이지에 ShareBar가 여러 번 마운트돼도 효과는 한 인스턴스만 담당한다
 let activeInstances = 0;
 
-const QUOTE_MIN = 12;
-const QUOTE_MAX = 300;
+const QUOTE_MIN = 8;
+/** 카드에 담을 최대 글자수. 넘으면 자르고 말줄임표를 붙인다 (버튼은 항상 띄운다) */
+const QUOTE_MAX = 240;
 const LENS_SIZE = 180;
 const LENS_ZOOM = 2;
 
@@ -62,6 +63,7 @@ function buildQuoteCard(quote: string, title: string): HTMLElement {
 export function ArticleCanvasFx({ title, path }: ArticleCanvasFxProps) {
   const [quoteBtn, setQuoteBtn] = useState<QuoteButtonState | null>(null);
   const [saving, setSaving] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const lensRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -84,17 +86,24 @@ export function ArticleCanvasFx({ title, path }: ArticleCanvasFxProps) {
           setQuoteBtn(null);
           return;
         }
-        const text = sel.toString().replace(/\s+/g, " ").trim();
-        const anchor = sel.anchorNode?.parentElement;
-        if (
-          text.length < QUOTE_MIN ||
-          text.length > QUOTE_MAX ||
-          !anchor?.closest("article")
-        ) {
+        let text = sel.toString().replace(/\s+/g, " ").trim();
+        // 드래그 시작점이 아니라 선택 영역 전체가 본문에 걸쳐 있는지로 판정한다.
+        // 시작점 기준이면 문단 바깥 여백에서 드래그를 시작했을 때 버튼이 안 떠서
+        // "될 때도 있고 안 될 때도 있는" 현상이 생긴다.
+        const range = sel.getRangeAt(0);
+        const container = range.commonAncestorContainer;
+        const containerEl =
+          container.nodeType === Node.TEXT_NODE
+            ? container.parentElement
+            : (container as HTMLElement);
+        if (text.length < QUOTE_MIN || !containerEl?.closest("article")) {
           setQuoteBtn(null);
           return;
         }
-        const rect = sel.getRangeAt(0).getBoundingClientRect();
+        if (text.length > QUOTE_MAX) {
+          text = `${text.slice(0, QUOTE_MAX).trimEnd()}…`;
+        }
+        const rect = range.getBoundingClientRect();
         setQuoteBtn({
           x: Math.min(window.innerWidth - 150, rect.left + rect.width / 2),
           y: rect.top - 44,
@@ -106,28 +115,53 @@ export function ArticleCanvasFx({ title, path }: ArticleCanvasFxProps) {
     return () => document.removeEventListener("mouseup", onMouseUp);
   }, [isActive]);
 
-  const saveQuoteCard = useCallback(async () => {
-    if (!quoteBtn || saving) return;
-    setSaving(true);
-    try {
-      const card = buildQuoteCard(quoteBtn.text, title);
-      const dataUrl = await renderNodeToPngDataUrl(card, 720);
-      if (!dataUrl) return;
-      const a = document.createElement("a");
-      a.href = dataUrl;
-      a.download = `quote-${path.split("/").pop() || "card"}.png`;
-      a.click();
-      sendGAEvent("quote_card_save", {
-        content_id: path,
-        content_name: title,
-        quote_length: quoteBtn.text.length,
-      });
-    } finally {
-      setSaving(false);
-      setQuoteBtn(null);
-      window.getSelection()?.removeAllRanges();
-    }
-  }, [quoteBtn, saving, title, path]);
+  const runQuoteCard = useCallback(
+    async (action: "download" | "copy") => {
+      if (!quoteBtn || saving) return;
+      setSaving(true);
+      let ok = false;
+      try {
+        const card = buildQuoteCard(quoteBtn.text, title);
+        const dataUrl = await renderNodeToPngDataUrl(card, 720);
+        if (!dataUrl) return;
+        if (action === "download") {
+          const a = document.createElement("a");
+          a.href = dataUrl;
+          a.download = `quote-${path.split("/").pop() || "card"}.png`;
+          a.click();
+          ok = true;
+        } else {
+          const blob = await (await fetch(dataUrl)).blob();
+          await navigator.clipboard.write([
+            new ClipboardItem({ "image/png": blob }),
+          ]);
+          ok = true;
+        }
+        sendGAEvent("quote_card_save", {
+          content_id: path,
+          content_name: title,
+          quote_length: quoteBtn.text.length,
+          action,
+        });
+      } catch {
+        // 클립보드 권한 거부 등. 조용히 닫는다
+      } finally {
+        setSaving(false);
+        if (ok && action === "copy") {
+          setCopied(true);
+          window.setTimeout(() => {
+            setCopied(false);
+            setQuoteBtn(null);
+            window.getSelection()?.removeAllRanges();
+          }, 900);
+        } else {
+          setQuoteBtn(null);
+          window.getSelection()?.removeAllRanges();
+        }
+      }
+    },
+    [quoteBtn, saving, title, path]
+  );
 
   // 2) 본문 이미지 확대 렌즈 + 3) 코드 복사 잔상 + 4) 피드백 터짐 (전부 위임)
   useEffect(() => {
@@ -203,15 +237,20 @@ export function ArticleCanvasFx({ title, path }: ArticleCanvasFxProps) {
   }, [isActive]);
 
   if (!quoteBtn) return null;
+  const btnClass =
+    "px-3 py-1.5 text-xs font-black bg-[#FFD700] border-2 border-black neo-shadow-sm hover:bg-black hover:text-[#FFD700] transition-colors disabled:opacity-60";
   return (
-    <button
-      type="button"
-      onMouseDown={(e) => e.preventDefault()} // 선택이 풀리기 전에 클릭을 받는다
-      onClick={saveQuoteCard}
+    <div
       style={{ left: quoteBtn.x, top: Math.max(8, quoteBtn.y) }}
-      className="fixed z-[10000] -translate-x-1/2 px-3 py-1.5 text-xs font-black bg-[#FFD700] border-2 border-black neo-shadow-sm hover:bg-black hover:text-[#FFD700] transition-colors"
+      className="fixed z-[10000] -translate-x-1/2 flex gap-1.5"
+      onMouseDown={(e) => e.preventDefault()} // 선택이 풀리기 전에 클릭을 받는다
     >
-      {saving ? "만드는 중..." : "인용 카드 저장"}
-    </button>
+      <button type="button" onClick={() => runQuoteCard("download")} disabled={saving} className={btnClass}>
+        {saving ? "만드는 중..." : "이미지 저장"}
+      </button>
+      <button type="button" onClick={() => runQuoteCard("copy")} disabled={saving} className={btnClass}>
+        {copied ? "복사됨!" : "클립보드 복사"}
+      </button>
+    </div>
   );
 }
