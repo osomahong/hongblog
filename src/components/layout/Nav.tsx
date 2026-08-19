@@ -129,6 +129,7 @@ const COURSE_ICONS: Record<string, LucideIcon> = {
  * 여닫기를 CSS(hover, focus-within)로만 처리해 키보드로 탭해도 열린다.
  */
 function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: boolean }) {
+  const router = useRouter();
   if (courses.length === 0) return null;
 
   return (
@@ -155,7 +156,11 @@ function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: 
             <Link
               key={course.slug}
               href={course.href}
-              onClick={() => sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` })}
+              onClick={(e) => {
+                sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
+                // 학습 경로 진입은 잉크 번짐 전환
+                inkNavigate(e, () => router.push(course.href));
+              }}
               className={cn(
                 "group/row flex items-center gap-2.5 px-3 py-2 text-xs font-bold transition-colors",
                 apTheme ? "text-gray-200 hover:text-[#ffd700]" : "hover:bg-[#FFD700]"
@@ -403,10 +408,12 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                     <Link
                       key={course.slug}
                       href={course.href}
-                      onClick={() => {
+                      onClick={(e) => {
                         sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
                         setIsMenuOpen(false);
                         setIsClassOpen(false);
+                        // 학습 경로 진입은 잉크 번짐 전환
+                        inkNavigate(e, () => router.push(course.href));
                       }}
                       className={cn(
                         "block px-3 py-2.5 text-xs font-bold transition-colors",
