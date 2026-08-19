@@ -28,6 +28,7 @@ import { NeoButton } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
 import { BrandIcon } from "@/components/icons/BrandIcons";
+import { AboutCanvasFx } from "@/components/about/AboutCanvasFx";
 
 const BASE_YEAR = 2017;
 const REFERENCE_YEAR = 2026;
@@ -295,16 +296,20 @@ export default async function AboutPage() {
               </span>
             </p>
             {/* 고객사를 업종 표기로 바꾼 만큼, 경력을 직접 확인할 경로를 남긴다 */}
-            <a
-              href={LINKEDIN_PROFILE_URL}
-              target="_blank"
-              rel="me noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 px-4 py-2.5 bg-[#0A66C2] text-white text-sm font-black border-3 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
-            >
-              <BrandIcon name="linkedin" className="w-4 h-4 shrink-0" />
-              링크드인 프로필에서 경력 보기
-              <ExternalLink className="w-3.5 h-3.5 shrink-0" strokeWidth={2.2} />
-            </a>
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <a
+                href={LINKEDIN_PROFILE_URL}
+                target="_blank"
+                rel="me noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0A66C2] text-white text-sm font-black border-3 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+              >
+                <BrandIcon name="linkedin" className="w-4 h-4 shrink-0" />
+                링크드인 프로필에서 경력 보기
+                <ExternalLink className="w-3.5 h-3.5 shrink-0" strokeWidth={2.2} />
+              </a>
+              {/* 디지털 명함 저장/복사와 About 전용 연출 (지원 브라우저에서만 렌더) */}
+              <AboutCanvasFx blogUrl={SITE_URL} linkedinUrl={LINKEDIN_PROFILE_URL} />
+            </div>
           </div>
         </NeoTiltCard>
       </section>
