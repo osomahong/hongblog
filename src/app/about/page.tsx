@@ -262,12 +262,25 @@ const milestones: {
   {
     year: "2024",
     title: "디지털 마케팅과 데이터 분석 강의",
+    orgs: [{ name: "고려대학교", logo: "korea-univ" }],
+  },
+  {
+    year: "2025",
+    title: "디지털 마케팅과 데이터 분석 강의 확대",
     orgs: [
       { name: "연세대학교", logo: "yonsei" },
-      { name: "고려대학교", logo: "korea-univ" },
       { name: "사이버한국외국어대학교", logo: "cufs" },
-      { name: "한양사이버대학교", logo: "hycu" },
     ],
+  },
+  {
+    year: "2026",
+    title: "관광기업 데이터, AI 활용 지원 사업 AI 컨설팅 (참여 기업 27개사)",
+    orgs: [{ name: "한국관광공사", logo: "knto" }],
+  },
+  {
+    year: "2026",
+    title: "AI 실무 온라인 강의",
+    orgs: [{ name: "한양사이버대학교", logo: "hycu" }],
   },
 ];
 
@@ -531,9 +544,6 @@ export default async function AboutPage() {
             );
           })}
         </ol>
-        <p className="mt-6 text-xs text-gray-500">
-          연도는 계약 시작 기준입니다. 기관명과 로고는 공개 가능한 프로젝트만 적었고, 그 외 고객사는 아래에 업종으로 표기합니다.
-        </p>
       </section>
 
       {/* Representative Clients */}
