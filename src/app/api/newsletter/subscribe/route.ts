@@ -75,6 +75,16 @@ export async function POST(request: Request) {
     ? (body.signupSource as string)
     : "unknown";
 
+  // 로컬 테스트 목 모드. NEWSLETTER_MOCK=1로 dev 서버를 띄우면
+  // Neon과 스티비를 건드리지 않고 항상 성공을 돌려줘 반복 테스트가 가능하다.
+  // 배포 환경에는 이 변수가 없으므로 실제 흐름에 영향이 없다.
+  if (process.env.NEWSLETTER_MOCK === "1") {
+    return NextResponse.json({
+      ok: true,
+      message: "확인 메일을 보냈습니다. (로컬 목 모드: DB 미기록)",
+    });
+  }
+
   const databaseUrl = process.env.DATABASE_URL;
   const stibeeKey = process.env.STIBEE_API_KEY;
   if (!databaseUrl || !stibeeKey) {

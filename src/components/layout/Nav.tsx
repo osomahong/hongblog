@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
+import { jellyElement } from "@/lib/canvas-fx";
 import { KAKAO_INQUIRY_URL } from "@/lib/constants";
 import { SearchDialog } from "@/components/search/SearchDialog";
 import { NewsletterModal } from "@/components/NewsletterModal";
@@ -273,6 +274,9 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                   key={href}
                   href={href}
                   onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                  // HTML in Canvas 지원 브라우저에서만 글자가 출렁이는 장식.
+                  // 미지원이면 jellyElement가 아무 일도 하지 않는다.
+                  onMouseEnter={(e) => void jellyElement(e.currentTarget)}
                   className={cn(
                     "px-2 lg:px-4 py-2 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-colors",
                     isApTheme

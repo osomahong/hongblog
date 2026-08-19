@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { NeoBadge } from "@/components/neo";
 import { sendGAEvent } from "@/lib/gtm";
+import { hologramElement } from "@/lib/canvas-fx";
 import type { CourseCard } from "@/lib/promotions";
 
 interface CourseCarouselProps {
@@ -70,6 +71,9 @@ export function CourseCarousel({ courses }: CourseCarouselProps) {
           <Link
             key={course.slug}
             href={course.href}
+            // HTML in Canvas 지원 브라우저에서만 홀로그램 스캔이 지나간다.
+            // 미지원이면 hologramElement가 아무 일도 하지 않는다.
+            onMouseEnter={(e) => void hologramElement(e.currentTarget)}
             onClick={() =>
               sendGAEvent("click_main_course", {
                 content_id: course.slug,

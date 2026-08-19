@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Mail, X, CheckCircle2 } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
+import { assembleElement, dissolveElement } from "@/lib/canvas-fx";
 import {
   CONSENT_TEXT,
   ETC_VALUE,
@@ -94,10 +95,16 @@ export function NewsletterModal({ open, onClose, signupSource }: NewsletterModal
   const [error, setError] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
+  // 완료 화면에서 닫으면 다음에 열 때 폼부터 다시 시작한다.
+  const handleClose = useCallback(() => {
+    if (done) setDone(false);
+    onClose();
+  }, [done, onClose]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
@@ -105,7 +112,7 @@ export function NewsletterModal({ open, onClose, signupSource }: NewsletterModal
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [open, onClose]);
+  }, [open, handleClose]);
 
   const withEtc = (value: string, etcText: string) =>
     value === ETC_VALUE ? `${ETC_VALUE}:${etcText.trim()}` : value;
@@ -135,7 +142,22 @@ export function NewsletterModal({ open, onClose, signupSource }: NewsletterModal
           setError(data.message);
           return;
         }
+        // HTML in Canvas를 지원하는 브라우저에서는 팝업 전체가 픽셀로 흩어진 뒤
+        // 완료 화면이 나타난다. 미지원이면 dissolveElement가 false를 반환하고
+        // 기존처럼 바로 전환된다.
+        const dialog = dialogRef.current;
+        if (dialog) {
+          await dissolveElement(dialog);
+        }
         setDone(true);
+        // 완료 화면은 파편이 모여들며 나타난다. 같은 DOM 노드가 완료 내용으로
+        // 다시 그려질 시간을 잠깐 준 뒤 재조립을 돌린다. 미지원이면
+        // assembleElement가 표시만 복구한다.
+        if (dialog) {
+          setTimeout(() => {
+            void assembleElement(dialog);
+          }, 80);
+        }
         sendGAEvent("newsletter_subscribe", { location: signupSource });
       } catch {
         setError("일시적인 오류입니다. 잠시 후 다시 시도해 주세요.");
@@ -163,7 +185,7 @@ export function NewsletterModal({ open, onClose, signupSource }: NewsletterModal
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4"
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (e.target === e.currentTarget) handleClose();
       }}
       role="dialog"
       aria-modal="true"
@@ -180,7 +202,7 @@ export function NewsletterModal({ open, onClose, signupSource }: NewsletterModal
           </div>
           <button
             type="button"
-            onClick={onClose}
+            onClick={handleClose}
             aria-label="닫기"
             className="p-1 border-2 border-black bg-white hover:bg-black hover:text-white transition-colors"
           >
@@ -198,7 +220,7 @@ export function NewsletterModal({ open, onClose, signupSource }: NewsletterModal
             </p>
             <button
               type="button"
-              onClick={onClose}
+              onClick={handleClose}
               className="px-5 py-2.5 bg-black text-white text-sm font-black border-2 border-black hover:bg-[#FF0033] transition-colors"
             >
               닫기
