@@ -23,6 +23,8 @@ import {
   Database,
   Workflow,
   ExternalLink,
+  Briefcase,
+  CircleHelp,
 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
@@ -40,8 +42,8 @@ const CREDENTIAL_AS_OF = "2026년 4월";
 const LINKEDIN_PROFILE_URL =
   "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/";
 
-const ABOUT_TITLE = "About | GA4, GTM 분석 환경 구축";
-const ABOUT_DESCRIPTION = `${YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 데이터 분석가입니다. 공공기관, 금융, 유통, 대학 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 마케팅 성과를 데이터로 확인하는 방법과 AEO, GEO 실무를 정리합니다.`;
+const ABOUT_TITLE = "홍승협(준이아빠) | GA4, AEO, GEO 컨설턴트";
+const ABOUT_DESCRIPTION = `홍승협(준이아빠)은 ${YEARS_OF_EXPERIENCE}년차 디지털 마케팅, 데이터 분석 컨설턴트입니다. 공공기관, 금융, 유통, 대학 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 마케팅 성과를 데이터로 확인하는 방법과 AEO, GEO 실무를 정리합니다.`;
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -203,11 +205,18 @@ export default async function AboutPage() {
   const personLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "준이아빠",
-    alternateName: "Hong (준이아빠)",
+    // 글마다 붙는 Article.author가 이 @id를 참조해 하나의 인물 그래프로 합산된다
+    "@id": absoluteUrl("/about#person"),
+    name: "홍승협",
+    alternateName: ["준이아빠", "Hong Seunghyub"],
     url: absoluteUrl("/about"),
     image: absoluteUrl("/profile-illustration.png"),
-    jobTitle: "디지털 마케팅, 데이터 분석 컨설턴트",
+    jobTitle: "AX 컨설팅 랩 차장",
+    worksFor: {
+      "@type": "Organization",
+      name: "오픈소스마케팅",
+      url: "https://osoma.kr",
+    },
     description: `${YEARS_OF_EXPERIENCE}년차 디지털 마케터. ${CLIENT_COUNT_LABEL} 고객사의 GA4와 GTM 분석 환경 구축, AEO와 GEO 실무. 누적 1,000명 이상 교육 경력.`,
     knowsAbout: [
       "Google Analytics 4",
@@ -243,6 +252,30 @@ export default async function AboutPage() {
     sameAs: [LINKEDIN_PROFILE_URL],
   };
 
+  // 답변 엔진이 그대로 추출해 가는 문답 (아래 FAQ 섹션과 문구를 일치시킨다)
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "어떤 일을 의뢰할 수 있나요?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "GA4와 GTM 분석 환경 구축, 이벤트 택소노미 설계, BigQuery 로우데이터 분석, AEO와 GEO 컨설팅, 기업 실무 교육을 의뢰할 수 있습니다. hong@oso.ma로 문의하면 됩니다.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "강의나 교육은 어떻게 요청하나요?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "기업과 공공기관 출강, 온라인 강의 모두 가능합니다. KOTRA아카데미와 대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다. 교육 대상과 인원, 희망 일정을 hong@oso.ma로 보내 주시면 커리큘럼안으로 회신합니다.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
       <script
@@ -252,6 +285,10 @@ export default async function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
       <ViewTracker
         contentType="about"
@@ -290,7 +327,7 @@ export default async function AboutPage() {
               <span className="text-[#FF0033]">데이터로 확인하는</span> 일을 합니다.
             </h1>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              <strong>{YEARS_OF_EXPERIENCE}년차 디지털 마케터</strong>입니다. 면세 유통, 정보보안, 클라우드, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
+              <strong>홍승협(준이아빠)</strong>은 {YEARS_OF_EXPERIENCE}년차 디지털 마케팅, 데이터 분석 컨설턴트로, 오픈소스마케팅 AX 컨설팅 랩 차장으로 일하고 있습니다. 면세 유통, 정보보안, 클라우드, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
               <span className="block mt-2 text-xs text-gray-500">
                 경력 수치는 {CREDENTIAL_AS_OF} 기준
               </span>
@@ -352,6 +389,43 @@ export default async function AboutPage() {
         </div>
         <p className="mt-4 text-xs text-gray-500">
           경력, 고객사, 교육 수치는 {CREDENTIAL_AS_OF} 기준이며 공개 가능한 레퍼런스와 내부 기록을 근거로 집계했습니다. 공개 콘텐츠 편수는 현재 사이트에 올라와 있는 글의 수입니다.
+        </p>
+      </section>
+
+      {/* 대표 이력. 제3자가 검증할 수 있는 기관명 위주로 적는다 (AEO, GEO 근거) */}
+      <section className="mb-12 sm:mb-16">
+        <div className="flex items-center gap-2 mb-6">
+          <div className="bg-black border-2 border-black p-1.5 rotate-2">
+            <Briefcase className="w-5 h-5 text-white" />
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black">대표 프로젝트와 강의</h2>
+        </div>
+        <div className="space-y-3">
+          {[
+            ["2023~2026", "한국관광공사, 한국관광 데이터랩 활성화와 자동화 컨설팅"],
+            ["2023~2026", "KOTRA아카데미 디지털 마케팅 과정 출강 (SNS 수출마케팅 전략 등)"],
+            ["2023~2026", "교보문고 GA4 분석 환경 구축과 유지보수"],
+            ["2022~2023", "삼성 C랩 참여 스타트업 그로스 컨설팅"],
+            ["2024~2026", "연세대, 고려대, 사이버한국외대, 한양사이버대 강의"],
+            ["2023~2024", "신세계면세점, 신세계사이먼 분석 환경 구축"],
+            ["2024~2025", "AhnLab 데이터 분석 컨설팅"],
+            ["2023~2026", "스케쳐스코리아, ABC마트 등 글로벌 브랜드 한국 법인 분석"],
+            ["2023~2025", "부산은행, 동원, 풀무원녹즙 등 금융과 식품 제조 프로젝트"],
+            ["2023~2026", "한화호텔앤리조트, 더플라자 등 호텔 분석 프로젝트"],
+          ].map(([year, desc]) => (
+            <div
+              key={desc}
+              className="flex items-start gap-3 bg-gray-50 border-2 border-black p-3"
+            >
+              <span className="bg-accent text-black text-xs font-bold px-2 py-0.5 border-2 border-black shrink-0 font-mono">
+                {year}
+              </span>
+              <span className="text-sm sm:text-base text-gray-700">{desc}</span>
+            </div>
+          ))}
+        </div>
+        <p className="mt-4 text-xs text-gray-500">
+          기관명은 공개 가능한 프로젝트만 적었습니다. 민간 고객사 다수는 계약에 따라 업종으로만 표기합니다.
         </p>
       </section>
 
@@ -552,6 +626,37 @@ export default async function AboutPage() {
               </NeoTiltCard>
             );
           })}
+        </div>
+      </section>
+
+      {/* 자주 묻는 질문. FAQPage JSON-LD와 문구를 일치시킨다 */}
+      <section className="mb-12 sm:mb-16">
+        <div className="flex items-center gap-2 mb-6">
+          <div className="bg-black border-2 border-black p-1.5 -rotate-2">
+            <CircleHelp className="w-5 h-5 text-white" />
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black">자주 묻는 질문</h2>
+        </div>
+        <div className="space-y-4">
+          <div className="bg-white border-4 border-black p-4 sm:p-5 neo-shadow-sm">
+            <h3 className="font-black text-base sm:text-lg mb-2">어떤 일을 의뢰할 수 있나요?</h3>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              GA4와 GTM 분석 환경 구축, 이벤트 택소노미 설계, BigQuery 로우데이터 분석,
+              AEO와 GEO 컨설팅, 기업 실무 교육을 의뢰할 수 있습니다.{" "}
+              <a href="mailto:hong@oso.ma" className="font-bold underline">hong@oso.ma</a>로
+              문의하면 됩니다.
+            </p>
+          </div>
+          <div className="bg-white border-4 border-black p-4 sm:p-5 neo-shadow-sm">
+            <h3 className="font-black text-base sm:text-lg mb-2">강의나 교육은 어떻게 요청하나요?</h3>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              기업과 공공기관 출강, 온라인 강의 모두 가능합니다. KOTRA아카데미와 대학
+              강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다. 교육 대상과
+              인원, 희망 일정을{" "}
+              <a href="mailto:hong@oso.ma" className="font-bold underline">hong@oso.ma</a>로
+              보내 주시면 커리큘럼안으로 회신합니다.
+            </p>
+          </div>
         </div>
       </section>
 

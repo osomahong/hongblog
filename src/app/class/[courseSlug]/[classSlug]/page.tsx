@@ -11,6 +11,7 @@ import { isAiPracticeTopic } from "@/lib/aipractice-topic";
 import { ClassProgressMarker } from "@/components/ClassProgressMarker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
+import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { classHref } from "@/lib/links";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
@@ -142,11 +143,7 @@ export default async function ClassDetailPage({ params }: Props) {
         inLanguage: "ko",
         datePublished: (classData.publishedAt ?? classData.createdAt).toISOString(),
         dateModified: classData.updatedAt.toISOString(),
-        author: {
-            "@type": "Person",
-            name: "준이아빠",
-            url: absoluteUrl("/about"),
-        },
+        author: AUTHOR_PERSON_LD,
         publisher: {
             "@type": "Organization",
             name: "준이아빠블로그",
