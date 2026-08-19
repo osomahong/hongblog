@@ -37,7 +37,7 @@ import { AboutCanvasFx } from "@/components/about/AboutCanvasFx";
 const BASE_YEAR = 2017;
 const REFERENCE_YEAR = 2026;
 const YEARS_OF_EXPERIENCE = REFERENCE_YEAR - BASE_YEAR + 1;
-const CLIENT_COUNT_LABEL = "130곳+";
+const CLIENT_COUNT_LABEL = "120곳+";
 /** 경력, 고객사, 교육 수치를 마지막으로 확인한 시점 */
 const CREDENTIAL_AS_OF = "2026년 8월";
 /** 화면의 프로필 버튼과 Person, Organization JSON-LD의 sameAs가 같은 값을 쓴다 */
@@ -137,8 +137,6 @@ const clientGroups = [
       "연세대학교",
       "고려대학교",
       "사이버한국외국어대학교",
-      "한양사이버대학교",
-      "부산은행",
       "이노션",
       "이피엘컴퍼니",
     ],
@@ -167,17 +165,12 @@ const clientGroups = [
       "동원",
       "풀무원녹즙",
       "안국건강",
-      "SK매직",
-      "KT알파",
-      "경동나비엔",
-      "파크시스템스",
       "지앤지커머스",
-      "라이트바겐",
     ],
   },
   {
-    label: "호텔, 리조트, 여행",
-    items: ["한화호텔앤리조트", "더플라자", "네스트호텔", "줌줌투어"],
+    label: "호텔과 리조트",
+    items: ["한화호텔앤리조트", "더플라자", "네스트호텔"],
   },
   {
     label: "플랫폼과 스타트업",
@@ -187,7 +180,6 @@ const clientGroups = [
       "하우스버디",
       "애기야가자",
       "호퍼스",
-      "로이쿠",
       "승우여행사",
       "세상에없는세상",
       "알브이에이치",
@@ -195,11 +187,7 @@ const clientGroups = [
       "포어스",
       "가시림수목원",
       "에스앤가든",
-      "코코리",
-      "한국드림관광",
       "레프트아이템딜리버리",
-      "뭉클랩",
-      "인피니티타워",
       "비바이노베이션",
     ],
   },
@@ -304,7 +292,6 @@ const programGroups = [
           "에스앤가든",
           "가시림수목원",
           "스튜디오갈릴레이",
-          "코코리색채연구소",
           "하우스버디",
           "그리니어",
           "애기야가자",
@@ -317,8 +304,6 @@ const programGroups = [
           "호퍼스",
           "네스티아",
           "포어스딜라이트",
-          "로이쿠",
-          "한국드림관광",
           "프리피아",
         ],
       },
@@ -445,9 +430,8 @@ const milestones: {
   },
   {
     year: "2023",
-    title: "금융, 식품 제조 분석 프로젝트",
+    title: "식품 제조 분석 프로젝트",
     orgs: [
-      { name: "부산은행", logo: "busanbank" },
       { name: "동원", logo: "dongwon" },
       { name: "풀무원녹즙", logo: "pulmuone" },
     ],
@@ -484,11 +468,6 @@ const milestones: {
     year: "2026",
     title: "관광기업 데이터, AI 활용 지원 사업 AI 컨설팅 (참여 기업 27개사)",
     orgs: [{ name: "한국관광공사", logo: "knto" }],
-  },
-  {
-    year: "2026",
-    title: "AI 실무 온라인 강의",
-    orgs: [{ name: "한양사이버대학교", logo: "hycu" }],
   },
 ];
 
@@ -622,7 +601,7 @@ export default async function AboutPage() {
               <span className="text-[#FF0033]">데이터로 확인하는</span> 일을 합니다.
             </h1>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로, 오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는 <strong>홍승협(준이아빠)</strong>입니다. 공공기관, 면세 유통, 정보보안, 클라우드, 호텔, 글로벌 브랜드 한국 법인 등 <strong>130곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
+              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로, 오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는 <strong>홍승협(준이아빠)</strong>입니다. 공공기관, 면세 유통, 정보보안, 클라우드, 호텔, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
               <span className="block mt-2 text-xs text-gray-500">
                 경력 수치는 {CREDENTIAL_AS_OF} 기준
               </span>
