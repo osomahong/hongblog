@@ -122,118 +122,6 @@ function buildStats(counts: ContentCounts) {
   ];
 }
 
-/**
- * 직접 계약으로 분석 구축, 컨설팅, 교육을 수행한 기업과 기관.
- * 업종별로 묶어 어떤 산업을 겪었는지 한눈에 보이게 한다.
- */
-const clientGroups = [
-  {
-    label: "공공기관",
-    items: ["한국관광공사", "KOTRA"],
-  },
-  {
-    label: "대학과 기업 교육",
-    items: [
-      "연세대학교",
-      "고려대학교",
-      "사이버한국외국어대학교",
-      "이노션",
-      "이피엘컴퍼니",
-    ],
-  },
-  {
-    label: "보안, 클라우드, SaaS",
-    items: [
-      "안랩",
-      "지란지교",
-      "오피스키퍼",
-      "베스핀글로벌",
-      "유니드컴즈",
-    ],
-  },
-  {
-    label: "유통, 커머스, 제조",
-    items: [
-      "교보문고",
-      "신세계면세점",
-      "신세계사이먼",
-      "ABC마트",
-      "스케쳐스코리아",
-      "반다이남코코리아몰",
-      "동원",
-      "풀무원녹즙",
-      "안국건강",
-      "지앤지커머스",
-    ],
-  },
-  {
-    label: "호텔과 리조트",
-    items: ["한화호텔앤리조트", "더플라자", "네스트호텔"],
-  },
-  {
-    label: "플랫폼과 스타트업",
-    items: [
-      "이벤터스",
-      "그리니어",
-      "애기야가자",
-      "호퍼스",
-      "승우여행사",
-      "알브이에이치",
-      "가시림수목원",
-      "레프트아이템딜리버리",
-      "비바이노베이션",
-    ],
-  },
-  {
-    label: "비영리 재단",
-    items: ["사랑밭"],
-  },
-];
-
-/**
- * 공공, 대기업 지원 사업에서 직접 컨설팅을 맡은 기업.
- * 사업 전체 선발 명단이 아니라 본인 담당분만 적는다.
- */
-const programGroups = [
-  {
-    org: "한국관광공사 관광기업 데이터, AI 활용 지원 사업",
-    role: "2023년부터 2026년까지 수행한 사업에서 직접 맡은 기업",
-    cohorts: [
-      {
-        label: "2023 그로스해킹 컨설팅",
-        items: ["스테이폴리오", "캐플릭스"],
-      },
-      {
-        label: "2024 데이터 분석 환경 구축, 그로스해킹",
-        items: ["나그네들", "남도마켓", "커런시유나이티드", "이벤터스"],
-      },
-      {
-        label: "2026 데이터, AI 활용 지원",
-        items: [
-          "마이스태프",
-          "승우여행사",
-          "가시림수목원",
-          "그리니어",
-          "애기야가자",
-          "알브이에이치",
-          "레프트아이템딜리버리",
-          "호퍼스",
-        ],
-      },
-    ],
-  },
-  {
-    org: "삼성 C랩 디지털 마케팅 프로그램",
-    role: "2022년부터 2023년까지 직접 맡은 선발 스타트업",
-    cohorts: [
-      {
-        label: "선발 스타트업",
-        items: ["코딧", "플라스크", "엔닷라이트", "네오폰스"],
-      },
-    ],
-  },
-];
-
 const principles = [
   {
     title: "성과가 나온 이유를 남깁니다",
@@ -302,16 +190,35 @@ const milestones: {
   year: string;
   title: string;
   orgs: { name: string; logo?: string }[];
+  /** 지원 사업처럼 주관 기관 아래에서 직접 맡은 기업이 따로 있을 때 적는다 */
+  note?: string;
 }[] = [
   {
+    year: "2021",
+    title: "건강기능식품, 물류 분석 환경 구축",
+    orgs: [{ name: "안국건강" }, { name: "레프트아이템딜리버리" }],
+  },
+  {
     year: "2022",
-    title: "참여 스타트업 그로스, 분석 컨설팅",
+    title: "삼성 C랩 선발 스타트업 그로스, 분석 컨설팅",
     orgs: [{ name: "삼성 C랩", logo: "samsung" }],
+    note: "담당 기업 코딧, 플라스크, 엔닷라이트, 네오폰스",
+  },
+  {
+    year: "2022",
+    title: "정보보안 소프트웨어 분석 환경 구축과 SEO",
+    orgs: [{ name: "지란지교" }],
+  },
+  {
+    year: "2022",
+    title: "디지털 매체 운영, CRM, 데이터 분석 교육 과정 운영",
+    orgs: [{ name: "이피엘컴퍼니" }],
   },
   {
     year: "2023",
-    title: "한국관광 데이터랩 활성화와 자동화 컨설팅 (4년 연속)",
+    title: "한국관광 데이터랩 활성화와 그로스해킹 컨설팅 (4년 연속 수행)",
     orgs: [{ name: "한국관광공사", logo: "knto" }],
+    note: "담당 기업 스테이폴리오, 캐플릭스",
   },
   {
     year: "2023",
@@ -347,6 +254,16 @@ const milestones: {
     orgs: [{ name: "스케쳐스코리아" }, { name: "ABC마트" }],
   },
   {
+    year: "2023",
+    title: "보안 제품, 마케팅 SaaS 이벤트 설계와 검수",
+    orgs: [{ name: "오피스키퍼" }, { name: "유니드컴즈" }],
+  },
+  {
+    year: "2023",
+    title: "모바일 앱 GA4 온보딩 컨설팅",
+    orgs: [{ name: "비바이노베이션" }],
+  },
+  {
     year: "2024",
     title: "데이터 분석 컨설팅",
     orgs: [{ name: "AhnLab", logo: "ahnlab" }],
@@ -357,6 +274,22 @@ const milestones: {
     orgs: [{ name: "고려대학교", logo: "korea-univ" }],
   },
   {
+    year: "2024",
+    title: "관광기업 데이터 분석 환경 구축과 그로스해킹",
+    orgs: [{ name: "한국관광공사", logo: "knto" }],
+    note: "담당 기업 나그네들, 남도마켓, 커런시유나이티드, 이벤터스",
+  },
+  {
+    year: "2024",
+    title: "커머스, 엔터테인먼트 유통 분석 구축",
+    orgs: [{ name: "지앤지커머스" }, { name: "반다이남코코리아몰" }],
+  },
+  {
+    year: "2024",
+    title: "GA4 활용 교육",
+    orgs: [{ name: "이노션" }],
+  },
+  {
     year: "2025",
     title: "디지털 마케팅과 데이터 분석 강의 확대",
     orgs: [
@@ -365,9 +298,31 @@ const milestones: {
     ],
   },
   {
+    year: "2025",
+    title: "관광기업 데이터 활용과 그로스해킹 컨설팅",
+    orgs: [{ name: "한국관광공사", logo: "knto" }],
+    note: "담당 기업 그리니어, 이지백, 요즘피플",
+  },
+  {
+    year: "2025",
+    title: "비영리 후원 전환 추적 설계",
+    orgs: [{ name: "사랑밭" }],
+  },
+  {
     year: "2026",
     title: "관광기업 데이터, AI 활용 지원 사업 AI 컨설팅 (참여 기업 27개사)",
     orgs: [{ name: "한국관광공사", logo: "knto" }],
+    note: "담당 기업 승우여행사, 가시림수목원, 애기야가자, 알브이에이치, 호퍼스, 그리니어, 레프트아이템딜리버리",
+  },
+  {
+    year: "2026",
+    title: "클라우드 MSP 분석 환경과 데이터 파이프라인 구축",
+    orgs: [{ name: "베스핀글로벌" }],
+  },
+  {
+    year: "2026",
+    title: "호텔 GA4 구축 컨설팅",
+    orgs: [{ name: "네스트호텔" }],
   },
 ];
 
@@ -626,81 +581,16 @@ export default async function AboutPage() {
                       </span>
                     ))}
                   </div>
+                  {m.note && (
+                    <p className="mt-2 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                      {m.note}
+                    </p>
+                  )}
                 </div>
               </li>
             );
           })}
         </ol>
-      </section>
-
-      {/* Representative Clients */}
-      <section className="mb-12 sm:mb-16">
-        <NeoTiltCard
-          className="bg-white border-4 border-black p-6 sm:p-8 rotate-0.5"
-          intensity={12}
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <div className="bg-primary border-2 border-black p-1.5 rotate-2">
-              <Building2 className="w-5 h-5 text-white" />
-            </div>
-            <h2 className="text-xl sm:text-2xl font-black">
-              함께 일한 기업과 기관
-            </h2>
-          </div>
-          <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
-            공공, 보안, 이커머스, 유통, 면세, 호텔, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 기업과 기관</strong>의 분석 환경 구축, 그로스 컨설팅, 실무 교육을 맡았습니다. 아래는 그중 직접 담당했고 공개할 수 있는 곳입니다.
-          </p>
-          <div className="space-y-4">
-            {clientGroups.map((group) => (
-              <div key={group.label}>
-                <p className="text-xs sm:text-sm font-black mb-2 text-black/70">
-                  {group.label}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((name) => (
-                    <span
-                      key={name}
-                      className="inline-block bg-gray-50 border-2 border-black text-black text-xs sm:text-sm font-bold px-3 py-1.5"
-                    >
-                      {name}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {programGroups.map((program) => (
-            <div
-              key={program.org}
-              className="mt-6 pt-5 border-t-2 border-black/20"
-            >
-              <p className="text-sm sm:text-base font-black">{program.org}</p>
-              <p className="text-xs sm:text-sm text-gray-600 mb-3">
-                {program.role}
-              </p>
-              <div className="space-y-3">
-                {program.cohorts.map((cohort) => (
-                  <div key={cohort.label}>
-                    <p className="text-xs font-bold mb-1.5 text-black/60">
-                      {cohort.label}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {cohort.items.map((name) => (
-                        <span
-                          key={name}
-                          className="inline-block bg-accent border-2 border-black text-black text-xs font-bold px-2.5 py-1"
-                        >
-                          {name}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </NeoTiltCard>
       </section>
 
       {/* Why this work */}
