@@ -545,15 +545,15 @@ export default async function AboutPage() {
           {milestoneYears.map((year) => (
             <div
               key={year}
-              className="grid grid-cols-[3.5rem_1fr] sm:grid-cols-[7rem_1fr] border-b-2 border-black"
+              className="grid grid-cols-[3.25rem_1fr] sm:grid-cols-[7rem_1fr] border-b-2 border-black"
             >
               <time
                 dateTime={year}
-                className="block font-black text-2xl sm:text-4xl leading-none tracking-tight self-start pt-6 sm:pt-7 pr-3 sm:pr-6 sm:text-right sm:sticky sm:top-24"
+                className="block font-black text-lg sm:text-4xl leading-none tracking-tight self-start pt-6 sm:pt-7 pr-2 sm:pr-6 sm:text-right sm:sticky sm:top-24"
               >
                 {year}
               </time>
-              <ol className="space-y-5 sm:space-y-6 border-l-2 border-black/25 pl-4 sm:pl-8 py-6 sm:py-7">
+              <ol className="min-w-0 space-y-5 sm:space-y-6 border-l-2 border-black/25 pl-4 sm:pl-8 py-6 sm:py-7">
                 {milestonesByYear[year].map((m) => (
                   <li key={m.title} className="relative">
                     {/* 축 위에 계약 하나를 찍는 노드 */}
