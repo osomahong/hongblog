@@ -822,3 +822,223 @@ export function ashNavigate(
   e.preventDefault();
   void dissolvePageAndNavigate(navigate);
 }
+
+/**
+ * 유리 파쇄. 균열이 잠깐 보인 뒤 방사형 파편이 회전하며 떨어진다.
+ * 원본은 그대로 두므로, 클릭 직후 상태가 바뀌는 요소(퀴즈 오답 등)에서
+ * 파편이 떨어지며 아래의 새 상태가 드러난다.
+ */
+export async function shatterElement(el: HTMLElement): Promise<void> {
+  if (el.dataset.fxRunning === "1") return;
+  el.dataset.fxRunning = "1";
+  try {
+    const cap = await captureInOverlay(el, 70);
+    if (!cap) return;
+    const { overlay, ctx, src, dpr } = cap;
+    // 충격점은 중앙 부근에서 살짝 랜덤
+    const ix = src.width * (0.35 + Math.random() * 0.3);
+    const iy = src.height * (0.35 + Math.random() * 0.3);
+    const count = 11 + Math.floor(Math.random() * 4);
+    const angles: number[] = [];
+    for (let i = 0; i < count; i++) {
+      angles.push((i / count) * Math.PI * 2 + (Math.random() - 0.5) * 0.4);
+    }
+    angles.sort((a, b) => a - b);
+    const reach = Math.hypot(src.width, src.height);
+    const shards = angles.map((a, i) => {
+      const b = i === count - 1 ? angles[0] + Math.PI * 2 : angles[i + 1];
+      const mid = (a + b) / 2;
+      return {
+        a,
+        b,
+        delay: Math.random() * 0.25,
+        vx: Math.cos(mid) * (25 + Math.random() * 55) * dpr,
+        vy: Math.abs(Math.sin(mid)) * 30 * dpr + (40 + Math.random() * 60) * dpr,
+        rot: (Math.random() - 0.5) * 0.7,
+      };
+    });
+
+    const crackMs = 130;
+    const fallMs = 620;
+    const dur = crackMs + fallMs;
+    await raceTimeout(new Promise<void>((resolve) => {
+      const t0 = performance.now();
+      const tick = (t: number) => {
+        const elapsed = t - t0;
+        ctx.clearRect(0, 0, overlay.width, overlay.height);
+        if (elapsed < crackMs) {
+          // 1단계: 원본 위에 균열 라인
+          ctx.drawImage(src, 0, 0);
+          ctx.strokeStyle = "rgba(255,255,255,0.9)";
+          ctx.lineWidth = 1.5 * dpr;
+          ctx.shadowColor = "rgba(0,0,0,0.5)";
+          ctx.shadowBlur = 2 * dpr;
+          for (const sh of shards) {
+            ctx.beginPath();
+            ctx.moveTo(ix, iy);
+            ctx.lineTo(ix + Math.cos(sh.a) * reach, iy + Math.sin(sh.a) * reach);
+            ctx.stroke();
+          }
+          ctx.shadowBlur = 0;
+        } else {
+          // 2단계: 파편 낙하
+          const p = Math.min(1, (elapsed - crackMs) / fallMs);
+          for (const sh of shards) {
+            const lp = Math.min(1, Math.max(0, (p - sh.delay) / (1 - sh.delay)));
+            const alpha = 1 - lp * lp;
+            if (alpha <= 0.03) continue;
+            ctx.save();
+            ctx.globalAlpha = alpha;
+            const dx = sh.vx * lp;
+            const dy = sh.vy * lp * lp * 3;
+            ctx.translate(ix + dx, iy + dy);
+            ctx.rotate(sh.rot * lp);
+            ctx.translate(-ix, -iy);
+            ctx.beginPath();
+            ctx.moveTo(ix, iy);
+            ctx.lineTo(ix + Math.cos(sh.a) * reach, iy + Math.sin(sh.a) * reach);
+            ctx.lineTo(ix + Math.cos(sh.b) * reach, iy + Math.sin(sh.b) * reach);
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(src, 0, 0);
+            ctx.restore();
+          }
+        }
+        if (elapsed < dur) requestAnimationFrame(tick);
+        else resolve();
+      };
+      requestAnimationFrame(tick);
+    }), dur + 600);
+    overlay.remove();
+  } finally {
+    delete el.dataset.fxRunning;
+  }
+}
+
+/**
+ * 클릭 지점에서 검은 잉크가 번지며 화면을 삼키고 다음 페이지가 드러나는 전환.
+ * 잉크는 실제 페이지 위를 덮기만 하므로 캡처가 필요 없고, 로딩은 번짐과
+ * 병렬로 진행된다. 미지원, 게이트 환경에서는 즉시 이동한다.
+ */
+export async function inkPageAndNavigate(
+  navigate: () => void,
+  originX: number,
+  originY: number
+): Promise<void> {
+  if (!supportsHtmlInCanvas() || !environmentAllowsFx()) {
+    navigate();
+    return;
+  }
+  const dpr = window.devicePixelRatio || 1;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const overlay = document.createElement("canvas");
+  overlay.width = Math.ceil(vw * dpr);
+  overlay.height = Math.ceil(vh * dpr);
+  overlay.style.cssText =
+    "position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;";
+  document.body.appendChild(overlay);
+  const ctx = overlay.getContext("2d");
+  if (!ctx) {
+    overlay.remove();
+    navigate();
+    return;
+  }
+
+  const before = location.pathname + location.search;
+  navigate();
+
+  const ox = originX * dpr;
+  const oy = originY * dpr;
+  const maxR = Math.hypot(overlay.width, overlay.height);
+  // 중심 방울 하나와 주변 위성 방울들이 시차를 두고 함께 번진다
+  const blobs = [{ x: ox, y: oy, scale: 1, delay: 0 }];
+  for (let i = 0; i < 6; i++) {
+    const ang = Math.random() * Math.PI * 2;
+    const dist = (60 + Math.random() * 180) * dpr;
+    blobs.push({
+      x: ox + Math.cos(ang) * dist,
+      y: oy + Math.sin(ang) * dist,
+      scale: 0.35 + Math.random() * 0.4,
+      delay: 0.08 + Math.random() * 0.22,
+    });
+  }
+  const wobbles = blobs.map(() => Math.random() * Math.PI * 2);
+
+  const dur = 620;
+  try {
+    await raceTimeout(new Promise<void>((resolve) => {
+      const t0 = performance.now();
+      const tick = (t: number) => {
+        const p = Math.min(1, (t - t0) / dur);
+        ctx.clearRect(0, 0, overlay.width, overlay.height);
+        ctx.fillStyle = "#0b0b0d";
+        // 가장자리가 번지도록 블러를 걸고, 불규칙한 테두리의 원을 겹친다
+        ctx.filter = `blur(${10 * dpr}px)`;
+        blobs.forEach((b, bi) => {
+          const lp = Math.min(1, Math.max(0, (p - b.delay) / (1 - b.delay)));
+          if (lp <= 0) return;
+          const ease = lp * lp * (3 - 2 * lp);
+          const r = maxR * ease * b.scale + 8 * dpr;
+          ctx.beginPath();
+          const steps = 26;
+          for (let k = 0; k <= steps; k++) {
+            const a = (k / steps) * Math.PI * 2;
+            const wob = 1 + 0.07 * Math.sin(a * 5 + wobbles[bi] + p * 6);
+            const px = b.x + Math.cos(a) * r * wob;
+            const py = b.y + Math.sin(a) * r * wob;
+            if (k === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          }
+          ctx.closePath();
+          ctx.fill();
+        });
+        ctx.filter = "none";
+        if (p < 1) requestAnimationFrame(tick);
+        else resolve();
+      };
+      requestAnimationFrame(tick);
+    }), dur + 600);
+
+    // 완전히 덮인 상태 유지를 위해 마지막 프레임을 통칠한다
+    ctx.filter = "none";
+    ctx.fillStyle = "#0b0b0d";
+    ctx.fillRect(0, 0, overlay.width, overlay.height);
+
+    // 새 페이지가 그려질 때까지만 잠깐 기다린다 (이미 이동돼 있으면 바로 통과)
+    const t0 = performance.now();
+    while (
+      location.pathname + location.search === before &&
+      performance.now() - t0 < 2500
+    ) {
+      await new Promise((r) => setTimeout(r, 60));
+    }
+    await new Promise((r) => setTimeout(r, 100));
+  } finally {
+    // 잉크가 걷히며 새 페이지가 드러난다
+    overlay.style.transition = "opacity 280ms ease";
+    overlay.style.opacity = "0";
+    window.setTimeout(() => overlay.remove(), 320);
+  }
+}
+
+/** 링크 클릭을 잉크 번짐 전환으로 바꾸는 공용 핸들러 */
+export function inkNavigate(
+  e: {
+    clientX: number;
+    clientY: number;
+    metaKey: boolean;
+    ctrlKey: boolean;
+    shiftKey: boolean;
+    altKey: boolean;
+    button: number;
+    defaultPrevented: boolean;
+    preventDefault: () => void;
+  },
+  navigate: () => void
+): void {
+  if (e.defaultPrevented) return;
+  if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+  e.preventDefault();
+  void inkPageAndNavigate(navigate, e.clientX, e.clientY);
+}

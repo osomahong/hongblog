@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
-import { ashNavigate, jellyElement } from "@/lib/canvas-fx";
+import { ashNavigate, inkNavigate, jellyElement } from "@/lib/canvas-fx";
 import { KAKAO_INQUIRY_URL } from "@/lib/constants";
 import { SearchDialog } from "@/components/search/SearchDialog";
 import { NewsletterModal } from "@/components/NewsletterModal";
@@ -260,7 +260,8 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                     href={href}
                     onClick={(e) => {
                       sendGAEvent("click_nav", { menu_name: label });
-                      ashNavigate(e, () => router.push(href));
+                      // 다크 테마 섹션 진입이라 검은 잉크가 화면을 삼키는 전환을 쓴다
+                      inkNavigate(e, () => router.push(href));
                     }}
                     className={cn(
                       "nav-aip-pill px-3 lg:px-4 py-2 mr-1.5 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-all hover:brightness-125",

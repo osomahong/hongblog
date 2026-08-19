@@ -5,7 +5,8 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, BookOpen } from "lucide-react";
 import { NeoBadge } from "@/components/neo";
 import { sendGAEvent } from "@/lib/gtm";
-import { hologramElement } from "@/lib/canvas-fx";
+import { useRouter } from "next/navigation";
+import { hologramElement, inkNavigate } from "@/lib/canvas-fx";
 import type { CourseCard } from "@/lib/promotions";
 
 interface CourseCarouselProps {
@@ -17,6 +18,7 @@ interface CourseCarouselProps {
  * 코스 전체를 가로 한 줄에 편다. 카드 링크는 전부 DOM에 남기고 넘기기만 스크롤로 처리한다.
  */
 export function CourseCarousel({ courses }: CourseCarouselProps) {
+  const router = useRouter();
   const trackRef = useRef<HTMLDivElement>(null);
 
   if (courses.length === 0) return null;
@@ -74,13 +76,15 @@ export function CourseCarousel({ courses }: CourseCarouselProps) {
             // HTML in Canvas 지원 브라우저에서만 홀로그램 스캔이 지나간다.
             // 미지원이면 hologramElement가 아무 일도 하지 않는다.
             onMouseEnter={(e) => void hologramElement(e.currentTarget)}
-            onClick={() =>
+            onClick={(e) => {
               sendGAEvent("click_main_course", {
                 content_id: course.slug,
                 content_name: course.title,
                 position: index + 1,
-              })
-            }
+              });
+              // 학습 경로 진입은 잉크 번짐 전환
+              inkNavigate(e, () => router.push(course.href));
+            }}
             className="flex flex-col w-[240px] sm:w-[calc((100%-3rem)/4)] flex-shrink-0 snap-start bg-white border-2 border-black neo-shadow-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
           >
             <img
