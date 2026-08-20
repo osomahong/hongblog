@@ -74,6 +74,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/paid-search-performance"),
     { loading: LoadingBox }
   ),
+  "utm-campaign-tracking": dynamic(
+    () => import("../labs/utm-campaign-tracking"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
