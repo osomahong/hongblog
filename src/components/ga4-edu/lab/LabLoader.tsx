@@ -78,6 +78,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/utm-campaign-tracking"),
     { loading: LoadingBox }
   ),
+  "segment-basics": dynamic(
+    () => import("../labs/segment-basics"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

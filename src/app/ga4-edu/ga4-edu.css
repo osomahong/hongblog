@@ -2173,6 +2173,7 @@ main:has(> .ga4-root) > .ga4-root {
 
 /* 탐색 홈은 바탕이 흰색이고, 자유 형식 작업 화면만 캔버스가 회색으로 바뀐다 */
 .ga4-explore {
+  position: relative;
   flex: 1;
   min-width: 0;
   display: flex;
@@ -3876,6 +3877,138 @@ main:has(> .ga4-root) > .ga4-root {
   justify-content: flex-end;
 }
 .ga4-fn-editor-foot .ga4-btn-primary:disabled {
+  background: #dadce0;
+  color: #9aa0a6;
+  cursor: default;
+}
+
+
+/* ===================== 세그먼트 ===================== */
+
+.ga4-ff-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-ff-add:hover { background: rgba(60, 64, 67, 0.08); }
+
+.ga4-ff-segment {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: var(--ga4-blue-soft);
+  color: #174ea6;
+  font-size: 12px;
+}
+
+.ga4-seg-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 16px;
+  background: #fff;
+  border-left: 1px solid var(--ga4-line);
+  box-shadow: -2px 0 12px rgba(60, 64, 67, 0.15);
+  overflow-y: auto;
+}
+.ga4-seg-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ga4-seg-head button {
+  border: none;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-seg-lead {
+  margin: 6px 0 12px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-seg-scopes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ga4-seg-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-seg-card:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-seg-card:disabled { opacity: 0.55; cursor: default; }
+.ga4-seg-card-on {
+  border-color: var(--ga4-blue);
+  background: rgba(26, 115, 232, 0.06);
+}
+.ga4-seg-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ga4-blue-soft);
+  color: #174ea6;
+}
+.ga4-seg-card-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-seg-card-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ga4-muted);
+}
+.ga4-seg-condition {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+}
+.ga4-seg-condition-value {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+/* 도우미 말풍선이 오른쪽 아래를 가리므로 만들기는 머리글에 둔다 */
+.ga4-seg-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ga4-seg-create {
+  padding: 6px 16px;
+  font-size: 13px;
+}
+.ga4-seg-create:disabled {
   background: #dadce0;
   color: #9aa0a6;
   cursor: default;

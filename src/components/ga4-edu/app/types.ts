@@ -187,6 +187,25 @@ export interface Ga4FunnelState {
   selectedStage: string | null;
 }
 
+/* ===================== 세그먼트 상태 ===================== */
+
+/** 세그먼트를 만드는 편에서 쓰는 상태. 자유 형식 상태에 만들기 패널 몫을 더한 것이다 */
+export interface Ga4SegmentState extends Ga4ExploreState {
+  /** 세그먼트 만들기 패널이 열려 있는지 */
+  builderOpen: boolean;
+  /** 패널에서 고른 범위. 만들기를 눌러야 목록에 올라간다 */
+  builderScope: "user" | "session" | "event" | null;
+  /** 표에 적용된 세그먼트 이름. 만든 순서대로 쌓인다 */
+  segments: string[];
+}
+
+export const INITIAL_SEGMENT_STATE: Ga4SegmentState = {
+  ...INITIAL_EXPLORE_STATE,
+  builderOpen: false,
+  builderScope: null,
+  segments: [],
+};
+
 export const INITIAL_FUNNEL_STATE: Ga4FunnelState = {
   screen: "home",
   editorOpen: false,

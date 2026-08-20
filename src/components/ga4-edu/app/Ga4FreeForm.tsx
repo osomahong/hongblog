@@ -49,6 +49,12 @@ interface Ga4FreeFormProps {
   onRemove: (slot: SlotName, key: string) => void;
   /** 캔버스에 그릴 표 */
   children: ReactNode;
+  /**
+   * 아래 둘은 세그먼트를 다루는 편에서만 넘긴다.
+   * 넘기지 않으면 GA4 기본값인 "모든 사용자"만 적힌 자리로 남는다.
+   */
+  segments?: string[];
+  onAddSegment?: () => void;
 }
 
 export function Ga4FreeForm({
@@ -61,6 +67,8 @@ export function Ga4FreeForm({
   onDropTo,
   onRemove,
   children,
+  segments,
+  onAddSegment,
 }: Ga4FreeFormProps) {
   const labelOf = (key: string) =>
     [...dimensions, ...metrics].find((v) => v.key === key)?.label ?? key;
@@ -83,8 +91,16 @@ export function Ga4FreeForm({
           <p className="ga4-ff-field-value">{dateLabel}</p>
         </div>
 
-        <VariableGroup title="세그먼트">
-          <p className="ga4-ff-empty">모든 사용자</p>
+        <VariableGroup title="세그먼트" onAdd={onAddSegment} tourName="segment-add">
+          {segments && segments.length > 0 ? (
+            segments.map((name) => (
+              <span key={name} className="ga4-ff-segment">
+                {name}
+              </span>
+            ))
+          ) : (
+            <p className="ga4-ff-empty">모든 사용자</p>
+          )}
         </VariableGroup>
 
         <VariableGroup title="측정기준">
@@ -202,15 +218,54 @@ export function Ga4FreeForm({
 
 /* ===================== 조각 ===================== */
 
-function VariableGroup({ title, children }: { title: string; children: ReactNode }) {
+function VariableGroup({
+  title,
+  children,
+  onAdd,
+  tourName,
+}: {
+  title: string;
+  children: ReactNode;
+  /** 더하기를 누를 수 있는 묶음에서만 넘긴다 */
+  onAdd?: () => void;
+  tourName?: string;
+}) {
   return (
     <div className="ga4-ff-group">
       <p className="ga4-ff-group-head">
         {title}
-        <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
+        {onAdd ? (
+          <AddButton onAdd={onAdd} tourName={tourName} label={`${title} 추가`} />
+        ) : (
+          <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
+        )}
       </p>
       <div className="ga4-ff-group-body">{children}</div>
     </div>
+  );
+}
+
+/** 묶음 머리글의 더하기. 링이 걸리면 빨간 상자가 그려진다 */
+function AddButton({
+  onAdd,
+  tourName,
+  label,
+}: {
+  onAdd: () => void;
+  tourName?: string;
+  label: string;
+}) {
+  const ring = useRing(tourName ?? "");
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      data-tour={tourName}
+      onClick={onAdd}
+      className={`ga4-ff-add${ring}`}
+    >
+      <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
+    </button>
   );
 }
 
