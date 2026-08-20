@@ -9,8 +9,9 @@
  * GA4가 강조색으로 파랑만 쓰기 때문에, 눌러야 할 곳은 빨간색으로 구분한다.
  */
 
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, type ReactNode } from "react";
 import { RotateCcw } from "lucide-react";
+import { burstElement, glitchElement, jellyElement, scanInElement } from "@/lib/canvas-fx";
 
 const RingContext = createContext<string | null>(null);
 
@@ -34,19 +35,56 @@ interface Ga4GuideProps {
   onRestart: () => void;
 }
 
-/** GA4 화면 오른쪽 아래에 서서 지시문을 건네는 도우미 */
+/**
+ * GA4 화면 오른쪽 아래에 서서 지시문을 건네는 도우미.
+ *
+ * 말풍선 내용이 바뀌는 순간에 HTML in Canvas 효과를 얹는다. 스텝을 넘기면 출렁이고,
+ * 잘못 짚으면 화면이 한 번 튀고, 다 끝내면 말풍선에서 파편이 터진다.
+ * 미지원 브라우저에서는 세 가지 모두 아무 일도 일어나지 않는다.
+ */
 export function Ga4Guide({ index, total, instruction, miss, done, onRestart }: Ga4GuideProps) {
   const tone = miss ? " ga4-guide-miss" : done ? " ga4-guide-done" : "";
+  const bubbleRef = useRef<HTMLDivElement | null>(null);
+  // 첫 렌더에서 효과가 돌지 않도록 직전 값을 들고 있는다
+  const prev = useRef({ index, miss: miss ?? null, done });
+
+  useEffect(() => {
+    const bubble = bubbleRef.current;
+    const before = prev.current;
+    prev.current = { index, miss: miss ?? null, done };
+    if (!bubble) return;
+
+    if (done && !before.done) {
+      void burstElement(bubble);
+      return;
+    }
+    if (miss && miss !== before.miss) {
+      void glitchElement(bubble);
+      return;
+    }
+    if (!done && index > before.index) {
+      void jellyElement(bubble);
+    }
+  }, [index, miss, done]);
 
   return (
     <div className={`ga4-guide${tone}`} role="status" aria-live="polite">
-      <div className="ga4-guide-bubble">
+      <div className="ga4-guide-bubble" ref={bubbleRef}>
         <p className="ga4-guide-step">
           {done ? "다 했습니다" : `${index + 1}단계 / 전체 ${total}단계`}
         </p>
         <p className="ga4-guide-text">{miss ?? instruction}</p>
         {done && (
-          <button type="button" className="ga4-guide-restart" onClick={onRestart}>
+          <button
+            type="button"
+            className="ga4-guide-restart"
+            onClick={(e) => {
+              // 처음 화면으로 되돌리면서 스캔 띠가 위에서 아래로 지나간다
+              const app = e.currentTarget.closest(".ga4-stage")?.querySelector<HTMLElement>(".ga4-app");
+              onRestart();
+              if (app) void scanInElement(app);
+            }}
+          >
             <RotateCcw className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
             다시 하기
           </button>

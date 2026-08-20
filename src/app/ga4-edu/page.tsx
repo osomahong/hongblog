@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Lock, PlayCircle, Radio } from "lucide-react";
 import { SITE_URL, SITE_NAME, SECTION_LABELS } from "@/lib/constants";
 import { Ga4Logo } from "@/components/icons/Ga4Logo";
+import { Ga4EduCanvasFx } from "@/components/ga4-edu/Ga4EduCanvasFx";
 import {
   getTutorialsByLevel,
   LEVEL_LABEL,
@@ -66,6 +67,7 @@ export default function Ga4EduHubPage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <Ga4EduCanvasFx />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(courseLd) }}

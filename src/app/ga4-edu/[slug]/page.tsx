@@ -8,6 +8,7 @@ import { Ga4EduGate } from "@/components/ga4-edu/Ga4EduGate";
 import { StepsSection, FaqSection } from "@/components/ga4-edu/TutorialSections";
 import { BottomHero } from "@/components/ga4-edu/BottomHero";
 import { RelatedGrid } from "@/components/ga4-edu/RelatedGrid";
+import { Ga4EduCanvasFx } from "@/components/ga4-edu/Ga4EduCanvasFx";
 import {
   GA4_EDU_TUTORIALS,
   getTutorial,
@@ -132,6 +133,7 @@ export default async function Ga4EduTutorialPage(props: {
 
   return (
     <div className="ga4-tut">
+      <Ga4EduCanvasFx />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(learningResourceLd) }}

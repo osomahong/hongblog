@@ -12,9 +12,10 @@
  * 구독을 해지하면 다음 확인에서 잠김으로 돌아간다.
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Mail, ArrowRight, Lock, LogIn, Loader2 } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
+import { dissolveElement } from "@/lib/canvas-fx";
 import { NewsletterModal } from "@/components/NewsletterModal";
 import { LabStage } from "./lab/LabStage";
 
@@ -41,14 +42,25 @@ export function Ga4EduGate({ slug, title, teaches, url }: Ga4EduGateProps) {
   const [notice, setNotice] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const gateRef = useRef<HTMLDivElement | null>(null);
 
-  /** 서버에 지금 세션이 유효한지 묻는다. 구독 해지도 여기서 걸러진다 */
-  const refresh = useCallback(async () => {
+  /** 잠금 카드를 재로 날려 보내고 실습으로 바꾼다. 미지원 브라우저면 바로 바뀐다 */
+  const openStage = useCallback(async () => {
+    if (gateRef.current) await dissolveElement(gateRef.current);
+    setState("open");
+  }, []);
+
+  /**
+   * 서버에 지금 세션이 유효한지 묻는다. 구독 해지도 여기서 걸러진다.
+   * animated는 잠금 카드가 화면에 있을 때만 true다. 처음 확인에는 흩어질 카드가 없다.
+   */
+  const refresh = useCallback(async (animated = false) => {
     try {
       const res = await fetch("/api/ga4-edu/session", { cache: "no-store" });
       const data = (await res.json()) as SessionResponse;
       if (data.ok) {
-        setState("open");
+        if (animated) await openStage();
+        else setState("open");
         return;
       }
       setState("locked");
@@ -59,7 +71,7 @@ export function Ga4EduGate({ slug, title, teaches, url }: Ga4EduGateProps) {
     } catch {
       setState("locked");
     }
-  }, []);
+  }, [openStage]);
 
   useEffect(() => {
     void refresh();
@@ -81,7 +93,7 @@ export function Ga4EduGate({ slug, title, teaches, url }: Ga4EduGateProps) {
 
       if (data.ok) {
         sendGAEvent("ga4edu_unlock", { content_id: slug });
-        setState("open");
+        await openStage();
         return;
       }
 
@@ -112,7 +124,7 @@ export function Ga4EduGate({ slug, title, teaches, url }: Ga4EduGateProps) {
 
   return (
     <div className="ga4-wrap">
-      <div className="ga4-gate">
+      <div className="ga4-gate" ref={gateRef}>
         <span className="ga4-gate-icon" aria-hidden>
           <Lock className="w-5 h-5" strokeWidth={1.8} />
         </span>
@@ -182,7 +194,7 @@ export function Ga4EduGate({ slug, title, teaches, url }: Ga4EduGateProps) {
         onClose={() => {
           setModalOpen(false);
           // 구독을 마치고 닫았을 수 있으니 상태를 다시 본다
-          void refresh();
+          void refresh(true);
         }}
         signupSource="ga4_edu"
       />
