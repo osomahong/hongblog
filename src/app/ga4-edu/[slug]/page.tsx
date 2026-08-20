@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
 import { LabStage } from "@/components/ga4-edu/lab/LabStage";
-import { SubscribeGate } from "@/components/ga4-edu/SubscribeGate";
+import { Ga4EduGate } from "@/components/ga4-edu/Ga4EduGate";
 import { StepsSection, FaqSection } from "@/components/ga4-edu/TutorialSections";
 import { BottomHero } from "@/components/ga4-edu/BottomHero";
 import { RelatedGrid } from "@/components/ga4-edu/RelatedGrid";
@@ -172,9 +172,12 @@ export default async function Ga4EduTutorialPage(props: {
             </div>
           </div>
         ) : !t.isOpen ? (
-          <div className="ga4-wrap">
-            <SubscribeGate slug={t.slug} title={t.title} teaches={t.teaches ?? []} />
-          </div>
+          <Ga4EduGate
+            slug={t.slug}
+            title={t.title}
+            teaches={t.teaches ?? []}
+            url={`${SITE_URL.replace(/^https?:\/\//, "")}${tutorialHref(t.slug)}`}
+          />
         ) : (
           <LabStage
             slug={t.slug}
