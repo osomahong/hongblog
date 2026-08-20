@@ -118,6 +118,11 @@ function toInsight(data: Record<string, unknown>, content: string): Insight {
     quiz: data.quiz as Insight["quiz"],
     seriesSlug: data.seriesSlug as string | undefined,
     seriesOrder: data.seriesOrder as number | undefined,
+    topicCluster: data.topicCluster as string | undefined,
+    contentType: data.contentType as Insight["contentType"],
+    journeyStage: data.journeyStage as Insight["journeyStage"],
+    nextSlugs: (data.nextSlugs as string[]) || [],
+    relatedSlugs: (data.relatedSlugs as string[]) || [],
     thumbnailUrl: data.thumbnailUrl as string | undefined,
     metaTitle: data.metaTitle as string | undefined,
     metaDescription: data.metaDescription as string | undefined,
@@ -276,6 +281,7 @@ function insightToPost(insight: Insight, index?: number): PostWithTags {
     content: insight.content,
     category: insight.category,
     tags: insight.tags,
+    readingTime: insight.readingTime,
     createdAt: date,
     updatedAt: insight.updatedAt ? new Date(insight.updatedAt) : date,
     publishedAt: date,
@@ -292,7 +298,31 @@ function insightToPost(insight: Insight, index?: number): PostWithTags {
     seriesInfo: insight.seriesSlug
       ? { id: 1, slug: insight.seriesSlug, title: insight.seriesSlug }
       : null,
+    topicCluster: insight.topicCluster || null,
+    contentType: insight.contentType || null,
+    journeyStage: insight.journeyStage || null,
+    nextSlugs: insight.nextSlugs || [],
+    relatedSlugs: insight.relatedSlugs || [],
   };
+}
+
+/** 홈의 최근 7일 인기 글 데이터와 동일한 소스를 상세 페이지 배지에도 사용한다. */
+export function getTrendingInsightSlugs(): Set<string> {
+  try {
+    const raw = fs.readFileSync(
+      path.join(process.cwd(), "scripts/data/trending.json"),
+      "utf-8",
+    );
+    const data = JSON.parse(raw) as { generatedAt?: string; slugs?: string[] };
+    const generatedAt = data.generatedAt ? new Date(data.generatedAt).getTime() : Number.NaN;
+    const maxAgeMs = 48 * 60 * 60 * 1000;
+    if (!Number.isFinite(generatedAt) || Date.now() - generatedAt > maxAgeMs) {
+      return new Set();
+    }
+    return new Set(data.slugs ?? []);
+  } catch {
+    return new Set();
+  }
 }
 
 function classToMeta(cls: ClassItem, index?: number): ClassWithMeta {

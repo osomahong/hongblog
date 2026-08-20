@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { ArrowRight, CircleHelp, CircleCheck, CircleX, RotateCcw } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
-import { glitchElement } from "@/lib/canvas-fx";
+import { glitchElement, shatterElement } from "@/lib/canvas-fx";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
 import type { Quiz } from "@/lib/types";
@@ -37,10 +37,14 @@ export function ContentQuiz({
     if (selected !== null || !q) return;
     setSelected(optionIndex);
 
-    // 정답이면 선택한 카드에 글리치 플래시를 한 번 튕긴다.
+    // 정답이면 글리치 플래시, 오답이면 유리 파쇄.
     // HTML in Canvas 미지원 브라우저에서는 조용히 생략된다.
-    if (q.correctIndex === optionIndex && target) {
-      requestAnimationFrame(() => void glitchElement(target));
+    if (target) {
+      if (q.correctIndex === optionIndex) {
+        requestAnimationFrame(() => void glitchElement(target));
+      } else {
+        requestAnimationFrame(() => void shatterElement(target));
+      }
     }
 
     sendGAEvent("quiz_answer", {
