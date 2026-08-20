@@ -2318,6 +2318,7 @@ main:has(> .ga4-root) > .ga4-root {
 
 /* ----- 자유 형식 3단 ----- */
 .ga4-ff {
+  position: relative;
   display: flex;
   flex: 1;
   min-height: 0;
@@ -2393,6 +2394,13 @@ main:has(> .ga4-root) > .ga4-root {
 }
 
 .ga4-ff-group { padding: 0 16px 14px; }
+.ga4-ff-group-title {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ga4-line);
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
 .ga4-ff-group-head {
   display: flex;
   align-items: center;
@@ -3586,3 +3594,289 @@ main:has(> .ga4-root) > .ga4-root {
   padding-left: 12px;
 }
 .ga4-admin-table .ga4-gtd-desc { white-space: normal; }
+
+
+/* ===================== 유입경로 탐색 ===================== */
+
+.ga4-ff-settings { width: 250px; }
+
+.ga4-fn-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 16px 16px;
+}
+.ga4-fn-toggle-label {
+  font-size: 12px;
+  color: var(--ga4-ink);
+}
+.ga4-fn-switch {
+  position: relative;
+  width: 34px;
+  height: 14px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  background: #bdc1c6;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.ga4-fn-switch-knob {
+  position: absolute;
+  top: -3px;
+  left: -1px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.4);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.ga4-fn-switch-on { background: var(--ga4-blue-soft); }
+.ga4-fn-switch-on .ga4-fn-switch-knob {
+  transform: translateX(16px);
+  background: var(--ga4-blue);
+}
+
+.ga4-fn-steps { padding: 0 16px 14px; }
+.ga4-fn-steps-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.ga4-fn-edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-fn-edit:hover { background: rgba(60, 64, 67, 0.08); }
+
+.ga4-fn-step-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ga4-fn-step-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ga4-ink);
+}
+.ga4-fn-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--ga4-blue-soft);
+  color: #174ea6;
+  font-size: 11px;
+}
+
+.ga4-fn-canvas {
+  flex: 1;
+  min-width: 0;
+  padding: 20px 24px 28px;
+  overflow: auto;
+}
+.ga4-fn-blank {
+  margin: 60px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+
+.ga4-fn-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  min-height: 260px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-fn-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ga4-fn-bar-area {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.ga4-fn-rate {
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-fn-bar {
+  width: 100%;
+  max-width: 92px;
+  border-radius: 3px 3px 0 0;
+  background: var(--ga4-blue);
+}
+.ga4-fn-bar-mark { background: #d93025; }
+.ga4-fn-col-name {
+  margin: 10px 0 2px;
+  font-size: 12px;
+  color: var(--ga4-ink);
+  text-align: center;
+}
+.ga4-fn-col-count {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+
+.ga4-fn-table {
+  width: 100%;
+  margin-top: 18px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.ga4-fn-table th,
+.ga4-fn-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ga4-line);
+  text-align: right;
+}
+.ga4-fn-table thead th {
+  font-weight: 500;
+  color: var(--ga4-muted);
+  font-size: 12px;
+}
+.ga4-fn-table th[scope="row"],
+.ga4-fn-table thead th:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-fn-table tbody tr { cursor: pointer; }
+.ga4-fn-table tbody tr:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-fn-row-on { background: rgba(26, 115, 232, 0.1); }
+.ga4-fn-row-mark { box-shadow: inset 3px 0 0 #d93025; }
+
+.ga4-fn-editor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 18px;
+  background: #fff;
+  border-left: 1px solid var(--ga4-line);
+  box-shadow: -2px 0 12px rgba(60, 64, 67, 0.15);
+}
+.ga4-fn-editor-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ga4-fn-editor-head button {
+  border: none;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-fn-editor-list {
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ga4-fn-editor-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  font-size: 12px;
+}
+.ga4-fn-editor-name { flex: 1; color: var(--ga4-ink); }
+.ga4-fn-editor-cond {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+.ga4-fn-editor-add { position: relative; }
+.ga4-fn-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-fn-options {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 2;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(60, 64, 67, 0.2);
+}
+.ga4-fn-options button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-fn-options button:hover { background: rgba(60, 64, 67, 0.06); }
+.ga4-fn-editor-foot {
+  margin-top: auto;
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+.ga4-fn-editor-foot .ga4-btn-primary:disabled {
+  background: #dadce0;
+  color: #9aa0a6;
+  cursor: default;
+}

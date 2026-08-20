@@ -168,6 +168,35 @@ export const INITIAL_EXPLORE_STATE: Ga4ExploreState = {
   selectedRow: null,
 };
 
+/* ===================== 유입경로 탐색 상태 ===================== */
+
+export interface Ga4FunnelState {
+  /** 탐색 홈인지 유입경로 작업 화면인지 */
+  screen: "home" | "funnel";
+  /** 단계 편집 패널이 열려 있는지 */
+  editorOpen: boolean;
+  /** 편집 패널에서 고르는 중인 새 단계 이름. 적용을 눌러야 stages에 들어간다 */
+  draftStage: string | null;
+  /** 편집 패널의 단계 후보 목록이 펼쳐져 있는지 */
+  stageListOpen: boolean;
+  /** 유입경로에 놓인 단계 이름. 순서가 그대로 단계 순서다 */
+  stages: string[];
+  /** 열린 유입경로를 켰는지. 켜면 앞 단계를 건너뛴 사용자도 세어 숫자가 커진다 */
+  openFunnel: boolean;
+  /** 학습자가 고른 단계 이름 */
+  selectedStage: string | null;
+}
+
+export const INITIAL_FUNNEL_STATE: Ga4FunnelState = {
+  screen: "home",
+  editorOpen: false,
+  draftStage: null,
+  stageListOpen: false,
+  stages: [],
+  openFunnel: false,
+  selectedStage: null,
+};
+
 /* ===================== 스텝 ===================== */
 
 export interface TourStep<S = Ga4State> {
