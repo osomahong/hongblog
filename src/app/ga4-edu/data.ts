@@ -3983,8 +3983,14 @@ export function getTutorialsByLevel(level: Ga4EduLevel): Ga4EduTutorial[] {
 }
 
 /** 사이트맵과 색인 대상. 공개 편 가운데 실습까지 완성된 것만 넣는다 */
+/**
+ * 색인 대상 튜토리얼.
+ *
+ * 실습만 구독자에게 열리고 설명, 단계, 자주 묻는 질문은 누구에게나 그대로 보인다.
+ * 읽을 내용이 모두 열려 있으므로 완성된 편은 잠금 여부와 무관하게 색인한다.
+ */
 export function getIndexableTutorials(): Ga4EduTutorial[] {
-  return GA4_EDU_TUTORIALS.filter((t) => t.isOpen && t.status === "ready");
+  return GA4_EDU_TUTORIALS.filter((t) => t.status === "ready");
 }
 
 export function tutorialHref(slug: string): string {

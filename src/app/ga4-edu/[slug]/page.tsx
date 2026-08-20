@@ -25,12 +25,17 @@ export function generateStaticParams() {
   return GA4_EDU_TUTORIALS.map((t) => ({ slug: t.slug }));
 }
 
+/** 검색 결과에서 잘리지 않는 길이. 넘으면 요약을 떼고 정의 문장만 쓴다 */
+const META_DESC_MAX = 160;
+
 /** metaDescription은 정의 문장으로 시작한다. 본문 도입부, JSON-LD와 같은 문장을 공유한다 */
 function buildDescription(t: Ga4EduTutorial): string {
   if (!t.definition) {
     return `${t.title}는 GA4 Edu에서 ${t.screen} 화면을 직접 조작하며 배우는 튜토리얼입니다.`;
   }
-  return t.summary ? `${t.definition} ${t.summary}` : t.definition;
+  if (!t.summary) return t.definition;
+  const full = `${t.definition} ${t.summary}`;
+  return full.length <= META_DESC_MAX ? full : t.definition;
 }
 
 function buildTitle(t: Ga4EduTutorial): string {
@@ -47,8 +52,9 @@ export async function generateMetadata(props: {
   const url = `${SITE_URL}${tutorialHref(slug)}`;
   const title = buildTitle(t);
   const description = buildDescription(t);
-  // 구독자에게만 열리는 편은 색인하지 않는다. 검색으로 들어와 막힌 화면을 만나지 않게 한다
-  const indexable = t.isOpen && t.status === "ready";
+  // 실습만 구독자에게 열리고 설명과 단계, 자주 묻는 질문은 모두에게 보인다.
+  // 읽을 내용이 열려 있으므로 완성된 편은 잠금 여부와 무관하게 색인한다
+  const indexable = t.status === "ready";
 
   return {
     title,
