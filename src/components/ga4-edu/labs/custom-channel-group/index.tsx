@@ -52,7 +52,7 @@ const STEPS: TourStep[] = [
   },
   {
     id: "move_up",
-    instruction: `${BRAND_RULE} 규칙이 ${ALL_RULE} 아래에 있어 세션이 0회입니다. 오른쪽 화살표로 한 칸 위로 올립니다.`,
+    instruction: `${BRAND_RULE} 규칙이 ${ALL_RULE}보다 아래에 놓여 세션이 0회입니다. 오른쪽 화살표로 한 칸 위로 올립니다.`,
     ring: `rule:up:${BRAND_RULE}`,
     isDone: (s) => isFixed(orderOf(s)),
   },
