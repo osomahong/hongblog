@@ -134,6 +134,36 @@ function FunnelMock() {
   );
 }
 
+/** 동질 집단. 왼쪽으로 갈수록 진해지는 삼각형 모양의 표 */
+function CohortMock() {
+  const rows = [0, 1, 2, 3, 4];
+  const shades = [BLUE, BLUE_MID, BLUE_SOFT, GRAY, GRAY_SOFT];
+  return (
+    <svg viewBox="0 0 260 150" className="ga4-tpl-svg" aria-hidden>
+      {[22, 78, 128, 178].map((x) => (
+        <rect key={x} x={x} y="20" width="30" height="6" rx="3" fill={GRAY} />
+      ))}
+      <line x1="18" y1="36" x2="242" y2="36" stroke={GRAY} strokeWidth="1" />
+      {rows.map((r) =>
+        rows.slice(0, rows.length - r).map((c) => (
+          <rect
+            key={`${r}-${c}`}
+            x={78 + c * 50}
+            y={46 + r * 20}
+            width="44"
+            height="14"
+            rx="2"
+            fill={shades[Math.min(c + r, shades.length - 1)]}
+          />
+        ))
+      )}
+      {rows.map((r) => (
+        <rect key={`label-${r}`} x="22" y={48 + r * 20} width="42" height="10" rx="3" fill={GRAY} />
+      ))}
+    </svg>
+  );
+}
+
 /** 경로 탐색. 한 화면에서 뻗어 나가는 다음 화면들을 수형도로 그린 모양 */
 function PathMock() {
   const branches = [
@@ -200,6 +230,12 @@ const TEMPLATES: Template[] = [
     label: "경로 탐색 분석",
     sub: "수형도를 사용하여 파악할 수 있는 사용자 여정에는 무엇이 있나요?",
     mock: <PathMock />,
+  },
+  {
+    id: "cohort",
+    label: "동질 집단 탐색 분석",
+    sub: "공통 특성을 가진 사용자 그룹의 행동과 실적은 시간이 지남에 따라 어떻게 달라지나요?",
+    mock: <CohortMock />,
   },
 ];
 

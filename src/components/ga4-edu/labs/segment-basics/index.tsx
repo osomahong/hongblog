@@ -12,7 +12,7 @@
 
 import { useEffect, useState } from "react";
 import { Ga4ExploreShell, Ga4ExploreHome } from "../../app/Ga4ExploreShell";
-import { Ga4FreeForm, type SlotName } from "../../app/Ga4FreeForm";
+import { Ga4FreeForm } from "../../app/Ga4FreeForm";
 import { Ga4PivotTable } from "../../app/Ga4PivotTable";
 import { Ga4SegmentBuilder, type SegmentScope } from "../../app/Ga4SegmentBuilder";
 import { RingProvider, Ga4Guide } from "../../app/tour";
@@ -111,9 +111,10 @@ export default function SegmentBasicsLab() {
     };
   }, [pinned]);
 
+  // 이 편은 변수를 옮기는 조작을 쓰지 않는다. 집어 든 상태만 풀어 준다
   const hold = (held: HeldVariable | null) => apply({ held });
-  const dropTo = (_slot: SlotName) => apply({ held: null });
-  const removeFrom = (_slot: SlotName, _key: string) => apply({ held: null });
+  const dropTo = () => apply({ held: null });
+  const removeFrom = () => apply({ held: null });
 
   /** 만들기를 누르면 고른 범위의 세그먼트를 목록에 올리고 패널을 닫는다 */
   function createSegment() {

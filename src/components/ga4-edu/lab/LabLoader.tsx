@@ -86,6 +86,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/enhanced-measurement-toggle"),
     { loading: LoadingBox }
   ),
+  "cohort-retention": dynamic(
+    () => import("../labs/cohort-retention"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

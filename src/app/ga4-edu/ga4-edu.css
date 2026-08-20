@@ -4210,3 +4210,78 @@ main:has(> .ga4-root) > .ga4-root {
   font-size: 11px;
   color: var(--ga4-muted);
 }
+
+
+/* ===================== 동질 집단 ===================== */
+
+.ga4-cohort-select-field { position: relative; }
+
+.ga4-cohort-canvas {
+  flex: 1;
+  min-width: 0;
+  padding: 20px 24px 28px;
+  overflow: auto;
+}
+.ga4-cohort-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-size: 12px;
+}
+.ga4-cohort-table thead th {
+  padding: 8px 10px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  text-align: center;
+}
+.ga4-cohort-table thead th:first-child {
+  text-align: left;
+  min-width: 150px;
+}
+.ga4-cohort-table thead th button {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.ga4-cohort-col-on button { color: var(--ga4-blue); font-weight: 500; }
+.ga4-cohort-col-mark button { color: #d93025; font-weight: 500; }
+
+.ga4-cohort-table th[scope="row"] {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 400;
+}
+.ga4-cohort-row-label { color: var(--ga4-ink); }
+.ga4-cohort-row-size { color: var(--ga4-muted); font-size: 11px; }
+
+.ga4-cohort-cell {
+  padding: 8px 6px;
+  border-radius: 3px;
+  text-align: center;
+  color: var(--ga4-ink);
+}
+/* 배경이 진한 칸은 글자를 흰색으로 뒤집는다 */
+.ga4-cohort-cell-dark,
+.ga4-cohort-cell-dark .ga4-cohort-count { color: #fff; }
+.ga4-cohort-cell-on { outline: 2px solid var(--ga4-blue); }
+.ga4-cohort-cell-mark { outline: 2px solid #d93025; }
+.ga4-cohort-rate {
+  display: block;
+  font-size: 12px;
+}
+.ga4-cohort-count {
+  display: block;
+  font-size: 10px;
+  color: var(--ga4-muted);
+}
+.ga4-cohort-empty { background: transparent; }
+.ga4-cohort-note {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
