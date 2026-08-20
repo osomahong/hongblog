@@ -102,6 +102,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/modify-event"),
     { loading: LoadingBox }
   ),
+  "ecommerce-item-report": dynamic(
+    () => import("../labs/ecommerce-item-report"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
