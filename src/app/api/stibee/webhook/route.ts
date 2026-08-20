@@ -96,12 +96,16 @@ export async function POST(request: Request) {
       const status = STATUS_BY_ACTION[action];
       if (!status) continue;
 
-      // 스티비에만 있고 우리 원장에 없는 주소도 들어올 수 있어서 upsert로 받는다
+      // 스티비에만 있고 우리 원장에 없는 주소도 들어올 수 있어서 upsert로 받는다.
+      // consent_version과 consented_at은 NOT NULL이라 값을 반드시 채운다. 비워 두면
+      // 새 주소는 물론이고 이미 있는 주소의 갱신까지 제약 위반으로 막힌다.
       await sql`
-        INSERT INTO newsletter_subscribers (email, status, signup_source)
-        VALUES (${email}, ${status}, 'stibee-webhook')
+        INSERT INTO newsletter_subscribers
+          (email, status, signup_source, consent_version, consented_at)
+        VALUES (${email}, ${status}, 'stibee-webhook', 'stibee-webhook', now())
         ON CONFLICT (email) DO UPDATE SET
           status = EXCLUDED.status,
+          stibee_synced_at = now(),
           updated_at = now()
       `;
       updated += 1;
