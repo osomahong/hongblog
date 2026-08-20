@@ -94,6 +94,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/path-exploration"),
     { loading: LoadingBox }
   ),
+  "thresholding-and-cardinality": dynamic(
+    () => import("../labs/thresholding-and-cardinality"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
