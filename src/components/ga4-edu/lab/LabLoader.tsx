@@ -98,6 +98,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/thresholding-and-cardinality"),
     { loading: LoadingBox }
   ),
+  "modify-event": dynamic(
+    () => import("../labs/modify-event"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

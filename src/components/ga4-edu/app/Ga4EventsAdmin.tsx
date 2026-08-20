@@ -27,6 +27,8 @@ interface Ga4EventsAdminProps {
   onOpenCreate: () => void;
   /** 만들어 둔 맞춤 이벤트 이름. 위쪽 목록에 쌓인다 */
   customEvents: string[];
+  /** 이벤트 수정을 다루는 편에서만 넘긴다. 없으면 누를 수 없는 표시로 남는다 */
+  onOpenModify?: () => void;
 }
 
 const comma = (v: number) => v.toLocaleString("ko-KR");
@@ -37,17 +39,30 @@ export function Ga4EventsAdmin({
   onToggleKeyEvent,
   onOpenCreate,
   customEvents,
+  onOpenModify,
 }: Ga4EventsAdminProps) {
   const createRing = useRing("create-event");
+  const modifyRing = useRing("modify-event");
 
   return (
     <section className="ga4-admin-page">
       <header className="ga4-admin-head">
         <h2 className="ga4-admin-title">이벤트</h2>
         <div className="ga4-admin-actions">
-          <span className="ga4-admin-btn">
-            <Pencil className="w-3.5 h-3.5" strokeWidth={2} aria-hidden /> 이벤트 수정
-          </span>
+          {onOpenModify ? (
+            <button
+              type="button"
+              data-tour="modify-event"
+              onClick={onOpenModify}
+              className={`ga4-admin-btn${modifyRing}`}
+            >
+              <Pencil className="w-3.5 h-3.5" strokeWidth={2} aria-hidden /> 이벤트 수정
+            </button>
+          ) : (
+            <span className="ga4-admin-btn">
+              <Pencil className="w-3.5 h-3.5" strokeWidth={2} aria-hidden /> 이벤트 수정
+            </span>
+          )}
           <button
             type="button"
             data-tour="create-event"
