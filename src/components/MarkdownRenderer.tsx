@@ -7,6 +7,7 @@ import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Copy, Check } from "lucide-react";
+import { SITE_URL } from "@/lib/constants";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -176,12 +177,14 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
               return <a id={id} aria-hidden="true" />;
             }
             const isFragment = href.startsWith("#");
+            const isInternal = href.startsWith("/") || href.startsWith(SITE_URL);
+            const opensNewTab = !isFragment && !isInternal;
             return (
               <a
                 href={href}
                 id={id}
-                target={isFragment ? undefined : "_blank"}
-                rel={isFragment ? undefined : "noopener noreferrer"}
+                target={opensNewTab ? "_blank" : undefined}
+                rel={opensNewTab ? "noopener noreferrer" : undefined}
                 className="text-[#FF0033] underline underline-offset-2 decoration-2 hover:bg-[#FF0033] hover:text-white hover:no-underline transition-colors font-medium text-sm sm:text-base px-0.5"
               >
                 {children}

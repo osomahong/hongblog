@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { ArrowRight, CircleHelp, CircleCheck, CircleX, RotateCcw } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
+import { glitchElement, shatterElement } from "@/lib/canvas-fx";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
 import type { Quiz } from "@/lib/types";
@@ -32,9 +33,19 @@ export function ContentQuiz({
 
   // 훅은 조기 반환보다 앞에 둔다. 퀴즈가 없는 경우와 있는 경우의 훅 개수가
   // 달라지면 렌더 사이에 훅 순서가 어긋난다.
-  const handleSelect = useCallback((optionIndex: number) => {
+  const handleSelect = useCallback((optionIndex: number, target?: HTMLElement) => {
     if (selected !== null || !q) return;
     setSelected(optionIndex);
+
+    // 정답이면 글리치 플래시, 오답이면 유리 파쇄.
+    // HTML in Canvas 미지원 브라우저에서는 조용히 생략된다.
+    if (target) {
+      if (q.correctIndex === optionIndex) {
+        requestAnimationFrame(() => void glitchElement(target));
+      } else {
+        requestAnimationFrame(() => void shatterElement(target));
+      }
+    }
 
     sendGAEvent("quiz_answer", {
       content_type: contentType,
@@ -105,7 +116,7 @@ export function ContentQuiz({
               key={idx}
               type="button"
               className={containerClass}
-              onClick={() => handleSelect(idx)}
+              onClick={(e) => handleSelect(idx, e.currentTarget)}
               disabled={answered}
             >
               {icon ?? (

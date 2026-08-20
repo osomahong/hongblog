@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { NeoBadge } from "@/components/neo";
 import { sendGAEvent } from "@/lib/gtm";
+import { glitchElement } from "@/lib/canvas-fx";
 import type { PromotionSlot } from "@/lib/promotions";
 
 const AUTO_ADVANCE_MS = 6000;
@@ -133,8 +134,16 @@ export function HeroCarousel({ slots }: HeroCarouselProps) {
       if (!track || document.hidden) return;
 
       const slides = slideElements(track);
-      const next = slides[nearestIndex(track, slides) + 1];
-      if (next) track.scrollTo({ left: centerOffset(track, next), behavior: "smooth" });
+      const currentIndex = nearestIndex(track, slides);
+      const next = slides[currentIndex + 1];
+      if (!next) return;
+      // 넘어가기 직전 현재 슬라이드가 잠깐 글리치로 지지직거린다.
+      // HTML in Canvas 미지원 브라우저에서는 즉시 다음으로 넘어간다.
+      void glitchElement(slides[currentIndex]).finally(() => {
+        const t = trackRef.current;
+        if (!t || document.hidden) return;
+        t.scrollTo({ left: centerOffset(t, next), behavior: "smooth" });
+      });
     }, AUTO_ADVANCE_MS);
 
     return () => window.clearInterval(timer);
@@ -142,19 +151,24 @@ export function HeroCarousel({ slots }: HeroCarouselProps) {
 
   if (count === 0) return null;
 
-  /** 화살표용. 지금 위치를 기준으로 한 칸 옮긴다 */
+  /** 화살표용. 현재 슬라이드에 글리치를 한 번 튕기고 한 칸 옮긴다 */
   const step = (direction: 1 | -1) => {
     const track = trackRef.current;
     if (!track) return;
 
     const slides = slideElements(track);
-    const target = slides[nearestIndex(track, slides) + direction];
+    const currentIndex = nearestIndex(track, slides);
+    const target = slides[currentIndex + direction];
     if (!target) return;
 
-    track.scrollTo({
-      left: centerOffset(track, target),
-      behavior: prefersReducedMotion() ? "auto" : "smooth",
-    });
+    const move = () =>
+      track.scrollTo({
+        left: centerOffset(track, target),
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+      });
+    // 사용자가 직접 누른 전환이므로 동작 줄이기 설정과 무관하게 짧게 보여 준다.
+    // HTML in Canvas 미지원이면 즉시 이동한다.
+    void glitchElement(slides[currentIndex]).finally(move);
   };
 
   /** 점 인디케이터용. 가운데 벌의 해당 슬라이드로 옮긴다 */

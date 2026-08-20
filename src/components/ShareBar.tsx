@@ -14,6 +14,7 @@ import {
   type SharePayload,
 } from "@/lib/share";
 import { cn } from "@/lib/utils";
+import { ArticleCanvasFx } from "@/components/ArticleCanvasFx";
 
 const KAKAO_SDK_SRC = "https://t1.kakao.com/kakao_js_sdk/2.7.5/kakao.min.js";
 
@@ -245,6 +246,10 @@ export function ShareBar({
     </p>
   );
 
+  // 글 페이지의 캔버스 인터랙션(인용 카드, 이미지 렌즈, 복사/피드백 연출).
+  // 글마다 한 번 마운트되는 이 컴포넌트에 얹는다.
+  const canvasFx = <ArticleCanvasFx title={payload.title} path={payload.path} />;
+
   if (isPanel) {
     return (
       <section
@@ -256,6 +261,7 @@ export function ShareBar({
         </p>
         <div className="flex flex-wrap items-center gap-2">{buttons}</div>
         {feedback}
+        {canvasFx}
       </section>
     );
   }
@@ -268,6 +274,7 @@ export function ShareBar({
         </span>
         <div className="flex items-center gap-1.5 sm:gap-2">{buttons}</div>
         {feedback}
+        {canvasFx}
       </div>
     );
   }

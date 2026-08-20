@@ -8,6 +8,7 @@ import { sendGAEvent } from "@/lib/gtm";
 import { parseTerms, search } from "@/lib/search";
 import { SearchResultList } from "./SearchResultList";
 import { useSearchIndex } from "./useSearchIndex";
+import { scanInElement } from "@/lib/canvas-fx";
 
 /** 오버레이에 보여줄 결과 수. 나머지는 전체 결과 페이지로 넘긴다. */
 const PREVIEW_LIMIT = 8;
@@ -31,12 +32,27 @@ interface SearchDialogProps {
 export function SearchDialog({ onClose }: SearchDialogProps) {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
 
   const { docs, isLoading, hasBody, error } = useSearchIndex(true);
 
   const terms = useMemo(() => parseTerms(query), [query]);
+
+  // 검색어가 확정되고 결과가 나타나면 목록이 스캔 띠와 함께 드러난다.
+  // 타이핑마다 돌지 않도록 300ms 디바운스하고, HTML in Canvas 미지원이면
+  // scanInElement가 아무 일도 하지 않는다.
+  const scanKey = terms.join(" ");
+  useEffect(() => {
+    if (!scanKey) return;
+    const timer = window.setTimeout(() => {
+      if (resultsRef.current?.childElementCount) {
+        void scanInElement(resultsRef.current);
+      }
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [scanKey]);
   const hits = useMemo(
     () => (terms.length === 0 ? [] : search(docs, query, { limit: PREVIEW_LIMIT })),
     [docs, query, terms.length]
@@ -180,6 +196,7 @@ export function SearchDialog({ onClose }: SearchDialogProps) {
           )}
 
           {hits.length > 0 && (
+            <div ref={resultsRef}>
             <SearchResultList
               hits={hits}
               terms={terms}
@@ -196,6 +213,7 @@ export function SearchDialog({ onClose }: SearchDialogProps) {
                 onClose();
               }}
             />
+            </div>
           )}
         </div>
 

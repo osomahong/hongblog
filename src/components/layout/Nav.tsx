@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   Menu, X, Mail, MessageCircle, Search, Plus, ArrowRight,
   Smartphone, Terminal, Rocket, Bot, Briefcase, BarChart3, Globe, BookOpen,
@@ -11,9 +11,11 @@ import {
 } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
-import { NEWSLETTER_URL, KAKAO_INQUIRY_URL } from "@/lib/constants";
+import { ashNavigate, inkNavigate, jellyElement } from "@/lib/canvas-fx";
+import { KAKAO_INQUIRY_URL } from "@/lib/constants";
 import { SearchDialog } from "@/components/search/SearchDialog";
 import { Ga4Logo } from "@/components/icons/Ga4Logo";
+import { NewsletterModal } from "@/components/NewsletterModal";
 import type { CourseLink } from "@/lib/promotions";
 
 // Tags는 사이트 내 검색으로 대체해 내비에서 뺐다. /tags 페이지와 푸터 링크는
@@ -35,6 +37,7 @@ interface NavCtaButtonsProps {
 
 /** 상단 내비, 모바일 메뉴 공용 뉴스레터·커뮤니티 CTA 버튼 쌍 */
 function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps) {
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
   // 내비에 GA4 Edu가 들어오면서 1024~1279 구간의 항목이 가로로 넘쳤다.
   // 그 구간에서는 두 CTA를 아이콘만 남긴다. 두 버튼 모두 aria-label이 있어 이름은 남는다.
   const labelClass = compactLabels ? "hidden xl:inline" : undefined;
@@ -45,11 +48,12 @@ function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps)
 
   return (
     <>
-      <a
-        href={NEWSLETTER_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => sendGAEvent("click_newsletter", { location })}
+      <button
+        type="button"
+        onClick={() => {
+          sendGAEvent("click_newsletter", { location });
+          setNewsletterOpen(true);
+        }}
         aria-label="뉴스레터 구독하기"
         className={cn(
           baseClass,
@@ -60,7 +64,12 @@ function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps)
       >
         <Mail className="w-4 h-4 flex-shrink-0" />
         <span className={labelClass}>뉴스레터 구독하기</span>
-      </a>
+      </button>
+      <NewsletterModal
+        open={newsletterOpen}
+        onClose={() => setNewsletterOpen(false)}
+        signupSource={location}
+      />
       <a
         href={KAKAO_INQUIRY_URL}
         target="_blank"
@@ -122,6 +131,7 @@ const COURSE_ICONS: Record<string, LucideIcon> = {
  * 여닫기를 CSS(hover, focus-within)로만 처리해 키보드로 탭해도 열린다.
  */
 function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: boolean }) {
+  const router = useRouter();
   if (courses.length === 0) return null;
 
   return (
@@ -148,7 +158,11 @@ function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: 
             <Link
               key={course.slug}
               href={course.href}
-              onClick={() => sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` })}
+              onClick={(e) => {
+                sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
+                // 학습 경로 진입은 잉크 번짐 전환
+                inkNavigate(e, () => router.push(course.href));
+              }}
               className={cn(
                 "group/row flex items-center gap-2.5 px-3 py-2 text-xs font-bold transition-colors",
                 apTheme ? "text-gray-200 hover:text-[#ffd700]" : "hover:bg-[#FFD700]"
@@ -180,6 +194,7 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
   // 모바일 메뉴 안에서 Class 코스 목록을 펼쳤는지
   const [isClassOpen, setIsClassOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   // AI-Practice 하위 경로에서는 다크/네온 테마 변형을 쓴다 (구조는 동일)
   const isApTheme = pathname?.startsWith("/ai-practice") ?? false;
 
@@ -269,7 +284,11 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                   <Link
                     key={href}
                     href={href}
-                    onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                    onClick={(e) => {
+                      sendGAEvent("click_nav", { menu_name: label });
+                      // 다크 테마 섹션 진입이라 검은 잉크가 화면을 삼키는 전환을 쓴다
+                      inkNavigate(e, () => router.push(href));
+                    }}
                     className={cn(
                       "nav-aip-pill px-3 lg:px-4 py-2 mr-1.5 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-all hover:brightness-125",
                       isApTheme
@@ -285,7 +304,14 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                 <Link
                   key={href}
                   href={href}
-                  onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                  onClick={(e) => {
+                    sendGAEvent("click_nav", { menu_name: label });
+                    // 재 날림 전환으로 섹션 이동
+                    ashNavigate(e, () => router.push(href));
+                  }}
+                  // HTML in Canvas 지원 브라우저에서만 글자가 출렁이는 장식.
+                  // 미지원이면 jellyElement가 아무 일도 하지 않는다.
+                  onMouseEnter={(e) => void jellyElement(e.currentTarget)}
                   className={cn(
                     "px-2 lg:px-4 py-2 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-colors",
                     isApTheme
@@ -415,10 +441,12 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
                     <Link
                       key={course.slug}
                       href={course.href}
-                      onClick={() => {
+                      onClick={(e) => {
                         sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
                         setIsMenuOpen(false);
                         setIsClassOpen(false);
+                        // 학습 경로 진입은 잉크 번짐 전환
+                        inkNavigate(e, () => router.push(course.href));
                       }}
                       className={cn(
                         "block px-3 py-2.5 text-xs font-bold transition-colors",

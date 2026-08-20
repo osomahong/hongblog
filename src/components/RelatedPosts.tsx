@@ -1,8 +1,6 @@
 import { Newspaper } from "lucide-react";
 import { NeoBadge } from "@/components/neo";
 import { RelatedLink } from "@/components/RelatedLink";
-import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
-import { AD_SLOTS, AD_INFEED_LAYOUT_KEY, isAdEnabled } from "@/lib/ads";
 import type { PostWithTags } from "@/lib/types";
 
 interface RelatedPostsProps {
@@ -61,43 +59,23 @@ function PostCard({ post }: { post: PostWithTags }) {
 }
 
 /**
- * 본문 하단 "다음으로 읽어볼 글" 추천 카드 영역.
- * 인피드 광고 슬롯이 설정되면 두 번째 카드 자리에 광고 카드가 들어간다.
+ * 본문 하단 관련 글 카드 영역. 광고는 추천과 섞지 않고 호출부에서 별도로 렌더링한다.
  * 관련 글이 2개 미만이면 영역 전체를 숨긴다.
  */
 export function RelatedPosts({ posts }: RelatedPostsProps) {
   if (posts.length < 2) return null;
 
-  const showAd = isAdEnabled(AD_SLOTS.inFeed);
   const cards = posts.map((post) => (
     <PostCard key={post.slug} post={post} />
   ));
-
-  if (showAd) {
-    cards.splice(
-      1,
-      0,
-      <div
-        key="in-feed-ad"
-        className="adsense-slot flex flex-col min-w-[240px] w-[240px] sm:w-auto sm:min-w-0 snap-start bg-white border-2 border-black neo-shadow-sm p-2"
-      >
-        <AdSenseSlot
-          slot={AD_SLOTS.inFeed}
-          format="fluid"
-          layoutKey={AD_INFEED_LAYOUT_KEY}
-          minHeight={160}
-        />
-      </div>
-    );
-  }
 
   return (
     <section className="mt-6 sm:mt-8">
       <h2 className="flex items-center gap-2 font-black text-lg sm:text-xl mb-3 sm:mb-4">
         <Newspaper className="w-5 h-5" />
-        다음으로 읽어볼 글
+        같이 보면 좋은 글
       </h2>
-      {/* 행 단위로 카드 프레임 높이를 동일하게 맞춘다 (기본 stretch). 광고 미채움 시에는 CSS로 카드째 숨겨져 빈 프레임이 남지 않는다 */}
+      {/* 행 단위로 카드 프레임 높이를 동일하게 맞춘다. 모바일에서는 가로 스크롤로 이어 본다. */}
       <div className="flex items-stretch gap-3 overflow-x-auto snap-x pb-2 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:pb-0">
         {cards}
       </div>

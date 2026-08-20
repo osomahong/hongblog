@@ -16,6 +16,9 @@ export interface Quiz {
   explanation: string;
 }
 
+export type InsightContentType = "concept" | "guide" | "comparison" | "news" | "case";
+export type InsightJourneyStage = "beginner" | "practical" | "advanced";
+
 export interface Insight {
   slug: string;
   title: string;
@@ -29,6 +32,12 @@ export interface Insight {
   quiz?: Quiz[];
   seriesSlug?: string;
   seriesOrder?: number;
+  /** 추천과 주제 허브에 사용하는 편집 메타데이터. canonical tag와 역할을 분리한다. */
+  topicCluster?: string;
+  contentType?: InsightContentType;
+  journeyStage?: InsightJourneyStage;
+  nextSlugs?: string[];
+  relatedSlugs?: string[];
   thumbnailUrl?: string;
   metaTitle?: string;
   metaDescription?: string;
@@ -88,6 +97,7 @@ export interface PostWithTags {
   content: string;
   category: string;
   tags: string[];
+  readingTime: number;
   createdAt: Date;
   updatedAt: Date;
   publishedAt: Date | null;
@@ -102,6 +112,11 @@ export interface PostWithTags {
   seriesId: number | null;
   seriesOrder: number | null;
   seriesInfo: { id: number; slug: string; title: string } | null;
+  topicCluster: string | null;
+  contentType: InsightContentType | null;
+  journeyStage: InsightJourneyStage | null;
+  nextSlugs: string[];
+  relatedSlugs: string[];
 }
 
 export interface TrendingItem {

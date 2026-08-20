@@ -44,16 +44,30 @@ GA4 인사이트와 콘텐츠 현황을 결합하여 토픽을 추천한다.
 3. **독자 니즈**: 참여율 상위 콘텐츠와 유사한 주제 → 깊이 읽는 독자층 공략
 4. **SEO 기회**: Organic Search 유입이 높은 유형 + 아직 다루지 않은 키워드 → 검색 트래픽 확대
 
+**검색 고유명사 게이트 (생략 불가):**
+
+위 네 기준으로 후보를 뽑은 뒤, 사용자에게 보이기 전에
+`.claude/references/content/topic-selection-gate.md`를 읽고 적용한다.
+
+제목에 **사람들이 검색창에 그대로 칠 고유명사**가 없는 후보는 제안하지 않는다.
+2026-08-16 전수 조사에서 같은 날 발행한 뉴스 사이에 클릭 100배 차이가 났고,
+원인은 시의성이 아니라 검색할 이름의 유무였다.
+
+- 통과: `Orca`, `Grok 4.6`, `Codex CLI`, `GA4 탐색 보고서`
+- 탈락: `MAU 역전`, `CTR 하락`, `AI 코딩 도구 비교`
+
+GA4 근거가 아무리 좋아도 이 게이트를 통과하지 못하면 검색 유입이 붙지 않는다.
+탈락한 후보는 고유명사를 넣어 다시 잡고, 다시 잡히지 않으면 표에서 뺀다.
+
 **체크포인트 (사용자 승인):**
 
 ```
 ## 토픽 제안 (GA4 데이터 기반)
 
-| 우선순위 | 제안 제목 | 카테고리 | GA4 근거 |
-|----------|----------|---------|---------|
-| 🔴 HIGH | "..." | AI_TECH | AI_TECH 글당 평균 세션 348, 관련 태그 미작성 |
-| 🟡 MED | "..." | DATA | BigQuery 글 참여율 72%, 후속편 미작성 |
-| 🟢 LOW | "..." | MARKETING | 카테고리 불균형 보강 |
+| 우선순위 | 제안 제목 | 검색 고유명사 | 카테고리 | GA4 근거 |
+|----------|----------|---------|---------|---------|
+| 🔴 HIGH | "..." | `codex cli` (노출 있음) | AI_TECH | AI_TECH 글당 평균 세션 348, 관련 태그 미작성 |
+| 🟡 MED | "..." | `bigquery` | DATA | BigQuery 글 참여율 72%, 후속편 미작성 |
 
 어떤 토픽으로 진행할까요? (번호 선택 또는 직접 입력)
 ```
@@ -135,6 +149,7 @@ seo-checklist.md 기준으로 SEO 필드 점검:
 
 | 문서 | 경로 |
 |------|------|
+| **주제 선정 게이트** | `.claude/references/content/topic-selection-gate.md` |
 | 문체 규칙 | `.claude/skills/write-insight/references/prose-rules.md` |
 | 작성 기법 | `.claude/skills/write-insight/references/writing-craft.md` |
 | 타입별 규칙 | `.claude/references/content/writing-style-guide.md` |

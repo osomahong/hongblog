@@ -10,16 +10,17 @@ tags:
   - 바이브코딩
   - 자동화
 publishedAt: '2026-05-08T15:49:04.000Z'
+updatedAt: '2026-08-17T00:00:00.000Z'
 highlights:
-  - >-
-    터미널에서 Homebrew를 먼저 깔고 brew install git, brew install node 두 줄로 사전 준비를 끝낼 수
-    있습니다.
   - >-
     설치 스크립트 한 줄(curl -fsSL https://claude.ai/install.sh | bash)로 클로드 코드 본체를 받고
     브라우저 로그인 한 번으로 계정을 연결합니다.
   - >-
-    /config 한국어 설정과 앤트로픽 공식 스킬 마켓플레이스 등록까지 마치면 첫 작업을 바로 시작할 수
-    있습니다.
+    클로드 코드 본체에는 Node.js가 필요하지 않습니다. 자체 실행 파일로 동작하며, Node.js는 나중에
+    다른 도구를 붙일 때를 위해 함께 깔아 둡니다.
+  - >-
+    무료 플랜으로는 클로드 코드를 쓸 수 없습니다. Pro, Max, Team, Enterprise, Console 계정 가운데
+    하나가 필요합니다.
 quiz:
   - question: 맥에서 클로드 코드를 설치하기 전에 가장 먼저 깔아야 하는 것은 무엇일까요?
     options:
@@ -33,8 +34,8 @@ quiz:
       Node.js를 깔 수 있고, 그 위에 클로드 코드를 올릴 수 있습니다.
 metaTitle: 쉽게 설치하는 클로드코드 세팅가이드(맥) 9단계
 metaDescription: >-
-  맥에 클로드 코드를 설치하고 한국어로 첫 작업을 시작하는 9단계 가이드입니다. 터미널, Homebrew, Git, Node.js, 본체
-  설치, /config 한국어, 공식 스킬 마켓플레이스 등록까지 포함합니다.
+  맥에 클로드 코드를 설치하고 한국어로 첫 작업을 시작하는 9단계 가이드입니다. 2026년 8월 기준으로 확인했으며 터미널,
+  Homebrew, Git, 본체 설치, /config 한국어, 공식 스킬 마켓플레이스 등록까지 포함합니다.
 ogImage: /og/claude-code-mac-easy-setup-guide.png
 ogTitle: 쉽게 설치하는 클로드코드 세팅가이드(맥) 9단계
 ogDescription: >-
@@ -44,15 +45,22 @@ ogDescription: >-
 
 ## AI시대에는 터미널과 친해져야 합니다
 
-요즘 AI 도구를 본격적으로 쓰려고 하면, 점점 **터미널(Terminal)**이라는 검은 화면을 만나게 됩니다. [클로드 코드(Claude Code)](/class/claude-code-for-everyone/what-is-claude-code) (클로드 코드에 대한 설명 글 바로가기)도 그중 하나입니다. 평소 맥에서 Spotlight와 Finder로만 일을 처리해 오신 분이라면 처음에는 낯설게 느껴지지만, 그동안 클릭으로 하던 작업이 짧은 한 줄로 바뀌는 정도로 이해하시면 됩니다.
+요즘 AI 도구를 본격적으로 쓰려고 하면, 점점 **터미널(Terminal)**이라는 검은 화면을 만나게 됩니다. [클로드 코드(Claude Code)](/class/claude-code-for-everyone/what-is-claude-code) (클로드 코드를 설명한 글 바로가기)가 그런 도구입니다. 평소 맥에서 Spotlight와 Finder로만 일을 처리해 오신 분이라면 처음에는 낯설게 느껴지지만, 그동안 클릭으로 하던 작업이 짧은 한 줄로 바뀌는 정도로 이해하시면 됩니다.
 
 설치만 끝내면, 클로드 코드를 쓰는 일상은 평소 [claude.ai](https://claude.ai) 같은 웹 채팅과 거의 같습니다. 질문을 던지고 답을 받는 흐름은 동일하고, 화면만 브라우저가 아니라 터미널로 바뀌는 정도입니다.
 
 맥에서 클로드 코드는 **설치가 전체에서 가장 손이 많이 가는 단계**이고, 그 한 번만 통과하면 다음부터는 익숙한 채팅형 AI처럼 쓸 수 있습니다. 아래 9단계를 순서대로 따라가 주세요. 중간에 막히는 메시지가 뜬다면 자주 발생하는 문제의 해결 방법을 글 끝의 [자주 발생하는 문제](#troubleshooting) 섹션에 따로 모아 두었으니 문제 발생 시 확인해 보세요.
 
-> 클로드 코드(Claude Code)는 앤트로픽이 만든 터미널 기반 AI 코딩 도구입니다. 맥에서는 Homebrew를 깔고 `brew install git`, `brew install node`로 사전 도구를 받은 뒤 설치 스크립트 한 줄(`curl -fsSL https://claude.ai/install.sh | bash`)로 본체를 내려받고, 브라우저 로그인과 `/config` 한국어 설정만 마치면 첫 실행 준비가 끝납니다.
+> 클로드 코드(Claude Code)는 앤트로픽이 만든 터미널 기반 AI 코딩 도구입니다. 맥에서는 Homebrew를 깔고 `brew install git`으로 사전 도구를 받은 뒤 설치 스크립트 한 줄(`curl -fsSL https://claude.ai/install.sh | bash`)로 본체를 내려받고, 브라우저 로그인과 `/config` 한국어 설정만 마치면 첫 실행 준비가 끝납니다.
 
-이 글은 맥(macOS)을 기준으로 합니다. 윈도우 PC를 쓰시는 분은 [윈도우용 가이드](/insights/claude-code-windows-easy-setup-guide) (윈도우에서 설치하는 방법 바로가기)를 참고하세요.
+**2026년 8월 17일에 공식 문서와 대조해 다시 확인했습니다.** 확인 시점의 클로드 코드 버전은 2.1.233이고, 설치 명령과 요구 사양은 아래에 적은 대로입니다.
+
+시작하기 전에 두 가지만 확인해 주세요.
+
+- **사양**: macOS 13.0(Ventura) 이상, 메모리 4GB 이상. Apple Silicon과 Intel 맥 모두 됩니다.
+- **계정**: 클로드 코드는 Pro, Max, Team, Enterprise, Console 계정에서 동작합니다. **무료 Claude.ai 플랜으로는 쓸 수 없습니다.**
+
+이 글은 맥(macOS) 기준입니다. 윈도우 PC를 쓰시는 분은 [윈도우용 가이드](/insights/claude-code-windows-easy-setup-guide) (윈도우에서 설치하는 방법 바로가기)를 참고하세요.
 
 ## Step 1. 터미널 실행
 
@@ -98,7 +106,9 @@ git --version
 
 ## Step 3. Node.js 설치
 
-Node.js는 클로드 코드와 함께 쓰는 npm 기반 도구나 자바스크립트 프로젝트를 다룰 때 필요한 환경입니다. Homebrew로 그대로 설치합니다.
+먼저 오해를 하나 풀고 가겠습니다. **Node.js는 클로드 코드의 필수 조건이 아닙니다.** Step 4의 설치 스크립트로 깔면 클로드 코드는 자체 실행 파일로 동작하고 Node.js를 쓰지 않습니다. Node.js가 필요한 경우는 `npm install -g @anthropic-ai/claude-code` 방식으로 설치할 때이고, 그때는 Node.js 22 이상이 필요합니다.
+
+그런데도 여기서 함께 까는 이유는, 앞으로 자동화 스크립트나 다른 CLI 도구를 붙일 때 필요해지는 경우가 많아서입니다. 지금 한 줄로 끝내 두면 나중에 다시 찾지 않아도 됩니다. 건너뛰고 Step 4로 가셔도 클로드 코드는 정상 동작합니다.
 
 ```bash
 brew install node
@@ -128,13 +138,23 @@ npx -v
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-설치가 끝나면 **터미널을 닫았다가 다시 열어** 주세요. (`⌘ Command + Q`로 종료한 뒤 다시 실행)
+설치가 끝나면 **터미널을 닫았다가 다시 열어** 주세요. `⌘ Command + Q`로 종료한 뒤 다시 실행하면 됩니다.
 
 확인 명령어:
 
 ```bash
 claude --version
 ```
+
+`2.1.233 (Claude Code)` 같은 버전 번호가 나오면 정상입니다.
+
+Homebrew를 선호하신다면 다음 방식도 공식으로 지원됩니다.
+
+```bash
+brew install --cask claude-code
+```
+
+두 방식에는 차이가 하나 있습니다. **설치 스크립트로 깔면 새 버전이 나올 때 백그라운드에서 알아서 갱신됩니다.** Homebrew로 깔면 자동 갱신이 되지 않아 `brew upgrade claude-code`를 직접 실행해야 합니다. 게다가 Homebrew 쪽은 안정 채널이라 한 주쯤 뒤처집니다. 실제로 2026년 8월 17일에 확인해 보니 설치 스크립트 쪽은 2.1.233인데 Homebrew는 2.1.224였습니다. 처음이라면 설치 스크립트 쪽을 권합니다.
 
 ✅ 성공 신호: 버전 번호가 출력되면 본체 설치 완료입니다.
 
@@ -147,6 +167,8 @@ claude
 ```
 
 실행하면 웹 브라우저가 자동으로 열립니다. 브라우저에서 앤트로픽 계정으로 로그인을 끝내고, 다시 터미널 창으로 돌아오세요. 로그인 정보가 자동으로 터미널에 전달됩니다.
+
+여기서 계정 종류를 한 번 짚고 가겠습니다. **무료 Claude.ai 플랜에는 클로드 코드 사용 권한이 들어 있지 않습니다.** Pro, Max, Team, Enterprise, Console 가운데 하나가 필요합니다. Amazon Bedrock이나 구글 클라우드 같은 외부 API 사업자를 연결하는 방법도 있습니다.
 
 ✅ 성공 신호: 터미널 창에 클로드 코드 인터페이스가 떠 있고, 메시지를 입력할 수 있는 상태가 됩니다. 다음 단계로 넘어가기 위해 **Ctrl+C를 두 번** 눌러 클로드 코드를 종료하세요.
 
@@ -248,6 +270,14 @@ claude
 >
 > A. 본 가이드의 명령어는 두 종류 맥에서 모두 그대로 동작합니다. 다만 Homebrew의 설치 위치가 달라서, Apple Silicon은 `/opt/homebrew`에, Intel 맥은 `/usr/local`에 자리잡습니다. 만약 "brew: command not found"가 나오면 트러블슈팅 섹션의 PATH 설정 명령어를 본인 칩에 맞춰 사용하시면 됩니다.
 
+> Q. 무료 클로드 계정으로도 클로드 코드를 쓸 수 있나요?
+>
+> A. 쓸 수 없습니다. 앤트로픽 공식 문서는 클로드 코드에 Pro, Max, Team, Enterprise, Console 계정이 필요하고 무료 Claude.ai 플랜에는 사용 권한이 들어 있지 않다고 안내합니다. Amazon Bedrock, 구글 클라우드의 에이전트 플랫폼, 마이크로소프트 파운드리 같은 외부 API 사업자를 연결해 쓰는 방법도 있습니다.
+
+> Q. 설치할 때 Node.js를 꼭 깔아야 하나요?
+>
+> A. 본체만 놓고 보면 필요하지 않습니다. 설치 스크립트로 깐 클로드 코드는 자체 실행 파일로 동작합니다. Node.js가 필요한 경우는 `npm install -g @anthropic-ai/claude-code` 방식으로 설치할 때이고, 그때는 Node.js 22 이상이 필요합니다. 이 가이드에서 Node.js를 함께 까는 이유는 나중에 다른 도구를 붙일 때 쓰기 위해서입니다.
+
 > Q. 맥 기본 셸이 zsh인데 bash로 바꿔야 하나요?
 >
 > A. 그대로 zsh로 사용하시면 됩니다. macOS 카탈리나(10.15) 이후의 기본 셸이 zsh이고, 클로드 코드와 Homebrew, Node.js 모두 zsh에서 정상 동작합니다. 이전 글이나 영상에서 `~/.bash_profile`을 편집하라는 안내가 보이면, 맥에서는 `~/.zshrc`로 바꿔서 적용하시면 됩니다.
@@ -256,6 +286,14 @@ claude
 
 ## 자주 발생하는 문제
 
+무엇이 잘못됐는지 모르겠다면 진단 명령을 먼저 돌려 보세요. 설치 상태와 설정 파일 오류를 읽기만 하고 알려주기 때문에 안전합니다.
+
+```bash
+claude doctor
+```
+
+설치가 정상인지, 설정 파일에 문제가 있는지, 마지막 자동 갱신이 어떻게 끝났는지를 한 화면에 보여줍니다. 아래 항목들은 이 명령으로도 풀리지 않을 때 확인하세요.
+
 - **"brew: command not found"**: Homebrew 설치 직후 PATH가 반영되지 않은 경우입니다. Apple Silicon 맥(M1/M2/M3)이라면 터미널에 `echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zshrc && source ~/.zshrc`를 입력하세요. Intel 맥은 `/opt/homebrew` 대신 `/usr/local`을 사용합니다.
 - **"git을 찾을 수 없습니다"**: Git을 설치한 터미널 창에서 그대로 확인하면 인식되지 않을 수 있습니다. 터미널을 종료(`⌘ Command + Q`)하고 다시 연 뒤 `git --version`을 입력하세요. 처음 실행 시 "Command Line Tools를 설치하시겠습니까?" 안내가 뜨면 그대로 설치하시면 됩니다.
 - **npm 또는 npx 명령어가 인식되지 않을 때**: 터미널을 닫았다 다시 여세요. Node.js 경로가 새 창에만 반영됩니다.
@@ -263,8 +301,12 @@ claude
 
 ## 정리
 
-- 사전 준비: 터미널을 열고 Homebrew를 설치한 뒤, `brew install git`과 `brew install node`로 사전 도구를 차례로 받습니다.
-- 본체 설치: `curl -fsSL https://claude.ai/install.sh | bash` 한 줄과 브라우저 로그인 한 번으로 끝납니다.
+- 사전 준비: 터미널을 열고 Homebrew를 설치한 뒤 `brew install git`으로 Git을 받습니다. Node.js는 필수가 아니지만 나중을 위해 함께 깔아 둡니다.
+- 본체 설치: `curl -fsSL https://claude.ai/install.sh | bash` 한 줄과 브라우저 로그인 한 번으로 끝납니다. 이 방식은 새 버전이 나오면 알아서 갱신됩니다.
+- 계정: Pro, Max, Team, Enterprise, Console 가운데 하나가 필요합니다. 무료 플랜으로는 쓸 수 없습니다.
 - 초기 설정: `/config`에서 한국어를 선택하고 앤트로픽 공식 스킬 마켓플레이스를 등록하면 첫 작업을 바로 시작할 수 있습니다.
+- 막혔을 때: `claude doctor`로 설치와 설정 상태를 먼저 확인합니다.
+
+OpenAI 쪽 도구도 함께 써 보고 싶다면 [코덱스 CLI 세팅 가이드](/insights/codex-cli-mac-easy-setup-guide)를 이어서 보세요. 두 도구를 같은 작업에 붙여 결과를 비교한 기록은 [코덱스 CLI와 클로드 코드 비교](/insights/codex-cli-vs-claude-code)에 정리해 두었습니다.
 
 맥에서는 한 번 깔아 둔 Homebrew가 이후 어떤 개발 도구를 추가할 때도 그대로 쓰입니다. Python, 데이터베이스, 다른 CLI 도구도 모두 `brew install` 한 줄로 끝나므로, 이 9단계는 클로드 코드 한 가지를 위한 작업이 아니라 맥을 작업 환경으로 한 단계 키워 두는 과정에 가깝습니다. 이후로는 사용량 HUD, LSP 플러그인, everything-claude-code 같은 확장 설정을 필요할 때 골라서 추가하시면 됩니다.

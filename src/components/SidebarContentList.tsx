@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { dissolvePageAndNavigate } from "@/lib/canvas-fx";
 import { ArrowRight } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 
@@ -34,6 +36,7 @@ interface SidebarContentListProps {
  * 페이지당 링크가 과도해진다.
  */
 export function SidebarContentList({ groups }: SidebarContentListProps) {
+  const router = useRouter();
   const visible = groups.filter((group) => group.items.length > 0);
   if (visible.length === 0) return null;
 
@@ -50,14 +53,20 @@ export function SidebarContentList({ groups }: SidebarContentListProps) {
               <li key={`${item.contentType}-${item.id}`}>
                 <Link
                   href={item.href}
-                  onClick={() =>
+                  onClick={(e) => {
                     sendGAEvent("click_sidebar_list", {
                       content_id: item.id,
                       content_name: item.title,
                       content_type: item.contentType,
                       position: index + 1,
-                    })
-                  }
+                    });
+                    // HTML in Canvas 지원 브라우저에서는 화면이 픽셀로
+                    // 흩어진 뒤 이동한다. 새 탭 열기(수정키)는 그대로 둔다.
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey && e.button === 0) {
+                      e.preventDefault();
+                      void dissolvePageAndNavigate(() => router.push(item.href));
+                    }
+                  }}
                   className="block py-2 group"
                 >
                   {/* 제목은 줄바꿈 없이 한 줄에서 말줄임(...)으로 자른다 */}
