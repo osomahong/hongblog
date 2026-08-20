@@ -4285,3 +4285,83 @@ main:has(> .ga4-root) > .ga4-root {
   font-size: 12px;
   color: var(--ga4-muted);
 }
+
+
+/* ===================== 경로 탐색 ===================== */
+
+.ga4-path-canvas {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 28px;
+  padding: 20px 24px 28px;
+  overflow: auto;
+}
+.ga4-path-col {
+  flex: 1;
+  min-width: 260px;
+}
+.ga4-path-col-head {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+.ga4-path-col-parent {
+  margin: 0 0 12px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ga4-path-nodes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ga4-path-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+}
+.ga4-path-node:hover { border-color: var(--ga4-blue); }
+.ga4-path-node-on { border-color: var(--ga4-blue); }
+.ga4-path-node-mark { border-color: #d93025; }
+.ga4-path-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(26, 115, 232, 0.12);
+}
+.ga4-path-node-name {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ga4-path-node-users {
+  position: relative;
+  color: var(--ga4-muted);
+}
+.ga4-path-node-more {
+  position: relative;
+  color: var(--ga4-muted);
+  flex-shrink: 0;
+}

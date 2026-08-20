@@ -90,6 +90,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/cohort-retention"),
     { loading: LoadingBox }
   ),
+  "path-exploration": dynamic(
+    () => import("../labs/path-exploration"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
