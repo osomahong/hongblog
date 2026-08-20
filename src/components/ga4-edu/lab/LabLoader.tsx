@@ -126,6 +126,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/bigquery-export"),
     { loading: LoadingBox }
   ),
+  "segment-overlap": dynamic(
+    () => import("../labs/segment-overlap"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

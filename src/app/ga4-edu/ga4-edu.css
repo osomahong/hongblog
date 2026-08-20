@@ -4467,3 +4467,51 @@ main:has(> .ga4-root) > .ga4-root {
   font-size: 20px;
   color: var(--ga4-ink);
 }
+
+
+/* ===================== 세그먼트 중복분석 ===================== */
+
+.ga4-overlap-canvas {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  padding: 20px 24px 28px;
+  overflow: auto;
+}
+.ga4-overlap-svg {
+  width: 360px;
+  flex-shrink: 0;
+}
+.ga4-overlap-label {
+  font-size: 12px;
+  fill: var(--ga4-ink);
+}
+.ga4-overlap-table {
+  flex: 1;
+  min-width: 280px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.ga4-overlap-table th,
+.ga4-overlap-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ga4-line);
+  text-align: right;
+}
+.ga4-overlap-table thead th {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-overlap-table th[scope="row"],
+.ga4-overlap-table thead th:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-overlap-table tbody tr { cursor: pointer; }
+.ga4-overlap-table tbody tr:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-overlap-row-on { background: rgba(26, 115, 232, 0.1); }
+.ga4-overlap-row-mark { box-shadow: inset 3px 0 0 #d93025; }

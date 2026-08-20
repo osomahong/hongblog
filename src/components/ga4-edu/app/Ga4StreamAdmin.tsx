@@ -78,7 +78,7 @@ export function Ga4StreamAdmin({
           <span className="ga4-stream-row-main">
             <span className="ga4-stream-row-name">{streamName}</span>
             <span className="ga4-stream-row-sub">
-              {streamUrl} · 스트림 ID {measurementId}
+              {streamUrl}, 스트림 ID {measurementId}
             </span>
           </span>
           <ChevronRight className="w-4 h-4" strokeWidth={2} aria-hidden />
