@@ -114,6 +114,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/custom-channel-group"),
     { loading: LoadingBox }
   ),
+  "audience-export": dynamic(
+    () => import("../labs/audience-export"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
