@@ -122,6 +122,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/user-id-and-google-signals"),
     { loading: LoadingBox }
   ),
+  "bigquery-export": dynamic(
+    () => import("../labs/bigquery-export"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
