@@ -118,6 +118,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/audience-export"),
     { loading: LoadingBox }
   ),
+  "user-id-and-google-signals": dynamic(
+    () => import("../labs/user-id-and-google-signals"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

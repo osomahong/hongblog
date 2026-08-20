@@ -4409,3 +4409,61 @@ main:has(> .ga4-root) > .ga4-root {
   text-align: left;
 }
 .ga4-rule-row-mark th[scope="row"] { box-shadow: inset 3px 0 0 var(--ga4-blue); }
+
+
+/* ===================== 선택형 설정 (보고 ID) ===================== */
+
+.ga4-choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 720px;
+}
+.ga4-choice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-choice-card:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-choice-card-on {
+  border-color: var(--ga4-blue);
+  background: rgba(26, 115, 232, 0.06);
+}
+.ga4-choice-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  border: 1px solid var(--ga4-line);
+  border-radius: 50%;
+  color: #fff;
+}
+.ga4-choice-card-on .ga4-choice-mark {
+  border-color: var(--ga4-blue);
+  background: var(--ga4-blue);
+}
+.ga4-choice-body { display: flex; flex-direction: column; gap: 4px; }
+.ga4-choice-title { font-size: 14px; color: var(--ga4-ink); }
+.ga4-choice-desc { font-size: 12px; line-height: 1.6; color: var(--ga4-muted); }
+.ga4-choice-summary {
+  max-width: 720px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+}
+.ga4-choice-summary-value {
+  margin: 0;
+  font-size: 20px;
+  color: var(--ga4-ink);
+}
