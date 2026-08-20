@@ -106,6 +106,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/ecommerce-item-report"),
     { loading: LoadingBox }
   ),
+  "internal-traffic-and-referral-exclusion": dynamic(
+    () => import("../labs/internal-traffic-and-referral-exclusion"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

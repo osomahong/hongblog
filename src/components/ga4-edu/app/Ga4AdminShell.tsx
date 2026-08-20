@@ -39,6 +39,9 @@ export const ADMIN_TREE: AdminNode[] = [
       { id: "key-events", label: "주요 이벤트" },
       { id: "audiences", label: "잠재고객" },
       { id: "custom-definitions", label: "맞춤 정의" },
+      { id: "channel-groups", label: "채널 그룹" },
+      { id: "data-filters", label: "데이터 필터" },
+      { id: "reporting-identity", label: "보고 ID" },
       { id: "product-links", label: "제품 링크" },
     ],
   },
@@ -53,6 +56,9 @@ const ADMIN_TITLE: Record<string, string> = {
   "key-events": "주요 이벤트",
   audiences: "잠재고객",
   "custom-definitions": "맞춤 정의",
+  "channel-groups": "채널 그룹",
+  "data-filters": "데이터 필터",
+  "reporting-identity": "보고 ID",
   "product-links": "제품 링크",
 };
 
