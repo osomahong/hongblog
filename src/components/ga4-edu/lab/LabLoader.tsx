@@ -82,6 +82,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/segment-basics"),
     { loading: LoadingBox }
   ),
+  "enhanced-measurement-toggle": dynamic(
+    () => import("../labs/enhanced-measurement-toggle"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

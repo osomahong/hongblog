@@ -113,6 +113,12 @@ export interface Ga4State {
   /** 보관 처리한 측정기준 이름 */
   archivedDims?: string[];
 
+  /** 아래 셋은 데이터 스트림의 향상된 측정을 다루는 편에서만 쓴다 */
+  streamDetailOpen?: boolean;
+  streamSettingsOpen?: boolean;
+  /** 향상된 측정에서 끈 이벤트 이름 */
+  disabledEvents?: string[];
+
   /** 아래 다섯은 필터를 거는 편에서만 쓴다 */
   filterOpen?: boolean;
   filterDimension?: string | null;
