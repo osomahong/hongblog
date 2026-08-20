@@ -10,7 +10,7 @@
  * 테스트에서 사용으로 바꾸는 순간부터 데이터가 실제로 빠지기 시작한다.
  */
 
-import { Plus, MoreVertical, Check } from "lucide-react";
+import { Plus, MoreVertical, Check, ArrowUp } from "lucide-react";
 import { useRing } from "./tour";
 
 export interface RuleRow {
@@ -38,6 +38,11 @@ interface Ga4RuleAdminProps {
   onPickState?: (name: string, state: string) => void;
   /** 마무리에서 표시를 남길 줄 */
   markRow?: string | null;
+  /**
+   * 규칙 순서를 바꾸는 화면에서만 넘긴다. 채널 그룹처럼 위에서부터 평가되는 목록에 쓴다.
+   * 첫 줄에는 올릴 자리가 없어 단추를 그리지 않는다.
+   */
+  onMoveUp?: (name: string) => void;
 }
 
 export function Ga4RuleAdmin({
@@ -52,6 +57,7 @@ export function Ga4RuleAdmin({
   onToggleMenu,
   onPickState,
   markRow = null,
+  onMoveUp,
 }: Ga4RuleAdminProps) {
   const createRing = useRing("rule:create");
 
@@ -84,16 +90,27 @@ export function Ga4RuleAdmin({
                   {c}
                 </th>
               ))}
-              {stateOptions && <th scope="col" className="ga4-rule-more-head">{""}</th>}
+              {(stateOptions || onMoveUp) && (
+                <th scope="col" className="ga4-rule-more-head">
+                  {""}
+                </th>
+              )}
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
+            {rows.map((row, index) => (
               <tr key={row.name} className={markRow === row.name ? "ga4-rule-row-mark" : ""}>
                 <th scope="row">{row.name}</th>
                 {row.cells.map((cell, i) => (
                   <td key={`${row.name}-${i}`}>{cell}</td>
                 ))}
+                {onMoveUp && (
+                  <td className="ga4-rule-more-cell">
+                    {index > 0 && (
+                      <MoveUpButton name={row.name} onMoveUp={() => onMoveUp(row.name)} />
+                    )}
+                  </td>
+                )}
                 {stateOptions && (
                   <td className="ga4-rule-more-cell">
                     <RuleMenu
@@ -155,5 +172,21 @@ function RuleMenu({
         </ul>
       )}
     </span>
+  );
+}
+
+/** 규칙을 한 칸 위로 올리는 단추. 위에 있을수록 먼저 평가된다 */
+function MoveUpButton({ name, onMoveUp }: { name: string; onMoveUp: () => void }) {
+  const ring = useRing(`rule:up:${name}`);
+  return (
+    <button
+      type="button"
+      aria-label={`${name} 위로 올리기`}
+      data-tour={`rule:up:${name}`}
+      onClick={onMoveUp}
+      className={`ga4-rule-more${ring}`}
+    >
+      <ArrowUp className="w-4 h-4" strokeWidth={2} aria-hidden />
+    </button>
   );
 }

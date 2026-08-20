@@ -110,6 +110,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/internal-traffic-and-referral-exclusion"),
     { loading: LoadingBox }
   ),
+  "custom-channel-group": dynamic(
+    () => import("../labs/custom-channel-group"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
