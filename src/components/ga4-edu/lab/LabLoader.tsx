@@ -70,6 +70,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/funnel-exploration"),
     { loading: LoadingBox }
   ),
+  "paid-search-performance": dynamic(
+    () => import("../labs/paid-search-performance"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {
