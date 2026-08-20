@@ -130,6 +130,10 @@ const LABS: Record<string, ComponentType> = {
     () => import("../labs/segment-overlap"),
     { loading: LoadingBox }
   ),
+  "attribution-model-comparison": dynamic(
+    () => import("../labs/attribution-model-comparison"),
+    { loading: LoadingBox }
+  ),
 };
 
 export function LabLoader({ slug }: { slug: string }) {

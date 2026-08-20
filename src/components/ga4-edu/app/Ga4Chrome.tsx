@@ -25,7 +25,7 @@ import {
 import { useRing } from "./tour";
 
 /** 아이콘 줄에서 지금 열려 있는 영역 */
-export type Ga4Section = "reports" | "explore" | "admin";
+export type Ga4Section = "reports" | "explore" | "ads" | "admin";
 
 interface Ga4TopBarProps {
   /** 계정 이름. 속성 위 작은 줄에 놓인다 */
@@ -111,6 +111,7 @@ interface Ga4IconRailProps {
 export function Ga4IconRail({ section, onOpenSection }: Ga4IconRailProps) {
   const reportsRing = useRing("iconrail:reports");
   const exploreRing = useRing("iconrail:explore");
+  const adsRing = useRing("iconrail:ads");
   const adminRing = useRing("iconrail:admin");
 
   return (
@@ -138,7 +139,14 @@ export function Ga4IconRail({ section, onOpenSection }: Ga4IconRailProps) {
       >
         <ChartLine className="w-5 h-5" strokeWidth={1.7} aria-hidden />
       </button>
-      <button type="button" className="ga4-iconrail-btn" aria-label="광고">
+      <button
+        type="button"
+        data-tour="iconrail:ads"
+        onClick={() => onOpenSection?.("ads")}
+        className={`ga4-iconrail-btn${section === "ads" ? " ga4-iconrail-on" : ""}${adsRing}`}
+        aria-label="광고"
+        aria-current={section === "ads"}
+      >
         <Radar className="w-5 h-5" strokeWidth={1.7} aria-hidden />
       </button>
       <span className="ga4-iconrail-gap" />

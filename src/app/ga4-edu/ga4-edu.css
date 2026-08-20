@@ -4515,3 +4515,68 @@ main:has(> .ga4-root) > .ga4-root {
 .ga4-overlap-table tbody tr:hover { background: rgba(26, 115, 232, 0.04); }
 .ga4-overlap-row-on { background: rgba(26, 115, 232, 0.1); }
 .ga4-overlap-row-mark { box-shadow: inset 3px 0 0 #d93025; }
+
+
+/* ===================== 기여 분석 모델 비교 ===================== */
+
+.ga4-attr {
+  flex: 1;
+  min-width: 0;
+  padding: 22px 26px 30px;
+  overflow: auto;
+  background: var(--ga4-surface);
+}
+.ga4-attr-head { margin-bottom: 18px; }
+.ga4-attr-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-attr-models {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.ga4-attr-model { min-width: 200px; }
+.ga4-attr-model-pick { position: relative; }
+.ga4-attr-model-value {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ga4-ink);
+}
+.ga4-attr-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  font-size: 13px;
+}
+.ga4-attr-table th,
+.ga4-attr-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--ga4-line);
+  text-align: right;
+}
+.ga4-attr-table thead th {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-attr-table th[scope="row"],
+.ga4-attr-table thead th:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-attr-table tbody tr { cursor: pointer; }
+.ga4-attr-table tbody tr:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-attr-row-on { background: rgba(26, 115, 232, 0.1); }
+.ga4-attr-row-mark { box-shadow: inset 3px 0 0 #d93025; }
+.ga4-attr-up { color: #137333; }
+.ga4-attr-down { color: #c5221f; }
