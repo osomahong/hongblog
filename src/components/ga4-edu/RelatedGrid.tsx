@@ -11,7 +11,7 @@ export function RelatedGrid({ items }: { items: Ga4EduTutorial[] }) {
       <p className="ga4-related-kicker">GA4 EDU</p>
       <h2 className="ga4-related-head">이어서 볼 튜토리얼</h2>
       <p className="ga4-related-sub">
-        지금 튜토리얼에서 다룬 화면과 이어지는 편입니다. 순서대로 하지 않아도 됩니다.
+        이 튜토리얼에서 다룬 화면과 이어지는 편입니다. 순서대로 하지 않아도 됩니다.
       </p>
 
       <ul className="ga4-cards">

@@ -218,7 +218,7 @@ export default async function Ga4EduTutorialPage(props: {
             {t.steps && t.steps.length > 0 && (
               <StepsSection
                 title={`${t.screen} 화면에서 따라 하는 순서`}
-                lead="실습에서 진행하는 순서를 글로 옮기면 아래와 같습니다. 실제 GA4 속성에서도 같은 순서로 하면 됩니다. 단계를 누르면 그때 화면을 크게 볼 수 있습니다."
+                lead="실습에서 진행하는 순서를 글로 옮기면 아래와 같습니다. 실제 GA4 속성에서도 같은 순서로 하면 됩니다. 단계를 누르면 그 단계의 화면을 크게 볼 수 있습니다."
                 steps={t.steps}
               />
             )}
