@@ -50,6 +50,16 @@ npx tsx --env-file=.env.local scripts/newsletter/002-sync-stibee-status.ts --app
 
 `STIBEE_API_KEY`와 `DATABASE_URL`이 모두 필요합니다. 미리보기는 데이터베이스를 바꾸지 않습니다.
 
+API 키가 없으면 스티비 화면에서 구독자 목록을 CSV로 내려받아 같은 일을 할 수 있습니다.
+
+```bash
+npx tsx --env-file=.env.local scripts/newsletter/002-sync-stibee-status.ts --csv "내려받은파일.csv"
+npx tsx --env-file=.env.local scripts/newsletter/002-sync-stibee-status.ts --csv "내려받은파일.csv" --apply
+```
+
+CSV의 이메일 수신 상태를 원장 status로 옮깁니다. 구독 중은 subscribed, 수신거부는 unsubscribed,
+자동 삭제와 완전 삭제는 deleted가 됩니다. 2026-08-21에 이 방식으로 17명을 맞췄습니다.
+
 ## 4. 공개 범위와 색인 기준
 
 | 항목 | 기준 |

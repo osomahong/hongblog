@@ -9,8 +9,13 @@
 //   npx tsx --env-file=.env.local scripts/newsletter/002-sync-stibee-status.ts
 //   npx tsx --env-file=.env.local scripts/newsletter/002-sync-stibee-status.ts --apply
 //
-// 필요한 환경변수: DATABASE_URL, STIBEE_API_KEY
+// API 키가 없으면 스티비에서 내려받은 구독자 CSV로도 맞출 수 있다.
+//
+//   npx tsx --env-file=.env.local scripts/newsletter/002-sync-stibee-status.ts --csv "경로.csv"
+//
+// 필요한 환경변수: DATABASE_URL, 그리고 CSV를 쓰지 않을 때만 STIBEE_API_KEY
 
+import { readFileSync } from "node:fs";
 import { neon } from "@neondatabase/serverless";
 
 const LIST_ID = 508786;
@@ -24,6 +29,61 @@ const STATUS_MAP: Record<string, string> = {
   unsubscribed: "unsubscribed",
   deleted: "deleted",
 };
+
+/** 스티비 화면에서 내려받은 CSV의 한국어 상태값 */
+const CSV_STATUS_MAP: Record<string, string> = {
+  "구독 중": "subscribed",
+  "대기 중": "pending",
+  "수신거부": "unsubscribed",
+  "자동 삭제": "deleted",
+  "완전 삭제": "deleted",
+  "삭제됨": "deleted",
+};
+
+/** 큰따옴표로 감싼 칸까지 다루는 최소한의 CSV 파서 */
+function parseCsv(text: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let cell = "";
+  let quoted = false;
+  for (let i = 0; i < text.length; i += 1) {
+    const ch = text[i];
+    if (quoted) {
+      if (ch === '"' && text[i + 1] === '"') { cell += '"'; i += 1; }
+      else if (ch === '"') quoted = false;
+      else cell += ch;
+      continue;
+    }
+    if (ch === '"') quoted = true;
+    else if (ch === ",") { row.push(cell); cell = ""; }
+    else if (ch === "\n") { row.push(cell); rows.push(row); row = []; cell = ""; }
+    else if (ch !== "\r") cell += ch;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter((r) => r.some((c) => c.trim() !== ""));
+}
+
+/** CSV에서 이메일과 상태를 읽는다. 모르는 상태값은 건너뛰고 이름을 돌려준다 */
+function readCsv(path: string): { rows: { email: string; status: string }[]; unknown: Set<string> } {
+  const text = readFileSync(path, "utf-8").replace(/^\uFEFF/, "");
+  const parsed = parseCsv(text);
+  const header = parsed[0].map((h) => h.trim());
+  const emailAt = header.findIndex((h) => h.includes("이메일 주소"));
+  const statusAt = header.findIndex((h) => h.includes("수신 상태"));
+  if (emailAt < 0 || statusAt < 0) throw new Error("CSV에 이메일 주소와 이메일 수신 상태 열이 필요합니다");
+
+  const rows: { email: string; status: string }[] = [];
+  const unknown = new Set<string>();
+  for (const line of parsed.slice(1)) {
+    const email = (line[emailAt] ?? "").trim().toLowerCase();
+    const label = (line[statusAt] ?? "").trim();
+    const status = CSV_STATUS_MAP[label];
+    if (!email) continue;
+    if (!status) { unknown.add(label); continue; }
+    rows.push({ email, status });
+  }
+  return { rows, unknown };
+}
 
 interface StibeeSubscriber {
   email?: string;
@@ -46,25 +106,38 @@ async function fetchPage(key: string, offset: number): Promise<StibeeSubscriber[
 
 const run = async () => {
   const apply = process.argv.includes("--apply");
+  const csvAt = process.argv.indexOf("--csv");
+  const csvPath = csvAt >= 0 ? process.argv[csvAt + 1] : null;
   const key = process.env.STIBEE_API_KEY;
   const databaseUrl = process.env.DATABASE_URL;
-  if (!key || !databaseUrl) {
-    console.error("STIBEE_API_KEY와 DATABASE_URL이 모두 필요합니다.");
+  if (!databaseUrl) {
+    console.error("DATABASE_URL이 필요합니다.");
+    process.exit(1);
+  }
+  if (!csvPath && !key) {
+    console.error("STIBEE_API_KEY가 없으면 --csv로 내려받은 구독자 파일을 넘겨야 합니다.");
     process.exit(1);
   }
 
-  // 1) 스티비 전체 구독자를 페이지로 나눠 읽는다
+  // 1) 스티비 쪽 구독자 목록을 읽는다. CSV를 넘기면 그 파일을, 아니면 API를 쓴다
   const remote: { email: string; status: string }[] = [];
-  for (let offset = 0; ; offset += PAGE_SIZE) {
-    const page = await fetchPage(key, offset);
-    for (const row of page) {
-      const email = (row.email ?? "").trim().toLowerCase();
-      const status = STATUS_MAP[(row.status ?? "").toLowerCase()];
-      if (email && status) remote.push({ email, status });
+  if (csvPath) {
+    const { rows, unknown } = readCsv(csvPath);
+    remote.push(...rows);
+    if (unknown.size > 0) console.log(`모르는 상태값이라 건너뛴 값: ${[...unknown].join(", ")}`);
+    console.log(`CSV에서 구독자 ${remote.length}명을 읽었습니다.`);
+  } else {
+    for (let offset = 0; ; offset += PAGE_SIZE) {
+      const page = await fetchPage(key as string, offset);
+      for (const row of page) {
+        const email = (row.email ?? "").trim().toLowerCase();
+        const status = STATUS_MAP[(row.status ?? "").toLowerCase()];
+        if (email && status) remote.push({ email, status });
+      }
+      if (page.length < PAGE_SIZE) break;
     }
-    if (page.length < PAGE_SIZE) break;
+    console.log(`스티비 구독자 ${remote.length}명을 읽었습니다.`);
   }
-  console.log(`스티비 구독자 ${remote.length}명을 읽었습니다.`);
 
   // 2) 원장의 현재 상태와 견준다
   const sql = neon(databaseUrl);
