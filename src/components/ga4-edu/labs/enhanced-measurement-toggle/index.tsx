@@ -73,7 +73,7 @@ const STEPS: TourStep[] = [
     id: "see_result",
     instruction:
       "설정을 닫고 수집 목록을 봅니다. 해제한 줄이 중단됨으로 바뀌어 있습니다.",
-    ring: null,
+    ring: "stream:close",
     isDone: (s) => s.streamSettingsOpen === false && isOff(s),
   },
   {

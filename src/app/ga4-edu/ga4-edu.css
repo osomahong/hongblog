@@ -972,6 +972,8 @@ main:has(> .ga4-root) > .ga4-root {
   justify-content: flex-end;
   gap: 4px;
   width: 100%;
+  /* 셀 높이를 다 채워, 빨간 상자 안 어디를 눌러도 정렬이 걸리게 한다 */
+  height: 100%;
   padding: 10px 14px;
   border: none;
   background: none;

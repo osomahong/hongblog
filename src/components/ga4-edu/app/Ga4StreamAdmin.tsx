@@ -58,6 +58,7 @@ export function Ga4StreamAdmin({
 }: Ga4StreamAdminProps) {
   const rowRing = useRing("stream:web");
   const gearRing = useRing("stream:settings");
+  const closeRing = useRing("stream:close");
 
   if (!detailOpen) {
     return (
@@ -162,7 +163,13 @@ export function Ga4StreamAdmin({
         <div className="ga4-stream-panel" role="dialog" aria-label="향상된 측정 설정">
           <header className="ga4-seg-head">
             <span>향상된 측정</span>
-            <button type="button" aria-label="닫기" onClick={onCloseSettings}>
+            <button
+              type="button"
+              aria-label="닫기"
+              data-tour="stream:close"
+              onClick={onCloseSettings}
+              className={closeRing.trim()}
+            >
               <X className="w-4 h-4" strokeWidth={2} aria-hidden />
             </button>
           </header>
