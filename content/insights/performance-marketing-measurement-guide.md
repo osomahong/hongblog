@@ -72,7 +72,7 @@ ogDescription: 클릭은 소재 반응, 구매는 상세페이지 반응. 이 �
 <div style='font-size:24px;margin-bottom:6px'>🔧</div>
 <div style='font-weight:800;font-size:13px;margin-bottom:4px'>클릭 많음 + 구매 적음</div>
 <div style='font-size:12px;line-height:1.6;color:#374151'>소재는 매력적인데 상세페이지에서 이탈</div>
-<div style='margin-top:8px;font-size:11px;font-weight:700;background:black;color:white;display:inline-block;padding:2px 8px;border-radius:4px'>→ 상세페이지를 고쳐야 한다</div>
+<div style='margin-top:8px;font-size:11px;font-weight:700;background:black;color:white;display:inline-block;padding:2px 8px;border-radius:4px'>→ 상세페이지를 개선해야 한다</div>
 </div>
 </div>
 </div>

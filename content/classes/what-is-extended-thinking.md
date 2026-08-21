@@ -124,7 +124,7 @@ Extended Thinking은 다음과 같은 작업에서 큰 차이를 만듭니다.
 - 외부 도구(검색, DB, 계산)를 호출하는 작업에서 추론을 함께 거치면 도구 호출 사이의 일관성이 살아납니다.
 
 **3. [Claude Cowork](/class/claude-in-practice/claude-cowork-overview) + Extended Thinking**
-- 자동화 작업에 깊은 분석을 결합하고 싶다면 Cowork 안에서 Extended Thinking을 켭니다.
+- 자동화 작업에 깊은 분석을 결합하고 싶다면 Cowork 안에서 Extended Thinking을 사용 설정합니다.
 
 ## ⚠️ 주의할 점 3가지
 

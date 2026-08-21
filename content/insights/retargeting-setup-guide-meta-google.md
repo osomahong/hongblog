@@ -123,7 +123,7 @@ ogImage: /og/retargeting-setup-guide-meta-google.png
 1. 전환 위치: 웹사이트
 2. 전환 이벤트: Purchase (또는 목표 전환)
 3. 타겟 설정:
-   - **"Advantage+ 타겟"이 기본값으로 켜져 있음** → 아래 **"원래 타겟 옵션으로 전환"** 클릭
+   - **"Advantage+ 타겟"이 기본값으로 사용 설정돼 있음** → 아래 **"원래 타겟 옵션으로 전환"** 클릭
    - 맞춤 타겟: Step 2에서 만든 타겟 선택
    - 제외: 최근 구매자 맞춤 타겟
 4. 노출 위치: **Advantage+ 배치** (자동) 또는 수동으로 Instagram 피드 + 스토리 집중

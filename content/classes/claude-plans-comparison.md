@@ -135,7 +135,7 @@ Pro가 필요합니다. Cowork로 매주 반복되는 리포트 정리를 맡기
 
 Pro가 시작점입니다. Claude Code가 Pro부터 열리고, 사용량 한도는 [플랜과 사용량 한도](/class/claude-code-for-everyone/claude-code-plans-and-limits) 클래스에서 따로 다룹니다.
 
-**하루 종일 클로드를 켜 두는 분**
+**하루 종일 클로드를 실행해 두는 분**
 
 Max를 검토할 단계입니다. 다만 먼저 Pro에서 한 달을 써 보고 한도에 실제로 얼마나 걸리는지 확인한 뒤 결정하는 편이 안전합니다.
 

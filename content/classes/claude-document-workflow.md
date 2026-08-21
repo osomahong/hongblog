@@ -77,7 +77,7 @@ OCR 변환이나 별도 전처리 없이 바로 업로드해 분석을 시킬 �
 
 **3단계. 분석 (Analysis)**
 - 요약을 바탕으로 패턴, 반복 키워드, 인사이트 도출.
-- [Extended Thinking](/class/claude-in-practice/what-is-extended-thinking)을 켜면 깊이가 늘어납니다.
+- [Extended Thinking](/class/claude-in-practice/what-is-extended-thinking)을 사용 설정하면 깊이가 늘어납니다.
 
 **4단계. 결론, 결과물 (Output)**
 - [Artifacts](/class/claude-in-practice/what-are-artifacts)로 마크다운 보고서, 표, 슬라이드 초안 생성.

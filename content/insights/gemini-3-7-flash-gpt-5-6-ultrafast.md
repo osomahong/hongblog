@@ -100,7 +100,7 @@ OpenAI는 활용 사례로 장애 대응, 고객 응대, 금융 시장 분석, �
 
 ## Gemini 3.7 Flash, 성능 향상과 절반으로 내려온 도입가
 
-Gemini 3.7 Flash는 구글이 2026년 8월 13일 공개한 코딩과 에이전트 작업용 모델입니다. 이전 판인 3.6 Flash와 견주면 코딩과 웹 개발, 지식 작업 점수가 올랐습니다.
+Gemini 3.7 Flash는 구글이 2026년 8월 13일 공개한 코딩과 에이전트 작업용 모델입니다. 이전 판인 3.6 Flash와 비교하면 코딩과 웹 개발, 지식 작업 점수가 올랐습니다.
 
 ![Gemini 3.7 Flash와 3.6 Flash, Claude Sonnet 5, GPT-5.6 Terra, Muse Spark 1.2의 벤치마크 비교표. 입력 단가는 3.7과 3.6 모두 100만 토큰당 0.75달러로 같고, 표 아래에 2026년 12월 31일 이후 단가가 오른다는 각주가 있다](/images/insights/gemini-3-7-flash-gpt-5-6-ultrafast/gemini-3-7-flash-benchmarks.png)
 

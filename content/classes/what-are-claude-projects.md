@@ -114,7 +114,7 @@ claude.ai에서 프로젝트는 다음 단계로 만듭니다.
 
 예를 들어 "주간 광고 리포트" 프로젝트 안에 "리포트 생성" 스킬을 만들어두면, 새 데이터만 던지고 스킬을 호출해 한 번에 결과를 받을 수 있습니다.
 
-긴 작업이라면 [Extended Thinking](/class/claude-in-practice/what-is-extended-thinking)을 함께 켜면 추론 깊이가 늘어 결과 품질이 안정됩니다.
+긴 작업이라면 [Extended Thinking](/class/claude-in-practice/what-is-extended-thinking)을 함께 사용 설정하면 추론 깊이가 늘어 결과 품질이 안정됩니다.
 
 ## ⚠️ 자주 하는 실수 3가지
 
