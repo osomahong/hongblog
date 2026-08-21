@@ -1,0 +1,415 @@
+"use client";
+
+/**
+ * GA4 표준 보고서 표.
+ * 체크박스 열, 측정기준 드롭다운, 합계 행, 값에 병기되는 비율, 점선 밑줄이 그어진 측정항목
+ * 머리글, 아래쪽 쪽 이동까지 실제 Google Analytics 화면을 따른다.
+ */
+
+import { ChevronDown, ChevronLeft, ChevronRight, Plus, Search, ArrowDown } from "lucide-react";
+import { useRing } from "./tour";
+
+export interface MetricColumn {
+  key: string;
+  label: string;
+  /** 표에 찍을 때 쓰는 형식기. 없으면 천 단위 쉼표 */
+  format?: (value: number) => string;
+  /** 합계 행에 넣을 값. 없으면 열 합계를 쓴다 */
+  total?: number;
+  /** 합계 행 아래에 붙는 설명. 비율 지표는 "평균과 동일"이 붙는다 */
+  totalNote?: string;
+  /** 값 옆에 전체 대비 비율을 함께 적을지 */
+  share?: boolean;
+}
+
+export interface TableRow {
+  name: string;
+  values: Record<string, number>;
+  /** 비교를 걸었을 때 그 줄이 속한 비교 이름. 왼쪽에 열이 하나 더 생긴다 */
+  comparison?: string;
+  /** 고를 때 쓰는 식별자. 비교가 걸리면 같은 이름이 여러 줄이 되므로 따로 준다 */
+  key?: string;
+  /** 보조 측정기준을 붙였을 때 그 줄의 두 번째 값 */
+  secondary?: string;
+  /**
+   * 그 줄에만 쓰는 표기. 열 형식기를 덮어쓴다.
+   * 기간 비교의 % 변화 줄처럼 같은 열이라도 다른 단위로 찍히는 줄에 쓴다.
+   */
+  valueFormat?: (value: number) => string;
+  /** 묶음의 마지막 줄. 아래에 구분선을 긋는다 */
+  groupEnd?: boolean;
+  /**
+   * 이름 앞에 적을 순번. 넘기지 않으면 줄 순서를 그대로 쓴다.
+   * null이면 비운다. 기간 비교처럼 한 측정기준 값이 여러 줄로 나뉠 때 쓴다.
+   */
+  index?: number | null;
+}
+
+export interface DimensionOption {
+  key: string;
+  label: string;
+}
+
+interface Ga4ReportTableProps {
+  dimension: string;
+  dimensionOptions: DimensionOption[];
+  dimensionMenuOpen: boolean;
+  onToggleDimensionMenu: () => void;
+  onPickDimension: (key: string) => void;
+
+  columns: MetricColumn[];
+  rows: TableRow[];
+  sortKey: string;
+  onSort: (key: string) => void;
+
+  selectedRow: string | null;
+  onSelectRow?: (name: string) => void;
+  /** 정답 행에 표시를 남길 때 쓴다 */
+  markRow?: string | null;
+  /** 비교를 걸었을 때만 넘긴다. 표 왼쪽에 비교 열이 생긴다 */
+  showComparison?: boolean;
+  /**
+   * 비교 열의 머리글. 세그먼트 비교는 "비교"이고, 기간 비교는 GA4 화면처럼 비워 둔다.
+   */
+  comparisonLabel?: string;
+  /**
+   * 아래쪽 쪽 이동에 적을 줄 수. 기간 비교처럼 측정기준 하나가 여러 줄로 나뉘면
+   * 화면의 줄 수와 GA4가 세는 줄 수가 달라진다.
+   */
+  rowCount?: number;
+
+  /** 아래 넷은 측정기준 옆 더하기로 보조 측정기준을 붙이는 편에서만 넘긴다 */
+  secondaryOptions?: DimensionOption[];
+  secondaryDimension?: string | null;
+  secondaryMenuOpen?: boolean;
+  onToggleSecondaryMenu?: () => void;
+  onPickSecondary?: (key: string) => void;
+  /** 보조 측정기준 열에 붙는 이름 */
+  secondaryLabel?: string | null;
+}
+
+const comma = (v: number) => v.toLocaleString("ko-KR");
+
+export function Ga4ReportTable({
+  dimension,
+  dimensionOptions,
+  dimensionMenuOpen,
+  onToggleDimensionMenu,
+  onPickDimension,
+  columns,
+  rows,
+  sortKey,
+  onSort,
+  selectedRow,
+  onSelectRow,
+  markRow,
+  showComparison,
+  comparisonLabel = "비교",
+  rowCount,
+  secondaryOptions,
+  secondaryDimension,
+  secondaryMenuOpen,
+  onToggleSecondaryMenu,
+  onPickSecondary,
+  secondaryLabel,
+}: Ga4ReportTableProps) {
+  const dimensionLabel =
+    dimensionOptions.find((d) => d.key === dimension)?.label ?? dimensionOptions[0].label;
+  const dimRing = useRing("dimension-chip");
+
+  const sums = new Map<string, number>();
+  for (const col of columns) {
+    sums.set(col.key, rows.reduce((sum, r) => sum + (r.values[col.key] ?? 0), 0));
+  }
+
+  return (
+    <section className="ga4-tablecard">
+      <div className="ga4-tablecard-head">
+        <button type="button" className="ga4-rowchart-btn" disabled>
+          선택 행 도표 만들기
+        </button>
+        <span className="ga4-table-search">
+          <Search className="w-4 h-4" strokeWidth={1.8} aria-hidden />
+          <span>검색...</span>
+        </span>
+        <div className="ga4-table-pager">
+          <span>페이지당 행 수:</span>
+          <button type="button" className="ga4-foot-chip">
+            10 <ChevronDown className="w-3 h-3" strokeWidth={2} aria-hidden />
+          </button>
+          <span>이동:</span>
+          <span className="ga4-foot-goto">1</span>
+          <span className="ga4-foot-range">
+            1~{rowCount ?? rows.length} / {rowCount ?? rows.length}
+          </span>
+          <span className="ga4-foot-arrows" aria-hidden>
+            <ChevronLeft className="w-4 h-4" strokeWidth={1.8} />
+            <ChevronRight className="w-4 h-4" strokeWidth={1.8} />
+          </span>
+        </div>
+      </div>
+
+      <div className="ga4-table-scroll">
+        <table className="ga4-gtable">
+          <thead>
+            <tr>
+              <th className="ga4-gth-check">
+                <span className="ga4-check ga4-check-all" aria-hidden />
+              </th>
+              {showComparison && <th className="ga4-gth-cmp">{comparisonLabel}</th>}
+              <th className="ga4-gth-dim">
+                <span className="ga4-dim-wrap">
+                  <button
+                    type="button"
+                    data-tour="dimension-chip"
+                    onClick={onToggleDimensionMenu}
+                    className={`ga4-dim-chip${dimRing}`}
+                    aria-expanded={dimensionMenuOpen}
+                  >
+                    {dimensionLabel}
+                    <ChevronDown className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
+                  </button>
+                  {dimensionMenuOpen && (
+                    <span className="ga4-menu" role="listbox" aria-label="측정기준 선택">
+                      {dimensionOptions.map((option) => (
+                        <DimensionOptionItem
+                          key={option.key}
+                          option={option}
+                          current={dimension}
+                          onPick={onPickDimension}
+                        />
+                      ))}
+                    </span>
+                  )}
+                  <SecondaryPlus
+                    options={secondaryOptions ?? []}
+                    current={secondaryDimension ?? null}
+                    menuOpen={secondaryMenuOpen === true}
+                    onToggle={onToggleSecondaryMenu}
+                    onPick={onPickSecondary}
+                  />
+                </span>
+              </th>
+              {secondaryLabel && <th className="ga4-gth-sub">{secondaryLabel}</th>}
+              {columns.map((col) => (
+                <MetricHead
+                  key={col.key}
+                  col={col}
+                  sorted={sortKey === col.key}
+                  onSort={() => onSort(col.key)}
+                />
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="ga4-gtotal">
+              <td className="ga4-gtd-check">
+                <span className="ga4-check ga4-check-on" aria-hidden />
+              </td>
+              {showComparison && <td className="ga4-gtd-cmp">모든 사용자</td>}
+              <td className="ga4-gtd-dim">합계</td>
+              {secondaryLabel && <td className="ga4-gtd-sub" />}
+              {columns.map((col) => (
+                <td key={col.key} className="ga4-gtd">
+                  {(col.format ?? comma)(col.total ?? sums.get(col.key) ?? 0)}
+                  <span className="ga4-gtotal-sub">{col.totalNote ?? "총계 대비 100%"}</span>
+                </td>
+              ))}
+            </tr>
+
+            {rows.map((row, i) => {
+              const rowKey = row.key ?? row.name;
+              const clickable = Boolean(onSelectRow);
+              const cls = [
+                clickable ? "ga4-gtr-clickable" : "",
+                selectedRow === rowKey ? "ga4-gtr-selected" : "",
+                markRow === rowKey ? "ga4-gtr-marked" : "",
+                row.groupEnd ? "ga4-gtr-groupend" : "",
+              ]
+                .filter(Boolean)
+                .join(" ");
+              return (
+                <tr
+                  key={rowKey}
+                  className={cls}
+                  onClick={clickable ? () => onSelectRow?.(rowKey) : undefined}
+                >
+                  <td className="ga4-gtd-check">
+                    <span className="ga4-check ga4-check-on" aria-hidden />
+                  </td>
+                  {showComparison && <td className="ga4-gtd-cmp">{row.comparison ?? ""}</td>}
+                  <td className="ga4-gtd-dim">
+                    <span className="ga4-grow-index">
+                      {row.index === undefined ? i + 1 : (row.index ?? "")}
+                    </span>
+                    {/* 줄 전체가 눌리지만 tr에는 키보드 초점이 가지 않는다.
+                        이름을 단추로 감싸 탭으로도 같은 줄을 고를 수 있게 한다.
+                        줄의 onClick과 겹치지 않도록 여기서 전파를 끊는다 */}
+                    {clickable ? (
+                      <button
+                        type="button"
+                        className="ga4-grow-pick"
+                        aria-pressed={selectedRow === rowKey}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onSelectRow?.(rowKey);
+                        }}
+                      >
+                        {row.name}
+                      </button>
+                    ) : (
+                      row.name
+                    )}
+                  </td>
+                  {secondaryLabel && <td className="ga4-gtd-sub">{row.secondary ?? ""}</td>}
+                  {columns.map((col) => {
+                    const value = row.values[col.key] ?? 0;
+                    // 비율의 분모는 합계 줄에 찍힌 값과 같아야 한다.
+                    // 비교를 걸면 줄이 두 벌이 되므로 단순 합을 쓰면 어긋난다
+                    const sum = col.total ?? sums.get(col.key) ?? 0;
+                    return (
+                      <td key={col.key} className="ga4-gtd">
+                        {(row.valueFormat ?? col.format ?? comma)(value)}
+                        {/* 줄 표기를 따로 쓰는 줄은 단위가 달라 전체 대비 비율을 적지 않는다 */}
+                        {col.share && !row.valueFormat && sum > 0 && (
+                          <span className="ga4-gshare">
+                            {" "}
+                            ({((value / sum) * 100).toFixed(2)}%)
+                          </span>
+                        )}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * 측정기준 이름 옆 더하기. 누르면 보조 측정기준으로 붙일 항목이 나온다.
+ * 보조 측정기준을 다루지 않는 편에서는 실제 화면처럼 표시만 남긴다.
+ */
+function SecondaryPlus({
+  options,
+  current,
+  menuOpen,
+  onToggle,
+  onPick,
+}: {
+  options: DimensionOption[];
+  current: string | null;
+  menuOpen: boolean;
+  onToggle?: () => void;
+  onPick?: (key: string) => void;
+}) {
+  const ring = useRing("secondary-plus");
+
+  if (!onToggle) {
+    return (
+      <span className="ga4-dim-plus" aria-hidden>
+        <Plus className="w-3.5 h-3.5" strokeWidth={2} />
+      </span>
+    );
+  }
+
+  return (
+    <span className="ga4-dim-plus-wrap">
+      <button
+        type="button"
+        data-tour="secondary-plus"
+        onClick={onToggle}
+        className={`ga4-dim-plus ga4-dim-plus-btn${ring}`}
+        aria-expanded={menuOpen}
+        aria-label="보조 측정기준 추가"
+      >
+        <Plus className="w-3.5 h-3.5" strokeWidth={2} aria-hidden />
+      </button>
+      {menuOpen && (
+        <span className="ga4-menu ga4-menu-sub" role="listbox" aria-label="보조 측정기준 선택">
+          {options.map((option) => (
+            <SecondaryOptionItem
+              key={option.key}
+              option={option}
+              current={current}
+              onPick={onPick}
+            />
+          ))}
+        </span>
+      )}
+    </span>
+  );
+}
+
+function SecondaryOptionItem({
+  option,
+  current,
+  onPick,
+}: {
+  option: DimensionOption;
+  current: string | null;
+  onPick?: (key: string) => void;
+}) {
+  const ring = useRing(`secondary:${option.key}`);
+  return (
+    <button
+      type="button"
+      role="option"
+      aria-selected={option.key === current}
+      data-tour={`secondary:${option.key}`}
+      onClick={() => onPick?.(option.key)}
+      className={`ga4-menu-item${option.key === current ? " ga4-menu-item-on" : ""}${ring}`}
+    >
+      {option.label}
+    </button>
+  );
+}
+
+/** 측정기준 목록의 한 줄. 튜토리얼이 고를 항목을 가리킬 수 있게 이름을 붙여 둔다 */
+function DimensionOptionItem({
+  option,
+  current,
+  onPick,
+}: {
+  option: DimensionOption;
+  current: string;
+  onPick: (key: string) => void;
+}) {
+  const ring = useRing(`dimension:${option.key}`);
+  return (
+    <button
+      type="button"
+      role="option"
+      aria-selected={option.key === current}
+      data-tour={`dimension:${option.key}`}
+      onClick={() => onPick(option.key)}
+      className={`ga4-menu-item${option.key === current ? " ga4-menu-item-on" : ""}${ring}`}
+    >
+      {option.label}
+    </button>
+  );
+}
+
+function MetricHead({
+  col,
+  sorted,
+  onSort,
+}: {
+  col: MetricColumn;
+  sorted: boolean;
+  onSort: () => void;
+}) {
+  const ring = useRing(`metric:${col.key}`);
+  return (
+    <th className={`ga4-gth${ring}`} data-tour={`metric:${col.key}`}>
+      <button type="button" onClick={onSort} className="ga4-gth-btn">
+        {sorted && <ArrowDown className="w-3.5 h-3.5 ga4-gth-arrow" strokeWidth={2.2} aria-hidden />}
+        <span className="ga4-gth-label">{col.label}</span>
+      </button>
+    </th>
+  );
+}
