@@ -69,7 +69,7 @@ export function rowsFor(granularity: CohortGranularity, rolling: boolean): Cohor
   return (rolling ? ROLLING : STANDARD)[granularity];
 }
 
-/** 잔존율이 가장 크게 떨어지는 열. 0주차에서 1주차로 넘어가는 자리다 */
+/** 잔존율이 가장 크게 떨어지는 열. 0주차에서 1주차로 넘어가는 구간이다 */
 export const BIGGEST_DROP_COLUMN = 1;
 
 /** 유독 낮은 코호트. 본문에서 쓰는 값과 같아야 한다 */

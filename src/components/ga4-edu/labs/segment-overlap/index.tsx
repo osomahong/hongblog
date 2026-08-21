@@ -54,7 +54,7 @@ const STEPS: TourStep<OverlapState>[] = [
   },
 ];
 
-const DONE_TEXT = `신규이면서 구매한 사람은 이 줄 120명에 모바일까지 겹친 440명을 더해 ${NEW_BUYERS.toLocaleString("ko-KR")}명입니다. 구매자 1,240명 가운데 나머지 ${RETURNING_BUYERS.toLocaleString("ko-KR")}명은 전에 왔던 사람입니다. 신규 유입을 늘리는 것보다 이미 온 사람을 다시 데려오는 쪽이 구매로 이어지고 있다는 뜻입니다.`;
+const DONE_TEXT = `신규이면서 구매한 사람은 이 줄 120명에 모바일까지 겹친 440명을 더해 ${NEW_BUYERS.toLocaleString("ko-KR")}명입니다. 구매자 1,240명 가운데 나머지 ${RETURNING_BUYERS.toLocaleString("ko-KR")}명은 전에 왔던 사람입니다. 신규 유입을 늘리는 것보다 이미 온 사람이 다시 오게 만드는 쪽이 구매로 이어지고 있다는 뜻입니다.`;
 
 export default function SegmentOverlapLab() {
   const [pinned, setPinned] = useState(false);

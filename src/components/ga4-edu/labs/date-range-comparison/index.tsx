@@ -67,7 +67,7 @@ const openFirst = (s: Ga4State, next: string): string =>
 const STEPS: TourStep<Ga4State>[] = [
   {
     id: "open_date_panel",
-    instruction: "오른쪽 위 지난 7일이라고 적힌 자리를 눌러 기간 선택기를 폅니다.",
+    instruction: "오른쪽 위 지난 7일이라고 적힌 곳을 눌러 기간 선택기를 폅니다.",
     ring: "date-chip",
     isDone: (s) => s.datePanelOpen === true,
   },

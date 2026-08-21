@@ -53,14 +53,14 @@ const STEPS: TourStep<Ga4ExploreState>[] = [
   },
   {
     id: "drop_row",
-    instruction: "왼쪽 측정기준의 랜딩 페이지를 집어 탭 설정의 행 칸에 놓습니다.",
-    // 아직 집어 들지 않았으면 변수를, 집어 든 뒤에는 놓을 칸을 가리킨다
+    instruction: "왼쪽 측정기준의 랜딩 페이지를 끌어다 탭 설정의 행 칸에 놓습니다.",
+    // 아직 끌어다 들지 않았으면 변수를, 끌어다 든 뒤에는 놓을 칸을 가리킨다
     ring: (s) => (s.held?.key === PAGE_DIMENSION ? "slot:rows" : `var:${PAGE_DIMENSION}`),
     isDone: (s) => s.rows[0] === PAGE_DIMENSION,
   },
   {
     id: "drop_metric",
-    instruction: "측정항목의 참여율을 집어 탭 설정의 값 칸에 더합니다.",
+    instruction: "측정항목의 참여율을 끌어다 탭 설정의 값 칸에 더합니다.",
     ring: (s) => (s.held?.key === "engagementRate" ? "slot:values" : "var:engagementRate"),
     isDone: (s) => s.values.includes("engagementRate"),
   },
@@ -76,7 +76,7 @@ const STEPS: TourStep<Ga4ExploreState>[] = [
   {
     id: "drop_column",
     instruction:
-      "이번에는 기기별로 나눠 봅니다. 측정기준의 기기 카테고리를 집어 열 칸에 놓습니다.",
+      "이번에는 기기별로 나눠 봅니다. 측정기준의 기기 카테고리를 끌어다 열 칸에 놓습니다.",
     ring: (s) => (s.held?.key === DEVICE_DIMENSION ? "slot:columns" : `var:${DEVICE_DIMENSION}`),
     reset: { selectedRow: null },
     isDone: (s) => s.columns[0] === DEVICE_DIMENSION,
@@ -126,7 +126,7 @@ export default function ExplorationFreeFormLab() {
   const hold = (held: HeldVariable | null) => apply({ held });
 
   /**
-   * 집어 든 변수를 칸에 놓는다.
+   * 끌어다 든 변수를 칸에 놓는다.
    * 값 칸은 측정항목만, 행과 열은 측정기준만 받는다. 행과 열은 이 편에서 하나씩만 두어
    * 표가 학습 목표에서 멀어지지 않게 한다.
    */

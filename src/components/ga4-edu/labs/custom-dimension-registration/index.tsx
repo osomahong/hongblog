@@ -68,7 +68,7 @@ const STEPS: TourStep<Ga4State>[] = [
     id: "create_dimension",
     instruction:
       "이름과 이벤트 매개변수를 모두 inquiry_type으로 고른 다음 저장까지 마칩니다.",
-    // 아직 고르지 않은 자리를 차례로 가리킨다
+    // 아직 고르지 않은 입력 칸을 차례로 가리킨다
     ring: (s) => {
       if (s.createName !== TARGET_NAME) {
         return s.createList === "name" ? `dname:${TARGET_NAME}` : "dim-name";

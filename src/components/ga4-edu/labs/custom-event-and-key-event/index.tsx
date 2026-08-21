@@ -6,7 +6,7 @@
  * 이 편은 보고서가 아니라 관리 화면을 다룬다. 코드를 고치지 않고 기존 이벤트에 조건을 걸어
  * 새 이벤트를 만들고, 그 다음 어떤 이벤트를 주요 이벤트로 표시할지 고르게 한다.
  * 시작할 때 page_view가 이미 주요 이벤트로 켜져 있고, 마지막 스텝에서 학습자가 그것을 찾아
- * 끈다. 전환율이 뜻을 잃는 자리를 스스로 짚게 만드는 장치다.
+ * 끈다. 전환율이 판단 근거를 잃는 지점을 스스로 짚게 만드는 장치다.
  */
 
 import { useEffect, useState } from "react";
@@ -71,7 +71,7 @@ const STEPS: TourStep<Ga4State>[] = [
     id: "create_custom",
     instruction:
       "이름은 contact_submit, 일치 조건 값은 form_submit으로 고른 다음 만들기까지 마칩니다.",
-    // 아직 고르지 않은 자리를 차례로 가리킨다
+    // 아직 고르지 않은 입력 칸을 차례로 가리킨다
     ring: (s) => {
       if (s.createName !== TARGET_NAME) {
         return s.createList === "name" ? `cname:${TARGET_NAME}` : "create-name";
@@ -92,7 +92,7 @@ const STEPS: TourStep<Ga4State>[] = [
     isMiss: (s) =>
       (s.keyEvents ?? []).some((k) => k !== WRONG_KEY_EVENT && k !== KEY_EVENT_TARGET),
     missText:
-      "장바구니에 담는 것과 실제로 사는 것은 다릅니다. 돈이 오간 자리에 붙는 이벤트를 찾습니다.",
+      "장바구니에 담는 것과 실제로 사는 것은 다릅니다. 돈이 오간 순간에 붙는 이벤트를 찾습니다.",
   },
   {
     id: "open_key_events",
@@ -103,7 +103,7 @@ const STEPS: TourStep<Ga4State>[] = [
   {
     id: "unmark_wrong",
     instruction:
-      "목록에 앞서 누군가 켜 둔 이벤트가 하나 섞여 있습니다. 전환율을 뜻 없게 만드는 그 이벤트를 찾아 표시를 풉니다.",
+      "목록에 앞서 누군가 켜 둔 이벤트가 하나 섞여 있습니다. 전환율을 판단에 쓸 수 없게 만드는 그 이벤트를 찾아 표시를 풉니다.",
     ring: null,
     isDone: (s) => !marked(s, WRONG_KEY_EVENT) && marked(s, KEY_EVENT_TARGET),
     isMiss: (s) => !marked(s, KEY_EVENT_TARGET),

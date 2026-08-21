@@ -107,11 +107,11 @@ export const SUMMER_TOTAL = SUMMER_VARIANTS.reduce(
 /** 같은 캠페인인데 대문자 표기로 따로 잡힌 줄. 이 편의 첫 정답 */
 export const SPLIT_CAMPAIGN = "Summer_Sale";
 
-/** 표기가 다르지 않은 별개 캠페인. 오답 자리 */
+/** 표기가 다르지 않은 별개 캠페인. 오답 후보 */
 export const DECOY_CAMPAIGN = "newsletter_08";
 
 /** 매체 값이 표준값이 아니어서 채널 분류에서 빠지는 줄 */
 export const NONSTANDARD_SOURCE = "naver / 네이버검색";
 
-/** 표준 매체 값을 제대로 쓴 줄. 오답 자리 */
+/** 표준 매체 값을 제대로 쓴 줄. 오답 후보 */
 export const DECOY_SOURCE = "google / cpc";

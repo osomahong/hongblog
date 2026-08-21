@@ -61,7 +61,7 @@ const STEPS: TourStep<Ga4ExploreState>[] = [
   },
   {
     id: "drop_item",
-    instruction: "왼쪽 측정기준의 항목 이름을 집어 탭 설정의 행 칸에 놓습니다.",
+    instruction: "왼쪽 측정기준의 항목 이름을 끌어다 탭 설정의 행 칸에 놓습니다.",
     ring: (s) => (s.held?.key === ITEM_DIMENSION ? "slot:rows" : `var:${ITEM_DIMENSION}`),
     isDone: (s) => s.rows[0] === ITEM_DIMENSION,
   },
@@ -97,7 +97,7 @@ const STEPS: TourStep<Ga4ExploreState>[] = [
   },
 ];
 
-const DONE_TEXT = `${WEAK_ITEM}은 조회 5,240회에 장바구니 320회로 6.11%에 그칩니다. 조회가 더 적은 ${BEST_ITEM}이 구매 412건으로 가장 많은 것과 견주면, 조회수만 보고 노출을 늘릴 자리가 아니라는 것이 드러납니다. 카테고리로 묶으면 신발 한 줄에 이 상품 하나만 들어가 문제가 그대로 드러나지만, 의류처럼 상품이 여럿인 카테고리에서는 잘 팔리는 상품이 평균을 끌어올려 가려집니다.`;
+const DONE_TEXT = `${WEAK_ITEM}은 조회 5,240회에 장바구니 320회로 6.11%에 그칩니다. 조회가 더 적은 ${BEST_ITEM}이 구매 412건으로 가장 많은 것과 견주면, 조회수만 보고 노출을 늘릴 상품이 아니라는 것이 드러납니다. 카테고리로 묶으면 신발 한 줄에 이 상품 하나만 들어가 문제가 그대로 드러나지만, 의류처럼 상품이 여럿인 카테고리에서는 잘 팔리는 상품이 평균을 끌어올려 문제가 잘 보이지 않습니다.`;
 
 export default function EcommerceItemReportLab() {
   const [pinned, setPinned] = useState(false);

@@ -139,7 +139,7 @@ export const TOP_DEVICE = "mobile";
 /** 모바일 평균을 크게 밑도는 브라우저 */
 export const BROKEN_BROWSER = "Samsung Internet";
 
-/** 안내문에 쓰는 값. 화면에 찍히는 값과 같은 자리에서 만든다 */
+/** 안내문에 쓰는 값. 화면에 찍히는 값에서 그대로 가져온다 */
 const find = (set: RowFacts[], name: string): RowFacts => set.find((r) => r.name === name)!;
 const comma = (v: number): string => v.toLocaleString("ko-KR");
 

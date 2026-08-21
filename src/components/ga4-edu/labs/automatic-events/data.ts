@@ -105,7 +105,7 @@ export const OUR_TOP_EVENT = "add_to_cart";
 /** 우리가 심은 이벤트 가운데 사용자당 이벤트 수가 가장 낮은 것 */
 export const OUR_ONCE_EVENT = "purchase";
 
-/** 안내문에 쓰는 값. 화면에 찍히는 값과 같은 자리에서 만든다 */
+/** 안내문에 쓰는 값. 화면에 찍히는 값에서 그대로 가져온다 */
 const find = (name: string): EventFacts => EVENTS.find((e) => e.name === name)!;
 const perUser = (name: string): string => {
   const e = find(name);

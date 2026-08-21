@@ -33,10 +33,10 @@ export const AREAS: OverlapArea[] = [
   { label: `${BUYER} + ${NEW_USER}`, users: 120 },
 ];
 
-/** 신규이면서 구매한 사람. 겹침이 가장 얇은 자리다 */
+/** 신규이면서 구매한 사람. 겹침이 가장 얇다 */
 export const NEW_BUYER_LABEL = `${BUYER} + ${NEW_USER}`;
 
-/** 오답 자리. 겹침이 가장 두꺼워 눈에 먼저 들어온다 */
+/** 오답 후보. 겹침이 가장 두꺼워 눈에 먼저 들어온다 */
 export const DECOY_LABEL = `${MOBILE} + ${NEW_USER}`;
 
 /** 신규이면서 구매한 사람 수. 두 조합을 더한 값이다 */

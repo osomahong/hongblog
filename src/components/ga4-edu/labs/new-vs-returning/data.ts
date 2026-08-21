@@ -97,7 +97,7 @@ export const TOP_KEY_EVENT_TYPE = "returning";
 /** 지난 7일로 좁혔을 때 주요 이벤트가 가장 많은 유형 */
 export const SHORT_RANGE_TOP_TYPE = "new";
 
-/** 안내문에 쓰는 값. 화면에 찍히는 값과 같은 자리에서 만든다 */
+/** 안내문에 쓰는 값. 화면에 찍히는 값에서 그대로 가져온다 */
 const find = (name: string): TypeFacts => TYPES.find((t) => t.name === name)!;
 const comma = (v: number): string => v.toLocaleString("ko-KR");
 const shareOf = (name: string, range: DateRangeKey): string => {

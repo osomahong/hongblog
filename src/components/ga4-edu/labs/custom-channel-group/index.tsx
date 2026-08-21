@@ -6,7 +6,7 @@
  * 규칙을 만드는 것보다 순서를 정하는 것이 어렵다는 것을 보여 준다. 넓은 규칙이 위에 있으면
  * 좁은 규칙은 아무것도 가져가지 못한 채 0으로 남는다.
  *
- * 학습자가 브랜드 규칙을 한 칸 위로 올리면 세션수가 나뉘는 것을 그 자리에서 본다.
+ * 학습자가 브랜드 규칙을 한 칸 위로 올리면 세션수가 나뉘는 것을 화면에서 바로 본다.
  */
 
 import { useEffect, useState } from "react";
@@ -32,7 +32,7 @@ import {
 const LAB_ID = "custom-channel-group";
 const LAB_TITLE = "채널 그룹 직접 만들어 유입 분류 바꾸기";
 
-/** 규칙 순서를 customEvents 자리에 담아 쓴다 */
+/** 규칙 순서를 customEvents 필드에 담아 쓴다 */
 const START_STATE: Ga4State = {
   ...INITIAL_STATE,
   adminPage: "property-settings",
@@ -52,7 +52,7 @@ const STEPS: TourStep[] = [
   },
   {
     id: "move_up",
-    instruction: `${BRAND_RULE} 규칙이 ${ALL_RULE}보다 아래에 놓여 세션이 0회입니다. 오른쪽 화살표로 한 칸 위로 올립니다.`,
+    instruction: `${BRAND_RULE} 규칙이 ${ALL_RULE}보다 아래에 놓여 세션이 0회입니다. 줄 오른쪽 끝의 위 화살표를 눌러 한 칸 올립니다.`,
     ring: `rule:up:${BRAND_RULE}`,
     isDone: (s) => isFixed(orderOf(s)),
   },

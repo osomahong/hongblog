@@ -117,7 +117,7 @@ export function totalValues(dimension: string): PivotValues {
 /** 조회는 많은데 장바구니로 가는 비율이 가장 낮은 상품 */
 export const WEAK_ITEM = "가죽 샌들";
 
-/** 오답 자리. 조회수 1위라 눈에 먼저 들어온다 */
+/** 오답 후보. 조회수 1위라 눈에 먼저 들어온다 */
 export const DECOY_ITEM = "여름 원피스";
 
 /** 조회는 적지만 구매가 가장 많은 상품 */

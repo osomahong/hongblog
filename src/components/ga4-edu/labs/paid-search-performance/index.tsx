@@ -63,7 +63,7 @@ const STEPS: TourStep<Ga4ExploreState>[] = [
   },
   {
     id: "drop_source",
-    instruction: "왼쪽 측정기준의 세션 소스/매체를 집어 탭 설정의 행 칸에 놓습니다.",
+    instruction: "왼쪽 측정기준의 세션 소스/매체를 끌어다 탭 설정의 행 칸에 놓습니다.",
     ring: (s) => (s.held?.key === SOURCE_DIMENSION ? "slot:rows" : `var:${SOURCE_DIMENSION}`),
     isDone: (s) => s.rows[0] === SOURCE_DIMENSION,
   },
@@ -132,7 +132,7 @@ export default function PaidSearchPerformanceLab() {
 
   const hold = (held: HeldVariable | null) => apply({ held });
 
-  /** 집어 든 변수를 그 칸에 놓는다. 행은 하나만 두고, 값은 뒤에 이어 붙인다 */
+  /** 끌어다 든 변수를 그 칸에 놓는다. 행은 하나만 두고, 값은 뒤에 이어 붙인다 */
   const dropTo = (slot: SlotName) => {
     const held = state.held;
     if (!held) return;

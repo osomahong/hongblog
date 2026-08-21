@@ -119,7 +119,7 @@ export function totalValues(dimension: string): PivotValues {
 /** 세션 주요 이벤트 비율이 가장 높은 소스/매체. 세션수로는 2위다 */
 export const BEST_RATE_SOURCE = "google / cpc";
 
-/** 세션수 1위지만 전환율은 중간인 자리. 세션수만 보면 여기를 고르게 된다 */
+/** 세션수 1위지만 전환율은 중간인 줄. 세션수만 보면 여기를 고르게 된다 */
 export const DECOY_SOURCE = "google / organic";
 
 /** 유료 캠페인 가운데 세션은 많은데 전환이 거의 없는 캠페인 */

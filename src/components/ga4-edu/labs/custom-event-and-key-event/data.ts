@@ -59,7 +59,7 @@ export const KEY_EVENT_TARGET = "purchase";
 /** 주요 이벤트로 표시하면 안 되는 이벤트 */
 export const WRONG_KEY_EVENT = "page_view";
 
-/** 안내문에 쓰는 값. 화면에 찍히는 값과 같은 자리에서 만든다 */
+/** 안내문에 쓰는 값. 화면에 찍히는 값에서 그대로 가져온다 */
 const find = (name: string): AdminEventRow => EVENT_ROWS.find((r) => r.name === name)!;
 const comma = (v: number): string => v.toLocaleString("ko-KR");
 

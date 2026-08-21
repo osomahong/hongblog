@@ -122,5 +122,5 @@ export function otherShare(range: DateRangeKey): number {
   return total === 0 ? 0 : (other / total) * 100;
 }
 
-/** 오답 자리. 개별 회원 줄은 값이 작아 문제로 보이지 않는다 */
+/** 오답 후보. 개별 회원 줄은 값이 작아 문제로 보이지 않는다 */
 export const DECOY_ROW = "M-100482";

@@ -27,7 +27,7 @@ import {
 const LAB_ID = "user-id-and-google-signals";
 const LAB_TITLE = "사용자 ID와 구글 신호 데이터로 기기 넘나드는 사용자 잇기";
 
-/** 고른 보고 ID를 createName 자리에 담아 쓴다 */
+/** 고른 보고 ID를 createName 필드에 담아 쓴다 */
 const START_STATE: Ga4State = {
   ...INITIAL_STATE,
   adminPage: "property-settings",

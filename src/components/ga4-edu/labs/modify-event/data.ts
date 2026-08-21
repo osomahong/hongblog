@@ -35,7 +35,7 @@ export const MATCH_OPTIONS = [
 /** 바꿀 이름 목록 */
 export const VALUE_OPTIONS = ["purchase", "checkout", "order_done"];
 
-/** 오답 자리. 이미 표준 이름을 쓰고 있어 고칠 필요가 없다 */
+/** 오답 후보. 이미 표준 이름을 쓰고 있어 고칠 필요가 없다 */
 export const DECOY_EVENT = "add_to_cart";
 
 export const EVENT_ROWS: AdminEventRow[] = [

@@ -46,7 +46,7 @@ export function rowsFor(model: string): AttributionRow[] {
 /** 마지막 클릭으로 바꿨을 때 평가가 가장 크게 떨어지는 채널 */
 export const BIGGEST_DROP = "Organic Social";
 
-/** 오답 자리. 평가가 오히려 오른다 */
+/** 오답 후보. 평가가 오히려 오른다 */
 export const DECOY_CHANNEL = "Paid Search";
 
 /** 총 전환 수. 모델을 바꿔도 달라지지 않는다 */

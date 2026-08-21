@@ -111,7 +111,7 @@ export default function SegmentBasicsLab() {
     };
   }, [pinned]);
 
-  // 이 편은 변수를 옮기는 조작을 쓰지 않는다. 집어 든 상태만 풀어 준다
+  // 이 편은 변수를 옮기는 조작을 쓰지 않는다. 끌어다 든 상태만 풀어 준다
   const hold = (held: HeldVariable | null) => apply({ held });
   const dropTo = () => apply({ held: null });
   const removeFrom = () => apply({ held: null });

@@ -80,11 +80,11 @@ const STEPS: TourStep[] = [
   {
     id: "find_nonstandard",
     instruction:
-      "매체 자리에 GA4가 아는 표준값 대신 다른 말이 적힌 줄이 하나 있습니다. 그 줄을 누릅니다.",
+      "매체 항목에 GA4가 아는 표준값 대신 다른 말이 적힌 줄이 하나 있습니다. 그 줄을 누릅니다.",
     ring: null,
     isDone: (s) => s.selectedRow === NONSTANDARD_SOURCE,
     isMiss: (s) => s.selectedRow !== null && s.selectedRow !== NONSTANDARD_SOURCE,
-    missText: `${DECOY_SOURCE}는 매체 자리에 표준값 cpc를 제대로 쓴 줄입니다. 매체가 한글로 적힌 줄을 찾아보세요.`,
+    missText: `${DECOY_SOURCE}는 매체 항목에 표준값 cpc를 제대로 쓴 줄입니다. 매체가 한글로 적힌 줄을 찾아보세요.`,
     reset: { selectedRow: null },
   },
   {

@@ -70,7 +70,7 @@ export function rowsFor(segments: string[]): string[] {
 /** 세션수가 더 많이 남는 쪽. 사용자 범위가 넓기 때문이다 */
 export const WIDER_SEGMENT = SEGMENT_NAME.user;
 
-/** 오답 자리. 조건은 같지만 범위가 좁아 세션수가 적다 */
+/** 오답 후보. 조건은 같지만 범위가 좁아 세션수가 적다 */
 export const NARROWER_SEGMENT = SEGMENT_NAME.session;
 
 /** 두 세그먼트의 세션수 차이. 본문에서 쓰는 수치와 같아야 한다 */

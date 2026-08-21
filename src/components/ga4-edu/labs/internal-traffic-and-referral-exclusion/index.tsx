@@ -37,7 +37,7 @@ const START_STATE: Ga4State = {
   customEvents: [],
 };
 
-/** 사용으로 바꾼 필터 이름을 customEvents 자리에 담아 쓴다 */
+/** 사용으로 바꾼 필터 이름을 customEvents 필드에 담아 쓴다 */
 const activated = (s: Ga4State) => (s.customEvents ?? [])[0] ?? null;
 
 /* ===================== 스텝 ===================== */
@@ -63,7 +63,7 @@ const STEPS: TourStep[] = [
   },
 ];
 
-const DONE_TEXT = `이제부터 사무실에서 들어오는 방문은 아예 수집되지 않습니다. 테스트 상태였던 동안에는 데이터가 그대로 들어왔고 보고서에서 걸러 볼 수만 있었는데, 사용으로 바꾼 뒤로는 데이터 자체가 남지 않습니다. 나중에 필터를 꺼도 그 기간의 방문은 복구되지 않습니다. ${DECOY_FILTER}는 처음부터 사용 상태라 손댈 필요가 없었습니다.`;
+const DONE_TEXT = `이제부터 사무실에서 들어오는 방문은 아예 수집되지 않습니다. 테스트 상태였던 동안에는 데이터가 그대로 들어왔고 보고서에서 걸러 볼 수만 있었는데, 사용으로 바꾼 뒤로는 데이터 자체가 남지 않습니다. 나중에 필터를 꺼도 그 기간의 방문은 복구되지 않습니다. ${DECOY_FILTER}는 처음부터 사용 상태라 건드릴 필요가 없었습니다.`;
 
 export default function InternalTrafficLab() {
   const [pinned, setPinned] = useState(false);
