@@ -3,10 +3,10 @@
 /**
  * 중급 2번: 맞춤 이벤트 만들고 주요 이벤트로 표시하기.
  *
- * 이 편은 보고서가 아니라 관리 화면을 다룬다. 코드를 고치지 않고 기존 이벤트에 조건을 걸어
+ * 이 편은 보고서가 아니라 관리 화면을 다룬다. 코드를 수정하지 않고 기존 이벤트에 조건을 걸어
  * 새 이벤트를 만들고, 그 다음 어떤 이벤트를 주요 이벤트로 표시할지 고르게 한다.
- * 시작할 때 page_view가 이미 주요 이벤트로 켜져 있고, 마지막 스텝에서 학습자가 그것을 찾아
- * 끈다. 전환율이 판단 근거를 잃는 지점을 스스로 짚게 만드는 장치다.
+ * 시작할 때 page_view가 이미 주요 이벤트로 표시돼 있고, 마지막 스텝에서 학습자가 그것을 찾아
+ * 끈다. 전환율이 판단 근거를 잃는 지점을 스스로 확인하게 만드는 장치다.
  */
 
 import { useEffect, useState } from "react";
@@ -108,11 +108,11 @@ const STEPS: TourStep<Ga4State>[] = [
     isDone: (s) => !marked(s, WRONG_KEY_EVENT) && marked(s, KEY_EVENT_TARGET),
     isMiss: (s) => !marked(s, KEY_EVENT_TARGET),
     missText:
-      "purchase는 그대로 두어야 합니다. 거의 모든 방문에 붙어서 전환율이 100퍼센트에 가까워지는 쪽을 끕니다.",
+      "purchase는 그대로 두어야 합니다. 거의 모든 방문에 붙어서 전환율이 100퍼센트에 가까워지는 쪽의 표시를 풉니다.",
   },
 ];
 
-const DONE_TEXT = `page_view는 ${FACTS.pageViewCount}회로 세션 ${FACTS.sessionCount}회를 웃돕니다. 주요 이벤트로 표시하면 전환율이 ${FACTS.pageViewRate}에 붙어 버려 무엇을 고쳐도 숫자가 움직이지 않습니다. purchase는 ${FACTS.purchaseCount}회라 세션 대비 ${FACTS.purchaseRate}입니다. 이 값이라야 화면을 고쳤을 때 오르내리는 것이 보입니다. 방금 만든 contact_submit은 아직 표에 없습니다. 맞춤 이벤트는 만든 시점부터 쌓이고 지난 데이터에는 붙지 않기 때문입니다. 주요 이벤트 표시도 같아서, 켠 날 이전 기간은 전환으로 세지 않습니다.`;
+const DONE_TEXT = `page_view는 ${FACTS.pageViewCount}회로 세션 ${FACTS.sessionCount}회를 웃돕니다. 주요 이벤트로 표시하면 전환율이 ${FACTS.pageViewRate}에 붙어 버려 무엇을 개선해도 숫자가 움직이지 않습니다. purchase는 ${FACTS.purchaseCount}회라 세션 대비 ${FACTS.purchaseRate}입니다. 이 값이라야 화면을 고쳤을 때 오르내리는 것이 보입니다. 방금 만든 contact_submit은 아직 표에 없습니다. 맞춤 이벤트는 만든 시점부터 쌓이고 지난 데이터에는 붙지 않기 때문입니다. 주요 이벤트 표시도 같아서, 표시한 날 이전 기간은 전환으로 세지 않습니다.`;
 
 /* ===================== 화면 ===================== */
 
@@ -168,7 +168,7 @@ export default function CustomEventAndKeyEventLab() {
   );
 
   /**
-   * 스위치는 켜고 끄기가 모두 되어야 한다. 잘못 켠 것을 학습자가 되돌릴 수 있다.
+   * 스위치는 표시와 해제가 모두 되어야 한다. 잘못 표시한 것을 학습자가 되돌릴 수 있다.
    * 끈 줄이 주요 이벤트 목록에서 곧바로 사라지면 되돌릴 길이 없어지므로,
    * 한 번이라도 켰던 이름은 따로 기억해 그 화면에 남긴다.
    */

@@ -105,7 +105,7 @@ const STEPS: TourStep<Ga4State>[] = [
   },
 ];
 
-const DONE_TEXT = `member_id는 회원마다 값이 다릅니다. 사용자 ${FACTS.users}명이면 값의 종류도 그만큼 생겨서, 카디널리티 한도를 밀어 올리고 다른 보고서에까지 (other) 줄을 만듭니다. 방금 등록한 inquiry_type은 값이 ${FACTS.inquiryValues}라 알맞습니다. 다만 등록한 시점부터 쌓이기 때문에 어제까지의 문의는 (not set)으로 나옵니다. 보관 처리도 같은 방식이라, member_id로 이미 쌓인 값이 지워지지는 않고 내일부터 새 값이 붙지 않을 뿐입니다.`;
+const DONE_TEXT = `member_id는 회원마다 값이 다릅니다. 사용자 ${FACTS.users}명이면 값의 종류도 그만큼 생겨서, 카디널리티 한도를 높이고 다른 보고서에까지 (other) 줄을 만듭니다. 방금 등록한 inquiry_type은 값이 ${FACTS.inquiryValues}라 알맞습니다. 다만 등록한 시점부터 쌓이기 때문에 어제까지의 문의는 (not set)으로 나옵니다. 보관 처리도 같은 방식이라, member_id로 이미 쌓인 값이 지워지지는 않고 내일부터 새 값이 붙지 않을 뿐입니다.`;
 
 /* ===================== 화면 ===================== */
 

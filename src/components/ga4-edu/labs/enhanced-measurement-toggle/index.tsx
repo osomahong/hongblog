@@ -1,12 +1,12 @@
 "use client";
 
 /**
- * 중급 8번: 데이터 스트림 향상된 측정에서 개별 이벤트 끄기.
+ * 중급 8번: 데이터 스트림 향상된 측정에서 개별 이벤트 해제하기.
  *
  * 학습자는 스크롤 측정을 직접 끄고, 스트림 상세의 수집 목록에서 그 줄이 중단됨으로 바뀌는 것을
- * 본다. 그다음 다시 켜서 되돌린다.
+ * 본다. 그다음 토글을 올려 되돌린다.
  *
- * 되돌려도 꺼져 있던 기간은 채워지지 않는다는 것이 이 편의 핵심이라, 마지막 안내에서 그 점을 짚는다.
+ * 되돌려도 해제해 둔 기간은 채워지지 않는다는 것이 이 편의 핵심이라, 마지막 안내에서 그 점을 확인한다.
  */
 
 import { useEffect, useState } from "react";
@@ -29,7 +29,7 @@ import {
 } from "./data";
 
 const LAB_ID = "enhanced-measurement-toggle";
-const LAB_TITLE = "데이터 스트림 향상된 측정에서 개별 이벤트 끄기";
+const LAB_TITLE = "데이터 스트림 향상된 측정에서 개별 이벤트 해제하기";
 
 /** 관리의 속성 설정에서 시작한다 */
 const START_STATE: Ga4State = {
@@ -65,27 +65,27 @@ const STEPS: TourStep[] = [
   },
   {
     id: "turn_off",
-    instruction: `${TARGET_LABEL} 항목의 토글을 내려 측정을 끕니다.`,
+    instruction: `${TARGET_LABEL} 항목의 토글을 내려 측정을 해제합니다.`,
     ring: `stream:toggle:${TARGET_EVENT}`,
     isDone: isOff,
   },
   {
     id: "see_result",
     instruction:
-      "설정을 닫고 수집 목록을 봅니다. 껐던 줄이 중단됨으로 바뀌어 있습니다.",
+      "설정을 닫고 수집 목록을 봅니다. 해제한 줄이 중단됨으로 바뀌어 있습니다.",
     ring: null,
     isDone: (s) => s.streamSettingsOpen === false && isOff(s),
   },
   {
     id: "turn_on",
     instruction:
-      "실습이므로 되돌립니다. 설정을 다시 열어 같은 토글을 올려 수집을 켭니다.",
+      "실습이므로 되돌립니다. 설정을 다시 열어 같은 토글을 올려 수집을 되돌립니다.",
     ring: (s) => (s.streamSettingsOpen ? `stream:toggle:${TARGET_EVENT}` : "stream:settings"),
     isDone: (s) => !isOff(s) && s.streamSettingsOpen === true,
   },
 ];
 
-const DONE_TEXT = `되돌렸지만 꺼져 있던 동안의 데이터는 채워지지 않습니다. ${TARGET_LABEL}은 지난 28일에 ${TARGET_COUNT.toLocaleString("ko-KR")}회 들어오던 이벤트라, 하루만 꺼 두어도 그만큼이 비어 그 기간의 참여율 비교가 어긋납니다.`;
+const DONE_TEXT = `되돌렸지만 해제해 둔 동안의 데이터는 채워지지 않습니다. ${TARGET_LABEL}은 지난 28일에 ${TARGET_COUNT.toLocaleString("ko-KR")}회 들어오던 이벤트라, 하루만 꺼 두어도 그만큼이 비어 그 기간의 참여율 비교가 어긋납니다.`;
 
 export default function EnhancedMeasurementToggleLab() {
   const [pinned, setPinned] = useState(false);

@@ -57,7 +57,7 @@ const CHANNELS: ChannelFacts[] = [
     yearAgo: { sessions: 4970, engagementRate: 0.538, keyEvents: 108 },
   },
   // 이전 기간 대비 34.2% 빠진 채널. 네 번째 스텝의 정답이다.
-  // 이전 연도와 견줘도 19.2% 줄어, 두 기준이 같은 방향을 가리킨다.
+  // 이전 연도와 비교해도 19.2% 줄어, 두 기준이 같은 방향을 가리킨다.
   {
     name: "Paid Search",
     current: { sessions: 5610, engagementRate: 0.2881, keyEvents: 54 },

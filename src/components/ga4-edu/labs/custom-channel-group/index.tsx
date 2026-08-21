@@ -104,7 +104,7 @@ export default function CustomChannelGroupLab() {
           {page === "channel-groups" ? (
             <Ga4RuleAdmin
               title="맞춤 채널 그룹: 네이버 세분화"
-              description="위에서부터 차례로 맞춰 보고 먼저 걸리는 규칙이 이깁니다. 기본 채널 그룹은 고칠 수 없어 새로 만들었습니다."
+              description="위에서부터 차례로 맞춰 보고 먼저 걸리는 규칙이 이깁니다. 기본 채널 그룹은 수정할 수 없어 새로 만들었습니다."
               createLabel="채널 그룹 만들기"
               columns={RULE_COLUMNS}
               rows={buildRows(orderOf(state))}

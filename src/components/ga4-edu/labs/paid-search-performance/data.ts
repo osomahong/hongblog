@@ -95,7 +95,7 @@ function toValues(raw: Raw): PivotValues {
   };
 }
 
-/** 측정기준 하나를 놓았을 때 세로줄에 늘어서는 값 */
+/** 측정기준 하나를 놓았을 때 세로줄에 나열되는 값 */
 export function keysFor(dimension: string): string[] {
   return Object.keys(TABLE[dimension] ?? {});
 }

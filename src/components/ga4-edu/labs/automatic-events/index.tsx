@@ -33,7 +33,7 @@ import {
 const LAB_ID = "automatic-events";
 const LAB_TITLE = "이벤트 보고서에서 자동 수집 이벤트 확인하기";
 
-/** 이 편은 기간을 건드리지 않는다. 이벤트 점검의 기본값인 28일로 열어 둔다 */
+/** 이 편은 기간을 변경하지 않는다. 이벤트 점검의 기본값인 28일로 열어 둔다 */
 const START_STATE: Ga4State = {
   ...INITIAL_STATE,
   dateRange: "28d",
@@ -66,7 +66,7 @@ const STEPS: TourStep<Ga4State>[] = [
     reset: { selectedRow: null },
     isDone: (s) => s.selectedRow === ONCE_PER_USER_EVENT,
     isMiss: (s) => s.selectedRow !== null && s.selectedRow !== ONCE_PER_USER_EVENT,
-    missText: "두 칸에 똑같은 값이 찍힌 줄은 하나뿐입니다. 표를 따라 내려가며 두 칸의 숫자를 나란히 견줍니다.",
+    missText: "두 칸에 똑같은 값이 찍힌 줄은 하나뿐입니다. 표를 따라 내려가며 두 칸의 숫자를 나란히 비교합니다.",
   },
   {
     id: "pick_our_top",
@@ -77,7 +77,7 @@ const STEPS: TourStep<Ga4State>[] = [
     isDone: (s) => s.selectedRow === OUR_TOP_EVENT,
     isMiss: (s) => s.selectedRow !== null && s.selectedRow !== OUR_TOP_EVENT,
     missText:
-      "scroll과 click은 향상된 측정을 켜 두면 코드를 넣지 않아도 들어옵니다. 그 둘을 빼고 다시 고릅니다.",
+      "scroll과 click은 향상된 측정을 사용 설정해 두면 코드를 넣지 않아도 들어옵니다. 그 둘을 빼고 다시 고릅니다.",
   },
   {
     id: "sort_per_user",

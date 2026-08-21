@@ -83,7 +83,7 @@ const CHANNELS: ChannelFacts[] = [
     keyEvents: 88,
   },
   // 참여율은 다섯 채널 가운데 가장 낮지만 세션이 적어 전체에 미치는 영향은 작다.
-  // 참여율만 보고 고르면 이 채널을 짚게 되는 함정이다.
+  // 참여율만 보고 고르면 이 채널을 확인하게 되는 함정이다.
   {
     name: "Organic Social",
     sessions: 1684,

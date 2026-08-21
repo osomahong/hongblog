@@ -187,7 +187,7 @@ export interface Ga4FunnelState {
   stageListOpen: boolean;
   /** 유입경로에 놓인 단계 이름. 순서가 그대로 단계 순서다 */
   stages: string[];
-  /** 열린 유입경로를 켰는지. 켜면 앞 단계를 건너뛴 사용자도 세어 숫자가 커진다 */
+  /** 열린 유입경로를 사용 설정했는지. 사용 설정하면 앞 단계를 건너뛴 사용자도 세어 숫자가 커진다 */
   openFunnel: boolean;
   /** 학습자가 고른 단계 이름 */
   selectedStage: string | null;

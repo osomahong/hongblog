@@ -88,7 +88,7 @@ const STEPS: TourStep<Ga4State>[] = [
     isDone: (s) => s.selectedRow === rowKey(PAID_SEARCH, PAID_TOP_PAGE),
     isMiss: (s) => s.selectedRow !== null && s.selectedRow !== rowKey(PAID_SEARCH, PAID_TOP_PAGE),
     missText:
-      "왼쪽 비교 칸이 Paid Search라고 적힌 줄만 놓고 견줍니다. 모든 사용자 줄에는 광고 밖에서 온 세션이 섞여 있습니다.",
+      "왼쪽 비교 칸이 Paid Search라고 적힌 줄만 놓고 비교합니다. 모든 사용자 줄에는 광고 밖에서 온 세션이 섞여 있습니다.",
   },
   {
     id: "pick_paid_best",

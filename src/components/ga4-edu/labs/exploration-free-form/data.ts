@@ -126,7 +126,7 @@ function fold(parts: PivotValues[]): PivotValues {
 
 const ALL_CELLS = PAGE_KEYS.flatMap((p) => DEVICE_KEYS.map((d) => measured(p, d)));
 
-/** 측정기준 하나를 놓았을 때 그 축에 늘어서는 값. 세션수가 많은 순서다 */
+/** 측정기준 하나를 놓았을 때 그 축에 나열되는 값. 세션수가 많은 순서다 */
 export function keysFor(dimension: string): string[] {
   const keys = dimension === DEVICE_DIMENSION ? [...DEVICE_KEYS] : [...PAGE_KEYS];
   return keys.sort((a, b) => axisTotal(dimension, b).sessions - axisTotal(dimension, a).sessions);

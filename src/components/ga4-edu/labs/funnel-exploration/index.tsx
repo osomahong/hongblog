@@ -86,7 +86,7 @@ const STEPS: TourStep<Ga4FunnelState>[] = [
   {
     id: "toggle_open_funnel",
     instruction:
-      "탭 설정의 열린 유입경로 만들기를 켜고, 같은 표의 사람 수가 어떻게 달라지는지 봅니다.",
+      "탭 설정의 열린 유입경로 만들기를 사용 설정하고, 같은 표의 사람 수가 어떻게 달라지는지 봅니다.",
     ring: "funnel:open-toggle",
     isDone: (s) => s.openFunnel === true,
   },

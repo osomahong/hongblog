@@ -15,7 +15,7 @@ import { useRing } from "./tour";
 interface Ga4ModifyEventPanelProps {
   /** 수정 규칙 이름 */
   ruleName: string;
-  /** 고르는 중인 조건 값. 어느 이벤트를 고칠지 정한다 */
+  /** 고르는 중인 조건 값. 어느 이벤트를 수정할지 정한다 */
   matchValue: string | null;
   /** 고르는 중인 새 이름 */
   newValue: string | null;

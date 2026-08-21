@@ -36,7 +36,7 @@ import {
 const LAB_ID = "page-and-screen-report";
 const LAB_TITLE = "페이지 및 화면 보고서에서 조회수 상위 콘텐츠 찾기";
 
-/** 이 편은 기간을 건드리지 않는다. 콘텐츠 점검의 기본값인 28일로 열어 둔다 */
+/** 이 편은 기간을 변경하지 않는다. 콘텐츠 점검의 기본값인 28일로 열어 둔다 */
 const START_STATE: Ga4State = {
   ...INITIAL_STATE,
   dateRange: "28d",

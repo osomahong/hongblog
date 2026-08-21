@@ -1,10 +1,10 @@
 "use client";
 
 /**
- * 심화 6번: 이벤트 수정으로 기존 이벤트 이름과 매개변수 고치기.
+ * 심화 6번: 이벤트 수정으로 기존 이벤트 이름과 매개변수 바꾸기.
  *
  * 같은 행동에 이름이 둘로 갈라져 들어오는 상황에서 이벤트 수정으로 한쪽을 표준 이름으로 바꾼다.
- * 저장한 뒤에도 목록에서 줄이 바로 사라지지 않는다는 점을 마무리에서 짚는다.
+ * 저장한 뒤에도 목록에서 줄이 바로 사라지지 않는다는 점을 마무리에서 확인한다.
  *
  * 수정은 앞으로 들어오는 데이터에만 적용되고, 이미 쌓인 이름은 그대로 남기 때문이다.
  */
@@ -30,7 +30,7 @@ import {
 } from "./data";
 
 const LAB_ID = "modify-event";
-const LAB_TITLE = "이벤트 수정으로 기존 이벤트 이름과 매개변수 고치기";
+const LAB_TITLE = "이벤트 수정으로 기존 이벤트 이름과 매개변수 바꾸기";
 
 /** 관리의 속성 설정에서 시작한다 */
 const START_STATE: Ga4State = {
@@ -64,11 +64,11 @@ const STEPS: TourStep[] = [
   },
   {
     id: "pick_match",
-    instruction: `일치 조건에서 고칠 이름을 고릅니다. 표준 이름이 아닌 쪽이 ${WRONG_EVENT}입니다.`,
+    instruction: `일치 조건에서 수정할 이름을 고릅니다. 표준 이름이 아닌 쪽이 ${WRONG_EVENT}입니다.`,
     ring: "modify:match",
     isDone: (s) => s.createName === WRONG_EVENT,
     isMiss: (s) => s.createName !== null && s.createName !== WRONG_EVENT,
-    missText: `${DECOY_EVENT}는 이미 표준 이름이라 고칠 필요가 없습니다. 구매를 가리키는 다른 이름을 찾아보세요.`,
+    missText: `${DECOY_EVENT}는 이미 표준 이름이라 수정할 필요가 없습니다. 구매를 가리키는 다른 이름을 찾아보세요.`,
     reset: { createName: null },
   },
   {

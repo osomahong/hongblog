@@ -79,7 +79,7 @@ const STEPS: TourStep<Ga4State>[] = [
   },
   {
     id: "apply_previous",
-    instruction: "선택기를 다시 열고 비교를 켠 다음 적용합니다. 비교 대상은 이전 기간 그대로 둡니다.",
+    instruction: "선택기를 다시 열고 비교를 사용 설정한 다음 적용합니다. 비교 대상은 이전 기간 그대로 둡니다.",
     ring: (s) => openFirst(s, s.draftCompare ? "date-apply" : "date-compare"),
     isDone: (s) => s.appliedBase === "previous" && s.datePanelOpen === false,
   },
@@ -115,11 +115,11 @@ const STEPS: TourStep<Ga4State>[] = [
     isDone: (s) => channelOf(s.selectedRow) === FLIPPED_CHANNEL,
     isMiss: (s) => s.selectedRow !== null && channelOf(s.selectedRow) !== FLIPPED_CHANNEL,
     missText:
-      "지금 표는 이전 연도와 견준 값입니다. 조금 전 이전 기간 비교에서 마이너스였던 채널 두 곳 가운데, 지금 플러스로 바뀐 채널을 찾습니다.",
+      "지금 표는 이전 연도와 비교한 값입니다. 조금 전 이전 기간 비교에서 마이너스였던 채널 두 곳 가운데, 지금 플러스로 바뀐 채널을 찾습니다.",
   },
 ];
 
-const DONE_TEXT = `Referral은 이전 기간보다 ${FACTS.referralPrevious} 줄었는데 작년 같은 기간과 견주면 ${FACTS.referralYearAgo} 늘었습니다. 두 기준이 서로 다른 답을 냅니다. 바로 앞 28일이 유난히 좋았을 뿐, 작년부터 보면 늘고 있는 채널입니다. Paid Search는 이전 기간보다 ${FACTS.paidPrevious}, 작년보다 ${FACTS.paidYearAgo} 줄어 두 기준이 같은 방향을 가리킵니다. 이쪽은 광고 자체가 줄었다고 읽습니다. 그래서 기간 비교는 하나만 걸고 끝내지 않고 두 기준을 번갈아 봅니다.`;
+const DONE_TEXT = `Referral은 이전 기간보다 ${FACTS.referralPrevious} 줄었는데 작년 같은 기간과 비교하면 ${FACTS.referralYearAgo} 늘었습니다. 두 기준이 서로 다른 답을 냅니다. 바로 앞 28일이 유난히 좋았을 뿐, 작년부터 보면 늘고 있는 채널입니다. Paid Search는 이전 기간보다 ${FACTS.paidPrevious}, 작년보다 ${FACTS.paidYearAgo} 줄어 두 기준이 같은 방향을 가리킵니다. 이쪽은 광고 자체가 줄었다고 읽습니다. 그래서 기간 비교는 하나만 걸고 끝내지 않고 두 기준을 번갈아 봅니다.`;
 
 /* ===================== 화면 ===================== */
 

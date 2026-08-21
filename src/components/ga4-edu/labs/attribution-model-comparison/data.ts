@@ -21,7 +21,7 @@ export const FIRST_CLICK = "첫 번째 클릭";
 
 export const COMPARE_OPTIONS = [LAST_CLICK, FIRST_CLICK];
 
-/** 마지막 클릭으로 견줄 때의 값 */
+/** 마지막 클릭으로 비교할 때의 값 */
 const BY_LAST_CLICK: AttributionRow[] = [
   { channel: "Organic Search", base: 428, compare: 394 },
   { channel: "Paid Search", base: 386, compare: 499 },
@@ -30,7 +30,7 @@ const BY_LAST_CLICK: AttributionRow[] = [
   { channel: "Email", base: 68, compare: 45 },
 ];
 
-/** 첫 번째 클릭으로 견줄 때의 값. 소셜과 이메일이 반대로 오른다 */
+/** 첫 번째 클릭으로 비교할 때의 값. 소셜과 이메일이 반대로 오른다 */
 const BY_FIRST_CLICK: AttributionRow[] = [
   { channel: "Organic Search", base: 428, compare: 392 },
   { channel: "Paid Search", base: 386, compare: 318 },

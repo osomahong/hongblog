@@ -4,7 +4,7 @@
  * 초급 3번: 참여율과 이탈률을 같이 읽기.
  *
  * 참여율이 가장 낮은 줄을 먼저 고르게 한 뒤, 맞춤설정으로 이탈률 열을 직접 붙이고
- * 그 순서로 다시 정렬한다. 이탈률 1위가 그대로 고쳐야 할 곳은 아니라는 것을
+ * 그 순서로 다시 정렬한다. 이탈률 1위가 그대로 개선해야 할 곳은 아니라는 것을
  * 학습자가 표에서 스스로 확인하게 만든다.
  */
 
@@ -32,7 +32,7 @@ import {
 const LAB_ID = "engagement-rate-and-bounce";
 const LAB_TITLE = "참여율과 이탈률을 같이 읽기";
 
-/** 이 편은 기간을 건드리지 않는다. 콘텐츠 점검의 기본값인 28일로 열어 둔다 */
+/** 이 편은 기간을 변경하지 않는다. 콘텐츠 점검의 기본값인 28일로 열어 둔다 */
 const START_STATE: Ga4State = {
   ...INITIAL_STATE,
   dateRange: "28d",
@@ -90,7 +90,7 @@ const STEPS: TourStep<Ga4State>[] = [
   },
   {
     id: "pick_worth_fixing",
-    instruction: "이탈률이 높은 줄 가운데 실제로 고쳐야 할 방문 페이지를 골라 봅니다.",
+    instruction: "이탈률이 높은 줄 가운데 실제로 개선해야 할 방문 페이지를 골라 봅니다.",
     ring: null,
     reset: { selectedRow: null },
     isDone: (s) => s.selectedRow === WORTH_FIXING_PAGE,

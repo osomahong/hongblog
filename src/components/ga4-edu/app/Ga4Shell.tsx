@@ -128,7 +128,7 @@ interface Ga4ShellProps {
   /** 필터를 다루는 편에서만 넘긴다. 필터 줄 자리에 그대로 놓인다 */
   filterEditor?: ReactNode;
   /**
-   * 기간 선택기를 갈아 끼울 때 넘긴다.
+   * 기간 선택기를 교체할 때 넘긴다.
    * 기본 선택기는 기간만 고르지만, 기간 비교를 다루는 편은 적용 단추가 있는 선택기를 쓴다.
    */
   datePanel?: ReactNode;

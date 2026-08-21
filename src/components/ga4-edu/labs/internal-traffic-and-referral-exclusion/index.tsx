@@ -5,7 +5,7 @@
  *
  * 필터를 만드는 것까지는 대부분 하지만, 상태를 테스트로 둔 채 잊는 일이 흔하다.
  * 이 편은 그 상태를 직접 사용으로 바꿔 보게 하고, 그 순간부터 되돌릴 수 없는 범위가
- * 생긴다는 것을 마무리에서 짚는다.
+ * 생긴다는 것을 마무리에서 확인한다.
  */
 
 import { useEffect, useState } from "react";
@@ -57,7 +57,7 @@ const STEPS: TourStep[] = [
   },
   {
     id: "activate",
-    instruction: "상태를 사용으로 바꿔 필터를 실제로 켭니다.",
+    instruction: "상태를 사용으로 바꿔 필터를 실제로 적용합니다.",
     ring: `rule:state:${STATE_ACTIVE}`,
     isDone: (s) => activated(s) === TARGET_FILTER,
   },

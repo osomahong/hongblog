@@ -2,7 +2,7 @@
  * 교육용 가상 계정 "준준상점"의 방문 페이지 참여 데이터.
  *
  * 함정은 주문 조회다. 이탈률 73.58%로 여섯 줄 가운데 가장 높지만, 배송 상태만 확인하고
- * 나가는 화면이라 이 숫자가 정상이다. 실제로 고쳐야 하는 줄은 이탈률 2위인 여름 기획전이다.
+ * 나가는 화면이라 이 숫자가 정상이다. 실제로 개선해야 하는 줄은 이탈률 2위인 여름 기획전이다.
  * 상품을 둘러보라고 만든 화면인데 절반 넘게 첫 화면에서 나가고, 세션도 5,930으로 많다.
  *
  * 이탈률은 참여율에서 그때그때 빼서 만든다. 두 값을 따로 적어 두면 합이 100에서 어긋난다.
@@ -85,7 +85,7 @@ export const ADDABLE_METRICS: MetricChoice[] = Object.values(EXTRA_COLUMNS).map(
   label: c.label,
 }));
 
-/** 맞춤설정 패널에 늘어놓을 이름 목록 */
+/** 맞춤설정 패널에 나열할 이름 목록 */
 export function metricChoices(added: string[]): MetricChoice[] {
   return [
     ...BASE_COLUMNS.map((c) => ({ key: c.key, label: c.label })),
@@ -142,5 +142,5 @@ export function buildRows(range: DateRangeKey, sortKey: string, added: string[])
 /** 참여율이 가장 낮은 줄. 두 번째 스텝의 정답이자 마지막 스텝의 오답 */
 export const LOWEST_ENGAGEMENT_PAGE = "/order/track";
 
-/** 이탈률이 높으면서 실제로 고쳐야 하는 줄. 마지막 스텝의 정답 */
+/** 이탈률이 높으면서 실제로 개선해야 하는 줄. 마지막 스텝의 정답 */
 export const WORTH_FIXING_PAGE = "/event/summer";

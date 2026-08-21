@@ -18,7 +18,7 @@ export const SEARCH_HINT = '"이벤트"을(를) 검색해 보세요';
 /** 수정 규칙 이름. GA4는 규칙마다 이름을 붙이게 한다 */
 export const RULE_NAME = "purchase_complete 이름 통일";
 
-/** 고쳐야 할 이름 */
+/** 수정해야 할 이름 */
 export const WRONG_EVENT = "purchase_complete";
 
 /** 표준 이름 */
@@ -35,7 +35,7 @@ export const MATCH_OPTIONS = [
 /** 바꿀 이름 목록 */
 export const VALUE_OPTIONS = ["purchase", "checkout", "order_done"];
 
-/** 오답 후보. 이미 표준 이름을 쓰고 있어 고칠 필요가 없다 */
+/** 오답 후보. 이미 표준 이름을 쓰고 있어 수정할 필요가 없다 */
 export const DECOY_EVENT = "add_to_cart";
 
 export const EVENT_ROWS: AdminEventRow[] = [

@@ -53,7 +53,7 @@ const STEPS: TourStep[] = [
   },
 ];
 
-const DONE_TEXT = `일일 내보내기는 ${tableOf(DAILY)}처럼 날짜가 붙은 표를 하루에 하나 만들고, 스트리밍은 ${tableOf(TARGET_CHOICE)}처럼 intraday가 붙은 표에 계속 쌓습니다. 쿼리에서 표 이름을 잘못 쓰면 데이터가 없다고 나오므로 어느 방식으로 받고 있는지 먼저 확인합니다. 두 방식은 함께 켤 수 있고, 스트리밍만 비용이 따로 붙습니다.`;
+const DONE_TEXT = `일일 내보내기는 ${tableOf(DAILY)}처럼 날짜가 붙은 표를 하루에 하나 만들고, 스트리밍은 ${tableOf(TARGET_CHOICE)}처럼 intraday가 붙은 표에 계속 쌓습니다. 쿼리에서 표 이름을 잘못 쓰면 데이터가 없다고 나오므로 어느 방식으로 받고 있는지 먼저 확인합니다. 두 방식은 함께 사용 설정할 수 있고, 스트리밍만 비용이 따로 붙습니다.`;
 
 export default function BigQueryExportLab() {
   const [pinned, setPinned] = useState(false);

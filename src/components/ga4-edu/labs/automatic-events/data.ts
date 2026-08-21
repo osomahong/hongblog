@@ -21,8 +21,8 @@ export const DIMENSION_OPTIONS: DimensionOption[] = [{ key: "eventName", label: 
 
 /**
  * 이벤트가 어디에서 오는지.
- * auto      GA4를 붙이기만 하면 들어온다. 끌 수 없다
- * enhanced  데이터 스트림의 향상된 측정이 보낸다. 항목별로 끌 수 있다
+ * auto      GA4를 붙이기만 하면 들어온다. 해제할 수 없다
+ * enhanced  데이터 스트림의 향상된 측정이 보낸다. 항목별로 해제할 수 있다
  * ours      우리가 코드나 태그로 심어야만 생긴다
  */
 export type EventOrigin = "auto" | "enhanced" | "ours";

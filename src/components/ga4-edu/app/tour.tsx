@@ -39,7 +39,7 @@ interface Ga4GuideProps {
  * GA4 화면 오른쪽 아래에 서서 지시문을 건네는 도우미.
  *
  * 말풍선 내용이 바뀌는 순간에 HTML in Canvas 효과를 얹는다. 스텝을 넘기면 출렁이고,
- * 잘못 짚으면 화면이 한 번 튀고, 다 끝내면 말풍선에서 파편이 터진다.
+ * 잘못 고르면 화면이 한 번 튀고, 다 끝내면 말풍선에서 파편이 터진다.
  * 미지원 브라우저에서는 세 가지 모두 아무 일도 일어나지 않는다.
  */
 export function Ga4Guide({ index, total, instruction, miss, done, onRestart }: Ga4GuideProps) {

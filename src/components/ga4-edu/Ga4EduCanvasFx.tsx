@@ -28,7 +28,7 @@ const NAV_SELECTOR = "a.ga4-hub-item, a.ga4-post, a.ga4-back";
 
 /**
  * 목록 줄 위에 마우스가 머물러야 하는 시간.
- * 30줄짜리 목록을 훑고 지나갈 때마다 줄이 출렁이면 눈이 어지럽다.
+ * 30줄짜리 목록을 살펴보고 지나갈 때마다 줄이 출렁이면 눈이 어지럽다.
  */
 const ROW_HOVER_DELAY = 180;
 

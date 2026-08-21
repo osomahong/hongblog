@@ -26,7 +26,7 @@ interface StepEngineOptions<S> {
 interface EngineUi<S> {
   state: S;
   stepIndex: number;
-  /** 판단 스텝을 잘못 짚은 직후에만 채워진다 */
+  /** 판단 스텝을 잘못 고른 직후에만 채워진다 */
   miss: string | null;
 }
 
