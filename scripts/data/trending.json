@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-08-16T15:23:55.558Z",
+  "generatedAt": "2026-08-23T15:25:17.803Z",
   "days": 7,
   "slugs": [
     "orca-ide-easy-guide",
-    "gemini-spark-guide",
+    "qwen3-8-27b-local-mac",
     "grok-usage-guide",
-    "deepseek-v4-pro-release-1m-context",
+    "gemini-spark-guide",
     "codex-cli-windows-easy-setup-guide",
-    "paseo-coding-agent-orchestrator",
+    "minimax-h3-overview",
     "youtube-ypp-2027-threshold-change",
-    "minimax-h3-overview"
+    "claude-cowork-what-you-can-do"
   ]
 }
