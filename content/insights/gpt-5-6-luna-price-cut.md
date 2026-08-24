@@ -10,7 +10,7 @@ tags:
   - API
   - 자동화
 publishedAt: '2026-07-31T00:00:00.000Z'
-updatedAt: '2026-08-24T00:00:00.000Z'
+updatedAt: '2026-08-25T00:00:00.000Z'
 highlights:
   - 경량 모델 기반 서비스를 운영 중이라면 모델 선택과 비용 계산을 다시 점검해 보세요.
   - AI 모델 가격은 변동이 잦으니 의사결정 전에 반드시 공식 가격 페이지를 기준으로 확인하세요.
@@ -59,8 +59,7 @@ GPT-5.6 Luna는 OpenAI가 2026년 7월 9일 공개한 GPT-5.6 제품군에서 �
 | GPT-5.6 Luna | $0.20 | 약 300원 |
 | Claude Haiku 4.5 | $1.00 | 약 1,500원 |
 | Gemini 3.6 Flash | $1.50 | 약 2,250원 |
-| GPT-5.6 Terra | $2.00 | 약 3,000원 |
-| Claude Sonnet 5 | $3.00 (2026년 8월 31일부터 표준 요금) | 약 4,500원 |
+| GPT-5.6 Terra, Claude Sonnet 5 | $2.00 | 약 3,000원 |
 | GPT-5.6 Sol, Claude Opus 5 | $5.00 | 약 7,500원 |
 
 소설책 7~8권 분량을 읽히는 데 Luna는 300원, 같은 경량 모델인 Haiku 4.5는 1,500원, 최상위 모델인 Opus 5는 7,500원이 드는 셈입니다. 모델이 생성하는 답변, 즉 출력 토큰 비용은 별도이며 Luna는 100만 출력 토큰당 1.20달러입니다.
@@ -75,13 +74,15 @@ GPT-5.6 Luna는 OpenAI가 2026년 7월 9일 공개한 GPT-5.6 제품군에서 �
 | GPT-5.6 Terra | $2.50 / $15.00 | $2.00 / $12.00 | 20% |
 | GPT-5.6 Sol | $5.00 / $30.00 | $5.00 / $30.00 | 유지 |
 
-7월 30일 시점의 표입니다. Sol 단가는 그 뒤 2026년 8월 21일부터 11월 21일까지 입력 $4, 출력 $20으로 한시 인하됐습니다.
+7월 30일 시점의 표입니다. Sol 단가는 그 뒤 2026년 8월 21일부터 최소 11월 21일까지 입력 $4, 출력 $20으로 한시 인하됐습니다. 세 모델의 가격 변동 이력과 파생 단가는 [GPT-5.6 Sol, Terra, Luna 비교 글](/insights/gpt-5-6-sol-terra-luna-comparison)에 표로 정리해 두었습니다.
 
 가격 인하와 함께 몇 가지 변화가 더 있었습니다.
 
 - **캐시 입력 가격**: Luna의 캐시된 입력은 100만 토큰당 0.02달러입니다. 같은 프롬프트를 반복 사용하는 서비스라면 입력 비용이 추가로 90% 내려갑니다.
 - **Fast mode 도입**: 기존 Priority Processing을 대체하는 옵션입니다. 표준 대비 최대 2.5배 빠른 속도를 2배 가격에 제공합니다. Sol 정가 기준 입력 10달러, 출력 60달러이고, 한시 인하가 기준으로는 입력 8달러, 출력 40달러입니다.
 - **Codex와 ChatGPT Work 반영**: 인하된 가격이 Codex와 ChatGPT Work의 사용량 계산에도 그대로 반영됩니다. 같은 요금제에서 쓸 수 있는 작업량이 늘어나는 셈입니다.
+
+여기서 한 가지 구분해 둘 것이 있습니다. GPT-5.6 제품군의 가격 인하는 쓴 만큼 청구되는 사용량에 적용되고, 구독료에 이미 포함된 사용량에는 해당하지 않습니다. 종량제 API, ChatGPT Work와 Codex에서 따로 구매하는 크레딧, Business와 Edu, Enterprise 워크스페이스의 유연 요금제가 적용 대상입니다. 반면 Plus, Pro, Business 구독에 기본으로 포함된 사용량은 인하 전과 같습니다. 8월 21일 Sol 인하에도 같은 기준이 적용됐습니다.
 
 > GPT-5.6 Luna의 인하 후 가격은 출시 시점 가격의 정확히 5분의 1입니다. 입력 기준으로 Anthropic의 경량 모델인 Claude Haiku 4.5보다 약 5배 저렴한 수준입니다.
 
@@ -111,8 +112,10 @@ Artificial Analysis Intelligence Index라는 지표가 낯설 수 있습니다. 
 경쟁 구도를 가격 축으로 정리하면 다음과 같습니다.
 
 - **경량 모델 구간**: Luna(입력 $0.20)는 Claude Haiku 4.5 대비 입력 기준 약 5분의 1 가격입니다. Gemini의 Flash 계열과도 정면으로 겹치는 구간입니다.
-- **중간 모델 구간**: Terra(입력 $2.00)는 Claude Sonnet 5의 표준 요금(2026년 8월 31일부터 입력 $3.00) 아래로 내려갔습니다.
+- **중간 모델 구간**: Terra의 입력 단가 $2.00은 Claude Sonnet 5와 같습니다. Sonnet 5는 9월부터 $3.00으로 오를 예정이었으나, Anthropic이 2026년 8월 10일 인상을 철회하고 도입가를 표준 가격으로 확정했습니다.
 - **최상위 구간**: Sol(출력 $30.00)은 Claude Opus 5(출력 $25.00)보다 여전히 비쌉니다. 최상위 구간에서는 가격보다 성능으로 승부하겠다는 구도로 읽힙니다.
+
+최상위 구간의 구도는 그 뒤 한 번 뒤집혔습니다. 8월 21일 Sol이 입력 $4, 출력 $20으로 내려가면서 Opus 5보다 싸졌기 때문입니다. 다만 기간이 정해진 한시 가격이라 11월에는 다시 정가로 돌아갑니다.
 
 2026년 상반기는 Claude가 코딩 성능으로, Gemini가 멀티모달과 검색 연동으로 각자 영역을 넓힌 시기였습니다. OpenAI가 하반기 들어 최상위가 아닌 경량 구간의 가격을 먼저 움직인 것은, 대량 호출이 발생하는 기업용 시장에서 점유율을 되찾으려는 선택으로 보입니다. 기업 고객이 모델 비용에 민감해지고 있다는 외신 분석도 이런 해석을 뒷받침합니다.
 
@@ -147,6 +150,6 @@ Artificial Analysis Intelligence Index라는 지표가 낯설 수 있습니다. 
 - [OpenAI, GPT-5.6 소개 페이지](https://openai.com/index/gpt-5-6/)
 - [OpenAI, Advancing the price-performance frontier with GPT-5.6](https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/)
 - [OpenAI 공식 X, 가격 인하 발표](https://x.com/OpenAI/status/2082878156483219672)
-- [OpenAI API 가격 페이지](https://platform.openai.com/docs/pricing)
+- [OpenAI API 가격 페이지](https://developers.openai.com/api/docs/pricing)
 - [Artificial Analysis, GPT-5.6 벤치마크 분석](https://artificialanalysis.ai/articles/gpt-5-6-has-landed)
 - [CNBC, OpenAI cuts prices for two of its GPT-5.6 AI models](https://www.cnbc.com/2026/07/30/open-ai-price-cut-gpt.html)
