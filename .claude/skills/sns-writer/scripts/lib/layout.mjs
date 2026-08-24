@@ -100,6 +100,43 @@ export function pill(text, { x, y, size, weight = 800, fill = "#FF0000", color =
 }
 
 /**
+ * 형광펜 하이라이트, 2단계(재기 → 그리기).
+ * fit()/textBlock()과 같은 패턴이다. 처음에 한 번에 그리는 함수로 만들었다가
+ * y를 모르는 시점(0)에 그대로 굳어 버려 다른 요소 위에 겹쳐 찍힌 적이 있다
+ * (2026-08-24). 위치를 아직 모르는 채로 그리는 함수는 반드시 이 2단계로 쪼갠다.
+ *
+ * fitHighlight()로 재고 나서, 최종 위치를 알면 highlightBlock()으로 그린다.
+ * 떠 있는 배지가 아니라 그 줄의 글자 폭에 딱 맞는 색 바탕을 글자 뒤에 깐다.
+ * 긴 구절은 줄바꿈하고, 줄마다 그 줄의 실제 폭으로 바탕을 만든다
+ * (실제 형광펜을 긋듯 줄마다 폭이 다르다).
+ */
+export function fitHighlight(text, { maxW, sizes = [40, 36, 32, 28], weight = 800, padX = 16, padY = 12, lineGap = 14 }) {
+  let size = sizes[sizes.length - 1];
+  let lines = [];
+  for (const s of sizes) {
+    const cand = wrap(text, s, maxW - padX * 2, weight);
+    if (cand.length <= 2 || s === sizes[sizes.length - 1]) { size = s; lines = cand; break; }
+  }
+  const rowH = Math.ceil(size * 1.05 + padY * 2);
+  const height = lines.length ? lines.length * rowH + (lines.length - 1) * lineGap : 0;
+  const maxLineW = Math.max(0, ...lines.map((l) => Math.ceil(width(l, size, weight) + padX * 2)));
+  return { lines, size, weight, padX, padY, lineGap, rowH, height, maxW: maxLineW };
+}
+
+export function highlightBlock(hi, x, y, { fill = "#FFD700", color = "#000" } = {}) {
+  if (!hi.lines.length) return "";
+  return hi.lines
+    .map((l, i) => {
+      const rowY = y + i * (hi.rowH + hi.lineGap);
+      const w = Math.ceil(width(l, hi.size, hi.weight) + hi.padX * 2);
+      const baseline = rowY + hi.padY + Math.round(hi.size * 0.82);
+      return `<rect x="${x}" y="${rowY}" width="${w}" height="${hi.rowH}" fill="${fill}"/>
+  <text x="${x + hi.padX}" y="${baseline}" font-family="Pretendard" font-weight="${hi.weight}" font-size="${hi.size}" fill="${color}">${esc(l)}</text>`;
+    })
+    .join("\n  ");
+}
+
+/**
  * 그린 것이 안전 영역을 넘지 않았는지 확인한다. 넘으면 렌더를 멈춘다.
  * 조용히 넘친 그림이 SNS에 올라가는 것보다 빌드가 죽는 게 낫다.
  */

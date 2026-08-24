@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 /**
- * 인스타 카드뉴스 생성기. 블로그의 Neo-Brutalism 톤(검정 보더, 하드 섀도,
- * 빨강 #FF0000, 금색 #FFD700)을 따르는 1080x1350(4:5) 카드를 SVG로 그려
- * @resvg/resvg-js로 PNG 변환한다. 브라우저 없이 동작한다.
+ * 인스타 카드뉴스 생성기. 1080x1350(4:5) 카드를 SVG로 그려 @resvg/resvg-js로
+ * PNG 변환한다. 브라우저 없이 동작한다.
  *
  * 사용법 (hongblog 루트에서 실행):
  *   node .claude/skills/sns-writer/scripts/make_cards.mjs <cards.json> <출력디렉터리>
@@ -10,18 +9,27 @@
  * cards.json 형식:
  * {
  *   "cards": [
- *     {"type":"cover","kicker":"AI 실무","title":"...","photo":"/경로/bg.jpg"},
- *     {"type":"content","number":"01","heading":"...","body":"...","photo":"/경로/bg2.jpg"},
- *     {"type":"last","title":"...","cta":"...","handle":"digitalmarketer.co.kr","photo":"..."}
+ *     {"type":"cover","kicker":"AI 실무","title":"...","cta":"...","photo":"/경로/bg.jpg"},
+ *     {"type":"content","number":"01","heading":"...","body":"...","highlight":"강조할 한 줄","photo":"/경로/bg2.jpg"},
+ *     {"type":"last","title":"...","cta":"...","note":"...","handle":"digitalmarketer.co.kr","photo":"..."}
  *   ]
  * }
- * photo가 있으면 실사 배경 + 어두운 오버레이 + 흰 글자로 그린다 (fetch_photo.mjs로 수급).
- * photo가 없으면 기존 플랫 디자인을 쓴다.
- * title/heading/body의 \n은 그대로 줄바꿈. 나머지는 폭에 맞춰 자동 줄바꿈한다.
+ * photo가 있으면 위쪽은 사진, 아래쪽은 완전한 검정으로 끊어 그 위에 글을 얹는다.
+ * photo가 없으면 카드 전체가 검정이다. title/heading/body의 \n은 그대로
+ * 줄바꿈. 나머지는 폭에 맞춰 자동 줄바꿈한다.
  *
- * 넘침 방지 (2026-08-24)
- *   글자 수가 아니라 폰트에서 읽은 실제 자폭으로 줄바꿈하고, 색 상자는 글자를
- *   재서 그린다. 마지막에 assertInside로 안전 영역을 넘었는지 확인하고,
+ * 디자인 (2026-08-24, 사용자 레퍼런스 5장 반영)
+ *   테두리, 드롭섀도, 색 배지 박스를 전부 없앴다. 번호와 킥커는 박스 없이
+ *   작은 글자로만 쓴다. 본문 중 한 줄만 highlight 필드로 지정하면 금색
+ *   형광펜 바를 글자 뒤에 깐다(떠 있는 배지가 아니라 글자에 붙는 바탕색).
+ *   사진은 카드 전체를 어둡게 깔지 않고, 글이 앉는 아래 구간만 완전한
+ *   검정으로 끊는다. 예전 버전(검정 보더 + 빨강/금색 하드섀도 박스)은
+ *   hongblog 사이트의 네오브루탈리즘을 그대로 옮긴 것이었는데, 사용자가
+ *   준 레퍼런스와 전혀 다른 스타일이었다.
+ *
+ * 넘침 방지
+ *   글자 수가 아니라 폰트에서 읽은 실제 자폭으로 줄바꿈하고, 하이라이트 바는
+ *   글자를 재서 그린다. 마지막에 assertInside로 안전 영역을 넘었는지 확인하고,
  *   넘으면 PNG를 쓰지 않고 멈춘다.
  *
  * 글감 규칙은 references/card-text-rules.md를 따른다. 개조식으로 쓴다.
@@ -32,159 +40,156 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { Resvg } from "@resvg/resvg-js";
 import sharp from "sharp";
-import { FONT_FILES, esc, fit, textBlock, pill, assertInside, width } from "./lib/layout.mjs";
+import { FONT_FILES, esc, fit, textBlock, fitHighlight, highlightBlock, assertInside, width } from "./lib/layout.mjs";
 
 const W = 1080, H = 1350;
 const PAD = 80;            // 글자가 시작하는 가장자리
 const SAFE = 48;           // 이 안쪽으로는 아무것도 나가면 안 된다
 const COL = W - PAD * 2;   // 920, 글이 쓸 수 있는 가로
-const BOX = COL - 12;      // 하드 섀도(10px)까지 넣은 상자 최대 폭
+const BG = "#0D0D0D";      // 카드 바탕. 순검정 대신 아주 짙은 회색 (레퍼런스 톤)
+const GOLD = "#FFD700";
 
-const frame = `<rect width="${W}" height="${H}" fill="#F3F3F3"/>
-  <rect x="24" y="24" width="${W - 48}" height="${H - 48}" fill="none" stroke="#000" stroke-width="8"/>`;
+// 사진이 없으면 카드 전체가 짙은 배경.
+const flatBg = `<rect width="${W}" height="${H}" fill="${BG}"/>`;
 
-// 실사 배경: 1080x1350으로 크롭한 사진 + 가독성용 어두운 그라데이션 오버레이
-async function photoBg(photoPath, darkness = 0.55) {
+/**
+ * 사진 배경. 레퍼런스처럼 위쪽은 사진을 그대로 두고, 글이 앉는 아래 구간
+ * (splitY부터)만 완전한 배경색으로 끊는다. 카드 전체를 어둡게 까는 방식이 아니다.
+ */
+async function photoBg(photoPath, splitY) {
   const jpg = await sharp(photoPath).resize(W, H, { fit: "cover", position: "attention" })
-    .jpeg({ quality: 82 }).toBuffer();
+    .jpeg({ quality: 85 }).toBuffer();
+  const f0 = Math.max(0, (splitY - 140) / H).toFixed(4);
+  const f1 = (splitY / H).toFixed(4);
   return `<image href="data:image/jpeg;base64,${jpg.toString("base64")}" x="0" y="0" width="${W}" height="${H}"/>
   <linearGradient id="ov" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#000" stop-opacity="${Math.max(0, darkness - 0.25)}"/>
-    <stop offset="0.55" stop-color="#000" stop-opacity="${darkness}"/>
-    <stop offset="1" stop-color="#000" stop-opacity="${Math.min(0.92, darkness + 0.25)}"/>
+    <stop offset="0" stop-color="${BG}" stop-opacity="0"/>
+    <stop offset="${f0}" stop-color="${BG}" stop-opacity="0"/>
+    <stop offset="${f1}" stop-color="${BG}" stop-opacity="0.97"/>
+    <stop offset="1" stop-color="${BG}" stop-opacity="0.99"/>
   </linearGradient>
-  <rect width="${W}" height="${H}" fill="url(#ov)"/>
-  <rect x="24" y="24" width="${W - 48}" height="${H - 48}" fill="none" stroke="#fff" stroke-width="6"/>`;
+  <rect width="${W}" height="${H}" fill="url(#ov)"/>`;
 }
 
-// 계정 표기는 오른쪽 아래에 오른쪽 맞춤. 폭을 재서 왼쪽 끝을 잡아 둔다.
-function handle(text, fill) {
-  const size = 28;
+// 킥커·번호는 박스 없이 작은 글자로만 쓴다 (레퍼런스: 배지 없음).
+// 2단계(재기 → 그리기). y를 모르는 시점에 SVG를 구워 버리면 다른 요소 위에
+// 겹쳐 찍힌다 (2026-08-24, highlightLines에서 겪은 것과 같은 버그).
+function measureLabel(text, { size = 34, weight = 800 } = {}) {
+  if (!text) return { text: "", w: 0, h: 0, size, weight };
+  return { text, w: width(text, size, weight), h: size, size, weight };
+}
+function renderLabel(m, x, y, color = GOLD) {
+  if (!m.text) return "";
+  return `<text x="${x}" y="${y + Math.round(m.size * 0.82)}" font-family="Pretendard" font-weight="${m.weight}" font-size="${m.size}" fill="${color}">${esc(m.text)}</text>`;
+}
+
+// 계정 표기는 오른쪽 아래에 오른쪽 맞춤. 작은 글자, 박스 없음.
+function handle(text) {
+  const size = 26;
   const w = width(text, size, 500);
   return {
-    svg: `<text x="${W - PAD}" y="${H - 90}" text-anchor="end" font-family="Pretendard" font-weight="500" font-size="${size}" fill="${fill}">${esc(text)}</text>`,
-    box: { name: "handle", x: W - PAD - w, y: H - 90 - size, w, h: size + 10 },
+    svg: `<text x="${W - PAD}" y="${H - 64}" text-anchor="end" font-family="Pretendard" font-weight="500" font-size="${size}" fill="#999">${esc(text)}</text>`,
+    box: { name: "handle", x: W - PAD - w, y: H - 64 - size, w, h: size + 8 },
   };
 }
 
 async function cover(c) {
-  const photo = c.photo ? await photoBg(c.photo, 0.55) : null;
-  const fg = photo ? "#fff" : "#000";
-  const sub = photo ? "#ddd" : "#555";
-  const boxes = [];
+  const kick = measureLabel(c.kicker, { size: 34 });
+  const t = fit(c.title, { maxW: COL, maxH: 480, sizes: [96, 88, 80, 72, 64], weight: 800, lineRatio: 1.2 });
+  const cta = c.cta !== "" ? fitHighlight(c.cta || "넘겨서 보기 →", { maxW: COL, sizes: [34, 30] }) : { lines: [], height: 0 };
 
-  const kick = pill(c.kicker || "", { x: PAD, y: 130, size: 38, padX: 32, padY: 20, maxW: BOX });
-  boxes.push({ name: "kicker", x: PAD, y: 130, w: kick.w + 10, h: kick.h + 10 });
+  const gapKickTitle = 46, gapTitleCta = 56, bottomMargin = 130;
+  const blockH = kick.h + gapKickTitle + t.height + (cta.lines.length ? gapTitleCta + cta.height : 0);
+  const top = Math.max(160, H - bottomMargin - blockH);
+  const kickY = top;
+  const titleTop = kickY + kick.h + gapKickTitle;
+  const titleBase = titleTop + t.size * 0.82;
+  const ctaY = titleTop + t.height + gapTitleCta;
 
-  const cta = pill("넘겨서 보기 →", { x: PAD, y: H - 224, size: 36, weight: 700, fill: "#FFD700", color: "#000", padX: 30, padY: 22, maxW: BOX });
-  boxes.push({ name: "cta", x: PAD, y: H - 224, w: cta.w + 10, h: cta.h + 10 });
+  const photo = c.photo ? await photoBg(c.photo, top - 90) : null;
 
-  // 제목이 쓸 수 있는 세로: 킥커 아래부터 하단 버튼 위까지
-  const top = 130 + kick.h + 70;
-  const bottom = H - 224 - 60;
-  const t = fit(c.title, { maxW: COL, maxH: bottom - top, sizes: [100, 92, 84, 76, 68, 60], weight: 800, lineRatio: 1.22 });
-  const startY = top + (bottom - top - t.height) / 2 + t.size * 0.82;
-  boxes.push({ name: "title", x: PAD, y: startY - t.size, w: COL, h: t.height });
-
-  const h = handle(c.handle || "digitalmarketer.co.kr", sub);
+  const boxes = [
+    { name: "kicker", x: PAD, y: kickY, w: kick.w, h: kick.h },
+    { name: "title", x: PAD, y: titleTop, w: COL, h: t.height },
+  ];
+  if (cta.lines.length) boxes.push({ name: "cta", x: PAD, y: ctaY, w: cta.maxW, h: cta.height });
+  const h = handle(c.handle || "digitalmarketer.co.kr");
   boxes.push(h.box);
   assertInside(boxes, { W, H, pad: SAFE, label: `cover / ${c.title?.slice(0, 20)}` });
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${photo || frame}
-  ${kick.svg}
-  ${textBlock(t, PAD, startY, fg)}
-  ${cta.svg}
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${photo || flatBg}
+  ${renderLabel(kick, PAD, kickY)}
+  ${textBlock(t, PAD, titleBase, "#fff")}
+  ${highlightBlock(cta, PAD, ctaY)}
   ${h.svg}
 </svg>`;
 }
 
 async function content(c) {
-  const photo = c.photo ? await photoBg(c.photo, 0.74) : null;
-  const fg = photo ? "#fff" : "#000";
-  const bodyFg = photo ? "#f5f5f5" : "#111";
-  const sub = photo ? "#ddd" : "#555";
-  const boxes = [];
+  const num = measureLabel(c.number, { size: 36 });
+  const head = fit(c.heading, { maxW: COL, maxH: 320, sizes: [66, 60, 54, 48], weight: 800, lineRatio: 1.24 });
+  const hi = c.highlight ? fitHighlight(c.highlight, { maxW: COL, sizes: [38, 34, 30] }) : { lines: [], height: 0 };
+  const body = c.body ? fit(c.body, { maxW: COL, maxH: 420, sizes: [40, 36, 32, 30], weight: 500, lineRatio: 1.5 }) : { lines: [], height: 0, size: 0, lineH: 0, weight: 500 };
 
-  const num = pill(c.number || "", { x: PAD, y: 110, size: 52, padX: 38, padY: 22, maxW: 260 });
-  boxes.push({ name: "number", x: PAD, y: 110, w: num.w + 10, h: num.h + 10 });
-
-  const top = 110 + num.h + 80;              // 글 덩어리가 시작할 수 있는 가장 위
-  const bottom = H - 150;                     // 계정 표기 위
-  const head = fit(c.heading, { maxW: COL, maxH: 300, sizes: [70, 64, 58, 52], weight: 800, lineRatio: 1.26 });
-  const RULE = 54;                            // 금색 밑줄이 차지하는 세로
-  const bodyMax = bottom - top - head.height - RULE - 40;
-  const body = fit(c.body || "", { maxW: COL, maxH: bodyMax, sizes: [62, 56, 50, 46, 42, 38], weight: 600, lineRatio: 1.55 });
-
-  const blockH = head.height + RULE + body.height;
-  // 실사 배경이면 글 덩어리를 아래로 몰아 사진 윗부분을 살린다.
-  const headTop = photo ? bottom - blockH : top;
+  const gap = 40;
+  const blockH = num.h + gap + head.height + (hi.lines.length ? gap + hi.height : 0) + (body.lines.length ? gap + body.height : 0);
+  const bottomMargin = 130;
+  const numTop = Math.max(110, H - bottomMargin - blockH);
+  const headTop = numTop + num.h + gap;
   const headBase = headTop + head.size * 0.82;
-  const ruleY = headTop + head.height + 18;
-  const bodyBase = ruleY + RULE - 18 + body.size * 0.82;
+  const hiY = headTop + head.height + gap;
+  const bodyTop = hiY + (hi.lines.length ? hi.height + gap : 0);
+  const bodyBase = bodyTop + body.size * 0.82;
 
-  boxes.push({ name: "heading", x: PAD, y: headTop, w: COL, h: head.height });
-  boxes.push({ name: "body", x: PAD, y: ruleY + RULE - 18, w: COL, h: body.height });
+  const photo = c.photo ? await photoBg(c.photo, numTop - 90) : null;
 
-  const h = handle(c.handle || "digitalmarketer.co.kr", sub);
+  const boxes = [
+    { name: "number", x: PAD, y: numTop, w: num.w, h: num.h },
+    { name: "heading", x: PAD, y: headTop, w: COL, h: head.height },
+  ];
+  if (hi.lines.length) boxes.push({ name: "highlight", x: PAD, y: hiY, w: hi.maxW, h: hi.height });
+  if (body.lines.length) boxes.push({ name: "body", x: PAD, y: bodyTop, w: COL, h: body.height });
+  const h = handle(c.handle || "digitalmarketer.co.kr");
   boxes.push(h.box);
   assertInside(boxes, { W, H, pad: SAFE, label: `content ${c.number} / ${c.heading?.slice(0, 20)}` });
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${photo || frame}
-  ${num.svg}
-  ${textBlock(head, PAD, headBase, fg)}
-  <rect x="${PAD}" y="${ruleY}" width="200" height="14" fill="#FFD700" stroke="#000" stroke-width="3"/>
-  ${textBlock(body, PAD, bodyBase, bodyFg)}
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${photo || flatBg}
+  ${renderLabel(num, PAD, numTop)}
+  ${textBlock(head, PAD, headBase, "#fff")}
+  ${highlightBlock(hi, PAD, hiY)}
+  ${body.lines.length ? textBlock(body, PAD, bodyBase, "#ccc") : ""}
   ${h.svg}
 </svg>`;
 }
 
 async function last(c) {
-  const photo = c.photo ? await photoBg(c.photo, 0.62) : null;
-  const fg = photo ? "#fff" : "#000";
-  const boxes = [];
+  const title = fit(c.title, { maxW: COL, maxH: 420, sizes: [76, 68, 60, 54], weight: 800, lineRatio: 1.2 });
+  const cta = c.cta ? fitHighlight(c.cta, { maxW: COL, sizes: [38, 34, 30] }) : { lines: [], height: 0 };
+  const note = c.note ? fit(c.note, { maxW: COL, maxH: 120, sizes: [32, 30, 28], weight: 500, lineRatio: 1.4 }) : { lines: [], height: 0, size: 0, weight: 500 };
+  const url = fitHighlight(c.handle || "digitalmarketer.co.kr", { maxW: COL, sizes: [34, 30] });
 
-  // 주소는 카드에서 가장 길다. 예전에는 상자 폭을 560으로 박아 두어
-  // 주소가 길어지면 그대로 삐져나왔다. 이제 글자를 재서 상자를 만든다.
-  const addr = pill(c.handle || "digitalmarketer.co.kr", {
-    x: PAD, y: H - 250, size: 40, weight: 800, padX: 28, padY: 22, maxW: BOX,
-  });
-  boxes.push({ name: "handle", x: PAD, y: H - 250, w: addr.w + 10, h: addr.h + 10 });
-
-  const title = fit(c.title, { maxW: COL, maxH: 420, sizes: [76, 70, 64, 58, 52], weight: 800, lineRatio: 1.21 });
-  const ctaFit = fit(c.cta || "", { maxW: BOX - 72, maxH: 300, sizes: [40, 36, 32, 30], weight: 700, lineRatio: 1.45 });
-  // 노란 상자는 글에 맞춰 줄인다. 상자만 넓고 오른쪽이 비면 글이 흘러내려 보인다.
-  const ctaPadX = 36, ctaPadY = 32;
-  const ctaW = ctaFit.lines.length
-    ? Math.min(BOX, Math.ceil(Math.max(...ctaFit.lines.map((l) => width(l, ctaFit.size, ctaFit.weight))) + ctaPadX * 2))
-    : 0;
-  const ctaBoxH = ctaFit.lines.length ? ctaFit.height + ctaPadY * 2 : 0;
-
-  const note = c.note ? fit(c.note, { maxW: COL, maxH: 120, sizes: [36, 32, 28], weight: 600, lineRatio: 1.4 }) : null;
-  const noteH = note ? note.height + 48 : 0;
-
-  const stackH = title.height + (ctaBoxH ? 60 + ctaBoxH : 0) + noteH;
-  // 사진 카드는 글 덩어리를 주소 바로 위에 붙인다. 가운데 정렬은 위아래가 다 비어 보인다.
-  const top = photo ? Math.max(200, H - 250 - 70 - stackH) : Math.max(280, (H - 250 - 70 - stackH) / 2);
+  const gap = 44;
+  const blockH = title.height + (cta.lines.length ? gap + cta.height : 0) + (note.lines.length ? gap - 8 + note.height : 0) + gap + url.height;
+  const bottomMargin = 120;
+  const top = Math.max(220, H - bottomMargin - blockH);
   const titleBase = top + title.size * 0.82;
-  const ctaTop = top + title.height + 60;
-  const noteTop = ctaTop + ctaBoxH + 48;
+  const ctaY = top + title.height + gap;
+  const noteTop = ctaY + (cta.lines.length ? cta.height + gap - 8 : 0);
+  const urlY = noteTop + (note.lines.length ? note.height + gap : gap);
 
-  boxes.push({ name: "title", x: PAD, y: top, w: COL, h: title.height });
-  if (ctaBoxH) boxes.push({ name: "cta", x: PAD, y: ctaTop, w: ctaW + 10, h: ctaBoxH + 10 });
-  if (note) boxes.push({ name: "note", x: PAD, y: noteTop, w: COL, h: note.height });
+  const photo = c.photo ? await photoBg(c.photo, top - 90) : null;
+
+  const boxes = [{ name: "title", x: PAD, y: top, w: COL, h: title.height }];
+  if (cta.lines.length) boxes.push({ name: "cta", x: PAD, y: ctaY, w: cta.maxW, h: cta.height });
+  if (note.lines.length) boxes.push({ name: "note", x: PAD, y: noteTop, w: COL, h: note.height });
+  boxes.push({ name: "url", x: PAD, y: urlY, w: url.maxW, h: url.height });
   assertInside(boxes, { W, H, pad: SAFE, label: `last / ${c.title?.slice(0, 20)}` });
 
-  const ctaSvg = ctaBoxH
-    ? `<rect x="${PAD + 10}" y="${ctaTop + 10}" width="${ctaW}" height="${ctaBoxH}" fill="#000"/>
-  <rect x="${PAD}" y="${ctaTop}" width="${ctaW}" height="${ctaBoxH}" fill="#FFD700" stroke="#000" stroke-width="5"/>
-  ${textBlock(ctaFit, PAD + ctaPadX, ctaTop + ctaPadY + ctaFit.size * 0.82, "#000")}`
-    : "";
-
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${photo || frame}
-  ${textBlock(title, PAD, titleBase, fg)}
-  ${ctaSvg}
-  ${note ? textBlock(note, PAD, noteTop + note.size * 0.82, fg) : ""}
-  ${addr.svg}
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${photo || flatBg}
+  ${textBlock(title, PAD, titleBase, "#fff")}
+  ${highlightBlock(cta, PAD, ctaY)}
+  ${note.lines.length ? textBlock(note, PAD, noteTop + note.size * 0.82, "#ccc") : ""}
+  ${highlightBlock(url, PAD, urlY)}
 </svg>`;
 }
 

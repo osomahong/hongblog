@@ -66,7 +66,7 @@ function collect() {
   const out = [];
   cards.forEach((c, i) => {
     const group = `카드 ${i + 1} (${c.type})`;
-    for (const field of ["kicker", "title", "heading", "body", "cta", "note"]) {
+    for (const field of ["kicker", "title", "heading", "body", "cta", "note", "highlight"]) {
       if (c[field]) out.push({ group, field, text: String(c[field]), card: i });
     }
   });
