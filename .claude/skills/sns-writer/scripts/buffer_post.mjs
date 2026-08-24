@@ -7,9 +7,12 @@
  *   node buffer_post.mjs --channels                    # 채널 목록과 연결 상태
  *   node buffer_post.mjs --plan <post.json>            # 보낼 내용만 출력 (전송 없음)
  *   node buffer_post.mjs --send <post.json> --confirm  # 실제 예약
+ *   node buffer_post.mjs --publish <post.json> --confirm  # 지금 바로 SNS에 발행
  *
  * 안전 장치 (문서의 규칙을 코드로 강제한다):
- *   - shareNow 모드를 거부한다. 초안(saveToDraft)이나 예약(customScheduled)만 보낸다
+ *   - --send 경로에서는 shareNow를 거부한다. 초안(saveToDraft)이나 예약만 보낸다.
+ *     막으려는 것은 카피를 만들면서 곧바로 나가는 경로다. 사람이 초안을 확인한 뒤
+ *     내리는 발행 지시는 --publish 로 분리해 두었다 (2026-08-24 추가)
  *   - --confirm 없이는 전송하지 않는다
  *   - 비대화형 자동 실행(크론)에서는 전송을 거부한다. BUFFER_ALLOW_HEADLESS=1로만 우회
  *   - 연결이 끊긴 채널(isDisconnected)에는 보내지 않는다
@@ -124,9 +127,9 @@ function pickChannel(channels, platform) {
 }
 
 /** post.json 항목 하나를 CreatePostInput으로 바꾼다 */
-function buildInput(item, channel) {
+function buildInput(item, channel, { publishNow = false } = {}) {
   const { platform } = item;
-  const scheduled = Boolean(item.dueAt);
+  const scheduled = !publishNow && Boolean(item.dueAt);
   const base = {
     channelId: channel.id,
     // assets는 { image: { url, thumbnailUrl, metadata } } 래퍼를 요구한다
@@ -137,14 +140,14 @@ function buildInput(item, channel) {
     //   schedulingType: "notification" — Buffer가 사람에게 알리기만 하고 스스로 올리지 않는다.
     //                    saveToDraft가 무시되는 일이 생겨도 저절로 게시되지 않게 하는 이중 장치다.
     //   mode: 초안일 때는 addToQueue로 두되 saveToDraft가 우선한다. 예약이면 customScheduled.
-    mode: scheduled ? "customScheduled" : "addToQueue",
+    mode: publishNow ? "shareNow" : scheduled ? "customScheduled" : "addToQueue",
     // 쓰레드는 notification 예약을 지원하지 않아 automatic만 받는다.
     // 그래서 자동 발행을 막는 책임이 saveToDraft 하나에 걸린다.
     // 전송 뒤 status를 확인해 초안이 아니면 즉시 지우는 안전망을 아래에 둔다.
     schedulingType: "automatic",
     needsApproval: false,
-    dueAt: item.dueAt || undefined,
-    saveToDraft: scheduled ? undefined : true,
+    dueAt: publishNow ? undefined : item.dueAt || undefined,
+    saveToDraft: publishNow ? false : scheduled ? undefined : true,
   };
 
   if (platform === "threads") {
@@ -194,16 +197,19 @@ function buildInput(item, channel) {
   return { ...base, text: item.text, metadata: Object.keys(metadata).length ? metadata : undefined };
 }
 
-function guardSafety(payload) {
+// 기본은 shareNow 금지다. 막으려는 것은 카피를 만들면서 곧바로 나가는 경로다.
+// --publish 는 사람이 초안을 눈으로 확인한 뒤 내리는 별개의 지시라, 그때만 연다.
+function guardSafety(payload, { allowNow = false } = {}) {
   const raw = JSON.stringify(payload);
-  if (/shareNow/i.test(raw)) {
+  if (!allowNow && /shareNow/i.test(raw)) {
     console.error("shareNow 모드는 이 스크립트에서 막습니다. 초안이나 예약으로만 보냅니다.");
     process.exit(1);
   }
 }
 
 function describe(item, channel, input) {
-  const when = input.dueAt ? `예약 ${input.dueAt}` : "초안 저장";
+  const when =
+    input.mode === "shareNow" ? "지금 발행" : input.dueAt ? `예약 ${input.dueAt}` : "초안 저장";
   const chain = item.platform === "threads" ? (item.chain || []).length : 1;
   const assets = (input.assets || []).length;
   console.log(`\n[${item.platform}] ${channel.name}${channel.isDisconnected ? "  (연결 끊김)" : ""}`);
@@ -240,13 +246,14 @@ async function main() {
     return;
   }
 
-  const file = valueOf("--plan") || valueOf("--send");
+  const file = valueOf("--plan") || valueOf("--send") || valueOf("--publish");
   if (!file) {
     console.error(
       "사용법:\n" +
         "  node buffer_post.mjs --channels\n" +
         "  node buffer_post.mjs --plan <post.json>\n" +
-        "  node buffer_post.mjs --send <post.json> --confirm",
+        "  node buffer_post.mjs --send <post.json> --confirm\n" +
+        "  node buffer_post.mjs --publish <post.json> --confirm   # 지금 바로 SNS에 발행",
     );
     process.exit(2);
   }
@@ -258,11 +265,12 @@ async function main() {
     process.exit(1);
   }
 
+  const publishNow = has("--publish");
   const channels = await fetchChannels();
   const plans = items.map((item) => {
     const channel = pickChannel(channels, item.platform);
-    const input = buildInput(item, channel);
-    guardSafety(input);
+    const input = buildInput(item, channel, { publishNow });
+    guardSafety(input, { allowNow: publishNow });
     return { item, channel, input };
   });
 
@@ -278,6 +286,8 @@ async function main() {
     console.error("\n--confirm 이 없어 전송하지 않았습니다. 카피 전문을 승인받은 뒤 다시 실행하세요.");
     process.exit(1);
   }
+
+  if (publishNow) console.log("\n지금 바로 발행합니다. 되돌릴 수 없습니다.");
 
   // 막으려는 것은 사람이 지시하지 않은 자동 게시다. 예전에는 isTTY 하나로 봤는데,
   // Claude Code는 명령을 프로그램으로 실행해 TTY가 붙지 않는다. 그래서 사람이 앞에
@@ -332,7 +342,7 @@ async function main() {
     const post = res?.post;
     // 초안으로 보냈는데 초안이 아니면 예약이나 발행 대기로 들어간 것이다.
     // 되돌릴 수 있을 때 바로 지운다. 2026-08-24 스키마 변경 대응.
-    if (post && p.input.saveToDraft && post.status !== "draft") {
+    if (post && p.input.saveToDraft === true && post.status !== "draft") {
       console.error(`경고: ${p.item.platform} 결과가 draft가 아니라 ${post.status} 입니다. 즉시 삭제합니다.`);
       await gql(
         `mutation($id: PostId!) { deletePost(input: { id: $id }) { __typename ... on VoidMutationError { message } } }`,
@@ -346,7 +356,11 @@ async function main() {
         (post ? `  id=${post.id} status=${post.status}${post.dueAt ? ` dueAt=${post.dueAt}` : ""}` : ""),
     );
   }
-  console.log("\n예약을 마쳤습니다. Buffer 화면에서 순서와 시각을 확인하세요.");
+  console.log(
+    publishNow
+      ? "\n발행 요청을 보냈습니다. 각 SNS에 실제로 올라갔는지 확인하세요."
+      : "\n예약을 마쳤습니다. Buffer 화면에서 순서와 시각을 확인하세요.",
+  );
 }
 
 main().catch((e) => {
