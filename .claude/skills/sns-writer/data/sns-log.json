@@ -1,3 +1,24 @@
 {
-  "entries": {}
+  "entries": {
+    "orca-ide-easy-guide": {
+      "date": "2026-08-23",
+      "platforms": [
+        "threads"
+      ]
+    },
+    "aside-browser-review": {
+      "date": "2026-08-23",
+      "platforms": [
+        "threads"
+      ]
+    },
+    "ga4-edu": {
+      "date": "2026-08-24",
+      "platforms": [
+        "threads",
+        "linkedin",
+        "instagram"
+      ]
+    }
+  }
 }

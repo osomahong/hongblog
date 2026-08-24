@@ -154,12 +154,19 @@ function buildInput(item, channel) {
       process.exit(1);
     }
     const [hook, ...rest] = chain;
+    // thread 배열을 함께 보내면 Buffer가 최상위 assets를 버린다 (2026-08-24 확인).
+    // 첫 편의 이미지는 thread 배열 안에서만 살아남으므로, 훅도 배열에 넣고
+    // 최상위에는 텍스트만 남긴다.
+    const items = [{ text: hook, assets: base.assets }, ...rest.map((t) => ({ text: t, assets: [] }))];
     return {
       ...base,
       text: hook,
-      metadata: rest.length
-        ? { threads: { thread: rest.map((t) => ({ text: t, assets: [] })) } }
-        : undefined,
+      // type을 넣지 않으면 Buffer가 본문 이미지를 버린다. 쓰레드가 받는 값은
+      // post와 ghost_post뿐이다 (2026-08-24 확인).
+      // 이어지는 편은 thread 배열로 넘기고, 각 편도 assets가 필수라 빈 배열을 준다.
+      metadata: {
+        threads: { type: "post", ...(items.length > 1 ? { thread: items } : {}) },
+      },
     };
   }
 
