@@ -4,7 +4,7 @@
     {
       "platform": "threads",
       "assets": [
-        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v2/thumb_threads-v2-78XqAHBG81OwPkqg24h4CuzYSDobzs.png"
+        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v4/thumb-threads-DUrpStc0VvYRBZxFj0ehIqxosfmiVm.png"
       ],
       "alt": "GA4가 어려운 진짜 이유는 연습할 GA4 계정이 없다는 내용을 담은 썸네일",
       "chain": [
@@ -17,28 +17,30 @@
     {
       "platform": "instagram",
       "assets": [
-        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v2/card_01-LUTi8oN4QzHccRk6g5Ge5gS79Ry8mQ.png",
-        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v2/card_02-BZilxY5xFgaUwoerzQNCQDKmNV1ZvI.png",
-        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v2/card_03-SZGrhJORTnFnPAYnWbCKFKT3YB4w26.png",
-        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v2/card_04-qqrdoYf13QnkOJcgiFpJ8ifby8ABu7.png",
-        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v2/card_05-UUmrJ6XHnqveTZQPtZKAb4iT1mVecJ.png",
-        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v2/card_06-Ya1qSKqycRk82X1yV6CXSKlIINuBhi.png",
-        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v2/card_07-11LrUsndfXYDXvVvyVRE6eeXdfv1WX.png"
+        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v4/card_01-ZthGf1wE25Kb6ozspMyhB72OyQ7CD8.png",
+        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v4/card_02-f86mzt7rHgbkfZrXxDDASZs4X68IoF.png",
+        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v4/card_03-WJr6ye6U8hm1sKCD71xDHY07BUoq7a.png",
+        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v4/card_04-2hB9IA0H3ICSDSILdz1EifPaTmidQ2.png",
+        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v4/card_05-XeVE78KE3qiIj7DULYtGsPnF6R36lE.png",
+        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v4/card_06-OX51M8kng1IBFeaQrYt9GlMgjeNnlm.png"
       ],
       "alt": [
-        "GA4가 어려운 진짜 이유는 연습할 계정이 없다는 내용을 담은 표지 카드",
-        "GA4 계정이 없으면 GA4 화면도 못 본다는 카드",
-        "회사 GA4 계정의 관리 설정을 잘못 바꾸면 수집이 중단된다는 카드",
-        "GA4 실습 화면이 30편 148단계라는 카드",
-        "GA4에서 이벤트 수정과 데이터 필터를 직접 누르는 실습 카드",
-        "GA4 화면을 처음 보면 초급부터 시작한다는 카드",
-        "GA4 실습을 저장해 두고 프로필 링크에서 열라는 마무리 카드"
+        "GA4가 어려운 진짜 이유는 연습할 GA4 계정이 없다는 내용을 담은 표지 카드",
+        "GA4 계정이 없으면 화면조차 볼 수 없고, 회사 계정은 설정을 함부로 건드리지 못하고, 데모 계정도 관리 화면이 잠겨 있다는 카드",
+        "GA4를 그대로 옮긴 연습 화면을 30편 148단계로 만들어 계정 없이 시작할 수 있다는 카드",
+        "회사 GA4에서는 눌러 보지 못하는 향상된 측정 해제, 이벤트 수정, 데이터 필터, 채널 그룹 만들기를 실습한다는 카드",
+        "148단계 안의 실제 문장이 측정기준 목록 열기, 이탈률 열 추가하기처럼 구체적이라는 카드",
+        "GA4 화면이 처음이면 초급, 탐색 보고서가 어려우면 중급, 숫자가 어긋나면 심화부터 보라는 마무리 카드"
       ],
       "text": "GA4가 어려운 진짜 이유는 기능이 많아서가 아니라 연습할 계정이 없어서예요. GA4 처음 맡으신 분들 보시면 좋아요.\n\n계정이 없으면 화면도 못 봐요. 회사 계정이 있어도 관리 설정은 못 건드리고요. 잘못 바꾸면 수집이 끊기고 되돌릴 수가 없으니까요.\n\n그래서 준이아빠블로그에 GA4랑 같은 모양의 화면을 만들어뒀어요. 30편을 순서대로 클릭하면서 익히는 실습이고, 전부 148단계예요.\n\n평소에 못 눌러보는 걸 중심으로 넣었어요. 향상된 측정 해제하고 되돌리기, 이벤트 수정, 데이터 필터, 채널 그룹 만들기 같은 것들이요.\n\n화면이 처음이면 초급, 탐색이 안 되면 중급, 숫자가 어긋나면 심화부터 보시면 돼요.\n\n무료고 로그인도 필요 없어요. 나중에 볼 수 있게 저장해 두고, 프로필 링크에서 열어 보세요.\n\n#GA4 #데이터분석 #마케팅공부 #웹분석"
     },
     {
       "platform": "linkedin",
-      "text": "GA4가 어려운 이유는 기능이 많아서가 아니라 연습할 곳이 없어서입니다.\n\n계정이 없으면 화면 자체를 못 봅니다. 회사 계정이 있어도 관리 설정은 건드리지 못합니다. 잘못 바꾸면 수집이 끊기고 지나간 데이터는 되돌릴 수 없기 때문입니다. 구글이 여는 데모 계정은 보고서만 열리고 관리 화면은 잠겨 있습니다.\n\n그래서 이벤트 수정이나 데이터 필터 같은 항목은 실무에서 처음 만나게 됩니다. 처음 눌러 보는 곳이 운영 중인 계정입니다.\n\n준이아빠블로그에 GA4와 같은 모양의 화면을 만들어 두었습니다. 30편을 순서대로 클릭하며 익히는 실습이고, 한 편이 다섯 단계 안팎으로 쪼개져 전체 148단계입니다.\n\n평소에 눌러 볼 수 없는 항목을 중심으로 넣었습니다.\n\n- 향상된 측정에서 스크롤 측정을 해제하고 되돌리기\n- 이벤트 수정으로 기존 이벤트 이름과 매개변수 바꾸기\n- 데이터 필터로 내부 트래픽 제외하기\n- 채널 그룹을 직접 만들고 규칙 순서 조정하기\n- 기여 분석 모델을 바꿔 채널 평가가 뒤집히는 것 확인하기\n\n초급은 보고서에서 원하는 숫자를 찾아 읽는 데 집중하고, 중급은 탐색 보고서를 직접 만듭니다. 심화는 설정이 맞물려 숫자가 어긋나는 상황을 다룹니다.\n\n무료이고 로그인도 필요 없습니다. 팀에 GA4를 처음 맡은 담당자가 있다면 초급 10편부터 권해 볼 만합니다.\n\nhttps://www.digitalmarketer.co.kr/ga4-edu?ref=lkdn\n\n#GA4 #데이터분석 #마케팅 #교육"
+      "text": "GA4가 어려운 이유는 기능이 많아서가 아니라 연습할 곳이 없어서입니다.\n\n계정이 없으면 화면 자체를 못 봅니다. 회사 계정이 있어도 관리 설정은 건드리지 못합니다. 잘못 바꾸면 수집이 끊기고 지나간 데이터는 되돌릴 수 없기 때문입니다. 구글이 여는 데모 계정은 보고서만 열리고 관리 화면은 잠겨 있습니다.\n\n그래서 이벤트 수정이나 데이터 필터 같은 항목은 실무에서 처음 만나게 됩니다. 처음 눌러 보는 곳이 운영 중인 계정입니다.\n\n준이아빠블로그에 GA4와 같은 모양의 화면을 만들어 두었습니다. 30편을 순서대로 클릭하며 익히는 실습이고, 한 편이 다섯 단계 안팎으로 쪼개져 전체 148단계입니다.\n\n평소에 눌러 볼 수 없는 항목을 중심으로 넣었습니다.\n\n- 향상된 측정에서 스크롤 측정을 해제하고 되돌리기\n- 이벤트 수정으로 기존 이벤트 이름과 매개변수 바꾸기\n- 데이터 필터로 내부 트래픽 제외하기\n- 채널 그룹을 직접 만들고 규칙 순서 조정하기\n- 기여 분석 모델을 바꿔 채널 평가가 뒤집히는 것 확인하기\n\n초급은 보고서에서 원하는 숫자를 찾아 읽는 데 집중하고, 중급은 탐색 보고서를 직접 만듭니다. 심화는 설정이 맞물려 숫자가 어긋나는 상황을 다룹니다.\n\n무료이고 로그인도 필요 없습니다. 팀에 GA4를 처음 맡은 담당자가 있다면 초급 10편부터 권해 볼 만합니다.\n\nhttps://www.digitalmarketer.co.kr/ga4-edu?ref=lkdn\n\n#GA4 #데이터분석 #마케팅 #교육",
+      "assets": [
+        "https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/sns/ga4-edu-v4/thumb-linkedin-y7T0bAlSQh0H76xPHO2WcXCZbyHwWz.png"
+      ],
+      "alt": "계정 없이 GA4를 실습하는 화면을 전체 30편 148단계로 구성했다는 내용의 썸네일"
     }
   ]
 }
