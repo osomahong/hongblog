@@ -83,7 +83,7 @@ async function cover(c) {
   const startY = (H - titleLines.length * lineH) / 2 + size * 0.6;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${photo || frame}
   ${shadowRect(80, 130, 46 + [...(c.kicker||"")].length * 34, 78, "#FF0000")}
-  <text x="${103}" y="${184}" font-family="Pretendard" font-weight="800" font-size="38" fill="#fff">${esc(c.kicker || "")}</text>
+  <text x="${112}" y="${184}" font-family="Pretendard" font-weight="800" font-size="38" fill="#fff">${esc(c.kicker || "")}</text>
   <text font-family="Pretendard" font-weight="800" font-size="${size}" fill="${fg}">${tspans(titleLines, 80, startY, lineH)}</text>
   ${shadowRect(80, H - 220, 320, 82, "#FFD700")}
   <text x="106" y="${H - 165}" font-family="Pretendard" font-weight="700" font-size="36" fill="#000">넘겨서 보기 →</text>
@@ -92,19 +92,29 @@ async function cover(c) {
 }
 
 async function content(c) {
-  const photo = c.photo ? await photoBg(c.photo, 0.62) : null;
+  const photo = c.photo ? await photoBg(c.photo, 0.74) : null;
   const fg = photo ? "#fff" : "#000";
-  const bodyFg = photo ? "#f0f0f0" : "#111";
+  const bodyFg = photo ? "#f5f5f5" : "#111";
   const sub = photo ? "#ddd" : "#555";
-  const headLines = wrap(c.heading, 13);
-  const headH = headLines.length * 78;
-  const bodyLines = wrap(c.body || "", 22);
+  const headLines = wrap(c.heading, 12);
+  const headH = headLines.length * 88;
+  const bodyLines = wrap(c.body || "", 17);
+  // 본문 줄 수에 맞춰 글자와 줄간격을 키운다. 줄이 적으면 더 크게 잡아
+  // 아래쪽이 비지 않게 한다. 레퍼런스 지침: 작은 글자 고집이 가장 흔한 실수.
+  const bodySize = bodyLines.length <= 3 ? 62 : bodyLines.length <= 5 ? 54 : 46;
+  const bodyLH = Math.round(bodySize * 1.55);
+  // 실사 배경일 때는 레퍼런스처럼 글 덩어리를 아래쪽에 몰아 놓는다.
+  // 사진의 주제가 위에 남고 글이 어두운 아래쪽에 앉아 가독성이 올라간다.
+  const blockH = headH + 60 + bodyLines.length * bodyLH;
+  const headTop = photo ? H - 170 - blockH + 88 : 330;
+  const ruleY = headTop - 88 + headH + 40;
+  const bodyTop = photo ? ruleY + 110 : 300 + headH + 150;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${photo || frame}
   ${shadowRect(80, 110, 130, 96, "#FF0000")}
   <text x="145" y="178" text-anchor="middle" font-family="Pretendard" font-weight="800" font-size="52" fill="#fff">${esc(c.number || "")}</text>
-  <text font-family="Pretendard" font-weight="800" font-size="62" fill="${fg}">${tspans(headLines, 80, 330, 78)}</text>
-  <rect x="80" y="${300 + headH + 26}" width="200" height="14" fill="#FFD700" stroke="#000" stroke-width="3"/>
-  <text font-family="Pretendard" font-weight="500" font-size="42" fill="${bodyFg}">${tspans(bodyLines, 80, 320 + headH + 120, 66)}</text>
+  <text font-family="Pretendard" font-weight="800" font-size="70" fill="${fg}">${tspans(headLines, 80, headTop, 88)}</text>
+  <rect x="80" y="${ruleY}" width="200" height="14" fill="#FFD700" stroke="#000" stroke-width="3"/>
+  <text font-family="Pretendard" font-weight="600" font-size="${bodySize}" fill="${bodyFg}">${tspans(bodyLines, 80, bodyTop, bodyLH)}</text>
   <text x="${W - 80}" y="${H - 90}" text-anchor="end" font-family="Pretendard" font-weight="500" font-size="28" fill="${sub}">${esc(c.handle || "digitalmarketer.co.kr")}</text>
 </svg>`;
 }
