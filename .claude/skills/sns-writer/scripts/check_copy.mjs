@@ -14,7 +14,10 @@
  * 금지 표현, 어미 3연속, 반말 종결, utm 파라미터, 첫 줄 질문, 마지막 질문.
  * 훅이 좋은지 같은 판단은 사람 몫이다.
  */
-import { readFileSync } from "node:fs";
+import { readFileSync, existsSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { homedir } from "node:os";
+import { join } from "node:path";
 
 const SPEC = {
   threads: { max: 500, target: [120, 350], hookTarget: [100, 280], tags: 1 },
@@ -22,9 +25,14 @@ const SPEC = {
   linkedin: { max: 3000, preview: 200, target: [500, 700], tags: 5 },
 };
 
-// 정보성 계정은 합쇼체를 쓴다. 반말 종결이 보이면 잡는다.
+// 반말 종결은 어느 채널에도 쓰지 않는다. 종결의 기본값은 채널마다 다르다:
+// 쓰레드는 해요체(판단 한 줄만 합쇼체), 링크드인은 합쇼체, 인스타는 해요체.
+// 그 층은 hongsh-voice의 check_voice.mjs가 본다 (아래에서 반드시 호출한다).
 // "입니다/습니다"는 '니다'로 끝나므로 [^니]다 패턴에 걸리지 않는다.
 const CASUAL = /(?:[^니]다|더라|거든|잖아|이야|없음|같음)[.?!]$/;
+// 쓰레드는 음슴체("~음", "~함", "~임")를 사실 나열 줄에 허용한다 (2026-08-25 사용자 공유 5건 중 3건).
+// 반말 종결("~야", "~거든", "~잖아", "~다")만 잡는다.
+const CASUAL_THREADS = /(?:[^니]다|더라|거든|잖아|이야)[.?!]$/;
 
 const BANNED = [
   [/[—–]/, "줄표(—) 사용. 쉼표나 마침표로 끊는다"],
@@ -146,13 +154,14 @@ parts.forEach((text, idx) => {
     .split(/[\n.]+/)
     .map((s) => s.trim())
     .filter((s) => s.length > 3 && !/^\d+\/$/.test(s));
-  const casual = sentences.filter((s) => CASUAL.test(s + "."));
+  const casual = sentences.filter((s) => (platform === "threads" ? CASUAL_THREADS : CASUAL).test(s + "."));
   if (casual.length)
-    issues.push(`반말 종결로 보이는 문장 ${casual.length}건. 합쇼체로 바꾼다 ("${casual[0].slice(-18)}")`);
+    issues.push(`반말 종결로 보이는 문장 ${casual.length}건. 쓰레드는 해요체, 링크드인은 합쇼체로 바꾼다 ("${casual[0].slice(-18)}")`);
 
-  // 🧵는 스레드 예고 관례라 이모지 집계에서 뺀다
-  const emoji = (text.match(/\p{Extended_Pictographic}/gu) || []).filter((e) => e !== "\u{1F9F5}");
-  if (emoji.length > 2) issues.push(`이모지 ${emoji.length}개 > 2개. ${emoji.join("")}`);
+  // 이모지는 채널 불문 거의 쓰지 않는다. 쓰레드는 🧵 예고까지 포함해 0개가 기준이다 (hongsh-voice 00-voice-card)
+  const emoji = text.match(/\p{Extended_Pictographic}/gu) || [];
+  if (platform === "threads" && emoji.length) issues.push(`쓰레드에 이모지 ${emoji.length}개. 🧵 예고까지 전부 뺀다 (${emoji.join("")})`);
+  else if (emoji.length > 1) issues.push(`이모지 ${emoji.length}개 > 1개. ${emoji.join("")}`);
   else if (emoji.length) notes.push(`이모지 ${emoji.length}개`);
 
   const bangs = (text.match(/!/g) || []).length;
@@ -220,7 +229,8 @@ if (platform === "threads" || platform === "linkedin") {
         "    수식어를 버리거나 문장을 둘로 쪼개 둘째 줄로 넘긴다",
     );
   const hasNumber = /\d/.test(first);
-  const hasTwist = /(아닙니다|막혔습니다|바뀌었습니다|반대|생각보다|줄 알았|의외)/.test(first);
+  // 판단 선언("쓸 이유가 없음")과 사건 선언("~가 나왔음", "충격")도 통념 뒤집기로 친다 (playbook P7)
+  const hasTwist = /(아닙니다|막혔습니다|바뀌었습니다|반대|생각보다|줄 알았|의외|이유가 없|없음|나왔음|뒤집|충격|안 잡|틀렸|아니야|아님)/.test(first);
   // 1인칭 판단 선언도 훅 재료다. 실측에서 "마케팅 절대하지마세요"가 220좋아요를 받았다
   const hasStance =
     /(저는|제가).{0,20}(권|봅니다|씁니다|않습니다|합니다|입니다)/.test(first) ||
@@ -254,7 +264,7 @@ if (platform === "threads") {
 if (platform === "threads" || platform === "linkedin") {
   const head = platform === "threads" ? parts[0] : raw;
   const FIRST_PERSON =
-    /(제가|저는|저희|제 ?(사이트|블로그|글|데이터|계정)|직접|써 ?보|해 ?보|돌려 ?보|재 ?보|겪|만들어 ?보|붙여 ?보|이 ?사이트|우리 ?사이트)/;
+    /(제가|저는|저희|제 ?(사이트|블로그|글|데이터|계정)|직접|써 ?보|해 ?보|돌려 ?보|재 ?보|겪|만들어 ?보|붙여 ?보|이 ?사이트|우리 ?사이트|년 ?차|현직|마케터인데|PD인데|살펴보|봐 ?드리)/;
   if (!FIRST_PERSON.test(head))
     console.log(
       "  - 1인칭 경험이나 자기 데이터가 안 보인다. 남의 조사만 인용하면 피드에서 밀린다.\n" +
@@ -269,6 +279,40 @@ if (platform === "threads") {
   if (parts.length > 5)
     console.log("  - 본문 편이 4개를 넘는다. 지루해질 수 있으니 합치거나 버릴 편을 본다");
 }
+// ── 말투 검사 (hongsh-voice) ──────────────────────────────────────────
+// 2026-08-25 사고: 이 검사를 거치지 않아 합쇼체에 마침표를 찍고 이모지를 단 카피,
+// 개성 장치가 하나도 없는 카피가 나갔다. 규격 통과는 말투 통과가 아니다.
+// 검사기가 없으면 통과시키지 않는다 (SOFT가 아니라 실패다).
+const VOICE = [process.env.HONGSH_VOICE_DIR, join(homedir(), ".claude/skills/hongsh-voice")]
+  .filter(Boolean)
+  .map((d) => join(d, "scripts/check_voice.mjs"))
+  .find((p) => existsSync(p));
+const REGISTER = { threads: "threads", instagram: "insta", linkedin: "formal" };
+console.log("\n[말투 검사: hongsh-voice]");
+if (!VOICE) {
+  console.log("  x hongsh-voice/scripts/check_voice.mjs를 찾지 못했다. 말투 검사 없이는 내보내지 않는다 (HONGSH_VOICE_DIR 지정)");
+  failed += 1;
+} else if (src === "-") {
+  console.log("  x 표준입력으로는 말투 검사를 돌릴 수 없다. 파일로 저장해 다시 검사한다");
+  failed += 1;
+} else {
+  const args = [VOICE, "--register", REGISTER[platform]];
+  if (platform === "threads") args.push("--chain");
+  args.push(src);
+  const env = { ...process.env, HONGBLOG_DIR: process.env.HONGBLOG_DIR || join(homedir(), "Documents/00_project/hongblog") };
+  let out = "";
+  let code = 0;
+  try {
+    out = execFileSync("node", args, { encoding: "utf8", env, stdio: ["ignore", "pipe", "pipe"] });
+  } catch (e) {
+    out = (e.stdout ?? "") + (e.stderr ?? "");
+    code = e.status ?? 1;
+  }
+  console.log(out.trim().split("\n").map((l) => "  " + l).join("\n"));
+  const hardN = (out.match(/\[HARD\]/g) || []).length;
+  if (code || hardN) failed += Math.max(hardN, 1);
+}
+
 if (failed) {
   console.log(`\n위반 ${failed}건. 고쳐서 통과시킨 뒤 내보낸다.`);
   process.exit(1);
