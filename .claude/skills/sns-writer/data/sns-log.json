@@ -19,6 +19,12 @@
         "linkedin",
         "instagram"
       ]
+    },
+    "ai-practice-geo": {
+      "date": "2026-08-25",
+      "platforms": [
+        "threads"
+      ]
     }
   }
 }
