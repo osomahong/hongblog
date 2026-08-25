@@ -4,7 +4,7 @@
  *
  *   node pick_topic.mjs                # 상위 5개
  *   node pick_topic.mjs --n 8 --json   # JSON으로
- *   node pick_topic.mjs --days 60      # 최근 60일 안에 발행된 글만
+ *   node pick_topic.mjs --days 60      # 최근 60일 안에 발행된 글만 (기본 14일. 옛 글은 사용자가 지목할 때만)
  *
  * 점수는 playbook.md P5(개인이 써먹는 글)와 P7(첫 줄 판단/사건, 수치, 지갑 이야기)을 옮긴 것이다.
  * 이미 올린 글(data/sns-log.json)은 뺀다. 점수는 후보를 줄이는 용도이고 최종 선택은 사람이 한다.
@@ -18,7 +18,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "..
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const N = Number(opt("--n", 5));
-const DAYS = Number(opt("--days", 0));
+// 발행 2주가 넘은 글은 올리지 않는다 (2026-08-25 사용자 지시: "이런 옛날 글은 쓰지 않습니다"). --days 0이면 전체.
+const DAYS = Number(opt("--days", 14));
 const JSON_OUT = args.includes("--json");
 
 const logPath = join(ROOT, ".claude/skills/sns-writer/data/sns-log.json");
