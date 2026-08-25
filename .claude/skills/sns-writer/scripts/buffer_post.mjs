@@ -246,6 +246,20 @@ async function main() {
     return;
   }
 
+  // 예약을 되돌릴 때 쓴다. 카피를 고친 뒤 다시 보내기 전에 기존 예약을 지운다 (2026-08-25 추가).
+  if (has("--delete")) {
+    const id = valueOf("--delete");
+    if (!id) { console.error("사용법: buffer_post.mjs --delete <postId> --confirm"); process.exit(2); }
+    if (!has("--confirm")) { console.error("--confirm 이 없어 삭제하지 않았습니다."); process.exit(1); }
+    const data = await gql(
+      `mutation($id: PostId!) { deletePost(input: { id: $id }) { __typename ... on VoidMutationError { message } } }`,
+      { id },
+    );
+    const r = data?.deletePost;
+    if (r && r.__typename === "VoidMutationError") { console.error(`삭제 실패: ${r.message}`); process.exit(1); }
+    console.log(`삭제함: ${id}`);
+    return;
+  }
   const file = valueOf("--plan") || valueOf("--send") || valueOf("--publish");
   if (!file) {
     console.error(
