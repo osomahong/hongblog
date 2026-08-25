@@ -30,7 +30,11 @@ if (existsSync(logPath)) {
     if (!o || typeof o !== "object") return;
     if (Array.isArray(o)) return o.forEach(walk);
     if (typeof o.slug === "string") posted.add(o.slug);
-    for (const k of Object.keys(o)) if (o[k] && typeof o[k] === "object" && !Array.isArray(o[k]) && (o[k].date || o[k].platforms)) posted.add(k);
+    for (const k of Object.keys(o)) {
+      const v = o[k];
+      if (v && typeof v === "object" && !Array.isArray(v) && (v.date || v.platforms)) posted.add(k);
+      else if (v && typeof v === "object") walk(v);
+    }
   };
   walk(raw);
 }
