@@ -25,6 +25,28 @@
       "platforms": [
         "threads"
       ]
+    },
+    "ai-work-routine-remote-browser-automation": {
+      "date": "2026-08-27",
+      "platforms": [
+        "threads",
+        "linkedin",
+        "instagram"
+      ]
+    },
+    "ox-alpha-stealth-model-zai-glm": {
+      "date": "2026-08-27",
+      "platforms": [
+        "threads"
+      ]
+    },
+    "claude-code-codex-usage-limit-race": {
+      "date": "2026-08-27",
+      "platforms": [
+        "threads",
+        "linkedin",
+        "instagram"
+      ]
     }
   }
 }

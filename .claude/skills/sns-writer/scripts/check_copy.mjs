@@ -171,10 +171,15 @@ parts.forEach((text, idx) => {
     if (m) issues.push(`${msg} ("${m[0].trim()}")`);
   }
 
+  // 기록형(hongsh-voice 10-tone-threads)은 같은 값을 세로로 쌓는 것이 형식이다.
+  // "7월 13일 → 연장"이 세 줄 반복되는 것이 그 계열의 핵심이라 어미 검사에서 뺀다.
+  // 2026-08-27에 기록형을 처음 쓰면서 확인했다.
+  const isLogForm = (text.match(/(→|->|~>)/g) || []).length >= 2;
   const endings = text
     .split(/[.!?\n]+/)
     .map((s) => s.trim())
     .filter(Boolean)
+    .filter((s) => !(isLogForm && /(→|->|~>)/.test(s)))
     .map((s) => s.slice(-3));
   for (let i = 0; i + 2 < endings.length; i++) {
     if (endings[i] && endings[i] === endings[i + 1] && endings[i] === endings[i + 2]) {
@@ -220,11 +225,16 @@ if (platform === "linkedin") {
 
 // 첫 줄에 숫자나 통념 뒤집기가 있는지 본다. 첫 두세 줄만 보이고 나머지는 접힌다.
 if (platform === "threads" || platform === "linkedin") {
-  const first = (platform === "threads" ? parts[0] : raw).split("\n")[0];
-  // 실측 16건에서 상위는 전부 8~32자였고 49자짜리 하나만 성과가 무너졌다
-  if (platform === "threads" && [...first].length > 32)
+  const first = (platform === "threads" ? parts[0] : raw).split("\n")[0].replace(/^\d+\/\s*/, "");
+  // 훅 계열 판정 (2026-08-26 사용자 교정). 선언형은 짧게 던지고, 관찰형은 한 줄이 완결된 문장이라 길다.
+  const isObserve =
+    /(요즘|요새|최근 들어|점점|갈수록|많아지|늘어나|늘고 있|늘면서|늘었|늘어난|많아진|많아졌|흔해|자주 보|보이더라|하시더라|많더라|많으시더라|보내는 분들|하시는 분들)/.test(first);
+  // 실측 16건에서 선언형 상위는 전부 8~32자였고 49자짜리 하나만 성과가 무너졌다.
+  // 관찰형은 세태를 한 문장으로 그리므로 55자까지 본다.
+  const firstCap = isObserve ? 55 : 32;
+  if (platform === "threads" && [...first].length > firstCap)
     console.log(
-      `  - 첫 줄이 ${[...first].length}자다. 실측 상위는 8~32자였고 49자짜리만 성과가 무너졌다.\n` +
+      `  - 첫 줄이 ${[...first].length}자다. ${isObserve ? "관찰형 훅은 55자 안에서 한 문장으로 끝낸다" : "선언형 실측 상위는 8~32자였고 49자짜리만 성과가 무너졌다"}.\n` +
         "    수식어를 버리거나 문장을 둘로 쪼개 둘째 줄로 넘긴다",
     );
   const hasNumber = /\d/.test(first);
@@ -236,7 +246,8 @@ if (platform === "threads" || platform === "linkedin") {
     /(더라구요|더라고요|거 ?같|같아요|엄청|진짜|생각보다|의외로|솔직히)/.test(first) ||
     /(저는|제가).{0,20}(권|봅니다|씁니다|않습니다|합니다|입니다)/.test(first) ||
     /(안 권|권하지 않|하지 마|쓰지 않|아직 안|안 하셔도|안 해도|하지 않아도|필요 없|충분합니다)/.test(first);
-  if (!hasNumber && !hasTwist && !hasStance)
+  // 세태 관찰("요즘 ~하는 분들이 많아지고 있네요")도 정당한 여는 방식이다 (2026-08-26 사용자 교정).
+  if (!hasNumber && !hasTwist && !hasStance && !isObserve)
     console.log(
       "  - 첫 줄에 숫자도, 통념 뒤집기도, 1인칭 판단도 없다.\n" +
         "    셋 중 하나를 넣는다 (platforms.md 5번)",
@@ -312,6 +323,114 @@ if (!VOICE) {
   console.log(out.trim().split("\n").map((l) => "  " + l).join("\n"));
   const hardN = (out.match(/\[HARD\]/g) || []).length;
   if (code || hardN) failed += Math.max(hardN, 1);
+}
+
+// 해법 약속 마무리 (2026-08-27 사용자 교정).
+// "하나씩 어떻게 풀었는지 글에 순서대로 적어봤습니다" → "제가 하고 있는 AI 자동화를 글로 정리하여 기록해봤습니다".
+// 항목을 짚은 뒤 해법을 준다고 약속하면 그 글은 가이드 목록이 되고 들어올 이유가 줄어든다.
+// 이 계정의 글은 가이드가 아니라 작업 기록이다 (10-tone-threads 마지막 편 절).
+{
+  // 채널 공통이다. 인스타 캡션과 링크드인에서도 해법 목록으로 닫으면 같은 문제가 생긴다.
+  const last = parts[parts.length - 1] || "";
+  const PROMISE = /(어떻게 (풀었|해결했)는지|순서대로 (적|정리|기록)|방법을 (적|정리)|따라 ?하시?면|그대로 따라)/;
+  const pm = last.match(PROMISE);
+  if (pm) {
+    console.log(
+      `\n[마무리]\n  x "${pm[0]}" 해법을 준다는 약속이다. 읽는 사람은 답만 받아 가면 된다\n` +
+        "    내가 무엇을 하고 있는지를 목적어로 세우고 기록해봤습니다로 닫는다",
+    );
+    failed += 1;
+  }
+}
+
+// 비문 신호 (2026-08-27 사용자 지적: "왜 이렇게 비문이 많은지 모르겠네").
+// 정규식으로 잡히는 것은 하나뿐이다. `~는지` 절을 여러 개 늘어놓고 모호한 명사 하나로
+// 몰아 닫는 형태다. 나머지 호응과 수식은 writing-rules.md의 낭독 검수로 사람이 본다.
+{
+  const VAGUE_CLOSE = /(문제|부분|지점|것|점|측면|영역|상황|경우)(이|가|은|는)?(더라구요|더라고요|더군요|입니다|이에요|예요|였어요|이었어요)[.!?]?$/;
+  for (const line of raw.split("\n").map((l) => l.trim())) {
+    if (!line || /^https?:\/\//.test(line)) continue;
+    const n = (line.match(/[가-힣](는지|은지)/g) || []).length;
+    if (n >= 2 && VAGUE_CLOSE.test(line)) {
+      console.log(
+        `\n[비문 신호]\n  x "${line.slice(0, 46)}"\n` +
+          `    ~는지 절 ${n}개를 모호한 명사 하나로 몰아 닫았다. 절마다 술어를 맞추거나 줄을 나눈다`,
+      );
+      failed += 1;
+    }
+  }
+}
+
+// 본문 스포 검사 (2026-08-27 사용자 교정: "SNS에 압축본을 올리는 행위를 하고 있는 거라고").
+// 쓰레드는 본문 요약이 아니라 티저다. 본문 소제목을 편으로 하나씩 옮기면
+// 다 읽은 사람은 블로그에 들어올 이유가 없다.
+// 카피와 본문 각 절의 한글 3-gram 겹침을 재서 몇 개 절을 옮겨 왔는지 센다.
+{
+  const grams = (t, n = 3) => {
+    const z = t.replace(/https?:\/\/\S+/g, "").replace(/[^가-힣]/g, "");
+    const out = new Set();
+    for (let i = 0; i + n <= z.length; i++) out.add(z.slice(i, i + n));
+    return out;
+  };
+  const m = raw.match(/digitalmarketer\.co\.kr\/(?:insights|class|course)\/([a-z0-9-]+)/);
+  const argSource = process.argv.indexOf("--source");
+  const sourcePath =
+    argSource > -1
+      ? process.argv[argSource + 1]
+      : m
+        ? join(process.env.HONGBLOG_DIR || join(homedir(), "Documents/00_project/hongblog"), `content/insights/${m[1]}.md`)
+        : null;
+
+  if (sourcePath && existsSync(sourcePath)) {
+    const body = readFileSync(sourcePath, "utf8").replace(/^---[\s\S]*?\n---\n/, "");
+    const secs = body
+      .split(/^## /m)
+      .slice(1)
+      .map((sec) => {
+        const [head, ...rest] = sec.split("\n");
+        return { head: head.trim(), text: rest.join("\n").replace(/!\[[^\]]*\]\([^)]*\)/g, "") };
+      })
+      // 3줄 요약은 다른 절을 다시 말한 것이라 이중으로 세지 않는다
+      .filter((x) => !/^\d+줄 요약/.test(x.head));
+
+    const copyG = grams(raw);
+    const hit = [];
+    for (const sec of secs) {
+      const g = grams(sec.text);
+      if (g.size < 40) continue;
+      let n = 0;
+      for (const x of g) if (copyG.has(x)) n++;
+      const ratio = n / g.size;
+      if (ratio >= 0.08) hit.push({ head: sec.head, ratio });
+    }
+    console.log("\n[본문 스포 검사]");
+    if (!hit.length) {
+      console.log(`  - 본문 ${secs.length}개 절 가운데 옮겨 온 절 0개. 티저로 성립한다`);
+    } else {
+      for (const h of hit) console.log(`  - "${h.head}" 겹침 ${(h.ratio * 100).toFixed(0)}%`);
+      if (hit.length >= 3) {
+        console.log(
+          `  x 본문 ${secs.length}개 절 가운데 ${hit.length}개를 옮겨 왔다. 이건 압축본이지 티저가 아니다.\n` +
+            "    편을 줄이고, 무엇을 알게 되는지가 아니라 무엇이 걸려 있었는지만 남긴다",
+        );
+        failed += 1;
+      } else if (hit.length === 2) {
+        console.log("  - 두 절을 건드렸다. 하나로 줄일 수 있는지 본다");
+      }
+    }
+    const nums = [...new Set((body.match(/\d[\d,.]*\s*(만|억|원|개|명|배|%|초|분|시간|일|주|건|편|줄|가지|번)/g) || []))];
+    const moved = nums.filter((x) => raw.includes(x.replace(/\s+/g, "")) || raw.includes(x));
+    // 기록형(hongsh-voice 10-tone-threads)은 날짜나 값을 세로로 쌓는 것이 형식이라
+    // 수치 나열 자체가 카피다. P9의 "수치를 옮기지 않는다"와 정면으로 부딪히므로 면제한다.
+    // 2026-08-27에 기록형을 처음 쓰면서 확인했다. 화살표 나열 2줄 이상을 신호로 본다.
+    const isLogForm = (raw.match(/(→|->|~>)/g) || []).length >= 2;
+    if (isLogForm && moved.length >= 3) {
+      console.log(`  - 기록형이라 수치 ${moved.length}개를 옮겼다. 이 계열은 나열이 형식이라 통과시킨다`);
+    } else if (moved.length >= 3) {
+      console.log(`  x 본문 수치 ${moved.length}개(${moved.join(", ")})를 그대로 옮겼다. 수치는 본문에서 확인하게 남긴다`);
+      failed += 1;
+    }
+  }
 }
 
 if (failed) {
