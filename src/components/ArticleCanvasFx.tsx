@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { sendGAEvent } from "@/lib/gtm";
 import {
   burstElement,
@@ -11,12 +11,14 @@ import {
 
 // 글 페이지의 HTML in Canvas 인터랙션 묶음.
 // 1) 본문 문장을 드래그하면 인용 카드 이미지를 저장하는 플로팅 버튼
-// 2) 본문 이미지 호버 시 확대 렌즈
-// 3) 코드 복사 버튼 클릭 시 코드가 버튼으로 빨려 들어가는 잔상
-// 4) "도움이 됐어요" 클릭 시 버튼 파편 터짐
-// 3, 4번은 이벤트 위임이라 해당 컴포넌트(MarkdownRenderer, ContentFeedback)를
+// 2) 코드 복사 버튼 클릭 시 코드가 버튼으로 빨려 들어가는 잔상
+// 3) "도움이 됐어요" 클릭 시 버튼 파편 터짐
+// 2, 3번은 이벤트 위임이라 해당 컴포넌트(MarkdownRenderer, ContentFeedback)를
 // 수정하지 않는다. 미지원 브라우저에서는 1번 버튼이 아예 뜨지 않고
 // 나머지는 조용히 생략된다.
+//
+// 본문 이미지 확대는 호버 렌즈에서 클릭 라이트박스(ImageLightbox)로 옮겼다.
+// 렌즈는 커서 주변만 보여 주고 터치 기기에서는 아예 뜨지 않았다.
 
 interface ArticleCanvasFxProps {
   /** 인용 카드에 박을 글 제목 */
@@ -37,8 +39,6 @@ let activeInstances = 0;
 const QUOTE_MIN = 8;
 /** 카드에 담을 최대 글자수. 넘으면 자르고 말줄임표를 붙인다 (버튼은 항상 띄운다) */
 const QUOTE_MAX = 240;
-const LENS_SIZE = 180;
-const LENS_ZOOM = 2;
 
 /** 인용 카드 DOM을 만든다. 렌더 결과가 그대로 공유 이미지가 된다 */
 function buildQuoteCard(quote: string, title: string): HTMLElement {
@@ -65,7 +65,6 @@ export function ArticleCanvasFx({ title, path }: ArticleCanvasFxProps) {
   const [saving, setSaving] = useState(false);
   const [copied, setCopied] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  const lensRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     activeInstances += 1;
@@ -163,76 +162,29 @@ export function ArticleCanvasFx({ title, path }: ArticleCanvasFxProps) {
     [quoteBtn, saving, title, path]
   );
 
-  // 2) 본문 이미지 확대 렌즈 + 3) 코드 복사 잔상 + 4) 피드백 터짐 (전부 위임)
+  // 2) 코드 복사 잔상 + 3) 피드백 터짐 (전부 위임)
   useEffect(() => {
     if (!isActive) return;
-    const removeLens = () => {
-      lensRef.current?.remove();
-      lensRef.current = null;
-    };
-
-    const onMouseMove = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const img =
-        target instanceof HTMLImageElement && target.closest("article")
-          ? target
-          : null;
-      if (!img || !img.complete || img.naturalWidth < 400) {
-        removeLens();
-        return;
-      }
-      const rect = img.getBoundingClientRect();
-      let lens = lensRef.current;
-      if (!lens) {
-        lens = document.createElement("canvas");
-        lens.width = LENS_SIZE * 2;
-        lens.height = LENS_SIZE * 2;
-        lens.style.cssText = `position:fixed;width:${LENS_SIZE}px;height:${LENS_SIZE}px;border-radius:50%;border:3px solid #000;box-shadow:6px 6px 0 rgba(0,0,0,.35);pointer-events:none;z-index:9999;background:#fff;`;
-        document.body.appendChild(lens);
-        lensRef.current = lens;
-      }
-      lens.style.left = `${e.clientX - LENS_SIZE / 2}px`;
-      lens.style.top = `${e.clientY - LENS_SIZE / 2}px`;
-      const ctx = lens.getContext("2d");
-      if (!ctx) return;
-      // 커서 위치를 원본 이미지 좌표로 환산해 확대해 그린다
-      const rx = (e.clientX - rect.left) / rect.width;
-      const ry = (e.clientY - rect.top) / rect.height;
-      const sw = img.naturalWidth * (LENS_SIZE / rect.width) / LENS_ZOOM;
-      const sh = img.naturalHeight * (LENS_SIZE / rect.height) / LENS_ZOOM;
-      const sx = Math.max(0, Math.min(img.naturalWidth - sw, img.naturalWidth * rx - sw / 2));
-      const sy = Math.max(0, Math.min(img.naturalHeight - sh, img.naturalHeight * ry - sh / 2));
-      ctx.clearRect(0, 0, lens.width, lens.height);
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(lens.width / 2, lens.height / 2, lens.width / 2, 0, Math.PI * 2);
-      ctx.clip();
-      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, lens.width, lens.height);
-      ctx.restore();
-    };
 
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // 3) 코드 복사: MarkdownRenderer의 복사 버튼 (aria-label 기준 위임)
+      // 2) 코드 복사: MarkdownRenderer의 복사 버튼 (aria-label 기준 위임)
       const copyBtn = target.closest<HTMLElement>('button[aria-label="코드 복사"]');
       if (copyBtn) {
         const codeArea = copyBtn.parentElement?.querySelector<HTMLElement>("div, pre");
         if (codeArea) void suckElement(codeArea, copyBtn);
         return;
       }
-      // 4) 긍정 피드백: ContentFeedback의 도움됐어요 버튼 (텍스트 기준 위임)
+      // 3) 긍정 피드백: ContentFeedback의 도움됐어요 버튼 (텍스트 기준 위임)
       const fbBtn = target.closest("button");
       if (fbBtn && fbBtn.textContent?.includes("도움이 됐어요")) {
         void burstElement(fbBtn);
       }
     };
 
-    document.addEventListener("mousemove", onMouseMove, { passive: true });
     document.addEventListener("click", onClick, true);
     return () => {
-      document.removeEventListener("mousemove", onMouseMove);
       document.removeEventListener("click", onClick, true);
-      removeLens();
     };
   }, [isActive]);
 
