@@ -40,6 +40,10 @@ quiz:
 metaTitle: '클로드 확장 추론(Extended Thinking) 뜻과 작동 방식'
 metaDescription: '확장 추론(Extended Thinking)은 Claude가 답하기 전에 내부 추론을 별도 블록으로 펼쳐 깊게 생각하는 모드입니다. 작동 방식과 잘 맞는 작업 유형을 정리했습니다.'
 ogImage: /og/what-is-extended-thinking.png
+summary3:
+  - 'Extended Thinking은 Claude가 최종 답을 내기 전에 내부 추론 단계를 따로 펼쳐 깊게 생각하는 모드입니다.'
+  - '추론 깊이를 사용자가 직접 정하는 Extended Thinking과 모델이 난이도에 맞춰 조절하는 Adaptive Thinking으로 나뉩니다.'
+  - '2026년 7월 기준 Extended Thinking을 쓸 수 있는 모델은 Haiku 4.5뿐이고 Fable 5와 Opus 5, Sonnet 5는 Adaptive 방식만 지원합니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 platform.claude.com/docs의 Extended Thinking 자료를 한국 입문자가 보기 편하게 정리한 글입니다.

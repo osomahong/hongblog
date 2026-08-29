@@ -31,6 +31,10 @@ quiz:
     correctIndex: 1
 metaTitle: '디버깅 뜻: 버그 원인을 찾는 순서와 AI 코딩 활용'
 ogImage: /og/what-is-debugging.png
+summary3:
+  - '디버깅은 코드에서 난 오류의 원인을 찾아 고치는 과정입니다.'
+  - '에러 메시지에는 오류 종류와 문제가 난 파일, 줄 번호가 함께 적혀 있어서 맨 윗줄부터 읽으면 어디를 볼지 정해집니다.'
+  - '브라우저 쪽 오류는 F12 개발자 도구의 Console과 Network 탭에서 보이고 서버 쪽 오류는 npm run dev를 실행한 터미널에 찍힙니다.'
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

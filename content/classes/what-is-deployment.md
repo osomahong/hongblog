@@ -36,6 +36,10 @@ quiz:
 metaTitle: '배포(Deployment) 뜻: 내 프로젝트를 인터넷에 올리는 과정'
 metaDescription: '배포는 내 컴퓨터에서만 돌아가던 프로젝트를 인터넷에 올려 누구나 접속하게 만드는 과정입니다. 배포 절차와 호스팅 서비스의 역할을 초보자 눈높이로 정리했습니다.'
 ogImage: /og/what-is-deployment.png
+summary3:
+  - '배포는 내 컴퓨터에서만 돌아가던 프로젝트를 인터넷에 연결된 서버에 올려 누구나 접속하게 만드는 과정입니다.'
+  - 'localhost 주소는 내 컴퓨터에서만 열리기 때문에 그대로 보내면 상대는 접속하지 못합니다.'
+  - 'Vercel과 Netlify, Cloudflare Pages는 프런트엔드에 맞고 데이터베이스까지 함께 올릴 때는 Railway나 Render를 쓰며 GitHub 저장소를 연결하면 자동으로 배포됩니다.'
 ---
 
 ## 🤔 혹시 이런 경험 있나요?
