@@ -36,6 +36,10 @@ quiz:
     explanation: >-
       Moonshot AI는 Kimi K3의 가중치를 2026년 7월 27일까지 공개하겠다고 예고했습니다. 공개되면 역대 가장 큰 오픈
       웨이트 모델이 됩니다. Fable 5와 GPT-5.6 Sol은 API와 앱으로만 제공됩니다.
+summary3:
+  - '2026년 6월과 7월 사이에 Claude Fable 5와 GPT-5.6 Sol, Kimi K3 세 최상위 모델이 연이어 나왔습니다.'
+  - '100만 토큰당 입력 가격은 Kimi K3가 3달러, GPT-5.6 Sol 정가가 5달러, Fable 5가 10달러이고 가중치를 공개한 쪽은 Kimi K3뿐입니다.'
+  - '복잡한 장기 작업은 Fable 5, 비용이 중요한 코딩은 GPT-5.6 Sol, 자체 서버 운영이 필요하면 Kimi K3로 나눠 쓰는 편이 맞습니다.'
 ---
 
 2026년 6월과 7월 사이에 최상위 AI 모델 세 개가 연이어 나왔습니다. 6월 9일 Anthropic의 [Claude Fable 5](/class/claude-fundamentals/claude-model-family), 7월 9일 OpenAI의 GPT-5.6 Sol, 그리고 7월 16일 중국 Moonshot AI의 Kimi K3입니다. 세 모델의 공식 발표 자료와 벤치마크, 커뮤니티 반응을 바탕으로 각 모델의 장점과 선택 기준을 정리했습니다.

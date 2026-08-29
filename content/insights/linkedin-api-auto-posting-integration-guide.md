@@ -29,6 +29,10 @@ metaDescription: >-
 ogImage: /og/linkedin-api-auto-posting-integration-guide.png
 ogTitle: 'LinkedIn에 자동으로 글 올리기: API 연동 전 과정 공개'
 ogDescription: 복사-붙여넣기 없이 블로그 관리 페이지에서 LinkedIn에 바로 게시하는 기능을 만든 과정을 정리했습니다.
+summary3:
+  - '블로그 관리 페이지에서 링크드인으로 바로 올리려면 OAuth 인증과 토큰 저장, API 호출 세 단계가 필요합니다.'
+  - '만든 것은 토큰을 담을 DB 테이블 하나와 서비스 파일 하나, 인증 시작과 콜백, 상태 조회, 게시를 맡는 API 라우트 넷입니다.'
+  - '복사해서 링크드인에 붙여 넣던 다섯 단계가 버튼 한 번으로 줄고 3,000자 제한도 실시간으로 확인됩니다.'
 ---
 
 ## 복사-붙여넣기가 싫었습니다
