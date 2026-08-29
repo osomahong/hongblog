@@ -56,7 +56,6 @@ summary3:
 
 ## 📰 전단지 배포와 같습니다
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">전단지로 보는 CPM</div>
@@ -108,7 +107,6 @@ CPM = (총 광고비 ÷ 총 노출수) × 1,000
 
 ## 💼 실무에서 어떻게 활용할까요?
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">CPM 계산 예시</div>
@@ -156,10 +154,10 @@ CPM = (총 광고비 ÷ 총 노출수) × 1,000
 **매체 제안서 두 개를 비교할 때**
 - A 매체는 CPM 3,000원, B 매체는 CPM 6,000원짜리 제안서를 냈다면 숫자만으로는 A가 두 배 효율로 보입니다. 하지만 B가 우리 타겟에 더 정확하게 도달한다면 판단이 달라집니다. CPM은 비교의 출발점이지 결론이 아닙니다. 노출 이후의 반응은 [CTR](/class/digital-marketing-terms/what-is-ctr)로, 클릭당 비용은 [CPC](/class/digital-marketing-terms/what-is-cpc)로 이어서 확인해야 판단이 완성됩니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **CPM은 광고 1,000번 노출당 비용**입니다. 전단지 인쇄비처럼, 보여주는 것 자체에 비용이 발생하는 과금 방식입니다.
+1. CPM은 광고가 1,000번 노출될 때마다 내는 비용이고 총 광고비를 노출 수로 나눈 뒤 1,000을 곱해 구합니다.
 
-2. **공식: CPM = (총 광고비 ÷ 총 노출수) × 1,000**입니다. 이 공식으로 예산 대비 노출 효율을 계산할 수 있습니다.
+2. 클릭이 아니라 보여주는 것 자체에 돈이 나가므로 인지도를 넓히는 캠페인에 맞는 과금 방식입니다.
 
-3. **브랜드 인지도 캠페인에 적합**하며, CPC, CTR과 함께 종합적으로 분석해야 광고 성과를 정확히 판단할 수 있습니다.
+3. 예상 CPM이 5,000원이면 예산 500만 원으로 노출 약 100만 회를 잡을 수 있고 CPM이 올랐다면 입찰 경쟁과 타겟 축소, 소재 피로를 살핍니다.

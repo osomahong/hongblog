@@ -118,13 +118,13 @@ AI를 일에 쓴다는 것은 그 결과의 책임이 사용자에게 돌아온�
 
 이 흐름이 자리 잡으면 AI 사용이 안전하고 일관된 업무 도구가 됩니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **AI Fluency 4D는 Delegation, Description, Discernment, Diligence**입니다. 위임, 설명, 분별력, 책임감 네 단계로 AI 사용을 흐름화한 앤트로픽 제안 프레임워크입니다.
+1. AI Fluency 4D는 앤트로픽이 제안한 AI 활용 절차이고 위임과 설명, 분별력, 책임감 네 단계로 이뤄집니다.
 
-2. **Discernment 단계가 [환각](/class/claude-fundamentals/what-is-hallucination)과 [아부](/class/claude-fundamentals/what-is-sycophancy)를 다루는 자리**입니다. 출처 검증과 반대 입장 재질문이 핵심 도구입니다.
+2. 설명 단계에서는 누가 읽는지와 무엇을 할지, 어떤 형식으로 낼지, 어디까지 허용할지 네 가지를 담아야 결과가 흔들리지 않습니다.
 
-3. **네 단계를 모두 거치는 흐름이 자리 잡으면 AI는 동의 기계가 아니라 검증 가능한 업무 도구가 됩니다.** 다음 클래스의 [프롬프트 엔지니어링 기본](/class/claude-fundamentals/prompt-engineering-basics)이 D2 단계의 실전 작성법입니다.
+3. 분별력 단계에서 환각과 아부를 걸러 내고 책임감 단계에서 저작권과 개인정보, 편향을 마지막으로 점검합니다.
 
 ## 📚 참고 자료
 

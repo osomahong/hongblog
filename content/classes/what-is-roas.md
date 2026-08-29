@@ -57,7 +57,6 @@ summary3:
 
 ## 🌱 씨앗과 수확량과 같습니다
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">씨앗과 수확량으로 보는 ROAS</div>
@@ -116,7 +115,6 @@ ROAS(%) = (광고로 인한 매출 ÷ 광고비) × 100
 
 ## 💼 실무에서 어떻게 활용할까요?
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">채널별 ROAS 비교</div>
@@ -152,10 +150,10 @@ ROAS(%) = (광고로 인한 매출 ÷ 광고비) × 100
 - ROI는 **전체 투자 대비 순이익**을 봅니다. (이익 기준)
 - ROAS가 높아도 제품 원가, 인건비, 물류비 등을 고려하면 실제 이익은 다를 수 있습니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **ROAS는 광고비 대비 매출 비율**입니다. 씨앗 비용 대비 수확량처럼, 광고에 쓴 돈이 몇 배의 매출로 돌아왔는지를 보여줍니다.
+1. ROAS는 광고비 1원이 만든 매출을 보는 지표이고 광고로 생긴 매출을 광고비로 나눈 뒤 100을 곱해 구합니다.
 
-2. **공식: ROAS(%) = (매출 ÷ 광고비) × 100**입니다. 마진율을 고려한 손익분기 ROAS를 먼저 계산하면, 광고가 수익을 내고 있는지 바로 판단할 수 있습니다.
+2. 광고비 200만 원으로 매출 800만 원이 났다면 ROAS는 400퍼센트입니다.
 
-3. **채널별, 캠페인별 ROAS를 비교하여 예산을 배분**하는 것이 광고 최적화의 기본입니다. 단, 전체 수익성을 보려면 ROI도 함께 분석해야 합니다.
+3. 마진율을 넣어 손익분기 ROAS를 먼저 구해 두면 400퍼센트가 남는 장사인지 아닌지 바로 판단할 수 있습니다.

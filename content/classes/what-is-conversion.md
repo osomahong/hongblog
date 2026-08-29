@@ -66,7 +66,6 @@ summary3:
 
 ## 🎯 낚시와 같습니다
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">낚시로 보는 전환 3단계</div>
@@ -113,7 +112,6 @@ summary3:
 
 ## 💼 실무에서 어떻게 활용할까요?
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">이커머스 전환 퍼널 예시</div>
@@ -143,13 +141,13 @@ summary3:
 - 전환 수만 보면 안 됩니다. CVR(전환율)로 효율을, ROAS로 수익성을 함께 봐야 합니다.
 - 전환 수가 많아도 광고비 대비 수익이 낮으면 개선이 필요합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **전환은 사용자가 원하는 행동을 완료하는 것**입니다. 구매, 가입, 문의 등 비즈니스마다 전환의 정의가 다릅니다.
+1. 전환은 사용자가 광고주가 원하는 행동을 끝까지 마치는 것이고 무엇을 전환으로 볼지는 업종마다 다릅니다.
 
-2. **매크로 전환(핵심 목표)과 마이크로 전환(과정 지표)**을 함께 추적하면 사용자 여정 전체를 파악할 수 있습니다.
+2. 구매나 가입 같은 매크로 전환과 장바구니 담기 같은 마이크로 전환을 함께 보면 어느 단계에서 빠지는지 드러납니다.
 
-3. **전환은 모든 마케팅 성과의 최종 기준**입니다. CPM, [CPC](/class/digital-marketing-terms/what-is-cpc), CTR은 과정 지표이고, 전환이 실제 비즈니스 결과를 보여줍니다.
+3. CPM과 CPC, CTR은 과정을 보는 지표이고 사업의 결과를 보여주는 것은 전환입니다.
 
 ## 참고 자료
 

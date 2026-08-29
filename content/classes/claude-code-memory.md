@@ -176,13 +176,13 @@ Memory가 잘 정리된 프로젝트는 다른 자동화 도구들의 효과가 
 **4. git 커밋 여부 결정**
 - 프로젝트 CLAUDE.md를 git에 커밋해 팀과 공유할지, gitignore에 두고 개인 설정으로 둘지 미리 정합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Memory는 Claude Code가 세션을 넘어 기억할 수 있게 만든 영속 컨텍스트 시스템**입니다. 사용자가 적는 CLAUDE.md와 Claude가 자동으로 쌓는 auto memory 두 갈래로 구성됩니다.
+1. Memory는 Claude Code가 세션을 넘어 기억하게 만드는 구조이고 사용자가 적는 CLAUDE.md와 자동으로 쌓이는 auto memory 두 가지로 이뤄집니다.
 
-2. **CLAUDE.md는 프로젝트 루트의 마크다운 파일로, 매 세션 시작 시 자동 로드**됩니다. 코딩 표준, 아키텍처, 라이브러리, 체크리스트, 회사 컨벤션을 적어두면 매번 다시 설명할 필요가 없습니다.
+2. CLAUDE.md는 프로젝트 폴더에 두면 매 세션이 시작할 때 자동으로 읽히므로 코딩 표준이나 글쓰기 규칙을 다시 설명하지 않아도 됩니다.
 
-3. **[Hooks](/class/claude-code-for-everyone/what-are-hooks), [Subagents](/class/claude-code-for-everyone/what-are-subagents), [Skills](/class/claude-in-practice/what-are-claude-skills)와 묶이면 자동화 효과가 커집니다.** 너무 길지 않게, 자주 갱신, 보안 정보 미포함, git 공유 여부 결정 네 가지가 표준 작성 원칙입니다.
+3. CLAUDE.md는 프로젝트 단위와 사용자 단위 두 곳에 둘 수 있고 길게 쓸수록 지켜지지 않으므로 비밀번호와 키는 빼고 짧게 유지합니다.
 
 ## 📚 참고 자료
 

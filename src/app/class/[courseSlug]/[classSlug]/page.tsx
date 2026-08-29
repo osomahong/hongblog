@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
-import { getClassBySlugWithMeta as getClassBySlug, getPublishedCourseBySlug as getCourseBySlug, getNextPrevClass, getRelatedClassesByTags, getRelatedPostsForClass, getPublishedCourses, getClassesBySlugs, getClassSummary3 } from "@/lib/content";
+import { getClassBySlugWithMeta as getClassBySlug, getPublishedCourseBySlug as getCourseBySlug, getNextPrevClass, getRelatedClassesByTags, getRelatedPostsForClass, getPublishedCourses, getClassesBySlugs } from "@/lib/content";
 import { NeoButton, NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
@@ -25,8 +25,6 @@ import { extractFaqPairs } from "@/lib/extract-faq";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
 import { splitMarkdownAtNthH2 } from "@/lib/markdown-split";
-import { ContentSummary } from "@/components/ContentSummary";
-import { SUMMARY_PAYWALL_PART } from "@/lib/summary-gate";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -104,8 +102,6 @@ export default async function ClassDetailPage({ params }: Props) {
     // Course 정보 가져오기
     const course = classData.courseInfo ? await getCourseBySlug(courseSlug) : null;
 
-    const summaryLines = getClassSummary3(classSlug);
-
     // 본문 중간 광고 삽입 위치: 두 번째 H2 직전 (H2가 2개 미만이면 미삽입)
     const [classContentBeforeAd, classContentAfterAd] = splitMarkdownAtNthH2(classData.content, 2);
 
@@ -170,9 +166,7 @@ export default async function ClassDetailPage({ params }: Props) {
               }
             : {}),
         keywords: classData.tags.join(", "),
-        // 본문은 누구나 읽을 수 있고, 3줄 요약 구간만 구독자에게 열린다
         isAccessibleForFree: true,
-        ...(summaryLines.length > 0 ? { hasPart: SUMMARY_PAYWALL_PART } : {}),
     };
 
     // 용어사전 성격의 페이지이므로 Article과 함께 DefinedTerm을 발행한다.
@@ -417,13 +411,6 @@ export default async function ClassDetailPage({ params }: Props) {
                             contentId={classSlug}
                             variant="compact"
                             className="mb-4 sm:mb-6 lg:hidden"
-                        />
-
-                        <ContentSummary
-                            slug={classSlug}
-                            contentType="class"
-                            lines={summaryLines}
-                            className="mb-4 sm:mb-6"
                         />
 
                         {/* Content */}

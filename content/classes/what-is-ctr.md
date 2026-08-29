@@ -51,7 +51,6 @@ summary3:
 
 ## 🎪 길거리 전단지와 같습니다
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">전단지 100장 중 몇 명이 방문했을까</div>
@@ -100,7 +99,6 @@ CTR(%) = (클릭수 ÷ 노출수) × 100
 
 ## 💼 실무에서 어떻게 활용할까요?
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">A/B 테스트 CTR 비교</div>
@@ -145,10 +143,10 @@ CTR(%) = (클릭수 ÷ 노출수) × 100
 
 클릭당 비용은 [CPC](/class/digital-marketing-terms/what-is-cpc)에서, 클릭 이후 실제 전환은 [CVR](/class/digital-marketing-terms/what-is-cvr)에서 이어집니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **CTR은 노출 대비 클릭 비율**입니다. 전단지를 받은 사람 중 실제로 가게에 방문한 비율처럼, 광고가 얼마나 효과적으로 관심을 끌었는지를 보여줍니다.
+1. CTR은 광고를 본 사람 가운데 클릭한 사람의 비율이고 클릭 수를 노출 수로 나눈 뒤 100을 곱해 구합니다.
 
-2. **공식: CTR(%) = (클릭수 ÷ 노출수) × 100**입니다. 검색 광고는 3~5%, 디스플레이 광고는 0.3~1%가 평균적입니다.
+2. 광고가 10,000번 노출되고 150번 클릭됐다면 CTR은 1.5퍼센트이고 검색 광고는 3에서 5퍼센트, 디스플레이 광고는 0.3에서 1퍼센트가 평균입니다.
 
-3. **CTR이 높으면 CPC가 낮아지는** 선순환이 생깁니다. 광고 소재 최적화를 통해 CTR을 높이는 것이 광고 성과 개선의 첫걸음입니다.
+3. CTR이 오르면 광고 시스템이 소재를 좋게 평가해 CPC가 내려가므로 소재 개선이 성과 개선의 첫걸음입니다.

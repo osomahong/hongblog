@@ -2,14 +2,12 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen } from "lucide-react";
-import { getCourseSummary3, getPublishedCourseBySlug as getCourseBySlug, getPublishedCourses } from "@/lib/content";
+import { getPublishedCourseBySlug as getCourseBySlug, getPublishedCourses } from "@/lib/content";
 import { getCourseBannerImage, getCourseBannerIntro } from "@/lib/promotions";
 import { NeoButton } from "@/components/neo";
 import { CourseClassList } from "@/components/CourseClassList";
 import { SITE_URL } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
-import { ContentSummary } from "@/components/ContentSummary";
-import { SUMMARY_PAYWALL_PART } from "@/lib/summary-gate";
 
 const educationalLevelMap: Record<string, string> = {
     BEGINNER: "Beginner",
@@ -73,8 +71,6 @@ export default async function CourseDetailPage({ params }: Props) {
     if (!course) {
         notFound();
     }
-
-    const summaryLines = getCourseSummary3(courseSlug);
 
     // 메인 배너에서 눌러 들어온 사람이 같은 그림을 다시 보게 한다.
     const bannerImage = getCourseBannerImage(courseSlug);
@@ -140,9 +136,7 @@ export default async function CourseDetailPage({ params }: Props) {
             courseWorkload: "PT1H",
             inLanguage: "ko",
         },
-        // 코스 소개는 누구나 읽을 수 있고, 3줄 요약 구간만 구독자에게 열린다
         isAccessibleForFree: true,
-        ...(summaryLines.length > 0 ? { hasPart: SUMMARY_PAYWALL_PART } : {}),
     };
 
     // 코스 내 클래스 목록을 ItemList로 추가 발행 (검색 결과 풍부도 향상)
@@ -244,13 +238,6 @@ export default async function CourseDetailPage({ params }: Props) {
                     )}
                 </div>
             </div>
-
-            <ContentSummary
-                slug={courseSlug}
-                contentType="course"
-                lines={summaryLines}
-                className="mb-6 sm:mb-10"
-            />
 
             {/* Classes List (학습 진도 표시 포함) */}
             <CourseClassList courseSlug={courseSlug} classes={course.classes} />

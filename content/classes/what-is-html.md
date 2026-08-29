@@ -56,7 +56,6 @@ summary3:
 
 ## 🏢 첫 번째 비유: 짓다 만 건물 (골조)
 
-
 <div style="overflow-x:auto; border:3px solid #000; background:#F3F3F3; padding:16px; margin:8px 0;">
   <div style="max-width:100%; display:flex; flex-wrap:wrap; gap:12px;">
     <div style="flex:1; min-width:180px; border:3px solid #000; background:#fff; padding:12px;">
@@ -104,7 +103,6 @@ HTML이 바로 이 '라벨'입니다.
 이렇게 라벨을 붙여주면, 브라우저가 그걸 읽고 우리가 보는 화면처럼 예쁘게 정리해서 보여주는 것입니다.
 
 ## ⚙️ 그래서 HTML은 어떻게 생겼나요?
-
 
 <div style="overflow-x:auto; border:3px solid #000; background:#fff; padding:16px; margin:8px 0;">
   <div style="max-width:100%; display:flex; align-items:stretch; justify-content:center; gap:8px; flex-wrap:wrap; font-family:monospace; font-size:16px;">
@@ -182,10 +180,10 @@ HTML 구조를 알면, "아, 이 버튼은 `<a>` 태그가 아니라 `<button>` 
 
 요즘은 마케터도 AI 코딩 도구로 이벤트 페이지를 직접 만듭니다. 이때 결과물이 HTML 파일로 나오는데, 제목이 `<h1>`에 들어갔는지, 버튼에 링크가 제대로 걸렸는지 확인하는 것은 우리 몫입니다. 태그를 읽을 줄 알면 AI에게 "두 번째 `<h2>` 아래 문단을 수정해줘"처럼 정확하게 요청할 수 있습니다. 브라우저가 이 태그들을 어떻게 다루는지는 [DOM](/class/digital-basic/what-is-dom) 클래스에서 확인할 수 있습니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. HTML은 웹페이지의 뼈대이자 작업 지시서입니다.
-2. 컴퓨터에게 "이건 제목, 이건 이미지"라고 알려주는 라벨(Tag) 역할을 합니다.
-3. 직접 코딩은 못 해도 괜찮습니다. 하지만 이 구조(라벨)를 볼 줄 알면, 데이터 분석과 개발자와의 협업 능력이 레벨업 됩니다.
+1. HTML은 웹페이지의 구조와 의미를 정하는 마크업 언어이고 제목과 링크, 이미지 같은 요소로 페이지를 이룹니다.
+2. 같은 글자라도 h1 태그를 붙이면 제목이 되고 a 태그를 붙이면 클릭할 수 있는 링크가 됩니다.
+3. 검색엔진은 이 태그를 읽어 무엇이 제목이고 무엇이 본문인지 판단하므로 태그를 제대로 쓰는 것이 SEO의 바탕이 됩니다.
 
 이제 웹사이트를 볼 때 그냥 그림으로 보이지 않고, 숨겨진 뼈대가 느껴지시나요? 그게 바로 좋은 눈을 가진 디지털 일잘러의 시야입니다!

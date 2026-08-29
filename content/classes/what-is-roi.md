@@ -57,7 +57,6 @@ ROAS가 "광고비 대비 매출"을 보여준다면, ROI는 **"모든 비용을
 
 ## 🏪 분식집 창업과 같습니다
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">분식집 창업 ROI 계산</div>
@@ -167,10 +166,10 @@ ROI(%) = (순이익 ÷ 투자 비용) × 100
 
 ROAS와의 차이를 더 자세히 보려면 [ROAS](/class/digital-marketing-terms/what-is-roas)를, 고객 한 명을 데려오는 비용 관점이 궁금하면 [CAC](/class/digital-marketing-terms/what-is-cac)를 함께 읽으면 됩니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **ROI는 투자 대비 순이익 비율**입니다. 분식집 창업처럼 모든 비용을 빼고 실제 남는 돈이 투자 대비 얼마인지를 보여줍니다.
+1. ROI는 투자한 총비용 대비 순이익의 비율이고 순이익을 투자 비용으로 나눈 뒤 100을 곱해 구합니다.
 
-2. **공식: ROI(%) = (순이익 ÷ 투자 비용) × 100**입니다. ROI가 양수면 수익, 0이면 본전, 음수면 적자입니다.
+2. ROAS는 광고비와 매출만 보지만 ROI는 인건비와 원가, 운영비까지 넣고 이익을 기준으로 봅니다.
 
-3. **ROAS와 ROI를 함께 봐야 진짜 수익성을 판단**할 수 있습니다. ROAS가 높아도 원가, 인건비를 빼면 적자일 수 있으므로, 최종 의사결정은 ROI를 기준으로 해야 합니다.
+3. 그래서 ROAS가 400퍼센트로 나와도 원가와 인건비를 넣고 다시 계산하면 ROI가 마이너스인 경우가 있습니다.

@@ -152,13 +152,13 @@ OCR 변환이나 별도 전처리 없이 바로 업로드해 분석을 시킬 �
 **3. 민감 정보 그대로 입력**
 - 회사 내부 자료, 고객 개인정보, 미공개 IR 자료는 [책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use)의 보안 기준에 따라 가명화, 마스킹 후 입력합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Claude는 PDF, 이미지, Word, Excel, CSV 같은 자료를 직접 받아 분석할 수 있습니다.** OCR이나 별도 전처리가 필요 없습니다.
+1. Claude는 PDF와 이미지, Word와 Excel, CSV와 HTML을 그대로 받아 분석하고 표나 요약으로 바꿔 줍니다.
 
-2. **표준 4단계 워크플로(자료 첨부 + 지시 → 요약 → 분석 → 결과물)를 흐름화하세요.** 회의록 정리, 보고서 분석, 영수증 변환, 외국어 변환 네 시나리오에 즉시 적용 가능합니다.
+2. 자료 정리는 자료 첨부와 분명한 지시, 단계 분리, 결과 검증 네 단계로 나눌 때 품질이 일정해집니다.
 
-3. **[Projects](/class/claude-in-practice/what-are-claude-projects), [Artifacts](/class/claude-in-practice/what-are-artifacts), [Skills](/class/claude-in-practice/what-are-claude-skills), [Cowork](/class/claude-in-practice/claude-cowork-overview)와 묶으면 매주 같은 품질의 결과물이 자동으로 만들어집니다.** 너무 긴 자료 한 번에 분석, 검증 없이 사용, 민감 정보 그대로 입력 세 가지를 피하세요.
+3. 100쪽짜리 보고서는 1M 컨텍스트 모델에 통째로 넣되 요약과 인사이트를 나눠 요청하고 출처가 본문에 실제로 있는지 무작위로 확인합니다.
 
 ## 📚 참고 자료
 

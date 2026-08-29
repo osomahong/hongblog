@@ -125,13 +125,13 @@ Artifacts는 단독으로도 강력하지만 다른 기능과 묶으면 효과�
 **3. 민감 정보 입력 주의**
 - Artifacts 안에 회사 보안 정보, 고객 개인정보를 직접 넣지 마세요. [책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use)의 보안 기준이 그대로 적용됩니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Artifacts는 코드, HTML, SVG, 문서 같은 결과물을 별도 패널로 띄워 시각 확인 + 즉시 수정을 가능케 하는 claude.ai 기능**입니다.
+1. Artifacts는 claude.ai 화면 옆 패널에 코드와 HTML, SVG, 표 같은 결과물을 띄워 바로 확인하게 하는 기능입니다.
 
-2. **반복 수정 흐름이 핵심 가치**입니다. 첫 결과 → 시각 확인 → 자연어 수정 → 즉시 갱신을 빠르게 반복하며 다듬습니다.
+2. 결과를 눈으로 보고 말로 고치면 그 패널에서 다시 그려지기 때문에 메모장에 옮겨 저장하고 브라우저로 여는 과정이 없어집니다.
 
-3. **[Projects](/class/claude-in-practice/what-are-claude-projects), [문서 워크플로](/class/claude-in-practice/claude-document-workflow)와 묶으면 효과가 커집니다.** 한 번에 너무 큰 결과물을 만들지 말고, 외부 공유 전에는 사람 검수가 필수입니다.
+3. 큰 결과물은 한 번에 만들지 말고 나눠 요청하며 외부로 내보내기 전에는 내용을 다시 확인합니다.
 
 ## 📚 참고 자료
 

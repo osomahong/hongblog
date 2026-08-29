@@ -52,7 +52,6 @@ CPM이 "보여주는 것"에 대한 비용이라면, CPC는 **"클릭하는 것"
 
 ## 🛏️ 백화점 시식 코너와 같습니다
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">시식 코너로 보는 CPC 과금 구조</div>
@@ -102,7 +101,6 @@ CPC = 총 광고비 ÷ 총 클릭수
 
 ## 💼 실무에서 어떻게 활용할까요?
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">CPC 계산 예시</div>
@@ -139,13 +137,13 @@ CPC = 총 광고비 ÷ 총 클릭수
 - CPC가 낮아도 전환(구매/가입)이 없다면 의미가 없습니다.
 - CTR(클릭률)이 높으면 CPC가 낮아지는 경향이 있으므로, 광고 소재 최적화가 중요합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **CPC는 광고 1회 클릭당 비용**입니다. 시식 코너에서 실제로 맛보는 사람에게만 비용을 내는 것처럼, 클릭이라는 행동에 대해 과금됩니다.
+1. CPC는 광고를 한 번 클릭할 때마다 광고주가 내는 비용이고 노출만으로는 돈이 나가지 않습니다.
 
-2. **공식: CPC = 총 광고비 ÷ 총 클릭수**입니다. CPC가 낮을수록 같은 예산으로 더 많은 방문자를 확보할 수 있습니다.
+2. 광고비 50만 원으로 클릭이 2,500번 났다면 CPC는 200원이므로 총 광고비를 총 클릭 수로 나눠 구합니다.
 
-3. **웹사이트 트래픽 유도에 적합**하며, CTR을 높여서 CPC를 낮추는 것이 광고 최적화의 핵심입니다.
+3. 같은 예산으로 방문자를 더 얻으려면 CTR을 올려 CPC를 낮추는 쪽이 기본이고 CPC는 트래픽을 늘릴 때 맞는 과금 방식입니다.
 
 노출 기준 과금은 [CPM](/class/digital-marketing-terms/what-is-cpm) 클래스에서, 클릭률은 [CTR](/class/digital-marketing-terms/what-is-ctr) 클래스에서 이어집니다.
 

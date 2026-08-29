@@ -61,7 +61,6 @@ CSS에서 스타일을 적용할 때도, GTM에서 클릭을 추적할 때도, �
 
 ## 📞 Selector는 사람 이름 부르기와 같습니다
 
-
 <div style="overflow-x:auto;margin:16px 0;">
   <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;">
     <div style="font-weight:bold;margin-bottom:10px;">같은 HTML, 부르는 방법 3가지</div>
@@ -163,13 +162,13 @@ button { color: blue; }
 ### 3. **문제가 생겼을 때 스스로 확인할 수 있습니다**
 GTM 태그가 안 작동할 때, 개발자 도구(F12)로 Element를 확인하고 "아, class 이름이 바뀌었네"라고 스스로 원인을 파악할 수 있습니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Selector는 웹페이지에서 특정 Element를 찾아내는 '주소'입니다.** 사람 이름 부르기, 책 찾기처럼 대상을 정확하게 지정하는 방법입니다.
+1. Selector는 웹페이지에서 특정 요소를 집어내기 위한 주소이고 CSS로 모양을 바꾸거나 GTM으로 클릭을 잡을 때 씁니다.
 
-2. **주요 종류는 Tag(button), Class(.btn-primary), ID(#login-button)가 있으며,** GTM에서는 주로 Class와 ID Selector를 사용해 클릭 이벤트를 추적합니다.
+2. 유일한 값을 부르는 ID 선택자와 같은 분류를 묶는 Class 선택자, 같은 종류를 모두 잡는 Tag 선택자로 나뉩니다.
 
-3. **Selector를 알면 GTM 설정을 직접 할 수 있고,** 개발자와 정확하게 소통할 수 있으며, 추적 오류를 스스로 해결할 수 있습니다.
+3. GTM의 Click ID와 Click Classes가 이 값이라 선택자가 모호하면 의도한 버튼 말고 다른 요소까지 함께 잡힙니다.
 
 ## 참고 자료
 

@@ -141,13 +141,13 @@ summary3:
 
 [책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use) 클래스의 회사 도입 점검 5가지가 학교, 교육기관에도 그대로 적용됩니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **교육자의 표준 도구 조합은 [Projects](/class/claude-in-practice/what-are-claude-projects) + [Artifacts](/class/claude-in-practice/what-are-artifacts) + [Skills](/class/claude-in-practice/what-are-claude-skills) + [문서 워크플로](/class/claude-in-practice/claude-document-workflow)**입니다. 강의 자료, 시험 문제, 자료 변환, 학습 도우미 네 시나리오에 즉시 적용 가능합니다.
+1. 교육 종사자가 Claude로 하는 일은 수업 자료 제작과 시험 출제, 커리큘럼 설계, 학습 도우미 운영, 학사 문서 작성입니다.
 
-2. **학생 수준, 강의 톤, 자료 형식 기준을 명시한 강의 가이드부터 만드세요.** 그 위에 작업을 얹으면 매번 같은 결의 자료가 나옵니다.
+2. 과정별로 Projects를 나눠 교과서와 출제 기준을 올려 두면 새 단원에서도 같은 형식과 난이도로 자료가 나옵니다.
 
-3. **정확성, 공정성, 접근성, 개인정보 네 가지가 교육자의 핵심 책임 영역**입니다. AI 자료는 사람 검증을 거쳐 학생에게 전달되어야 합니다.
+3. 학생에게 나가는 자료는 환각이 섞이지 않았는지 표본으로 검수하고 AI로 만든 자료임을 공개할지 기관 차원에서 먼저 정합니다.
 
 ## 📚 참고 자료
 

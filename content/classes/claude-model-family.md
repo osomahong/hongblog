@@ -178,13 +178,13 @@ Claude Haiku 4.5는 공식 문서에서 **"The fastest model with near-frontier 
 **3. 비용, 속도가 가장 중요하면 Haiku로 내립니다**
 - 대량 처리, 1차 응대, 실시간 응답처럼 정확도가 일정 수준만 되면 되는 자리에는 Haiku가 더 적합합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Claude는 단일 모델이 아니라 Fable 5, Opus, Sonnet, Haiku 라인업의 모델 패밀리**입니다. 2026년 6월 Claude 5 세대의 Fable 5(일반 제공)와 Mythos 5(승인된 조직 전용)가 기존 세 라인업 위에 더해졌습니다.
+1. Claude는 하나가 아니라 최상위 Fable 5와 Opus, Sonnet, Haiku 네 라인업으로 함께 운영되는 모델 패밀리입니다.
 
-2. **Fable 5는 최상위 성능, Opus는 복잡한 실무, Sonnet은 균형, Haiku는 가장 빠름**으로 기억하면 됩니다. 가격은 Fable 5($10/$50) > Opus 5($5/$25) > Sonnet 5($3/$15) > Haiku 4.5($1/$5) 순입니다(2026년 7월 기준 1M 토큰 입력/출력 정가).
+2. 2026년 6월 9일 Claude 5 세대의 Fable 5가 나온 뒤에도 Opus와 Sonnet, Haiku는 그대로 남아 있어서 라인업을 먼저 고르고 번호는 나중에 봅니다.
 
-3. **일상 실무는 Sonnet 5로 시작**하고, 복잡한 작업은 Opus 5, 가장 높은 성능이 필요한 작업은 Fable 5로 올립니다. 비용, 속도가 우선되는 작업은 Haiku로 내려도 됩니다.
+3. Fable 5와 사양이 같은 Mythos 5는 일반 판매용이 아니라 Project Glasswing에 참여하는 승인된 조직만 초대로 씁니다.
 
 ## 📚 참고 자료
 

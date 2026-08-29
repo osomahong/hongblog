@@ -128,13 +128,13 @@ summary3:
 
 자기 직무, 도구 환경에 맞춰 한 가지를 주력으로 두고, 나머지를 보조로 쓰는 형태가 자연스럽습니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **세 AI는 만든 회사, 강조점, 도구 패키지에서 분명히 갈립니다.** ChatGPT는 대중 인지도와 부가 기능, Gemini는 Google 생태계, [Claude](/class/claude-fundamentals/what-is-claude)는 코딩, 긴 문서, 도구 패키지가 강합니다.
+1. ChatGPT는 대중 인지도와 이미지, 음성 같은 부가 기능이 넓고 Gemini는 구글 워크스페이스 연동이 강하며 Claude는 코딩과 긴 문서에서 앞섭니다.
 
-2. **Claude의 차별점은 [Claude Code](/class/claude-code-for-everyone/what-is-claude-code), Cowork, Design, Skills, MCP가 한 회사 패키지로 묶여 있다는 것**입니다. 다른 두 AI에는 같은 형태의 공식 도구가 없습니다.
+2. Claude는 1M 토큰 컨텍스트와 Claude Code, Cowork, Design으로 이어지는 도구 묶음을 갖췄고 MCP를 외부 표준으로 내놓았습니다.
 
-3. **자기 직무, 도구 환경에 맞춰 한 가지를 주력, 나머지를 보조로 쓰는 형태가 자연스럽습니다.** "가장 유명한 거 하나만 쓰면 된다"는 결론은 작업이 깊어질수록 손해가 커집니다.
+3. 같은 50쪽 보고서를 요약시키면 ChatGPT는 부연이 길고 Gemini는 검색 결과를 덧붙이며 Claude는 군더더기가 적고 앞뒤가 덜 어긋납니다.
 
 ## 📚 참고 자료
 

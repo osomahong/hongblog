@@ -58,7 +58,6 @@ CTR이 "얼마나 많은 사람이 관심을 보였는가"라면, CVR은 **"관�
 
 ## 🛒 마트 시식 코너와 같습니다
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">시식 코너로 보는 CVR</div>
@@ -113,7 +112,6 @@ CVR(%) = (전환 수 ÷ 클릭 수) × 100
 
 ## 💼 실무에서 어떻게 활용할까요?
 
-
 <div style="overflow-x:auto; margin:1.5rem 0;">
   <div style="max-width:100%; border:3px solid #000; background:#fff;">
     <div style="background:#FFD700; border-bottom:3px solid #000; padding:10px 16px; font-weight:700;">CVR 계산 예시</div>
@@ -163,10 +161,10 @@ CVR(%) = (전환 수 ÷ 클릭 수) × 100
 
 전환의 정의 자체가 궁금하면 [전환(Conversion)](/class/digital-marketing-terms/what-is-conversion)을, 노출부터 전환까지 전체 단계는 [퍼널](/class/digital-marketing-terms/what-is-funnel)에서 이어집니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **CVR은 방문자 중 전환을 완료한 비율**입니다. 마트 시식 코너에서 실제 구매로 이어진 비율처럼, 마케팅 퍼널의 최종 효율을 보여줍니다.
+1. CVR은 방문하거나 클릭한 사람 가운데 실제로 전환을 마친 비율이고 전환 수를 방문자 수로 나눈 뒤 100을 곱해 구합니다.
 
-2. **공식: CVR(%) = (전환 수 ÷ 방문자 수) × 100**입니다. 이커머스 평균 1~3%, SaaS 평균 3~7% 수준입니다.
+2. 이커머스는 1에서 3퍼센트, SaaS는 3에서 7퍼센트 수준이 평균이라 이 범위를 크게 벗어나면 전환 과정을 먼저 봅니다.
 
-3. **CVR이 낮다면 전환 과정에 문제가 있다는 신호**입니다. 랜딩 페이지, 결제 과정, CTA 등을 점검하고 A/B 테스트로 개선해야 합니다.
+3. 광고비를 늘렸는데 매출이 그대로면 유입이 아니라 랜딩 페이지나 결제 과정에 문제가 있다는 신호입니다.

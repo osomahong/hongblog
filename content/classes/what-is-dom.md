@@ -55,7 +55,6 @@ JavaScript나 GTM 같은 도구들은 이 DOM이라는 지도가 없으면 아�
 
 ## 🏢 첫 번째 비유: 회사의 '조직도'
 
-
 <div style="overflow-x:auto;margin:16px 0;">
   <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;font-size:13px;">
     <div style="font-weight:bold;margin-bottom:10px;">DOM 트리: 상자 안의 상자 구조</div>
@@ -103,7 +102,6 @@ DOM은 이렇게 웹페이지의 모든 요소를 부모(상위 폴더)와 자�
 이렇게 정확한 주소가 생성되어야만, 웹사이트에게 "'테헤란로 123번지'에 누가 방문해서 벨을 누르면(Click) 나한테 알려줘!"라고 시킬 수 있는 겁니다.
 
 ## ⚙️ 그래서 DOM은 어떻게 작동하나요?
-
 
 <div style="overflow-x:auto;margin:16px 0;">
   <div style="display:flex;flex-wrap:wrap;gap:12px;max-width:100%;font-family:sans-serif;font-size:13px;">
@@ -154,11 +152,11 @@ GTM에서 '트리거'를 설정할 때, "CSS 선택자(Selector)"라는 말을 �
 개발자에게 "이 버튼 클릭 추적이 안 돼요"라고 말하면 서로 답답합니다.
 하지만 "이 버튼이 DOM 상에서 고유한 ID가 없어서 GTM이 못 찾네요. ID 하나만 부여해 주실 수 있나요?"라고 말해보세요. 개발자가 깜짝 놀라며 즉시 해결해 줄 겁니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. DOM은 HTML 문서를 컴퓨터가 이해하기 쉽게 정리한 조직도이자 지도입니다.
-2. 모든 웹페이지 요소에 정확한 주소와 소속(부모-자식 관계)을 부여합니다.
-3. JavaScript와 GTM은 이 DOM 지도를 보고 원하는 요소를 찾아가서 클릭을 세거나 내용을 바꿉니다.
+1. DOM은 브라우저가 HTML을 읽어 만든 트리 구조이고 자바스크립트가 화면 요소를 찾아 바꿀 때 이 구조를 씁니다.
+2. 화면에 똑같이 생긴 버튼이 여럿이어도 DOM의 계층 구조와 속성으로 어느 것을 눌렀는지 구분합니다.
+3. GTM 트리거의 CSS 선택자가 바로 이 주소여서 클릭이 안 잡히는 문제는 대개 선택자가 잘못됐거나 모호해서 생깁니다.
 
 이제 웹페이지를 볼 때 단순히 그림으로 보지 마세요.
 "아, 저 버튼은 어떤 부모 태그 밑에 소속되어 있는 녀석일까?"

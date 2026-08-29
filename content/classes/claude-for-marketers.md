@@ -132,13 +132,13 @@ summary3:
 **3. 보안 정책 무시**
 - 고객 실명, 매출 수치를 무방비로 입력하면 사고로 이어집니다. 회사 보안 정책에 따라 가명화, 마스킹 후 입력합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **마케터의 표준 도구 조합은 [Projects](/class/claude-in-practice/what-are-claude-projects) + [Skills](/class/claude-in-practice/what-are-claude-skills) + [Cowork](/class/claude-in-practice/claude-cowork-overview) + [Artifacts](/class/claude-in-practice/what-are-artifacts)**입니다. 1단계 챗부터 시작해 한 단계씩 자동화 깊이를 더하는 게 정착에 가장 효과적입니다.
+1. 마케터가 Claude로 자동화할 만한 반복 업무는 광고 리포트 정리와 콘텐츠 캘린더 관리, 캠페인 카피 작성, 고객 리서치입니다.
 
-2. **광고 리포트, 콘텐츠 캘린더, 캠페인 카피, 고객 리서치 네 시나리오가 즉시 적용 가능한 영역**입니다. 매주 반복되는 작업부터 자동화하는 게 효과가 가장 큽니다.
+2. claude.ai 챗으로 시작해 같은 자료를 반복해 쓰게 되면 Projects로 옮기고 절차가 굳으면 Skills로 저장하는 순서로 올립니다.
 
-3. **AI 출력을 그대로 사용하지 말고, 의견 먼저 말하지 말고, 보안 정책을 무시하지 마세요.** [환각](/class/claude-fundamentals/what-is-hallucination), [아부](/class/claude-fundamentals/what-is-sycophancy), [책임감 있는 사용](/class/claude-fundamentals/responsible-ai-use) 세 클래스가 마케터의 일상 검증 도구입니다.
+3. 카피와 분석은 모델이 사용자 말에 맞춰 주는 아부를 피하려고 강점 분석과 약점 분석을 따로 두 번 요청해 비교합니다.
 
 ## 📚 참고 자료
 

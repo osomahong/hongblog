@@ -63,7 +63,6 @@ HTML 코드에서 여는 태그 안에 `이름="값"` 형태로 작성됩니다.
 
 ## 🏷️ 첫 번째 비유: 택배 상자의 송장
 
-
 <div style="overflow-x:auto;margin:16px 0;">
   <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;">
     <div style="font-weight:bold;margin-bottom:10px;">태그에 붙은 송장 스티커 읽기</div>
@@ -206,11 +205,11 @@ GA나 히트맵 도구에서 "이 Element를 추적합니다"라는 메시지와
 
 "그 버튼에 추적 코드 좀 넣어주세요" 대신 "CTA 버튼에 `data-event="signup"` Attribute를 추가해 주세요"라고 요청하면, 개발자가 정확히 무엇을 해야 하는지 즉시 이해합니다. 커뮤니케이션 비용이 크게 줄어듭니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Attribute(속성)** 는 Element에 붙는 추가 정보로, `이름="값"` 형태입니다. 택배 송장처럼 각 Element를 식별하고 동작을 결정합니다.
-2. 가장 많이 쓰이는 Attribute는 **id**(고유 이름), **class**(분류), **href**(링크 주소), **src**(파일 경로), **alt**(대체 텍스트), **data-***(커스텀) 입니다.
-3. GTM의 Click ID, Click Classes, Click URL은 모두 **클릭된 Element의 Attribute 값**입니다. 이 연결 고리를 이해하면 이벤트 추적 설정이 훨씬 쉬워집니다.
+1. Attribute는 HTML 요소에 추가 정보를 붙이는 이름과 값의 쌍입니다.
+2. id는 한 요소만 가리키는 유일한 식별자이고 class는 같은 성격의 여러 요소를 한 번에 묶는 분류표입니다.
+3. GTM의 Click ID와 Click Classes가 바로 이 값이라 어떤 버튼이 눌렸는지 구분하는 트리거는 이 속성 위에서 만들어집니다.
 
 다음에 GTM에서 트리거를 설정할 때, "이 변수가 어떤 Attribute를 읽어오는 거지?"라고 한번 생각해 보세요. 그 순간, 단순한 설정 따라하기에서 원리를 이해하는 단계로 올라서게 됩니다!
 

@@ -56,7 +56,6 @@ HTML 코드에서 `<태그>내용</태그>` 형태로 작성된 것 하나하나
 
 ## 🧱 첫 번째 비유: 레고 블록
 
-
 <div style="overflow-x:auto;margin:16px 0;">
   <div style="border:3px solid #000;background:#fff;padding:16px;max-width:100%;font-family:sans-serif;">
     <div style="font-weight:bold;margin-bottom:10px;">Element(부품) 하나의 구조</div>
@@ -96,7 +95,6 @@ HTML 코드에서 `<태그>내용</태그>` 형태로 작성된 것 하나하나
 > 💡 **속성(Attribute)** 은 Element에 붙는 추가 정보입니다. 이 개념은 다음 글에서 자세히 다룹니다.
 
 ## ⚙️ Element는 어떤 종류가 있나요?
-
 
 <div style="overflow-x:auto;margin:16px 0;">
   <div style="display:flex;flex-wrap:wrap;gap:12px;max-width:100%;font-family:sans-serif;font-size:13px;">
@@ -167,11 +165,11 @@ GTM으로 버튼 클릭을 추적할 때, "Click Element"라는 변수를 만나
 
 검색 엔진은 Element의 태그 이름을 보고 콘텐츠의 중요도를 판단합니다. `<h1>` 안에 들어 있는 텍스트는 "이 페이지의 핵심 제목"으로 인식하고, `<p>` 안의 텍스트는 "본문 내용"으로 파악합니다. 올바른 Element를 사용하는 것 자체가 SEO의 기본입니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Element(요소)** 는 웹페이지를 구성하는 가장 작은 부품입니다. 버튼, 이미지, 텍스트, 링크 모두 각각 하나의 Element입니다.
-2. 모든 Element는 **태그 이름**(종류), **속성**(추가 정보), **콘텐츠**(내용물) 세 가지로 이루어져 있습니다.
-3. **구조(뼈대) / 콘텐츠(살) / 상호작용(기능)** 세 종류의 Element가 조합되어 하나의 웹페이지를 완성합니다.
+1. Element는 웹페이지를 이루는 가장 작은 부품이고 HTML에서 여는 태그와 내용, 닫는 태그로 이뤄진 하나하나가 여기에 해당합니다.
+2. 화면에 보이지 않으면서 다른 요소를 담는 구조용 요소와 제목이나 버튼처럼 눈에 보이는 콘텐츠 요소로 나뉩니다.
+3. 개발자가 이 Element를 고쳐 달라고 할 때 가리키는 단위가 이것이고 id와 class 같은 속성이 붙어야 그중 하나를 정확히 집을 수 있습니다.
 
 이제 웹사이트를 볼 때 "이 화면은 어떤 Element들로 조립되어 있을까?" 하고 상상해 보세요. 크롬에서 마우스 오른쪽 클릭 → '검사'를 누르면, 그 궁금증을 직접 눈으로 확인할 수 있습니다!
 
