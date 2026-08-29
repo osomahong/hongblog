@@ -26,6 +26,10 @@ metaDescription: GA4 로우데이터를 빅쿼리로 내보낸 뒤, 세션 데�
 ogTitle: 'GA4 빅쿼리 로우데이터로 직접 어트리뷰션 분석하기: 3가지 모델 SQL 쿼리 포함'
 ogDescription: GA4 기본 보고서만으로는 부족한 어트리뷰션 분석을 빅쿼리 SQL로 직접 구현합니다. 라스트클릭, 퍼스트터치, 선형 모델 쿼리를 단계별로 안내합니다.
 ogImage: /og/ga4-bigquery-attribution-models.png
+summary3:
+  - 'GA4 기본 보고서의 채널별 전환은 대부분 라스트클릭 한 관점이라 앞 단계에서 일한 채널이 낮게 잡힙니다.'
+  - '빅쿼리로 내보낸 로우데이터는 user_pseudo_id와 ga_session_id를 묶어 세션 단위 데이터마트로 만드는 것이 첫 단계입니다.'
+  - '라스트클릭과 퍼스트터치, 선형 모델은 각각 LAST_VALUE와 FIRST_VALUE, 1을 접점 수로 나누는 방식으로 같은 데이터에 동시에 적용할 수 있습니다.'
 ---
 
 ## GA4 기본 보고서로는 어트리뷰션 분석이 부족한 이유
