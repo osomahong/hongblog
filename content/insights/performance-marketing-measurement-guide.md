@@ -23,6 +23,10 @@ metaDescription: 광고를 돌렸는데 이 숫자가 잘 나온 건지 모르�
 ogImage: /og/performance-marketing-measurement-guide.png
 ogTitle: '퍼포먼스 마케팅 성과 측정법: CTR, CPC, CVR, CPA, ROAS 완전 정리'
 ogDescription: 클릭은 소재 반응, 구매는 상세페이지 반응. 이 차이를 아는 것이 성과 측정의 출발점입니다. 5가지 핵심 지표와 업종별 벤치마크 데이터를 정리했습니다.
+summary3:
+  - '퍼포먼스 마케팅 성과는 CTR과 CPC, CVR, CPA, ROAS 다섯 지표로 읽습니다.'
+  - '검색 광고는 이미 관심 있는 사람을 거두는 쪽이라 CTR이 3에서 8퍼센트지만 디스플레이 광고는 0.3에서 2퍼센트에 머뭅니다.'
+  - 'CTR은 소재의 매력을 볼 뿐 매출과 직접 이어지지 않으므로 클릭 뒤의 전환까지 함께 봐야 합니다.'
 ---
 
 퍼포먼스 마케팅 성과는 [CTR(클릭률)](/class/digital-marketing-terms/what-is-ctr), [CPC(클릭당 비용)](/class/digital-marketing-terms/what-is-cpc), [CVR(전환율)](/class/digital-marketing-terms/what-is-cvr), CPA(전환당 비용), [ROAS(광고비 대비 매출)](/class/digital-marketing-terms/what-is-roas) 5가지 지표로 측정합니다. 클릭은 광고 소재에 대한 반응이고 구매는 상세페이지에 대한 반응이므로, 이 둘을 구분해서 보는 것이 성과 측정의 출발점입니다.
