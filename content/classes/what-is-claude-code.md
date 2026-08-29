@@ -39,6 +39,10 @@ metaDescription: >-
   클로드 코드는 터미널(CLI)에서 대화로 코딩을 시키는 앤트로픽의 AI 도구입니다. 일반 클로드와의 차이, 할 수 있는 일, 시작 방법까지 비개발자도 이해할 수 
   있게 정리했습니다.
 ogImage: /og/what-is-claude-code.png
+summary3:
+  - 'Claude Code는 앤트로픽이 만든 에이전트형 코딩 도구로 코드베이스를 직접 읽고 고치며 명령까지 실행합니다.'
+  - '터미널과 VS Code, JetBrains, 데스크톱 앱, 웹이 같은 엔진을 쓰기 때문에 환경을 옮겨도 쓰는 방법이 같습니다.'
+  - '테스트 작성과 의존성 업데이트 같은 반복 작업을 맡기고 커밋과 PR 생성까지 git 안에서 이어서 처리합니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs와 platform.claude.com/docs의 Claude Code 공식 가이드를 한국 비개발자 입문자가 보기 편하게 정리한 글입니다.

@@ -44,6 +44,10 @@ quiz:
       변환은 작업의 핵심이 아닙니다. 파일을 직접 이해하는 능력이 핵심입니다.
     correctIndex: 0
 ogImage: /og/what-is-claude.png
+summary3:
+  - 'Claude는 미국 AI 안전 연구 회사 앤트로픽이 만든 AI 어시스턴트이고 한국어 대화와 글쓰기, 코드 작성, PDF와 이미지 분석을 한 화면에서 처리합니다.'
+  - '글쓰기와 번역 같은 기본 작업은 세 AI가 비슷해서 실제 차이는 회사 성격과 붙어 있는 도구에서 납니다.'
+  - 'Claude Code와 Remote Control, Cowork의 Dispatch처럼 ChatGPT나 Gemini에 같은 형태가 없는 도구가 옮겨 타는 이유가 됩니다.'
 ---
 
 이 글은 [앤트로픽](/class/claude-fundamentals/what-is-anthropic)이 운영하는 Anthropic Academy(anthropic.com/learn), claude.com/resources, platform.claude.com/docs의 공식 교육 자료 중 Claude의 정체와 기능을 한국 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.
