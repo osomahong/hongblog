@@ -31,6 +31,10 @@ metaDescription: Meta Marketing API 접근 방법, Insights 필드 매핑, 전�
 ogTitle: 비개발자도 쓰기 편하게 정리한 Meta Ads API 데이터
 ogDescription: Meta Marketing API 접근부터 Insights 필드 매핑, 전환 데이터 파싱, 코드 예시까지. 마케터가 알아야 할 핵심을 정리했습니다.
 ogImage: /og/meta-ads-api-data-for-non-developers.png
+summary3:
+  - 'Meta Ads API로 가져오는 데이터는 캠페인 설정인 구조와 노출과 비용인 성과, 연령과 지면 같은 분류 세 종류입니다.'
+  - '읽기만 할 때는 ads_read 권한이면 되고 Advanced Access가 필요하면 비즈니스 인증에 사업자 서류를 내고 며칠을 기다립니다.'
+  - '전환은 단일 숫자가 아니라 actions 배열로 오기 때문에 필요한 전환 유형을 골라 꺼내는 처리가 따로 필요합니다.'
 ---
 
 ## Meta 광고 데이터, 왜 API로 가져와야 할까요
