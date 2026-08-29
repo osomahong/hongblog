@@ -32,6 +32,10 @@ metaDescription: >-
 ogImage: /og/vscode-claude-code-terminal-guide.png
 ogTitle: VS Code에서 클로드 코드 실행하기 (윈도우 화면 그대로 따라하기)
 ogDescription: 검은 PowerShell 대신 VS Code에서 클로드 코드를 실행하는 순서를 화면 그림과 함께 정리했습니다.
+summary3:
+  - 'VS Code는 클로드 코드를 실행하는 터미널과 그 결과 파일을 한 화면에서 보게 해 주는 작업 창입니다.'
+  - '설치할 때 PATH에 추가 항목을 체크하지 않으면 터미널에서 claude 명령이 인식되지 않습니다.'
+  - '작업할 폴더를 먼저 열고 그다음 터미널을 여는 순서를 지켜야 클로드 코드가 원하는 위치에서 일합니다.'
 ---
 
 ## PowerShell 대신 VS Code를 쓰는 이유
