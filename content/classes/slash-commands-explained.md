@@ -36,6 +36,10 @@ quiz:
 metaTitle: '클로드 코드 슬래시 명령어 정리: 기본 명령과 커스텀 명령'
 metaDescription: '슬래시 명령은 Claude Code에서 /로 시작해 자주 쓰는 작업을 한 번에 부르는 기능입니다. 기본 제공 명령과 직접 만드는 커스텀 명령을 정리했습니다.'
 ogImage: /og/slash-commands-explained.png
+summary3:
+  - '슬래시 명령은 Claude Code에서 슬래시로 시작해 자주 쓰는 작업을 한 번에 부르는 기능이고 기본 제공 명령과 직접 만든 커스텀 명령으로 나뉩니다.'
+  - '입문자가 자주 쓰는 명령은 목록을 보는 /help와 대화를 비우는 /clear, 프로젝트에 CLAUDE.md를 만드는 /init입니다.'
+  - '커스텀 명령은 .claude/commands 폴더에 마크다운으로 만들어 프로젝트 단위로 공유하고 Claude가 맥락을 보고 알아서 부르게 하려면 Skills로 만듭니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs의 슬래시 명령(Slash Commands), Skills 자료를 한국 비개발자 입문자가 보기 편하게 정리한 글입니다.

@@ -37,6 +37,10 @@ quiz:
 metaTitle: '클로드 스킬(Claude Skills) 뜻과 만드는 방법'
 metaDescription: '클로드 스킬(Claude Skills)은 자주 시키는 작업을 폴더 단위로 묶어 Claude가 자동으로 불러 쓰게 만든 재사용 단위입니다. 구조와 만드는 순서를 정리했습니다.'
 ogImage: /og/what-are-claude-skills.png
+summary3:
+  - 'Claude Skills는 자주 시키는 작업의 절차를 폴더로 묶어 두고 Claude가 맥락에 맞을 때 알아서 불러 쓰게 만든 재사용 단위입니다.'
+  - '폴더에는 이름과 설명, 사용 시점, 절차를 적은 SKILL.md가 반드시 들어가고 참조 자료와 보조 스크립트, 출력 템플릿을 함께 둘 수 있습니다.'
+  - 'claude.ai에서는 Pro 이상 플랜에서 쓸 수 있고 Claude Code와 개발자 플랫폼에서도 동작하며 한 스킬에 여러 일을 넣지 않는 편이 안정적입니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 claude.com/blog의 Skills 공식 발표와 Anthropic Academy 자료를 한국 입문자가 보기 편하게 정리한 글입니다.
