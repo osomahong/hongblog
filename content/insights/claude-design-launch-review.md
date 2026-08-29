@@ -31,6 +31,10 @@ metaDescription: >-
 ogImage: /og/claude-design-launch-review.png
 ogTitle: '클로드 디자인 사용법 정리: 시작하는 법과 디자인 시스템 설정'
 ogDescription: 'claude.ai/design 접근 방법부터 디자인 시스템 설정, 내보내기 형식, 사용량 한도까지 공식 문서 기준으로 정리했습니다.'
+summary3:
+  - '클로드 디자인은 자연어 지시로 웹 시안과 디자인 시스템을 만들어 프로덕션 코드로 넘기는 앤트로픽 랩스의 도구입니다.'
+  - '2026년 4월 17일 공개됐고 2026년 8월 기준 Pro와 Max, Team, Enterprise 플랜에 추가 결제 없이 베타로 들어 있습니다.'
+  - '디자인 시스템을 한 번 설정하면 이후 시안에 같은 색과 서체, 컴포넌트가 자동으로 적용되고 결과는 ZIP과 PDF, PPTX, HTML로 내보냅니다.'
 ---
 
 클로드 디자인(Claude Design)은 자연어 지시로 웹 시안과 디자인 시스템을 만들고 그 결과를 프로덕션 코드로 넘기는 [앤트로픽](/class/claude-fundamentals/what-is-anthropic) 랩스의 도구입니다. 2026년 4월 17일 공개됐고, 2026년 8월 기준 Pro, Max, Team, Enterprise 플랜에서 베타로 제공됩니다.

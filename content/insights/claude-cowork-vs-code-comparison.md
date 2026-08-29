@@ -22,6 +22,10 @@ metaDescription: Claude Cowork과 Claude Code는 같은 AI인데 왜 따로 있�
 ogImage: /og/claude-cowork-vs-code-comparison.png
 ogTitle: '클로드 코워크 vs 클로드 코드: 같은 Claude인데 뭐가 다를까?'
 ogDescription: Cowork은 비개발자를 위한 파일, 브라우저 에이전트, Code는 개발자를 위한 코딩 에이전트입니다. 비유와 비교표로 차이를 정리했습니다.
+summary3:
+  - 'Claude Desktop 앱의 챗과 코워크, 코드 세 탭은 묻는 도구와 시키는 도구, 만드는 도구로 나뉩니다.'
+  - '코워크는 앤트로픽이 나머지 모든 사람을 위한 Claude Code라고 소개한 도구여서 코딩을 몰라도 데스크톱 화면에서 바로 시작합니다.'
+  - '코워크는 30분 넘게 혼자 일하면서 웹에서 자료를 모으고 결과를 로컬 파일로 정리하며 판단이 필요하면 사람에게 묻습니다.'
 ---
 
 ## "같은 클로드인데 왜 세 개나 있지?"

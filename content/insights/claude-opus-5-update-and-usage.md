@@ -31,6 +31,10 @@ metaDescription: >-
 ogImage: /og/claude-opus-5-update-and-usage.png
 ogTitle: Claude Opus 5 업데이트 방법과 사용법 정리
 ogDescription: '클로드 코드 업데이트부터 모델 선택, effort 레벨 조절, 요금 조건까지 Opus 5를 실제로 쓰는 데 필요한 내용을 정리했습니다.'
+summary3:
+  - 'Claude Opus 5는 앤트로픽이 2026년 7월 24일 공개한 모델이고 API 이름은 claude-opus-5입니다.'
+  - 'Max와 Team Premium은 Opus 5가 기본 모델이지만 Pro와 Team Standard는 기본이 Sonnet 5라 직접 바꾸지 않으면 Opus 5로 시작되지 않습니다.'
+  - '클로드 코드에서는 v2.1.219 이상으로 올린 뒤 model opus 명령을 실행하고 effort는 기본값 high에서 시작해 필요할 때만 조절합니다.'
 ---
 
 ## Claude Opus 5는 2026년 7월 24일 공개된 앤트로픽의 새 Opus 모델입니다
