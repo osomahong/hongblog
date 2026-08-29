@@ -26,6 +26,10 @@ metaDescription: >-
 ogTitle: 'GTM 디버깅 실전 가이드: 태그가 안 찍힐 때 원인 찾는 법'
 ogDescription: 'GTM Preview부터 Network 탭까지, 태그 미작동 원인을 체계적으로 찾는 실전 디버깅 가이드입니다.'
 ogImage: /og/gtm-debugging-practical-guide.png
+summary3:
+  - 'GTM 디버깅의 첫 단계는 미리보기 모드를 켜고 발동된 태그와 안 된 태그를 나눠 보는 일입니다.'
+  - '태그가 안 찍히는 가장 흔한 원인은 트리거 조건과 실제 값의 불일치이고 URL 끝 슬래시 하나로도 어긋납니다.'
+  - '미리보기 창이 아예 열리지 않으면 광고 차단 확장과 이전 세션 쿠키, GTM 컨테이너 ID가 맞는지 확인합니다.'
 ---
 
 GTM(Google Tag Manager)을 설정하고 나면 "잘 되겠지"라고 생각하기 쉽습니다. 그런데 막상 GA4에 들어가보면 데이터가 안 들어오거나, [전환](/class/digital-marketing-terms/what-is-conversion) 이벤트가 2번 찍히거나, 특정 페이지에서만 태그가 작동하지 않는 상황이 꽤 자주 발생합니다.
