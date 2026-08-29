@@ -49,7 +49,7 @@ summary3:
 
 ### 1. 의사결정 우선 설계
 
-차트를 선택하기 전에 **"이 시각화가 어떤 행동이나 결정을 가능하게 하는가?"**를 먼저 질문해야 합니다. 시각화의 목적은 예쁜 그래프를 만드는 것이 아니라, 보는 사람이 다음 행동을 결정할 수 있게 돕는 것입니다.
+차트를 선택하기 전에 **"이 시각화가 어떤 행동이나 결정을 가능하게 하는지"**를 먼저 질문해야 합니다. 시각화의 목적은 예쁜 그래프를 만드는 것이 아니라, 보는 사람이 다음 행동을 결정할 수 있게 돕는 것입니다.
 
 ### 2. 데이터-잉크 비율 극대화
 
@@ -79,7 +79,7 @@ Edward Tufte가 제안한 개념으로, 시각화에서 실제 데이터를 나�
 
 <div style="overflow-x:auto;margin:24px 0;">
 <div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
-<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">30초 차트 선택 가이드: 무엇을 보여주고 싶은가?</div>
+<div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">30초 차트 선택 가이드: 무엇을 보여줄지 정하기</div>
 <div style="display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:2px solid #000;">
 <span>항목 간 크기를 비교하고 싶다</span><span style="font-weight:700;white-space:nowrap;">막대 차트</span>
 </div>

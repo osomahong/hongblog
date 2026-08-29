@@ -167,7 +167,7 @@ A. 쓸 수 있습니다. 다만 이 기능의 이득이 가장 큰 쪽은 이미
 
 다만 전선이 모든 도구로 펼쳐진 것은 아닙니다. Canva는 클로드 디자인 출력물을 그대로 Canva 편집 화면으로 가져오는 네이티브 통합을 택했습니다. 위협이 아니라 하류 협업 도구로 자리 잡는 길을 고른 셈입니다.
 
-분석가들의 평가는 갈립니다. [VentureBeat](https://venturebeat.com/technology/anthropic-just-launched-claude-design-an-ai-tool-that-turns-prompts-into-prototypes-and-challenges-figma)는 "Figma에 맞선 도전"으로 규정한 반면, [The New Stack](https://thenewstack.io/anthropic-claude-design-launch/)은 "Figma의 협업 영역이 아니라 디자이너 대신 빠른 시안이 필요한 새 사용자층을 노린다"고 분석했습니다. 두 관점의 공통점은 창업자, 비디자이너 PM, 빠른 내부 툴이 필요한 개발자가 핵심 타깃이라는 점입니다.
+분석가들의 평가는 나뉩니다. [VentureBeat](https://venturebeat.com/technology/anthropic-just-launched-claude-design-an-ai-tool-that-turns-prompts-into-prototypes-and-challenges-figma)는 "Figma에 맞선 도전"으로 규정한 반면, [The New Stack](https://thenewstack.io/anthropic-claude-design-launch/)은 "Figma의 협업 영역이 아니라 디자이너 대신 빠른 시안이 필요한 새 사용자층을 노린다"고 분석했습니다. 두 관점의 공통점은 창업자, 비디자이너 PM, 빠른 내부 툴이 필요한 개발자가 핵심 타깃이라는 점입니다.
 
 ## 앤트로픽의 최근 흐름에서 읽히는 방향
 

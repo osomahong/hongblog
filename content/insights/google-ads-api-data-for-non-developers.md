@@ -291,7 +291,7 @@ FROM asset_group_asset
 WHERE campaign.advertising_channel_type = 'PERFORMANCE_MAX'
 ```
 
-`performance_label`은 BEST, GOOD, LOW, LEARNING, PENDING 중 하나입니다. 숫자 지표는 제공되지 않습니다.
+`performance_label`은 BEST, GOOD, LOW, LEARNING, PENDING 다섯 가지 값 가운데 하나로 옵니다. 숫자 지표는 제공되지 않습니다.
 
 > **AI 활용 팁**: AI에게 "PMax 캠페인의 에셋 그룹별 성과와 에셋별 성과 등급을 한 번에 가져오는 코드를 작성해줘. 두 개의 GAQL 쿼리 결과를 하나의 리포트로 합쳐줘"라고 요청하면 됩니다.
 

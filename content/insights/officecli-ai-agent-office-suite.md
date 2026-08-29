@@ -139,7 +139,7 @@ officecli watch deck.pptx
 
 ![OfficeCLI로 만든 엑셀 민감도 분석 표, 성장률과 유지율을 가로세로 축으로 두고 각 칸의 금액이 빨강에서 초록으로 구분된 화면](/images/insights/officecli-ai-agent-office-suite/officecli-xlsx-result.png)
 
-엑셀 예시는 성장률과 유지율을 두 축으로 놓은 민감도 표입니다. 값이 낮은 칸은 빨강, 높은 칸은 초록으로 칠해지는 조건부 서식이 들어가 있고, 아래쪽에 시트 탭이 여러 개 보입니다. 실제 엑셀에서 열린 화면입니다.
+엑셀 예시는 성장률과 유지율을 두 가지 축으로 놓은 민감도 표입니다. 값이 낮은 칸은 빨강, 높은 칸은 초록으로 칠해지는 조건부 서식이 들어가 있고, 아래쪽에 시트 탭이 여러 개 보입니다. 실제 엑셀에서 열린 화면입니다.
 
 ![OfficeCLI로 만든 워드 지원서 양식, 배경 조회 항목마다 체크박스가 있고 아래에 서명 동의 문단이 이어지는 문서](/images/insights/officecli-ai-agent-office-suite/officecli-docx-result.png)
 

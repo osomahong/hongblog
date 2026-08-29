@@ -17,7 +17,7 @@ highlights:
 - 시스템 유저 토큰 발급부터 Insights API 호출, CSV 저장까지 전체 Python 코드 예시
 quiz:
 - options:
-  - 'clicks: 광고에 대한 모든 클릭을 집계하는 표준 지표'
+  - 'clicks: 광고에서 일어난 모든 클릭을 집계하는 표준 지표'
   - 'inline_link_clicks: 랜딩페이지로 이동하는 클릭만 집계하는 지표'
   - 'outbound_clicks: 외부 URL로 이동하는 클릭을 집계하는 지표'
   - 'link_click: actions 배열 내의 링크 클릭 action_type'

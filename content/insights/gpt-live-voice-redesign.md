@@ -63,7 +63,7 @@ GPT-Live는 오픈AI가 챗GPT의 음성 대화를 위해 새로 만든 실시�
 
 ## 공식 아키텍처: 대화는 앞에서, 무거운 일은 뒤에서
 
-오픈AI가 공개한 시스템 구성도를 보면 구조가 두 갈래로 나뉩니다.
+오픈AI가 공개한 시스템 구성도를 보면 구조가 두 가지로 나뉩니다.
 
 ![오픈AI가 공개한 GPT-Live 시스템 아키텍처. 사용자와 음성을 주고받는 실시간 경로와, 검색과 코드 도구를 쓰는 GPT-5.5 위임 경로가 분리되어 있다](/images/insights/gpt-live-voice-redesign/01-openai-announcement.jpg)
 

@@ -187,7 +187,7 @@ feature/user-auth 브랜치를 만들고 현재 변경사항을 커밋
 
 ### 3. MCP로 외부 도구 연결
 
-Model Context Protocol(MCP)은 AI 도구를 외부 데이터 소스에 연결하는 개방형 표준입니다. MCP를 통해 Claude Code가 Google Drive의 문서를 읽거나, Jira 티켓을 업데이트하거나, Slack에서 데이터를 가져올 수 있습니다. [MCP가 무엇인지](/insights/mcp-easy-guide-for-non-developers)는 이전 글에서 자세히 다뤘습니다.
+Model Context Protocol(MCP)은 AI 도구를 외부 데이터 소스에 연결하는 개방형 표준입니다. MCP를 붙이면 Claude Code가 Google Drive의 문서를 읽거나, Jira 티켓을 업데이트하거나, Slack에서 데이터를 가져올 수 있습니다. [MCP가 무엇인지](/insights/mcp-easy-guide-for-non-developers)는 이전 글에서 자세히 다뤘습니다.
 
 ### 4. 멀티 에이전트와 서브에이전트
 

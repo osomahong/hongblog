@@ -10,12 +10,12 @@ tags:
 quiz:
   - options:
       - 각 인터페이스마다 서로 다른 AI 모델이 사용된다
-      - 같은 AI 모델이라도 여러 가지 인터페이스를 통해 접근할 수 있다
+      - 같은 AI 모델이라도 여러 가지 인터페이스로 접근할 수 있다
       - 인터페이스가 다르면 AI의 성능도 완전히 달라진다
     question: 'AI 모델(Claude, GPT 등)과 인터페이스(웹, 앱, 터미널 등)의 관계를 가장 올바르게 설명한 것은?'
     explanation: >-
       AI 모델은 두뇌이고 인터페이스는 접근 통로입니다. 같은 Claude 모델이라도 웹(claude.ai), 데스크탑 앱,
-      터미널(Claude Code), 다른 도구(Cursor 등)를 통해 사용할 수 있습니다. 통로가 다를 뿐, 핵심 모델은 동일합니다.
+      터미널(Claude Code), 다른 도구(Cursor 등)에서 쓸 수 있습니다. 통로가 다를 뿐, 핵심 모델은 동일합니다.
     correctIndex: 1
 metaTitle: 'AI를 쓸 수 있는 방법 5가지 : 웹, 앱, 터미널, 도구 탑재, MCP 완전 정리'
 metaDescription: >-

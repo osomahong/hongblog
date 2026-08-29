@@ -30,14 +30,17 @@ const RULES: Rule[] = [
 
     // ── 번역투 (전면 금지) ──
     { pattern: /중 하나(입니다|였습니다|이다|다\b)/g, label: "번역투 '~중 하나입니다': '흔한 ~입니다'로", severity: "HARD" },
-    { pattern: /에 대(해|한|해서)\s/g, label: "번역투 '~에 대해/대한': 조사로 직접 연결", severity: "HARD" },
+    // GA4 등 제품 화면에 그대로 뜨는 오류 문구는 예외. 문구를 바꾸면 검색해서 들어온 사람이 못 알아본다.
+    { pattern: /에 대(해|한|해서)\s/g, label: "번역투 '~에 대해/대한': 조사로 직접 연결", severity: "HARD", allowContext: /데이터 세트에 대한 액세스/ },
     { pattern: /[을를] 통해/g, label: "번역투 '~을 통해': '~로'로", severity: "HARD" },
     { pattern: /에 있어서?\s/g, label: "번역투 '~에 있어서': '~에서'로", severity: "HARD" },
     { pattern: /되어지|보여집니다|여겨집니다/g, label: "이중 피동: 능동이나 단일 피동으로", severity: "HARD" },
     // 서치 콘솔 등 제품 UI에 그대로 표시되는 문구는 예외. 화면 문구를 바꾸면 교육 자료가 틀려진다.
     { pattern: /에 의해\s/g, label: "번역투 '~에 의해': 행위 주어를 주어 자리로", severity: "HARD", allowContext: /태그에 의해|txt에 의해/ },
     { pattern: /라는 사실[을이]/g, label: "번역투 '~라는 사실': '~인 것', '~인 점'으로", severity: "HARD" },
-    { pattern: /당신/g, label: "'당신' 금지: '여러분' 또는 주어 생략", severity: "HARD" },
+    // 인용부호 안의 '당신'은 예외. 외부 발언 인용이거나 그 단어 자체를 다루는 예시다
+    // (메타 광고 정책 글은 "당신" 표현 자체가 주제다). 바꾸면 인용이 인용이 아니게 된다.
+    { pattern: /당신/g, label: "'당신' 금지: '여러분' 또는 주어 생략", severity: "HARD", allowContext: /["'“”‘’]당신|당신["'“”‘’]/ },
     { pattern: /에도 불구하고/g, label: "번역투 '~에도 불구하고': '~인데도'로", severity: "HARD" },
     { pattern: /하는 것을 돕/g, label: "번역투 '~하는 것을 돕다': '~하기 쉬워지다'로", severity: "HARD" },
     { pattern: /만약 .{0,20}(다면|라면)/g, label: "'만약 ~한다면' 남용: '~하면'으로", severity: "SOFT" },

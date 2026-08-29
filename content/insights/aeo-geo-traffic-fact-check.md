@@ -56,7 +56,7 @@ Gartner의 예측은 2024년 2월 19일 공식 보도자료에 게시되었습�
 
 Google 검색 트래픽은 전년 대비 오히려 **소폭 증가**했습니다. AI 플랫폼이 전체 웹 트래픽에서 차지하는 비중은 아직 **1% 수준**입니다.
 
-### 이 예측에 대한 반론
+### 이 예측을 반박하는 시각
 
 Search Engine Journal은 7가지 반론을 제기했습니다. 핵심만 추리면 다음과 같습니다.
 
@@ -116,7 +116,7 @@ AI가 Google을 대체하는 게 아니라, **Google이 스스로 AI화**되면�
 | **AEO** | Answer Engine Optimization | ChatGPT, Perplexity 등 답변 엔진 |
 | **GEO** | Generative Engine Optimization | AI Overviews, Gemini 등 생성형 검색 |
 
-Princeton 대학 연구팀(Aggarwal et al., 2024)이 KDD 학회에서 발표한 GEO 논문의 핵심 결론은 이렇습니다: GEO 최적화를 통해 **생성형 엔진 응답에서의 가시성을 최대 40% 향상**시킬 수 있으며, 기존 SEO 전략과 병행할 때 가장 효과적입니다.
+Princeton 대학 연구팀(Aggarwal et al., 2024)이 KDD 학회에서 발표한 GEO 논문의 핵심 결론은 이렇습니다: GEO 최적화로 **생성형 엔진 응답에서의 가시성을 최대 40% 향상**시킬 수 있으며, 기존 SEO 전략과 병행할 때 가장 효과적입니다.
 
 GEO는 SEO를 **대체하는 것이 아니라 확장하는 것**입니다. AI 시스템은 여전히 **검색 인덱싱된, SEO 최적화된 웹사이트**에서 정보를 가져옵니다. SEO가 탄탄하지 않으면 AI에게 인용될 수도 없습니다.
 

@@ -45,7 +45,7 @@ GTM 디버깅의 첫 단계는 항상 **Preview 모드**입니다. GTM 워크스
 | 확인 항목 | 위치 | 확인 방법 |
 |---|---|---|
 | **Tags Fired / Not Fired** | Summary 탭 | 발동된 태그와 안 된 태그가 구분되어 표시됨 |
-| **트리거 조건** | 각 태그 클릭 > Firing Triggers | 어떤 트리거에 의해 발동됐는지(또는 왜 안 됐는지) 확인 |
+| **트리거 조건** | 각 태그 클릭 > Firing Triggers | 어떤 트리거가 발동시켰는지(또는 왜 안 됐는지) 확인 |
 | **변수 값** | Variables 탭 | 각 이벤트 시점에 변수에 어떤 값이 들어왔는지 대조 |
 
 Preview 모드에서 태그가 "Not Fired"로 표시된다면, 해당 태그를 클릭해서 **어떤 트리거 조건이 충족되지 않았는지** 확인하세요. 대부분의 문제는 여기서 원인이 드러납니다.
@@ -252,7 +252,7 @@ because it violates the following Content Security Policy directive...
 <div style="border:3px solid #000;background:#FFD700;padding:10px 12px;font-weight:800">Preview에서<br>Fired인가?</div>
 <div style="display:flex;flex-direction:column;gap:8px">
 <div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">No →</span><div style="border:3px solid #000;background:#F3F3F3;padding:8px 10px">트리거 조건과<br>변수 값 대조</div></div>
-<div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">Yes →</span><div style="border:3px solid #000;background:#FFD700;padding:8px 10px;font-weight:800">Network 탭에<br>요청이 나가는가?</div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">Yes →</span><div style="border:3px solid #000;background:#FFD700;padding:8px 10px;font-weight:800">Network 탭에<br>요청이 나가는지</div></div>
 </div>
 <div style="display:flex;flex-direction:column;gap:8px">
 <div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">No →</span><div style="border:3px solid #000;background:#F3F3F3;padding:8px 10px">태그 설정,<br>게시 여부 확인</div></div>
@@ -266,15 +266,15 @@ because it violates the following Content Security Policy directive...
 
 | 순서 | 확인 항목 | 확인 방법 |
 |---|---|---|
-| 1 | GTM 스니펫이 `<head>`와 `<body>`에 모두 있는가? | 페이지 소스 보기(Ctrl+U) |
-| 2 | GTM 컨테이너가 최신 버전으로 게시되었는가? | GTM 워크스페이스 상단 확인 |
+| 1 | GTM 스니펫이 `<head>`와 `<body>`에 모두 있는지 | 페이지 소스 보기(Ctrl+U) |
+| 2 | GTM 컨테이너가 최신 버전으로 게시되었는지 | GTM 워크스페이스 상단 확인 |
 | 3 | Preview 모드에서 태그가 Fired인가? | Tag Assistant |
 | 4 | 트리거 조건(URL, 이벤트명 등)이 정확한가? | Preview > Firing Triggers |
 | 5 | Variables 탭에서 변수 값이 예상대로인가? | Preview > Variables |
-| 6 | dataLayer에 필요한 데이터가 들어오는가? | Console > `dataLayer` 입력 |
-| 7 | Network 탭에서 실제 요청이 나가는가? | Network > 플랫폼별 키워드 검색 |
-| 8 | 광고 차단기/CSP가 요청을 막고 있지 않은가? | Console > 에러 메시지 확인 |
-| 9 | SPA인 경우 History Change 트리거를 사용하고 있는가? | GTM 트리거 설정 확인 |
+| 6 | dataLayer에 필요한 데이터가 들어오는지 | Console > `dataLayer` 입력 |
+| 7 | Network 탭에서 실제 요청이 나가는지 | Network > 플랫폼별 키워드 검색 |
+| 8 | 광고 차단기/CSP가 요청을 막고 있지 않은지 | Console > 에러 메시지 확인 |
+| 9 | SPA인 경우 History Change 트리거를 사용하고 있는지 | GTM 트리거 설정 확인 |
 | 10 | 태그 시퀀싱(실행 순서)이 올바른가? | 태그 > 고급 설정 확인 |
 
 ## dataLayer 실시간 모니터링 팁

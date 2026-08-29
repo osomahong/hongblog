@@ -26,7 +26,7 @@ summary3:
 
 ## 클릭 기여란 무엇인가
 
-디지털 마케팅에서 가장 기본이 되는 질문은 "이 광고가 실제로 효과가 있었는가"입니다. 사용자가 광고를 클릭한 뒤 [전환](/class/digital-marketing-terms/what-is-conversion)(구매, 가입, 다운로드 등)까지 이어졌을 때, 그 전환을 해당 광고의 성과로 인정하는 방식을 **클릭 기여([Click-Through Attribution](/class/digital-marketing-terms/what-is-attribution))**라고 합니다.
+디지털 마케팅에서 가장 기본이 되는 질문은 "이 광고가 실제로 효과가 있었는지"입니다. 사용자가 광고를 클릭한 뒤 [전환](/class/digital-marketing-terms/what-is-conversion)(구매, 가입, 다운로드 등)까지 이어졌을 때, 그 전환을 해당 광고의 성과로 인정하는 방식을 **클릭 기여([Click-Through Attribution](/class/digital-marketing-terms/what-is-attribution))**라고 합니다.
 
 쉽게 말해, 사용자가 광고를 클릭하고 일정 기간 내에 전환 행동을 하면 그 전환은 클릭한 광고 덕분이라고 판단하는 것입니다. 이때 클릭 후 전환까지 인정하는 시간 범위를 **기여 기간(Attribution Window)**이라고 부릅니다.
 
