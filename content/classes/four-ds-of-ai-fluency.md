@@ -36,6 +36,10 @@ quiz:
       Diligence는 사용 전반의 책임감을 다룹니다.
 metaDescription: 'AI Fluency 4D는 앤트로픽이 제안하는 AI 활용 행동 프레임워크입니다. Delegation, Description, Discernment, Diligence 네 축의 뜻과 실무 적용을 정리했습니다.'
 ogImage: /og/four-ds-of-ai-fluency.png
+summary3:
+  - 'AI Fluency 4D는 앤트로픽이 제안한 AI 활용 절차이고 위임과 설명, 분별력, 책임감 네 단계로 이뤄집니다.'
+  - '설명 단계에서는 누가 읽는지와 무엇을 할지, 어떤 형식으로 낼지, 어디까지 허용할지 네 가지를 담아야 결과가 흔들리지 않습니다.'
+  - '분별력 단계에서 환각과 아부를 걸러 내고 책임감 단계에서 저작권과 개인정보, 편향을 마지막으로 점검합니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 Anthropic Academy의 AI Fluency 트랙 핵심 자료를 한국 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.
