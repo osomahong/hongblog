@@ -269,8 +269,8 @@ because it violates the following Content Security Policy directive...
 | 1 | GTM 스니펫이 `<head>`와 `<body>`에 모두 있는지 | 페이지 소스 보기(Ctrl+U) |
 | 2 | GTM 컨테이너가 최신 버전으로 게시되었는지 | GTM 워크스페이스 상단 확인 |
 | 3 | Preview 모드에서 태그가 Fired인가? | Tag Assistant |
-| 4 | 트리거 조건(URL, 이벤트명 등)이 정확한가? | Preview > Firing Triggers |
-| 5 | Variables 탭에서 변수 값이 예상대로인가? | Preview > Variables |
+| 4 | 트리거 조건(URL, 이벤트명 등)이 정확한지 | Preview > Firing Triggers |
+| 5 | Variables 탭에서 변수 값이 예상대로인지 | Preview > Variables |
 | 6 | dataLayer에 필요한 데이터가 들어오는지 | Console > `dataLayer` 입력 |
 | 7 | Network 탭에서 실제 요청이 나가는지 | Network > 플랫폼별 키워드 검색 |
 | 8 | 광고 차단기/CSP가 요청을 막고 있지 않은지 | Console > 에러 메시지 확인 |

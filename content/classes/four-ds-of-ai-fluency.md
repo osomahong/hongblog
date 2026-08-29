@@ -34,7 +34,7 @@ quiz:
       Discernment(분별력)는 AI가 내놓은 답을 그대로 받지 않고 검증, 의심, 비교하는 단계입니다. 환각이 섞이지 않았는지, 모델
       아부로 흔들린 답은 아닌지를 확인합니다. Delegation은 위임 범위 결정, Description은 명확한 지시,
       Diligence는 사용 전반의 책임감을 다룹니다.
-metaDescription: 'AI Fluency 4D는 앤트로픽이 제안하는 AI 활용 행동 프레임워크입니다. Delegation, Description, Discernment, Diligence 네 축의 뜻과 실무 적용을 정리했습니다.'
+metaDescription: 'AI Fluency 4D는 앤트로픽이 제안하는 AI 활용 행동 프레임워크입니다. Delegation, Description, Discernment, Diligence 네 가지 축의 뜻과 실무 적용을 정리했습니다.'
 ogImage: /og/four-ds-of-ai-fluency.png
 summary3:
   - 'AI Fluency 4D는 앤트로픽이 제안한 AI 활용 절차이고 위임과 설명, 분별력, 책임감 네 단계로 이뤄집니다.'

@@ -3,7 +3,7 @@ slug: claude-code-memory
 term: Memory와 CLAUDE.md (영속 컨텍스트) 이해하기
 definition: >-
   Claude Code가 세션을 넘어 기억할 수 있도록 만든 영속 컨텍스트 시스템입니다. 사용자가 직접 적은 CLAUDE.md 파일과
-  Claude가 작업 중 자동으로 쌓는 auto memory 두 갈래로 구성됩니다.
+  Claude가 작업 중 자동으로 쌓는 auto memory 두 가지로 구성됩니다.
 category: CLAUDE_EDUCATION
 tags:
   - AI

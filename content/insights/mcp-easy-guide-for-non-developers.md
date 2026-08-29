@@ -58,7 +58,7 @@ AI가 아무리 똑똑해도, 내가 쓰는 도구에 접근할 수 없으면 �
 
 이 문제를 해결하기 위해 등장한 것이 **[MCP](/class/claude-code-for-everyone/what-is-mcp)**입니다.
 
-## MCP란 무엇인가
+## MCP의 뜻
 
 MCP는 **Model Context Protocol**의 약자입니다. 직역하면 "모델 문맥 프로토콜"인데, 이 이름만으로는 감이 안 옵니다. 쉽게 말하면 이렇습니다.
 

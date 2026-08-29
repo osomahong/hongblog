@@ -2,8 +2,8 @@
 slug: claude-vs-other-llms
 term: Claude vs ChatGPT vs Gemini 비교하기
 definition: >-
-  세 AI 어시스턴트는 만든 회사, 강조점, 도구 패키지에서 서로 다른 색깔을 가집니다. 작업 성격에 따라 각 AI가 더 잘하는 자리가 분명히
-  갈립니다.
+  세 AI 어시스턴트는 만든 회사, 강조점, 도구 패키지에서 서로 다른 색깔을 가집니다. 작업 성격에 따라 각 AI가 더 잘하는 일이 분명히
+  나뉩니다.
 category: CLAUDE_EDUCATION
 tags:
   - AI
