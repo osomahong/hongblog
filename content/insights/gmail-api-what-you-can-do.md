@@ -30,6 +30,10 @@ metaDescription: Gmail API의 7개 리소스(Messages, Threads, Labels, Drafts, 
 ogImage: /og/gmail-api-what-you-can-do.png
 ogTitle: 'Gmail API 기능 전체 맵: 바이브코딩 시대에 이메일로 만들 수 있는 것들'
 ogDescription: Gmail API의 7개 핵심 리소스와 50개 이상의 메서드를 한 페이지에 정리하고, AI와 결합해 만들 수 있는 자동화 서비스 아이디어 5가지를 소개합니다.
+summary3:
+  - 'Gmail API는 OAuth 2.0으로 인증하는 REST API이고 메시지와 스레드, 라벨과 초안, 히스토리와 설정을 포함한 일곱 개 리소스로 나뉩니다.'
+  - '메시지 리소스만으로도 목록 조회와 상세 읽기, 발송, 라벨 변경, 일괄 삭제까지 처리합니다.'
+  - '매일 쓰는 메일함을 다루기 때문에 아침 요약 봇이나 자동 분류기, 자동 응답 같은 도구를 직접 만들 수 있습니다.'
 ---
 
 ## 바이브코딩 시대, API가 곧 능력이다
