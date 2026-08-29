@@ -26,6 +26,15 @@ npm run check:prose -- content/insights/{slug}.md   # 번역투·과장·AI식 �
 
 # SEO 점검
 npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 리포트
+
+# 3줄 요약 규칙 검사 (새 글은 HARD 0건이 배포 조건)
+npm run check:summary3 -- content/insights/{slug}.md  # 파일 하나
+npm run check:summary3 -- --all                       # 전체
+
+# 3줄 요약 미리보기 (자동 추출 결과 확인)
+npx tsx scripts/preview-summaries.ts                  # 인사이트 전체
+npx tsx scripts/preview-summaries.ts --type class     # 클래스 전체
+npx tsx scripts/preview-summaries.ts --slug <slug>    # 하나만
 ```
 
 ### 링크 규칙 (404 재발 방지)
@@ -111,6 +120,29 @@ scripts/
   시각 블록에는 쓰지 않는다.
 - 새 섹션을 만들면 커밋 전에 위아래 섹션과 좌우 가장자리가 일치하는지 스크린샷으로 확인한다.
 
+### 3줄 요약과 뉴스레터 게이트
+
+인사이트, 클래스, 코스 상세 페이지 본문 위에 3줄 요약 블록이 붙는다.
+
+- 요약 문장은 `src/lib/summary.ts`가 만든다. frontmatter `summary3`(문자열 3개)가 있으면 그 값을
+  쓰고, 없으면 도입 문장과 소제목 구간 첫 문장에서 자동으로 뽑는다. 코스는 소개 문단이 짧아
+  마지막 줄을 커리큘럼에서 만든다(`buildCourseSummary3`).
+- **`summary3`는 본문을 대체하는 요약이다.** "이 글은 무엇을 다룬다"는 소개문이 아니라 세 줄만
+  읽어도 핵심이 손에 들어오는 문장을 쓴다. 한 줄은 한 문장이고 비유를 쓰지 않으며 본문과 같은
+  문체 기준을 적용한다. 규칙 전문은 `.claude/references/content/summary3-rules.md`에 있고
+  `npm run check:summary3`가 위반을 잡는다.
+- **자동 추출은 이 규칙을 만족하지 못한다.** 도입 문장과 소제목 구간 첫 문장을 그대로 가져오기
+  때문에 메타 서술이 섞인다. `summary3`를 아직 쓰지 않은 글이 빈 채로 나가지 않게 하는 임시
+  장치이고, 품질이 필요한 글은 `summary3`를 직접 적는다.
+- 열람 규칙은 `src/lib/summary-gate.ts`에 있다. 세션스토리지에 무료로 연 글의 슬러그 하나를
+  기록하고, 그 글은 세션 동안 계속 열린다. 다른 글은 잠기고 뉴스레터를 구독해야 열린다.
+  구독 표식은 로컬스토리지 `hongblog-newsletter-member`에 남고 `NewsletterModal`이 기록한다.
+- 요약 문장은 서버 HTML에 그대로 들어간다. 검색엔진과 답변 엔진은 언제나 읽고 화면에서만
+  가려진다. 이 사실을 구조화 데이터에 밝히려고 Article과 Course에 `isAccessibleForFree: true`를
+  두고 요약 구간만 `hasPart`의 `WebPageElement`로 `false` 표시한다(`SUMMARY_PAYWALL_PART`).
+- `src/lib/content.ts`의 `readMdFile`은 변환마다 캐시 namespace를 나눈다. 같은 md 파일을 다른
+  형태로 읽는 함수를 추가할 때 namespace를 빼면 캐시가 서로 덮어써 렌더가 깨진다.
+
 ### Content skill system
 
 콘텐츠 작업은 스킬로 나뉘어 있고, 각각을 필요할 때 따로 부른다. 오케스트레이터는 없다.
@@ -137,11 +169,12 @@ GA4 용어, 썸네일 규격). 특정 스킬 전용 규칙은 그 스킬의 `ref
 
 1. `npm run check:prose -- <파일>` HARD 0건
 2. `node .claude/skills/prose-inspector/scripts/check-literary.mjs <파일>` HARD 0건
-3. 낭독 검수 1회 (`prose-inspector` 스킬의 7개 항목. 표와 HTML 도표 안 문장까지 본다)
-4. **전문을 사용자에게 출력하고 승인받은 뒤에만 커밋·배포** ("써줘"는 초안 요청이지 배포 승인이 아니다)
+3. `npm run check:summary3 -- <파일>` HARD 0건
+4. 낭독 검수 1회 (`prose-inspector` 스킬의 7개 항목. 표와 HTML 도표 안 문장까지 본다)
+5. **전문을 사용자에게 출력하고 승인받은 뒤에만 커밋·배포** ("써줘"는 초안 요청이지 배포 승인이 아니다)
 
 > **1번 통과는 문체 검증이 아니다.** `check-prose.ts`는 정규식 20여 개만 본다. 문어체 어휘(`갈래`,
-> `얹히다`, `비로소` 등)는 2번이 잡고, 호응과 주어 누락은 3번이 잡는다. 2026-08에 1번만 믿고
+> `얹히다`, `비로소` 등)는 2번이 잡고, 호응과 주어 누락은 4번이 잡는다. 2026-08에 1번만 믿고
 > 배포했다가 9강을 전량 재수정했다. 사용자가 새 표현을 지적하면 `prose-inspector` 사전에 등록한다.
 
 ## Conventions

@@ -8,6 +8,8 @@ import type {
   CategoryStat, NextPrevResult, TagWithId, ContentByTagResult,
 } from "./types";
 import { classHref } from "./links";
+import { stripMarkdown } from "./markdown-text";
+import { buildCourseSummary3, buildSummary3 } from "./summary";
 
 // ============================================
 // 경로 상수
@@ -67,10 +69,17 @@ function parseMdFile<T>(dir: string, slug: string, transform: (data: Record<stri
   return transform(data, content);
 }
 
-function readMdFile<T>(dir: string, slug: string, transform: (data: Record<string, unknown>, content: string) => T): T | null {
+// 같은 파일이라도 변환 결과가 다르면 다른 캐시 자리에 넣는다.
+// namespace를 빼먹으면 3줄 요약용 원본이 ClassItem 자리를 덮어써 렌더가 깨진다.
+function readMdFile<T>(
+  dir: string,
+  slug: string,
+  transform: (data: Record<string, unknown>, content: string) => T,
+  namespace = "default"
+): T | null {
   if (!USE_CONTENT_CACHE) return parseMdFile(dir, slug, transform);
 
-  const key = `${dir}/${slug}`;
+  const key = `${namespace}:${dir}/${slug}`;
   if (fileCache.has(key)) return fileCache.get(key) as T | null;
 
   const parsed = parseMdFile(dir, slug, transform);
@@ -81,29 +90,6 @@ function readMdFile<T>(dir: string, slug: string, transform: (data: Record<strin
 // ============================================
 // 변환 함수
 // ============================================
-
-// raw text 영역(카드 description, excerpt 등)에서 마크다운 기호를 제거한다.
-// 본문 자체(content)는 그대로 두고, 별도로 노출되는 짧은 미리보기 문자열에만 사용.
-function stripMarkdown(text: string): string {
-  return text
-    .replace(/```[\s\S]*?```/g, "") // 코드 블록 제거
-    .replace(/<a [^>]*>[\s\S]*?<\/a>/g, "") // inline anchor 태그 제거
-    .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1") // 이미지
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1") // 링크
-    .replace(/`([^`\n]+)`/g, "$1") // 인라인 코드
-    .replace(/\*\*\*([^*\n]+)\*\*\*/g, "$1") // bold+italic
-    .replace(/\*\*([^*\n]+)\*\*/g, "$1") // bold
-    .replace(/__([^_\n]+)__/g, "$1") // bold (underscore)
-    .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, "$1") // italic
-    .replace(/(?<!_)_([^_\n]+)_(?!_)/g, "$1") // italic (underscore)
-    .replace(/^#{1,6}\s+/gm, "") // 헤딩 prefix
-    .replace(/^>\s*/gm, "") // blockquote
-    .replace(/^[\s]*[-*+]\s+/gm, "") // 리스트 마커
-    .replace(/^[\s]*\d+\.\s+/gm, "") // 번호 리스트
-    .replace(/^---+\s*$/gm, "") // 수평선
-    .replace(/\n{3,}/g, "\n\n") // 빈 줄 압축
-    .trim();
-}
 
 function toInsight(data: Record<string, unknown>, content: string): Insight {
   return {
@@ -236,6 +222,49 @@ export function getCourseBySlug(slug: string): Course | null {
 // ============================================
 // 공개 API — Tags
 // ============================================
+
+// ============================================
+// 공개 API — 3줄 요약
+// ============================================
+
+/** frontmatter와 본문을 그대로 넘겨받는 변환. 요약 생성에만 쓴다 */
+function toRaw(data: Record<string, unknown>, content: string) {
+  return { data, content };
+}
+
+/** 인사이트 3줄 요약. frontmatter summary3가 있으면 그 값이 우선이다 */
+export function getInsightSummary3(slug: string): string[] {
+  const raw = readMdFile(INSIGHTS_DIR, slug, toRaw, "raw");
+  if (!raw) return [];
+  return buildSummary3({
+    lead: (raw.data.excerpt as string) || (raw.data.metaDescription as string) || "",
+    content: raw.content,
+    manual: raw.data.summary3,
+  });
+}
+
+/** 클래스 3줄 요약. 정의 문장을 첫 줄 재료로 쓴다 */
+export function getClassSummary3(slug: string): string[] {
+  const raw = readMdFile(CLASSES_DIR, slug, toRaw, "raw");
+  if (!raw) return [];
+  return buildSummary3({
+    lead: (raw.data.definition as string) || (raw.data.metaDescription as string) || "",
+    content: raw.content,
+    manual: raw.data.summary3,
+  });
+}
+
+/** 코스 3줄 요약. 소개 문단이 짧아 마지막 줄은 커리큘럼에서 만든다 */
+export function getCourseSummary3(slug: string): string[] {
+  const raw = readMdFile(COURSES_DIR, slug, toRaw, "raw");
+  if (!raw) return [];
+  return buildCourseSummary3({
+    description: raw.content,
+    metaDescription: raw.data.metaDescription as string | undefined,
+    classTerms: getClassesByCourse(slug).map((cls) => cls.term),
+    manual: raw.data.summary3,
+  });
+}
 
 export function getAllTags(): { name: string; count: number }[] {
   const tagMap = new Map<string, number>();

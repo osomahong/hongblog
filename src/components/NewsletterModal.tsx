@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Mail, X, CheckCircle2 } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
+import { markSubscribed } from "@/lib/summary-gate";
 import { cn } from "@/lib/utils";
 import { assembleElement, dissolveElement } from "@/lib/canvas-fx";
 import {
@@ -24,6 +25,8 @@ interface NewsletterModalProps {
   open: boolean;
   onClose: () => void;
   signupSource: SignupSource;
+  /** 구독이 접수된 직후 호출된다. 3줄 요약 잠금을 푸는 자리에서 쓴다 */
+  onSubscribed?: () => void;
 }
 
 interface SelectWithEtcProps {
@@ -81,7 +84,12 @@ function SelectWithEtc({
   );
 }
 
-export function NewsletterModal({ open, onClose, signupSource }: NewsletterModalProps) {
+export function NewsletterModal({
+  open,
+  onClose,
+  signupSource,
+  onSubscribed,
+}: NewsletterModalProps) {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [industry, setIndustry] = useState("");
@@ -142,6 +150,9 @@ export function NewsletterModal({ open, onClose, signupSource }: NewsletterModal
           setError(data.message);
           return;
         }
+        // 어느 자리에서 구독했든 이후 3줄 요약이 열리도록 표식을 남긴다
+        markSubscribed();
+        onSubscribed?.();
         // HTML in Canvas를 지원하는 브라우저에서는 팝업 전체가 픽셀로 흩어진 뒤
         // 완료 화면이 나타난다. 미지원이면 dissolveElement가 false를 반환하고
         // 기존처럼 바로 전환된다.
@@ -176,6 +187,7 @@ export function NewsletterModal({ open, onClose, signupSource }: NewsletterModal
       years,
       signupSource,
       website,
+      onSubscribed,
     ]
   );
 

@@ -55,6 +55,7 @@ export const SIGNUP_SOURCES = [
   "post_bottom",
   "footer",
   "ga4_edu",
+  "summary_gate",
 ] as const;
 
 export type SignupSource = (typeof SIGNUP_SOURCES)[number];

@@ -15,6 +15,7 @@ effort: high
 allowed-tools: >-
   Bash(npm run check:prose *)
   Bash(node .claude/skills/prose-inspector/scripts/check-literary.mjs *)
+  Bash(npm run check:summary3 *)
   Bash(npx tsx scripts/generate-og.ts *)
   Bash(grep *) Bash(mkdir *) Bash(curl *)
   Read Write Edit Glob Grep WebSearch WebFetch AskUserQuestion
@@ -100,6 +101,7 @@ frontmatter의 `category`가 이번 글과 같은 것 가운데 최근 2~3편을
 - 실무에 적용할 수 있는 구체적 예시 최소 1개
 - 자주 묻는 질문 2~3개 (질문형 H2로, FAQPage 발행 목적)
 - 마지막에 3줄 요약
+- frontmatter `summary3` 세 줄. 본문을 대체하는 요약으로 쓴다 (`.claude/references/content/summary3-rules.md`)
 
 **본문 이미지 (필수):**
 
@@ -140,6 +142,16 @@ node .claude/skills/prose-inspector/scripts/check-literary.mjs content/insights/
 
 WARN은 맥락에 따라 허용되므로 4-3에서 판단한다.
 
+**4-2-1. 3줄 요약 규칙 (HARD 0건)**
+
+```bash
+npm run check:summary3 -- content/insights/{slug}.md
+```
+
+frontmatter `summary3`가 본문을 대체하는 요약인지 본다. 한 줄에 두 문장을 넣었거나, `정리했습니다`
+같은 메타 서술이나 `다음과 같습니다` 같은 뒤를 가리키는 문장, 비유가 섞이면 HARD로 잡는다.
+작성 규칙 전문은 `.claude/references/content/summary3-rules.md`에 있다.
+
 **4-3. 낭독 검수 (기계가 못 하는 층위)**
 
 전문을 처음부터 끝까지 읽으며 아래를 본다. **표와 인라인 HTML 도표 안의 문장까지 본다.** 실제로 그 세 곳이 가장 많이 샜다.
@@ -179,7 +191,7 @@ grep -n "·" content/insights/{slug}.md
 ### 5단계: frontmatter와 썸네일
 
 - `references/post-schema.md`를 참조한다.
-- 필수 필드: slug, title, excerpt, category, tags, publishedAt, metaTitle, metaDescription, ogTitle, ogDescription, ogImage, quiz
+- 필수 필드: slug, title, excerpt, category, tags, publishedAt, summary3, metaTitle, metaDescription, ogTitle, ogDescription, ogImage, quiz
 - **metaDescription 첫 문장은 핵심 개체를 포함한 `X는 Y입니다` 단정형 정의로 쓴다.** 본문 도입부, 메타, JSON-LD의 개체와 표현을 일치시킨다.
 - 태그는 `src/lib/constants.ts`의 `CANONICAL_TAGS`에서만 3~5개 고른다.
 - slug는 영문 소문자와 하이픈.
@@ -201,6 +213,7 @@ npx tsx scripts/generate-og.ts --slug {slug}
 
 - [ ] `npm run check:prose` HARD 0건
 - [ ] `check-literary.mjs` HARD 0건
+- [ ] `npm run check:summary3` HARD 0건
 - [ ] 낭독 검수 1회 완료 (표와 HTML 도표 안 문장 포함)
 - [ ] `grep "—"`, `grep "·"` 각 0건
 - [ ] 전문을 사용자에게 출력하고 승인 획득
@@ -252,6 +265,7 @@ npx tsx scripts/generate-og.ts --slug {slug}
 | `references/prose-rules.md` | **문체 규칙 전체. 3단계와 4단계에서 읽는다** |
 | `.claude/references/content/writing-style-guide.md` | Class, FAQ 등 다른 콘텐츠 타입 규칙 |
 | `references/post-schema.md` | frontmatter 스키마 |
+| `.claude/references/content/summary3-rules.md` | **3줄 요약 작성 규칙** |
 | `.claude/skills/prose-inspector/` | 문어체 사전과 낭독 검수 절차 |
 | `src/lib/constants.ts` | `CANONICAL_TAGS`, `POST_CATEGORIES` |
 | `scripts/generate-og.ts` | og:image 생성 |

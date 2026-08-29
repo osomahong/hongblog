@@ -10,7 +10,7 @@ import { absoluteUrl } from "@/lib/utils";
 import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
 import { classHref } from "@/lib/links";
 import { SITE_URL } from "@/lib/constants";
-import { getPostBySlug, getRelatedClassesForPost, getPublishedPosts, getTrendingInsightSlugs } from "@/lib/content";
+import { getInsightSummary3, getPostBySlug, getRelatedClassesForPost, getPublishedPosts, getTrendingInsightSlugs } from "@/lib/content";
 import { getCourseLinks } from "@/lib/promotions";
 import { SidebarContentList } from "@/components/SidebarContentList";
 import { extractFaqPairs } from "@/lib/extract-faq";
@@ -24,12 +24,14 @@ import { ContentQuiz } from "@/components/ContentQuiz";
 import { RelatedPosts } from "@/components/RelatedPosts";
 import { NextContentCard } from "@/components/NextContentCard";
 import { ContentFeedback } from "@/components/ContentFeedback";
+import { ContentSummary } from "@/components/ContentSummary";
 import { ShareBar } from "@/components/ShareBar";
 import { NewsletterCta } from "@/components/NewsletterCta";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
 import { getNextPost, getRelatedPosts } from "@/lib/related-posts";
 import { splitMarkdownAtNthH2 } from "@/lib/markdown-split";
+import { SUMMARY_PAYWALL_PART } from "@/lib/summary-gate";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -166,6 +168,7 @@ export default async function InsightDetailPage({ params }: Props) {
   // 대표 이미지: og:image가 로컬 경로일 때만 본문 상단에 노출한다.
   // 외부 호스트(thumbnailUrl)는 next/image 도메인 설정 대상이라 여기서는 제외한다.
   const heroImage = post.ogImage?.startsWith("/") ? post.ogImage : null;
+  const summaryLines = getInsightSummary3(slug);
 
   // 본문 중간 광고 삽입 위치: 두 번째 H2 직전 (H2가 2개 미만이면 미삽입)
   const [contentBeforeAd, contentAfterAd] = splitMarkdownAtNthH2(post.content, 2);
@@ -202,6 +205,9 @@ export default async function InsightDetailPage({ params }: Props) {
       "@id": absoluteUrl(`/insights/${slug}`),
     },
     keywords: post.tags.join(", "),
+    // 본문은 누구나 읽을 수 있고, 3줄 요약 구간만 구독자에게 열린다
+    isAccessibleForFree: true,
+    ...(summaryLines.length > 0 ? { hasPart: SUMMARY_PAYWALL_PART } : {}),
   };
 
   const breadcrumbLd = {
@@ -352,6 +358,13 @@ export default async function InsightDetailPage({ params }: Props) {
             {heroImage && (
               <ContentHeroImage src={heroImage} alt={`${post.title} 대표 이미지`} />
             )}
+
+            <ContentSummary
+              slug={slug}
+              contentType="post"
+              lines={summaryLines}
+              className="mb-4 sm:mb-6"
+            />
 
             <NeoCard className="prose prose-sm sm:prose-lg max-w-none">
               <NeoCardContent>
