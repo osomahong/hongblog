@@ -28,6 +28,10 @@ metaDescription: >-
   GA4 데이터에서 Page Title 누락 문제를 BigQuery 기반 자동화 파이프라인으로 해결했습니다. 수동 스프레드시트 관리에 따른
   문제점을 분석하고, URL 정규화, STRUCT 구조 수정, 정규표현식 활용 등 기술적 난관을 극복한 과정을 소개합니다.
 ogImage: /og/ga4-data-loss-automation-with-bigquery.png
+summary3:
+  - 'GA4는 page_location은 남아도 수집 시점 문제로 Page Title이 NULL로 들어오는 경우가 있어 결측치를 되살릴 방법이 필요합니다.'
+  - 'URL을 그대로 조인하면 utm 같은 쿼리 파라미터 때문에 매칭률이 떨어지므로 주소를 먼저 정규화해야 합니다.'
+  - 'event_params가 중첩 STRUCT 배열이라 집계로 중복을 없앤 뒤 NULL만 맵핑 값으로 바꾸고 경로가 불규칙한 주소는 정규표현식으로 ID를 뽑습니다.'
 ---
 
 ## 1. 배경: 데이터 분석 환경의 확장과 한계
