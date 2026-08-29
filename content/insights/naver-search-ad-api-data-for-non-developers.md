@@ -31,6 +31,10 @@ metaDescription: 네이버 검색광고 API 키 발급, HMAC 인증, 통계 필�
 ogTitle: 비개발자도 쓰기 편하게 정리한 네이버 검색광고 API 데이터
 ogDescription: 네이버 검색광고 API 인증부터 필드 매핑, 구글, 메타 통합 주의점까지. 네이버 API만의 특이점을 중심으로 정리했습니다.
 ogImage: /og/naver-search-ad-api-data-for-non-developers.png
+summary3:
+  - '네이버 검색광고 API는 구글이나 메타와 달리 심사 없이 약관 동의만으로 즉시 발급됩니다.'
+  - '인증은 OAuth 토큰이 아니라 요청마다 HMAC-SHA256 서명을 직접 만들어 보내는 방식입니다.'
+  - 'ROAS에 해당하는 ror 값이 배수가 아니라 퍼센트 단위라 구글과 메타 데이터와 합칠 때는 100으로 나눠야 합니다.'
 ---
 
 ## 네이버 검색광고 API, 왜 따로 정리가 필요할까요

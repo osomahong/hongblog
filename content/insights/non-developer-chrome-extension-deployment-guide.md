@@ -21,6 +21,10 @@ thumbnailUrl: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/17
 metaTitle: 비개발자의 크롬 확장 프로그램 배포기록 A to Z | 준이아빠블로그
 metaDescription: AI 기반 SEO 분석 확장 프로그램 개발 및 Chrome 웹 스토어 배포 과정을 비개발자 관점에서 상세히 다룹니다. 권한 요청 소명, 원격 코드 사용 여부, 개인정보 처리방침 등 배포 과정의 핵심 팁과 해결 전략을 공유하여, 비개발자도 크롬 확장 프로그램을 배포할 수 있도록 돕습니다.
 ogImage: /og/non-developer-chrome-extension-deployment-guide.png
+summary3:
+  - '크롬 확장은 AI로 코드를 만드는 것보다 웹 스토어 심사를 통과하는 쪽에 손이 더 갑니다.'
+  - '사이트 코드에 접근하는 권한은 보안 위험으로 볼 수 있어 왜 필요한지 상세히 소명해야 합니다.'
+  - '외부 API를 호출하면 원격 코드 사용 여부를 정확히 답해야 하고 개인정보 처리방침이 올라간 URL도 필수입니다.'
 ---
 
 ## **비개발자의 크롬 확장 프로그램 배포기록 A to Z**
