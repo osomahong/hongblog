@@ -77,7 +77,7 @@ summary3:
   <div style="font-size:12px; margin-top:10px; text-align:center;">웹페이지 한 채가 지어지는 순서: HTML 뼈대 → CSS 인테리어 → JavaScript 동작</div>
 </div>
 
-가장 유명한 비유부터 시작해볼까요? 웹사이트를 하나의 집이라고 상상해 보세요.
+가장 유명한 비유부터 보겠습니다. 웹사이트는 하나의 집에 가깝습니다.
 
 집을 지을 때 벽지(CSS)를 바르거나 가구(JavaScript)를 배치하기 전에 무엇을 먼저 하나요?
 바로 철근과 콘크리트로 뼈대를 세우는 일입니다.

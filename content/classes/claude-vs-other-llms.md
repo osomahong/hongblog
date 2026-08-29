@@ -62,7 +62,7 @@ summary3:
 | **고유 도구 패키지** | GPTs, Operator | Gems, Workspace 통합 | Claude Code, Cowork, Design, Skills |
 | **외부 표준 기여** | (자체) | (자체) | MCP 제안, 오픈 표준화 |
 
-작업의 성격에 따라 더 잘 맞는 도구가 분명히 갈립니다.
+작업의 성격에 따라 더 잘 맞는 도구가 분명히 달라집니다.
 
 ## 🤖 ChatGPT (OpenAI)의 강한 자리
 

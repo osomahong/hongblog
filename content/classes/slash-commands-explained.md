@@ -101,7 +101,7 @@ Claude Code 화면에서 `/`만 누르면 사용 가능한 명령 목록이 나�
 **개발자**
 - `/review-pr`: 회사 PR 리뷰 체크리스트 적용
 - `/deploy-staging`: 스테이징 배포 절차 자동화
-- `/write-tests`: 새 기능에 대한 테스트 작성
+- `/write-tests`: 새 기능의 테스트 작성
 
 **기획자, PM**
 - `/prd-draft`: 회사 PRD 템플릿으로 초안 생성

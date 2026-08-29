@@ -47,7 +47,7 @@ summary3:
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs의 비용 관리 문서를 한국 입문자가 보기 편하게 정리한 글입니다. 플랜 이름과 명령어는 **2026년 7월 기준**이고, 원문 링크는 글 끝 참고 자료에 모았습니다. 플랜별 가격은 자주 바뀌므로 claude.com/pricing에서 직접 확인하시기 바랍니다.
 
-## 💳 클로드 코드의 지불 방식은 두 갈래입니다
+## 💳 클로드 코드의 지불 방식은 두 가지입니다
 
 [클로드 코드](/class/claude-code-for-everyone/what-is-claude-code)를 쓰는 방법은 지불 구조에 따라 두 가지로 나뉩니다.
 
@@ -145,7 +145,7 @@ Pro와 Max 플랜에서도 한도에 도달하면 세션 한도와 주간 한도
 
 공식 문서는 대부분의 코딩 작업에 Sonnet이면 충분하고, Opus는 복잡한 구조 결정이나 여러 단계 추론이 필요할 때 쓰라고 권합니다.
 
-이 밖에 `/context`로 지금 무엇이 자리를 차지하는지 볼 수 있고, `/mcp`로 쓰지 않는 서버를 꺼 둘 수 있습니다. [CLAUDE.md](/class/claude-code-for-everyone/claude-code-memory)는 매 세션 시작 시 읽히므로 200줄 안쪽으로 줄여 두는 편이 좋습니다.
+이 밖에 `/context`로 지금 무엇이 컨텍스트를 차지하는지 볼 수 있고, `/mcp`로 쓰지 않는 서버를 꺼 둘 수 있습니다. [CLAUDE.md](/class/claude-code-for-everyone/claude-code-memory)는 매 세션 시작 시 읽히므로 200줄 안쪽으로 줄여 두는 편이 좋습니다.
 
 ## ⚠️ 한도에 걸렸을 때 할 수 있는 일
 

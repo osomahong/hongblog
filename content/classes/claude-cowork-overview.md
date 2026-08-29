@@ -51,7 +51,7 @@ summary3:
 
 Claude.ai 챗으로는 이 흐름을 한 번에 자동화하기 어렵습니다. 챗은 단계별 답을 주는 도구이지 직접 컴퓨터를 조작하는 도구가 아니기 때문입니다.
 
-Claude Cowork가 이 자리를 채웁니다.
+Claude Cowork가 이 빈틈을 채웁니다.
 
 ## 🔑 Claude Cowork, 무엇이 다른가요?
 
@@ -115,7 +115,7 @@ claude.ai와 비교하면 다음 표처럼 정리됩니다.
   2. 사실 검증, 요약 코멘트 추가
   3. 발표
 
-[책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use)의 검증 단계가 자동화 위에 그대로 얹힙니다.
+[책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use)의 검증 단계가 자동화 위에 그대로 올라갑니다.
 
 ## 🔗 Cowork를 더 강하게 만드는 묶음
 
