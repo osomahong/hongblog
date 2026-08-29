@@ -34,6 +34,10 @@ metaDescription: >-
 ogImage: /og/claude-code-practical-guide.png
 ogTitle: 'Claude Code 실전 가이드: 설치에서 첫 프로젝트까지 단계별 정리'
 ogDescription: '터미널 기반 AI 코딩 도구 Claude Code의 설치, 설정, 실전 활용법을 한 글에 정리했습니다. 비교 분석과 실전 팁까지 포함합니다.'
+summary3:
+  - 'Claude Code는 앤트로픽이 만든 터미널 기반 AI 코딩 도구로 코드베이스 전체를 이해하고 파일을 고치며 명령까지 실행합니다.'
+  - '2026년 초 개발자 선호도 조사에서 46퍼센트로 1위였고 Cursor는 19퍼센트였으며 GitHub Copilot은 9퍼센트였습니다.'
+  - '사양은 macOS 13.0 이상이나 Windows 1809 이상에 메모리 4GB 이상이고 월 20달러 Pro 플랜이 쓸 수 있는 최소 요금제입니다.'
 ---
 
 ## Claude Code는 터미널에서 동작하는 AI 코딩 도구입니다

@@ -35,6 +35,10 @@ ogTitle: 정말 클로드 코드를 Pro플랜에서 쓸 수 없을까요?
 ogDescription: >-
   실제로 무엇이 바뀌었고, Anthropic은 뭐라고 했고, 왜 이런 실험을 했을지 추측은 어떤지, 지금 Pro 구독해도 되는지, 입문자는
   어떻게 시작해야 하는지 정리했습니다.
+summary3:
+  - '2026년 4월 22일 앤트로픽 요금 페이지에서 Pro 플랜의 Claude Code 표시가 X로 바뀌었다가 같은 날 늦게 원상복구됐습니다.'
+  - '앤트로픽은 신규 가입자 약 2퍼센트를 대상으로 한 테스트였다고 밝혔고 기존 Pro와 Max 구독자는 영향을 받지 않았습니다.'
+  - '기존 구독자는 지금도 클로드 코드를 그대로 쓸 수 있어서 오늘부터 못 쓰게 됐다는 우려는 사실이 아닙니다.'
 ---
 
 결론부터 말씀드립니다. **기존 Pro 구독자는 [클로드 코드](/class/claude-code-for-everyone/what-is-claude-code)를 지금도 그대로 쓸 수 있습니다.** 2026년 4월 22일 [Anthropic](/class/claude-fundamentals/what-is-anthropic)이 `claude.com/pricing` 페이지에서 Pro 플랜의 Claude Code 포함 표시를 잠시 제거했다가 곧 복구한 사건이 있었고, 같은 날 Anthropic의 Growth 담당 Amol Avasare가 X에 "신규 가입자 약 2%를 대상으로 한 소규모 테스트"였으며 "기존 Pro, Max 구독자는 영향받지 않는다"고 밝혔습니다.

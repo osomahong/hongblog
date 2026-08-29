@@ -30,6 +30,10 @@ metaDescription: >-
 ogTitle: 'Claude Code 커스텀 Skill의 진짜 힘: 3가지 패턴'
 ogDescription: 'TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북: 커뮤니티가 검증한 커스텀 Skill 패턴을 정리했습니다.'
 ogImage: /og/claude-code-custom-skill-3-patterns.png
+summary3:
+  - '커스텀 Skill의 차이는 코드 생성이 아니라 반복되는 개발 절차를 자동화하는 데서 납니다.'
+  - '셸 명령을 미리 실행해 결과를 프롬프트에 넣고 context fork로 서브에이전트를 격리하며 훅으로 규칙을 강제하는 세 가지가 바탕입니다.'
+  - 'TDD를 시키면 모델이 구현을 먼저 떠올린 뒤 거기에 맞는 테스트를 쓰므로 테스트 작성자와 구현자를 다른 서브에이전트로 나눠 둡니다.'
 ---
 
 ## 코드 생성은 시작일 뿐입니다
