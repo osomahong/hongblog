@@ -178,12 +178,6 @@ claude -p --output-format json "시킬 말" > run.json
 
 명령을 실제로 써 보는 순서는 [코덱스 CLI 사용법](/insights/codex-cli-practical-guide) (빈 폴더에서 도구 만들기 바로가기)과 [클로드 코드 실전 사용법](/insights/claude-code-practical-guide) (클로드 코드 실전 사용법 바로가기)에 각각 적어 두었습니다.
 
-## 3줄 요약
-
-- 같은 규격서로 같은 도구를 만들게 하니 코덱스 CLI는 65초에 90줄, 클로드 코드는 113초에 236줄을 내놓았습니다. 규격서에 적은 예외 상황은 양쪽 다 통과했습니다.
-- 안전장치의 축이 다릅니다. 코덱스는 폴더 범위를 정하고 그 안에서는 명령 실행까지 열어 주고, 클로드 코드는 행동 단위로 승인을 나눠 줍니다.
-- 클로드 코드에서 만든 것을 직접 돌려 보게 하려면 `acceptEdits`에 더해 `--allowedTools`에 `Bash`를 넣습니다. 이 옵션이 없으면 파일만 만들고 한 번도 실행하지 못합니다.
-
 ## Sources
 
 - [Codex CLI 공식 문서](https://learn.chatgpt.com/docs/codex/cli)

@@ -290,12 +290,6 @@ PDF 외에도 Google Docs, Google Slides, 텍스트, Markdown, 웹 URL, 공개 Y
 
 오디오 개요, 마인드맵, 보고서, 퀴즈, 슬라이드 같은 결과물도 만들 수 있습니다. 다만 AI가 만든 결과물은 원문을 대신하지 않으므로, 중요한 문장과 수치는 인용을 눌러 직접 확인해야 합니다.
 
-**3줄 요약:**
-
-- NotebookLM은 2026년 7월부터 제미나이 노트북(Gemini Notebook)이라는 이름으로 바뀌었고, 기존 노트와 자료는 계속 사용할 수 있습니다.
-- PDF, Google Docs, 웹 URL, YouTube, 오디오 파일을 넣고 소스 기반 질문, 요약, 인용 확인을 할 수 있습니다.
-- Audio Overview, Mind Map, Reports, Quiz, Slide Deck으로 자료를 바꿀 수 있지만, 개인정보와 저작권, 최종 사실 확인은 별도로 점검해야 합니다.
-
 **Sources:**
 
 - [Google 공식 발표: NotebookLM이 제미나이 노트북으로 변경](https://blog.google/intl/ko-kr/company-news/technology/notebooklm-gemini-notebook/)

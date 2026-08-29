@@ -108,11 +108,6 @@ OpenAI는 자사의 Preparedness Framework 기준으로 GPT-5.6-Cyber의 위험 
 
 AI 회사가 자사 기술이 키운 위협을 놓고 그 해법까지 판매한다는 구조적 비판도 제기됐습니다. 다만 이런 논평은 공식 문서가 아니라 여러 매체의 분석에서 나온 것이라, 하나의 확정된 평가로 보기는 어렵습니다. OpenAI는 접근 심사와 모니터링, 하드웨어 보안 키를 그 위험을 관리하는 장치로 제시했습니다. 이 장치들이 실제로 얼마나 효과적인지는 시간이 지나야 확인될 부분입니다.
 
-**3줄 요약:**
-- OpenAI가 2026년 8월 10일 사이버보안 이니셔티브 Daybreak를 Blue와 Red 두 티어로 확장하고, 인가된 방어팀 전용 모델 GPT-5.6-Cyber를 공개했습니다.
-- GPT-5.6-Cyber는 고급 사이버보안 작업 완료율에서 약 95%를 기록했고, 크롬 V8 엔진에서 미공개 취약점을 찾아 CVE-2026-15903으로 수정됐습니다.
-- Daybreak는 심사를 거쳐 신청하는 구조이며, 2026년 9월 1일부터 모든 개별 계정에 하드웨어 보안 키가 의무화됩니다.
-
 **Sources:**
 - [Expanding Daybreak as the Cyber Defense Window Narrows (OpenAI 공식 발표)](https://openai.com/index/expanding-daybreak-as-the-cyber-defense-window-narrows/)
 - [OpenAI unveils GPT-5.6-Cyber to help prepare for AI cyberattacks (Axios)](https://www.axios.com/2026/08/10/openai-gpt-astra-restrictions-safety-hacking-defenders)

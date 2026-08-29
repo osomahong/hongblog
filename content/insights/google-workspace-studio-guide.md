@@ -307,12 +307,6 @@ Google Workspace Studio는 Gmail, Drive, Sheets, Docs 같은 Workspace 앱 사�
 
 처음에는 읽지 않은 이메일 요약이나 첨부파일 Drive 저장처럼 결과를 확인하기 쉬운 업무부터 시작하는 편이 좋습니다. 템플릿을 복사하거나 자연어로 초안을 만든 뒤, 테스트 실행과 활동 기록을 확인하고 사용 설정을 진행하면 됩니다.
 
-**3줄 요약:**
-
-- Google Workspace Studio는 Gmail, Drive, Sheets, Docs 등의 반복 업무를 Gemini와 함께 자동화하는 도구입니다.
-- 플로우는 시작 조건, 단계, 변수로 구성되며 자연어 설명이나 템플릿으로 만들 수 있습니다.
-- 자동 실행 전에는 권한, 조건, 오류, 사용량 한도를 확인하고 외부 발송이나 삭제 작업은 사람의 검토 단계를 두는 편이 안전합니다.
-
 **Sources:**
 
 - [Google Workspace Studio 공식 페이지](https://workspace.google.com/intl/ko/studio/)

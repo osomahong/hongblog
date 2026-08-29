@@ -136,11 +136,6 @@ GenOffice Docs는 이 지점을 다르게 처리합니다. 저장소는 이 방�
 
 AI 도구를 업무에 붙이는 방법이 궁금하다면 [AI를 쓸 수 있는 방법 5가지](/insights/ai-usage-methods-guide)에 인터페이스별 차이를 정리해 두었고, 데스크톱에서 파일을 직접 다루는 AI 에이전트의 사용 예시는 [클로드 코워크로 해야 할 5가지 AI 작업](/insights/claude-cowork-5-ai-tasks-for-beginners)에 있습니다.
 
-**3줄 요약:**
-- GenOffice는 젠스파크가 2026년 8월 3일 공개한 무료 오픈소스 AI 오피스이고, 워드, 엑셀, 파워포인트, PDF를 다루는 데스크톱 앱 네 개와 이를 묶는 홈 화면으로 구성됩니다.
-- 원본 파일을 그대로 두고 수정한 부분만 끼워 넣는 방식이라 워드나 엑셀로 되돌렸을 때 서식이 유지되는 구조이고, 스프레드시트는 오픈소스 Univer 코어 위에 만들어졌습니다.
-- 본체는 아파치 2.0이지만 ee 디렉터리와 상표는 빠져 있고, macOS는 애플 실리콘 전용에 알파 단계이므로 중요한 업무 문서로 시험하지 않는 편이 안전합니다.
-
 ## Sources
 
 - [GenOffice 공식 저장소 (genspark-ai/genoffice)](https://github.com/genspark-ai/genoffice)

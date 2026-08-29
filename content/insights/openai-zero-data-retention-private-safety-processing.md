@@ -136,11 +136,6 @@ OpenAI는 이번 발표에서 두 가지를 함께 밝혔습니다. 하나는 �
 
 해당하지 않습니다. 이번에 정리한 내용은 API와 기업용 계약을 쓰는 조직 대상입니다. OpenAI의 ZDR은 무료, 플러스, 프로 같은 개인 플랜에 적용되지 않고, 앤트로픽의 이번 변경도 개인 플랜에는 해당하지 않습니다. 개인 계정으로 회사 자료를 다루고 있다면 정책을 비교하기 전에 계정 종류부터 확인하는 편이 낫습니다.
 
-**3줄 요약:**
-- 제로 데이터 리텐션은 API로 보낸 프롬프트와 응답을 처리 후 보관하지 않는 설정이고, 승인받은 조직에만 적용됩니다.
-- OpenAI는 내용을 열지 않고 신호만 받는 Private Safety Processing으로 ZDR을 유지하려 하고, 앤트로픽은 지정 모델에 30일 보관을 요구하되 열람을 통제합니다.
-- ZDR을 켜도 엔드포인트마다 저장 여부가 다르므로, 모델과 엔드포인트를 적어 두고 예외 조항까지 확인한 뒤 도입을 결정합니다.
-
 ## Sources
 
 - [Offering Zero Data Retention for frontier models, OpenAI, 2026년 8월 19일](https://openai.com/index/offering-zero-data-retention-for-frontier-models/)

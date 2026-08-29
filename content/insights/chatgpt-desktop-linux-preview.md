@@ -104,11 +104,6 @@ summary3:
 
 그렇지 않습니다. 공지된 목록(우분투, 데비안, 페도라)은 오픈AI가 테스트했다고 밝힌 환경이고, 다른 배포판을 차단한다는 안내는 없습니다. 다만 .deb와 .rpm 패키지만 제공되므로 다른 패키지 체계를 쓰는 배포판에서는 변환이나 커뮤니티 패키지가 필요할 수 있고, 그 경우 동작은 검증 범위 밖입니다. 프리뷰 단계라는 점까지 감안하면, 주력 작업 환경보다는 시험 환경에서 먼저 써 보는 순서를 권합니다.
 
-**3줄 요약:**
-- 오픈AI가 2026년 8월 11일 챗GPT 리눅스 데스크톱 앱을 프리뷰로 공개했습니다. ChatGPT, Work(작업 위임 기능), Codex가 한 앱에 통합된 구성입니다.
-- 설치는 x64와 ARM64용 .deb, .rpm 4종으로 제공되며, 테스트된 환경은 우분투 24.04와 26.04, 데비안 13, 페도라 43과 44입니다.
-- 프리뷰라 공식 문서가 아직 갱신되지 않았고 무료 사용 조건도 문서 안에서 상충합니다. 확실한 것은 브라우저 기능이 Free와 Go 플랜에서 제외된다는 점입니다.
-
 **Sources:**
 - [ChatGPT 데스크톱 앱 리눅스 프리뷰 발표 (OpenAI 공식 X 게시물)](https://x.com/OpenAI/status/2087231350134980830)
 - [Codex in ChatGPT desktop app for Linux is now in preview (OpenAI 개발자 포럼)](https://community.openai.com/t/codex-in-chatgpt-desktop-app-for-linux-is-now-in-preview/1390027)

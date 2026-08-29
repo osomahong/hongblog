@@ -142,12 +142,6 @@ openwiki --init
 
 발표 마지막의 권유는 문서화가 가장 허술한 저장소에서 시도해 보라는 것이었습니다. 실무 기준으로는 두 조건이 겹치는 곳이 좋아 보입니다. 에이전트로 코드를 자주 수정하는 저장소, 그리고 문서가 코드를 따라가지 못하고 있는 저장소입니다. MIT 라이선스라 상업 프로젝트에도 쓸 수 있고, 포크해서 팀 상황에 맞게 수정하는 사용법도 공식적으로 안내되어 있습니다.
 
-**3줄 요약:**
-
-- OpenWiki는 코딩 에이전트가 읽을 저장소 문서를 자동으로 만들고 유지하는 랭체인의 오픈소스 CLI 도구입니다.
-- 에이전트용 문서는 사람용 문서와 달리 조각 단위의 자체 완결성과 정밀한 제목, 컨텍스트 창 최적화가 기준이 되고, OpenWiki는 OKF 프런트매터가 붙은 마크다운 위키로 이를 구현합니다.
-- npm 설치와 init 명령어로 시작하고, GitHub Actions가 git 이력을 읽어 매일 위키 갱신 풀 리퀘스트를 만들어 주므로 문서가 낡는 문제를 구조로 막을 수 있습니다.
-
 **Sources:**
 
 - [LangChain 공식 블로그: Introducing OpenWiki](https://www.langchain.com/blog/introducing-openwiki-an-open-source-agent-for-repo-documentation)

@@ -157,11 +157,6 @@ Sheets canvas는 스프레드시트 데이터를 대화형 미니 앱으로 바�
 
 국내에 배포할 콘텐츠라면 설정을 해제하기 전에 표시 의무부터 확인하는 순서가 안전합니다. 표시를 해제했더라도 SynthID와 C2PA 정보는 파일에 그대로 남으므로, 나중에 생성 여부를 확인할 방법이 사라지는 것은 아닙니다.
 
-**3줄 요약:**
-- 2026년 8월 12일부터 15일 사이의 발표 다섯 건은 성능보다 배포 범위를 앞세웠습니다. 구글은 앱과 검색과 스프레드시트와 휴대폰에 같은 모델을 넣었고, 알리바바는 가중치를 열었고, SpaceXAI는 개발자가 매일 여는 편집기를 인수했습니다.
-- Gemini 3.7 Flash와 Sheets canvas는 Google AI Pro와 Ultra 구독이 조건이고, 검색의 AI 모드는 영어부터 열렸습니다. 무료 공개가 아니므로 도입 계획에 구독 비용을 함께 넣어야 합니다.
-- 워터마크를 해제하는 설정은 눈에 보이는 표시가 법으로 요구되는 지역에서 예외가 된다고 전해집니다. 한국은 2026년 1월 22일부터 AI 기본법의 표시 의무가 시행 중이므로 국내 배포물은 표시를 유지한 상태로 검토하는 편이 안전합니다.
-
 **Sources:**
 - [Gemini 3.7 Flash 공개 (구글 공식 발표)](https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/)
 - [픽셀 11 발표 (구글 공식 블로그)](https://blog.google/products-and-platforms/devices/pixel/pixel-11-features/)

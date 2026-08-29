@@ -99,11 +99,6 @@ summary3:
 
 아닙니다. 2,000만 회는 신규 채널이 광고 수익 단계에 들어가는 기준이고, 이미 들어간 채널의 쇼츠 풀 수익 유지 기준은 1,000만 회입니다. 그리고 쇼츠 조건을 못 채워도 시청 시간 조건으로 진입할 수 있으며, 팬 후원 단계는 쇼츠 300만 회 기준으로 그보다 훨씬 낮습니다. 두 수치를 섞어 읽으면 문턱이 실제보다 높아 보입니다.
 
-**3줄 요약:**
-- 유튜브가 2027년 2월 1일부터 신규 신청 채널의 광고 수익 진입 기준을 최근 365일 시청 8,000시간 또는 최근 90일 쇼츠 2,000만 회로 올립니다. 구독자 1,000명 기준은 유지됩니다.
-- 팬 후원과 쇼핑의 진입 기준은 그대로입니다. 초기 채널은 구독자 500명에 열리는 멤버십, 슈퍼챗, 쇼핑을 먼저 설계하는 것이 현실적인 경로입니다.
-- 기존 채널도 쇼츠 풀 유지 기준(90일 1,000만 회), 채널 활동 요건, 2027년 1월 31일까지의 갱신 약관 동의는 챙겨야 합니다.
-
 **Sources:**
 - [New opportunities to earn and changes to the YouTube Partner Program (YouTube 공식 블로그)](https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/)
 - [YouTube 파트너 프로그램 약관 변경사항 (YouTube 고객센터)](https://support.google.com/youtube/answer/12843009?hl=ko)

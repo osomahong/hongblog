@@ -187,11 +187,6 @@ A. 쓸 수 있습니다. 다만 이 기능의 이득이 가장 큰 쪽은 이미
 
 이 구조는 편리한 만큼 옮겨 타는 비용도 함께 올립니다. 한 생태계에 익숙해지면 다른 도구로 넘어가기 어려워진다는 점은 미리 감안하는 편이 좋습니다.
 
-**3줄 요약:**
-- 클로드 디자인은 claude.ai/design 또는 데스크톱 앱 사이드바에서 열고, Pro, Max, Team, Enterprise 플랜에 추가 비용 없이 포함됩니다.
-- 디자인 시스템을 먼저 설정하면 이후 시안에 브랜드 색과 서체, 컴포넌트가 자동 적용되고, 완성한 시안은 ZIP, PDF, PPTX, HTML로 내보내거나 Claude Code로 핸드오프할 수 있습니다.
-- 주간 한도가 일반 채팅과 분리되어 있어 Pro 플랜으로는 두세 세션이면 소진되므로, 본격적으로 쓸 계획이라면 플랜부터 확인해야 합니다.
-
 ## Sources
 
 - [Get started with Claude Design, Claude Help Center](https://support.claude.com/en/articles/14604416-get-started-with-claude-design)

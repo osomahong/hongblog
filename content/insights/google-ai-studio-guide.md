@@ -278,12 +278,6 @@ Google AI Studio는 Gemini 모델을 시험하는 Playground와 자연어로 앱
 
 처음에는 Playground에서 프롬프트와 모델을 확인하고, 기능이 정리되면 Build에서 화면과 데이터 흐름을 만들면 됩니다. API 키는 Secrets에 보관하고, 공유와 배포 단계에서는 사용량과 비용을 함께 확인해야 합니다.
 
-**3줄 요약:**
-
-- Google AI Studio는 Gemini 모델 테스트, 프롬프트 조정, API 코드 확인, 앱 제작을 한곳에서 할 수 있는 브라우저 기반 환경입니다.
-- Playground는 모델과 프롬프트를 시험하는 곳이고, Build는 자연어로 웹 앱이나 Android 앱을 만드는 곳입니다.
-- Build 앱을 공유하거나 배포하기 전에는 API 키, 외부 권한, 입력 오류, 사용량과 비용을 확인해야 합니다.
-
 **Sources:**
 
 - [Google AI Studio 공식 시작 페이지](https://ai.google.dev/aistudio)

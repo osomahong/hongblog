@@ -100,12 +100,6 @@ AgentCore 노드가 값어치를 하는 지점은 기억과 실행 환경이 필
 
 시작 순서는 단순한 쪽이 안전합니다. 반복되는 업무 하나를 고르고, 아홉 개 예제 중 가장 가까운 것을 가져와 변형하고, 관측 화면에서 비용과 결과를 확인한 뒤에 다음 업무로 넓히는 순서입니다. 전사 자동화 그림은 그 뒤에 그려도 늦지 않습니다.
 
-## 3줄 요약
-
-- Amazon Bedrock AgentCore는 AI 에이전트의 기억, 도구 사용, 실행 과정을 AWS가 대신 관리해 주는 서비스이고, AWS가 직접 만든 커뮤니티 노드로 n8n 편집기와 연결됩니다.
-- n8n 기본 AI Agent 노드에 없는 세션 간 기억, 실제 브라우저와 코드 실행, 긴 작업 시간을 채워 주며, 모델은 클로드를 포함한 Bedrock 모델과 OpenAI, Gemini까지 고를 수 있습니다.
-- harness 자체 요금은 없고 실행한 만큼 과금되므로, AWS 계정과 IAM 권한을 준비한 뒤 반복 업무 하나에 예제 워크플로를 변형해 적용하는 것이 현실적인 시작 순서입니다.
-
 ## Sources
 
 - [AWS, Amazon Bedrock AgentCore harness is now generally available](https://aws.amazon.com/blogs/machine-learning/amazon-bedrock-agentcore-harness-is-now-generally-available-go-from-idea-to-production-grade-agent-in-minutes/)

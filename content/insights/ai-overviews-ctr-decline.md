@@ -31,7 +31,6 @@ summary3:
 
 구글에서 무언가를 검색하면, 최근에는 검색 결과 맨 위에 AI가 작성한 요약 답변이 먼저 나타나는 경우가 많습니다. 이것이 바로 **AI Overviews**입니다. AI가 여러 웹사이트의 정보를 읽고, 사용자에게 핵심만 요약해서 보여주는 기능입니다.
 
-
 **[AI Overviews의 예시]** - 많이 보셨죠?
 ![image](https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1771577971729-go4exd.png)
 
@@ -237,13 +236,6 @@ YouTube가 전 업종에서 인용 1위(약 23.3%)인 점을 고려하면, 글�
 >: [Seer Interactive, September 2025 Update](https://www.seerinteractive.com/insights/aio-impact-on-google-ctr-september-2025-update)
 
 AI 요약에 우리 브랜드가 노출되는 것 자체를 가치로 보고, 브랜드 검색량이나 직접 방문, 실제 구매 [전환율](/class/digital-marketing-terms/what-is-cvr) 등을 함께 측정하는 것이 중요합니다.
-
----
-
-**3줄 요약:**
-- Seer Interactive의 15개월 연구에 따르면, AI 요약이 나타나는 검색에서 웹사이트 클릭률은 61% 하락했고, AI 요약이 없는 검색에서도 41% 하락했습니다.
-- AI 요약에 출처로 언급된 사이트는 그렇지 않은 사이트보다 35% 더 많은 클릭을 받았으며, 인용되려면 글이 충분히 길고, 최근에 업데이트되었고, 출처가 명확해야 합니다.
-- AI 요약은 정보 검색을 넘어 쇼핑, 구매, 브랜드 검색까지 빠르게 확장되고 있어, 모든 업종에서 대응이 필요합니다.
 
 ---
 

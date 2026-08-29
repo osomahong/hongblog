@@ -291,11 +291,6 @@ Conductor의 2026 AEO/GEO 벤치마크 리포트도 같은 방향을 가리킵�
 
 이 다섯 단계는 누적입니다. 하나씩 쌓을수록 다음 단계의 효과가 더 크게 나타납니다. 본문을 잘 쓰려는 노력은 그 다음 순서에 옵니다. **보이지 않는 기능들부터 맞춰 두면, 같은 본문이 AI에게 다른 신호로 읽힙니다**.
 
-**3줄 요약:**
-- AEO는 본문이 아니라 소스코드 뒤에 숨은 기능들에서 결정됩니다. `<head>` 메타 태그, schema.org JSON-LD, sitemap, robots.txt, llms.txt, canonical URL이 AI에게 가장 먼저 읽히는 텍스트입니다.
-- 이 글에는 Article, BreadcrumbList, FAQPage JSON-LD 세 종이 자동 발행되고 있고, H2를 질문형으로만 통일하면 FAQPage가 빌드 타임에 자동으로 붙는 구조로 설계되어 있습니다.
-- 2월 초 거의 0이었던 서치콘솔 노출, 클릭이 4월 중순 최고점까지 계단식으로 상승한 패턴은, FAQPage 스키마 도입 → sitemap priority 조정 → llms.txt 배포 순서로 붙인 기능들이 곡선에 그대로 반영된 결과입니다.
-
 **Sources:**
 - [Princeton/KDD: GEO: Generative Engine Optimization (2024)](https://dl.acm.org/doi/10.1145/3637528.3671900)
 - [Conductor: 2026 AEO/GEO Benchmarks Report](https://www.conductor.com/academy/aeo-geo-benchmarks-report/)

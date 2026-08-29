@@ -226,13 +226,6 @@ AI 서비스는 **토큰** 단위로 비용을 계산합니다. HTML은 `<h2>제
 
 ---
 
-**3줄 요약:**
-- 마크다운은 이제 문서 서식이 아니라 AI 에이전트의 행동 규칙과 업무 스킬을 정의하는 핵심 도구입니다.
-- `.md` 파일 하나로 AI에게 복잡한 다단계 작업을 자동화시킬 수 있으며, 코딩 지식은 필요 없습니다.
-- 오늘 바로 AI 대화에서 `##`, `-`, `**` 세 가지만 써보면 응답 품질의 차이를 체감할 수 있습니다.
-
----
-
 **Sources:**
 - [Markdown Prompting In AI Prompt Engineering Explained](https://appliedai.tools/prompt-engineering/markdown-prompting-in-ai-prompt-engineering-explained-examples-tips/)
 - [ChatGPT 활용: 생성형 AI와의 효율적인 상호작용을 위한 마크다운 활용 방법](https://tilnote.io/pages/67b8c649243b9589e1e59db7)

@@ -170,11 +170,6 @@ llama.cpp와 MLX, ExecuTorch 최적화, 그리고 Ollama와 LM Studio 지원은 
 
 M4 Max 기준으로 DFlash를 사용 설정하면 초당 37.8토큰이고, M5 Max는 50.2토큰입니다. 짧은 답을 주고받거나 도구를 부르는 작업에는 충분한 속도입니다. 다만 긴 코드를 한 번에 받아 보는 작업이라면 기다림이 느껴집니다. RTX 5090의 233.4토큰과 비교하면 여섯 배 가까이 차이가 나므로, 같은 모델이라도 장비에 따라 쓰임새가 달라진다고 보는 편이 정확합니다.
 
-**3줄 요약:**
-- 뮤즈 글리머는 메타가 2026년 8월 10일 공개한 파라미터 296억 개 규모의 오픈 웨이트 모델이고, Apache 2.0 라이선스로 가중치가 공개되어 있습니다.
-- 24GB에서 돌아가지만 성능이 1.0% 내려간 압축본이고, 32GB 판은 0.2%, 압축하지 않은 판은 64GB가 필요합니다.
-- 도구를 부르는 MCP Atlas에서 75.5점으로 같은 크기대를 크게 앞서지만, 터미널 작업과 화면 조작에서는 Qwen3.6-27B에 뒤집니다.
-
 **Sources:**
 - [Introducing Muse Glimmer (Meta 공식 리서치 블로그)](https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model)
 - [Muse Glimmer 30B 모델 카드 (Hugging Face)](https://huggingface.co/meta-models/Muse-Glimmer-30B)

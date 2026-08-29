@@ -77,7 +77,6 @@ Edward Tufte가 제안한 개념으로, 시각화에서 실제 데이터를 나�
 
 ## 차트 유형 선택 가이드: 데이터에 맞는 옷 입히기
 
-
 <div style="overflow-x:auto;margin:24px 0;">
 <div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
 <div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">30초 차트 선택 가이드: 무엇을 보여주고 싶은가?</div>
@@ -163,7 +162,6 @@ Edward Tufte가 제안한 개념으로, 시각화에서 실제 데이터를 나�
 
 ## 피해야 할 7가지 흔한 실수
 
-
 <div style="overflow-x:auto;margin:24px 0;">
 <div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
 <div style="background:#000;color:#fff;padding:10px 14px;font-weight:700;">같은 데이터, 다른 Y축: 매출 100 → 105 (5% 증가)</div>
@@ -235,11 +233,6 @@ Edward Tufte가 제안한 개념으로, 시각화에서 실제 데이터를 나�
 | 글로벌 시각화 시장 규모 (2025) | **$102억** |
 
 Deutsche Bank는 Power BI 대시보드 도입 후 이사회의 데이터 신뢰도가 54%에서 89%로 상승했으며, Vanguard는 은퇴 계획 도구에 애니메이션 시계열 시각화를 적용하여 장기 저축 상품 가입이 32% 급증했습니다.
-
-**3줄 요약:**
-- 데이터 시각화의 핵심은 '예쁜 차트'가 아니라 '의사결정을 돕는 설계'이며, 7가지 핵심 원칙을 기반으로 접근해야 합니다.
-- 올바른 차트 유형 선택, 접근성 확보, 데이터 스토리텔링이 시각화 품질을 결정하는 3대 요소입니다.
-- 2026년에는 AI 기반 자연어 분석과 임베디드 인사이트가 전통적 대시보드를 대체하는 트렌드가 가속화되고 있습니다.
 
 **Sources:**
 - [Royal Statistical Society - Data Visualisation Guide](https://royal-statistical-society.github.io/datavisguide/)

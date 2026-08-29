@@ -212,12 +212,6 @@ sudo swapon /swapfile
 - **오류 문구 그대로 검색**: 공식 GitHub 이슈에서 동일 문구로 검색 시 알려진 문제인지 확인 가능
 - **데스크톱 앱 우회**: 터미널 설치가 계속 막히면 그래픽 화면으로 쓰는 Claude Code 데스크톱 앱(macOS, Windows)이 대안
 
-**3줄 요약:**
-
-- 2026년 7월 기준 공식 권장은 Node.js와 Git이 필요 없는 네이티브 한 줄 설치라서, npm 관련 오류(버전, 권한)는 설치 방식 전환으로 대부분 정리됩니다.
-- 가장 흔한 `command not found`는 설치 실패가 아니라 PATH 미등록 문제이며, OS별 명령으로 PATH에 설치 위치를 추가하면 해결됩니다.
-- Windows 오류는 CMD와 PowerShell 명령 혼동이 원인인 경우가 많고, Git for Windows는 필수가 아닙니다.
-
 ## Sources
 
 - [Claude Code 공식 문서: 설치 및 로그인 문제 해결](https://code.claude.com/docs/en/troubleshoot-install)

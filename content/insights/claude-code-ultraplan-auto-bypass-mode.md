@@ -166,11 +166,6 @@ Pro 플랜에서 Auto 모드를 쓰려는 분들이 가장 많이 좌절하는 �
 
 의사결정을 단순화하면 이렇게 정리됩니다. **"안전은 한 단계씩 자동화한다"**가 핵심입니다. default → acceptEdits → plan → auto 순서로 필요에 따라 올라가고, bypass는 격리 환경 전용으로 분리해 두는 것이 원칙입니다.
 
-**3줄 요약:**
-- Ultraplan은 계획 단계(Claude Code on the web + plan 모드)에서 브라우저 검토를 강화하는 기능이고, Auto 모드는 실행 단계에서 분류기가 위험 액션만 차단하며 자동 실행하는 모드이며, Bypass 모드(`--dangerously-skip-permissions`)는 모든 안전 검사를 제거하는 모드로 각자 다른 단계, 목적의 도구입니다.
-- Auto 모드는 Claude Code v2.1.83+에서 도입되고 Opus 4.7 출시와 함께 Max 플랜에 풀렸으며, Pro 플랜은 여전히 사용 불가이고 최소 Max 5x($100/월)가 필요합니다. Ultraplan은 v2.1.91+에서 연구 미리보기로 제공되며 Bedrock, Vertex, Foundry에서는 동작하지 않습니다.
-- 일상 작업은 default → acceptEdits → plan → auto 순서로 필요에 따라 올라가고, bypass는 격리 컨테이너, VM 전용으로 분리하는 것이 공식 문서가 권장하는 원칙입니다.
-
 **Sources:**
 - [Anthropic Engineering: Claude Code auto mode: a safer way to skip permissions](https://www.anthropic.com/engineering/claude-code-auto-mode)
 - [Claude.com: Auto mode for Claude Code (공식 발표, 2026-03-24)](https://claude.com/blog/auto-mode)

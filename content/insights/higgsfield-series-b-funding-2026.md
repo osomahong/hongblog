@@ -111,12 +111,6 @@ summary3:
 
 당장 요금이나 기능이 바뀐다는 안내는 발표에 없습니다. 회사는 투자금을 연구개발과 글로벌 인프라 확충, 인재 확보와 마케팅에 쓰겠다고 밝혔습니다. 생성 대기열이나 해상도 같은 인프라 쪽 개선이 이어질 가능성이 있지만, 구체적인 일정은 공개되지 않았습니다.
 
-**3줄 요약:**
-
-- 힉스필드가 2026년 8월 17일 시리즈 B로 4억 달러를 유치했고 기업가치는 54억 달러입니다. 올해 1월 시리즈 A의 13억 달러에서 일곱 달 만에 4배 넘게 올랐고, 연환산 매출은 7억 달러로 발표됐습니다.
-- 힉스필드는 Veo, 클링, Seedance 같은 외부 모델을 구독 하나로 묶어 팔면서 자체 모델 Soul 2.0과 DoP를 함께 얹습니다. Seedance 2.5 1080p를 독점으로 먼저 여는 등, 모델 회사가 유통망을 먼저 찾는 흐름도 나타나고 있습니다.
-- 성장을 끈 것은 2026년 5월에 나온 Supercomputer와 에이전트 제품입니다. 석 달 만에 사용자가 42배로 늘었고, 모델 단품이 아니라 결과물이 나올 때까지의 과정을 파는 방향이 이번 투자의 배경으로 보입니다.
-
 **Sources:**
 
 - [Higgsfield 시리즈 B 공식 보도자료 (PR Newswire)](https://www.prnewswire.com/news-releases/higgsfield-raises-400-million-series-b-financing-at-5-4-billion-valuation-with-annualized-revenue-reaching-700-million-302852430.html)

@@ -97,7 +97,6 @@ claude
 
 ## 첫 프로젝트에서 Claude Code를 어떻게 활용하나
 
-
 <div style="overflow-x:auto;margin:24px 0;">
 <div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
 <div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">첫 프로젝트 작업 흐름 예시</div>
@@ -226,11 +225,6 @@ DEV Community의 2026년 비교 분석에 따르면, GitHub Copilot은 일상적
 ## 정리
 
 Claude Code는 터미널에서 동작하는 AI 코딩 도구로, 설치가 간단하고 프로젝트 전체를 이해하는 것이 강점입니다. 단순 코드 자동 완성을 넘어 파일 수정, Git 관리, 외부 도구 연동, 에이전트 기반 자동화까지 지원합니다. [CLI의 기본 개념](/insights/cli-meaning-claude-code-guide)이나 [Claude Code와 코워크의 차이](/insights/claude-cowork-vs-code-comparison)가 궁금하다면 이전 글도 함께 확인해 보시기 바랍니다.
-
-**3줄 요약:**
-- Claude Code는 터미널 기반 AI 코딩 도구로, macOS/Windows/Linux에서 한 줄 명령어로 설치할 수 있습니다.
-- 코드베이스 분석, 파일 수정, Git 작업, 테스트 실행까지 자연어로 요청하면 자동으로 처리합니다.
-- CLAUDE.md, Skills, MCP를 활용하면 프로젝트에 맞게 커스터마이징하여 생산성을 높일 수 있습니다.
 
 **Sources:**
 - [Claude Code 공식 문서](https://code.claude.com/docs/en/overview)

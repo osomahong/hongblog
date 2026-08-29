@@ -97,11 +97,6 @@ summary3:
 
 모바일인덱스 기준으로는 맞습니다. 2026년 7월 챗GPT 앱 1,645만 명, 다음 앱 630만 명으로 2배가 넘습니다. 다만 와이즈앱리테일 조사에서는 챗GPT가 2,367만 명으로 집계되는 등 기관별 수치 차이가 크므로, 배수까지 인용할 때는 기관과 시점을 함께 적는 것이 정확합니다.
 
-**3줄 요약:**
-- 2026년 7월 모바일인덱스 집계에서 구글 앱 MAU가 네이버 앱을 약 17만 8천 명 차이로 처음 앞질렀습니다. 앱 실행자 수 지표이며, 한 달 치 데이터입니다.
-- 검색 점유율은 별개 지표입니다. 인터넷트렌드는 네이버 64.28%로 격차 확대를, StatCounter는 구글 49.54% 우위를 보여 통계가 충돌하고 있습니다.
-- 채널 전략의 판단 근거는 자사 GA4 유입 추이입니다. 구글 AI 검색 노출은 별도 최적화 없이 기본 SEO와 서치콘솔의 AI 노출 지표로 대비합니다.
-
 **Sources:**
 - [New opportunities, control and insights for website owners (Google 공식 블로그)](https://blog.google/products-and-platforms/products/search/new-controls-website-owners/)
 - [AI features and your website (Google Search Central)](https://developers.google.com/search/docs/appearance/ai-features)

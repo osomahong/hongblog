@@ -190,16 +190,6 @@ claude
 - **버전 관리**: `claude update`로 갱신하고, 특정 버전이 필요하면 `claude install stable`처럼 지정합니다.
 - **필요한 도구 확인**: 무엇을 더 설치해야 하는지 클로드 코드에게 물어보고 알려주는 명령을 실행하면 됩니다.
 
-## 3줄 요약
-
-- 설치 전에 유료 구독부터 확인합니다. 무료 계정으로는 로그인 단계에서 막힙니다.
-- 관리자 권한 PowerShell에 통합 명령 한 줄을 붙여 넣으면 Git과 Node.js, 클로드 코드가 한 번에 설치됩니다.
-- 창을 새로 연 뒤 `claude --version`으로 확인하고, 로그인과 `/config` 한국어 설정까지 마치면 바로 쓸 수 있습니다.
-
-윈도우의 winget은 마이크로소프트가 공식으로 제공하는 설치 도구입니다. 한 번 익혀 두면 다른 개발 도구도 같은 방식으로 깔 수 있습니다. 우선 여기까지 마치고 클로드 코드와 첫 대화를 나눠 보신 다음, 스킬이나 플러그인 같은 확장은 필요할 때 골라서 추가하셔도 충분합니다.
-
-OpenAI 쪽 도구도 함께 써 보고 싶다면 [코덱스 CLI 윈도우 세팅 가이드](/insights/codex-cli-windows-easy-setup-guide)를 이어서 보세요. 같은 작업을 두 도구에 시켜 결과를 비교한 기록은 [코덱스 CLI와 클로드 코드 비교](/insights/codex-cli-vs-claude-code)에 정리해 두었습니다.
-
 ## Sources
 
 - [Claude Code 고급 설치 가이드](https://code.claude.com/docs/en/setup)

@@ -68,7 +68,6 @@ Gartner 예측은 방향성은 맞지만, "25%"라는 수치는 2026년 현재 �
 
 ## AI 검색 점유율은 아직 1%입니다
 
-
 <div style="overflow-x:auto;margin:24px 0;">
 <div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
 <div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">비중으로 보는 2026년 검색 시장</div>
@@ -201,13 +200,6 @@ Conductor 보고서에 따르면, AI에 인용되는 상위 10개 브랜드가 �
 | Gemini | 6.4% | Google 생태계와 통합 |
 
 산업별 차이도 큽니다. IT 산업은 AI 추천 트래픽 비중이 2.8%인 반면, 헬스케어는 AI Overviews 표시 비율이 48.75%로 가장 높습니다. 자신의 업종에 맞는 전략이 필요합니다.
-
----
-
-**3줄 요약:**
-- Gartner의 "검색 25% 감소" 예측은 방향성은 맞지만, 2026년 현재 AI 추천 트래픽은 전체의 1% 수준이며 Google은 여전히 89.57%를 점유하고 있습니다.
-- 진짜 변화는 AI의 검색 대체가 아니라, Google AI Overviews로 인한 CTR 61% 하락과 제로클릭 검색 확대입니다.
-- SEO는 죽지 않았고, AEO/GEO는 SEO 위에 쌓이는 전략입니다: E-E-A-T 강화, 구조화 데이터, 인용 가능한 원본 콘텐츠가 핵심 대응입니다.
 
 ---
 

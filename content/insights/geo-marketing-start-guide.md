@@ -211,11 +211,6 @@ GEO에는 SEO와 분명히 다른 점이 하나 있습니다. 검색 노출 1위
 
 GEO는 아직 규칙이 완전히 굳지 않은 영역이고, AI 검색의 점유율과 인용 방식은 계속 바뀌는 중입니다. 다만 순서는 분명합니다. 인용되고 싶은 질문을 정하고, 읽힐 수 있는 사이트를 만들고, 근거가 붙은 문장을 쌓는 일. 이 세 가지는 어떤 변화가 와도 버려지지 않는 작업입니다.
 
-**3줄 요약:**
-- GEO(생성형 엔진 최적화)는 AI 답변 속 인용을 노리는 작업이고, 첫 단계는 인용되고 싶은 질문을 지금 쓰는 AI에게 직접 던져 보는 일입니다.
-- SEO, AEO, GEO는 기술적 SEO라는 같은 기반을 공유하며, HTML 원문에 본문이 담기는 사이트가 AI 크롤러에게 유리합니다.
-- AI는 수치와 근거가 붙은 단정형 문장을 우선 인용하므로, 이미지에 갇힌 정보를 텍스트로 풀고 검증 가능한 근거를 문장에 붙입니다.
-
 ## Sources
 
 - [JavaScript SEO 기본사항, Google Search Central](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)

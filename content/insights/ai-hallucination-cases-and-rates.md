@@ -138,11 +138,6 @@ OpenAI 연구진은 이 현상이 왜 계속 남는지를 다룬 논문을 냈�
 
 환각을 알아채는 신호와 프롬프트 단계에서 줄이는 방법은 [환각(Hallucination) 알아보기](/class/claude-fundamentals/what-is-hallucination)에 정리해 두었습니다.
 
-**3줄 요약:**
-- 할루시네이션은 AI가 사실이 아닌 내용을 사실처럼 만들어 내는 현상이고, 모른다고 하지 않고 구체적으로 틀린다는 점이 핵심 문제입니다.
-- 공개 벤치마크에서 최신 상위 모델이 소형 모델보다 환각률이 높게 나오기도 하는데, 이 지표가 문서 요약 과제에서 원문 이탈만 측정하기 때문입니다.
-- 평가 방식이 추측을 보상하는 구조라 모델 교체로는 해결되지 않으며, 구체적인 값이 붙은 답은 원문을 직접 여는 절차가 필요합니다.
-
 ## Sources
 
 - [Why Language Models Hallucinate, OpenAI](https://openai.com/index/why-language-models-hallucinate/)

@@ -160,12 +160,6 @@ cat build-error.txt | claude -p "이 빌드 오류의 원인을 한 문단으로
 
 ## 정리
 
-**3줄 요약**
-
-1. 헤드리스 AI는 채팅 화면 없이 시스템 이벤트로 실행되어 백그라운드에서 작업을 처리하는 AI 에이전트입니다.
-2. 채팅형 AI가 사람의 질문에서 시작한다면, 헤드리스 AI는 일정, 웹훅, 데이터 변화에서 시작하고 결과도 시스템으로 전달됩니다.
-3. 시작 조건이 명확하고 반복되며 되돌릴 수 있는 작업부터 적용하되, 로그와 실패 알림, 권한 제한을 먼저 갖춥니다.
-
 **Sources**
 
 - [Run Claude Code programmatically, Claude Docs](https://code.claude.com/docs/en/headless)

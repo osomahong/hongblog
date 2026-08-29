@@ -111,11 +111,6 @@ summary3:
 
 보이지 않습니다. 오픈AI 헬프센터 기준으로 광고 노출 대상은 무료와 Go 요금제의 로그인한 성인 이용자이며, Plus, Pro, Business 등 상위 요금제와 18세 미만 계정은 제외됩니다. 광고 없는 환경 자체가 유료 요금제의 혜택 하나로 자리 잡은 셈입니다.
 
-**3줄 요약:**
-- 오픈AI가 2026년 8월 6일 무료와 Go 요금제에 GPT-5.6 루나를 기본 모델로 제공하고 텍스트 대화를 무제한으로 열었습니다. 도구 한도와 Think 횟수 조건은 유지됩니다.
-- 한국에서는 2026년 6월 19일부터 챗GPT 시범 광고가 진행 중입니다. 답변 하단의 Sponsored 카드 형태이고, 무료와 Go 요금제의 성인에게만 노출됩니다.
-- 무료 개방과 광고 확대는 시점이 겹치는 두 흐름입니다. 광고 검토 시에는 전체 MAU가 아니라 노출 대상 요금제 기준으로 지면 크기를 읽어야 합니다.
-
 **Sources:**
 - [GPT-5.6 August Updates 시스템 카드 (OpenAI, PDF)](https://cdn.openai.com/pdf/GPT_5_6_August_Updates.pdf)
 - [Improving GPT-5.6 Sol in ChatGPT (OpenAI 공식 발표)](https://openai.com/index/improving-gpt-5-6-sol-in-chatgpt/)

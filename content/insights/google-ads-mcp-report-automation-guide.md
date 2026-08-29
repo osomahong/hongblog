@@ -198,12 +198,6 @@ pipx run --spec git+https://github.com/googleads/google-ads-mcp.git google-ads-m
 
 한 가지 더 붙이면 좋은 조합이 있습니다. 구글은 [구글 애널리틱스용 MCP 서버](https://github.com/googleanalytics/google-analytics-mcp)도 공식 배포하고 있고, 이쪽 역시 읽기 전용입니다. 두 서버를 함께 연결해 두면 광고 성과와 사이트 안에서의 행동을 한 대화에서 이어 물어보게 됩니다.
 
-## 3줄 요약
-
-- 구글 애즈 MCP는 구글이 코드만 공개하는 읽기 전용 오픈소스 서버이고, 도구는 계정 목록 조회, 데이터 조회, 필드 정보 조회 세 가지입니다. 예산과 입찰을 바꾸는 기능은 없습니다.
-- 준비물은 MCC와 개발자 토큰, 구글 클라우드 프로젝트, OAuth 클라이언트입니다. 개발자 토큰이 관리자 계정에서만 발급되므로 MCC 없이는 시작하지 못합니다.
-- 리포트 자동화가 이 서버의 쓸모입니다. 기간과 지표와 정렬 기준과 단위 환산을 한 문장에 담아 묻고, 형식이 잡히면 질문 묶음으로 저장해 두는 방식이 잘 맞습니다.
-
 ## Sources
 
 - [Google Ads MCP 서버 개발자 통합 가이드 (Google for Developers)](https://developers.google.com/google-ads/api/docs/developer-toolkit/mcp-server)

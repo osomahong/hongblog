@@ -154,12 +154,6 @@ CLI는 명령 한 줄이 전부입니다. 도구 설명을 미리 읽을 필요�
 - **아직 초기 단계입니다.** 두 방식 모두 공개된 지 몇 달 되지 않았습니다. 중요한 집행을 앞두고 처음 써 보는 선택은 권하기 어렵습니다.
 - **비즈니스 규칙은 직접 만들어야 합니다.** 예산을 무한정 올리지 못하게 막거나 승인 단계를 넣는 장치는 두 방식 어디에도 들어 있지 않습니다.
 
-## 3줄 요약
-
-- Meta MCP와 Meta CLI는 같은 광고 API를 여는 두 가지 통로입니다. MCP는 대화창에서 말로 시키고, CLI는 터미널에서 명령으로 시킵니다.
-- MCP는 시작이 가볍고 한 번 돌릴 때 무겁습니다. CLI는 설치와 설정이 무거운 대신 반복 실행이 가볍습니다. 하루 한 번 물어보는 일과 매일 자동으로 도는 일을 이 기준으로 나눕니다.
-- 로컬 파일을 소재로 올리거나 예약 실행이 필요하면 CLI, 설치 없이 되물으며 원인을 좁히려면 MCP를 씁니다. 만들어진 캠페인이 일시중지 상태로 시작하는 점은 양쪽 모두 같습니다.
-
 ## Sources
 
 - [Introducing Ads CLI: A Command-Line Interface for Meta Ads and Commerce (Meta for Developers)](https://developers.facebook.com/blog/post/2026/04/29/introducing-ads-cli/)

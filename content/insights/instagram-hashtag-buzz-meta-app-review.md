@@ -196,12 +196,6 @@ Meta 문서는 플랫폼 사용 제한을 `시간당 호출 수 = 200 × 사용�
 
 빈 결과를 설명으로 처리한 부분이 특히 중요합니다. 제약을 감추면 검수자에게는 버그로 보이고, 설명하면 사양을 이해하고 만든 앱으로 읽힙니다.
 
-## 3줄 요약
-
-- 인스타그램 해시태그 게시물 수집은 Facebook 로그인 경로와 `Instagram Public Content Access` 승인이 필요하며, 그 승인에는 비즈니스 인증이 선행됩니다.
-- `recent_media`는 24시간 창이고 소급 조회가 안 되므로 스캔은 하루 여러 번 돌리고, 집계는 스캔 시각이 아니라 게시물 발행 시각을 기준으로 삼아야 합니다.
-- 앱 검수 통과 여부는 사용 사례보다 스크린캐스트에서 달라집니다. 로그인 플로와 권한 부여 화면, 결과 렌더링까지 끊지 않고 담아야 하고 제출 문서와 영상의 내용이 어긋나면 안 됩니다.
-
 ## 참고 자료
 
 - [Hashtag Search, Instagram Platform](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login/hashtag-search/)

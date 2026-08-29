@@ -172,11 +172,6 @@ Ultrafast와 Fast mode는 같은 모델을 빨리 돌리는 대신 더 비싼 �
 
 Ultrafast와 Fast mode는 접근 신청이 필요합니다. 신청과 함께 지금 쓰는 모델의 작업 시간부터 재 두면 좋습니다. 그 가운데 모델이 토큰을 만드는 구간이 몇 퍼센트인지 알아 두면, 승인이 났을 때 비교할 기준이 이미 준비된 상태가 됩니다.
 
-**3줄 요약:**
-- 2026년 8월 둘째 주에 나온 네 건은 모두 속도를 다루지만 방법이 다릅니다. Ultrafast는 Cerebras 칩으로, Gemini 3.7 Flash는 가벼운 모델로, Fast mode는 실행 설정으로, Muse Glimmer는 예측 디코딩으로 속도를 얻습니다.
-- 발표된 배수는 토큰을 만드는 구간만의 값입니다. GDP-Val 측정에서 Ultrafast는 토큰 생성 기준 최대 14배였지만 작업 전체 시간으로는 5.6배였습니다.
-- Gemini 3.7 Flash의 100만 토큰당 $0.75와 $3.75는 3.6 Flash가 나왔을 때의 절반이지만, 2026년 12월 31일까지만 적용되는 도입가입니다. 2027년부터 두 배가 되므로 예산에 함께 넣어야 합니다.
-
 **Sources:**
 - [Previewing Ultrafast mode (OpenAI 공식 발표)](https://openai.com/index/previewing-ultrafast/)
 - [Accelerating GPT-5.6 Sol Ultrafast with OpenAI (Cerebras 공식 블로그)](https://www.cerebras.ai/blog/accelerating-gpt-5-6-sol-ultrafast-with-openai)

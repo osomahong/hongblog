@@ -161,12 +161,6 @@ Google I/O 2026 발표 시점부터 Gemini Enterprise와 구글 워크스페이�
 
 에이전트형 AI는 개발자 도구를 벗어나 일반 사용자 서비스로 자리잡으려 하고 있습니다. 반복 업무 하나를 골라 Task로 등록해 보면, 어디까지 맡길 수 있는지 감을 잡는 데 도움이 됩니다.
 
-**3줄 요약:**
-- 제미나이 스파크는 구글 클라우드에서 24시간 실행되는 에이전트형 AI 비서로, 기기를 꺼도 맡긴 작업이 계속 진행됩니다.
-- 사용법의 핵심은 목표(Task), 실행 시점(Schedule), 재사용 지침(Skill) 세 요소의 조합이며, 동시 실행은 15개 Task까지입니다.
-- 구글 워크스페이스를 쓰고 있다면 Gmail, Drive, Docs를 읽어 맥락을 파악하는 개인 인텔리전스가 가장 큰 장점입니다. 다만 기본은 해제돼 있어 연결할 앱을 직접 골라야 합니다.
-- 기반이 되는 제미나이 3.5 모델은 에이전트 벤치마크 성능, 네이티브 멀티모달, 100만 토큰 이상의 컨텍스트가 강점입니다.
-
 **Sources:**
 - [Gemini Spark 공식 소개 페이지](https://gemini.google/overview/agent/spark/)
 - [The Gemini app becomes more agentic, delivering proactive, 24/7 help (구글 공식 블로그)](https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/)

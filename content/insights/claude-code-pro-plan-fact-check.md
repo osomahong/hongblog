@@ -140,11 +140,6 @@ Pro 플랜이라는 개념 자체가 처음 보시는 분들을 위해 먼저 �
 
 이 신호들을 놓치지 않으면 플랜 이동 타이밍을 잡기 쉽습니다. 지금 당장은 **차분하게 학습을 이어가시는 것이 가장 합리적인 선택**입니다.
 
-**3줄 요약:**
-- 2026년 4월 22일 Anthropic이 Claude Code를 Pro 플랜에서 잠시 제외했다가 복구했고, 공식 답변은 "신규 가입자 약 2% 대상 소규모 테스트이며 기존 Pro, Max 구독자는 영향 없음"이었습니다.
-- 공식 이유는 "현재 플랜이 실제 사용 패턴에 맞지 않음"이며, 커뮤니티는 토큰 원가 대비 구독료 괴리, 장기 에이전트 사용 급증, 4월 4일 서드파티 클라이언트 차단과 연결된 수익성 재조정으로 해석합니다.
-- 입문자는 Pro 구독으로 학습을 시작하되, 사용량이 늘어나면 Max 5x나 API 종량제로 단계적으로 이동하는 전략이 지금 시점에서 가장 안전합니다.
-
 **Sources:**
 - [The Register: Anthropic tests reaction to yanking Claude Code from Pro (2026-04-22)](https://www.theregister.com/2026/04/22/anthropic_removes_claude_code_pro/)
 - [Simon Willison: Is Claude Code going to cost $100/month? Probably not, it's all very confusing (2026-04-22)](https://simonwillison.net/2026/Apr/22/claude-code-confusion/)

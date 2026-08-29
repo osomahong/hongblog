@@ -258,13 +258,6 @@ AI 분야가 "따라가기 어렵다"고 느끼는 건 당연합니다.
 
 ---
 
-**3줄 요약:**
-- 하네스 엔지니어링은 AI 에이전트가 안정적으로 작동하도록 '환경, 규칙, 확인, 수정 체계'를 설계하는 것입니다. 함께 요리하는 팀원이 우리 주방에서 잘 일할 수 있도록 주방을 세팅하는 것과 같습니다.
-- 프롬프트 → 바이브코딩 → 컨텍스트 → 하네스로 이어지는 흐름은 "AI에게 한 번 시키기"에서 "AI와 매일 함께 일하는 시스템 만들기"로 발전한 것입니다.
-- 코딩 능력보다 "AI가 일하는 환경을 설계하는 능력"이 중요해지고 있으며, 개발자가 아니어도 시작할 수 있습니다.
-
----
-
 **Sources:**
 - [Harness engineering: leveraging Codex in an agent-first world: OpenAI](https://openai.com/index/harness-engineering/)
 - [Harness engineering for coding agent users: Martin Fowler](https://martinfowler.com/articles/harness-engineering.html)

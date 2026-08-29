@@ -305,8 +305,3 @@ GTM 디버깅은 결국 **"어디서 끊겼는지"를 찾는 과정**입니다.
 4. 변수 값이 이상하면 dataLayer 확인
 
 이 흐름만 기억하면 대부분의 문제를 체계적으로 해결할 수 있습니다.
-
-**3줄 요약:**
-- GTM 디버깅의 시작은 항상 Preview 모드입니다. Tags Fired/Not Fired를 확인하고, Variables 탭에서 변수 값이 예상대로 들어오는지 대조하세요.
-- Preview에서 Fired로 나와도 실제 전송이 안 될 수 있으므로, Network 탭에서 GA4(`collect?`), Meta(`facebook.com/tr`) 등 플랫폼별 요청이 나가는지 반드시 최종 확인하세요.
-- SPA 환경에서는 History Change 트리거를 사용해야 하고, 이벤트 파라미터가 undefined이면 dataLayer 변수의 대소문자와 push 타이밍을 먼저 점검하세요.

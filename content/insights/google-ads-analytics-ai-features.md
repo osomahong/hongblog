@@ -92,11 +92,6 @@ summary3:
 
 가장 흔한 원인은 설정입니다. 데이터 기여 옵션이 해제돼 있으면 벤치마크 자체가 표시되지 않습니다. 옵션을 켜도 동종 그룹을 구성할 최소 규모 기준에 못 미치면 비교가 제공되지 않을 수 있습니다. 기능 미출시가 아니라 계정 조건의 문제인 사례가 많으므로, 관리자 설정부터 확인하는 순서를 권합니다.
 
-**3줄 요약:**
-- 구글이 2026년 8월 10일 Google Ads와 GA4의 AI 기능을 발표했습니다. 홈 AI 인사이트와 벤치마킹은 기존 기능의 확장이고, 프롬프트 대시보드는 Ads 영어 계정 베타이며 GA4는 출시 예정입니다.
-- 에이전트의 공식 명칭은 Ask Advisor입니다. 영어 언어 계정 한정 베타이고 MCC 계정은 제외되며, 계정 변경을 대신 실행하지는 않습니다.
-- 한국어 계정에서 지금 할 수 있는 것은 GA4 홈의 AI 요약 확인과 벤치마킹 데이터 기여 설정 점검입니다.
-
 **Sources:**
 - [Evolve your marketing with new AI tools (Google 공식 블로그)](https://blog.google/products/ads-commerce/google-ads-analytics-AI-updates/)
 - [Meet Ask Advisor (Google 공식 블로그)](https://blog.google/products/ads-commerce/ask-advisor/)

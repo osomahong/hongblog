@@ -45,12 +45,6 @@ summary3:
   - '준비물은 VS Code 1.98.0 이상과 Pro 이상 유료 구독 계정이고 Team 플랜은 클로드 코드가 포함된 프리미엄 시트여야 합니다.'
 ---
 
-**3줄 요약:**
-
-- 2026년 8월 기준, VS Code 확장은 앤트로픽이 제공하는 설치 방법 가운데 하나이며, 확장이 자체 CLI를 포함하므로 PowerShell 명령어와 Node.js 설치가 필요 없습니다.
-- 준비물은 VS Code 1.98.0 이상과 클로드 유료 구독 계정(Pro, Max, Team, Enterprise) 2가지입니다.
-- 확장 설치, 브라우저 로그인, 첫 대화까지 3단계면 바로 사용할 수 있습니다.
-
 > VS Code 클로드 코드(Claude Code) 확장은 편집기 안에서 클로드 코드를 쓰도록 연결해 주는 확장 프로그램입니다. 2026년 8월 기준 확장이 실행에 필요한 프로그램을 내장하고 있어, PowerShell 명령어나 Node.js 설치 없이 확장 설치와 브라우저 로그인만으로 시작할 수 있습니다.
 
 이 글은 윈도우 PC와 VS Code 조합을 기준으로 합니다. PowerShell에서 직접 설치하는 방법이 필요하신 분은 [터미널 기준 설치 가이드](/insights/claude-code-windows-easy-setup-guide) (터미널로 설치하는 방법 바로가기)를, 맥을 쓰시는 분은 [맥용 안내](/insights/install-claude-code-vscode-mac) (맥 기준 설치 방법 바로가기)를 참고하세요. 클로드 코드가 무엇인지부터 알고 싶으신 분은 [클로드 코드 소개 글](/class/claude-code-for-everyone/what-is-claude-code) (클로드 코드 설명 바로가기)이 도움이 됩니다.

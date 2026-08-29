@@ -200,12 +200,6 @@ Wan은 품질에서 뒤지지만, 직접 돌릴 수 있다는 점은 다른 셋�
 
 한 가지 덧붙이면, 대부분의 영상 모델은 영어 프롬프트에 맞춰져 있습니다. 한국어로 넣으면 결과가 흔들리는 경우가 많아, 영어로 옮겨 넣는 편이 안정적입니다.
 
-## 3줄 요약
-
-- 클링 3.0과 Veo 3.1 표준의 초당 단가는 7.5배 차이 납니다. 같은 60초에 각각 약 $6과 약 $45입니다.
-- 성능은 하나의 순위로 정리되지 않습니다. 실사감은 Veo 3.1, 사람 동작은 클링 3.0, 인물 일관성은 Seedance 2.0이 앞섭니다.
-- 소라 API는 2026년 9월 24일 종료됩니다. 쓰고 있다면 그전에 다른 모델로 옮겨야 합니다.
-
 ## Sources
 
 - [OpenAI Help Center, What to know about the Sora discontinuation](https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation)

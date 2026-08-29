@@ -242,12 +242,6 @@ Organic Search가 62.5%, AI Assistant가 18.8%입니다. 유입량에서 138배 
 
 권하기 어렵습니다. AI 크롤러가 사이트를 읽지 못하면 인용할 문장 자체가 수집되지 않기 때문입니다. 로그인해야 보이는 콘텐츠, 이미지 한 장으로 만든 상세페이지, 자바스크립트로만 그려지는 본문이 대표적인 경우입니다. 순서는 읽히는 사이트를 만드는 일이 먼저이고, 인용될 문장을 쌓는 일이 그다음입니다. GEO를 위한 크롤링과 색인의 기본은 [SEO 기초 클래스](/class/seo-fundamentals/what-is-seo)에서 순서대로 볼 수 있습니다.
 
-## 3줄 요약
-
-- GEO 업체 검증의 첫 단계는 업체명을 뺀 GEO 관련 대표 질문을 AI에 던져 그 업체가 답변에 등장하는지 확인하는 일입니다.
-- GEO는 SEO 기반 위에서 작동하므로 소스 보기, `site:` 검색, robots.txt, 구조화 데이터 네 가지로 업체의 기술 기반을 먼저 확인합니다.
-- 준이아빠블로그의 GA4 실측에서 AI Assistant 채널은 전체 세션의 0.64%로 자연 검색의 138분의 1이지만 주요 이벤트 경로의 18.8%를 차지해, 세션당 성과 기여가 약 41배로 나타났습니다.
-
 ## Sources
 
 - [Does AI Search Traffic Convert Better Than Traditional Search?, Ahrefs](https://ahrefs.com/blog/ai-search-traffic-conversions-ahrefs/)

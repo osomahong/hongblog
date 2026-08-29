@@ -62,7 +62,6 @@ Google은 2011년부터 사용자 프라이버시를 이유로 검색어 암호�
 
 ## 네이버도 같은 길을 걷고 있습니다
 
-
 <div style="overflow-x:auto;margin:24px 0;">
 <div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
 <div style="background:#FFD700;border-bottom:3px solid #000;padding:10px 14px;font-weight:700;">GA4 보고서 형태 예시: 오가닉 검색어 (가상의 예시 수치)</div>
@@ -140,7 +139,6 @@ Google만의 이야기가 아닙니다. 네이버는 2024년 11월 7일, 검색 
 
 ## 대안 2: 검색어 없이 분석하는 프레임워크
 
-
 <div style="overflow-x:auto;margin:24px 0;">
 <div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
 <div style="background:#000;color:#fff;padding:10px 14px;font-weight:700;">분석의 축 이동: 검색어에서 랜딩 페이지로</div>
@@ -200,11 +198,6 @@ Canva도 유사한 전략으로 "이력서 템플릿", "인스타그램 스토�
 | 실시간 키워드 트래킹 | 의도 기반 콘텐츠 허브 설계 + 성과 측정 |
 
 GSC가 제공하는 쿼리별 노출, 클릭, CTR, 평균 게재순위 데이터는 여전히 강력합니다. 다만 이 데이터는 "사이트에 들어온 후의 행동"이 아니라 "검색 결과 페이지에서의 성과"를 보여준다는 점을 정확히 이해해야 합니다. 그 이상의 분석이 필요하다면, GSC 데이터를 BigQuery로 내보내 GA4 데이터와 랜딩 페이지 기준으로 조합하는 방식이 현재 가장 실용적인 접근입니다.
-
-**3줄 요약:**
-- GA4의 (not provided)는 오류가 아니라 검색엔진의 프라이버시 정책 때문이며, 네이버도 2024년 11월 공지 이후 2025년 중반부터 본격적으로 검색어 전달을 차단하고 있습니다.
-- Google Search Console을 GA4에 연결하면 검색어별 노출/클릭 데이터를 볼 수 있지만, GA4의 사용자 행동 데이터와는 측정 방식이 다르므로 수치가 일치하지 않는 것이 정상입니다.
-- "검색어별 유입 추적" 사고에서 벗어나, 랜딩 페이지 기반 의도 분석과 GSC + GA4 데이터 조합으로 전환하는 것이 올바른 분석 프레임워크입니다.
 
 **Sources:**
 - [WebFX - Timeline of Google Not Provided 100 Percent](https://www.webfx.com/blog/internet/timeline-events-google-not-provided-100-percent/)
