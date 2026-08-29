@@ -52,6 +52,10 @@ metaDescription: >-
   일상 업무는 Sonnet 5, 복잡한 작업은 Opus 5, 대량 처리는 Haiku 4.5입니다. 네 라인업의 가격과 속도, 컨텍스트 차이를 표로 비교하고 직무별 
   선택 기준을 정리했습니다. 2026년 7월 기준.
 ogImage: /og/claude-model-family.png
+summary3:
+  - 'Claude는 하나가 아니라 최상위 Fable 5와 Opus, Sonnet, Haiku 네 라인업으로 함께 운영되는 모델 패밀리입니다.'
+  - '2026년 6월 9일 Claude 5 세대의 Fable 5가 나온 뒤에도 Opus와 Sonnet, Haiku는 그대로 남아 있어서 라인업을 먼저 고르고 번호는 나중에 봅니다.'
+  - 'Fable 5와 사양이 같은 Mythos 5는 일반 판매용이 아니라 Project Glasswing에 참여하는 승인된 조직만 초대로 씁니다.'
 ---
 
 이 글은 [앤트로픽](/class/claude-fundamentals/what-is-anthropic)이 운영하는 platform.claude.com/docs의 모델 개요 문서와 공식 발표문을 한국어 입문자가 보기 편하게 정리한 글입니다. 가격, 컨텍스트 같은 수치는 **2026년 7월 기준** 공식 문서를 그대로 옮겼고, 원문 링크는 글 끝 참고 자료에 모았습니다.

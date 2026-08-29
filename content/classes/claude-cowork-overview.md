@@ -37,6 +37,10 @@ metaTitle: '클로드 코워크(Claude Cowork) 정리: 기능, 클로드 코드�
 metaDescription: >-
   클로드 코워크는 파일 정리, 문서 작성 같은 사무 작업을 AI에게 맡기는 앤트로픽의 데스크톱 기능입니다. 클로드 코드와의 차이, 대표 활용 시나리오, 시작 방법을 정리했습니다.
 ogImage: /og/claude-cowork-overview.png
+summary3:
+  - 'Claude Cowork는 Claude가 사용자 데스크톱에서 직접 앱을 열고 조작해 완성된 파일을 돌려주는 실행형 자동화 도구입니다.'
+  - 'claude.ai 챗이 초안과 답변을 주는 데서 끝난다면 Cowork는 Dispatch로 컴퓨터를 조작하고 정해 둔 시각에 같은 작업을 반복합니다.'
+  - '처음부터 큰 자동화를 맡기지 말고 한 번에 5분에서 10분 걸리는 반복 작업부터 넘긴 뒤 결과를 확인하는 단계를 넣습니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 claude.com/product/cowork와 Anthropic Academy 자료를 한국 입문자가 보기 편하게 정리한 글입니다.

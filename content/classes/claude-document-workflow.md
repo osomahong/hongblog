@@ -40,6 +40,10 @@ quiz:
 metaTitle: '클로드로 PDF, 엑셀, 이미지 정리하는 방법: 문서 워크플로'
 metaDescription: '클로드 문서 워크플로는 PDF, 이미지, 엑셀, 워드 자료를 Claude에 통째로 맡겨 분석, 요약, 변환하는 작업 방식입니다. 자료 유형별 처리 방법을 정리했습니다.'
 ogImage: /og/claude-document-workflow.png
+summary3:
+  - 'Claude는 PDF와 이미지, Word와 Excel, CSV와 HTML을 그대로 받아 분석하고 표나 요약으로 바꿔 줍니다.'
+  - '자료 정리는 자료 첨부와 분명한 지시, 단계 분리, 결과 검증 네 단계로 나눌 때 품질이 일정해집니다.'
+  - '100쪽짜리 보고서는 1M 컨텍스트 모델에 통째로 넣되 요약과 인사이트를 나눠 요청하고 출처가 본문에 실제로 있는지 무작위로 확인합니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 claude.com/resources와 platform.claude.com/docs의 문서, 이미지 처리 자료를 한국 입문자가 보기 편하게 정리한 글입니다.

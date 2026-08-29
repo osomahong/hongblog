@@ -39,6 +39,10 @@ metaDescription: >-
   Claude Code와 Cowork, Design은 Pro 플랜부터 열립니다. 2026년 7월 기준 Free, Pro, Max, Team의
   가격과 포함 기능을 표로 비교하고 직무별로 어디까지 올리면 되는지 정리했습니다.
 ogImage: /og/claude-plans-comparison.png
+summary3:
+  - '클로드 플랜을 고를 때 따지는 것은 하루에 얼마나 쓸 수 있는지와 어떤 도구가 열리는지 두 가지입니다.'
+  - 'Claude Code와 Cowork, Design은 무료 플랜에 없고 2026년 7월 기준 월 20달러인 Pro부터 열립니다.'
+  - 'Max는 Pro와 도구 구성이 같고 사용량만 5배나 20배로 늘리는 플랜이라 도구가 필요해서 올리는 것이 아닙니다.'
 ---
 
 이 글은 앤트로픽 공식 요금 페이지(claude.com/pricing)를 한국 입문자가 보기 편하게 정리한 글입니다. 가격과 포함 기능은 **2026년 7월 기준**이며 시점이 지나면 달라질 수 있으니, 결제 전에는 원문 페이지를 함께 확인하시기 바랍니다.
