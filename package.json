@@ -10,7 +10,8 @@
     "prebuild": "tsx scripts/generate-class-map.ts && tsx scripts/check-links.ts",
     "check:links": "tsx scripts/check-links.ts",
     "check:links:html": "tsx scripts/check-links.ts --html",
-    "check:prose": "tsx scripts/check-prose.ts"
+    "check:prose": "tsx scripts/check-prose.ts",
+    "check:summary3": "tsx scripts/check-summary3.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

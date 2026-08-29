@@ -13,13 +13,11 @@ tags:
 publishedAt: '2026-08-27T00:00:00.000Z'
 summary3:
   - >-
-    Ox Alpha는 Z.AI의 GLM-5.3-Flash입니다. 클로드 코드와 코덱스 CLI는 모두 Z.AI가 공식 지원하는 15개 도구 목록에 들어 있습니다.
+    Ox Alpha는 Z.AI의 GLM-5.3-Flash이고 클로드 코드와 코덱스 CLI 모두 Z.AI가 공식 지원하는 15개 도구에 들어 있습니다.
   - >-
-    도구는 그대로 두고 요청을 보내는 주소만 바꾸는 방식이며, 클로드 코드는 `~/.claude/settings.json`에, 코덱스
-    CLI는 `~/.codex/config.toml`에 값을 넣습니다.
+    클로드 코드는 `~/.claude/settings.json`에, 코덱스 CLI는 `~/.codex/config.toml`에 주소와 API 키를 넣습니다.
   - >-
-    프로토콜마다 주소가 달라서 잘못 넣으면 구독 사용량이 적용되지 않는다고 공식 문서가 경고합니다. 클로드 코드는 Anthropic
-    Messages, 코덱스는 OpenAI Responses 주소를 씁니다.
+    클로드 코드는 Anthropic Messages, 코덱스는 OpenAI Responses 주소를 쓰며 잘못 넣으면 구독 사용량이 적용되지 않습니다.
 highlights:
   - 엔드포인트 주소를 도구에 맞게 고릅니다. 잘못 넣으면 구독 사용량이 적용되지 않는다고 공식 문서가 경고합니다.
   - >-
