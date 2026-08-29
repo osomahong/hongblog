@@ -37,6 +37,10 @@ metaTitle: 'MCP 뜻: AI를 외부 도구와 연결하는 표준 (Model Context P
 metaDescription: >-
   MCP(Model Context Protocol)는 AI를 노션, 슬랙, DB 같은 외부 시스템과 연결하는 표준 규격입니다. USB-C 비유로 개념을 잡고, 무엇이 가능해지고 어떻게 시작하는지 정리했습니다.
 ogImage: /og/what-is-mcp.png
+summary3:
+  - 'MCP는 AI 애플리케이션이 외부 데이터와 도구에 연결되는 오픈소스 표준 규격이고 앤트로픽이 처음 제안했습니다.'
+  - 'Claude와 ChatGPT, VS Code와 Cursor가 이미 지원하므로 한 번 만든 연결을 여러 도구에서 그대로 씁니다.'
+  - '비개발자는 MCP를 직접 만들기보다 노션이나 슬랙처럼 이미 나와 있는 서버를 골라 연결해 씁니다.'
 ---
 
 이 글은 modelcontextprotocol.io 공식 페이지와 앤트로픽 platform.claude.com/docs의 MCP 자료를 한국 입문자가 보기 편하게 정리한 글입니다.
