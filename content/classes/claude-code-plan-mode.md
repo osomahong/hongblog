@@ -33,6 +33,10 @@ quiz:
 metaTitle: '클로드 코드 플랜 모드(Plan Mode) 뜻과 활용 시점'
 metaDescription: '플랜 모드(Plan Mode)는 Claude Code가 파일을 수정하기 전에 계획만 먼저 보여주는 기능입니다. 실행 전 검토 흐름과 실수를 줄이는 활용 시점을 정리했습니다.'
 ogImage: /og/claude-code-plan-mode.png
+summary3:
+  - 'Plan Mode는 Claude Code가 파일을 고치기 전에 무엇을 어떻게 바꿀지 계획만 먼저 보여주고 승인을 기다리는 모드입니다.'
+  - '슬래시 명령 /plan이나 Shift+Tab 단축키로 들어가며 여러 파일을 한꺼번에 바꾸거나 되돌리기 어려운 변경을 할 때 효과가 큽니다.'
+  - '계획서는 형식만 보지 말고 어떤 파일이 왜 바뀌는지까지 확인하고 100개가 넘는 파일을 한 번에 바꾸는 계획이면 단계로 나눕니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs의 Plan Mode 자료를 한국 비개발자 입문자가 보기 편하게 정리한 글입니다.
