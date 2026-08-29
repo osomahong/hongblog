@@ -32,6 +32,10 @@ metaDescription: >-
 ogImage: /og/codex-cli-practical-guide.png
 ogTitle: '코덱스 CLI 사용법: 초보 블로거를 위한 GEO 인용 검사 도구 만들기'
 ogDescription: '빈 폴더에서 시작해 3분 12초 만에 GEO 점검 도구가 나오기까지, 복사해서 쓸 수 있는 시킬 말 전문과 명령을 담았습니다.'
+summary3:
+  - '코덱스 CLI는 터미널에서 파일을 직접 읽고 만드는 코딩 도구라 설치를 마친 다음에는 무엇을 칠지가 문제가 됩니다.'
+  - '시킬 말은 터미널에 바로 치지 말고 파일에 적어 두면 고쳐서 다시 돌리기 쉽습니다.'
+  - '기본값이 읽기 전용이라 파일을 만들게 하려면 sandbox 옵션을 workspace-write로 지정해야 합니다.'
 ---
 
 ## 설치 다음에 멈추는 단계

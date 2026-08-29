@@ -40,6 +40,10 @@ ogTitle: 쉽게 설치하는 코덱스 CLI 세팅가이드(윈도우)
 ogDescription: >-
   PowerShell 관리자 모드부터 Node.js, 코덱스 CLI 본체 설치, ChatGPT 로그인, GPT-5.6 모델과 추론 깊이
   설정까지. 윈도우 입문자를 위한 코덱스 CLI 설치 가이드입니다.
+summary3:
+  - '윈도우에서 코덱스 CLI는 PowerShell 관리자 모드로 Node.js를 깐 뒤 npm 전역 설치 한 줄로 본체를 받습니다.'
+  - '설치가 끝나면 codex 명령을 실행해 ChatGPT 계정으로 로그인하면 첫 실행 준비가 끝납니다.'
+  - '기본 모델은 gpt-5.6-sol이고 기본 추론 깊이는 none이라 필요하면 model 명령이나 설정 파일에서 Terra와 Luna로 바꿉니다.'
 ---
 
 ## 터미널 기반 AI 코딩 도구가 표준이 되는 시기
