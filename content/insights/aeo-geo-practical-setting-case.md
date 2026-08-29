@@ -34,6 +34,10 @@ ogTitle: 실제 적용 사례로 알아보는 AEO 잘하는 법
 ogDescription: >-
   이 글 자체가 AEO 적용 사례입니다. 소스코드 뒤에 숨은 JSON-LD, 메타 태그, sitemap, llms.txt를 눈에 보이게
   공개합니다.
+summary3:
+  - 'AEO는 본문 문장이 아니라 head의 메타 태그와 schema.org 구조화 데이터, sitemap과 canonical URL 같은 코드에서 정해집니다.'
+  - 'AEO는 질문형 헤딩과 FAQ 구조로 답변에 인용되게 하는 작업이고 GEO는 출처와 통계로 생성 답변의 근거로 채택되게 하는 작업입니다.'
+  - 'canonical URL은 같은 글이 여러 주소로 열릴 때 색인 혼선을 막고 keywords는 구글이 거의 보지 않지만 네이버와 일부 AI 크롤러는 주제 힌트로 씁니다.'
 ---
 
 AEO를 잘한다는 것은 콘텐츠를 잘 쓴다는 뜻이 아닙니다. 실제 작동은 **소스코드 뒤에 숨은 기능들**에서 결정됩니다. `<head>`의 메타 태그, `schema.org` 기반 JSON-LD 구조화 데이터, `sitemap.xml`, `robots.txt`, `llms.txt`, `canonical URL` 같은 요소들이 먼저 AI에게 읽힙니다. 대부분의 작성자가 본문만 손본 채 "AEO가 안 걸린다"고 말하는 이유는 여기에 있습니다.

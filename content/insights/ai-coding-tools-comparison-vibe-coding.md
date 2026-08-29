@@ -22,6 +22,10 @@ metaDescription: Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실제
 ogImage: /og/ai-coding-tools-comparison-vibe-coding.png
 ogTitle: AI 코딩 도구 5종을 바이브코딩으로 직접 써보고 비교한 마케터의 솔직 체험기
 ogDescription: Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실전 프로젝트에 적용한 마케터의 비교 리뷰와 AI FOMO 이야기.
+summary3:
+  - '직접 써 본 AI 코딩 도구 다섯 종은 제미나이 CLI와 코덱스 CLI, AWS Kiro, 구글 Antigravity, 클로드 코드입니다.'
+  - '제미나이 CLI는 구글 계정만으로 무료로 쓸 수 있고 Kiro는 코드보다 요구사항과 설계 문서를 먼저 만들며 Antigravity는 여러 에이전트가 작업을 나눠 동시에 처리합니다.'
+  - '개발자가 아니어도 광고 리포트 자동화나 GA4 데이터 조회 같은 실무 문제를 이 도구들로 직접 만들어 볼 수 있습니다.'
 ---
 
 ## AI 코딩 도구가 쏟아지는 시대, 직접 다 써봤습니다

@@ -23,6 +23,10 @@ metaDescription: Seer Interactive 15개월 연구 기반, AI Overviews의 오가
 ogImage: /og/ai-overviews-ctr-decline.png
 ogTitle: 'AI Overviews 도입 이후 오가닉 CTR 61% 하락: 데이터 분석'
 ogDescription: 'Seer Interactive 2,510만 노출 연구 결과: AI Overviews가 표시되면 오가닉 CTR 61% 하락, 인용된 브랜드는 35% 더 높은 CTR. 원출처 기반 분석과 대응 전략.'
+summary3:
+  - 'Seer Interactive가 15개월 동안 검색어 3,119개와 노출 2,510만 건을 추적한 결과 AI 요약이 붙는 검색의 오가닉 CTR은 1.76퍼센트에서 0.61퍼센트로 내려갔습니다.'
+  - 'AI 요약이 없는 검색의 CTR도 2.74퍼센트에서 1.62퍼센트로 41퍼센트 내려가 하락이 AI 요약만의 영향은 아닙니다.'
+  - '광고 클릭률은 AI 요약이 붙는 검색에서 19.70퍼센트에서 6.34퍼센트로 68퍼센트 내려가 오가닉보다 낙폭이 컸습니다.'
 ---
 
 구글에서 무언가를 검색하면, 최근에는 검색 결과 맨 위에 AI가 작성한 요약 답변이 먼저 나타나는 경우가 많습니다. 이것이 바로 **AI Overviews**입니다. AI가 여러 웹사이트의 정보를 읽고, 사용자에게 핵심만 요약해서 보여주는 기능입니다.
