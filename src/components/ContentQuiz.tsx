@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import Link from "next/link";
 import { ArrowRight, CircleHelp, CircleCheck, CircleX, RotateCcw } from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
+import { glitchElement, shatterElement } from "@/lib/canvas-fx";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
 import type { Quiz } from "@/lib/types";
@@ -29,14 +30,22 @@ export function ContentQuiz({
   const [selected, setSelected] = useState<number | null>(null);
 
   const q = quiz[0];
-  if (!q) return null;
 
-  const answered = selected !== null;
-  const isCorrect = answered && q.correctIndex === selected;
-
-  const handleSelect = useCallback((optionIndex: number) => {
-    if (selected !== null) return;
+  // 훅은 조기 반환보다 앞에 둔다. 퀴즈가 없는 경우와 있는 경우의 훅 개수가
+  // 달라지면 렌더 사이에 훅 순서가 어긋난다.
+  const handleSelect = useCallback((optionIndex: number, target?: HTMLElement) => {
+    if (selected !== null || !q) return;
     setSelected(optionIndex);
+
+    // 정답이면 글리치 플래시, 오답이면 유리 파쇄.
+    // HTML in Canvas 미지원 브라우저에서는 조용히 생략된다.
+    if (target) {
+      if (q.correctIndex === optionIndex) {
+        requestAnimationFrame(() => void glitchElement(target));
+      } else {
+        requestAnimationFrame(() => void shatterElement(target));
+      }
+    }
 
     sendGAEvent("quiz_answer", {
       content_type: contentType,
@@ -46,7 +55,7 @@ export function ContentQuiz({
       selected_option: optionIndex,
       is_correct: q.correctIndex === optionIndex,
     });
-  }, [selected, contentType, contentSlug, contentName, q.correctIndex]);
+  }, [selected, contentType, contentSlug, contentName, q]);
 
   const handleRetry = useCallback(() => {
     setSelected(null);
@@ -57,6 +66,11 @@ export function ContentQuiz({
       content_name: contentName,
     });
   }, [contentType, contentSlug, contentName]);
+
+  if (!q) return null;
+
+  const answered = selected !== null;
+  const isCorrect = answered && q.correctIndex === selected;
 
   return (
     <div className="mt-6 sm:mt-8 bg-transparent sm:bg-white border-0 sm:border-4 border-black sm:neo-shadow p-0 sm:p-6">
@@ -102,7 +116,7 @@ export function ContentQuiz({
               key={idx}
               type="button"
               className={containerClass}
-              onClick={() => handleSelect(idx)}
+              onClick={(e) => handleSelect(idx, e.currentTarget)}
               disabled={answered}
             >
               {icon ?? (

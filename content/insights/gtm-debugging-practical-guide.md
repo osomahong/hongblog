@@ -26,6 +26,10 @@ metaDescription: >-
 ogTitle: 'GTM 디버깅 실전 가이드: 태그가 안 찍힐 때 원인 찾는 법'
 ogDescription: 'GTM Preview부터 Network 탭까지, 태그 미작동 원인을 체계적으로 찾는 실전 디버깅 가이드입니다.'
 ogImage: /og/gtm-debugging-practical-guide.png
+summary3:
+  - 'GTM 디버깅의 첫 단계는 미리보기 모드를 켜고 발동된 태그와 안 된 태그를 나눠 보는 일입니다.'
+  - '태그가 안 찍히는 가장 흔한 원인은 트리거 조건과 실제 값의 불일치이고 URL 끝 슬래시 하나로도 어긋납니다.'
+  - '미리보기 창이 아예 열리지 않으면 광고 차단 확장과 이전 세션 쿠키, GTM 컨테이너 ID가 맞는지 확인합니다.'
 ---
 
 GTM(Google Tag Manager)을 설정하고 나면 "잘 되겠지"라고 생각하기 쉽습니다. 그런데 막상 GA4에 들어가보면 데이터가 안 들어오거나, [전환](/class/digital-marketing-terms/what-is-conversion) 이벤트가 2번 찍히거나, 특정 페이지에서만 태그가 작동하지 않는 상황이 꽤 자주 발생합니다.
@@ -41,7 +45,7 @@ GTM 디버깅의 첫 단계는 항상 **Preview 모드**입니다. GTM 워크스
 | 확인 항목 | 위치 | 확인 방법 |
 |---|---|---|
 | **Tags Fired / Not Fired** | Summary 탭 | 발동된 태그와 안 된 태그가 구분되어 표시됨 |
-| **트리거 조건** | 각 태그 클릭 > Firing Triggers | 어떤 트리거에 의해 발동됐는지(또는 왜 안 됐는지) 확인 |
+| **트리거 조건** | 각 태그 클릭 > Firing Triggers | 어떤 트리거가 발동시켰는지(또는 왜 안 됐는지) 확인 |
 | **변수 값** | Variables 탭 | 각 이벤트 시점에 변수에 어떤 값이 들어왔는지 대조 |
 
 Preview 모드에서 태그가 "Not Fired"로 표시된다면, 해당 태그를 클릭해서 **어떤 트리거 조건이 충족되지 않았는지** 확인하세요. 대부분의 문제는 여기서 원인이 드러납니다.
@@ -248,7 +252,7 @@ because it violates the following Content Security Policy directive...
 <div style="border:3px solid #000;background:#FFD700;padding:10px 12px;font-weight:800">Preview에서<br>Fired인가?</div>
 <div style="display:flex;flex-direction:column;gap:8px">
 <div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">No →</span><div style="border:3px solid #000;background:#F3F3F3;padding:8px 10px">트리거 조건과<br>변수 값 대조</div></div>
-<div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">Yes →</span><div style="border:3px solid #000;background:#FFD700;padding:8px 10px;font-weight:800">Network 탭에<br>요청이 나가는가?</div></div>
+<div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">Yes →</span><div style="border:3px solid #000;background:#FFD700;padding:8px 10px;font-weight:800">Network 탭에<br>요청이 나가는지</div></div>
 </div>
 <div style="display:flex;flex-direction:column;gap:8px">
 <div style="display:flex;gap:8px;align-items:center"><span style="font-family:monospace;font-weight:800">No →</span><div style="border:3px solid #000;background:#F3F3F3;padding:8px 10px">태그 설정,<br>게시 여부 확인</div></div>
@@ -262,15 +266,15 @@ because it violates the following Content Security Policy directive...
 
 | 순서 | 확인 항목 | 확인 방법 |
 |---|---|---|
-| 1 | GTM 스니펫이 `<head>`와 `<body>`에 모두 있는가? | 페이지 소스 보기(Ctrl+U) |
-| 2 | GTM 컨테이너가 최신 버전으로 게시되었는가? | GTM 워크스페이스 상단 확인 |
+| 1 | GTM 스니펫이 `<head>`와 `<body>`에 모두 있는지 | 페이지 소스 보기(Ctrl+U) |
+| 2 | GTM 컨테이너가 최신 버전으로 게시되었는지 | GTM 워크스페이스 상단 확인 |
 | 3 | Preview 모드에서 태그가 Fired인가? | Tag Assistant |
-| 4 | 트리거 조건(URL, 이벤트명 등)이 정확한가? | Preview > Firing Triggers |
-| 5 | Variables 탭에서 변수 값이 예상대로인가? | Preview > Variables |
-| 6 | dataLayer에 필요한 데이터가 들어오는가? | Console > `dataLayer` 입력 |
-| 7 | Network 탭에서 실제 요청이 나가는가? | Network > 플랫폼별 키워드 검색 |
-| 8 | 광고 차단기/CSP가 요청을 막고 있지 않은가? | Console > 에러 메시지 확인 |
-| 9 | SPA인 경우 History Change 트리거를 사용하고 있는가? | GTM 트리거 설정 확인 |
+| 4 | 트리거 조건(URL, 이벤트명 등)이 정확한지 | Preview > Firing Triggers |
+| 5 | Variables 탭에서 변수 값이 예상대로인지 | Preview > Variables |
+| 6 | dataLayer에 필요한 데이터가 들어오는지 | Console > `dataLayer` 입력 |
+| 7 | Network 탭에서 실제 요청이 나가는지 | Network > 플랫폼별 키워드 검색 |
+| 8 | 광고 차단기/CSP가 요청을 막고 있지 않은지 | Console > 에러 메시지 확인 |
+| 9 | SPA인 경우 History Change 트리거를 사용하고 있는지 | GTM 트리거 설정 확인 |
 | 10 | 태그 시퀀싱(실행 순서)이 올바른가? | 태그 > 고급 설정 확인 |
 
 ## dataLayer 실시간 모니터링 팁
@@ -301,8 +305,3 @@ GTM 디버깅은 결국 **"어디서 끊겼는지"를 찾는 과정**입니다.
 4. 변수 값이 이상하면 dataLayer 확인
 
 이 흐름만 기억하면 대부분의 문제를 체계적으로 해결할 수 있습니다.
-
-**3줄 요약:**
-- GTM 디버깅의 시작은 항상 Preview 모드입니다. Tags Fired/Not Fired를 확인하고, Variables 탭에서 변수 값이 예상대로 들어오는지 대조하세요.
-- Preview에서 Fired로 나와도 실제 전송이 안 될 수 있으므로, Network 탭에서 GA4(`collect?`), Meta(`facebook.com/tr`) 등 플랫폼별 요청이 나가는지 반드시 최종 확인하세요.
-- SPA 환경에서는 History Change 트리거를 사용해야 하고, 이벤트 파라미터가 undefined이면 dataLayer 변수의 대소문자와 push 타이밍을 먼저 점검하세요.

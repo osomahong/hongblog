@@ -40,6 +40,10 @@ quiz:
 metaTitle: '클로드로 PDF, 엑셀, 이미지 정리하는 방법: 문서 워크플로'
 metaDescription: '클로드 문서 워크플로는 PDF, 이미지, 엑셀, 워드 자료를 Claude에 통째로 맡겨 분석, 요약, 변환하는 작업 방식입니다. 자료 유형별 처리 방법을 정리했습니다.'
 ogImage: /og/claude-document-workflow.png
+summary3:
+  - 'Claude는 PDF와 이미지, Word와 Excel, CSV와 HTML을 그대로 받아 분석하고 표나 요약으로 바꿔 줍니다.'
+  - '자료 정리는 자료 첨부와 분명한 지시, 단계 분리, 결과 검증 네 단계로 나눌 때 품질이 일정해집니다.'
+  - '100쪽짜리 보고서는 1M 컨텍스트 모델에 통째로 넣되 요약과 인사이트를 나눠 요청하고 출처가 본문에 실제로 있는지 무작위로 확인합니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 claude.com/resources와 platform.claude.com/docs의 문서, 이미지 처리 자료를 한국 입문자가 보기 편하게 정리한 글입니다.
@@ -77,7 +81,7 @@ OCR 변환이나 별도 전처리 없이 바로 업로드해 분석을 시킬 �
 
 **3단계. 분석 (Analysis)**
 - 요약을 바탕으로 패턴, 반복 키워드, 인사이트 도출.
-- [Extended Thinking](/class/claude-in-practice/what-is-extended-thinking)을 켜면 깊이가 늘어납니다.
+- [Extended Thinking](/class/claude-in-practice/what-is-extended-thinking)을 사용 설정하면 깊이가 늘어납니다.
 
 **4단계. 결론, 결과물 (Output)**
 - [Artifacts](/class/claude-in-practice/what-are-artifacts)로 마크다운 보고서, 표, 슬라이드 초안 생성.
@@ -90,7 +94,7 @@ OCR 변환이나 별도 전처리 없이 바로 업로드해 분석을 시킬 �
 회의록을 음성 녹음 → 자동 받아쓰기 → 정리하는 흐름이 일반적입니다.
 
 - **자료 첨부**: 받아쓴 텍스트 또는 자료 파일 업로드
-- **지시**: "결정 사항, 할 일, 미해결 이슈 세 갈래로 정리. 분량 각 5개 이내, 잡담 제외"
+- **지시**: "결정 사항, 할 일, 미해결 이슈 세 가지로 정리. 분량 각 5개 이내, 잡담 제외"
 - **결과**: Artifacts 마크다운 표 → 노션/구글 닥스로 옮김
 
 [Skills](/class/claude-in-practice/what-are-claude-skills)로 등록하면 매번 같은 형식이 나옵니다.
@@ -148,13 +152,13 @@ OCR 변환이나 별도 전처리 없이 바로 업로드해 분석을 시킬 �
 **3. 민감 정보 그대로 입력**
 - 회사 내부 자료, 고객 개인정보, 미공개 IR 자료는 [책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use)의 보안 기준에 따라 가명화, 마스킹 후 입력합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Claude는 PDF, 이미지, Word, Excel, CSV 같은 자료를 직접 받아 분석할 수 있습니다.** OCR이나 별도 전처리가 필요 없습니다.
+1. Claude는 PDF와 이미지, Word와 Excel, CSV와 HTML을 그대로 받아 분석하고 표나 요약으로 바꿔 줍니다.
 
-2. **표준 4단계 워크플로(자료 첨부 + 지시 → 요약 → 분석 → 결과물)를 흐름화하세요.** 회의록 정리, 보고서 분석, 영수증 변환, 외국어 변환 네 시나리오에 즉시 적용 가능합니다.
+2. 자료 정리는 자료 첨부와 분명한 지시, 단계 분리, 결과 검증 네 단계로 나눌 때 품질이 일정해집니다.
 
-3. **[Projects](/class/claude-in-practice/what-are-claude-projects), [Artifacts](/class/claude-in-practice/what-are-artifacts), [Skills](/class/claude-in-practice/what-are-claude-skills), [Cowork](/class/claude-in-practice/claude-cowork-overview)와 묶으면 매주 같은 품질의 결과물이 자동으로 만들어집니다.** 너무 긴 자료 한 번에 분석, 검증 없이 사용, 민감 정보 그대로 입력 세 가지를 피하세요.
+3. 100쪽짜리 보고서는 1M 컨텍스트 모델에 통째로 넣되 요약과 인사이트를 나눠 요청하고 출처가 본문에 실제로 있는지 무작위로 확인합니다.
 
 ## 📚 참고 자료
 

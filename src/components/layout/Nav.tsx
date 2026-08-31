@@ -3,16 +3,25 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Menu, X, Mail, MessageCircle, Search } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  Menu, X, Mail, MessageCircle, Search, Plus, ArrowRight,
+  Smartphone, Terminal, Rocket, Bot, Briefcase, BarChart3, Globe, BookOpen,
+  type LucideIcon,
+} from "lucide-react";
 import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
-import { NEWSLETTER_URL, KAKAO_INQUIRY_URL } from "@/lib/constants";
+import { ashNavigate, inkNavigate, jellyElement } from "@/lib/canvas-fx";
+import { KAKAO_INQUIRY_URL } from "@/lib/constants";
 import { SearchDialog } from "@/components/search/SearchDialog";
+import { Ga4Logo } from "@/components/icons/Ga4Logo";
+import { NewsletterModal } from "@/components/NewsletterModal";
+import type { CourseLink } from "@/lib/promotions";
 
 // Tags는 사이트 내 검색으로 대체해 내비에서 뺐다. /tags 페이지와 푸터 링크는
 // 색인과 내부 링크 경로를 위해 그대로 둔다.
 const NAV_LINKS = [
+  { href: "/ga4-edu", label: "GA4 Edu" },
   { href: "/ai-practice", label: "AI-Practice" },
   { href: "/class", label: "Class" },
   { href: "/insights", label: "Insights" },
@@ -28,7 +37,10 @@ interface NavCtaButtonsProps {
 
 /** 상단 내비, 모바일 메뉴 공용 뉴스레터·커뮤니티 CTA 버튼 쌍 */
 function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps) {
-  const labelClass = compactLabels ? "hidden lg:inline" : undefined;
+  const [newsletterOpen, setNewsletterOpen] = useState(false);
+  // 내비에 GA4 Edu가 들어오면서 1024~1279 구간의 항목이 가로로 넘쳤다.
+  // 그 구간에서는 두 CTA를 아이콘만 남긴다. 두 버튼 모두 aria-label이 있어 이름은 남는다.
+  const labelClass = compactLabels ? "hidden xl:inline" : undefined;
   const baseClass = "inline-flex items-center gap-1.5 px-3 py-2 text-xs font-black transition-all";
   const shapeClass = apTheme
     ? "rounded-[10px] border"
@@ -36,11 +48,12 @@ function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps)
 
   return (
     <>
-      <a
-        href={NEWSLETTER_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => sendGAEvent("click_newsletter", { location })}
+      <button
+        type="button"
+        onClick={() => {
+          sendGAEvent("click_newsletter", { location });
+          setNewsletterOpen(true);
+        }}
         aria-label="뉴스레터 구독하기"
         className={cn(
           baseClass,
@@ -51,7 +64,12 @@ function NavCtaButtons({ apTheme, location, compactLabels }: NavCtaButtonsProps)
       >
         <Mail className="w-4 h-4 flex-shrink-0" />
         <span className={labelClass}>뉴스레터 구독하기</span>
-      </a>
+      </button>
+      <NewsletterModal
+        open={newsletterOpen}
+        onClose={() => setNewsletterOpen(false)}
+        signupSource={location}
+      />
       <a
         href={KAKAO_INQUIRY_URL}
         target="_blank"
@@ -91,10 +109,92 @@ function SearchTrigger({ apTheme, onOpen }: { apTheme: boolean; onOpen: () => vo
   );
 }
 
-export function Nav() {
+/**
+ * 코스를 한눈에 구분하는 아이콘.
+ * 선으로만 그려진 것을 골라 메뉴가 번잡해지지 않게 한다.
+ * 목록에 없는 코스는 책 아이콘을 쓴다.
+ */
+const COURSE_ICONS: Record<string, LucideIcon> = {
+  "app-marketing-basics": Smartphone,
+  "seo-fundamentals": Search,
+  "claude-code-for-everyone": Terminal,
+  "claude-in-practice": Briefcase,
+  "claude-fundamentals": Bot,
+  "vibe-coding-basics": Rocket,
+  "digital-marketing-terms": BarChart3,
+  "digital-basic": Globe,
+};
+
+/**
+ * Class 메뉴에 붙는 코스 목록.
+ * 검색으로 들어오기 어려운 코스 페이지에 모든 페이지에서 닿는 링크를 만든다.
+ * 여닫기를 CSS(hover, focus-within)로만 처리해 키보드로 탭해도 열린다.
+ */
+function CourseDropdown({ courses, apTheme }: { courses: CourseLink[]; apTheme: boolean }) {
+  const router = useRouter();
+  if (courses.length === 0) return null;
+
+  return (
+    <div
+      className={cn(
+        "absolute left-0 top-full pt-2 w-[18rem] z-50",
+        "invisible opacity-0 group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100 transition-opacity"
+      )}
+    >
+      <div
+        className={cn(
+          "p-2",
+          apTheme
+            ? "bg-[#0b0b10] border border-white/15 rounded-[10px]"
+            : "bg-white border-4 border-black neo-shadow"
+        )}
+      >
+        {/* 코스가 늘어도 메뉴 높이는 8줄에서 멈추고 나머지는 스크롤로 내린다 */}
+        <div className="max-h-64 overflow-y-auto overscroll-contain">
+        {courses.map((course) => {
+          const Icon = COURSE_ICONS[course.slug] ?? BookOpen;
+
+          return (
+            <Link
+              key={course.slug}
+              href={course.href}
+              onClick={(e) => {
+                sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
+                // 학습 경로 진입은 잉크 번짐 전환
+                inkNavigate(e, () => router.push(course.href));
+              }}
+              className={cn(
+                "group/row flex items-center gap-2.5 px-3 py-2 text-xs font-bold transition-colors",
+                apTheme ? "text-gray-200 hover:text-[#ffd700]" : "hover:bg-[#FFD700]"
+              )}
+            >
+              <Icon
+                className={cn(
+                  "w-4 h-4 flex-shrink-0 transition-colors",
+                  // 평소에는 빨강을 옅게 깔아 두고, 마우스가 올라간 줄에서만 원색으로 올린다
+                  apTheme
+                    ? "text-[#ff5c7d]/40 group-hover/row:text-[#ff5c7d]"
+                    : "text-[#FF0033]/35 group-hover/row:text-[#FF0033]"
+                )}
+                strokeWidth={1.75}
+              />
+              <span className="truncate normal-case tracking-normal">{course.title}</span>
+            </Link>
+          );
+        })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // 모바일 메뉴 안에서 Class 코스 목록을 펼쳤는지
+  const [isClassOpen, setIsClassOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   // AI-Practice 하위 경로에서는 다크/네온 테마 변형을 쓴다 (구조는 동일)
   const isApTheme = pathname?.startsWith("/ai-practice") ?? false;
 
@@ -158,16 +258,37 @@ export function Nav() {
           <div className="flex items-center gap-3 min-w-0">
           {/* Desktop Navigation Links. CTA 버튼과 한 줄에 공존해야 해서 lg 미만에서는 밀도를 줄인다 */}
           <div className="hidden sm:flex items-center gap-1 lg:gap-1.5">
-            {/* 돋보기는 AI-Practice 왼쪽에 둔다 */}
-            <SearchTrigger apTheme={isApTheme} onOpen={openSearch} />
             {NAV_LINKS.map(({ href, label }) => {
+              // GA4 Edu는 GA4 로고 색을 그대로 입힌 필로 구분한다
+              if (href === "/ga4-edu") {
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                    className={cn(
+                      "nav-ga4-pill inline-flex items-center gap-1.5 px-3 lg:px-4 py-2 mr-1.5 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-all",
+                      isApTheme
+                        ? "border border-white/20"
+                        : "border-2 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+                    )}
+                  >
+                    <Ga4Logo className="w-3.5 h-3.5 flex-shrink-0" monochrome />
+                    <span>{label}</span>
+                  </Link>
+                );
+              }
               // AI-Practice는 핵심 메뉴라 다크 필 + 히어로 그라데이션 텍스트로 강조한다
               if (href === "/ai-practice") {
                 return (
                   <Link
                     key={href}
                     href={href}
-                    onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                    onClick={(e) => {
+                      sendGAEvent("click_nav", { menu_name: label });
+                      // 다크 테마 섹션 진입이라 검은 잉크가 화면을 삼키는 전환을 쓴다
+                      inkNavigate(e, () => router.push(href));
+                    }}
                     className={cn(
                       "nav-aip-pill px-3 lg:px-4 py-2 mr-1.5 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-all hover:brightness-125",
                       isApTheme
@@ -179,11 +300,18 @@ export function Nav() {
                   </Link>
                 );
               }
-              return (
+              const menuLink = (
                 <Link
                   key={href}
                   href={href}
-                  onClick={() => sendGAEvent("click_nav", { menu_name: label })}
+                  onClick={(e) => {
+                    sendGAEvent("click_nav", { menu_name: label });
+                    // 재 날림 전환으로 섹션 이동
+                    ashNavigate(e, () => router.push(href));
+                  }}
+                  // HTML in Canvas 지원 브라우저에서만 글자가 출렁이는 장식.
+                  // 미지원이면 jellyElement가 아무 일도 하지 않는다.
+                  onMouseEnter={(e) => void jellyElement(e.currentTarget)}
                   className={cn(
                     "px-2 lg:px-4 py-2 font-bold uppercase text-xs lg:text-sm tracking-wide whitespace-nowrap transition-colors",
                     isApTheme
@@ -197,11 +325,24 @@ export function Nav() {
                   {label}
                 </Link>
               );
+
+              // Class 메뉴에만 코스 목록을 펼친다
+              if (href === "/class") {
+                return (
+                  <div key={href} className="relative group/nav">
+                    {menuLink}
+                    <CourseDropdown courses={courses} apTheme={isApTheme} />
+                  </div>
+                );
+              }
+
+              return menuLink;
             })}
           </div>
 
-          {/* Desktop CTA Buttons */}
+          {/* Desktop CTA Buttons. 돋보기는 뉴스레터 버튼 왼쪽에 둔다 */}
           <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+            <SearchTrigger apTheme={isApTheme} onOpen={openSearch} />
             <NavCtaButtons apTheme={isApTheme} location="nav" compactLabels />
           </div>
 
@@ -230,49 +371,130 @@ export function Nav() {
         {isMenuOpen && (
           <div
             className={cn(
-              "sm:hidden py-2 flex items-start gap-2",
+              "sm:hidden py-2",
               isApTheme ? "border-t border-white/10" : "border-t-2 border-black"
             )}
           >
-            <div className="flex-1 min-w-0">
-            {NAV_LINKS.map(({ href, label }) => {
-              if (href === "/ai-practice") {
-                return (
-                  <Link
-                    key={href}
-                    href={href}
-                    onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
-                    className={cn(
-                      "nav-aip-pill block text-center mx-2 my-2 px-4 py-2.5 font-bold uppercase text-sm tracking-wide",
-                      isApTheme && "border border-white/20"
-                    )}
-                  >
-                    <span className="nav-aip-text">{label}</span>
-                  </Link>
-                );
-              }
-              return (
+            {/* 상단: 왼쪽 링크, 오른쪽 여백에 CTA 버튼을 두는 2단 구조 */}
+            <div className="flex items-start gap-2">
+              <div className="flex-1 min-w-0">
                 <Link
-                  key={href}
-                  href={href}
-                  onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
+                  href="/ga4-edu"
+                  onClick={() => { sendGAEvent("click_nav", { menu_name: "GA4 Edu" }); setIsMenuOpen(false); }}
                   className={cn(
-                    "block px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
+                    "nav-ga4-pill flex items-center justify-center gap-1.5 mx-2 my-2 px-4 py-2.5 font-bold uppercase text-sm tracking-wide",
+                    isApTheme ? "border border-white/20" : "border-2 border-black neo-shadow-sm"
+                  )}
+                >
+                  <Ga4Logo className="w-4 h-4 flex-shrink-0" monochrome />
+                  <span>GA4 Edu</span>
+                </Link>
+
+                <Link
+                  href="/ai-practice"
+                  onClick={() => { sendGAEvent("click_nav", { menu_name: "AI-Practice" }); setIsMenuOpen(false); }}
+                  className={cn(
+                    "nav-aip-pill block text-center mx-2 my-2 px-4 py-2.5 font-bold uppercase text-sm tracking-wide",
+                    isApTheme && "border border-white/20"
+                  )}
+                >
+                  <span className="nav-aip-text">AI-Practice</span>
+                </Link>
+
+                {/* Class는 누르면 코스 목록이 펼쳐지는 토글이다 */}
+                <button
+                  type="button"
+                  onClick={() => setIsClassOpen(!isClassOpen)}
+                  aria-expanded={isClassOpen}
+                  className={cn(
+                    "w-full flex items-center justify-between px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
                     isApTheme
                       ? "text-gray-200 hover:text-[#ffd700]"
                       : "hover:bg-[#FF0033] hover:text-white"
                   )}
                 >
-                  {label}
-                </Link>
-              );
-            })}
+                  <span>Class</span>
+                  <Plus
+                    className={cn("w-4 h-4 transition-transform", isClassOpen && "rotate-45")}
+                  />
+                </button>
+              </div>
+
+              {/* 모바일 메뉴 우측 여백에 배치하는 CTA 버튼 */}
+              <div className="flex flex-col items-stretch gap-2 pt-2 pr-1 flex-shrink-0">
+                <NavCtaButtons apTheme={isApTheme} location="nav_mobile" />
+              </div>
             </div>
 
-            {/* 모바일 메뉴 우측 여백에 배치하는 CTA 버튼 */}
-            <div className="flex flex-col items-stretch gap-2 pt-2 pr-1 flex-shrink-0">
-              <NavCtaButtons apTheme={isApTheme} location="nav_mobile" />
-            </div>
+            {/* 펼친 코스 목록은 2단 구조 밖에 두어 우측 여백까지 전체 폭을 쓴다.
+                6줄 높이까지만 보여주고 나머지는 스크롤로 내린다.
+                /class 페이지는 목록 맨 아래 전체 보기 링크로 연결한다. */}
+            {isClassOpen && courses.length > 0 && (
+              <div
+                className={cn(
+                  "mx-4 mb-2 border-2",
+                  isApTheme ? "border-white/15" : "border-black"
+                )}
+              >
+                <div className="max-h-56 overflow-y-auto overscroll-contain">
+                  {courses.map((course) => (
+                    <Link
+                      key={course.slug}
+                      href={course.href}
+                      onClick={(e) => {
+                        sendGAEvent("click_nav", { menu_name: `Class - ${course.title}` });
+                        setIsMenuOpen(false);
+                        setIsClassOpen(false);
+                        // 학습 경로 진입은 잉크 번짐 전환
+                        inkNavigate(e, () => router.push(course.href));
+                      }}
+                      className={cn(
+                        "block px-3 py-2.5 text-xs font-bold transition-colors",
+                        isApTheme
+                          ? "text-gray-300 hover:text-[#ffd700]"
+                          : "hover:bg-[#FFD700]"
+                      )}
+                    >
+                      {course.title}
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href="/class"
+                  onClick={() => {
+                    sendGAEvent("click_nav", { menu_name: "Class" });
+                    setIsMenuOpen(false);
+                    setIsClassOpen(false);
+                  }}
+                  className={cn(
+                    "flex items-center gap-1 px-3 py-2 text-xs font-black border-t-2",
+                    isApTheme
+                      ? "border-white/15 text-[#ff5c7d]"
+                      : "border-black text-[#FF0033]"
+                  )}
+                >
+                  코스 전체 보기
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            )}
+
+            {/* 나머지 링크는 전체 폭을 쓴다 */}
+            {NAV_LINKS.filter(({ href }) => href === "/insights" || href === "/about").map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => { sendGAEvent("click_nav", { menu_name: label }); setIsMenuOpen(false); }}
+                className={cn(
+                  "block px-4 py-3 font-bold uppercase text-sm tracking-wide transition-colors",
+                  isApTheme
+                    ? "text-gray-200 hover:text-[#ffd700]"
+                    : "hover:bg-[#FF0033] hover:text-white"
+                )}
+              >
+                {label}
+              </Link>
+            ))}
           </div>
         )}
       </div>

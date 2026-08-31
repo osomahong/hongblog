@@ -30,7 +30,10 @@ export function extractFaqPairs(markdown: string): { question: string; answer: s
       flush();
       // 헤딩에서 선두 이모지(공백 포함)는 제거하여 질문 텍스트만 남긴다.
       const heading = qHeading[1].trim().replace(/^[\p{Extended_Pictographic}☀-➿]+\s*/u, "");
-      if (/[?？]\s*$/.test(heading)) {
+      // 클래스 도입부의 관심 유도 헤딩은 실제 질문이 아니므로 FAQ에서 제외한다.
+      // 넣으면 답이 없는 Q&A 쌍이 FAQPage 스키마 첫 항목으로 발행된다.
+      const isHookHeading = /혹시 이런 생각/.test(heading);
+      if (!isHookHeading && /[?？]\s*$/.test(heading)) {
         currentQ = heading.replace(/[?？]\s*$/, "?").trim();
       }
       continue;

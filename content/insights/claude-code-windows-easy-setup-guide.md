@@ -10,7 +10,7 @@ tags:
   - 바이브코딩
   - 자동화
 publishedAt: '2026-05-08T15:37:58.000Z'
-updatedAt: '2026-08-05T11:00:00.000Z'
+updatedAt: '2026-08-17T00:00:00.000Z'
 highlights:
   - 설치를 시작하기 전에 유료 구독부터 확인합니다. 무료 계정으로는 클로드 코드에 로그인되지 않습니다.
   - >-
@@ -34,6 +34,10 @@ metaDescription: >-
 ogImage: /og/claude-code-windows-easy-setup-guide.png
 ogTitle: 쉽게 설치하는 클로드 코드(Claude Code) 설치 가이드 (윈도우)
 ogDescription: 통합 명령 한 줄로 끝내는 윈도우 클로드 코드 설치 절차와 자주 막히는 지점의 해결법입니다.
+summary3:
+  - '윈도우에서 클로드 코드 설치는 PowerShell에 명령 한 줄을 붙여 넣는 작업이고 Git과 Node.js, 본체를 세미콜론으로 이어 한 번에 깝니다.'
+  - '요구 사항은 윈도우 10의 1809 빌드 이상에 메모리 4GB 이상이고 그보다 낮으면 설치 도구인 winget 자체가 돌아가지 않습니다.'
+  - '검색 결과에서 Windows PowerShell (x86)은 32비트용이라 고르면 안 되고 무료 계정으로는 로그인 자체가 되지 않습니다.'
 ---
 
 ## 윈도우 사용자가 가장 먼저 만나는 검은 화면, PowerShell
@@ -88,6 +92,22 @@ winget install --id Git.Git -e --accept-package-agreements --accept-source-agree
 
 **Git for Windows는 선택 사항입니다.** Git이 없으면 클로드 코드는 PowerShell 도구로 명령을 실행하고, Git이 있으면 Git Bash로 Bash 도구를 씁니다. 다만 뒤에서 다룰 데스크톱 앱을 쓸 계획이라면 Git이 반드시 필요합니다.
 
+## winget으로 설치하는 방법
+
+앞의 통합 명령 대신 winget으로 클로드 코드 본체를 깔 수도 있습니다. 공식 문서가 함께 안내하는 방식입니다.
+
+```powershell
+winget install Anthropic.ClaudeCode
+```
+
+한 가지 차이를 알고 고르셔야 합니다. **설치 스크립트로 깔면 새 버전이 나올 때 백그라운드에서 알아서 갱신되지만, winget으로 깔면 자동 갱신이 되지 않습니다.** 이때는 아래 명령을 가끔 직접 실행해야 합니다.
+
+```powershell
+winget upgrade Anthropic.ClaudeCode
+```
+
+클로드 코드가 실행 중이면 윈도우가 실행 파일을 잠가서 갱신이 실패할 수 있습니다. 그런 경우에는 클로드 코드를 종료하고 다시 시도하면 됩니다. 처음 설치하시는 분께는 자동 갱신이 되는 설치 스크립트 쪽을 권합니다.
+
 ## 설치 확인과 첫 실행
 
 새로 연 PowerShell 창에서 아래를 입력합니다.
@@ -96,7 +116,7 @@ winget install --id Git.Git -e --accept-package-agreements --accept-source-agree
 claude --version
 ```
 
-`2.1.211 (Claude Code)`처럼 버전 번호와 이름이 나오면 설치가 끝난 것입니다. 숫자는 설치 시점에 따라 달라집니다. 설치 상태를 더 자세히 보고 싶다면 `claude doctor`를 실행하면 설정 오류까지 함께 점검해 줍니다.
+`2.1.233 (Claude Code)`처럼 버전 번호와 이름이 나오면 설치가 끝난 것입니다. 숫자는 설치 시점에 따라 달라지며, 2026년 8월 17일 확인 시점의 최신 버전이 2.1.233이었습니다. 설치 상태를 더 자세히 보고 싶다면 `claude doctor`를 실행하면 설정 오류까지 함께 점검해 줍니다.
 
 이제 실행합니다.
 
@@ -149,7 +169,7 @@ claude
 | `A parameter cannot be found that matches parameter name 'fsSL'` | 맥이나 리눅스용 설치 명령을 붙여 넣은 경우입니다 |
 | `Claude Code does not support 32-bit Windows` | PowerShell (x86)을 실행한 경우입니다. (x86)이 붙지 않은 창으로 다시 엽니다 |
 
-백신 프로그램이 설치 스크립트를 차단하는 사례도 있습니다. 이때는 잠시 실시간 검사를 끄고 설치한 뒤 다시 켜면 됩니다. 클로드 코드 공식 설치 스크립트는 앤트로픽이 직접 호스팅하는 파일입니다.
+백신 프로그램이 설치 스크립트를 차단하는 사례도 있습니다. 이때는 잠시 실시간 검사를 해제하고 설치한 뒤 다시 사용 설정하면 됩니다. 클로드 코드 공식 설치 스크립트는 앤트로픽이 직접 호스팅하는 파일입니다.
 
 ## 터미널 없이 쓰는 방법: 데스크톱 앱
 
@@ -169,14 +189,6 @@ claude
 - **스킬과 플러그인 추가**: 데스크톱 앱에서는 입력창 옆 `+` 버튼에서 Plugins를 고르면 공식 마켓플레이스가 열립니다. 터미널에서는 `claude plugin install` 명령을 씁니다.
 - **버전 관리**: `claude update`로 갱신하고, 특정 버전이 필요하면 `claude install stable`처럼 지정합니다.
 - **필요한 도구 확인**: 무엇을 더 설치해야 하는지 클로드 코드에게 물어보고 알려주는 명령을 실행하면 됩니다.
-
-## 3줄 요약
-
-- 설치 전에 유료 구독부터 확인합니다. 무료 계정으로는 로그인 단계에서 막힙니다.
-- 관리자 권한 PowerShell에 통합 명령 한 줄을 붙여 넣으면 Git과 Node.js, 클로드 코드가 한 번에 설치됩니다.
-- 창을 새로 연 뒤 `claude --version`으로 확인하고, 로그인과 `/config` 한국어 설정까지 마치면 바로 쓸 수 있습니다.
-
-윈도우의 winget은 마이크로소프트가 공식으로 제공하는 설치 도구입니다. 한 번 익혀 두면 다른 개발 도구도 같은 방식으로 깔 수 있습니다. 우선 여기까지 마치고 클로드 코드와 첫 대화를 나눠 보신 다음, 스킬이나 플러그인 같은 확장은 필요할 때 골라서 추가하셔도 충분합니다.
 
 ## Sources
 

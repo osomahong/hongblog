@@ -35,6 +35,10 @@ ogTitle: 정말 클로드 코드를 Pro플랜에서 쓸 수 없을까요?
 ogDescription: >-
   실제로 무엇이 바뀌었고, Anthropic은 뭐라고 했고, 왜 이런 실험을 했을지 추측은 어떤지, 지금 Pro 구독해도 되는지, 입문자는
   어떻게 시작해야 하는지 정리했습니다.
+summary3:
+  - '2026년 4월 22일 앤트로픽 요금 페이지에서 Pro 플랜의 Claude Code 표시가 X로 바뀌었다가 같은 날 늦게 원상복구됐습니다.'
+  - '앤트로픽은 신규 가입자 약 2퍼센트를 대상으로 한 테스트였다고 밝혔고 기존 Pro와 Max 구독자는 영향을 받지 않았습니다.'
+  - '기존 구독자는 지금도 클로드 코드를 그대로 쓸 수 있어서 오늘부터 못 쓰게 됐다는 우려는 사실이 아닙니다.'
 ---
 
 결론부터 말씀드립니다. **기존 Pro 구독자는 [클로드 코드](/class/claude-code-for-everyone/what-is-claude-code)를 지금도 그대로 쓸 수 있습니다.** 2026년 4월 22일 [Anthropic](/class/claude-fundamentals/what-is-anthropic)이 `claude.com/pricing` 페이지에서 Pro 플랜의 Claude Code 포함 표시를 잠시 제거했다가 곧 복구한 사건이 있었고, 같은 날 Anthropic의 Growth 담당 Amol Avasare가 X에 "신규 가입자 약 2%를 대상으로 한 소규모 테스트"였으며 "기존 Pro, Max 구독자는 영향받지 않는다"고 밝혔습니다.
@@ -135,11 +139,6 @@ Pro 플랜이라는 개념 자체가 처음 보시는 분들을 위해 먼저 �
 - **경쟁사 대응**. OpenAI Codex가 무료, Pro 포함 상태를 유지하는 동안 Anthropic이 어떤 대응을 하는지가 시장 전체 가격 구조를 움직입니다.
 
 이 신호들을 놓치지 않으면 플랜 이동 타이밍을 잡기 쉽습니다. 지금 당장은 **차분하게 학습을 이어가시는 것이 가장 합리적인 선택**입니다.
-
-**3줄 요약:**
-- 2026년 4월 22일 Anthropic이 Claude Code를 Pro 플랜에서 잠시 제외했다가 복구했고, 공식 답변은 "신규 가입자 약 2% 대상 소규모 테스트이며 기존 Pro, Max 구독자는 영향 없음"이었습니다.
-- 공식 이유는 "현재 플랜이 실제 사용 패턴에 맞지 않음"이며, 커뮤니티는 토큰 원가 대비 구독료 괴리, 장기 에이전트 사용 급증, 4월 4일 서드파티 클라이언트 차단과 연결된 수익성 재조정으로 해석합니다.
-- 입문자는 Pro 구독으로 학습을 시작하되, 사용량이 늘어나면 Max 5x나 API 종량제로 단계적으로 이동하는 전략이 지금 시점에서 가장 안전합니다.
 
 **Sources:**
 - [The Register: Anthropic tests reaction to yanking Claude Code from Pro (2026-04-22)](https://www.theregister.com/2026/04/22/anthropic_removes_claude_code_pro/)

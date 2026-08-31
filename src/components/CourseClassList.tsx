@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { inkNavigate } from "@/lib/canvas-fx";
 import { useEffect, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { readClassProgress, CLASS_PROGRESS_EVENT } from "@/components/ClassProgressMarker";
@@ -20,6 +22,7 @@ interface CourseClassListProps {
 
 /** 코스 상세의 클래스 목록. localStorage 학습 진도를 읽어 완료 표시와 진행률을 보여준다. */
 export function CourseClassList({ courseSlug, classes }: CourseClassListProps) {
+    const router = useRouter();
     const [visited, setVisited] = useState<Record<string, number>>({});
 
     useEffect(() => {
@@ -56,6 +59,8 @@ export function CourseClassList({ courseSlug, classes }: CourseClassListProps) {
                             key={cls.id}
                             href={`/class/${courseSlug}/${cls.slug}`}
                             className="group block"
+                            // 학습 경로 진입은 잉크 번짐 전환
+                            onClick={(e) => inkNavigate(e, () => router.push(`/class/${courseSlug}/${cls.slug}`))}
                         >
                             <div className="flex items-center gap-3 p-3 sm:p-4 border-3 border-black bg-white hover:bg-[#FFF8E1] transition-colors neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                                 <span className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 rounded-full border-3 border-black bg-white flex items-center justify-center font-bold text-sm sm:text-base">

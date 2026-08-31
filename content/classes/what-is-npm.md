@@ -35,6 +35,10 @@ quiz:
 metaTitle: 'npm 뜻: 패키지 매니저가 하는 일과 기본 개념'
 metaDescription: 'npm은 다른 개발자가 만든 코드 패키지를 설치하고 관리하는 패키지 매니저입니다. 패키지 설치의 원리와 AI 코딩에서 자주 만나는 상황을 정리했습니다.'
 ogImage: /og/what-is-npm.png
+summary3:
+  - 'npm은 다른 개발자가 만든 패키지를 내 프로젝트로 가져와 설치하고 관리하는 도구입니다.'
+  - 'package.json은 필요한 패키지 목록이고 package-lock.json은 정확한 버전을 기록해 다른 컴퓨터에서도 같은 버전이 깔리게 합니다.'
+  - 'node_modules는 npm install로 다시 만들어지므로 GitHub에 올리지 않고 package-lock.json은 함께 올립니다.'
 ---
 
 ## 🤔 혹시 이런 경험 있나요?
@@ -136,13 +140,13 @@ npm uninstall axios      # axios 패키지 제거
 - AI가 최신 패키지를 설치하라고 했는데 에러가 난다면, 다른 패키지와 버전이 맞지 않는 경우가 많습니다.
 - 에러 메시지를 AI에게 보여주면 호환되는 버전을 알려줄 것입니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **npm은 다른 사람이 만든 코드(패키지)를 내 프로젝트에 가져다 쓸 수 있게 해주는 도구**입니다. 건축 자재점에서 재료를 사 오듯, `npm install 패키지이름`으로 원하는 기능을 추가할 수 있습니다.
+1. npm은 다른 개발자가 만든 패키지를 내 프로젝트로 가져와 설치하고 관리하는 도구입니다.
 
-2. **package.json은 재료 목록, node_modules는 재료 창고**입니다. node_modules는 삭제해도 `npm install`로 복구됩니다. GitHub에는 package.json만 올리고, node_modules는 올리지 않습니다.
+2. package.json은 필요한 패키지 목록이고 package-lock.json은 정확한 버전을 기록해 다른 컴퓨터에서도 같은 버전이 깔리게 합니다.
 
-3. **AI가 가장 먼저 `npm install`을 시키는 이유**는 프로젝트에 필요한 모든 패키지를 설치하기 위해서입니다. 이게 안 되면 프로젝트가 실행되지 않으므로, Node.js 설치 여부와 현재 폴더 위치를 확인하세요.
+3. node_modules는 npm install로 다시 만들어지므로 GitHub에 올리지 않고 package-lock.json은 함께 올립니다.
 
 명령어를 입력하는 창은 [터미널과 CLI](/class/vibe-coding-basics/what-is-terminal-cli) 클래스에서, 코드 이력 관리는 [Git](/class/vibe-coding-basics/what-is-git) 클래스에서 이어집니다.
 

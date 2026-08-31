@@ -34,6 +34,10 @@ metaDescription: >-
 ogImage: /og/claude-code-practical-guide.png
 ogTitle: 'Claude Code 실전 가이드: 설치에서 첫 프로젝트까지 단계별 정리'
 ogDescription: '터미널 기반 AI 코딩 도구 Claude Code의 설치, 설정, 실전 활용법을 한 글에 정리했습니다. 비교 분석과 실전 팁까지 포함합니다.'
+summary3:
+  - 'Claude Code는 앤트로픽이 만든 터미널 기반 AI 코딩 도구로 코드베이스 전체를 이해하고 파일을 고치며 명령까지 실행합니다.'
+  - '2026년 초 개발자 선호도 조사에서 46퍼센트로 1위였고 Cursor는 19퍼센트였으며 GitHub Copilot은 9퍼센트였습니다.'
+  - '사양은 macOS 13.0 이상이나 Windows 1809 이상에 메모리 4GB 이상이고 월 20달러 Pro 플랜이 쓸 수 있는 최소 요금제입니다.'
 ---
 
 ## Claude Code는 터미널에서 동작하는 AI 코딩 도구입니다
@@ -92,7 +96,6 @@ claude
 로그인은 한 번만 하면 됩니다. 이후에는 자격 증명이 시스템에 저장되어 자동으로 인증됩니다.
 
 ## 첫 프로젝트에서 Claude Code를 어떻게 활용하나
-
 
 <div style="overflow-x:auto;margin:24px 0;">
 <div style="max-width:100%;min-width:320px;border:3px solid #000;background:#fff;">
@@ -184,7 +187,7 @@ feature/user-auth 브랜치를 만들고 현재 변경사항을 커밋
 
 ### 3. MCP로 외부 도구 연결
 
-Model Context Protocol(MCP)은 AI 도구를 외부 데이터 소스에 연결하는 개방형 표준입니다. MCP를 통해 Claude Code가 Google Drive의 문서를 읽거나, Jira 티켓을 업데이트하거나, Slack에서 데이터를 가져올 수 있습니다. [MCP가 무엇인지](/insights/mcp-easy-guide-for-non-developers)는 이전 글에서 자세히 다뤘습니다.
+Model Context Protocol(MCP)은 AI 도구를 외부 데이터 소스에 연결하는 개방형 표준입니다. MCP를 붙이면 Claude Code가 Google Drive의 문서를 읽거나, Jira 티켓을 업데이트하거나, Slack에서 데이터를 가져올 수 있습니다. [MCP가 무엇인지](/insights/mcp-easy-guide-for-non-developers)는 이전 글에서 자세히 다뤘습니다.
 
 ### 4. 멀티 에이전트와 서브에이전트
 
@@ -222,11 +225,6 @@ DEV Community의 2026년 비교 분석에 따르면, GitHub Copilot은 일상적
 ## 정리
 
 Claude Code는 터미널에서 동작하는 AI 코딩 도구로, 설치가 간단하고 프로젝트 전체를 이해하는 것이 강점입니다. 단순 코드 자동 완성을 넘어 파일 수정, Git 관리, 외부 도구 연동, 에이전트 기반 자동화까지 지원합니다. [CLI의 기본 개념](/insights/cli-meaning-claude-code-guide)이나 [Claude Code와 코워크의 차이](/insights/claude-cowork-vs-code-comparison)가 궁금하다면 이전 글도 함께 확인해 보시기 바랍니다.
-
-**3줄 요약:**
-- Claude Code는 터미널 기반 AI 코딩 도구로, macOS/Windows/Linux에서 한 줄 명령어로 설치할 수 있습니다.
-- 코드베이스 분석, 파일 수정, Git 작업, 테스트 실행까지 자연어로 요청하면 자동으로 처리합니다.
-- CLAUDE.md, Skills, MCP를 활용하면 프로젝트에 맞게 커스터마이징하여 생산성을 높일 수 있습니다.
 
 **Sources:**
 - [Claude Code 공식 문서](https://code.claude.com/docs/en/overview)

@@ -34,6 +34,10 @@ metaTitle: '클로드 코드 설치 방법: 윈도우, 맥 명령어와 준비�
 metaDescription: >-
   클로드 코드 설치 명령어(윈도우 PowerShell, 맥 터미널)와 설치 전 준비물, 로그인까지의 과정을 순서대로 정리했습니다. 설치가 안 될 때 확인할 것도 담았습니다.
 ogImage: /og/claude-code-installation-basics.png
+summary3:
+  - 'Claude Code 설치는 맥과 리눅스에서 curl -fsSL https://claude.ai/install.sh | bash 한 줄, 윈도우 파워셸에서 irm https://claude.ai/install.ps1 | iex 한 줄이면 끝납니다.'
+  - '2026년 4월 기준 Claude Code를 쓰려면 Pro 이상 구독이나 Anthropic Console 계정이 있어야 합니다.'
+  - '설치한 뒤 새 터미널에서 claude를 실행해 브라우저로 로그인하고 작업할 폴더에 들어가 다시 실행하면 시작됩니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs/en/overview의 Claude Code 공식 설치 가이드를 한국 비개발자 입문자가 따라하기 쉽게 정리한 글입니다.
@@ -180,13 +184,13 @@ claude
 
 문제가 풀리지 않으면 공식 troubleshooting 페이지를 참고하세요(글 끝 참고 자료).
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **macOS, Linux는 터미널에 `curl -fsSL https://claude.ai/install.sh | bash` 한 줄, Windows는 PowerShell에 `irm https://claude.ai/install.ps1 | iex`** 한 줄로 설치 끝납니다.
+1. Claude Code 설치는 맥과 리눅스에서 curl -fsSL https://claude.ai/install.sh | bash 한 줄, 윈도우 파워셸에서 irm https://claude.ai/install.ps1 | iex 한 줄이면 끝납니다.
 
-2. **설치 후 새 터미널을 열고 `claude` 명령으로 첫 실행** → 브라우저에서 로그인 → 작업 폴더에 들어가 다시 `claude` 실행하면 시작됩니다.
+2. 2026년 4월 기준 Claude Code를 쓰려면 Pro 이상 구독이나 Anthropic Console 계정이 있어야 합니다.
 
-3. **VS Code, JetBrains, 데스크톱 앱, 웹도 같은 엔진을 씁니다.** 폴더 분석, 텍스트 정리, 간단한 자동화 세 가지부터 손에 익히고 다음 클래스 [슬래시 명령](/class/claude-code-for-everyone/slash-commands-explained)으로 넘어가세요.
+3. 설치한 뒤 새 터미널에서 claude를 실행해 브라우저로 로그인하고 작업할 폴더에 들어가 다시 실행하면 시작됩니다.
 
 ## 📚 참고 자료
 

@@ -8,9 +8,13 @@ import { sendGAEvent } from "@/lib/gtm";
 import { parseTerms, search } from "@/lib/search";
 import { SearchResultList } from "./SearchResultList";
 import { useSearchIndex } from "./useSearchIndex";
+import { scanInElement } from "@/lib/canvas-fx";
 
 /** 오버레이에 보여줄 결과 수. 나머지는 전체 결과 페이지로 넘긴다. */
 const PREVIEW_LIMIT = 8;
+
+/** 빈 상태에서 보여줄 추천 검색어. 실제 태그가 아니라 검색 유도용 단어다. */
+const SUGGESTED_TERMS = ["GA4", "GEO", "클로드", "챗GPT", "SEO", "앱마케팅"];
 
 interface SearchDialogProps {
   onClose: () => void;
@@ -28,12 +32,27 @@ interface SearchDialogProps {
 export function SearchDialog({ onClose }: SearchDialogProps) {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
 
   const { docs, isLoading, hasBody, error } = useSearchIndex(true);
 
   const terms = useMemo(() => parseTerms(query), [query]);
+
+  // 검색어가 확정되고 결과가 나타나면 목록이 스캔 띠와 함께 드러난다.
+  // 타이핑마다 돌지 않도록 300ms 디바운스하고, HTML in Canvas 미지원이면
+  // scanInElement가 아무 일도 하지 않는다.
+  const scanKey = terms.join(" ");
+  useEffect(() => {
+    if (!scanKey) return;
+    const timer = window.setTimeout(() => {
+      if (resultsRef.current?.childElementCount) {
+        void scanInElement(resultsRef.current);
+      }
+    }, 300);
+    return () => window.clearTimeout(timer);
+  }, [scanKey]);
   const hits = useMemo(
     () => (terms.length === 0 ? [] : search(docs, query, { limit: PREVIEW_LIMIT })),
     [docs, query, terms.length]
@@ -138,9 +157,31 @@ export function SearchDialog({ onClose }: SearchDialogProps) {
           {error && <p className="p-4 text-sm text-gray-600">{error}</p>}
 
           {!error && terms.length === 0 && (
-            <p className="p-4 text-sm text-gray-500">
-              검색어를 입력하면 인사이트, 클래스, 코스를 한 번에 찾습니다.
-            </p>
+            <div className="p-4">
+              <p className="text-xs font-black uppercase tracking-wide text-gray-500 mb-2.5">
+                추천 검색어
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {SUGGESTED_TERMS.map((term) => (
+                  <button
+                    key={term}
+                    type="button"
+                    onClick={() => {
+                      sendGAEvent("search", {
+                        search_term: term,
+                        location: "nav_overlay_suggest",
+                      });
+                      setQuery(term);
+                      setActiveIndex(-1);
+                      inputRef.current?.focus();
+                    }}
+                    className="px-3 py-1.5 text-xs font-bold border-2 border-black neo-shadow-sm bg-white hover:bg-[#FFD700] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                  >
+                    {term}
+                  </button>
+                ))}
+              </div>
+            </div>
           )}
 
           {!error && terms.length > 0 && isLoading && (
@@ -155,6 +196,7 @@ export function SearchDialog({ onClose }: SearchDialogProps) {
           )}
 
           {hits.length > 0 && (
+            <div ref={resultsRef}>
             <SearchResultList
               hits={hits}
               terms={terms}
@@ -171,6 +213,7 @@ export function SearchDialog({ onClose }: SearchDialogProps) {
                 onClose();
               }}
             />
+            </div>
           )}
         </div>
 

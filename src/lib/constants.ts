@@ -1,5 +1,24 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://www.digitalmarketer.co.kr";
 
+/**
+ * 사이트 마스터 브랜드. title 접미사, og:site_name, JSON-LD publisher와 WebSite 개체를
+ * 모두 이 값 하나로 통일한다. 브랜드 시그널을 한곳에 쌓기 위한 것이므로
+ * 섹션별로 변형하지 않는다.
+ */
+export const SITE_NAME = "준이아빠블로그";
+
+/**
+ * 학습 섹션의 title 접두 라벨. `[라벨] | [페이지 제목] | 준이아빠블로그` 형태로
+ * `metadata.title.template`에만 쓴다. 검색 신뢰도는 접미 브랜드로 쌓고,
+ * 어떤 성격의 페이지인지는 이 라벨로 사람에게 바로 알린다.
+ * 구조화 데이터에는 넣지 않는다.
+ */
+export const SECTION_LABELS = {
+  class: "Class",
+  ga4Edu: "GA4 Edu",
+  aiPractice: "AI-Practice",
+} as const;
+
 export const GTM_ID = "GTM-5H3Z6ZLZ";
 
 // 스티비 뉴스레터 구독 페이지 (무료 플랜: API 미지원이라 외부 페이지로 연결)

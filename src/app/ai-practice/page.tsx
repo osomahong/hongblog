@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, SITE_NAME, SECTION_LABELS } from "@/lib/constants";
 import { EventLink } from "@/components/ai-practice/EventLink";
 import { GradientStream } from "@/components/ai-practice/GradientStream";
 import { HeroMethodButton } from "@/components/ai-practice/HeroMethodButton";
@@ -10,17 +10,20 @@ import { ListViewTracker } from "@/components/ListViewTracker";
 
 export const dynamic = "force-static";
 
-const PAGE_TITLE = "AI-Practice: PBL 기반 AI Self Education";
+const PAGE_TITLE = "PBL 기반 AI Self Education";
+// layout의 title template은 하위 세그먼트에만 적용되고 같은 세그먼트의 page는 건너뛴다.
+// 그래서 섹션 루트인 이 페이지는 라벨과 브랜드를 붙인 완성형을 직접 지정한다.
+const FULL_TITLE = `${SECTION_LABELS.aiPractice} | ${PAGE_TITLE} | ${SITE_NAME}`;
 // AEO 정의 문장: 히어로 도입부, JSON-LD description과 삼중 정렬
 const PAGE_DESC =
   "AI-PRACTICE는 실습으로 AI와 AX(AI 전환)를 배우는 PBL 기반 AI Self Education 웹사이트입니다. 모든 교육은 웹사이트 안의 실습 화면에서 정해진 패턴의 AIPBL(프로젝트 기반 AI 실습)로 진행됩니다.";
 
 export const metadata: Metadata = {
-  title: PAGE_TITLE,
+  title: { absolute: FULL_TITLE },
   description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/ai-practice` },
   openGraph: {
-    title: PAGE_TITLE,
+    title: FULL_TITLE,
     description: PAGE_DESC,
     type: "website",
     url: `${SITE_URL}/ai-practice`,

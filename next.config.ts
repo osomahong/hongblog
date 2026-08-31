@@ -13,15 +13,39 @@ const ASSET_CACHE_HEADERS = [
   },
 ];
 
+// HTML in Canvas 오리진 트라이얼 토큰 (digitalmarketer.co.kr, 서브도메인 포함).
+// 이 헤더가 있어야 지원 크롬(154까지) 방문자에게 canvas-fx 장식 효과가 켜진다.
+// 2026-10-20 만료. 만료되면 효과가 조용히 꺼질 뿐 다른 영향은 없다.
+// 갱신: developer.chrome.com/origintrials 에서 재발급 후 이 값만 교체.
+const HTML_IN_CANVAS_TRIAL_TOKEN =
+  "Ai0DNLhHlc5FJSIMIXp3Bnpz+80VL75CuryEkntGfx0tlEc4ZaDvGPD4SjJ0R7zH69XDTaZsy6mezl48TSz/AwYAAABueyJvcmlnaW4iOiJodHRwczovL2RpZ2l0YWxtYXJrZXRlci5jby5rcjo0NDMiLCJmZWF0dXJlIjoiSFRNTEluQ2FudmFzIiwiZXhwaXJ5IjoxNzkyNDU0NDAwLCJpc1N1YmRvbWFpbiI6dHJ1ZX0=";
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  // 정적 페이지 한 장이 이 시간을 넘기면 빌드가 실패한다. 기본값은 60초다.
+  // Vercel 빌드 머신은 로컬보다 코어가 적어 워커가 서로 밀리고, 그 상태에서
+  // 페이지 수가 290을 넘기며 배포가 간헐적으로 이 제한에 걸렸다.
+  // src/lib/content.ts의 파싱 캐시가 근본 원인을 없앴고, 이 값은 콘텐츠가 더
+  // 늘었을 때를 대비한 여유다.
+  staticPageGenerationTimeout: 180,
   // Legacy redirects는 src/middleware.ts에서 통합 처리 (리디렉트 hop 수 최소화)
   async headers() {
     return [
+      // HTML in Canvas 오리진 트라이얼 (모든 문서 응답에 부착)
+      {
+        source: "/",
+        headers: [{ key: "Origin-Trial", value: HTML_IN_CANVAS_TRIAL_TOKEN }],
+      },
+      {
+        source: "/:path*",
+        headers: [{ key: "Origin-Trial", value: HTML_IN_CANVAS_TRIAL_TOKEN }],
+      },
       // 인사이트, 클래스 본문 이미지
       { source: "/images/:path*", headers: ASSET_CACHE_HEADERS },
       // og:image 썸네일
       { source: "/og/:path*", headers: ASSET_CACHE_HEADERS },
+      // 코스 추천 배너 (메인 히어로 슬라이드, 코스 캐러셀 카드)
+      { source: "/banners/:path*", headers: ASSET_CACHE_HEADERS },
       // AI-Practice 실습용 목업 자산 (HTML, 이미지)
       { source: "/ai-practice/mock/:path*", headers: ASSET_CACHE_HEADERS },
       // 루트에 놓인 고정 이미지

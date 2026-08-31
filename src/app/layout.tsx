@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { getCourseLinks } from "@/lib/promotions";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { SITE_URL } from "@/lib/constants";
 // 다이내믹 서브셋: 92개 유니코드 슬라이스 중 페이지에 쓰인 글리프의 슬라이스만 다운로드된다.
@@ -63,6 +64,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 내비게이션과 푸터에 코스 링크를 깔아 모든 페이지에서 코스 상세로 닿게 한다.
+  const courseLinks = getCourseLinks();
+
   return (
     <html lang="ko">
       <head>
@@ -97,9 +101,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           />
         </noscript>
 
-        <Nav />
+        <Nav courses={courseLinks} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer courses={courseLinks} />
       </body>
     </html>
   );

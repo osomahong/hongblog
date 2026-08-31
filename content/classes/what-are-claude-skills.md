@@ -37,6 +37,10 @@ quiz:
 metaTitle: '클로드 스킬(Claude Skills) 뜻과 만드는 방법'
 metaDescription: '클로드 스킬(Claude Skills)은 자주 시키는 작업을 폴더 단위로 묶어 Claude가 자동으로 불러 쓰게 만든 재사용 단위입니다. 구조와 만드는 순서를 정리했습니다.'
 ogImage: /og/what-are-claude-skills.png
+summary3:
+  - 'Claude Skills는 자주 시키는 작업의 절차를 폴더로 묶어 두고 Claude가 맥락에 맞을 때 알아서 불러 쓰게 만든 재사용 단위입니다.'
+  - '폴더에는 이름과 설명, 사용 시점, 절차를 적은 SKILL.md가 반드시 들어가고 참조 자료와 보조 스크립트, 출력 템플릿을 함께 둘 수 있습니다.'
+  - 'claude.ai에서는 Pro 이상 플랜에서 쓸 수 있고 Claude Code와 개발자 플랫폼에서도 동작하며 한 스킬에 여러 일을 넣지 않는 편이 안정적입니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 claude.com/blog의 Skills 공식 발표와 Anthropic Academy 자료를 한국 입문자가 보기 편하게 정리한 글입니다.
@@ -108,7 +112,7 @@ Claude Skills는 이 반복을 끝낸 기능입니다. 잘 됐던 프롬프트�
 - "디자인 리뷰 체크리스트" 스킬: 브랜드 가이드 + 접근성 점검 항목
 
 **교육 종사자**
-- "강의 자료 만들기" 스킬: 학생 수준 정의 + 강의 톤 + 퀴즈 형식. 새 주제만 던지면 동일 결의 자료
+- "수업 자료 만들기" 스킬: 학생 수준 정의 + 수업 톤 + 퀴즈 형식. 새 주제만 던지면 동일 결의 자료
 - "수업 평가 초안" 스킬: 평가 기준 + 피드백 양식
 
 **개발자**
@@ -135,13 +139,13 @@ Skills는 다른 두 기능과 묶일 때 효과가 커집니다.
 **3. 보안 정보 포함 금지**
 - API 키, 비밀번호, 고객 정보를 스킬 안에 넣지 마세요. 환경 변수로 분리합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Claude Skills는 자주 시키는 작업을 폴더 단위로 묶은 재사용 단위**입니다. SKILL.md + 보조 스크립트, 자료로 구성되며, Claude가 작업 맥락에 맞을 때 자동으로 불러 적용합니다.
+1. Claude Skills는 자주 시키는 작업의 절차를 폴더로 묶어 두고 Claude가 맥락에 맞을 때 알아서 불러 쓰게 만든 재사용 단위입니다.
 
-2. **claude.ai 앱, [Claude Code](/class/claude-code-for-everyone/what-is-claude-code), Developer Platform 세 환경에서 같이 쓸 수 있습니다.** 한 번 만들면 작업 환경 전체에 재사용됩니다.
+2. 폴더에는 이름과 설명, 사용 시점, 절차를 적은 SKILL.md가 반드시 들어가고 참조 자료와 보조 스크립트, 출력 템플릿을 함께 둘 수 있습니다.
 
-3. **[Projects](/class/claude-in-practice/what-are-claude-projects)와 [MCP](/class/claude-code-for-everyone/what-is-mcp)에 묶이면 자동화 깊이가 커집니다.** 한 스킬은 하나의 작업 단위에 집중하고, 보안 정보는 절대 안에 넣지 않는 게 표준 원칙입니다.
+3. claude.ai에서는 Pro 이상 플랜에서 쓸 수 있고 Claude Code와 개발자 플랫폼에서도 동작하며 한 스킬에 여러 일을 넣지 않는 편이 안정적입니다.
 
 ## 📚 참고 자료
 

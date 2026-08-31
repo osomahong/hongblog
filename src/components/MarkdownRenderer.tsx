@@ -7,6 +7,8 @@ import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Copy, Check } from "lucide-react";
+import { ImageLightbox, type LightboxImage } from "@/components/ImageLightbox";
+import { SITE_URL } from "@/lib/constants";
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -56,6 +58,8 @@ function preprocessMarkdown(content: string): string {
 }
 
 export default function MarkdownRenderer({ content, className = "" }: MarkdownRendererProps) {
+  const [lightbox, setLightbox] = useState<LightboxImage | null>(null);
+
   return (
     <div className={className}>
       <ReactMarkdown
@@ -176,12 +180,14 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
               return <a id={id} aria-hidden="true" />;
             }
             const isFragment = href.startsWith("#");
+            const isInternal = href.startsWith("/") || href.startsWith(SITE_URL);
+            const opensNewTab = !isFragment && !isInternal;
             return (
               <a
                 href={href}
                 id={id}
-                target={isFragment ? undefined : "_blank"}
-                rel={isFragment ? undefined : "noopener noreferrer"}
+                target={opensNewTab ? "_blank" : undefined}
+                rel={opensNewTab ? "noopener noreferrer" : undefined}
                 className="text-[#FF0033] underline underline-offset-2 decoration-2 hover:bg-[#FF0033] hover:text-white hover:no-underline transition-colors font-medium text-sm sm:text-base px-0.5"
               >
                 {children}
@@ -215,16 +221,24 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
               );
             }
 
+            // 폭 80% + 절대 상한 640px: 포커스 모드에서 본문이 넓어져도 이미지는 커지지 않는다.
+            // 상한 때문에 스크린샷 글씨가 작아지므로 클릭하면 라이트박스로 크게 연다.
             return (
-              // 폭 80% + 절대 상한 640px: 포커스 모드에서 본문이 넓어져도 이미지는 커지지 않는다
-              <img
-                src={src}
-                alt={effectiveAlt}
-                title={title}
-                className="block max-w-[min(80%,640px)] h-auto mx-auto my-3 sm:my-4 border-2 border-black rounded"
-                loading="lazy"
-                decoding="async"
-              />
+              <button
+                type="button"
+                onClick={() => setLightbox({ src: String(src), alt: effectiveAlt })}
+                aria-label={effectiveAlt ? `${effectiveAlt} 크게 보기` : "이미지 크게 보기"}
+                className="block w-full max-w-[min(80%,640px)] mx-auto my-3 sm:my-4 cursor-zoom-in"
+              >
+                <img
+                  src={src}
+                  alt={effectiveAlt}
+                  title={title}
+                  className="block max-w-full h-auto mx-auto border-2 border-black rounded"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
             );
           },
 
@@ -261,6 +275,9 @@ export default function MarkdownRenderer({ content, className = "" }: MarkdownRe
       >
         {preprocessMarkdown(content)}
       </ReactMarkdown>
+      {lightbox && (
+        <ImageLightbox image={lightbox} onClose={() => setLightbox(null)} />
+      )}
     </div>
   );
 }

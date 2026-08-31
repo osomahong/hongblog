@@ -28,12 +28,16 @@ metaDescription: >-
   관리, API 호출까지 단계별로 정리했습니다.
 ogImage: /og/linkedin-api-auto-posting-integration-guide.png
 ogTitle: 'LinkedIn에 자동으로 글 올리기: API 연동 전 과정 공개'
-ogDescription: 복사-붙여넣기 없이 블로그 관리 페이지에서 LinkedIn에 바로 게시하는 기능을 만든 과정을 정리했습니다.
+ogDescription: 복사-붙여넣기 없이 준이아빠블로그 관리 페이지에서 LinkedIn에 바로 게시하는 기능을 만든 과정을 정리했습니다.
+summary3:
+  - '블로그 관리 페이지에서 링크드인으로 바로 올리려면 OAuth 인증과 토큰 저장, API 호출 세 단계가 필요합니다.'
+  - '만든 것은 토큰을 담을 DB 테이블 하나와 서비스 파일 하나, 인증 시작과 콜백, 상태 조회, 게시를 맡는 API 라우트 넷입니다.'
+  - '복사해서 링크드인에 붙여 넣던 다섯 단계가 버튼 한 번으로 줄고 3,000자 제한도 실시간으로 확인됩니다.'
 ---
 
 ## 복사-붙여넣기가 싫었습니다
 
-이 블로그에는 관리 페이지가 있습니다. 글을 쓰고, 수정하고, [배포](/class/vibe-coding-basics/what-is-deployment) 상태를 관리하는 곳입니다. 여기에 AI로 LinkedIn 소개글을 자동 생성하는 기능도 만들어 뒀습니다.
+준이아빠블로그에는 관리 페이지가 있습니다. 글을 쓰고, 수정하고, [배포](/class/vibe-coding-basics/what-is-deployment) 상태를 관리하는 곳입니다. 여기에 AI로 LinkedIn 소개글을 자동 생성하는 기능도 만들어 뒀습니다.
 
 그런데 생성된 글을 LinkedIn에 올리려면 매번 같은 과정을 반복해야 했습니다. 모달에서 텍스트를 복사하고, LinkedIn을 열고, 새 게시물을 만들고, 붙여넣고, 게시 버튼을 누르는 5단계입니다.
 

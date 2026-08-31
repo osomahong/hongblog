@@ -1,0 +1,248 @@
+<!--
+  [발송 시점] 구독 직후 (스티비 자동 이메일: 구독자 추가 트리거, 즉시)
+  [권장 제목] AI를 다 따라갈 필요는 없습니다
+  [대안 제목] 앞으로 어떤 AI 소식을 보내드릴지 먼저 알려드립니다
+  [프리헤더] 필요한 변화와 직접 써볼 방법을 일주일에 한 번 정리해 보내드립니다
+  [목표] 뉴스레터 설명, 발송 일정 안내, 관심 주제 선택
+  [규격] 테이블 레이아웃, 인라인 스타일. 이미지, 폼, 자바스크립트 없음
+  [디자인] AI-Practice 미니멀 다크. 배경 #050507, 카드 #0D0D12, 리본 하늘#7DD3FC 보라#A78BFA 분홍#FF5C7D 금#FFD700
+            온보딩 4통 공통: 상단 리본, ONBOARDING n / 4 진행 표시줄, 제목 아래 강조선, 푸터 링크
+  [편집 원칙] 서비스 역할을 설명하는 내부 비유는 구독자에게 보내는 문장에 쓰지 않는다.
+
+  [선택 링크]
+  - goal: ai-flow | ai-work | content-marketing | build-automation
+  - CHECKIN_TOKEN은 Neon 연동 뒤 스티비 메일머지 $%welcome_token%$으로 교체한다.
+  - URL 규칙과 필드 계약: docs/newsletter/stibee-field-contract.md
+  - 현재 링크는 HTML 검토용이며 체크인 API 구현 전에는 응답이 저장되지 않는다.
+
+  [치환 태그] 스티비 수신거부: $%unsubscribe%$
+-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#050507;">
+  <tr>
+    <td align="center" style="padding:34px 14px 30px 14px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;">
+
+        <tr>
+          <td style="display:none;max-height:0;overflow:hidden;opacity:0;font-size:1px;line-height:1px;color:#050507;">
+            필요한 변화와 직접 써볼 방법을 일주일에 한 번 정리해 보내드립니다
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:0 5px 17px 5px;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;">
+            <p style="margin:0 0 5px 0;font-size:12px;font-weight:700;line-height:1.3;letter-spacing:2.2px;color:#F2F2F5;">AI-PRACTICE</p>
+            <p style="margin:0;font-size:11px;line-height:1.5;color:#8F8F9C;">준이아빠블로그 뉴스레터</p>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+              <tr>
+                <td width="25%" height="3" style="width:25%;height:3px;background-color:#7DD3FC;font-size:0;line-height:0;">&nbsp;</td>
+                <td width="25%" height="3" style="width:25%;height:3px;background-color:#A78BFA;font-size:0;line-height:0;">&nbsp;</td>
+                <td width="25%" height="3" style="width:25%;height:3px;background-color:#FF5C7D;font-size:0;line-height:0;">&nbsp;</td>
+                <td width="25%" height="3" style="width:25%;height:3px;background-color:#FFD700;font-size:0;line-height:0;">&nbsp;</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="background-color:#0D0D12;border:1px solid #26262D;border-top:0;border-radius:0 0 18px 18px;padding:40px 36px 38px 36px;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;">
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin:0 0 26px 0;">
+              <tr>
+                <td style="padding:0 0 9px 0;font-size:11px;font-weight:700;line-height:1.5;letter-spacing:2px;color:#8F8F9C;">
+                  WELCOME <span style="color:#3A3A44;">|</span> <span style="color:#FFD700;">ONBOARDING 1 / 4</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                    <tr>
+                      <td height="4" style="height:4px;background-color:#7DD3FC;font-size:0;line-height:0;">&nbsp;</td>
+                      <td width="6" style="width:6px;background-color:#0D0D12;font-size:0;line-height:0;">&nbsp;</td>
+                      <td height="4" style="height:4px;background-color:#1E1E24;font-size:0;line-height:0;">&nbsp;</td>
+                      <td width="6" style="width:6px;background-color:#0D0D12;font-size:0;line-height:0;">&nbsp;</td>
+                      <td height="4" style="height:4px;background-color:#1E1E24;font-size:0;line-height:0;">&nbsp;</td>
+                      <td width="6" style="width:6px;background-color:#0D0D12;font-size:0;line-height:0;">&nbsp;</td>
+                      <td height="4" style="height:4px;background-color:#1E1E24;font-size:0;line-height:0;">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+            <h1 style="margin:0 0 13px 0;font-size:30px;line-height:1.42;letter-spacing:-0.9px;color:#F2F2F5;word-break:keep-all;">
+              AI를 다 따라갈<br>필요는 없습니다
+            </h1>
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 25px 0;">
+              <tr>
+                <td width="44" height="3" style="width:44px;height:3px;background-color:#FFD700;font-size:0;line-height:0;">&nbsp;</td>
+              </tr>
+            </table>
+
+            <p style="margin:0 0 26px 0;font-size:15px;line-height:1.85;color:#C8C8D0;word-break:keep-all;">
+              준이아빠블로그 뉴스레터는 AI가 바꾸는 일과 도구를 한 주에 한 번 정리해 보내는 메일입니다. 첫 메일이니 왜 이런 메일을 보내기로 했는지부터 이야기해 보겠습니다.
+            </p>
+
+            <p style="margin:0 0 6px 0;font-size:11px;font-weight:700;line-height:1.5;letter-spacing:2px;color:#8F8F9C;">WHY THIS LETTER</p>
+            <p style="margin:0 0 16px 0;font-size:15px;line-height:1.85;color:#C8C8D0;word-break:keep-all;">
+              저는 10년 넘게 데이터와 마케팅 일을 하면서 강의실에서 1,000명 넘는 분들을 만나 왔습니다. 그런데 요즘 들어 부쩍 자주 받는 질문은 도구 사용법이 아니라 이런 것입니다.
+            </p>
+            <p style="margin:0 0 16px 0;padding:14px 18px;background-color:#101015;border:1px solid #2B2B33;border-radius:10px;font-size:14px;line-height:1.8;color:#F2F2F5;word-break:keep-all;">
+              “이걸 다 따라가야 하나요? 저만 뒤처지는 것 같아요.”
+            </p>
+            <p style="margin:0 0 16px 0;font-size:15px;line-height:1.85;color:#C8C8D0;word-break:keep-all;">
+              솔직히 저도 다 따라가지는 못합니다. 새 모델과 기능이 거의 매일 나오다 보니 전부 확인할 수도 없거니와, 막상 확인해 보면 그중에 제 일을 실제로 바꾸는 것은 생각보다 적었습니다. 그러니 필요한 것은 전부 아는 능력이 아니라 그 적은 몇 개를 골라내는 눈이었습니다.
+            </p>
+            <p style="margin:0 0 16px 0;font-size:15px;line-height:1.85;color:#C8C8D0;word-break:keep-all;">
+              블로그를 운영하면서 이 생각은 확신이 됐습니다. 급한 문제를 풀러 온 분들은 답만 얻고 바로 떠나는데, 배우려고 온 분들은 글 끝에 붙여 둔 퀴즈까지 풀고 갑니다. 그 참여율 차이가 열 배를 넘었습니다. 결국 준비된 사람이 되는 길은 많이 읽는 쪽이 아니라 직접 해 보는 쪽이라는 뜻이었습니다.
+            </p>
+            <p style="margin:0 0 30px 0;font-size:15px;line-height:1.85;color:#C8C8D0;word-break:keep-all;">
+              그래서 이 뉴스레터는 두 가지를 지키려고 합니다. 소식은 실제로 달라진 것만 골라서 설명하고, 그 가운데 하나는 매주 직접 해 볼 수 있는 실습으로 만들어 보내는 것입니다.
+            </p>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#101015;border:1px solid #2B2B33;border-radius:14px;">
+              <tr>
+                <td colspan="4">
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                    <tr>
+                      <td width="25%" height="2" style="width:25%;height:2px;background-color:#FFD700;font-size:0;line-height:0;">&nbsp;</td>
+                      <td width="25%" height="2" style="width:25%;height:2px;background-color:#FF5C7D;font-size:0;line-height:0;">&nbsp;</td>
+                      <td width="25%" height="2" style="width:25%;height:2px;background-color:#A78BFA;font-size:0;line-height:0;">&nbsp;</td>
+                      <td width="25%" height="2" style="width:25%;height:2px;background-color:#7DD3FC;font-size:0;line-height:0;">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4" style="padding:20px 20px 21px 20px;">
+                  <p style="margin:0 0 8px 0;font-size:11px;font-weight:700;line-height:1.5;letter-spacing:1.6px;color:#FFD700;">NEWSLETTER GOAL</p>
+                  <p style="margin:0;font-size:16px;line-height:1.75;color:#F2F2F5;word-break:keep-all;">
+                    “AI의 큰 변화는 놓치지 않았고,<br>필요한 도구는 직접 써봤다.”
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin-top:39px;">
+              <tr>
+                <td>
+                  <p style="margin:0 0 10px 0;font-size:11px;font-weight:700;line-height:1.5;letter-spacing:2px;color:#8F8F9C;">CHOOSE A TOPIC</p>
+                  <h2 style="margin:0 0 10px 0;font-size:21px;line-height:1.5;letter-spacing:-0.4px;color:#F2F2F5;word-break:keep-all;">
+                    가장 궁금한 주제 하나
+                  </h2>
+                  <p style="margin:0 0 21px 0;font-size:14px;line-height:1.8;color:#A7A7B2;word-break:keep-all;">
+                    하나를 고르면 그 주제에 맞는 실습을 바로 안내해 드리고, 앞으로 보내는 소식에서도 그 주제를 먼저 다룹니다.
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#111116;border:1px solid #2B2B33;border-radius:12px;">
+              <tr>
+                <td>
+                  <a href="https://www.digitalmarketer.co.kr/api/newsletter/check-in?goal=ai-flow&amp;c=welcome&amp;t=CHECKIN_TOKEN&amp;utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=welcome" style="display:block;padding:17px 18px 17px 18px;color:#F2F2F5;text-decoration:none;">
+                    <span style="display:inline-block;padding:2px 8px;background-color:#7DD3FC;border-radius:4px;font-family:Consolas,'Liberation Mono',monospace;font-size:12px;font-weight:700;line-height:1.5;color:#050507;">01</span><br>
+                    <span style="display:inline-block;margin-top:8px;font-size:15px;font-weight:700;line-height:1.55;color:#F2F2F5;word-break:keep-all;">새로운 AI가 나오면 무엇이 달라졌는지 알고 싶습니다 <span style="color:#7DD3FC;">→</span></span><br>
+                    <span style="font-size:12px;line-height:1.7;color:#8F8F9C;">모델과 서비스의 주요 변화</span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin-top:10px;background-color:#111116;border:1px solid #2B2B33;border-radius:12px;">
+              <tr>
+                <td>
+                  <a href="https://www.digitalmarketer.co.kr/api/newsletter/check-in?goal=ai-work&amp;c=welcome&amp;t=CHECKIN_TOKEN&amp;utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=welcome" style="display:block;padding:17px 18px 17px 18px;color:#F2F2F5;text-decoration:none;">
+                    <span style="display:inline-block;padding:2px 8px;background-color:#A78BFA;border-radius:4px;font-family:Consolas,'Liberation Mono',monospace;font-size:12px;font-weight:700;line-height:1.5;color:#050507;">02</span><br>
+                    <span style="display:inline-block;margin-top:8px;font-size:15px;font-weight:700;line-height:1.55;color:#F2F2F5;word-break:keep-all;">문서, 조사, 정리 같은 업무에 AI를 쓰고 싶습니다 <span style="color:#A78BFA;">→</span></span><br>
+                    <span style="font-size:12px;line-height:1.7;color:#8F8F9C;">일상적인 업무에서 바로 쓰는 방법</span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin-top:10px;background-color:#111116;border:1px solid #2B2B33;border-radius:12px;">
+              <tr>
+                <td>
+                  <a href="https://www.digitalmarketer.co.kr/api/newsletter/check-in?goal=content-marketing&amp;c=welcome&amp;t=CHECKIN_TOKEN&amp;utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=welcome" style="display:block;padding:17px 18px 17px 18px;color:#F2F2F5;text-decoration:none;">
+                    <span style="display:inline-block;padding:2px 8px;background-color:#FF5C7D;border-radius:4px;font-family:Consolas,'Liberation Mono',monospace;font-size:12px;font-weight:700;line-height:1.5;color:#050507;">03</span><br>
+                    <span style="display:inline-block;margin-top:8px;font-size:15px;font-weight:700;line-height:1.55;color:#F2F2F5;word-break:keep-all;">콘텐츠와 마케팅 업무에 AI를 활용하고 싶습니다 <span style="color:#FF5C7D;">→</span></span><br>
+                    <span style="font-size:12px;line-height:1.7;color:#8F8F9C;">콘텐츠 제작과 성과 확인</span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin-top:10px;background-color:#111116;border:1px solid #2B2B33;border-radius:12px;">
+              <tr>
+                <td>
+                  <a href="https://www.digitalmarketer.co.kr/api/newsletter/check-in?goal=build-automation&amp;c=welcome&amp;t=CHECKIN_TOKEN&amp;utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=welcome" style="display:block;padding:17px 18px 17px 18px;color:#F2F2F5;text-decoration:none;">
+                    <span style="display:inline-block;padding:2px 8px;background-color:#FFD700;border-radius:4px;font-family:Consolas,'Liberation Mono',monospace;font-size:12px;font-weight:700;line-height:1.5;color:#050507;">04</span><br>
+                    <span style="display:inline-block;margin-top:8px;font-size:15px;font-weight:700;line-height:1.55;color:#F2F2F5;word-break:keep-all;">AI로 작은 도구나 자동화를 직접 만들고 싶습니다 <span style="color:#FFD700;">→</span></span><br>
+                    <span style="font-size:12px;line-height:1.7;color:#8F8F9C;">AI 코딩과 업무 자동화</span>
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:15px 0 0 0;font-size:12px;line-height:1.75;color:#8F8F9C;word-break:keep-all;">
+              선택 결과는 안내 순서를 정하는 데만 사용합니다. 맞는 항목이 없다면 이 메일에 답장으로 알려주셔도 됩니다.
+            </p>
+
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;margin-top:37px;background-color:#101015;border:1px solid #26262D;border-radius:12px;">
+              <tr>
+                <td style="padding:20px 20px 18px 20px;">
+                  <p style="margin:0 0 15px 0;font-size:11px;font-weight:700;line-height:1.5;letter-spacing:2px;color:#8F8F9C;">NEXT</p>
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                    <tr>
+                      <td width="62" valign="top" style="width:62px;padding:0 8px 10px 0;font-size:12px;font-weight:700;line-height:1.7;color:#7DD3FC;">내일</td>
+                      <td valign="top" style="padding:0 0 10px 0;font-size:13px;line-height:1.7;color:#C8C8D0;word-break:keep-all;">어떤 AI를 주로 쓰시는지 묻고, 다른 분들의 답을 바로 보여 드립니다</td>
+                    </tr>
+                    <tr>
+                      <td width="62" valign="top" style="width:62px;padding:0 8px 10px 0;font-size:12px;font-weight:700;line-height:1.7;color:#A78BFA;">3일 뒤</td>
+                      <td valign="top" style="padding:0 0 10px 0;font-size:13px;line-height:1.7;color:#C8C8D0;word-break:keep-all;">AI에 한 달에 얼마나 쓰는지, 유료 전환 판단 기준과 함께</td>
+                    </tr>
+                    <tr>
+                      <td width="62" valign="top" style="width:62px;padding:0 8px 10px 0;font-size:12px;font-weight:700;line-height:1.7;color:#FF5C7D;">7일 뒤</td>
+                      <td valign="top" style="padding:0 0 10px 0;font-size:13px;line-height:1.7;color:#C8C8D0;word-break:keep-all;">AI 활용 네 단계 자가진단</td>
+                    </tr>
+                    <tr>
+                      <td width="62" valign="top" style="width:62px;padding:0 8px 0 0;font-size:12px;font-weight:700;line-height:1.7;color:#FFD700;">이후</td>
+                      <td valign="top" style="padding:0;font-size:13px;line-height:1.7;color:#C8C8D0;word-break:keep-all;">일주일에 한 번, AI 소식과 지난 질문의 결과 공개</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:31px 0 0 0;font-size:14px;line-height:1.85;color:#C8C8D0;word-break:keep-all;">
+              AI를 모두 알아야 준비할 수 있는 것은 아닙니다. 지금 하는 일과 관련된 변화를 구분하고, 실제로 쓸 수 있는 방법을 하나씩 익히면 됩니다. 준이아빠블로그가 필요한 내용을 일주일에 한 번 정리해 보내겠습니다.
+            </p>
+            <p style="margin:16px 0 0 0;font-size:14px;line-height:1.85;color:#C8C8D0;word-break:keep-all;">
+              이 메일은 발송 전용 주소가 아닙니다. 답장을 보내시면 제가 직접 읽습니다. 어떤 일을 하시는지, AI에서 무엇이 막히는지 한 줄이면 충분합니다.
+            </p>
+            <p style="margin:18px 0 0 0;font-size:14px;font-weight:700;line-height:1.7;color:#F2F2F5;">
+              준이아빠 드림
+            </p>
+          </td>
+        </tr>
+
+        <tr>
+          <td style="padding:23px 8px 0 8px;font-family:'Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif;font-size:11px;line-height:1.85;color:#6F6F7A;text-align:center;">
+            <a href="https://www.digitalmarketer.co.kr?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=welcome" style="color:#8F8F9C;text-decoration:underline;">블로그</a>
+            &nbsp;&nbsp;<span style="color:#3A3A44;">|</span>&nbsp;&nbsp;
+            <a href="https://www.digitalmarketer.co.kr/ai-practice?utm_source=newsletter&amp;utm_medium=email&amp;utm_campaign=welcome" style="color:#8F8F9C;text-decoration:underline;">AI-Practice 실습</a><br>
+            준이아빠블로그 | AI와 디지털 마케팅을 설명합니다<br>
+            이 메일은 digitalmarketer.co.kr에서 뉴스레터를 구독한 분께 발송됩니다.<br>
+            <a href="$%unsubscribe%$" style="color:#8F8F9C;text-decoration:underline;">수신거부</a>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>

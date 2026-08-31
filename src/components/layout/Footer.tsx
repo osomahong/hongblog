@@ -8,6 +8,7 @@ import { sendGAEvent } from "@/lib/gtm";
 import { cn } from "@/lib/utils";
 import { NewsletterFooterButton } from "@/components/NewsletterCta";
 import { KAKAO_INQUIRY_URL } from "@/lib/constants";
+import type { CourseLink } from "@/lib/promotions";
 
 const EXPLORE_LINKS = [
   { href: "/ai-practice", label: "AI-Practice" },
@@ -16,7 +17,7 @@ const EXPLORE_LINKS = [
   { href: "/tags", label: "Tags" },
 ];
 
-export function Footer() {
+export function Footer({ courses = [] }: { courses?: CourseLink[] }) {
   const pathname = usePathname();
   // AI-Practice 하위 경로에서는 다크/네온 테마 변형을 쓴다 (구조는 동일)
   const isApTheme = pathname?.startsWith("/ai-practice") ?? false;
@@ -32,7 +33,7 @@ export function Footer() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
           {/* Logo & About Link */}
           <div className="flex flex-col items-center md:items-start gap-3">
             <Link
@@ -80,6 +81,23 @@ export function Footer() {
             ))}
           </div>
 
+          {/* 코스 목록. 모든 페이지에서 코스 상세로 닿는 링크를 만든다 */}
+          {courses.length > 0 && (
+            <div className="flex flex-col items-center md:items-start gap-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Class</span>
+              {courses.map((course) => (
+                <Link
+                  key={course.slug}
+                  href={course.href}
+                  onClick={() => sendGAEvent("click_footer", { menu_name: `Class - ${course.title}` })}
+                  className={cn("text-sm text-gray-300 transition-colors text-center md:text-left", linkHover)}
+                >
+                  {course.title}
+                </Link>
+              ))}
+            </div>
+          )}
+
           {/* About Section */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">About</span>
@@ -122,6 +140,10 @@ export function Footer() {
         >
           <p className="text-xs text-gray-500">
             &copy; {new Date().getFullYear()} 준이아빠블로그. All rights reserved.
+            <span className="mx-2 text-gray-700">|</span>
+            <Link href="/privacy" className={cn("underline", linkHover)}>
+              개인정보처리방침
+            </Link>
           </p>
         </div>
       </div>

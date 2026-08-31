@@ -3,7 +3,7 @@ slug: claude-code-memory
 term: Memory와 CLAUDE.md (영속 컨텍스트) 이해하기
 definition: >-
   Claude Code가 세션을 넘어 기억할 수 있도록 만든 영속 컨텍스트 시스템입니다. 사용자가 직접 적은 CLAUDE.md 파일과
-  Claude가 작업 중 자동으로 쌓는 auto memory 두 갈래로 구성됩니다.
+  Claude가 작업 중 자동으로 쌓는 auto memory 두 가지로 구성됩니다.
 category: CLAUDE_EDUCATION
 tags:
   - AI
@@ -36,6 +36,10 @@ quiz:
 metaTitle: '클로드 코드 메모리 사용법: CLAUDE.md와 자동 메모리 정리'
 metaDescription: '클로드 코드 메모리는 Claude Code가 세션을 넘어 기억하도록 만든 영속 컨텍스트 시스템입니다. CLAUDE.md와 자동 메모리의 차이, 관리 방법을 정리했습니다.'
 ogImage: /og/claude-code-memory.png
+summary3:
+  - 'Memory는 Claude Code가 세션을 넘어 기억하게 만드는 구조이고 사용자가 적는 CLAUDE.md와 자동으로 쌓이는 auto memory 두 가지로 이뤄집니다.'
+  - 'CLAUDE.md는 프로젝트 폴더에 두면 매 세션이 시작할 때 자동으로 읽히므로 코딩 표준이나 글쓰기 규칙을 다시 설명하지 않아도 됩니다.'
+  - 'CLAUDE.md는 프로젝트 단위와 사용자 단위 두 곳에 둘 수 있고 길게 쓸수록 지켜지지 않으므로 비밀번호와 키는 빼고 짧게 유지합니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs의 Memory와 CLAUDE.md 자료를 한국 비개발자 입문자가 보기 편하게 정리한 글입니다.
@@ -44,16 +48,16 @@ ogImage: /og/claude-code-memory.png
 
 Claude Code를 한 번 닫고 다시 열면 이전 대화를 기억하지 못합니다. 회사 코딩 표준, 사용 중인 라이브러리, "이 프로젝트에서는 이렇게 해 달라" 같은 지시를 매 세션마다 다시 적어야 합니다.
 
-같은 지시를 매번 반복하기는 부담스럽고, 빠뜨리면 결과가 흔들립니다. 이 자리를 채우는 게 영속 컨텍스트(Memory) 시스템입니다.
+같은 지시를 매번 반복하기는 부담스럽고, 빠뜨리면 결과가 흔들립니다. 이 빈틈을 채우는 것이 영속 컨텍스트(Memory) 시스템입니다.
 
 ## 🔑 Memory, 무엇일까요?
 
-**Memory**는 Claude Code가 세션을 넘어 **기억할 수 있도록 만든 영속 컨텍스트 시스템**입니다. 두 갈래로 나뉩니다.
+**Memory**는 Claude Code가 세션을 넘어 **기억할 수 있도록 만든 영속 컨텍스트 시스템**입니다. 두 가지로 나뉩니다.
 
 - **CLAUDE.md**: 사용자가 직접 적는 영속 지시 파일
 - **auto memory**: Claude가 작업하면서 자동으로 쌓는 학습 기록
 
-두 갈래 모두 매 세션 시작 시 자동으로 컨텍스트에 깔립니다.
+두 가지 모두 매 세션 시작 시 자동으로 컨텍스트에 깔립니다.
 
 ## 📄 CLAUDE.md가 무엇일까요?
 
@@ -128,7 +132,7 @@ CLAUDE.md는 두 위치에 둘 수 있습니다.
 - auto memory 불러오기
 
 **3. 컨텍스트 깔린 상태로 작업 시작**
-- "이 프로젝트는 PostgreSQL을 쓰고, 들여쓰기는 2칸, 빌드 명령은 npm run build:prod"라는 사실이 이미 깔려 있음.
+- "이 프로젝트는 PostgreSQL을 쓰고, 들여쓰기는 2칸, 빌드 명령은 npm run build:prod"인 점이 이미 깔려 있음.
 
 **4. 작업 진행**
 - 사용자가 매번 표준을 다시 알려주지 않아도 일관된 결과 생성.
@@ -148,7 +152,7 @@ Memory가 잘 정리된 프로젝트는 다른 자동화 도구들의 효과가 
 비개발자도 자기 작업에 CLAUDE.md를 쓸 수 있습니다.
 
 **1. 블로그 글 작성 프로젝트**
-- "이 블로그 글은 한국어 존댓말, 분량 1500자 이내, 이모지 H2 사용, 30초 요약 필수"
+- "블로그 글은 한국어 존댓말, 분량 1500자 이내, 이모지 H2 사용, 30초 요약 필수"
 
 **2. 회사 보고서 작성**
 - "회사 톤: 차분한 존댓말, 추상 비유 금지, 결과 우선"
@@ -172,13 +176,13 @@ Memory가 잘 정리된 프로젝트는 다른 자동화 도구들의 효과가 
 **4. git 커밋 여부 결정**
 - 프로젝트 CLAUDE.md를 git에 커밋해 팀과 공유할지, gitignore에 두고 개인 설정으로 둘지 미리 정합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Memory는 Claude Code가 세션을 넘어 기억할 수 있게 만든 영속 컨텍스트 시스템**입니다. 사용자가 적는 CLAUDE.md와 Claude가 자동으로 쌓는 auto memory 두 갈래로 구성됩니다.
+1. Memory는 Claude Code가 세션을 넘어 기억하게 만드는 구조이고 사용자가 적는 CLAUDE.md와 자동으로 쌓이는 auto memory 두 가지로 이뤄집니다.
 
-2. **CLAUDE.md는 프로젝트 루트의 마크다운 파일로, 매 세션 시작 시 자동 로드**됩니다. 코딩 표준, 아키텍처, 라이브러리, 체크리스트, 회사 컨벤션을 적어두면 매번 다시 설명할 필요가 없습니다.
+2. CLAUDE.md는 프로젝트 폴더에 두면 매 세션이 시작할 때 자동으로 읽히므로 코딩 표준이나 글쓰기 규칙을 다시 설명하지 않아도 됩니다.
 
-3. **[Hooks](/class/claude-code-for-everyone/what-are-hooks), [Subagents](/class/claude-code-for-everyone/what-are-subagents), [Skills](/class/claude-in-practice/what-are-claude-skills)와 묶이면 자동화 효과가 커집니다.** 너무 길지 않게, 자주 갱신, 보안 정보 미포함, git 공유 여부 결정 네 가지가 표준 작성 원칙입니다.
+3. CLAUDE.md는 프로젝트 단위와 사용자 단위 두 곳에 둘 수 있고 길게 쓸수록 지켜지지 않으므로 비밀번호와 키는 빼고 짧게 유지합니다.
 
 ## 📚 참고 자료
 

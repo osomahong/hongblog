@@ -71,6 +71,20 @@ CTA 클릭은 click_aipractice_start에 button_name "content_popup",
 click_main_trendingnow, click_main_browsebycategory, click_main_latestinsights,
 click_main_latestlogs, click_main_popularfaqs
 
+click_sidebar_list (글 상세 사이드바 목록을 클릭할 때 보낸다. `content_id`, `content_name`,
+`content_type`, `position`을 함께 담는다. content_type은 insight, class, course 셋 중 하나다.
+그룹 아래 더 보기 링크는 content_id를 "more", position을 0으로 보낸다.
+전송: `SidebarContentList.tsx`)
+
+click_course_suggest (검색 결과가 없거나 404일 때 띄우는 코스 목록을 클릭하면 보낸다.
+`content_id`, `content_name`, `location`, `position`을 함께 담는다. location은 search_empty와
+not_found 둘 중 하나다. 전송: `CourseSuggestList.tsx`)
+
+view_main_banner, click_main_banner, click_main_course (`content_id`, `content_name`에
+`position`을 더해 보낸다. 메인 상단 추천 배너와 코스 캐러셀. 전송: `HeroCarousel.tsx`,
+`CourseCarousel.tsx`. `content_id`는 코스 슬러그이고, 코스 캐러셀의 전체 보기 링크만
+`all`을 쓰며 `position`은 0이다. view_main_banner는 슬라이드마다 페이지뷰당 한 번만 보낸다)
+
 ### GA4 - Event - 매개변수 없는 이벤트
 view_insights_list, view_class_list, view_faq_list, view_life_list, view_logs_list,
 view_series_list, view_tags_list, view_category_list, view_ai_practice_list

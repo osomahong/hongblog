@@ -33,6 +33,10 @@ metaDescription: >-
 ogTitle: 'Google Ads API 데이터 활용 정리: 구글 애즈 API 필드와 지표 매핑'
 ogDescription: '마케터가 알아야 할 구글 Ads API 핵심만 정리. 필드 매핑표, 연결 과정, PMax 소재 성과 추출, AI 활용 팁까지.'
 ogImage: /og/google-ads-api-data-for-non-developers.png
+summary3:
+  - '구글 Ads API는 대시보드에서 보는 데이터를 대부분 가져올 수 있고 구조와 성과, 분류 세 종류로 나뉩니다.'
+  - '성과 지표는 metrics.impressions와 metrics.clicks처럼 필드 이름으로 부르고 비용은 마이크로 단위인 metrics.cost_micros로 옵니다.'
+  - '날짜와 기기, 네트워크 같은 세그먼트를 붙여야 어떤 조건에서 난 성과인지 나눠 볼 수 있습니다.'
 ---
 
 ## 구글 Ads API로 가져올 수 있는 데이터
@@ -287,7 +291,7 @@ FROM asset_group_asset
 WHERE campaign.advertising_channel_type = 'PERFORMANCE_MAX'
 ```
 
-`performance_label`은 BEST, GOOD, LOW, LEARNING, PENDING 중 하나입니다. 숫자 지표는 제공되지 않습니다.
+`performance_label`은 BEST, GOOD, LOW, LEARNING, PENDING 다섯 가지 값 가운데 하나로 옵니다. 숫자 지표는 제공되지 않습니다.
 
 > **AI 활용 팁**: AI에게 "PMax 캠페인의 에셋 그룹별 성과와 에셋별 성과 등급을 한 번에 가져오는 코드를 작성해줘. 두 개의 GAQL 쿼리 결과를 하나의 리포트로 합쳐줘"라고 요청하면 됩니다.
 

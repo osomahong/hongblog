@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen } from "lucide-react";
 import { getPublishedCourseBySlug as getCourseBySlug, getPublishedCourses } from "@/lib/content";
+import { getCourseBannerImage, getCourseBannerIntro } from "@/lib/promotions";
 import { NeoButton } from "@/components/neo";
 import { CourseClassList } from "@/components/CourseClassList";
 import { SITE_URL } from "@/lib/constants";
@@ -71,6 +72,13 @@ export default async function CourseDetailPage({ params }: Props) {
         notFound();
     }
 
+    // 메인 배너에서 눌러 들어온 사람이 같은 그림을 다시 보게 한다.
+    const bannerImage = getCourseBannerImage(courseSlug);
+
+    // 배너 왼쪽 여백에 넣을 한 줄 소개. 코스 본문 첫 문장은 배너에 담기에 길어서
+    // promotions.ts에 배너용 문구를 따로 두고 그것을 쓴다.
+    const bannerIntro = getCourseBannerIntro(courseSlug);
+
     // Schema.org JSON-LD
     const courseUrl = absoluteUrl(`/class/${courseSlug}`);
     const courseImage = absoluteUrl(`/og/${courseSlug}.png`);
@@ -128,6 +136,7 @@ export default async function CourseDetailPage({ params }: Props) {
             courseWorkload: "PT1H",
             inLanguage: "ko",
         },
+        isAccessibleForFree: true,
     };
 
     // 코스 내 클래스 목록을 ItemList로 추가 발행 (검색 결과 풍부도 향상)
@@ -179,6 +188,37 @@ export default async function CourseDetailPage({ params }: Props) {
                     강의 목록
                 </NeoButton>
             </Link>
+
+            {/* 코스 배너. hero 이미지는 장면 전체가 담겨 있고 왼쪽이 비어 있어서,
+                가운데 정렬한 이미지 위 왼쪽 빈 구역에 코스 한 줄 소개를 오버레이로 얹는다 */}
+            {bannerImage && (
+                <div className="relative max-w-2xl mx-auto mb-5 sm:mb-8 border-4 border-black neo-shadow">
+                    <img
+                        src={bannerImage}
+                        alt=""
+                        aria-hidden="true"
+                        decoding="async"
+                        className="block w-full aspect-[16/9] object-cover"
+                    />
+                    {/* 배너마다 그림 위치가 조금씩 달라서, 밝은 배경 위에서 글자가
+                        그림과 겹쳐도 읽히도록 흰색 번짐 그림자를 깐다 */}
+                    <div className="absolute inset-y-0 left-0 w-[42%] flex flex-col justify-center p-3 sm:p-5 [text-shadow:0_0_10px_rgba(255,255,255,0.95),0_0_4px_rgba(255,255,255,0.9)]">
+                        {bannerIntro && (
+                            // 메인 배너와 같은 픽셀 서체. 크기는 14의 배수로만 준다
+                            <p
+                                style={{ fontFamily: "var(--font-pixel)" }}
+                                className="text-[14px] sm:text-[28px] leading-[1.25] [font-synthesis:none] break-keep whitespace-pre-line"
+                            >
+                                {bannerIntro}
+                            </p>
+                        )}
+                        <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-gray-600 font-bold">
+                            {course.classCount}개 개념
+                            {course.totalReadingTime > 0 && `, 총 학습 약 ${course.totalReadingTime}분`}
+                        </p>
+                    </div>
+                </div>
+            )}
 
             {/* Course Header */}
             <div className="mb-6 sm:mb-10">

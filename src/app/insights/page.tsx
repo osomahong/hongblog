@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
+import { HologramLink } from "@/components/HologramLink";
 import { ArrowRight, Sparkles, Database, TrendingUp } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
 import {
@@ -121,7 +122,7 @@ export default async function InsightsPage() {
         {posts.map((post, index) => {
           const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
           return (
-            <Link key={post.id} href={`/insights/${post.slug}`}>
+            <HologramLink key={post.id} href={`/insights/${post.slug}`}>
               <NeoTiltCard className={`h-full ${index % 3 === 0 ? 'tape-top mt-4' : index % 3 === 1 ? 'zigzag-bottom sm:mb-4' : ''}`}>
                 <NeoCardHeader>
                   <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 flex-wrap relative z-10">
@@ -164,7 +165,7 @@ export default async function InsightsPage() {
                   </span>
                 </NeoCardFooter>
               </NeoTiltCard>
-            </Link>
+            </HologramLink>
           );
         })}
       </section>

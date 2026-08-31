@@ -3,6 +3,13 @@ slug: gmail-api-what-you-can-do
 title: Gmail API를 활용해서 할 수 있는 것
 excerpt: Gmail API가 제공하는 7개 리소스와 50개 이상의 메서드를 한눈에 정리하고, 이를 활용해 만들 수 있는 자동화 서비스 아이디어까지 소개합니다.
 category: AI_TECH
+topicCluster: google-workspace
+contentType: guide
+journeyStage: advanced
+relatedSlugs:
+  - google-workspace-studio-guide
+  - google-sheets-ai-function-guide
+  - n8n-for-non-developers
 tags:
 - AI
 - 자동화
@@ -23,6 +30,10 @@ metaDescription: Gmail API의 7개 리소스(Messages, Threads, Labels, Drafts, 
 ogImage: /og/gmail-api-what-you-can-do.png
 ogTitle: 'Gmail API 기능 전체 맵: 바이브코딩 시대에 이메일로 만들 수 있는 것들'
 ogDescription: Gmail API의 7개 핵심 리소스와 50개 이상의 메서드를 한 페이지에 정리하고, AI와 결합해 만들 수 있는 자동화 서비스 아이디어 5가지를 소개합니다.
+summary3:
+  - 'Gmail API는 OAuth 2.0으로 인증하는 REST API이고 메시지와 스레드, 라벨과 초안, 히스토리와 설정을 포함한 일곱 개 리소스로 나뉩니다.'
+  - '메시지 리소스만으로도 목록 조회와 상세 읽기, 발송, 라벨 변경, 일괄 삭제까지 처리합니다.'
+  - '매일 쓰는 메일함을 다루기 때문에 아침 요약 봇이나 자동 분류기, 자동 응답 같은 도구를 직접 만들 수 있습니다.'
 ---
 
 ## 바이브코딩 시대, API가 곧 능력이다
@@ -142,7 +153,7 @@ Gmail의 거의 모든 설정을 코드로 제어합니다. 조직 전체의 이
 | **S/MIME** | 이메일 암호화 인증서 관리 |
 | **CSE** | 클라이언트 측 암호화 키 쌍 및 아이덴티티 관리 |
 
-## 이걸로 뭘 만들 수 있을까?
+## Gmail API로 만들 수 있는 서비스
 
 기능 목록만 보면 감이 잘 안 올 수 있습니다. Gmail API의 메서드들을 조합하면 어떤 서비스가 가능한지, 대표적인 아이디어 5가지를 정리했습니다.
 
@@ -193,9 +204,4 @@ Gmail API가 흥미로워 보이는데 어디서부터 시작해야 할지 모�
 
 **Postman이나 API 테스트 도구 익히기.** 코드를 작성하기 전에, API를 직접 호출해보고 응답 구조를 눈으로 확인하는 습관을 들입니다. 감을 잡는 데 가장 빠른 방법입니다.
 
-결국 API는 **"남이 만든 기능을 내 것처럼 쓰는 기술"**입니다. 이 기술을 익히면, 혼자서도 제법 쓸만한 서비스를 만들 수 있는 시대가 바로 지금입니다.
-
-**3줄 요약:**
-- Gmail API는 메시지, 스레드, 라벨, 임시저장, 변경이력, 사용자, 설정의 7개 리소스로 구성되며, 50개 이상의 메서드를 제공합니다.
-- 이 메서드들을 조합하면 모닝 다이제스트, 자동 분류, 고객 응대, 간이 CRM, 메일 백업 등 다양한 자동화 서비스를 만들 수 있습니다.
-- 시작은 공식 문서의 Quickstart를 따라하고, 나를 위한 작은 도구를 만드는 것이 가장 좋습니다.
+API는 **남이 만든 기능을 내 것처럼 쓰는 기술**입니다. 이 기술을 익히면 혼자서도 쓸 만한 서비스를 만들 수 있습니다.

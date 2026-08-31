@@ -1,15 +1,18 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Sparkles, Database, TrendingUp, BookOpen } from "lucide-react";
-import { NeoCard, NeoCardHeader, NeoCardTitle, NeoCardContent } from "@/components/neo";
+import { ArrowLeft, Clock3, Flame, Sparkles, Database, TrendingUp } from "lucide-react";
+import { NeoCard, NeoCardContent } from "@/components/neo";
 import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
+import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
 import { classHref } from "@/lib/links";
 import { SITE_URL } from "@/lib/constants";
-import { getPostBySlug, getRelatedClassesForPost, getPublishedPosts } from "@/lib/content";
+import { getInsightSummary3, getPostBySlug, getRelatedClassesForPost, getPublishedPosts, getTrendingInsightSlugs } from "@/lib/content";
+import { getCourseLinks } from "@/lib/promotions";
+import { SidebarContentList } from "@/components/SidebarContentList";
 import { extractFaqPairs } from "@/lib/extract-faq";
 import { ViewTracker } from "@/components/ViewTracker";
 import { isAiPracticeTopic } from "@/lib/aipractice-topic";
@@ -17,15 +20,18 @@ import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { ContentHeroImage } from "@/components/ContentHeroImage";
 import { AuthorCard } from "@/components/AuthorCard";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
-import { RelatedLink } from "@/components/RelatedLink";
 import { ContentQuiz } from "@/components/ContentQuiz";
 import { RelatedPosts } from "@/components/RelatedPosts";
+import { NextContentCard } from "@/components/NextContentCard";
+import { ContentFeedback } from "@/components/ContentFeedback";
+import { ContentSummary } from "@/components/ContentSummary";
 import { ShareBar } from "@/components/ShareBar";
 import { NewsletterCta } from "@/components/NewsletterCta";
 import { AdSenseSlot } from "@/components/ads/AdSenseSlot";
 import { AD_SLOTS } from "@/lib/ads";
-import { getRelatedPosts } from "@/lib/related-posts";
+import { getNextPost, getRelatedPosts } from "@/lib/related-posts";
 import { splitMarkdownAtNthH2 } from "@/lib/markdown-split";
+import { SUMMARY_PAYWALL_PART } from "@/lib/summary-gate";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -102,14 +108,67 @@ export default async function InsightDetailPage({ params }: Props) {
   const Icon = categoryIcons[post.category as keyof typeof categoryIcons];
 
   // 연관 Class 추천 (교차 추천)
-  const relatedClasses = await getRelatedClassesForPost(post.tags, post.category, 3);
+  const relatedClasses = await getRelatedClassesForPost(post.tags, post.category, 5);
 
-  // 관련 인사이트 추천 (본문 하단 카드 영역)
-  const relatedPosts = getRelatedPosts(post, 4);
+  // 다음 단계는 한 글만 강조하고, 일반 관련 글에서는 중복 노출하지 않는다.
+  const nextPost = getNextPost(post);
+  const relatedPosts = getRelatedPosts(post, 4, nextPost ? [nextPost.slug] : []);
+  const readingPathPosts = [
+    ...(nextPost ? [nextPost] : []),
+    ...relatedPosts,
+  ].slice(0, 5);
+  const isTrending = getTrendingInsightSlugs().has(slug);
+  const nextReason = nextPost
+    ? post.nextSlugs.includes(nextPost.slug)
+      ? "편집자가 고른 다음 글"
+      : post.topicCluster && post.topicCluster === nextPost.topicCluster
+        ? "같은 주제의 다음 단계"
+        : "이어서 읽기 좋은 글"
+    : "";
+
+  const courseLinks = getCourseLinks().slice(0, 3);
+
+  const sidebarGroups = [
+    {
+      title: "이 글의 학습 경로",
+      items: readingPathPosts.map((item) => ({
+        id: item.slug,
+        href: `/insights/${item.slug}`,
+        title: item.title,
+        description: item.excerpt || undefined,
+        contentType: "insight" as const,
+      })),
+      more: { href: "/insights", label: "글 전체 보기" },
+    },
+    {
+      title: "관련 개념",
+      items: relatedClasses
+        .filter((cls) => classHref(cls))
+        .map((cls) => ({
+          id: cls.slug,
+          href: classHref(cls)!,
+          title: cls.term,
+          description: cls.definition || undefined,
+          contentType: "class" as const,
+        })),
+    },
+    {
+      title: "무료 셀프 교육으로 배워보세요",
+      items: courseLinks.map((course) => ({
+        id: course.slug,
+        href: course.href,
+        title: course.title,
+        description: `${course.classCount}개 개념`,
+        contentType: "course" as const,
+      })),
+      more: { href: "/class", label: "코스 전체 보기" },
+    },
+  ];
 
   // 대표 이미지: og:image가 로컬 경로일 때만 본문 상단에 노출한다.
   // 외부 호스트(thumbnailUrl)는 next/image 도메인 설정 대상이라 여기서는 제외한다.
   const heroImage = post.ogImage?.startsWith("/") ? post.ogImage : null;
+  const summaryLines = getInsightSummary3(slug);
 
   // 본문 중간 광고 삽입 위치: 두 번째 H2 직전 (H2가 2개 미만이면 미삽입)
   const [contentBeforeAd, contentAfterAd] = splitMarkdownAtNthH2(post.content, 2);
@@ -132,11 +191,7 @@ export default async function InsightDetailPage({ params }: Props) {
     image: articleImage,
     datePublished: (post.publishedAt ?? post.createdAt).toISOString(),
     dateModified: post.updatedAt.toISOString(),
-    author: {
-      "@type": "Person",
-      name: "준이아빠",
-      url: absoluteUrl("/about"),
-    },
+    author: AUTHOR_PERSON_LD,
     publisher: {
       "@type": "Organization",
       name: "준이아빠블로그",
@@ -150,6 +205,9 @@ export default async function InsightDetailPage({ params }: Props) {
       "@id": absoluteUrl(`/insights/${slug}`),
     },
     keywords: post.tags.join(", "),
+    // 본문은 누구나 읽을 수 있고, 3줄 요약 구간만 구독자에게 열린다
+    isAccessibleForFree: true,
+    ...(summaryLines.length > 0 ? { hasPart: SUMMARY_PAYWALL_PART } : {}),
   };
 
   const breadcrumbLd = {
@@ -178,7 +236,8 @@ export default async function InsightDetailPage({ params }: Props) {
   };
 
   const faqPairs = extractFaqPairs(post.content);
-  const faqLd = faqPairs.length >= 2
+  // FAQPage는 질문 1개도 유효한 스키마이므로 1개부터 발행한다 (클래스 쪽과 기준 통일)
+  const faqLd = faqPairs.length >= 1
     ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -236,38 +295,7 @@ export default async function InsightDetailPage({ params }: Props) {
           contentTitle={post.title}
           sidebar={
             <div className="lg:sticky lg:top-24 space-y-3 sm:space-y-6 lg:space-y-4 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
-              {/* Related Classes */}
-              {relatedClasses.length > 0 && (
-                <NeoCard className="bg-white p-3 sm:p-6 bg-stripes neo-border-thick">
-                  <NeoCardHeader>
-                    <NeoCardTitle className="flex items-center gap-1.5 sm:gap-2 text-base sm:text-lg relative z-10">
-                      <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
-                      <span className="comic-emphasis">관련 개념</span>
-                    </NeoCardTitle>
-                  </NeoCardHeader>
-                  <NeoCardContent className="relative z-10">
-                    <ul className="space-y-2 sm:space-y-3">
-                      {relatedClasses.filter((cls) => classHref(cls)).map((cls) => (
-                        <li key={cls.id}>
-                          <RelatedLink
-                            href={classHref(cls)!}
-                            relatedType="classes"
-                            contentId={cls.slug}
-                            contentName={cls.term}
-                            className="block p-2 sm:p-3 bg-white border-2 border-black hover:translate-x-1 hover:translate-y-1 hover:shadow-none neo-shadow-sm transition-all"
-                          >
-                            <span className="text-xs sm:text-sm font-bold leading-snug block">{cls.term}</span>
-                            <p className="text-[11px] sm:text-xs text-muted-foreground line-clamp-1 mt-0.5">{cls.definition}</p>
-                          </RelatedLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NeoCardContent>
-                </NeoCard>
-              )}
-
-              {/* Author Card */}
-              <AuthorCard />
+              <SidebarContentList groups={sidebarGroups} />
 
               {/* PC 전용 공유 패널. 모바일은 글 상단 compact 바를 그대로 쓴다. */}
               <ShareBar
@@ -294,16 +322,24 @@ export default async function InsightDetailPage({ params }: Props) {
                 {post.title}
               </h1>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black">
-                <span className="text-xs sm:text-sm font-mono">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 sm:gap-x-4 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black">
+                <span className="shrink-0 whitespace-nowrap text-xs sm:text-sm font-mono">
                   {post.createdAt.toLocaleDateString("ko-KR")}
                 </span>
-                <div className="flex gap-1 sm:gap-1.5 flex-wrap">
+                <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-xs sm:text-sm font-mono text-muted-foreground">
+                  <Clock3 className="w-3.5 h-3.5" /> 약 {post.readingTime}분
+                </span>
+                {isTrending && (
+                  <span className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-[11px] sm:text-xs font-bold text-[#FF0033]">
+                    <Flame className="w-3.5 h-3.5" /> 최근 7일 인기 글
+                  </span>
+                )}
+                <div className="contents">
                   {post.tags.map((tag) => (
                     <NeoTagBadge
                       key={tag}
                       tag={tag}
-                      className="text-[11px] sm:text-xs px-1.5 sm:px-3 py-0.5 sm:py-1"
+                      className="shrink-0 text-[11px] sm:text-xs px-1.5 sm:px-3 py-0.5 sm:py-1"
                     />
                   ))}
                 </div>
@@ -322,6 +358,13 @@ export default async function InsightDetailPage({ params }: Props) {
             {heroImage && (
               <ContentHeroImage src={heroImage} alt={`${post.title} 대표 이미지`} />
             )}
+
+            <ContentSummary
+              slug={slug}
+              contentType="post"
+              lines={summaryLines}
+              className="mb-4 sm:mb-6"
+            />
 
             <NeoCard className="prose prose-sm sm:prose-lg max-w-none">
               <NeoCardContent>
@@ -348,9 +391,8 @@ export default async function InsightDetailPage({ params }: Props) {
               className="mt-6 sm:mt-8"
             />
 
-            <NewsletterCta location="post_bottom" className="mt-6 sm:mt-8" />
-
-            <RelatedPosts posts={relatedPosts} />
+            {/* 사이드바에서 걷어낸 저자 정보를 글 끝에 한 줄로 남긴다 */}
+            <AuthorCard compact className="block mt-6 sm:mt-8" />
 
             {post.quiz && post.quiz.length > 0 && (
               <ContentQuiz
@@ -361,6 +403,26 @@ export default async function InsightDetailPage({ params }: Props) {
                 practiceBanner={isAiPracticeTopic(post.category, post.tags)}
               />
             )}
+
+            <ContentFeedback contentSlug={slug} contentName={post.title} />
+
+            {nextPost && <NextContentCard post={nextPost} reason={nextReason} />}
+
+            <RelatedPosts posts={relatedPosts} />
+
+            <section className="mt-6 sm:mt-8" aria-label="광고">
+              <p className="mb-1 text-center text-[10px] font-mono tracking-widest text-muted-foreground">
+                ADVERTISEMENT
+              </p>
+              <AdSenseSlot
+                slot={AD_SLOTS.inFeed}
+                format="fluid"
+                className="border-t border-gray-200 pt-2"
+                minHeight={160}
+              />
+            </section>
+
+            <NewsletterCta location="post_bottom" className="mt-6 sm:mt-8" />
           </article>
         </ContentFocusLayout>
       </div>

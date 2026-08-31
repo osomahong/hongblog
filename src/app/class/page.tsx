@@ -2,23 +2,26 @@ import { Metadata } from "next";
 import { getPublishedCourses } from "@/lib/content";
 import ClassPageClient from "./ClassPageClient";
 import { ListViewTracker } from "@/components/ListViewTracker";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, SITE_NAME, SECTION_LABELS } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-static";
 
-const PAGE_TITLE = "Class | 강의 & 개념 학습";
+const PAGE_TITLE = "AI 마케팅 개념학습";
+// layout의 title template은 하위 세그먼트에만 적용되고 같은 세그먼트의 page는 건너뛴다.
+// 그래서 섹션 루트인 이 페이지는 라벨과 브랜드를 붙인 완성형을 직접 지정한다.
+const FULL_TITLE = `${SECTION_LABELS.class} | ${PAGE_TITLE} | ${SITE_NAME}`;
 const PAGE_DESCRIPTION = "체계적으로 정리된 개념 강의로 기초부터 고급까지 학습하세요. 바이브코딩, 디지털 마케팅, 웹 기술, 클로드 교육의 핵심 개념을 쉽게 이해할 수 있습니다.";
 const PAGE_OG_IMAGE = absoluteUrl("/og-default.png");
 
 export const metadata: Metadata = {
-    title: PAGE_TITLE,
+    title: { absolute: FULL_TITLE },
     description: PAGE_DESCRIPTION,
     alternates: {
         canonical: `${SITE_URL}/class`,
     },
     openGraph: {
-        title: PAGE_TITLE,
+        title: FULL_TITLE,
         description: PAGE_DESCRIPTION,
         type: "website",
         url: `${SITE_URL}/class`,
@@ -26,7 +29,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: PAGE_TITLE,
+        title: FULL_TITLE,
         description: PAGE_DESCRIPTION,
         images: [PAGE_OG_IMAGE],
     },

@@ -36,6 +36,10 @@ quiz:
 metaTitle: '클로드 코드 슬래시 명령어 정리: 기본 명령과 커스텀 명령'
 metaDescription: '슬래시 명령은 Claude Code에서 /로 시작해 자주 쓰는 작업을 한 번에 부르는 기능입니다. 기본 제공 명령과 직접 만드는 커스텀 명령을 정리했습니다.'
 ogImage: /og/slash-commands-explained.png
+summary3:
+  - '슬래시 명령은 Claude Code에서 슬래시로 시작해 자주 쓰는 작업을 한 번에 부르는 기능이고 기본 제공 명령과 직접 만든 커스텀 명령으로 나뉩니다.'
+  - '입문자가 자주 쓰는 명령은 목록을 보는 /help와 대화를 비우는 /clear, 프로젝트에 CLAUDE.md를 만드는 /init입니다.'
+  - '커스텀 명령은 .claude/commands 폴더에 마크다운으로 만들어 프로젝트 단위로 공유하고 Claude가 맥락을 보고 알아서 부르게 하려면 Skills로 만듭니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs의 슬래시 명령(Slash Commands), Skills 자료를 한국 비개발자 입문자가 보기 편하게 정리한 글입니다.
@@ -97,7 +101,7 @@ Claude Code 화면에서 `/`만 누르면 사용 가능한 명령 목록이 나�
 **개발자**
 - `/review-pr`: 회사 PR 리뷰 체크리스트 적용
 - `/deploy-staging`: 스테이징 배포 절차 자동화
-- `/write-tests`: 새 기능에 대한 테스트 작성
+- `/write-tests`: 새 기능의 테스트 작성
 
 **기획자, PM**
 - `/prd-draft`: 회사 PRD 템플릿으로 초안 생성
@@ -139,13 +143,13 @@ Claude Code 화면에서 `/`만 누르면 사용 가능한 명령 목록이 나�
 **3. 보안 정보 포함**
 - API 키, 비밀번호를 명령 본문에 넣지 마세요. 환경 변수로 분리합니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **슬래시 명령은 `/`로 시작하는 명령으로 자주 쓰는 작업을 한 번에 부르는 Claude Code 기능**입니다. 기본 명령(`/help`, `/clear`)과 커스텀 명령(`/review-pr` 같은 회사 표준)으로 나뉩니다.
+1. 슬래시 명령은 Claude Code에서 슬래시로 시작해 자주 쓰는 작업을 한 번에 부르는 기능이고 기본 제공 명령과 직접 만든 커스텀 명령으로 나뉩니다.
 
-2. **`.claude/commands/` 폴더 안에 마크다운 파일로 만들고 git으로 팀과 공유**하면 작업 흐름이 표준화됩니다.
+2. 입문자가 자주 쓰는 명령은 목록을 보는 /help와 대화를 비우는 /clear, 프로젝트에 CLAUDE.md를 만드는 /init입니다.
 
-3. **단순 명령은 슬래시 명령, 복잡한 작업 단위는 [Skills](/class/claude-in-practice/what-are-claude-skills)** 로 분리하세요. 한 달에 5번 이상 쓰는 작업만 명령으로 만들고, 명령 본문은 [프롬프트 엔지니어링 5요소](/class/claude-fundamentals/prompt-engineering-basics)로 작성합니다.
+3. 커스텀 명령은 .claude/commands 폴더에 마크다운으로 만들어 프로젝트 단위로 공유하고 Claude가 맥락을 보고 알아서 부르게 하려면 Skills로 만듭니다.
 
 ## 📚 참고 자료
 

@@ -32,6 +32,10 @@ metaDescription: >-
 ogTitle: '리액트 SPA에서 GTM 설치, 왜 데이터가 안 잡힐까?'
 ogDescription: SPA 환경에서 GTM이 제대로 작동하지 않는 이유와 해결법. dataLayer 설정으로 정확한 추적을 시작하세요.
 ogImage: /og/react-spa-gtm-setup-guide.png
+summary3:
+  - '리액트 같은 SPA는 페이지를 옮겨도 DOM만 바뀌기 때문에 GTM의 기본 페이지뷰 트리거가 최초 로딩 때 한 번만 작동합니다.'
+  - '화면이 바뀔 때마다 dataLayer로 직접 알려야 GA4에 페이지뷰가 제대로 쌓입니다.'
+  - '설치 방법은 react-gtm-module과 타입 지원이 나은 gtm-support 패키지, 의존성 없이 직접 구현하는 세 가지입니다.'
 ---
 
 ## 도입부: 그냥 붙여넣으면 되는 거 아닌가요?

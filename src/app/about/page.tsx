@@ -23,24 +23,29 @@ import {
   Database,
   Workflow,
   ExternalLink,
+  Briefcase,
+  CircleHelp,
+  Bot,
+  Sparkles,
 } from "lucide-react";
 import { NeoButton } from "@/components/neo";
 import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
 import { BrandIcon } from "@/components/icons/BrandIcons";
+import { AboutCanvasFx } from "@/components/about/AboutCanvasFx";
 
 const BASE_YEAR = 2017;
 const REFERENCE_YEAR = 2026;
 const YEARS_OF_EXPERIENCE = REFERENCE_YEAR - BASE_YEAR + 1;
 const CLIENT_COUNT_LABEL = "120곳+";
 /** 경력, 고객사, 교육 수치를 마지막으로 확인한 시점 */
-const CREDENTIAL_AS_OF = "2026년 4월";
+const CREDENTIAL_AS_OF = "2026년 8월";
 /** 화면의 프로필 버튼과 Person, Organization JSON-LD의 sameAs가 같은 값을 쓴다 */
 const LINKEDIN_PROFILE_URL =
   "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/";
 
-const ABOUT_TITLE = "About | GA4, GTM 분석 환경 구축";
-const ABOUT_DESCRIPTION = `${YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 데이터 분석가입니다. 공공기관, 금융, 유통, 대학 등 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 환경을 구축했고 누적 1,000명 이상을 교육했습니다. 마케팅 성과를 데이터로 확인하는 방법과 AEO, GEO 실무를 정리합니다.`;
+const ABOUT_TITLE = "AI, 데이터 분석 컨설턴트 홍승협(준이아빠) 소개";
+const ABOUT_DESCRIPTION = `홍승협(준이아빠)은 ${YEARS_OF_EXPERIENCE}년차 AI/AX, 데이터 분석 컨설턴트입니다. AEO와 GEO, AI 업무 자동화 컨설팅과 함께 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 분석 환경을 구축했고 누적 1,000명 이상을 교육했습니다.`;
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -94,7 +99,7 @@ function buildStats(counts: ContentCounts) {
       icon: Tag,
       value: "3,000+",
       label: "누적 설계 이벤트와 파라미터",
-      sub: "고객사당 20~30개 × 120곳+",
+      sub: `고객사당 20~30개 × ${CLIENT_COUNT_LABEL}`,
     },
     {
       icon: Users,
@@ -117,404 +122,6 @@ function buildStats(counts: ContentCounts) {
   ];
 }
 
-/**
- * 고객사는 산업군과 조직 유형으로 먼저 요약한다.
- * 공개 가능한 주요 업무 연혁은 아래 별도 목록에 기록한다.
- */
-const clientSectors = [
-  "관광 분야 공공기관",
-  "면세, 아울렛 유통 대기업",
-  "도서 유통 대기업",
-  "증권사",
-  "정보보안 상장사",
-  "클라우드 관리 서비스(MSP) 기업",
-  "글로벌 모빌리티 브랜드 한국 법인",
-  "글로벌 스포츠 브랜드 한국 법인",
-  "글로벌 엔터테인먼트 기업 한국 법인",
-  "B2B 이커머스 플랫폼",
-  "이벤트 플랫폼 스타트업",
-  "4년제 대학과 사이버대학",
-];
-
-const workHistory = [
-  {
-    year: "2021·2026",
-    company: "안국건강",
-    work: "건강기능식품 데이터·물류 분석 환경 구축",
-  },
-  {
-    year: "2021·2026",
-    company: "레프트아이템딜리버리",
-    work: "건강기능식품 데이터·물류 분석 환경 구축",
-  },
-  {
-    year: "2022",
-    company: "코딧",
-    work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
-  },
-  {
-    year: "2022",
-    company: "플라스크",
-    work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
-  },
-  {
-    year: "2022",
-    company: "엔닷라이트",
-    work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
-  },
-  {
-    year: "2022",
-    company: "네오폰스",
-    work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
-  },
-  {
-    year: "2022",
-    company: "지란지교소프트",
-    work: "정보보안 소프트웨어 분석 환경·SEO 구축",
-  },
-  {
-    year: "2022",
-    company: "이피엘컴퍼니",
-    work: "디지털 매체 운영, CRM, 데이터 분석 교육",
-  },
-  {
-    year: "2022",
-    company: "센디네어",
-    work: "디지털 마케팅 현황 점검, 채널별 홍보 방향 및 실행 과제 정리",
-  },
-  {
-    year: "2022",
-    company: "위솝",
-    work: "GA4·GTM 이벤트 설계와 태깅, UTM·검색/디스플레이 광고, 보고서 설정",
-  },
-  {
-    year: "2022~2024",
-    company: "하이로컬",
-    work: "GA 데이터 수집 설정, 이벤트·전환 목표 설정, SEO 점검",
-  },
-  {
-    year: "2022",
-    company: "나인하이어",
-    work: "검색·디스플레이 광고 캠페인 구조, SEO 체크리스트, GA4·전환 분석",
-  },
-  {
-    year: "2023~2026",
-    company: "한국관광공사",
-    work: "관광 데이터 수집·분석 환경 구축, 참여기업 유입·전환 개선, AI 활용 방향 제안",
-  },
-  {
-    year: "2023",
-    company: "스테이폴리오",
-    work: "관광 데이터 수집·분석 환경 점검, 유입·전환 개선안 제시",
-  },
-  {
-    year: "2023",
-    company: "캐플릭스",
-    work: "관광 데이터 수집·분석 환경 점검, 유입·전환 개선안 제시",
-  },
-  {
-    year: "2023",
-    company: "KOTRA아카데미",
-    work: "디지털 마케팅 과정 강의",
-  },
-  {
-    year: "2023",
-    company: "교보문고",
-    work: "GA4 분석 환경 구축 및 유지보수",
-  },
-  {
-    year: "2023",
-    company: "신세계면세점",
-    work: "면세 유통 분석 환경 구축",
-  },
-  {
-    year: "2023",
-    company: "신세계사이먼 프리미엄아울렛",
-    work: "아울렛 유통 분석 환경 구축",
-  },
-  {
-    year: "2023",
-    company: "신세계아울렛 eShop",
-    work: "GA4·GTM 이벤트, UTM, 대시보드 구축",
-  },
-  {
-    year: "2023",
-    company: "동원·동원디어푸드(동원몰·더반찬)",
-    work: "이커머스·결제·네이버페이 데이터 추적",
-  },
-  {
-    year: "2023",
-    company: "풀무원(풀무원녹즙)",
-    work: "GA4·Firebase 구축 및 이벤트 검수",
-  },
-  {
-    year: "2023",
-    company: "한화호텔앤드리조트",
-    work: "호텔·리조트 분석 프로젝트",
-  },
-  {
-    year: "2023",
-    company: "더플라자",
-    work: "호텔 GA4·GTM 분석 환경 구축",
-  },
-  {
-    year: "2023",
-    company: "스케쳐스(스케쳐스코리아)",
-    work: "글로벌 브랜드 한국 법인 분석",
-  },
-  {
-    year: "2023",
-    company: "ABC마트",
-    work: "글로벌 브랜드 한국 법인 분석",
-  },
-  {
-    year: "2023",
-    company: "오피스키퍼",
-    work: "보안 제품 GA4·Amplitude·GTM 및 SEO",
-  },
-  {
-    year: "2023",
-    company: "유니드컴즈(킵그로우)",
-    work: "태깅 구조 진단, Looker 대시보드 구축, 채널별 성과 개선안 제시",
-  },
-  {
-    year: "2023",
-    company: "비바이노베이션",
-    work: "모바일 앱 GA4 온보딩",
-  },
-  {
-    year: "2023",
-    company: "그레이시티",
-    work: "GA4 온보딩",
-  },
-  {
-    year: "2023",
-    company: "어라운더블(픽앤픽)",
-    work: "GA4·GTM 이벤트 스크립트 및 검수",
-  },
-  {
-    year: "2023",
-    company: "더본아이에프(알고리즙)",
-    work: "GA4·GTM 스크립트 및 이벤트 수정",
-  },
-  {
-    year: "2023",
-    company: "나누",
-    work: "B2B·B2C 포지셔닝, SEO, 검색광고, 제휴 전략",
-  },
-  {
-    year: "2023",
-    company: "잇그린",
-    work: "미디어믹스와 광고 채널·예산 분석, CRM 활용 방안 정리",
-  },
-  {
-    year: "2024",
-    company: "안랩(AhnLab)",
-    work: "국내·일본·중국 GA4·GTM, BigQuery, 대시보드",
-  },
-  {
-    year: "2024",
-    company: "고려대학교",
-    work: "디지털 마케팅·데이터 분석 강의",
-  },
-  {
-    year: "2024",
-    company: "나그네들",
-    work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
-  },
-  {
-    year: "2024",
-    company: "남도마켓",
-    work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
-  },
-  {
-    year: "2024",
-    company: "커런시유나이티드",
-    work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
-  },
-  {
-    year: "2024",
-    company: "이벤터스",
-    work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
-  },
-  {
-    year: "2024",
-    company: "지앤지커머스(도매꾹)",
-    work: "커머스 유통 분석 환경 구축",
-  },
-  {
-    year: "2024",
-    company: "반다이남코코리아(BNKR)",
-    work: "커머스·엔터테인먼트 유통 분석",
-  },
-  {
-    year: "2024",
-    company: "이노션",
-    work: "GA4 보고서·탐색 기능 실습 교육",
-  },
-  {
-    year: "2024~2026",
-    company: "메디비젼·비앤빛안과",
-    work: "병원 GA4/GTM 및 전환 분석",
-  },
-  {
-    year: "2024~2026",
-    company: "하트하트재단",
-    work: "비영리 후원·전환 추적",
-  },
-  {
-    year: "2024",
-    company: "그라운드원",
-    work: "SaaS 글로벌 마케팅, SEO, 콘텐츠 전략",
-  },
-  {
-    year: "2024",
-    company: "펴나니",
-    work: "요양 플랫폼 B2B·B2C 마케팅, SEO, 검색광고",
-  },
-  {
-    year: "2024",
-    company: "뉴지엄랩",
-    work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
-  },
-  {
-    year: "2024",
-    company: "로민",
-    work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
-  },
-  {
-    year: "2024",
-    company: "반프",
-    work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
-  },
-  {
-    year: "2024~2026",
-    company: "유진투자증권",
-    work: "이벤트 추적, GA4 보고서, BigQuery·Looker 연동",
-  },
-  {
-    year: "2025",
-    company: "연세대학교",
-    work: "디지털 마케팅·데이터 분석 강의",
-  },
-  {
-    year: "2025",
-    company: "사이버한국외국어대학교",
-    work: "디지털 마케팅·데이터 분석 강의",
-  },
-  {
-    year: "2025~2026",
-    company: "그리니어",
-    work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
-  },
-  {
-    year: "2025",
-    company: "이지백",
-    work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
-  },
-  {
-    year: "2025",
-    company: "요즘피플",
-    work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
-  },
-  {
-    year: "2025",
-    company: "함께하는사랑밭",
-    work: "비영리 후원 전환 추적",
-  },
-  {
-    year: "2025~2026",
-    company: "열매나눔재단",
-    work: "GA4·GTM 및 후원 전환 추적",
-  },
-  {
-    year: "2025~2026",
-    company: "푸르메재단",
-    work: "비영리 후원·전환 추적",
-  },
-  {
-    year: "2025",
-    company: "한림대학교",
-    work: "대학·대학원 페이지 데이터 분석",
-  },
-  {
-    year: "2026",
-    company: "승우여행사",
-    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
-  },
-  {
-    year: "2026",
-    company: "가시림수목원",
-    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
-  },
-  {
-    year: "2026",
-    company: "애기야가자",
-    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
-  },
-  {
-    year: "2026",
-    company: "알브이에이치",
-    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
-  },
-  {
-    year: "2026",
-    company: "호퍼스",
-    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
-  },
-  {
-    year: "2026",
-    company: "베스핀글로벌",
-    work: "클라우드 MSP 분석 환경·데이터 파이프라인 구축",
-  },
-  {
-    year: "2026",
-    company: "네스트호텔",
-    work: "호텔 웹사이트 GA4 설정 및 전환 데이터 점검",
-  },
-  {
-    year: "2026",
-    company: "혼다코리아",
-    work: "GA4 권한, UTM, 프로모션 페이지 추적 기획",
-  },
-  {
-    year: "2026",
-    company: "레아딜",
-    work: "GA4·GTM 및 전환 데이터 업무",
-  },
-  {
-    year: "2026",
-    company: "hoppin",
-    work: "GTM 기본 태그 및 예약 여정 점검",
-  },
-  {
-    year: "2026",
-    company: "불스원",
-    work: "광고·전환 데이터 태깅",
-  },
-  {
-    year: "2026",
-    company: "국제사이버대학교",
-    work: "입시·모집 광고 데이터 및 마케팅 전략",
-  },
-  {
-    year: "2026",
-    company: "슬로운(뉴라이즌)",
-    work: "브랜드 USP, 콘텐츠, 보상판매, CRM·재구매 마케팅",
-  },
-  {
-    year: "2026",
-    company: "자일로랩스",
-    work: "B2B 글로벌 마케팅, SEO, 사례 콘텐츠·PR 전략",
-  },
-];
-
-const educationPartners = [
-  "무역 진흥 공공기관 아카데미",
-  "사회적경제 지원 공공기관",
-  "기업 내부 담당자 교육",
-];
-
 const principles = [
   {
     title: "성과가 나온 이유를 남깁니다",
@@ -531,6 +138,16 @@ const principles = [
 ];
 
 const workItems = [
+  {
+    icon: Bot,
+    title: "AI/AX 컨설팅과 업무 자동화 설계",
+    desc: "기업의 반복 업무를 AI 에이전트와 워크플로우로 옮기는 전환(AX)을 설계합니다. 진단, 도입 우선순위, 실무 정착까지 함께 잡습니다.",
+  },
+  {
+    icon: Sparkles,
+    title: "AEO, GEO 컨설팅",
+    desc: "AI 검색과 생성형 답변에 인용되도록 콘텐츠 구조, 구조화 데이터, 엔티티를 정비합니다. 이 사이트가 실측 실험장입니다.",
+  },
   {
     icon: FileText,
     title: "이벤트 택소노미와 정의서 설계",
@@ -564,9 +181,166 @@ const workItems = [
   {
     icon: Workflow,
     title: "대형 프로젝트 리드와 교육",
-    desc: "관광 분야 공공기관의 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 이벤트 정합성 90% KPI와 5단계 산출물 워크플로우로 참여 기업을 지원하고, 누적 1,000명 이상 실무자를 교육했습니다.",
+    desc: "한국관광공사 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 기업과 공공기관에서 AI 활용과 데이터 분석 실무를 누적 1,000명 이상 교육했습니다.",
   },
 ];
+
+/** 대표 이력. 연도는 계약 시작 기준, 로고는 공식 소스에서 확보한 것만 넣는다 */
+const milestones: {
+  year: string;
+  title: string;
+  orgs: { name: string; logo?: string }[];
+  /** 지원 사업처럼 주관 기관 아래에서 직접 맡은 기업이 따로 있을 때 적는다 */
+  note?: string;
+}[] = [
+  {
+    year: "2021",
+    title: "건강기능식품, 물류 분석 환경 구축",
+    orgs: [{ name: "안국건강" }, { name: "레프트아이템딜리버리" }],
+  },
+  {
+    year: "2022",
+    title: "삼성 C랩 선발 스타트업 그로스, 분석 컨설팅",
+    orgs: [{ name: "삼성 C랩", logo: "samsung" }],
+    note: "담당 기업 코딧, 플라스크, 엔닷라이트, 네오폰스",
+  },
+  {
+    year: "2022",
+    title: "정보보안 소프트웨어 분석 환경 구축과 SEO",
+    orgs: [{ name: "지란지교", logo: "jiran" }],
+  },
+  {
+    year: "2022",
+    title: "디지털 매체 운영, CRM, 데이터 분석 교육 과정 운영",
+    orgs: [{ name: "이피엘컴퍼니" }],
+  },
+  {
+    year: "2023",
+    title: "한국관광 데이터랩 활성화와 그로스해킹 컨설팅 (4년 연속 수행)",
+    orgs: [{ name: "한국관광공사", logo: "knto" }],
+    note: "담당 기업 스테이폴리오, 캐플릭스",
+  },
+  {
+    year: "2023",
+    title: "디지털 마케팅 과정 출강 (SNS 수출마케팅 전략 등)",
+    orgs: [{ name: "KOTRA아카데미", logo: "kotra" }],
+  },
+  {
+    year: "2023",
+    title: "GA4 분석 환경 구축과 유지보수",
+    orgs: [{ name: "교보문고", logo: "kyobo" }],
+  },
+  {
+    year: "2023",
+    title: "면세, 아울렛 유통 분석 환경 구축",
+    orgs: [
+      { name: "신세계면세점", logo: "ssgdfs" },
+      { name: "신세계사이먼", logo: "ssgsimon" },
+    ],
+  },
+  {
+    year: "2023",
+    title: "식품 제조 분석 프로젝트",
+    orgs: [
+      { name: "동원", logo: "dongwon" },
+      { name: "풀무원녹즙", logo: "pulmuone" },
+    ],
+  },
+  {
+    year: "2023",
+    title: "호텔, 리조트 분석 프로젝트",
+    orgs: [
+      { name: "한화호텔앤리조트" },
+      { name: "더플라자", logo: "theplaza" },
+    ],
+  },
+  {
+    year: "2023",
+    title: "글로벌 브랜드 한국 법인 분석",
+    orgs: [{ name: "스케쳐스코리아" }, { name: "ABC마트", logo: "abcmart" }],
+  },
+  {
+    year: "2023",
+    title: "보안 제품, 마케팅 SaaS 이벤트 설계와 검수",
+    orgs: [{ name: "오피스키퍼" }, { name: "유니드컴즈" }],
+  },
+  {
+    year: "2023",
+    title: "모바일 앱 GA4 온보딩 컨설팅",
+    orgs: [{ name: "비바이노베이션" }],
+  },
+  {
+    year: "2024",
+    title: "데이터 분석 컨설팅",
+    orgs: [{ name: "AhnLab", logo: "ahnlab" }],
+  },
+  {
+    year: "2024",
+    title: "디지털 마케팅과 데이터 분석 강의",
+    orgs: [{ name: "고려대학교", logo: "korea-univ" }],
+  },
+  {
+    year: "2024",
+    title: "관광기업 데이터 분석 환경 구축과 그로스해킹",
+    orgs: [{ name: "한국관광공사", logo: "knto" }],
+    note: "담당 기업 나그네들, 남도마켓, 커런시유나이티드, 이벤터스",
+  },
+  {
+    year: "2024",
+    title: "커머스, 엔터테인먼트 유통 분석 구축",
+    orgs: [{ name: "지앤지커머스" }, { name: "반다이남코코리아몰" }],
+  },
+  {
+    year: "2024",
+    title: "GA4 활용 교육",
+    orgs: [{ name: "이노션", logo: "innocean" }],
+  },
+  {
+    year: "2025",
+    title: "디지털 마케팅과 데이터 분석 강의 확대",
+    orgs: [
+      { name: "연세대학교", logo: "yonsei" },
+      { name: "사이버한국외국어대학교", logo: "cufs" },
+    ],
+  },
+  {
+    year: "2025",
+    title: "관광기업 데이터 활용과 그로스해킹 컨설팅",
+    orgs: [{ name: "한국관광공사", logo: "knto" }],
+    note: "담당 기업 그리니어, 이지백, 요즘피플",
+  },
+  {
+    year: "2025",
+    title: "비영리 후원 전환 추적 설계",
+    orgs: [{ name: "사랑밭" }],
+  },
+  {
+    year: "2026",
+    title: "관광기업 데이터, AI 활용 지원 사업 AI 컨설팅 (참여 기업 27개사)",
+    orgs: [{ name: "한국관광공사", logo: "knto" }],
+    note: "담당 기업 승우여행사, 가시림수목원, 애기야가자, 알브이에이치, 호퍼스, 그리니어, 레프트아이템딜리버리",
+  },
+  {
+    year: "2026",
+    title: "클라우드 MSP 분석 환경과 데이터 파이프라인 구축",
+    orgs: [{ name: "베스핀글로벌", logo: "bespin" }],
+  },
+  {
+    year: "2026",
+    title: "호텔 GA4 구축 컨설팅",
+    orgs: [{ name: "네스트호텔", logo: "nesthotel" }],
+  },
+];
+
+/** 연혁을 연도로 묶는다. 배열 순서를 유지하므로 같은 해 안에서도 입력 순서가 곧 계약 순서다 */
+const milestonesByYear = milestones.reduce<Record<string, typeof milestones>>(
+  (acc, m) => {
+    (acc[m.year] ??= []).push(m);
+    return acc;
+  },
+  {},
+);
+const milestoneYears = Object.keys(milestonesByYear).sort();
 
 export default async function AboutPage() {
   const counts = getContentCounts();
@@ -575,30 +349,39 @@ export default async function AboutPage() {
   const personLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "준이아빠",
-    alternateName: "Hong (준이아빠)",
+    // 글마다 붙는 Article.author가 이 @id를 참조해 하나의 인물 그래프로 합산된다
+    "@id": absoluteUrl("/about#person"),
+    name: "홍승협",
+    alternateName: ["준이아빠", "Hong Seunghyub"],
     url: absoluteUrl("/about"),
     image: absoluteUrl("/profile-illustration.png"),
-    jobTitle: "디지털 마케팅, 데이터 분석 컨설턴트",
-    description: `${YEARS_OF_EXPERIENCE}년차 디지털 마케터. ${CLIENT_COUNT_LABEL} 고객사의 GA4와 GTM 분석 환경 구축, AEO와 GEO 실무. 누적 1,000명 이상 교육 경력.`,
+    jobTitle: "AX 컨설팅 랩 차장",
+    worksFor: {
+      "@type": "Organization",
+      name: "오픈소스마케팅",
+      url: "https://osoma.kr",
+    },
+    description: `${YEARS_OF_EXPERIENCE}년차 AI/AX, 데이터 분석 컨설턴트. AEO와 GEO, AI 업무 자동화 컨설팅과 ${CLIENT_COUNT_LABEL} 고객사의 GA4, GTM 분석 환경 구축. 누적 1,000명 이상 교육 경력.`,
     knowsAbout: [
-      "Google Analytics 4",
-      "Google Tag Manager",
+      "AI 업무 자동화(AX)",
       "Answer Engine Optimization",
       "Generative Engine Optimization",
+      "AI 워크플로우",
+      "프롬프트 엔지니어링",
+      "Google Analytics 4",
+      "Google Tag Manager",
       "퍼포먼스 마케팅",
       "그로스해킹",
       "퍼널 분석",
       "데이터 시각화",
-      "AI 워크플로우",
-      "프롬프트 엔지니어링",
     ],
     knowsLanguage: ["ko", "en"],
     hasOccupation: {
       "@type": "Occupation",
       name: "디지털 마케팅 컨설턴트, 데이터 분석가",
       occupationLocation: { "@type": "Country", name: "대한민국" },
-      skills: "GA4, GTM, BigQuery, LookerStudio, AEO, GEO, LLM, Python",
+      skills:
+        "AEO, GEO, LLM, AI 에이전트, GA4, GTM, BigQuery, LookerStudio, Python",
     },
     sameAs: [SITE_URL, LINKEDIN_PROFILE_URL],
   };
@@ -615,6 +398,30 @@ export default async function AboutPage() {
     sameAs: [LINKEDIN_PROFILE_URL],
   };
 
+  // 답변 엔진이 그대로 추출해 가는 문답 (아래 FAQ 섹션과 문구를 일치시킨다)
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "어떤 일을 의뢰할 수 있나요?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "GA4와 GTM 분석 환경 구축, 이벤트 택소노미 설계, BigQuery 로우데이터 분석, AEO와 GEO 컨설팅, 기업 실무 교육을 의뢰할 수 있습니다. hong@oso.ma로 문의하면 됩니다.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "강의나 교육은 어떻게 요청하나요?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "기업과 공공기관 출강, 온라인 강의 모두 가능합니다. KOTRA아카데미와 대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다. 교육 대상과 인원, 희망 일정을 hong@oso.ma로 보내 주시면 커리큘럼안으로 회신합니다.",
+        },
+      },
+    ],
+  };
+
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
       <script
@@ -624,6 +431,10 @@ export default async function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
       />
       <ViewTracker
         contentType="about"
@@ -640,7 +451,10 @@ export default async function AboutPage() {
         >
           <div
             className="absolute top-0 right-0 w-24 sm:w-32 h-full bg-[#FF0033] hidden sm:block"
-            style={{ clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)", zIndex: 0 }}
+            style={{
+              clipPath: "polygon(20% 0, 100% 0, 100% 100%, 0% 100%)",
+              zIndex: 0,
+            }}
           />
           <div className="relative z-10">
             <div className="flex items-center gap-3 mb-4">
@@ -659,25 +473,48 @@ export default async function AboutPage() {
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-black leading-tight mb-4">
               마케팅 성과를
               <br />
-              <span className="text-[#FF0033]">데이터로 확인하는</span> 일을 합니다.
+              <span className="text-[#FF0033]">데이터로 확인하는</span> 일을
+              합니다.
             </h1>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              <strong>{YEARS_OF_EXPERIENCE}년차 디지털 마케터</strong>입니다. 면세 유통, 정보보안, 클라우드, 글로벌 브랜드 한국 법인 등 <strong>120곳 이상의 기업과 기관</strong>에서 <strong>이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery 로우데이터 분석</strong>을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게 만드는 일입니다. 기업 담당자와 공공 아카데미에서 <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그 과정에서 정리한 실무 인사이트를 올리고 있습니다.
+              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로,
+              오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는{" "}
+              <strong>홍승협(준이아빠)</strong>입니다. 공공기관, 면세 유통,
+              정보보안, 클라우드, 호텔, 글로벌 브랜드 한국 법인 등{" "}
+              <strong>120곳 이상의 기업과 기관</strong>에서{" "}
+              <strong>
+                이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery
+                로우데이터 분석
+              </strong>
+              을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게
+              만드는 일입니다. 기업 담당자와 공공 아카데미에서{" "}
+              <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그
+              과정에서 정리한 실무 인사이트를 올리고 있습니다.
               <span className="block mt-2 text-xs text-gray-500">
                 경력 수치는 {CREDENTIAL_AS_OF} 기준
               </span>
             </p>
             {/* 고객사를 업종 표기로 바꾼 만큼, 경력을 직접 확인할 경로를 남긴다 */}
-            <a
-              href={LINKEDIN_PROFILE_URL}
-              target="_blank"
-              rel="me noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 px-4 py-2.5 bg-[#0A66C2] text-white text-sm font-black border-3 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
-            >
-              <BrandIcon name="linkedin" className="w-4 h-4 shrink-0" />
-              링크드인 프로필에서 경력 보기
-              <ExternalLink className="w-3.5 h-3.5 shrink-0" strokeWidth={2.2} />
-            </a>
+            <div className="mt-5 flex flex-wrap items-center gap-2">
+              <a
+                href={LINKEDIN_PROFILE_URL}
+                target="_blank"
+                rel="me noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0A66C2] text-white text-sm font-black border-3 border-black neo-shadow-sm hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+              >
+                <BrandIcon name="linkedin" className="w-4 h-4 shrink-0" />
+                링크드인 프로필에서 경력 보기
+                <ExternalLink
+                  className="w-3.5 h-3.5 shrink-0"
+                  strokeWidth={2.2}
+                />
+              </a>
+              {/* 디지털 명함 저장/복사와 About 전용 연출 (지원 브라우저에서만 렌더) */}
+              <AboutCanvasFx
+                blogUrl={SITE_URL}
+                linkedinUrl={LINKEDIN_PROFILE_URL}
+              />
+            </div>
           </div>
         </NeoTiltCard>
       </section>
@@ -691,20 +528,13 @@ export default async function AboutPage() {
           <h2 className="text-xl sm:text-2xl font-black">경력</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-          {stats.map((stat, index) => {
+          {stats.map((stat) => {
             const Icon = stat.icon;
-            const rotations = [
-              "-rotate-1",
-              "rotate-1",
-              "rotate-0.5",
-              "-rotate-0.5",
-              "rotate-1",
-              "-rotate-1",
-            ];
             return (
+              /* 수치는 나란히 읽혀야 비교가 되므로 카드를 기울이지 않는다 */
               <NeoTiltCard
                 key={stat.label}
-                className={`bg-white border-4 border-black p-4 sm:p-5 ${rotations[index]}`}
+                className="bg-white border-4 border-black p-4 sm:p-5"
                 intensity={10}
               >
                 <Icon className="w-6 h-6 mb-2 text-primary" />
@@ -714,60 +544,81 @@ export default async function AboutPage() {
                 <div className="font-bold text-sm text-black mb-1">
                   {stat.label}
                 </div>
-                <div className="text-xs text-gray-500">{stat.sub}</div>
               </NeoTiltCard>
             );
           })}
         </div>
         <p className="mt-4 text-xs text-gray-500">
-          경력, 고객사, 교육 수치는 {CREDENTIAL_AS_OF} 기준이며 공개 가능한 레퍼런스와 내부 기록을 근거로 집계했습니다. 공개 콘텐츠 편수는 현재 사이트에 올라와 있는 글의 수입니다.
+          경력, 고객사, 교육 수치는 {CREDENTIAL_AS_OF} 기준이며 공개 가능한
+          레퍼런스와 내부 기록을 근거로 집계했습니다. 공개 콘텐츠 편수는 현재
+          사이트에 올라와 있는 글의 수입니다.
         </p>
       </section>
 
-      {/* Representative Clients */}
+      {/* 연혁. 연도를 왼쪽 축에 고정하고 그해 계약을 한 열에 순서대로 쌓는다.
+          기업 연혁 페이지의 통용 구조로, 시맨틱 ol/li와 텍스트 기관명을 유지해
+          검색엔진과 AI가 계약 순서를 그대로 읽을 수 있게 한다 */}
       <section className="mb-12 sm:mb-16">
-        <NeoTiltCard
-          className="bg-white border-4 border-black p-6 sm:p-8 rotate-0.5"
-          intensity={12}
-        >
-          <div className="flex items-center gap-2 mb-4">
-            <div className="bg-primary border-2 border-black p-1.5 rotate-2">
-              <Building2 className="w-5 h-5 text-white" />
-            </div>
-            <h2 className="text-xl sm:text-2xl font-black">
-              함께 일한 기업과 기관
-            </h2>
+        <div className="flex items-center gap-2 mb-8">
+          <div className="bg-black border-2 border-black p-1.5 rotate-2">
+            <Briefcase className="w-5 h-5 text-white" />
           </div>
-          <p className="text-base sm:text-lg text-gray-700 mb-4 leading-relaxed">
-            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다. 계약별 공개 범위를 고려해 산업군으로 요약하고, 공개 가능한 주요 연혁은 아래에 따로 기록합니다.
-          </p>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {clientSectors.map((sector) => (
-              <span
-                key={sector}
-                className="inline-block bg-gray-50 border-2 border-black text-black text-xs sm:text-sm font-bold px-3 py-1.5"
+          <h2 className="text-xl sm:text-2xl font-black">연혁</h2>
+        </div>
+        <div className="border-t-4 border-black">
+          {milestoneYears.map((year) => (
+            <div
+              key={year}
+              className="grid grid-cols-[3.25rem_1fr] sm:grid-cols-[7rem_1fr] border-b-2 border-black"
+            >
+              <time
+                dateTime={year}
+                className="block font-black text-lg sm:text-4xl leading-none tracking-tight self-start pt-6 sm:pt-7 pr-2 sm:pr-6 sm:text-right sm:sticky sm:top-24"
               >
-                {sector}
-              </span>
-            ))}
-            <span className="inline-block bg-black text-white border-2 border-black text-xs sm:text-sm font-bold px-3 py-1.5">
-              외 다수
-            </span>
-          </div>
-          <div className="pt-4 border-t-2 border-black/20">
-            <p className="text-sm text-gray-600 mb-2 font-bold">교육 협력 기관</p>
-            <div className="flex flex-wrap gap-2">
-              {educationPartners.map((partner) => (
-                <span
-                  key={partner}
-                  className="inline-block bg-accent border-2 border-black text-black text-xs font-bold px-3 py-1"
-                >
-                  {partner}
-                </span>
-              ))}
+                {year}
+              </time>
+              <ol className="min-w-0 space-y-5 sm:space-y-6 border-l-2 border-black/25 pl-4 sm:pl-8 py-6 sm:py-7">
+                {milestonesByYear[year].map((m) => (
+                  <li key={m.title} className="relative">
+                    {/* 축 위에 계약 하나를 찍는 노드 */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute -left-4 sm:-left-8 top-[0.4rem] w-3 h-3 -translate-x-1/2 rounded-full bg-white border-[3px] border-black"
+                    />
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      {m.orgs.map((org) => (
+                        <span
+                          key={org.name}
+                          className="inline-flex items-center gap-1.5 bg-white border-2 border-black px-2 py-1 text-xs sm:text-sm font-bold"
+                        >
+                          {org.logo && (
+                            /* eslint-disable-next-line @next/next/no-img-element */
+                            <img
+                              src={`/images/about/logos/${org.logo}.logo.png`}
+                              alt={`${org.name} 로고`}
+                              width={20}
+                              height={20}
+                              className="w-5 h-5 object-contain shrink-0"
+                            />
+                          )}
+                          {org.name}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="font-black text-base sm:text-lg leading-snug">
+                      {m.title}
+                    </h3>
+                    {m.note && (
+                      <p className="mt-1 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                        {m.note}
+                      </p>
+                    )}
+                  </li>
+                ))}
+              </ol>
             </div>
-          </div>
-        </NeoTiltCard>
+          ))}
+        </div>
       </section>
 
       {/* Newly confirmed work history */}
@@ -821,18 +672,25 @@ export default async function AboutPage() {
           intensity={15}
         >
           <h2 className="text-xl sm:text-2xl font-black tracking-tight mb-6 border-b-4 border-black pb-2 flex items-center gap-3">
-            <span className="w-4 h-4 bg-[#FF0033] inline-block" />
-            이 일을 시작한 이유
+            <span className="w-4 h-4 bg-[#FF0033] inline-block" />이 일을 시작한
+            이유
           </h2>
           <div className="space-y-4 text-base sm:text-lg leading-relaxed text-gray-700">
             <p>
-              광고를 집행하고, 콘텐츠를 만들고, 캠페인을 설계해왔습니다. 그러면서 매번 같은 질문을 받았습니다. 무엇이 실제로 바뀌었는지 묻는 질문이었습니다.
+              광고를 집행하고, 콘텐츠를 만들고, 캠페인을 설계해왔습니다.
+              그러면서 매번 같은 질문을 받았습니다. 무엇이 실제로 바뀌었는지
+              묻는 질문이었습니다.
             </p>
             <p>
-              광고비를 얼마 썼고 클릭이 몇 번 일어났는지는 답할 수 있었습니다. 그래서 매출이 늘었는지, 어떤 소재가 그 매출을 만들었는지는 답하지 못했습니다.
+              광고비를 얼마 썼고 클릭이 몇 번 일어났는지는 답할 수 있었습니다.
+              그래서 매출이 늘었는지, 어떤 소재가 그 매출을 만들었는지는 답하지
+              못했습니다.
             </p>
             <p>
-              GA4와 GTM으로 그 사이를 메우는 일을 시작한 것이 지금 하는 일의 출발점입니다. 이후 AI와 기술의 변화를 마케팅 실무에 연결하는 쪽으로 범위를 넓혔고, 이 사이트에는 그 과정에서 정리한 것을 올리고 있습니다.
+              GA4와 GTM으로 그 사이를 메우는 일을 시작한 것이 지금 하는 일의
+              출발점입니다. 이후 AI와 기술의 변화를 마케팅 실무에 연결하는
+              쪽으로 범위를 넓혔고, 이 사이트에는 그 과정에서 정리한 것을 올리고
+              있습니다.
             </p>
           </div>
         </NeoTiltCard>
@@ -845,13 +703,18 @@ export default async function AboutPage() {
             <span className="w-4 h-4 bg-black inline-block transform rotate-45" />
             하는 일
           </h2>
-          <div className="space-y-3">
+          <div className="grid sm:grid-cols-2 gap-3">
             {workItems.map((item, index) => {
               const Icon = item.icon;
               return (
                 <div
                   key={item.title}
-                  className="bg-white border-2 border-black p-4 sm:p-5 flex gap-4 items-start"
+                  className={`bg-white border-2 border-black p-4 sm:p-5 flex gap-4 items-start ${
+                    /* 홀수 개일 때 마지막 항목이 빈칸을 남기지 않도록 두 칸을 쓴다 */
+                    workItems.length % 2 === 1 && index === workItems.length - 1
+                      ? "sm:col-span-2"
+                      : ""
+                  }`}
                 >
                   <span className="bg-primary text-white font-black text-sm px-2.5 py-1 border-2 border-black shrink-0 leading-none self-start mt-1">
                     {String(index + 1).padStart(2, "0")}
@@ -859,9 +722,13 @@ export default async function AboutPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <Icon className="w-4 h-4 text-primary shrink-0" />
-                      <h3 className="font-black text-sm sm:text-base">{item.title}</h3>
+                      <h3 className="font-black text-sm sm:text-base">
+                        {item.title}
+                      </h3>
                     </div>
-                    <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
               );
@@ -909,7 +776,9 @@ export default async function AboutPage() {
                 <span className="bg-accent text-black text-xs font-bold px-2 py-0.5 border-2 border-black shrink-0">
                   {item.name}
                 </span>
-                <span className="text-sm sm:text-base text-gray-700">{item.desc}</span>
+                <span className="text-sm sm:text-base text-gray-700">
+                  {item.desc}
+                </span>
               </div>
             ))}
           </div>
@@ -965,6 +834,46 @@ export default async function AboutPage() {
               </NeoTiltCard>
             );
           })}
+        </div>
+      </section>
+
+      {/* 자주 묻는 질문. FAQPage JSON-LD와 문구를 일치시킨다 */}
+      <section className="mb-12 sm:mb-16">
+        <div className="flex items-center gap-2 mb-6">
+          <div className="bg-black border-2 border-black p-1.5 -rotate-2">
+            <CircleHelp className="w-5 h-5 text-white" />
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black">자주 묻는 질문</h2>
+        </div>
+        <div className="space-y-4">
+          <div className="bg-white border-4 border-black p-4 sm:p-5 neo-shadow-sm">
+            <h3 className="font-black text-base sm:text-lg mb-2">
+              어떤 일을 의뢰할 수 있나요?
+            </h3>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              GA4와 GTM 분석 환경 구축, 이벤트 택소노미 설계, BigQuery
+              로우데이터 분석, AEO와 GEO 컨설팅, 기업 실무 교육을 의뢰할 수
+              있습니다.{" "}
+              <a href="mailto:hong@oso.ma" className="font-bold underline">
+                hong@oso.ma
+              </a>
+              로 문의하면 됩니다.
+            </p>
+          </div>
+          <div className="bg-white border-4 border-black p-4 sm:p-5 neo-shadow-sm">
+            <h3 className="font-black text-base sm:text-lg mb-2">
+              강의나 교육은 어떻게 요청하나요?
+            </h3>
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+              기업과 공공기관 출강, 온라인 강의 모두 가능합니다. KOTRA아카데미와
+              대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다.
+              교육 대상과 인원, 희망 일정을{" "}
+              <a href="mailto:hong@oso.ma" className="font-bold underline">
+                hong@oso.ma
+              </a>
+              로 보내 주시면 커리큘럼안으로 회신합니다.
+            </p>
+          </div>
         </div>
       </section>
 

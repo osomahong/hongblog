@@ -17,7 +17,7 @@ highlights:
 - 시스템 유저 토큰 발급부터 Insights API 호출, CSV 저장까지 전체 Python 코드 예시
 quiz:
 - options:
-  - 'clicks: 광고에 대한 모든 클릭을 집계하는 표준 지표'
+  - 'clicks: 광고에서 일어난 모든 클릭을 집계하는 표준 지표'
   - 'inline_link_clicks: 랜딩페이지로 이동하는 클릭만 집계하는 지표'
   - 'outbound_clicks: 외부 URL로 이동하는 클릭을 집계하는 지표'
   - 'link_click: actions 배열 내의 링크 클릭 action_type'
@@ -31,6 +31,10 @@ metaDescription: Meta Marketing API 접근 방법, Insights 필드 매핑, 전�
 ogTitle: 비개발자도 쓰기 편하게 정리한 Meta Ads API 데이터
 ogDescription: Meta Marketing API 접근부터 Insights 필드 매핑, 전환 데이터 파싱, 코드 예시까지. 마케터가 알아야 할 핵심을 정리했습니다.
 ogImage: /og/meta-ads-api-data-for-non-developers.png
+summary3:
+  - 'Meta Ads API로 가져오는 데이터는 캠페인 설정인 구조와 노출과 비용인 성과, 연령과 지면 같은 분류 세 종류입니다.'
+  - '읽기만 할 때는 ads_read 권한이면 되고 Advanced Access가 필요하면 비즈니스 인증에 사업자 서류를 내고 며칠을 기다립니다.'
+  - '전환은 단일 숫자가 아니라 actions 배열로 오기 때문에 필요한 전환 유형을 골라 꺼내는 처리가 따로 필요합니다.'
 ---
 
 ## Meta 광고 데이터, 왜 API로 가져와야 할까요

@@ -1,0 +1,4584 @@
+/* ===== GA4 Edu 전용 테마 =====
+ * 이 페이지는 GA4 보고서 화면을 그대로 옮겨 보는 교육용 화면이라,
+ * 사이트의 Neo-Brutalism을 쓰지 않고 Google Analytics UI의 값을 그대로 따른다.
+ * (흰 배경, 1px 회색 경계, 8px 라운드, Google 파랑 강조)
+ */
+
+.ga4-root {
+  --ga4-blue: #1a73e8;
+  --ga4-blue-soft: #d2e3fc;
+  --ga4-amber: #f9ab00;
+  --ga4-amber-deep: #e37400;
+  --ga4-ink: #202124;
+  --ga4-muted: #5f6368;
+  --ga4-line: #dadce0;
+  --ga4-surface: #ffffff;
+  --ga4-canvas: #f8f9fa;
+
+  background-color: var(--ga4-canvas);
+  color: var(--ga4-ink);
+  font-family: "Google Sans", Roboto, Pretendard, -apple-system, sans-serif;
+  min-height: 100%;
+}
+
+/* 루트 레이아웃의 main을 세로로 채워 아래쪽에 흰 바닥이 드러나지 않게 한다 */
+main:has(> .ga4-root) {
+  display: flex;
+  flex-direction: column;
+}
+
+main:has(> .ga4-root) > .ga4-root {
+  flex: 1;
+}
+
+/* ----- 카드 ----- */
+.ga4-card {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  /* grid 자식의 기본 min-width는 auto라, 긴 페이지 제목이 카드를 넘어 가로 스크롤을 만든다 */
+  min-width: 0;
+}
+
+.ga4-card-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* GA4는 지표 이름에 점선 밑줄을 그어 설명이 붙는 항목임을 알린다 */
+.ga4-dotted {
+  border-bottom: 1px dotted var(--ga4-muted);
+  cursor: help;
+}
+
+/* 1위 항목 줄. 페이지 제목처럼 긴 값이 들어와도 한 줄로 잘라 카드 높이를 지킨다 */
+.ga4-rank {
+  font-size: 13px;
+  color: var(--ga4-muted);
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ga4-rank strong {
+  color: var(--ga4-ink);
+  font-weight: 500;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ga4-big {
+  font-size: 34px;
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+
+.ga4-pct {
+  font-size: 12px;
+  color: var(--ga4-muted);
+  margin-top: 2px;
+}
+
+/* ----- 표 ----- */
+.ga4-table-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ga4-muted);
+  padding-bottom: 8px;
+  margin-top: 16px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+
+.ga4-row {
+  padding: 9px 0 0;
+}
+
+.ga4-row-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+
+.ga4-row-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ga4-row-value {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 값에 비례하는 가로 막대. GA4는 라벨 아래에 얇게 깐다 */
+.ga4-bar {
+  height: 3px;
+  background: var(--ga4-blue);
+  margin-top: 5px;
+  border-radius: 2px;
+  min-width: 2px;
+}
+
+.ga4-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+
+.ga4-pager {
+  border: none;
+  background: none;
+  color: var(--ga4-muted);
+  padding: 4px;
+  border-radius: 999px;
+  cursor: pointer;
+  line-height: 0;
+}
+
+.ga4-pager:hover:not(:disabled) {
+  background: #f1f3f4;
+  color: var(--ga4-ink);
+}
+
+.ga4-pager:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* ----- 스파크라인 ----- */
+.ga4-spark {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 40px;
+  border-bottom: 1px dashed var(--ga4-line);
+  padding-bottom: 1px;
+}
+
+.ga4-spark-bar {
+  flex: 1;
+  background: var(--ga4-blue);
+  min-height: 0;
+  border-radius: 1px 1px 0 0;
+}
+
+/* ----- 상단 활성 사용자 패널 ----- */
+.ga4-minutes {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 90px;
+}
+
+.ga4-minute-bar {
+  flex: 1;
+  background: var(--ga4-blue);
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  transition: height 0.4s ease;
+}
+
+/* 방금 1분은 아직 집계가 차오르는 중이라 옅게 둔다 */
+.ga4-minute-bar:last-child {
+  background: var(--ga4-blue-soft);
+}
+
+.ga4-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--ga4-muted);
+  margin-top: 6px;
+}
+
+/* ----- 교육용 배지 ----- */
+.ga4-api-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 6px 8px;
+  background: #f1f3f4;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--ga4-muted);
+  line-height: 1.5;
+  flex-wrap: wrap;
+}
+
+.ga4-api-badge code {
+  color: var(--ga4-amber-deep);
+  font-weight: 600;
+}
+
+/* 실시간 API가 제공하지 않는 카드는 색을 빼고 이유를 적는다 */
+.ga4-card-unavailable {
+  background: repeating-linear-gradient(
+    45deg,
+    #fafafa,
+    #fafafa 10px,
+    #f5f5f5 10px,
+    #f5f5f5 20px
+  );
+}
+
+.ga4-empty {
+  font-size: 13px;
+  color: var(--ga4-muted);
+  margin-top: 18px;
+  line-height: 1.6;
+}
+
+/* ----- 도넛 (기기 카테고리) ----- */
+.ga4-donut {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.ga4-donut::after {
+  content: "";
+  position: absolute;
+  inset: 32px;
+  background: var(--ga4-surface);
+  border-radius: 50%;
+}
+
+.ga4-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+
+.ga4-legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ----- 실시간 표시등 ----- */
+.ga4-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34a853;
+  animation: ga4-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ga4-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ga4-live-dot { animation: none; }
+  .ga4-minute-bar { transition: none; }
+}
+
+/* =========================================================================
+ * GA4 앱 재현
+ * 실제 Google Analytics 4 화면을 기준으로 배치와 값을 맞춘다.
+ * 강조색은 파랑 하나만 쓰고, 눌러야 할 곳만 빨간 상자로 구분한다.
+ * ========================================================================= */
+
+.ga4-stage {
+  position: relative;
+  width: 100%;
+  background: var(--ga4-canvas);
+  border-top: 1px solid var(--ga4-line);
+  border-bottom: 1px solid var(--ga4-line);
+}
+
+/* 화면 고정: 브라우저 창 전체를 GA4로 채운다 */
+.ga4-stage-pinned {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  border: none;
+}
+/* 화면 고정일 때만 내부 스크롤로 바꾸고, 스크롤이 페이지로 새지 않게 막는다 */
+.ga4-stage-pinned .ga4-app {
+  height: 100vh;
+  overflow: hidden;
+}
+.ga4-stage-pinned .ga4-report-canvas {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.ga4-stage-pinned .ga4-iconrail,
+.ga4-stage-pinned .ga4-tree { position: static; align-self: stretch; }
+.ga4-stage-pinned .ga4-iconrail { min-height: 0; }
+.ga4-stage-pinned .ga4-tree { overflow-y: auto; overscroll-behavior: contain; }
+
+/* 평소에는 높이를 내용에 맞춰 늘려 내부 스크롤을 없앤다.
+ * 페이지 스크롤 하나만 남아 마우스 위치와 상관없이 예상대로 움직인다. */
+.ga4-app {
+  display: flex;
+  flex-direction: column;
+  background: var(--ga4-surface);
+}
+
+/* ----- 상단바 ----- */
+.ga4-topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 60px;
+  padding: 0 16px;
+  background: var(--ga4-surface);
+  flex-shrink: 0;
+}
+.ga4-wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 20px;
+  color: #5f6368;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ga4-wordmark-mark {
+  width: 22px;
+  height: 22px;
+  background:
+    linear-gradient(to top, #f9ab00 0 45%, transparent 45%) 0 100% / 5px 45% no-repeat,
+    linear-gradient(to top, #e37400 0 70%, transparent 70%) 8px 100% / 5px 70% no-repeat,
+    linear-gradient(to top, #e37400 0 100%, transparent 100%) 16px 100% / 5px 100% no-repeat;
+}
+/* 로고와 계정 사이 세로 구분선 */
+.ga4-topbar-divider {
+  width: 1px;
+  height: 30px;
+  background: var(--ga4-line);
+  flex-shrink: 0;
+}
+
+/* 계정 경로 한 줄과 속성 이름 한 줄이 위아래로 놓인다 */
+.ga4-account {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+.ga4-account-path {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  font-size: 11px;
+  color: var(--ga4-muted);
+  white-space: nowrap;
+}
+.ga4-account-property {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ga4-account-property svg { color: var(--ga4-muted); }
+
+.ga4-omnibox {
+  flex: 1;
+  max-width: 700px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 44px;
+  margin-left: 14px;
+  padding: 0 18px;
+  border-radius: 8px;
+  background: #f1f3f4;
+  color: var(--ga4-muted);
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* 오른쪽 끝 아이콘 세 개. 실제 화면과 같은 자리에만 두고 눌리지는 않는다 */
+.ga4-topbar-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.ga4-topbar-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--ga4-muted);
+}
+.ga4-topbar-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background: #e8eaed;
+  color: var(--ga4-muted);
+}
+/* 화면 고정 버튼.
+ * GA4에 없는 유일한 요소라 AI-Practice의 네 가지 색을 테두리에 두르고 그 색이 돌게 한다.
+ * 커스텀 속성 각도(@property)는 브라우저마다 지원이 갈려서, 그라데이션 판을 통째로
+ * 돌리고 알약 모양으로 잘라 내는 방식을 쓴다. transform 회전은 어디서나 동작한다. */
+.ga4-pin {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 19px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: 0 1px 3px rgba(32, 33, 36, 0.16);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ga4-ink);
+  white-space: nowrap;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+/* 돌아가는 무지개 판 */
+.ga4-pin::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 300%;
+  padding-bottom: 300%;
+  background: conic-gradient(#7dd3fc, #a78bfa, #ff5c7d, #ffd700, #7dd3fc);
+  /* 애니메이션이 꺼진 환경에서도 원판이 가운데 놓이도록 기본값을 둔다 */
+  transform: translate(-50%, -50%);
+  animation: ga4-pin-spin 4s linear infinite;
+  z-index: -2;
+}
+/* 가운데를 덮어 테두리만 남긴다 */
+.ga4-pin::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 999px;
+  background: #ffffff;
+  z-index: -1;
+}
+.ga4-pin:hover::after { background: #f8f9fa; }
+/* 이동과 회전을 한 transform 안에 같이 둬야 개별 속성 지원과 상관없이 돈다 */
+@keyframes ga4-pin-spin {
+  from { transform: translate(-50%, -50%) rotate(0turn); }
+  to { transform: translate(-50%, -50%) rotate(1turn); }
+}
+/* 동작 줄이기를 켠 사용자에게는 회전을 아주 느리게 돌려 자극을 줄인다.
+ * 완전히 멈추면 이 버튼이 학습 도구라는 표시가 사라진다 */
+@media (prefers-reduced-motion: reduce) {
+  .ga4-pin::before { animation-duration: 24s; }
+}
+
+/* ----- 본문 3단 ----- */
+.ga4-app-body { display: flex; flex: 1; min-height: 0; }
+
+.ga4-iconrail {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  /* 관리 톱니를 아래쪽에 두려면 레일에 높이가 있어야 한다 */
+  min-height: min(76vh, 700px);
+  width: 56px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0;
+  background: var(--ga4-surface);
+}
+/* 지금 열려 있는 영역만 파란 알약으로 눌러 둔다. GA4와 같은 표시다 */
+.ga4-iconrail-btn {
+  width: 44px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-iconrail-btn:hover { background: #f1f3f4; }
+.ga4-iconrail-on { background: var(--ga4-blue); color: #fff; }
+.ga4-iconrail-on:hover { background: var(--ga4-blue); }
+.ga4-iconrail-gap { flex: 1; }
+
+.ga4-tree {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  width: 250px;
+  flex-shrink: 0;
+  padding: 12px 0 44px;
+  background: var(--ga4-surface);
+}
+.ga4-tree-group { margin: 14px 0 6px; }
+.ga4-tree-group-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px 8px 24px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  border-bottom: 1px solid var(--ga4-line);
+  margin-bottom: 4px;
+}
+.ga4-tree-item {
+  display: block;
+  width: calc(100% - 8px);
+  text-align: left;
+  padding: 9px 14px 9px 32px;
+  border: 1px solid transparent;
+  border-radius: 0 999px 999px 0;
+  background: none;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ga4-tree-group .ga4-tree-item { padding-left: 44px; }
+.ga4-tree-item:hover { background: #f1f3f4; }
+/* GA4는 열려 있는 보고서를 회색 알약으로 표시한다 */
+.ga4-tree-item-on { background: #e8eaed; }
+.ga4-tree-item-on:hover { background: #e8eaed; }
+.ga4-tree-collapse {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-tree-collapse:hover { background: #f1f3f4; }
+
+.ga4-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--ga4-canvas);
+  border-left: 1px solid var(--ga4-line);
+}
+
+/* 세그먼트 줄 */
+.ga4-segbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px 6px;
+  flex-shrink: 0;
+}
+.ga4-seg-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--ga4-blue);
+  border-radius: 999px;
+  background: var(--ga4-surface);
+  font-size: 12.5px;
+  color: var(--ga4-blue);
+  white-space: nowrap;
+}
+.ga4-tool-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 999px;
+  background: var(--ga4-surface);
+  font-size: 12.5px;
+  color: var(--ga4-ink);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ga4-tool-chip:hover { background: #f1f3f4; }
+
+.ga4-date-wrap { position: relative; margin-left: auto; }
+.ga4-daterange {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  font-size: 12.5px;
+  color: var(--ga4-ink);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ga4-daterange:hover { background: #f1f3f4; }
+.ga4-daterange strong { font-weight: 500; }
+.ga4-daterange-sub { color: var(--ga4-muted); }
+
+.ga4-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 40;
+  display: block;
+  min-width: 190px;
+  padding: 6px;
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  box-shadow: 0 2px 10px rgba(60, 64, 67, 0.28);
+}
+.ga4-menu-item {
+  display: block;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-menu-item:hover { background: #f1f3f4; }
+.ga4-menu-item-on { background: var(--ga4-blue-soft); color: #174ea6; }
+
+/* 보고서 제목 줄 */
+.ga4-report-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 24px 0;
+  flex-shrink: 0;
+}
+.ga4-report-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--ga4-ink);
+  min-width: 0;
+}
+.ga4-title-check {
+  display: inline-flex;
+  color: #1e8e3e;
+  flex-shrink: 0;
+}
+.ga4-title-caret { color: var(--ga4-muted); flex-shrink: 0; }
+.ga4-head-icons {
+  display: flex;
+  gap: 16px;
+  color: var(--ga4-muted);
+  flex-shrink: 0;
+}
+
+.ga4-filterbar { padding: 10px 24px 0; flex-shrink: 0; }
+
+.ga4-report-canvas {
+  flex: 1;
+  min-height: 0;
+  padding: 12px 24px 20px;
+}
+
+/* ----- 차트 ----- */
+.ga4-chartrow {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+@media (max-width: 1240px) {
+  .ga4-chartrow { grid-template-columns: 1fr; }
+}
+.ga4-chartcard {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  min-width: 0;
+}
+.ga4-chartcard-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.ga4-chartcard-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+  line-height: 1.5;
+}
+.ga4-chart-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--ga4-ink);
+  flex-shrink: 0;
+}
+.ga4-chart-svg { width: 100%; height: auto; display: block; }
+.ga4-chart-grid { stroke: #e8eaed; stroke-width: 1; }
+.ga4-chart-axis { font-size: 9px; fill: #80868b; }
+.ga4-chart-area { fill: rgba(26, 115, 232, 0.1); }
+.ga4-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+.ga4-chart-legend li { display: inline-flex; align-items: center; gap: 5px; }
+.ga4-legend-swatch { width: 9px; height: 9px; border-radius: 2px; }
+
+.ga4-hbars { display: grid; gap: 10px; padding-top: 4px; }
+.ga4-hbars li {
+  display: grid;
+  grid-template-columns: 118px 1fr;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+}
+.ga4-hbar-name {
+  color: var(--ga4-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ga4-hbar-track { height: 18px; border-left: 1px solid var(--ga4-line); }
+.ga4-hbar-fill {
+  display: block;
+  height: 100%;
+  background: var(--ga4-blue);
+}
+.ga4-hbar-axis {
+  display: grid;
+  grid-template-columns: 118px 1fr;
+  gap: 12px;
+  margin-top: 10px;
+  padding-top: 6px;
+  border-top: 1px solid var(--ga4-line);
+}
+.ga4-hbar-axis-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #80868b;
+}
+
+/* ----- 보고서 개요 카드 ----- */
+.ga4-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.ga4-overview-card {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 18px;
+}
+.ga4-overview-label { font-size: 12px; color: var(--ga4-muted); margin-bottom: 8px; }
+.ga4-overview-value { font-size: 30px; color: var(--ga4-ink); }
+
+/* ----- 표 ----- */
+.ga4-tablecard {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+}
+.ga4-tablecard-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+}
+.ga4-rowchart-btn {
+  padding: 7px 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 12px;
+  color: #9aa0a6;
+  cursor: default;
+}
+.ga4-table-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+.ga4-table-pager {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+  white-space: nowrap;
+}
+.ga4-foot-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-foot-goto {
+  min-width: 34px;
+  padding: 3px 8px;
+  border-bottom: 1px solid var(--ga4-line);
+  color: var(--ga4-ink);
+  text-align: center;
+}
+.ga4-foot-range { font-variant-numeric: tabular-nums; }
+.ga4-foot-arrows { display: flex; gap: 6px; }
+
+.ga4-table-scroll { overflow-x: auto; }
+.ga4-gtable { width: 100%; border-collapse: collapse; min-width: 1080px; }
+.ga4-gtable th,
+.ga4-gtable td { border-bottom: 1px solid #e8eaed; white-space: nowrap; }
+
+/* 체크박스 열 */
+.ga4-gth-check,
+.ga4-gtd-check { width: 44px; padding: 10px 0 10px 16px; }
+.ga4-check {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--ga4-blue);
+  border-radius: 2px;
+  background: var(--ga4-blue);
+  position: relative;
+}
+.ga4-check::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  width: 4px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.ga4-check-all::after {
+  left: 2px;
+  top: 5px;
+  width: 8px;
+  height: 0;
+  border-width: 0 0 2px 0;
+  transform: none;
+}
+
+.ga4-gth-dim,
+.ga4-gtd-dim {
+  text-align: left;
+  padding: 8px 12px 8px 4px;
+  width: 240px;
+  min-width: 240px;
+  white-space: normal;
+}
+.ga4-gtd-dim { font-size: 13px; color: var(--ga4-ink); }
+.ga4-dim-wrap { position: relative; display: inline-flex; align-items: center; gap: 4px; }
+.ga4-dim-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 12.5px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-dim-chip:hover { background: #f1f3f4; }
+.ga4-dim-plus { display: inline-flex; color: var(--ga4-blue); }
+
+.ga4-gth { padding: 0; text-align: right; vertical-align: bottom; }
+.ga4-gth-btn {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 4px;
+  width: 100%;
+  /* 셀 높이를 다 채워, 빨간 상자 안 어디를 눌러도 정렬이 걸리게 한다 */
+  height: 100%;
+  padding: 10px 14px;
+  border: none;
+  background: none;
+  font-size: 12px;
+  color: var(--ga4-ink);
+  text-align: right;
+  cursor: pointer;
+}
+.ga4-gth-btn:hover { background: #f8f9fa; }
+/* GA4는 측정항목 이름 아래에 점선을 그어 설명이 붙는 항목임을 알린다 */
+.ga4-gth-label {
+  border-bottom: 1px dotted #9aa0a6;
+  white-space: normal;
+  text-align: right;
+}
+.ga4-gth-arrow { color: var(--ga4-ink); flex-shrink: 0; margin-bottom: 2px; }
+
+.ga4-gtd {
+  padding: 12px 14px;
+  text-align: right;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  font-variant-numeric: tabular-nums;
+}
+.ga4-gshare { color: var(--ga4-muted); }
+.ga4-gtotal td { font-weight: 500; }
+.ga4-gtotal-sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ga4-muted);
+  margin-top: 2px;
+}
+.ga4-grow-index {
+  display: inline-block;
+  width: 20px;
+  color: var(--ga4-muted);
+  font-size: 12px;
+}
+/* 표 줄 안의 이름 단추. 보이기에는 글자 그대로지만 탭으로 닿는다 */
+.ga4-grow-pick {
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-gtr-clickable { cursor: pointer; }
+.ga4-gtr-clickable:hover td { background: #f8f9fa; }
+.ga4-gtr-selected td { background: #e8f0fe; }
+.ga4-gtr-marked .ga4-gtd-check { box-shadow: inset 4px 0 0 var(--ga4-blue); }
+
+/* ----- 눌러야 할 곳: 빨간 상자 -----
+ * 상자 자체는 늘 또렷하게 두고, 바깥으로 옅은 파동만 잔잔하게 퍼지게 한다.
+ * 선이 깜빡이면 읽기가 어려워지므로 굵기와 색은 고정한다.
+ */
+.ga4-ring {
+  position: relative;
+  z-index: 5;
+  outline: 2.5px solid #d93025;
+  outline-offset: 3px;
+  border-radius: 8px;
+  animation: ga4-ring-halo 2.4s ease-out infinite;
+}
+@keyframes ga4-ring-halo {
+  0% { box-shadow: 0 0 0 0 rgba(217, 48, 37, 0.3); }
+  70% { box-shadow: 0 0 0 12px rgba(217, 48, 37, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(217, 48, 37, 0); }
+}
+/* 표 머리글처럼 상자를 씌우기 어려운 자리는 배경까지 옅게 물들여 눈에 띄게 한다 */
+.ga4-gth.ga4-ring,
+.ga4-ff-var.ga4-ring,
+.ga4-tree-item.ga4-ring { background: rgba(217, 48, 37, 0.06); }
+.ga4-ff-slot.ga4-ring { background: rgba(217, 48, 37, 0.05); }
+
+@media (prefers-reduced-motion: reduce) {
+  .ga4-ring { animation: none; box-shadow: 0 0 0 5px rgba(217, 48, 37, 0.16); }
+}
+
+/* ----- 도우미 ----- */
+/* 도우미는 화면 아래쪽에 붙어 따라온다. 음수 여백으로 GA4 화면 위에 겹친다 */
+.ga4-guide {
+  position: sticky;
+  bottom: 18px;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  width: fit-content;
+  max-width: 470px;
+  margin: -108px 22px 16px auto;
+  pointer-events: none;
+}
+.ga4-stage-pinned .ga4-guide {
+  position: absolute;
+  right: 22px;
+  bottom: 18px;
+  margin: 0;
+}
+.ga4-guide-bubble {
+  position: relative;
+  padding: 14px 18px;
+  border: 1px solid var(--ga4-ink);
+  border-radius: 10px;
+  background: #fffbe6;
+  box-shadow: 0 6px 18px rgba(32, 33, 36, 0.18);
+  pointer-events: auto;
+}
+/* 말풍선 꼬리를 도우미 쪽으로 낸다 */
+.ga4-guide-bubble::after,
+.ga4-guide-bubble::before {
+  content: "";
+  position: absolute;
+  right: -9px;
+  bottom: 16px;
+  border: 9px solid transparent;
+  border-left-color: var(--ga4-ink);
+  border-right: 0;
+}
+.ga4-guide-bubble::after {
+  right: -7px;
+  border-left-color: #fffbe6;
+}
+.ga4-guide-step {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ga4-amber-deep);
+  margin-bottom: 5px;
+}
+.ga4-guide-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ga4-ink);
+  word-break: keep-all;
+}
+.ga4-guide-restart {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  padding: 5px 12px;
+  border: 1px solid var(--ga4-ink);
+  border-radius: 999px;
+  background: var(--ga4-surface);
+  font-size: 12px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-guide-restart:hover { background: #f1f3f4; }
+.ga4-guide-face {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 2px solid var(--ga4-ink);
+  background: #ffffff;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(32, 33, 36, 0.22);
+}
+.ga4-guide-miss .ga4-guide-bubble { background: #fce8e6; }
+.ga4-guide-miss .ga4-guide-bubble::after { border-left-color: #fce8e6; }
+.ga4-guide-miss .ga4-guide-step { color: #c5221f; }
+.ga4-guide-done .ga4-guide-bubble { background: #e6f4ea; }
+.ga4-guide-done .ga4-guide-bubble::after { border-left-color: #e6f4ea; }
+.ga4-guide-done .ga4-guide-step { color: #137333; }
+
+/* ----- 좁은 화면 ----- */
+@media (max-width: 1023px) {
+  .ga4-app { height: auto; min-height: 0; }
+  .ga4-iconrail, .ga4-tree { display: none; }
+  .ga4-guide { position: static; max-width: none; margin: 12px; }
+}
+/* =========================================================================
+ * 튜토리얼 페이지와 허브의 바깥 틀
+ * GA4 화면은 좌우 끝까지 채우고, 글은 가운데 컨테이너 안에 둔다.
+ * ========================================================================= */
+
+.ga4-tut { padding: 24px 0 56px; }
+.ga4-wrap {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+@media (min-width: 640px) { .ga4-wrap { padding: 0 24px; } }
+.ga4-tut-stage { margin: 26px 0 8px; }
+.ga4-tut-body { margin-top: 40px; }
+
+.ga4-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  margin-bottom: 22px;
+  transition: color 0.15s;
+}
+.ga4-back:hover { color: var(--ga4-ink); }
+
+.ga4-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  background: var(--ga4-surface);
+  white-space: nowrap;
+}
+.ga4-badge-level { color: var(--ga4-blue); border-color: var(--ga4-blue-soft); background: #f0f6ff; }
+.ga4-badge-open { color: #137333; border-color: #ceead6; background: #e6f4ea; }
+
+.ga4-tut-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.ga4-tut-title {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+.ga4-tut-lead {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ga4-muted);
+}
+
+.ga4-notice,
+.ga4-lab-loading {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 56px 20px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+
+/* ----- 본문 조각 ----- */
+.ga4-h2 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--ga4-ink);
+  margin-bottom: 12px;
+}
+.ga4-p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ga4-muted);
+  margin-bottom: 14px;
+}
+.ga4-tut-section { margin-top: 44px; }
+.ga4-tut-section:first-child { margin-top: 0; }
+
+.ga4-term-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+@media (min-width: 768px) { .ga4-term-grid { grid-template-columns: repeat(3, 1fr); } }
+.ga4-term-card {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 18px;
+}
+.ga4-term-num {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--ga4-amber-deep);
+  margin-bottom: 8px;
+}
+.ga4-term-name { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+.ga4-term-def { font-size: 13px; line-height: 1.7; color: var(--ga4-muted); }
+
+.ga4-steps { display: grid; gap: 12px; margin-top: 18px; }
+.ga4-steps > li {
+  display: flex;
+  gap: 14px;
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 16px 18px;
+}
+.ga4-step-index {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ga4-blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ga4-step-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+.ga4-step-body { font-size: 13px; line-height: 1.7; color: var(--ga4-muted); }
+
+.ga4-faq { display: grid; gap: 10px; margin-top: 18px; }
+.ga4-faq-item {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 18px;
+}
+.ga4-faq-q { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+.ga4-faq-a { font-size: 13px; line-height: 1.8; color: var(--ga4-muted); }
+
+.ga4-takeaways {
+  margin-top: 18px;
+  border-left: 3px solid var(--ga4-amber);
+  padding: 4px 0 4px 20px;
+  display: grid;
+  gap: 10px;
+  counter-reset: takeaway;
+}
+.ga4-takeaways li {
+  position: relative;
+  padding-left: 30px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ga4-ink);
+  counter-increment: takeaway;
+}
+.ga4-takeaways li::before {
+  content: counter(takeaway);
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: var(--ga4-amber);
+  color: #202124;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ----- 추천 카드 ----- */
+.ga4-related-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--ga4-amber-deep);
+  margin-bottom: 10px;
+}
+.ga4-related-head {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--ga4-ink);
+  margin-bottom: 10px;
+}
+.ga4-related-sub { font-size: 14px; line-height: 1.7; color: var(--ga4-muted); margin-bottom: 26px; }
+
+.ga4-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px 32px;
+}
+@media (min-width: 900px) { .ga4-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.ga4-post {
+  display: grid;
+  grid-template-columns: 208px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 560px) { .ga4-post { grid-template-columns: 1fr; } }
+.ga4-post-thumb {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--ga4-canvas);
+}
+.ga4-thumb { display: block; width: 100%; height: auto; }
+.ga4-thumb-badge {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Pretendard, sans-serif;
+}
+.ga4-thumb-title {
+  font-size: 28px;
+  font-weight: 800;
+  font-family: Pretendard, sans-serif;
+  letter-spacing: -0.5px;
+}
+.ga4-thumb-area {
+  font-size: 15px;
+  font-weight: 600;
+  opacity: 0.85;
+  font-family: Pretendard, sans-serif;
+}
+.ga4-thumb-brand {
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.62;
+  letter-spacing: 1.4px;
+  font-family: Pretendard, sans-serif;
+}
+
+.ga4-post-body { display: block; min-width: 0; }
+.ga4-post-cat {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-amber-deep);
+  margin-bottom: 8px;
+}
+.ga4-post-title {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ga4-ink);
+  margin-bottom: 8px;
+  word-break: keep-all;
+}
+.ga4-post:hover .ga4-post-title { text-decoration: underline; text-underline-offset: 3px; }
+.ga4-post-desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--ga4-muted);
+  margin-bottom: 12px;
+  word-break: keep-all;
+}
+.ga4-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-post-level { font-weight: 600; color: var(--ga4-ink); }
+.ga4-post-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #bdc1c6;
+}
+
+.ga4-sources { display: grid; gap: 6px; margin-top: 14px; }
+.ga4-sources a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: var(--ga4-blue);
+}
+.ga4-sources a:hover { text-decoration: underline; }
+
+/* ----- PC 안내, 구독 게이트 ----- */
+.ga4-pc-only {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 32px 22px;
+  text-align: center;
+}
+.ga4-pc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--ga4-line);
+  background: var(--ga4-canvas);
+  color: var(--ga4-blue);
+  margin-bottom: 16px;
+}
+.ga4-pc-only h2 { font-size: 16px; font-weight: 500; margin-bottom: 10px; }
+.ga4-pc-only p {
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--ga4-muted);
+  max-width: 48ch;
+  margin: 0 auto 14px;
+}
+.ga4-pc-url {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 999px;
+  background: var(--ga4-canvas);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  word-break: break-all;
+}
+
+.ga4-gate {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 44px 24px;
+  text-align: center;
+}
+.ga4-gate-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fef7e0;
+  color: var(--ga4-amber-deep);
+  margin-bottom: 16px;
+}
+.ga4-gate-title { font-size: 18px; font-weight: 500; margin-bottom: 10px; }
+.ga4-gate-desc {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ga4-muted);
+  max-width: 52ch;
+  margin: 0 auto 20px;
+}
+.ga4-gate-list {
+  display: inline-grid;
+  gap: 6px;
+  text-align: left;
+  margin-bottom: 24px;
+  padding: 14px 20px;
+  background: var(--ga4-canvas);
+  border-radius: 8px;
+}
+.ga4-gate-list li {
+  font-size: 13px;
+  color: var(--ga4-ink);
+  padding-left: 16px;
+  position: relative;
+}
+.ga4-gate-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ga4-amber);
+}
+.ga4-gate-foot { font-size: 12px; color: var(--ga4-muted); margin-top: 18px; }
+.ga4-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 999px;
+  background: var(--ga4-blue);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ga4-btn-primary:hover { background: #1765cc; }
+
+/* ----- 게이트 안의 구독 확인 ----- */
+.ga4-lab-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.ga4-gate-login {
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--ga4-line);
+}
+.ga4-gate-login-label {
+  font-size: 13px;
+  color: var(--ga4-muted);
+  margin-bottom: 12px;
+}
+.ga4-gate-form {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.ga4-gate-input {
+  width: min(280px, 100%);
+  padding: 9px 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 999px;
+  background: #fff;
+  color: inherit;
+  font-size: 14px;
+}
+.ga4-gate-input:focus {
+  outline: none;
+  border-color: var(--ga4-blue);
+}
+.ga4-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border: 1px solid var(--ga4-blue);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ga4-blue);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ga4-btn-ghost:hover { background: rgba(26, 115, 232, 0.08); }
+.ga4-btn-ghost:disabled { opacity: 0.6; cursor: default; }
+.ga4-gate-notice {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+
+/* ----- 허브 ----- */
+.ga4-hub-head { margin-bottom: 8px; }
+.ga4-hub-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ga4-amber-deep);
+}
+.ga4-hub-title {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+.ga4-hub-lead { font-size: 15px; line-height: 1.7; color: var(--ga4-muted); }
+.ga4-hub-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.ga4-hub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+  background: var(--ga4-surface);
+  transition: border-color 0.15s, color 0.15s;
+}
+.ga4-hub-link:hover { border-color: var(--ga4-blue); color: var(--ga4-blue); }
+
+.ga4-hub-list { display: grid; gap: 8px; margin-top: 18px; }
+.ga4-hub-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.ga4-hub-item:hover {
+  border-color: var(--ga4-blue);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.16);
+}
+.ga4-hub-item-planned .ga4-hub-item { opacity: 0.62; }
+.ga4-hub-item-num {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--ga4-muted);
+  flex-shrink: 0;
+}
+.ga4-hub-item-body { flex: 1; min-width: 0; }
+.ga4-hub-item-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+  margin-bottom: 2px;
+}
+.ga4-hub-item-meta { display: block; font-size: 12px; color: var(--ga4-muted); }
+.ga4-hub-item-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* 순서 목록: 왼쪽에 설명, 오른쪽에 그 단계의 GA4 화면 캡처 */
+.ga4-steps > li {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .ga4-steps > li { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 20px; }
+}
+.ga4-step-text { display: flex; gap: 14px; }
+.ga4-step-shot {
+  margin: 0;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--ga4-surface);
+}
+.ga4-step-shot img { display: block; width: 100%; height: auto; }
+
+/* ----- 보고서 개요 통계 카드 (유용한 정보 및 추천) ----- */
+.ga4-overview-delta {
+  font-size: 12px;
+  color: #1e8e3e;
+  margin-top: 6px;
+}
+.ga4-overview-delta-down { color: #d93025; }
+
+.ga4-insights { margin-top: 26px; }
+.ga4-insights-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.ga4-insights-title { font-size: 17px; font-weight: 400; color: var(--ga4-ink); }
+.ga4-insights-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ga4-blue);
+}
+.ga4-insights-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 1400px) { .ga4-insights-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) { .ga4-insights-row { grid-template-columns: 1fr; } }
+
+.ga4-insight-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 16px 18px 12px;
+  min-width: 0;
+}
+.ga4-insight-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.ga4-insight-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-insight-kicker svg { color: var(--ga4-blue); }
+.ga4-insight-badge {
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: var(--ga4-blue);
+  color: #fff;
+  font-size: 11px;
+}
+.ga4-insight-title {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ga4-ink);
+  border-bottom: 1px dotted #9aa0a6;
+  padding-bottom: 2px;
+  margin-bottom: 8px;
+}
+.ga4-insight-period { font-size: 12px; color: var(--ga4-ink); margin-bottom: 10px; }
+.ga4-insight-body {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--ga4-ink);
+  margin-bottom: 14px;
+  word-break: keep-all;
+}
+.ga4-insight-chart { margin-top: auto; }
+.ga4-insight-metric { font-size: 12.5px; color: var(--ga4-ink); margin-bottom: 6px; }
+.ga4-insight-svg { width: 100%; height: auto; display: block; }
+.ga4-insight-grid { stroke: #e8eaed; stroke-width: 1; }
+.ga4-insight-axis { font-size: 9px; fill: #80868b; }
+.ga4-insight-band { fill: rgba(26, 115, 232, 0.09); }
+.ga4-insight-mid { fill: none; stroke: #ffffff; stroke-width: 1.2; }
+.ga4-insight-dot {
+  fill: #ffffff;
+  stroke: var(--ga4-blue);
+  stroke-width: 2;
+}
+
+.ga4-insight-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+.ga4-insight-legend li { display: inline-flex; align-items: center; gap: 5px; }
+.ga4-insight-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 2px solid var(--ga4-blue);
+  background: #fff;
+}
+.ga4-insight-legend-band {
+  width: 11px;
+  height: 8px;
+  background: rgba(26, 115, 232, 0.25);
+  border-radius: 1px;
+}
+.ga4-insight-legend-line { width: 12px; height: 2px; background: var(--ga4-blue); }
+
+.ga4-insight-bars { display: grid; gap: 10px; padding-top: 4px; }
+.ga4-insight-bar-row,
+.ga4-insight-bar-axis {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+.ga4-insight-bar-name {
+  font-size: 11.5px;
+  color: var(--ga4-ink);
+  line-height: 1.35;
+  word-break: keep-all;
+}
+.ga4-insight-bar-track { height: 26px; border-left: 1px solid var(--ga4-line); }
+.ga4-insight-bar-fill { display: block; height: 100%; background: var(--ga4-blue); }
+.ga4-insight-bar-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #80868b;
+}
+
+.ga4-insight-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ga4-line);
+  color: var(--ga4-muted);
+}
+.ga4-insight-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--ga4-blue);
+  text-align: right;
+  word-break: keep-all;
+}
+
+/* =========================================================================
+ * 본문 2단 구성 (순서, 자주 묻는 질문)
+ * 왼쪽에 무엇을 다루는지 붙여 두고, 오른쪽에 내용을 세로로 쌓는다.
+ * ========================================================================= */
+
+.ga4-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+@media (min-width: 1000px) {
+  .ga4-split { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr); gap: 56px; }
+  .ga4-split-left { position: sticky; top: 96px; align-self: start; }
+}
+.ga4-split-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--ga4-ink);
+  margin-bottom: 16px;
+}
+.ga4-split-title {
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: var(--ga4-ink);
+  margin-bottom: 14px;
+}
+.ga4-split-lead { font-size: 14px; line-height: 1.8; color: var(--ga4-muted); }
+
+/* ----- 세로 타임라인 ----- */
+.ga4-timeline { display: grid; gap: 0; }
+.ga4-timeline-item { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; }
+.ga4-timeline-rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.ga4-timeline-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 50%;
+  background: var(--ga4-surface);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.16);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  color: var(--ga4-muted);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+.ga4-timeline-num:hover { border-color: var(--ga4-amber-deep); color: var(--ga4-ink); }
+.ga4-timeline-on .ga4-timeline-num {
+  background: var(--ga4-amber-deep);
+  border-color: var(--ga4-amber-deep);
+  color: #ffffff;
+}
+.ga4-timeline-line { flex: 1; width: 2px; background: var(--ga4-line); }
+.ga4-timeline-on .ga4-timeline-line { background: #f3dcb8; }
+
+.ga4-timeline-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-timeline-caret {
+  color: var(--ga4-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.ga4-timeline-on .ga4-timeline-caret { transform: rotate(180deg); }
+
+.ga4-timeline-card {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  min-width: 0;
+  transition: border-color 0.15s;
+}
+.ga4-timeline-on .ga4-timeline-card { border-color: #f0d9b5; }
+.ga4-timeline-title { font-size: 16px; font-weight: 500; color: var(--ga4-ink); }
+.ga4-timeline-body { font-size: 13.5px; line-height: 1.8; color: var(--ga4-muted); margin-top: 10px; }
+.ga4-timeline-shot {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  padding: 0;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--ga4-canvas);
+  cursor: zoom-in;
+}
+.ga4-timeline-shot img { display: block; width: 100%; height: auto; }
+.ga4-timeline-zoom {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(32, 33, 36, 0.82);
+  color: #fff;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.ga4-timeline-shot:hover .ga4-timeline-zoom { opacity: 1; }
+
+/* ----- 단계 크게 보기 ----- */
+.ga4-zoom-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(32, 33, 36, 0.62);
+}
+.ga4-zoom-panel {
+  width: min(1180px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--ga4-surface);
+  border-radius: 14px;
+  padding: 24px 26px 26px;
+  box-shadow: 0 12px 40px rgba(32, 33, 36, 0.34);
+}
+.ga4-zoom-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.ga4-zoom-step { font-size: 11px; font-weight: 600; color: var(--ga4-amber-deep); margin-bottom: 6px; }
+.ga4-zoom-title { font-size: 19px; font-weight: 500; color: var(--ga4-ink); }
+.ga4-zoom-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 50%;
+  background: var(--ga4-surface);
+  color: var(--ga4-muted);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.ga4-zoom-close:hover { background: #f1f3f4; color: var(--ga4-ink); }
+.ga4-zoom-body { font-size: 14px; line-height: 1.8; color: var(--ga4-muted); margin-bottom: 18px; }
+.ga4-zoom-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+}
+
+/* ----- 자주 묻는 질문 아코디언 ----- */
+.ga4-accordion { display: grid; }
+.ga4-acc-item { border-bottom: 1px solid var(--ga4-line); }
+.ga4-acc-item:first-child { border-top: 1px solid var(--ga4-line); }
+.ga4-acc-q {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 20px 4px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-acc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  color: var(--ga4-muted);
+  flex-shrink: 0;
+  transition: background-color 0.15s, color 0.15s;
+}
+.ga4-acc-open .ga4-acc-icon { background: var(--ga4-ink); color: #fff; }
+.ga4-acc-a {
+  padding: 0 4px 22px 48px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--ga4-muted);
+}
+
+/* =========================================================================
+ * 바텀 히어로: 다음 강의로 넘겨 주는 자리
+ * ========================================================================= */
+
+.ga4-bottomhero {
+  margin-top: 56px;
+  padding: 5px;
+  border: 1px solid #eecfa0;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #fdf1de 0%, #f7d5a0 100%);
+}
+/* 로고색을 옅게 풀어 쓴 크림 톤. 채도를 낮춰 글자가 편히 읽히게 둔다 */
+.ga4-bottomhero-inner {
+  border-radius: 16px;
+  padding: 64px 24px 68px;
+  text-align: center;
+  background:
+    radial-gradient(120% 130% at 12% 0%, rgba(255, 252, 246, 0.95) 0%, transparent 58%),
+    radial-gradient(125% 135% at 90% 100%, rgba(249, 171, 0, 0.4) 0%, transparent 62%),
+    linear-gradient(115deg, #fffdf8 0%, #fdeed4 52%, #f6d49c 100%);
+}
+.ga4-bottomhero-kicker { color: #8a5200 !important; }
+.ga4-bottomhero-title { color: #3c2a10 !important; }
+.ga4-bottomhero-desc { color: #7a6448 !important; }
+.ga4-bottomhero .ga4-hero-btn {
+  border-color: #e0c9a3;
+  background: rgba(255, 255, 255, 0.7);
+  color: #6f4000;
+}
+.ga4-bottomhero .ga4-hero-btn:hover { background: #ffffff; }
+.ga4-bottomhero .ga4-hero-btn-solid {
+  border-color: var(--ga4-amber-deep);
+  background: var(--ga4-amber-deep);
+  color: #ffffff;
+}
+.ga4-bottomhero .ga4-hero-btn-solid:hover { background: #c86500; color: #ffffff; }
+.ga4-bottomhero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--ga4-ink);
+  margin-bottom: 18px;
+}
+.ga4-bottomhero-title {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: var(--ga4-ink);
+  margin-bottom: 14px;
+}
+@media (max-width: 640px) { .ga4-bottomhero-title { font-size: 24px; } }
+.ga4-bottomhero-desc { font-size: 14px; line-height: 1.7; color: var(--ga4-muted); margin-bottom: 28px; }
+.ga4-bottomhero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.ga4-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border: 1px solid var(--ga4-ink);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ga4-ink);
+  transition: background-color 0.15s, color 0.15s;
+}
+.ga4-hero-btn:hover { background: #f1f3f4; }
+.ga4-hero-btn-solid { background: var(--ga4-ink); color: #fff; }
+.ga4-hero-btn-solid:hover { background: #000; color: #fff; }
+
+/* =========================================================================
+ * 탐색 화면
+ * 보고서와 달리 왼쪽에 변수와 탭 설정 두 칸이 서고, 오른쪽 캔버스에 표가 그려진다.
+ * 색과 여백은 실제 Google Analytics 탐색 화면을 기준으로 맞춘다.
+ * ========================================================================= */
+
+/* 탐색 홈은 바탕이 흰색이고, 자유 형식 작업 화면만 캔버스가 회색으로 바뀐다 */
+.ga4-explore {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--ga4-surface);
+  border-left: 1px solid var(--ga4-line);
+}
+
+/* ----- 탐색 홈 ----- */
+/* 내용은 가운데로 모으고 좌우에 넓은 여백을 둔다. 실제 화면과 같은 배치다 */
+.ga4-explore-home {
+  padding: 34px 40px 60px;
+  background: var(--ga4-surface);
+}
+.ga4-explore-inner {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.ga4-explore-h1 {
+  margin: 0 0 30px;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+
+.ga4-explore-start {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.ga4-explore-h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-explore-gallery {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-blue);
+}
+
+/* 미리보기 상자만 테두리를 두르고, 이름과 설명은 상자 밖 아래에 놓는다 */
+.ga4-explore-templates {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
+  margin-bottom: 42px;
+  padding-right: 44px;
+}
+
+.ga4-explore-template {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-explore-template-canvas {
+  display: block;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  overflow: hidden;
+}
+.ga4-explore-template:hover .ga4-explore-template-canvas {
+  box-shadow: 0 1px 4px rgba(60, 64, 67, 0.22);
+}
+.ga4-tpl-svg { display: block; width: 100%; height: auto; }
+
+.ga4-explore-template-label {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--ga4-ink);
+  line-height: 1.4;
+}
+.ga4-explore-template-sub {
+  margin-top: 5px;
+  font-size: 12.5px;
+  color: var(--ga4-muted);
+  line-height: 1.5;
+}
+
+/* 오른쪽 끝 다음 넘기기 단추 */
+.ga4-explore-next {
+  position: absolute;
+  right: 0;
+  top: 70px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--ga4-surface);
+  box-shadow: 0 1px 4px rgba(60, 64, 67, 0.28);
+  color: var(--ga4-muted);
+}
+
+.ga4-explore-recent {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  font-size: 13px;
+}
+.ga4-explore-recent th {
+  text-align: left;
+  padding: 16px 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  border-bottom: 1px solid var(--ga4-line);
+  white-space: nowrap;
+}
+.ga4-explore-recent th svg {
+  display: inline-block;
+  vertical-align: -2px;
+  margin-left: 6px;
+}
+.ga4-explore-recent td {
+  padding: 15px 12px;
+  color: var(--ga4-ink);
+  border-bottom: 1px solid #eceff1;
+}
+.ga4-explore-recent tr:last-child td { border-bottom: none; }
+.ga4-explore-recent th:first-child,
+.ga4-explore-recent td:first-child { padding-left: 26px; }
+.ga4-explore-recent-kind { width: 76px; color: var(--ga4-muted) !important; }
+.ga4-explore-recent-end {
+  width: 56px;
+  text-align: right !important;
+  padding-right: 22px !important;
+  color: var(--ga4-muted) !important;
+}
+.ga4-explore-recent-end svg { display: inline-block; margin-left: 0 !important; }
+
+/* ----- 자유 형식 3단 ----- */
+.ga4-ff {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.ga4-ff-panel {
+  width: 232px;
+  flex-shrink: 0;
+  padding: 14px 0 24px;
+  background: var(--ga4-surface);
+  border-right: 1px solid var(--ga4-line);
+}
+
+.ga4-ff-panel-head { padding: 0 16px 12px; }
+.ga4-ff-panel-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+
+.ga4-ff-name { padding: 0 16px 14px; }
+.ga4-ff-name-label,
+.ga4-ff-field-label {
+  margin: 0 0 4px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+.ga4-ff-name-value,
+.ga4-ff-field-value {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+.ga4-ff-name-value {
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+
+.ga4-ff-field { padding: 0 16px 14px; }
+.ga4-ff-field-pair { display: flex; gap: 12px; }
+.ga4-ff-field-pair > span { flex: 1; min-width: 0; }
+.ga4-ff-field-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+
+.ga4-ff-viz {
+  display: flex;
+  gap: 2px;
+  color: var(--ga4-muted);
+}
+.ga4-ff-viz > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+}
+.ga4-ff-viz-on {
+  border-color: var(--ga4-blue) !important;
+  background: var(--ga4-blue-soft);
+  color: var(--ga4-blue);
+}
+
+.ga4-ff-group { padding: 0 16px 14px; }
+.ga4-ff-group-title {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ga4-line);
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-ff-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ga4-line);
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-ff-group-body { display: flex; flex-wrap: wrap; gap: 6px; }
+.ga4-ff-empty {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+
+/* 변수 알약. GA4는 측정기준을 초록 계열로 구분하지만 이 화면은 파랑 하나로 맞춘다 */
+.ga4-ff-var {
+  padding: 5px 10px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: #f1f3f4;
+  font-size: 12px;
+  color: var(--ga4-ink);
+  cursor: grab;
+}
+.ga4-ff-var:hover { background: #e8eaed; }
+.ga4-ff-var-metric { background: var(--ga4-blue-soft); border-color: #bcd4f7; }
+.ga4-ff-var-metric:hover { background: #bcd4f7; }
+/* 집어 든 변수. 놓을 칸을 누르면 그리로 들어간다 */
+.ga4-ff-var-held {
+  border-color: var(--ga4-blue);
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.22);
+  cursor: grabbing;
+}
+
+.ga4-ff-slot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 7px 8px;
+  border: 1px dashed var(--ga4-line);
+  border-radius: 4px;
+  background: #fafafa;
+}
+/* 놓을 수 있는 것을 집어 든 동안에만 받을 자리라는 표시를 낸다 */
+.ga4-ff-slot-open {
+  border-color: var(--ga4-blue);
+  border-style: solid;
+  background: rgba(26, 115, 232, 0.05);
+  cursor: copy;
+}
+.ga4-ff-slot-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px 4px 9px;
+  border-radius: 4px;
+  background: var(--ga4-blue-soft);
+  font-size: 12px;
+  color: var(--ga4-ink);
+}
+.ga4-ff-slot-chip button {
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-ff-slot-chip button:hover { color: var(--ga4-ink); }
+.ga4-ff-slot-hint {
+  font-size: 12px;
+  color: #9aa0a6;
+}
+/* 이미 놓인 것이 있으면 안내 문구를 감춘다 */
+.ga4-ff-slot-chip ~ .ga4-ff-slot-hint { display: none; }
+
+.ga4-ff-canvas {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 22px 28px;
+  background: var(--ga4-canvas);
+  overflow-x: auto;
+}
+
+/* ----- 교차표 ----- */
+.ga4-pivot-blank {
+  margin: 40px 0 0;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+
+.ga4-pivot-wrap {
+  background: var(--ga4-surface);
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  padding: 6px 6px 2px;
+}
+
+.ga4-pivot {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.ga4-pivot th,
+.ga4-pivot td { border-bottom: 1px solid #eceff1; }
+
+.ga4-pivot-dim-head,
+.ga4-pivot-group,
+.ga4-pivot-metric-head {
+  padding: 9px 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  background: #f8f9fa;
+  white-space: nowrap;
+}
+.ga4-pivot-dim-head { text-align: left; min-width: 210px; }
+.ga4-pivot-group {
+  text-align: center;
+  border-left: 1px solid var(--ga4-line);
+}
+.ga4-pivot-metric-head { text-align: right; }
+
+.ga4-pivot-dim {
+  padding: 0;
+  text-align: left;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-pivot-dim button {
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  text-align: left;
+  font: inherit;
+  color: var(--ga4-blue);
+  cursor: pointer;
+}
+.ga4-pivot-dim button:hover { text-decoration: underline; }
+.ga4-pivot tfoot .ga4-pivot-dim { padding: 10px 12px; color: var(--ga4-muted); }
+
+.ga4-pivot-cell {
+  position: relative;
+  padding: 10px 12px;
+  text-align: right;
+  color: var(--ga4-ink);
+  white-space: nowrap;
+}
+/* 값 크기만큼 깔리는 옅은 파란 막대. GA4 자유 형식 표와 같은 표시다 */
+.ga4-pivot-bar {
+  position: absolute;
+  right: 0;
+  top: 3px;
+  bottom: 3px;
+  background: rgba(26, 115, 232, 0.1);
+  border-radius: 2px;
+}
+.ga4-pivot-val { position: relative; }
+.ga4-pivot-total { color: var(--ga4-muted); background: #fafafa; }
+
+.ga4-pivot-row-on td,
+.ga4-pivot-row-on th { background: rgba(26, 115, 232, 0.06); }
+.ga4-pivot-row-mark td,
+.ga4-pivot-row-mark th { background: rgba(217, 48, 37, 0.06); }
+
+.ga4-pivot-note {
+  margin: 10px 2px 6px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+
+/* =========================================================================
+ * 보고서 맞춤설정 패널
+ * 오른쪽 위 연필을 누르면 오른쪽에서 밀려 나온다.
+ * 실제 Google Analytics 화면처럼 측정항목을 더하고 빼서 적용한다.
+ * ========================================================================= */
+
+.ga4-head-pencil {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.ga4-head-pencil:hover { background: #f1f3f4; }
+
+.ga4-cz {
+  width: 330px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  box-shadow: -2px 0 8px rgba(60, 64, 67, 0.1);
+}
+
+.ga4-cz-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-cz-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-cz-close {
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 4px;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-cz-close:hover { color: var(--ga4-ink); }
+
+.ga4-cz-body {
+  flex: 1;
+  min-height: 0;
+  padding: 16px 18px 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ga4-cz-section {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-cz-note {
+  margin: 0 0 22px;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+
+.ga4-cz-list {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
+.ga4-cz-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+.ga4-cz-list li span { flex: 1; min-width: 0; }
+.ga4-cz-list li button {
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-cz-list li button:hover { color: var(--ga4-ink); }
+.ga4-cz-grip { color: #9aa0a6; cursor: grab; }
+
+.ga4-cz-add-wrap { position: relative; }
+.ga4-cz-add {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-blue);
+  cursor: pointer;
+}
+.ga4-cz-add:hover { background: #f8f9fa; }
+.ga4-cz-add-caret { margin-left: auto; color: var(--ga4-muted); }
+
+/* 목록은 추가 단추 바로 아래에 붙는다 */
+.ga4-cz-menu {
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  min-width: 0;
+}
+.ga4-cz-empty {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+
+.ga4-cz-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--ga4-line);
+}
+.ga4-cz-cancel,
+.ga4-cz-apply {
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ga4-cz-cancel {
+  border: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  color: var(--ga4-blue);
+}
+.ga4-cz-cancel:hover { background: #f8f9fa; }
+.ga4-cz-apply {
+  border: 1px solid var(--ga4-blue);
+  background: var(--ga4-blue);
+  color: #fff;
+}
+.ga4-cz-apply:hover { background: #1765cc; }
+
+/* 맞춤설정 패널이 열려 있는 동안에는 도우미를 왼쪽으로 옮긴다.
+ * 패널이 오른쪽에서 나오기 때문에 그대로 두면 적용 단추를 덮는다.
+ * 화면 고정일 때는 오른쪽 기준으로 붙어 있어서 그 값도 함께 풀어 준다. */
+.ga4-stage-panel .ga4-guide {
+  margin-right: auto;
+  margin-left: 22px;
+}
+.ga4-stage-panel.ga4-stage-pinned .ga4-guide {
+  right: auto;
+  left: 22px;
+}
+
+/* =========================================================================
+ * 보고서 개요
+ * 요약 카드가 위에 늘어서고 그 아래에 작은 표 카드가 나란히 놓인다.
+ * ========================================================================= */
+
+.ga4-ov-cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ga4-ov-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  padding: 16px 18px 18px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-ov-card:hover { background: #f8f9fa; }
+.ga4-ov-card-on {
+  border-color: var(--ga4-blue);
+  background: rgba(26, 115, 232, 0.05);
+}
+.ga4-ov-card-mark {
+  border-color: #d93025;
+  background: rgba(217, 48, 37, 0.05);
+}
+.ga4-ov-card-label {
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-ov-card-value {
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--ga4-ink);
+  font-variant-numeric: tabular-nums;
+}
+.ga4-ov-card-delta {
+  font-size: 12px;
+  color: #137333;
+}
+.ga4-ov-card-down { color: #c5221f; }
+
+.ga4-ov-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ga4-ov-panel {
+  padding: 16px 18px 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+}
+.ga4-ov-panel-title {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+
+.ga4-ov-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.ga4-ov-table th {
+  padding: 7px 8px;
+  text-align: left;
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--ga4-muted);
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-ov-table th:last-child { text-align: right; }
+.ga4-ov-table td {
+  padding: 0;
+  border-bottom: 1px solid #f1f3f4;
+  color: var(--ga4-ink);
+}
+.ga4-ov-table tr:last-child td { border-bottom: none; }
+.ga4-ov-table td button {
+  width: 100%;
+  padding: 9px 8px;
+  border: none;
+  background: none;
+  text-align: left;
+  font: inherit;
+  color: var(--ga4-blue);
+  cursor: pointer;
+}
+.ga4-ov-table td button:hover { text-decoration: underline; }
+.ga4-ov-td-plain { display: block; padding: 9px 8px; }
+.ga4-ov-td-num { padding: 9px 8px !important; text-align: right; }
+
+.ga4-ov-tr-on td { background: rgba(26, 115, 232, 0.06); }
+.ga4-ov-tr-mark td { background: rgba(217, 48, 37, 0.06); }
+
+.ga4-ov-panel-link {
+  margin: 12px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--ga4-blue);
+}
+
+/* =========================================================================
+ * 비교 만들기 패널과 비교 열
+ * 위쪽 비교 추가를 누르면 오른쪽에서 밀려 나온다.
+ * 적용하면 세그먼트 줄에 이름이 붙고 표 왼쪽에 비교 열이 생긴다.
+ * ========================================================================= */
+
+.ga4-tool-chip-btn {
+  border: 1px solid var(--ga4-line);
+  cursor: pointer;
+}
+.ga4-tool-chip-btn:hover { background: #f1f3f4; }
+
+/* 적용된 비교 이름. 모든 사용자 칩과 나란히 놓인다 */
+.ga4-seg-chip-cmp {
+  background: #e6f4ea;
+  color: #137333;
+}
+
+.ga4-cmp {
+  width: 330px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  box-shadow: -2px 0 8px rgba(60, 64, 67, 0.1);
+}
+
+.ga4-cmp-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-cmp-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-cmp-close {
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 4px;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-cmp-close:hover { color: var(--ga4-ink); }
+
+.ga4-cmp-body {
+  flex: 1;
+  min-height: 0;
+  padding: 16px 18px 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.ga4-cmp-section {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+
+.ga4-cmp-cond {
+  padding: 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+}
+.ga4-cmp-include {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--ga4-blue-soft);
+  font-size: 12px;
+  color: #174ea6;
+}
+
+.ga4-cmp-field { position: relative; margin-bottom: 12px; }
+.ga4-cmp-field:last-child { margin-bottom: 0; }
+.ga4-cmp-label {
+  margin: 0 0 5px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+.ga4-cmp-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-cmp-select:hover:not(:disabled) { background: #f8f9fa; }
+.ga4-cmp-select:disabled { color: #9aa0a6; cursor: default; }
+.ga4-cmp-empty { color: #9aa0a6; }
+
+.ga4-cmp-menu {
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  min-width: 0;
+}
+
+.ga4-cmp-note {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ga4-muted);
+}
+
+.ga4-cmp-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--ga4-line);
+}
+.ga4-cmp-cancel,
+.ga4-cmp-apply {
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ga4-cmp-cancel {
+  border: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  color: var(--ga4-blue);
+}
+.ga4-cmp-cancel:hover { background: #f8f9fa; }
+.ga4-cmp-apply {
+  border: 1px solid var(--ga4-blue);
+  background: var(--ga4-blue);
+  color: #fff;
+}
+.ga4-cmp-apply:hover:not(:disabled) { background: #1765cc; }
+.ga4-cmp-apply:disabled {
+  border-color: var(--ga4-line);
+  background: #f1f3f4;
+  color: #9aa0a6;
+  cursor: default;
+}
+
+/* 표 왼쪽에 붙는 비교 열 */
+.ga4-gth-cmp,
+.ga4-gtd-cmp {
+  width: 150px;
+  padding: 10px 12px 10px 0;
+  text-align: left;
+  white-space: nowrap;
+}
+.ga4-gth-cmp {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-gtd-cmp { font-size: 13px; color: var(--ga4-muted); }
+
+/* =========================================================================
+ * 보조 측정기준과 보고서 필터
+ * 측정기준 이름 옆 더하기로 열을 하나 붙이고, 표 위 필터로 줄을 좁힌다.
+ * ========================================================================= */
+
+.ga4-dim-plus-wrap { position: relative; display: inline-flex; }
+.ga4-dim-plus-btn {
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+}
+.ga4-dim-plus-btn:hover { background: #e8eaed; }
+/* 목록은 더하기 아래에 붙이고, 이름이 길어 조금 넓게 연다 */
+.ga4-menu-sub { top: calc(100% + 6px); left: 0; min-width: 220px; }
+
+.ga4-gth-sub,
+.ga4-gtd-sub {
+  padding: 10px 16px 10px 0;
+  text-align: left;
+  white-space: nowrap;
+}
+.ga4-gth-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-gtd-sub { font-size: 13px; color: var(--ga4-ink); }
+
+/* ----- 필터 ----- */
+.ga4-flt { width: 100%; }
+.ga4-flt-chips { display: flex; align-items: center; gap: 8px; }
+.ga4-flt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 6px 12px;
+  border-radius: 999px;
+  background: var(--ga4-blue-soft);
+  font-size: 12.5px;
+  color: #174ea6;
+}
+.ga4-flt-chip button {
+  display: inline-flex;
+  border: none;
+  background: none;
+  padding: 0;
+  color: #174ea6;
+  cursor: pointer;
+}
+
+/* 조건 만들기는 필터 줄 바로 아래로 펼쳐진다 */
+.ga4-flt-panel {
+  margin-top: 10px;
+  padding: 16px 18px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.14);
+}
+.ga4-flt-title {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-flt-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.ga4-flt-field { position: relative; width: 240px; }
+.ga4-flt-label {
+  margin: 0 0 5px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+.ga4-flt-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-flt-select:hover:not(:disabled) { background: #f8f9fa; }
+.ga4-flt-select:disabled { color: #9aa0a6; cursor: default; }
+.ga4-flt-empty { color: #9aa0a6; }
+.ga4-flt-match {
+  padding-bottom: 10px;
+  font-size: 12.5px;
+  color: var(--ga4-muted);
+}
+.ga4-flt-menu { top: calc(100% + 4px); left: 0; right: 0; min-width: 0; }
+
+.ga4-flt-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+.ga4-flt-cancel,
+.ga4-flt-apply {
+  padding: 7px 18px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ga4-flt-cancel {
+  border: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  color: var(--ga4-blue);
+}
+.ga4-flt-cancel:hover { background: #f8f9fa; }
+.ga4-flt-apply {
+  border: 1px solid var(--ga4-blue);
+  background: var(--ga4-blue);
+  color: #fff;
+}
+.ga4-flt-apply:hover:not(:disabled) { background: #1765cc; }
+.ga4-flt-apply:disabled {
+  border-color: var(--ga4-line);
+  background: #f1f3f4;
+  color: #9aa0a6;
+  cursor: default;
+}
+
+/* 그 편이 다루지 않는 보고서로 옮겼을 때 놓이는 안내 */
+.ga4-other-report {
+  margin: 40px auto;
+  max-width: 520px;
+  padding: 28px 30px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  text-align: center;
+}
+.ga4-other-report-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-other-report-desc {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ga4-muted);
+}
+
+/* =========================================================================
+ * 기간 선택기
+ * 기본 껍데기의 기간 목록과 달리, 고른 값을 적용을 눌러야 표에 옮기는 선택기다.
+ * 기간 비교를 다루는 편에서만 쓴다.
+ * ========================================================================= */
+
+.ga4-daterange-main { display: inline-flex; align-items: center; gap: 8px; }
+.ga4-daterange-cmp {
+  padding-left: 10px;
+  border-left: 1px solid var(--ga4-line);
+  color: var(--ga4-muted);
+}
+
+.ga4-datepanel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 45;
+  width: 300px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  box-shadow: 0 2px 10px rgba(60, 64, 67, 0.28);
+  text-align: left;
+}
+.ga4-datepanel-label {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-datepanel-presets { display: flex; flex-direction: column; gap: 2px; }
+.ga4-datepanel-preset {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-datepanel-preset:hover { background: #f1f3f4; }
+.ga4-datepanel-preset-on { background: #e8f0fe; color: var(--ga4-blue); }
+.ga4-datepanel-range {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-datepanel-divider {
+  height: 1px;
+  margin: 14px 0;
+  background: var(--ga4-line);
+}
+.ga4-datepanel-compare {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 4px 6px 4px 2px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: none;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-datepanel-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #5f6368;
+  border-radius: 2px;
+  color: #fff;
+}
+.ga4-datepanel-box-on { border-color: var(--ga4-blue); background: var(--ga4-blue); }
+.ga4-datepanel-base { position: relative; margin-top: 10px; }
+.ga4-datepanel-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-datepanel-base .ga4-menu { left: 0; right: auto; width: 100%; }
+.ga4-datepanel-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 18px;
+}
+.ga4-datepanel-cancel,
+.ga4-datepanel-apply {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-blue);
+  cursor: pointer;
+}
+.ga4-datepanel-cancel:hover,
+.ga4-datepanel-apply:hover { background: #e8f0fe; }
+
+/* 기간 비교를 걸면 채널 하나가 세 줄로 나뉜다. 묶음 끝에 선을 그어 구분한다 */
+.ga4-gtr-groupend td { border-bottom: 1px solid var(--ga4-line); }
+
+/* 비교 기간은 점선으로 그리므로 범례도 테두리만 남긴다 */
+.ga4-legend-swatch-dash {
+  background: none;
+  border: 1.5px dashed currentColor;
+  border-radius: 0;
+  height: 0;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-top-width: 2px;
+  border-top-style: dashed;
+  align-self: center;
+}
+
+/* =========================================================================
+ * 관리 화면
+ * 보고서 트리 대신 설정 메뉴가 들어오고, 본문은 표 하나와 단추 줄로 이뤄진다.
+ * ========================================================================= */
+
+.ga4-adminnav {
+  width: 250px;
+  flex-shrink: 0;
+  padding: 16px 10px;
+  border-right: 1px solid var(--ga4-line);
+  background: var(--ga4-surface);
+  overflow-y: auto;
+}
+.ga4-adminnav-title {
+  margin: 0 0 12px 12px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-adminnav-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 6px 16px;
+  padding: 7px 10px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+.ga4-adminnav-group { margin-bottom: 14px; }
+.ga4-adminnav-grouphead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-adminnav-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px 8px 22px;
+  border: 1px solid transparent;
+  border-radius: 0 999px 999px 0;
+  background: none;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-adminnav-item:hover { background: #f1f3f4; }
+.ga4-adminnav-on { background: #e8f0fe; color: var(--ga4-blue); font-weight: 500; }
+
+.ga4-adminmain {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 28px;
+  overflow: auto;
+  background: var(--ga4-bg);
+}
+.ga4-admin-page {
+  padding: 20px 22px;
+  border-radius: 8px;
+  background: var(--ga4-surface);
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.18);
+}
+.ga4-admin-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.ga4-admin-title { margin: 0; font-size: 17px; font-weight: 500; color: var(--ga4-ink); }
+.ga4-admin-actions { display: flex; gap: 8px; }
+.ga4-admin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-blue);
+  white-space: nowrap;
+}
+.ga4-admin-btn-main { cursor: pointer; }
+.ga4-admin-btn-main:hover { background: #e8f0fe; }
+.ga4-admin-subhead {
+  margin: 20px 0 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-admin-hint,
+.ga4-admin-empty {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ga4-muted);
+}
+.ga4-admin-custom {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  background: #f8f9fa;
+}
+.ga4-admin-custom-head {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-admin-custom-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; align-items: baseline; }
+.ga4-admin-custom-name { font-size: 13px; color: var(--ga4-ink); }
+.ga4-admin-custom-note { font-size: 12px; color: var(--ga4-muted); }
+
+.ga4-admin-table { table-layout: auto; min-width: 0; }
+.ga4-gth-admin {
+  padding: 10px 14px;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  white-space: nowrap;
+}
+.ga4-gth-switch { text-align: center; }
+.ga4-gtd-switch { text-align: center; }
+.ga4-gtd-down { color: #d93025; }
+
+/* 주요 이벤트로 표시 스위치 */
+.ga4-switch {
+  display: inline-flex;
+  align-items: center;
+  width: 34px;
+  height: 14px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: #bdc1c6;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.ga4-switch-knob {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-left: -1px;
+  border-radius: 50%;
+  background: var(--ga4-surface);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.4);
+  transition: transform 0.15s;
+}
+.ga4-switch-on { background: #aecbfa; }
+.ga4-switch-on .ga4-switch-knob { transform: translateX(15px); background: var(--ga4-blue); }
+
+/* 이벤트 만들기 패널 */
+.ga4-createpanel { width: 340px; }
+.ga4-panel-body-note { display: none; }
+.ga4-panel-label {
+  margin: 14px 0 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+}
+.ga4-panel-field { position: relative; }
+.ga4-panel-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: var(--ga4-surface);
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-panel-field .ga4-menu { left: 0; right: auto; width: 100%; }
+.ga4-panel-cond { display: flex; gap: 6px; margin-bottom: 8px; }
+.ga4-panel-fixed {
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 4px;
+  background: #f1f3f4;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+.ga4-panel-note {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--ga4-muted);
+}
+
+/* =========================================================================
+ * 맞춤 정의 화면
+ * 탭 줄과 왼쪽 정렬 열, 줄 오른쪽 더보기 메뉴가 더해진다.
+ * ========================================================================= */
+
+.ga4-admin-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-admin-tab {
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+.ga4-admin-tab-on {
+  color: var(--ga4-blue);
+  font-weight: 500;
+  box-shadow: inset 0 -3px 0 var(--ga4-blue);
+}
+
+.ga4-gth-left {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  white-space: nowrap;
+}
+.ga4-gtd-left {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  white-space: nowrap;
+}
+.ga4-gtd-desc { color: var(--ga4-muted); }
+
+.ga4-gtd-more { position: relative; width: 48px; }
+.ga4-dim-more {
+  display: inline-flex;
+  padding: 6px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: none;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-dim-more:hover { background: #f1f3f4; color: var(--ga4-ink); }
+.ga4-dim-menu {
+  top: calc(100% - 6px);
+  right: 12px;
+  min-width: 140px;
+  text-align: left;
+}
+
+/* 관리 표는 체크박스 열이 없어 첫 열 240px 고정이 표를 넘치게 한다.
+ * 넘치면 더보기를 누를 때 브라우저가 자동 스크롤해 첫 열이 잘려 보인다 */
+.ga4-admin-table .ga4-gth-dim,
+.ga4-admin-table .ga4-gtd-dim {
+  width: auto;
+  min-width: 150px;
+  padding-left: 12px;
+}
+.ga4-admin-table .ga4-gtd-desc { white-space: normal; }
+
+
+/* ===================== 유입경로 탐색 ===================== */
+
+.ga4-ff-settings { width: 250px; }
+
+.ga4-fn-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 16px 16px;
+}
+.ga4-fn-toggle-label {
+  font-size: 12px;
+  color: var(--ga4-ink);
+}
+.ga4-fn-switch {
+  position: relative;
+  width: 34px;
+  height: 14px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 999px;
+  background: #bdc1c6;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.ga4-fn-switch-knob {
+  position: absolute;
+  top: -3px;
+  left: -1px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.4);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.ga4-fn-switch-on { background: var(--ga4-blue-soft); }
+.ga4-fn-switch-on .ga4-fn-switch-knob {
+  transform: translateX(16px);
+  background: var(--ga4-blue);
+}
+
+.ga4-fn-steps { padding: 0 16px 14px; }
+.ga4-fn-steps-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.ga4-fn-edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-fn-edit:hover { background: rgba(60, 64, 67, 0.08); }
+
+.ga4-fn-step-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ga4-fn-step-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ga4-ink);
+}
+.ga4-fn-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--ga4-blue-soft);
+  color: #174ea6;
+  font-size: 11px;
+}
+
+.ga4-fn-canvas {
+  flex: 1;
+  min-width: 0;
+  padding: 20px 24px 28px;
+  overflow: auto;
+}
+.ga4-fn-blank {
+  margin: 60px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ga4-muted);
+}
+
+.ga4-fn-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  min-height: 260px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-fn-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ga4-fn-bar-area {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.ga4-fn-rate {
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-fn-bar {
+  width: 100%;
+  max-width: 92px;
+  border-radius: 3px 3px 0 0;
+  background: var(--ga4-blue);
+}
+.ga4-fn-bar-mark { background: #d93025; }
+.ga4-fn-col-name {
+  margin: 10px 0 2px;
+  font-size: 12px;
+  color: var(--ga4-ink);
+  text-align: center;
+}
+.ga4-fn-col-count {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+
+.ga4-fn-table {
+  width: 100%;
+  margin-top: 18px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.ga4-fn-table th,
+.ga4-fn-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ga4-line);
+  text-align: right;
+}
+.ga4-fn-table thead th {
+  font-weight: 500;
+  color: var(--ga4-muted);
+  font-size: 12px;
+}
+.ga4-fn-table th[scope="row"],
+.ga4-fn-table thead th:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-fn-table tbody tr { cursor: pointer; }
+.ga4-fn-table tbody tr:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-fn-row-on { background: rgba(26, 115, 232, 0.1); }
+.ga4-fn-row-mark { box-shadow: inset 3px 0 0 #d93025; }
+
+.ga4-fn-editor {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 18px 18px;
+  background: #fff;
+  border-left: 1px solid var(--ga4-line);
+  box-shadow: -2px 0 12px rgba(60, 64, 67, 0.15);
+}
+.ga4-fn-editor-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ga4-fn-editor-head button {
+  border: none;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-fn-editor-list {
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ga4-fn-editor-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  font-size: 12px;
+}
+.ga4-fn-editor-name { flex: 1; color: var(--ga4-ink); }
+.ga4-fn-editor-cond {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+.ga4-fn-editor-add { position: relative; }
+.ga4-fn-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  cursor: pointer;
+}
+.ga4-fn-options {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 2;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(60, 64, 67, 0.2);
+}
+.ga4-fn-options button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-fn-options button:hover { background: rgba(60, 64, 67, 0.06); }
+.ga4-fn-editor-foot {
+  margin-top: auto;
+  padding-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+.ga4-fn-editor-foot .ga4-btn-primary:disabled {
+  background: #dadce0;
+  color: #9aa0a6;
+  cursor: default;
+}
+
+
+/* ===================== 세그먼트 ===================== */
+
+.ga4-ff-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-ff-add:hover { background: rgba(60, 64, 67, 0.08); }
+
+.ga4-ff-segment {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background: var(--ga4-blue-soft);
+  color: #174ea6;
+  font-size: 12px;
+}
+
+.ga4-seg-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 16px 16px;
+  background: #fff;
+  border-left: 1px solid var(--ga4-line);
+  box-shadow: -2px 0 12px rgba(60, 64, 67, 0.15);
+  overflow-y: auto;
+}
+.ga4-seg-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+}
+.ga4-seg-head button {
+  border: none;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-seg-lead {
+  margin: 6px 0 12px;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-seg-scopes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ga4-seg-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-seg-card:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-seg-card:disabled { opacity: 0.55; cursor: default; }
+.ga4-seg-card-on {
+  border-color: var(--ga4-blue);
+  background: rgba(26, 115, 232, 0.06);
+}
+.ga4-seg-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--ga4-blue-soft);
+  color: #174ea6;
+}
+.ga4-seg-card-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ga4-ink);
+}
+.ga4-seg-card-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ga4-muted);
+}
+.ga4-seg-condition {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+}
+.ga4-seg-condition-value {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+/* 도우미 말풍선이 오른쪽 아래를 가리므로 만들기는 머리글에 둔다 */
+.ga4-seg-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ga4-seg-create {
+  padding: 6px 16px;
+  font-size: 13px;
+}
+.ga4-seg-create:disabled {
+  background: #dadce0;
+  color: #9aa0a6;
+  cursor: default;
+}
+
+
+/* ===================== 데이터 스트림 ===================== */
+
+.ga4-stream {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  padding: 22px 26px 30px;
+  overflow: auto;
+}
+.ga4-stream-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.ga4-stream-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-stream-tab {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--ga4-blue-soft);
+  color: #174ea6;
+  font-size: 12px;
+}
+.ga4-stream-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-stream-row:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-stream-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ga4-blue-soft);
+  color: #174ea6;
+}
+.ga4-stream-row-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ga4-stream-row-name { font-size: 14px; color: var(--ga4-ink); }
+.ga4-stream-row-sub { font-size: 12px; color: var(--ga4-muted); }
+
+.ga4-stream-meta {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.ga4-stream-meta-value {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+
+.ga4-stream-card {
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.ga4-stream-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-stream-card-title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  color: var(--ga4-ink);
+}
+.ga4-stream-card-desc {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-stream-gear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-stream-gear:hover { background: rgba(60, 64, 67, 0.08); }
+
+.ga4-stream-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.ga4-stream-table th,
+.ga4-stream-table td {
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--ga4-line);
+  text-align: right;
+}
+.ga4-stream-table thead th {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-stream-table th[scope="row"],
+.ga4-stream-table thead th:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-stream-table td:nth-child(2) { text-align: left; }
+.ga4-stream-event {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-stream-off th[scope="row"],
+.ga4-stream-off td { color: #9aa0a6; }
+.ga4-stream-badge-on,
+.ga4-stream-badge-off {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+}
+.ga4-stream-badge-on { background: #e6f4ea; color: #137333; }
+.ga4-stream-badge-off { background: #fce8e6; color: #c5221f; }
+
+.ga4-stream-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 380px;
+  z-index: 6;
+  padding: 14px 16px 16px;
+  background: #fff;
+  border-left: 1px solid var(--ga4-line);
+  box-shadow: -2px 0 12px rgba(60, 64, 67, 0.15);
+  overflow-y: auto;
+}
+.ga4-stream-toggles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.ga4-stream-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 2px;
+  border-bottom: 1px solid var(--ga4-line);
+}
+.ga4-stream-toggle-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ga4-stream-toggle-label {
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+.ga4-stream-locked {
+  font-size: 11px;
+  color: var(--ga4-muted);
+}
+
+
+/* ===================== 동질 집단 ===================== */
+
+.ga4-cohort-select-field { position: relative; }
+
+.ga4-cohort-canvas {
+  flex: 1;
+  min-width: 0;
+  padding: 20px 24px 28px;
+  overflow: auto;
+}
+.ga4-cohort-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  font-size: 12px;
+}
+.ga4-cohort-table thead th {
+  padding: 8px 10px;
+  font-weight: 500;
+  color: var(--ga4-muted);
+  text-align: center;
+}
+.ga4-cohort-table thead th:first-child {
+  text-align: left;
+  min-width: 150px;
+}
+.ga4-cohort-table thead th button {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.ga4-cohort-col-on button { color: var(--ga4-blue); font-weight: 500; }
+.ga4-cohort-col-mark button { color: #d93025; font-weight: 500; }
+
+.ga4-cohort-table th[scope="row"] {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 400;
+}
+.ga4-cohort-row-label { color: var(--ga4-ink); }
+.ga4-cohort-row-size { color: var(--ga4-muted); font-size: 11px; }
+
+.ga4-cohort-cell {
+  padding: 8px 6px;
+  border-radius: 3px;
+  text-align: center;
+  color: var(--ga4-ink);
+}
+/* 배경이 진한 칸은 글자를 흰색으로 뒤집는다 */
+.ga4-cohort-cell-dark,
+.ga4-cohort-cell-dark .ga4-cohort-count { color: #fff; }
+.ga4-cohort-cell-on { outline: 2px solid var(--ga4-blue); }
+.ga4-cohort-cell-mark { outline: 2px solid #d93025; }
+.ga4-cohort-rate {
+  display: block;
+  font-size: 12px;
+}
+.ga4-cohort-count {
+  display: block;
+  font-size: 10px;
+  color: var(--ga4-muted);
+}
+.ga4-cohort-empty { background: transparent; }
+.ga4-cohort-note {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+
+
+/* ===================== 경로 탐색 ===================== */
+
+.ga4-path-canvas {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 28px;
+  padding: 20px 24px 28px;
+  overflow: auto;
+}
+.ga4-path-col {
+  flex: 1;
+  min-width: 260px;
+}
+.ga4-path-col-head {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: var(--ga4-ink);
+}
+.ga4-path-col-parent {
+  margin: 0 0 12px;
+  font-size: 11px;
+  color: var(--ga4-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ga4-path-nodes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ga4-path-node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 12px;
+  color: var(--ga4-ink);
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
+}
+.ga4-path-node:hover { border-color: var(--ga4-blue); }
+.ga4-path-node-on { border-color: var(--ga4-blue); }
+.ga4-path-node-mark { border-color: #d93025; }
+.ga4-path-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(26, 115, 232, 0.12);
+}
+.ga4-path-node-name {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ga4-path-node-users {
+  position: relative;
+  color: var(--ga4-muted);
+}
+.ga4-path-node-more {
+  position: relative;
+  color: var(--ga4-muted);
+  flex-shrink: 0;
+}
+
+
+/* ===================== 규칙 목록 (데이터 필터, 채널 그룹) ===================== */
+
+/* 규칙 표는 가로 스크롤을 두지 않는다. 더보기 메뉴가 표 밖으로 열려야 하기 때문이다 */
+.ga4-rule-table-wrap { overflow: visible; }
+
+.ga4-rule-desc {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-rule-more-head { width: 48px; }
+.ga4-rule-more-cell { text-align: right; }
+.ga4-rule-menu-wrap { position: relative; display: inline-block; }
+.ga4-rule-more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ga4-muted);
+  cursor: pointer;
+}
+.ga4-rule-more:hover { background: rgba(60, 64, 67, 0.08); }
+.ga4-rule-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  z-index: 4;
+  min-width: 150px;
+}
+.ga4-rule-menu button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  text-align: left;
+}
+.ga4-rule-row-mark th[scope="row"] { box-shadow: inset 3px 0 0 var(--ga4-blue); }
+
+
+/* ===================== 선택형 설정 (보고 ID) ===================== */
+
+.ga4-choice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 720px;
+}
+.ga4-choice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+.ga4-choice-card:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-choice-card-on {
+  border-color: var(--ga4-blue);
+  background: rgba(26, 115, 232, 0.06);
+}
+.ga4-choice-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  border: 1px solid var(--ga4-line);
+  border-radius: 50%;
+  color: #fff;
+}
+.ga4-choice-card-on .ga4-choice-mark {
+  border-color: var(--ga4-blue);
+  background: var(--ga4-blue);
+}
+.ga4-choice-body { display: flex; flex-direction: column; gap: 4px; }
+.ga4-choice-title { font-size: 14px; color: var(--ga4-ink); }
+.ga4-choice-desc { font-size: 12px; line-height: 1.6; color: var(--ga4-muted); }
+.ga4-choice-summary {
+  max-width: 720px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: var(--ga4-surface);
+}
+.ga4-choice-summary-value {
+  margin: 0;
+  font-size: 20px;
+  color: var(--ga4-ink);
+}
+
+
+/* ===================== 세그먼트 중복분석 ===================== */
+
+.ga4-overlap-canvas {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  padding: 20px 24px 28px;
+  overflow: auto;
+}
+.ga4-overlap-svg {
+  width: 360px;
+  flex-shrink: 0;
+}
+.ga4-overlap-label {
+  font-size: 12px;
+  fill: var(--ga4-ink);
+}
+.ga4-overlap-table {
+  flex: 1;
+  min-width: 280px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.ga4-overlap-table th,
+.ga4-overlap-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--ga4-line);
+  text-align: right;
+}
+.ga4-overlap-table thead th {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-overlap-table th[scope="row"],
+.ga4-overlap-table thead th:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-overlap-table tbody tr { cursor: pointer; }
+.ga4-overlap-table tbody tr:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-overlap-row-on { background: rgba(26, 115, 232, 0.1); }
+.ga4-overlap-row-mark { box-shadow: inset 3px 0 0 #d93025; }
+
+
+/* ===================== 기여 분석 모델 비교 ===================== */
+
+.ga4-attr {
+  flex: 1;
+  min-width: 0;
+  padding: 22px 26px 30px;
+  overflow: auto;
+  background: var(--ga4-surface);
+}
+.ga4-attr-head { margin-bottom: 18px; }
+.ga4-attr-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-attr-models {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  padding: 16px 18px;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.ga4-attr-model { min-width: 200px; }
+.ga4-attr-model-pick { position: relative; }
+.ga4-attr-model-value {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ga4-ink);
+}
+.ga4-attr-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid var(--ga4-line);
+  border-radius: 8px;
+  font-size: 13px;
+}
+.ga4-attr-table th,
+.ga4-attr-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--ga4-line);
+  text-align: right;
+}
+.ga4-attr-table thead th {
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ga4-muted);
+}
+.ga4-attr-table th[scope="row"],
+.ga4-attr-table thead th:first-child {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ga4-ink);
+}
+.ga4-attr-table tbody tr { cursor: pointer; }
+.ga4-attr-table tbody tr:hover { background: rgba(26, 115, 232, 0.04); }
+.ga4-attr-row-on { background: rgba(26, 115, 232, 0.1); }
+.ga4-attr-row-mark { box-shadow: inset 3px 0 0 #d93025; }
+.ga4-attr-up { color: #137333; }
+.ga4-attr-down { color: #c5221f; }

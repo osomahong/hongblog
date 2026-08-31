@@ -37,6 +37,10 @@ metaTitle: '클로드 코워크(Claude Cowork) 정리: 기능, 클로드 코드�
 metaDescription: >-
   클로드 코워크는 파일 정리, 문서 작성 같은 사무 작업을 AI에게 맡기는 앤트로픽의 데스크톱 기능입니다. 클로드 코드와의 차이, 대표 활용 시나리오, 시작 방법을 정리했습니다.
 ogImage: /og/claude-cowork-overview.png
+summary3:
+  - 'Claude Cowork는 Claude가 사용자 데스크톱에서 직접 앱을 열고 조작해 완성된 파일을 돌려주는 실행형 자동화 도구입니다.'
+  - 'claude.ai 챗이 초안과 답변을 주는 데서 끝난다면 Cowork는 Dispatch로 컴퓨터를 조작하고 정해 둔 시각에 같은 작업을 반복합니다.'
+  - '처음부터 큰 자동화를 맡기지 말고 한 번에 5분에서 10분 걸리는 반복 작업부터 넘긴 뒤 결과를 확인하는 단계를 넣습니다.'
 ---
 
 이 글은 앤트로픽이 운영하는 claude.com/product/cowork와 Anthropic Academy 자료를 한국 입문자가 보기 편하게 정리한 글입니다.
@@ -47,7 +51,7 @@ ogImage: /og/claude-cowork-overview.png
 
 Claude.ai 챗으로는 이 흐름을 한 번에 자동화하기 어렵습니다. 챗은 단계별 답을 주는 도구이지 직접 컴퓨터를 조작하는 도구가 아니기 때문입니다.
 
-Claude Cowork가 이 자리를 채웁니다.
+Claude Cowork가 이 빈틈을 채웁니다.
 
 ## 🔑 Claude Cowork, 무엇이 다른가요?
 
@@ -111,7 +115,7 @@ claude.ai와 비교하면 다음 표처럼 정리됩니다.
   2. 사실 검증, 요약 코멘트 추가
   3. 발표
 
-[책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use)의 검증 단계가 자동화 위에 그대로 얹힙니다.
+[책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use)의 검증 단계가 자동화 위에 그대로 올라갑니다.
 
 ## 🔗 Cowork를 더 강하게 만드는 묶음
 
@@ -138,13 +142,13 @@ claude.ai와 비교하면 다음 표처럼 정리됩니다.
 **3. 권한 범위 명확히**
 - Cowork에 어떤 폴더, 계정, 앱 접근을 허용하는지 한 번 점검합니다. [책임감 있는 AI 사용](/class/claude-fundamentals/responsible-ai-use)의 보안 기준이 그대로 적용됩니다.
 
-## 📋 30초 요약
+## 📋 3줄 요약
 
-1. **Claude Cowork는 작업을 넘기면 완성된 결과물을 돌려주는 실행형 자동화 도구**입니다. claude.ai 챗과 달리 Claude가 데스크톱을 직접 조작합니다(Dispatch).
+1. Claude Cowork는 Claude가 사용자 데스크톱에서 직접 앱을 열고 조작해 완성된 파일을 돌려주는 실행형 자동화 도구입니다.
 
-2. **Dispatch, 스케줄, 모바일 통합, 엔터프라이즈 통제 네 가지가 핵심 기능**입니다. 매주 광고 리포트, 영수증 정리, 보고서 자동 작성 같은 반복 업무에 가장 큰 효과가 납니다.
+2. claude.ai 챗이 초안과 답변을 주는 데서 끝난다면 Cowork는 Dispatch로 컴퓨터를 조작하고 정해 둔 시각에 같은 작업을 반복합니다.
 
-3. **[Skills](/class/claude-in-practice/what-are-claude-skills), [Extended Thinking](/class/claude-in-practice/what-is-extended-thinking)과 함께 묶으면 더 강해집니다.** 첫 도입은 작은 작업, 결과물 검증 흐름화, 권한 범위 점검 세 가지를 표준 원칙으로 둡니다.
+3. 처음부터 큰 자동화를 맡기지 말고 한 번에 5분에서 10분 걸리는 반복 작업부터 넘긴 뒤 결과를 확인하는 단계를 넣습니다.
 
 ## 📚 참고 자료
 

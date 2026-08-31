@@ -33,6 +33,10 @@ quiz:
     explanation: >-
       이 오류의 대부분은 설치 실패가 아니라 PATH 문제입니다. 프로그램은 ~/.local/bin에 설치돼 있지만 셸이 그 위치를 검색
       목록에 갖고 있지 않은 상태라서, PATH에 한 줄 추가하면 해결됩니다.
+summary3:
+  - '클로드 코드 설치 오류는 대부분 설치 실패가 아니라 셸이 프로그램 위치를 찾지 못하는 PATH 문제이거나 권한 문제입니다.'
+  - 'npm 전역 설치에서 EACCES가 나면 sudo로 우회하지 말고 사용자 폴더에만 쓰는 네이티브 설치로 바꾸는 편이 빠릅니다.'
+  - 'dyld 오류나 Abort trap이 나오면 macOS 13.0 미만이어서 생긴 비호환이므로 다른 설치 방법으로는 우회되지 않습니다.'
 ---
 
 Claude Code 설치 중 만나는 오류를 OS별로 정리했습니다. 화면에 뜬 오류 문구로 케이스를 찾아 대응법을 따라 하면 됩니다. 아직 설치를 시작하지 않았다면 [윈도우 설치 가이드](/insights/claude-code-windows-easy-setup-guide) (윈도우에서 설치하는 순서 바로가기)나 [맥 설치 가이드](/insights/claude-code-mac-easy-setup-guide) (맥에서 설치하는 순서 바로가기)를 먼저 보시는 편이 빠릅니다. 대응법에 자주 등장하는 "네이티브 설치"는 아래 한 줄 명령을 말하며, Node.js와 Git이 없어도 됩니다.
@@ -207,12 +211,6 @@ sudo swapon /swapfile
 - **중복 설치 확인**: npm 설치와 네이티브 설치가 함께 있으면 버전 충돌 가능. `which -a claude`로 확인 후 npm 쪽 제거(`npm uninstall -g @anthropic-ai/claude-code`)
 - **오류 문구 그대로 검색**: 공식 GitHub 이슈에서 동일 문구로 검색 시 알려진 문제인지 확인 가능
 - **데스크톱 앱 우회**: 터미널 설치가 계속 막히면 그래픽 화면으로 쓰는 Claude Code 데스크톱 앱(macOS, Windows)이 대안
-
-**3줄 요약:**
-
-- 2026년 7월 기준 공식 권장은 Node.js와 Git이 필요 없는 네이티브 한 줄 설치라서, npm 관련 오류(버전, 권한)는 설치 방식 전환으로 대부분 정리됩니다.
-- 가장 흔한 `command not found`는 설치 실패가 아니라 PATH 미등록 문제이며, OS별 명령으로 PATH에 설치 위치를 추가하면 해결됩니다.
-- Windows 오류는 CMD와 PowerShell 명령 혼동이 원인인 경우가 많고, Git for Windows는 필수가 아닙니다.
 
 ## Sources
 
