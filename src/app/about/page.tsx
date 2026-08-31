@@ -686,7 +686,7 @@ const milestones: {
   {
     year: "2025",
     title: "비영리 후원 전환 추적 설계",
-    orgs: [{ name: "사랑밭" }],
+    orgs: [{ name: "함께하는사랑밭" }],
   },
   {
     year: "2026",
