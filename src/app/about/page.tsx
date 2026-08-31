@@ -559,6 +559,94 @@ const workHistory = [
   },
 ];
 
+const localLogoByCompany: Record<string, string> = {
+  "한국관광공사": "knto",
+  "KOTRA아카데미": "kotra",
+  "교보문고": "kyobo",
+  "신세계면세점": "ssgdfs",
+  "신세계사이먼 프리미엄아울렛": "ssgsimon",
+  "신세계아울렛 eShop": "ssgsimon",
+  "동원·동원디어푸드(동원몰·더반찬)": "dongwon",
+  "풀무원(풀무원녹즙)": "pulmuone",
+  "더플라자": "theplaza",
+  "ABC마트": "abcmart",
+  "안랩(AhnLab)": "ahnlab",
+  "고려대학교": "korea-univ",
+  "이노션": "innocean",
+  "연세대학교": "yonsei",
+  "사이버한국외국어대학교": "cufs",
+  "베스핀글로벌": "bespin",
+  "네스트호텔": "nesthotel",
+};
+
+/** 공식 홈페이지의 파비콘을 회사별 로고로 사용한다. 로컬 로고가 있는 곳은 로컬 자산을 우선한다. */
+const logoDomainByCompany: Record<string, string> = {
+  안국건강: "anguk.com",
+  레프트아이템딜리버리: "leftitemdelivery.com",
+  코딧: "codit.kr",
+  플라스크: "flask.kr",
+  엔닷라이트: "ndotlight.com",
+  네오폰스: "neopons.com",
+  지란지교소프트: "jiran.com",
+  이피엘컴퍼니: "eplcompany.co.kr",
+  센디네어: "sendinear.com",
+  위솝: "wesop.co.kr",
+  하이로컬: "hilocal.co.kr",
+  나인하이어: "ninehire.com",
+  스테이폴리오: "stayfolio.com",
+  캐플릭스: "caflix.com",
+  오피스키퍼: "officekeeper.co.kr",
+  "유니드컴즈(킵그로우)": "keepgrow.com",
+  비바이노베이션: "viva-innovation.com",
+  그레이시티: "graycity.co.kr",
+  "어라운더블(픽앤픽)": "picknpick.co.kr",
+  "더본아이에프(알고리즙)": "theborn.co.kr",
+  나누: "nanu.co.kr",
+  잇그린: "eatgreen.co.kr",
+  나그네들: "nagne.com",
+  남도마켓: "namdomarket.com",
+  커런시유나이티드: "currencyunited.com",
+  이벤터스: "event-us.kr",
+  "지앤지커머스(도매꾹)": "domeggook.com",
+  "반다이남코코리아(BNKR)": "bandainamcoent.co.kr",
+  "메디비젼·비앤빛안과": "banbit.com",
+  하트하트재단: "heart-heart.org",
+  그라운드원: "ground.one",
+  펴나니: "pyeonani.com",
+  뉴지엄랩: "newseumlab.com",
+  로민: "lomin.ai",
+  반프: "banf.co.kr",
+  유진투자증권: "eugenefn.com",
+  그리니어: "greenier.co.kr",
+  이지백: "easybag.co.kr",
+  요즘피플: "yozmp.com",
+  함께하는사랑밭: "sarangbat.org",
+  열매나눔재단: "merryyear.org",
+  푸르메재단: "purme.org",
+  한림대학교: "hallym.ac.kr",
+  승우여행사: "seungwootour.com",
+  가시림수목원: "gasirim.com",
+  애기야가자: "aegiyagaja.com",
+  알브이에이치: "rvh.co.kr",
+  호퍼스: "hoppers.co.kr",
+  혼다코리아: "hondakorea.co.kr",
+  레아딜: "leadill.com",
+  hoppin: "hoppin.co.kr",
+  불스원: "bullsone.com",
+  국제사이버대학교: "global.ac.kr",
+  "슬로운(뉴라이즌)": "newrizon.com",
+  자일로랩스: "xylolab.com",
+};
+
+const companyLogo = (company: string) => {
+  const localLogo = localLogoByCompany[company];
+  if (localLogo) return localLogo;
+  const domain = logoDomainByCompany[company];
+  return domain
+    ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64`
+    : undefined;
+};
+
 /** 대표 이력. 연도는 계약 시작 기준, 로고는 공식 소스에서 확보한 것만 넣는다 */
 const milestones: {
   year: string;
@@ -566,9 +654,9 @@ const milestones: {
   orgs: { name: string; logo?: string }[];
   note?: string;
 }[] = workHistory.map((item) => ({
-  year: item.year,
+  year: item.year.split(/[·~]/)[0],
   title: item.work,
-  orgs: [{ name: item.company }],
+  orgs: [{ name: item.company, logo: companyLogo(item.company) }],
 }));
 
 /** 연혁을 연도로 묶는다. 배열 순서를 유지하므로 같은 해 안에서도 입력 순서가 곧 계약 순서다 */
@@ -836,7 +924,11 @@ export default async function AboutPage() {
                           {org.logo && (
                             /* eslint-disable-next-line @next/next/no-img-element */
                             <img
-                              src={`/images/about/logos/${org.logo}.logo.png`}
+                              src={
+                                org.logo.startsWith("http")
+                                  ? org.logo
+                                  : `/images/about/logos/${org.logo}.logo.png`
+                              }
                               alt={`${org.name} 로고`}
                               width={20}
                               height={20}
