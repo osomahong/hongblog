@@ -118,8 +118,8 @@ function buildStats(counts: ContentCounts) {
 }
 
 /**
- * 고객사는 실명 대신 산업군과 조직 유형으로 적는다.
- * 개별 계약의 공개 범위가 서로 달라, 이름을 빼고 규모와 업종만 남긴다.
+ * 고객사는 산업군과 조직 유형으로 먼저 요약한다.
+ * 공개 가능한 주요 업무 연혁은 아래 별도 목록에 기록한다.
  */
 const clientSectors = [
   "관광 분야 공공기관",
@@ -134,6 +134,379 @@ const clientSectors = [
   "B2B 이커머스 플랫폼",
   "이벤트 플랫폼 스타트업",
   "4년제 대학과 사이버대학",
+];
+
+const workHistory = [
+  {
+    year: "2021·2026",
+    company: "안국건강",
+    work: "건강기능식품 데이터·물류 분석 환경 구축",
+  },
+  {
+    year: "2021·2026",
+    company: "레프트아이템딜리버리",
+    work: "건강기능식품 데이터·물류 분석 환경 구축",
+  },
+  {
+    year: "2022",
+    company: "코딧",
+    work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
+  },
+  {
+    year: "2022",
+    company: "플라스크",
+    work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
+  },
+  {
+    year: "2022",
+    company: "엔닷라이트",
+    work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
+  },
+  {
+    year: "2022",
+    company: "네오폰스",
+    work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
+  },
+  {
+    year: "2022",
+    company: "지란지교소프트",
+    work: "정보보안 소프트웨어 분석 환경·SEO 구축",
+  },
+  {
+    year: "2022",
+    company: "이피엘컴퍼니",
+    work: "디지털 매체 운영, CRM, 데이터 분석 교육",
+  },
+  {
+    year: "2022",
+    company: "센디네어",
+    work: "디지털 마케팅 현황 점검, 채널별 홍보 방향 및 실행 과제 정리",
+  },
+  {
+    year: "2022",
+    company: "위솝",
+    work: "GA4·GTM 이벤트 설계와 태깅, UTM·검색/디스플레이 광고, 보고서 설정",
+  },
+  {
+    year: "2022~2024",
+    company: "하이로컬",
+    work: "GA 데이터 수집 설정, 이벤트·전환 목표 설정, SEO 점검",
+  },
+  {
+    year: "2022",
+    company: "나인하이어",
+    work: "검색·디스플레이 광고 캠페인 구조, SEO 체크리스트, GA4·전환 분석",
+  },
+  {
+    year: "2023~2026",
+    company: "한국관광공사",
+    work: "관광 데이터 수집·분석 환경 구축, 참여기업 유입·전환 개선, AI 활용 방향 제안",
+  },
+  {
+    year: "2023",
+    company: "스테이폴리오",
+    work: "관광 데이터 수집·분석 환경 점검, 유입·전환 개선안 제시",
+  },
+  {
+    year: "2023",
+    company: "캐플릭스",
+    work: "관광 데이터 수집·분석 환경 점검, 유입·전환 개선안 제시",
+  },
+  {
+    year: "2023",
+    company: "KOTRA아카데미",
+    work: "디지털 마케팅 과정 강의",
+  },
+  {
+    year: "2023",
+    company: "교보문고",
+    work: "GA4 분석 환경 구축 및 유지보수",
+  },
+  {
+    year: "2023",
+    company: "신세계면세점",
+    work: "면세 유통 분석 환경 구축",
+  },
+  {
+    year: "2023",
+    company: "신세계사이먼 프리미엄아울렛",
+    work: "아울렛 유통 분석 환경 구축",
+  },
+  {
+    year: "2023",
+    company: "신세계아울렛 eShop",
+    work: "GA4·GTM 이벤트, UTM, 대시보드 구축",
+  },
+  {
+    year: "2023",
+    company: "동원·동원디어푸드(동원몰·더반찬)",
+    work: "이커머스·결제·네이버페이 데이터 추적",
+  },
+  {
+    year: "2023",
+    company: "풀무원(풀무원녹즙)",
+    work: "GA4·Firebase 구축 및 이벤트 검수",
+  },
+  {
+    year: "2023",
+    company: "한화호텔앤드리조트",
+    work: "호텔·리조트 분석 프로젝트",
+  },
+  {
+    year: "2023",
+    company: "더플라자",
+    work: "호텔 GA4·GTM 분석 환경 구축",
+  },
+  {
+    year: "2023",
+    company: "스케쳐스(스케쳐스코리아)",
+    work: "글로벌 브랜드 한국 법인 분석",
+  },
+  {
+    year: "2023",
+    company: "ABC마트",
+    work: "글로벌 브랜드 한국 법인 분석",
+  },
+  {
+    year: "2023",
+    company: "오피스키퍼",
+    work: "보안 제품 GA4·Amplitude·GTM 및 SEO",
+  },
+  {
+    year: "2023",
+    company: "유니드컴즈(킵그로우)",
+    work: "태깅 구조 진단, Looker 대시보드 구축, 채널별 성과 개선안 제시",
+  },
+  {
+    year: "2023",
+    company: "비바이노베이션",
+    work: "모바일 앱 GA4 온보딩",
+  },
+  {
+    year: "2023",
+    company: "그레이시티",
+    work: "GA4 온보딩",
+  },
+  {
+    year: "2023",
+    company: "어라운더블(픽앤픽)",
+    work: "GA4·GTM 이벤트 스크립트 및 검수",
+  },
+  {
+    year: "2023",
+    company: "더본아이에프(알고리즙)",
+    work: "GA4·GTM 스크립트 및 이벤트 수정",
+  },
+  {
+    year: "2023",
+    company: "나누",
+    work: "B2B·B2C 포지셔닝, SEO, 검색광고, 제휴 전략",
+  },
+  {
+    year: "2023",
+    company: "잇그린",
+    work: "미디어믹스와 광고 채널·예산 분석, CRM 활용 방안 정리",
+  },
+  {
+    year: "2024",
+    company: "안랩(AhnLab)",
+    work: "국내·일본·중국 GA4·GTM, BigQuery, 대시보드",
+  },
+  {
+    year: "2024",
+    company: "고려대학교",
+    work: "디지털 마케팅·데이터 분석 강의",
+  },
+  {
+    year: "2024",
+    company: "나그네들",
+    work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
+  },
+  {
+    year: "2024",
+    company: "남도마켓",
+    work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
+  },
+  {
+    year: "2024",
+    company: "커런시유나이티드",
+    work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
+  },
+  {
+    year: "2024",
+    company: "이벤터스",
+    work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
+  },
+  {
+    year: "2024",
+    company: "지앤지커머스(도매꾹)",
+    work: "커머스 유통 분석 환경 구축",
+  },
+  {
+    year: "2024",
+    company: "반다이남코코리아(BNKR)",
+    work: "커머스·엔터테인먼트 유통 분석",
+  },
+  {
+    year: "2024",
+    company: "이노션",
+    work: "GA4 보고서·탐색 기능 실습 교육",
+  },
+  {
+    year: "2024~2026",
+    company: "메디비젼·비앤빛안과",
+    work: "병원 GA4/GTM 및 전환 분석",
+  },
+  {
+    year: "2024~2026",
+    company: "하트하트재단",
+    work: "비영리 후원·전환 추적",
+  },
+  {
+    year: "2024",
+    company: "그라운드원",
+    work: "SaaS 글로벌 마케팅, SEO, 콘텐츠 전략",
+  },
+  {
+    year: "2024",
+    company: "펴나니",
+    work: "요양 플랫폼 B2B·B2C 마케팅, SEO, 검색광고",
+  },
+  {
+    year: "2024",
+    company: "뉴지엄랩",
+    work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
+  },
+  {
+    year: "2024",
+    company: "로민",
+    work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
+  },
+  {
+    year: "2024",
+    company: "반프",
+    work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
+  },
+  {
+    year: "2024~2026",
+    company: "유진투자증권",
+    work: "이벤트 추적, GA4 보고서, BigQuery·Looker 연동",
+  },
+  {
+    year: "2025",
+    company: "연세대학교",
+    work: "디지털 마케팅·데이터 분석 강의",
+  },
+  {
+    year: "2025",
+    company: "사이버한국외국어대학교",
+    work: "디지털 마케팅·데이터 분석 강의",
+  },
+  {
+    year: "2025~2026",
+    company: "그리니어",
+    work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
+  },
+  {
+    year: "2025",
+    company: "이지백",
+    work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
+  },
+  {
+    year: "2025",
+    company: "요즘피플",
+    work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
+  },
+  {
+    year: "2025",
+    company: "함께하는사랑밭",
+    work: "비영리 후원 전환 추적",
+  },
+  {
+    year: "2025~2026",
+    company: "열매나눔재단",
+    work: "GA4·GTM 및 후원 전환 추적",
+  },
+  {
+    year: "2025~2026",
+    company: "푸르메재단",
+    work: "비영리 후원·전환 추적",
+  },
+  {
+    year: "2025",
+    company: "한림대학교",
+    work: "대학·대학원 페이지 데이터 분석",
+  },
+  {
+    year: "2026",
+    company: "승우여행사",
+    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
+  },
+  {
+    year: "2026",
+    company: "가시림수목원",
+    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
+  },
+  {
+    year: "2026",
+    company: "애기야가자",
+    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
+  },
+  {
+    year: "2026",
+    company: "알브이에이치",
+    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
+  },
+  {
+    year: "2026",
+    company: "호퍼스",
+    work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
+  },
+  {
+    year: "2026",
+    company: "베스핀글로벌",
+    work: "클라우드 MSP 분석 환경·데이터 파이프라인 구축",
+  },
+  {
+    year: "2026",
+    company: "네스트호텔",
+    work: "호텔 웹사이트 GA4 설정 및 전환 데이터 점검",
+  },
+  {
+    year: "2026",
+    company: "혼다코리아",
+    work: "GA4 권한, UTM, 프로모션 페이지 추적 기획",
+  },
+  {
+    year: "2026",
+    company: "레아딜",
+    work: "GA4·GTM 및 전환 데이터 업무",
+  },
+  {
+    year: "2026",
+    company: "hoppin",
+    work: "GTM 기본 태그 및 예약 여정 점검",
+  },
+  {
+    year: "2026",
+    company: "불스원",
+    work: "광고·전환 데이터 태깅",
+  },
+  {
+    year: "2026",
+    company: "국제사이버대학교",
+    work: "입시·모집 광고 데이터 및 마케팅 전략",
+  },
+  {
+    year: "2026",
+    company: "슬로운(뉴라이즌)",
+    work: "브랜드 USP, 콘텐츠, 보상판매, CRM·재구매 마케팅",
+  },
+  {
+    year: "2026",
+    company: "자일로랩스",
+    work: "B2B 글로벌 마케팅, SEO, 사례 콘텐츠·PR 전략",
+  },
 ];
 
 const educationPartners = [
@@ -366,7 +739,7 @@ export default async function AboutPage() {
             </h2>
           </div>
           <p className="text-base sm:text-lg text-gray-700 mb-4 leading-relaxed">
-            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다. 계약별로 공개 범위가 달라 개별 기업명 대신 업종과 조직 유형으로 적습니다.
+            공공, 금융, 이커머스, 제조, 유통, 면세, 대학 교육 등 <strong>12개 이상 산업군</strong>에 걸쳐 <strong>{CLIENT_COUNT_LABEL} 고객사 프로젝트</strong>를 진행했습니다. 계약별 공개 범위를 고려해 산업군으로 요약하고, 공개 가능한 주요 연혁은 아래에 따로 기록합니다.
           </p>
           <div className="flex flex-wrap gap-2 mb-4">
             {clientSectors.map((sector) => (
@@ -393,6 +766,50 @@ export default async function AboutPage() {
                 </span>
               ))}
             </div>
+          </div>
+        </NeoTiltCard>
+      </section>
+
+      {/* Newly confirmed work history */}
+      <section className="mb-12 sm:mb-16">
+        <NeoTiltCard
+          className="bg-white border-4 border-black p-6 sm:p-8 -rotate-0.5"
+          intensity={12}
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <div className="bg-black border-2 border-black p-1.5 rotate-2">
+              <CalendarDays className="w-5 h-5 text-white" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black">업무 연혁</h2>
+          </div>
+          <p className="text-sm sm:text-base text-gray-600 mb-5 leading-relaxed">
+            노션과 Gmail 업무 기록을 대조해 확인한 공개 가능 프로젝트입니다.
+          </p>
+          <div className="overflow-x-auto -mx-2 px-2">
+            <table className="w-full min-w-[620px] border-collapse text-left">
+              <thead>
+                <tr className="border-b-4 border-black">
+                  <th className="px-3 py-3 text-xs sm:text-sm font-black w-28">연도</th>
+                  <th className="px-3 py-3 text-xs sm:text-sm font-black w-44">기업명</th>
+                  <th className="px-3 py-3 text-xs sm:text-sm font-black">한 일</th>
+                </tr>
+              </thead>
+              <tbody>
+                {workHistory.map((item) => (
+                  <tr key={`${item.year}-${item.company}`} className="border-b-2 border-black/15 align-top">
+                    <td className="px-3 py-3 text-xs sm:text-sm font-black whitespace-nowrap text-primary">
+                      {item.year}
+                    </td>
+                    <td className="px-3 py-3 text-sm sm:text-base font-black text-black">
+                      {item.company}
+                    </td>
+                    <td className="px-3 py-3 text-sm text-gray-600 leading-relaxed">
+                      {item.work}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </NeoTiltCard>
       </section>
