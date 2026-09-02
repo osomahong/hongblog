@@ -47,6 +47,14 @@
         "linkedin",
         "instagram"
       ]
+    },
+    "claude-fable-5-1-mythos-5-1-update": {
+      "date": "2026-09-02",
+      "platforms": [
+        "threads",
+        "linkedin",
+        "instagram"
+      ]
     }
   }
 }

@@ -58,3 +58,7 @@ public/images/insights/gemini-3-6-flash/
 
 # Playwright MCP 스크린샷, 콘솔 로그 (로컬 검증용)
 .playwright-mcp/
+
+# 임시 산출물
+.superpowers/
+__pycache__/
