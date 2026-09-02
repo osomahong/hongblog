@@ -181,7 +181,7 @@ const workItems = [
   {
     icon: Workflow,
     title: "대형 프로젝트 리드와 교육",
-    desc: "한국관광공사 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 기업과 공공기관에서 AI 활용과 데이터 분석 실무를 누적 1,000명 이상 교육했습니다.",
+    desc: "관광 진흥 공공기관 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 기업과 공공기관에서 AI 활용과 데이터 분석 실무를 누적 1,000명 이상 교육했습니다.",
   },
 ];
 
@@ -189,474 +189,454 @@ const workItems = [
 const workHistory = [
   {
     year: "2021·2026",
-    company: "안국건강",
+    label: "국내 눈 건강 중심 건강기능식품 기업 A사",
+    emoji: "🧃",
     work: "건강기능식품 데이터·물류 분석 환경 구축",
   },
   {
     year: "2021·2026",
-    company: "레프트아이템딜리버리",
-    work: "건강기능식품 데이터·물류 분석 환경 구축",
+    label: "외국인 대상 여행 물류 플랫폼 A사",
+    emoji: "🧳",
+    work: "여행 물류 데이터·운영 분석 환경 구축",
   },
   {
     year: "2022",
-    company: "코딧",
+    label: "법률·정책 데이터 플랫폼 A사",
+    emoji: "⚖️",
     work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
   },
   {
     year: "2022",
-    company: "플라스크",
+    label: "AI 기반 3D 콘텐츠 제작 솔루션 기업 A사",
+    emoji: "🎬",
     work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
   },
   {
     year: "2022",
-    company: "엔닷라이트",
+    label: "3D 디자인 소프트웨어 기업 A사",
+    emoji: "🧊",
     work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
   },
   {
     year: "2022",
-    company: "네오폰스",
+    label: "음성 AI·디지털 치료 솔루션 기업 A사",
+    emoji: "🩺",
     work: "타깃 고객과 핵심 전환 정의, 유입·광고 데이터 분석, 성장 실험 설계",
   },
   {
     year: "2022",
-    company: "지란지교소프트",
+    label: "기업용 정보보안 소프트웨어 기업 A사",
+    emoji: "🛡️",
     work: "정보보안 소프트웨어 분석 환경·SEO 구축",
   },
   {
     year: "2022",
-    company: "이피엘컴퍼니",
+    label: "구강·생활용품 D2C 브랜드 기업 A사",
+    emoji: "🧴",
     work: "디지털 매체 운영, CRM, 데이터 분석 교육",
   },
   {
     year: "2022",
-    company: "센디네어",
+    label: "디지털 마케팅·홍보 전문기업 A사",
+    emoji: "📣",
     work: "디지털 마케팅 현황 점검, 채널별 홍보 방향 및 실행 과제 정리",
   },
   {
     year: "2022",
-    company: "위솝",
+    label: "프랜차이즈 직원관리 소프트웨어 기업 A사",
+    emoji: "👥",
     work: "GA4·GTM 이벤트 설계와 태깅, UTM·검색/디스플레이 광고, 보고서 설정",
   },
   {
     year: "2022~2024",
-    company: "하이로컬",
+    label: "다국어 커뮤니케이션·산업안전 AI 플랫폼 A사",
+    emoji: "🌐",
     work: "GA 데이터 수집 설정, 이벤트·전환 목표 설정, SEO 점검",
   },
   {
     year: "2022",
-    company: "나인하이어",
+    label: "채용관리 솔루션 기업 A사",
+    emoji: "🧑‍💼",
     work: "검색·디스플레이 광고 캠페인 구조, SEO 체크리스트, GA4·전환 분석",
   },
   {
     year: "2023~2026",
-    company: "한국관광공사",
+    label: "관광 진흥 공공기관",
+    emoji: "🏛️",
     work: "관광 데이터 수집·분석 환경 구축, 참여기업 유입·전환 개선, AI 활용 방향 제안",
   },
   {
     year: "2023",
-    company: "스테이폴리오",
+    label: "프리미엄 숙박 큐레이션 플랫폼 A사",
+    emoji: "🏨",
     work: "관광 데이터 수집·분석 환경 점검, 유입·전환 개선안 제시",
   },
   {
     year: "2023",
-    company: "캐플릭스",
+    label: "관광·렌터카 예약 시스템 기업 A사",
+    emoji: "🚙",
     work: "관광 데이터 수집·분석 환경 점검, 유입·전환 개선안 제시",
   },
   {
     year: "2023",
-    company: "KOTRA아카데미",
+    label: "무역·투자 진흥 공공기관 아카데미",
+    emoji: "🌍",
     work: "디지털 마케팅 과정 강의",
   },
   {
     year: "2023",
-    company: "교보문고",
+    label: "대형 서점·콘텐츠 유통 기업 A사",
+    emoji: "📚",
     work: "GA4 분석 환경 구축 및 유지보수",
   },
   {
     year: "2023",
-    company: "신세계면세점",
+    label: "면세 유통 기업 A사",
+    emoji: "🛍️",
     work: "면세 유통 분석 환경 구축",
   },
   {
     year: "2023",
-    company: "신세계사이먼 프리미엄아울렛",
+    label: "프리미엄 아울렛 운영 기업 A사",
+    emoji: "🛍️",
     work: "아울렛 유통 분석 환경 구축",
   },
   {
     year: "2023",
-    company: "신세계아울렛 eShop",
+    label: "프리미엄 아울렛 온라인몰 A사",
+    emoji: "🛒",
     work: "GA4·GTM 이벤트, UTM, 대시보드 구축",
   },
   {
     year: "2023",
-    company: "동원·동원디어푸드(동원몰·더반찬)",
-    work: "이커머스·결제·네이버페이 데이터 추적",
+    label: "종합식품·이커머스 기업 A사",
+    emoji: "🍱",
+    work: "이커머스·결제·간편결제 데이터 추적",
   },
   {
     year: "2023",
-    company: "풀무원(풀무원녹즙)",
+    label: "식품·건강음료 기업 A사",
+    emoji: "🥗",
     work: "GA4·Firebase 구축 및 이벤트 검수",
   },
   {
     year: "2023",
-    company: "한화호텔앤드리조트",
+    label: "호텔·리조트 종합 레저 기업 A사",
+    emoji: "🏨",
     work: "호텔·리조트 분석 프로젝트",
   },
   {
     year: "2023",
-    company: "더플라자",
+    label: "도심 프리미엄 호텔 A사",
+    emoji: "🏨",
     work: "호텔 GA4·GTM 분석 환경 구축",
   },
   {
     year: "2023",
-    company: "스케쳐스(스케쳐스코리아)",
+    label: "글로벌 신발 브랜드 한국 법인 A사",
+    emoji: "👟",
     work: "글로벌 브랜드 한국 법인 분석",
   },
   {
     year: "2023",
-    company: "ABC마트",
+    label: "신발 멀티숍 유통 기업 A사",
+    emoji: "👟",
     work: "글로벌 브랜드 한국 법인 분석",
   },
   {
     year: "2023",
-    company: "오피스키퍼",
+    label: "통합 PC 보안 소프트웨어 기업 A사",
+    emoji: "🛡️",
     work: "보안 제품 GA4·Amplitude·GTM 및 SEO",
   },
   {
     year: "2023",
-    company: "유니드컴즈(킵그로우)",
+    label: "이커머스 마케팅 자동화 소프트웨어 기업 A사",
+    emoji: "🤖",
     work: "태깅 구조 진단, Looker 대시보드 구축, 채널별 성과 개선안 제시",
   },
   {
     year: "2023",
-    company: "비바이노베이션",
+    label: "의료 데이터·헬스케어 플랫폼 기업 A사",
+    emoji: "🩺",
     work: "모바일 앱 GA4 온보딩",
   },
   {
     year: "2023",
-    company: "그레이시티",
+    label: "두피·헤어 케어 브랜드 기업 A사",
+    emoji: "💇",
     work: "GA4 온보딩",
   },
   {
     year: "2023",
-    company: "어라운더블(픽앤픽)",
+    label: "온라인 상품 큐레이션 커머스 기업 A사",
+    emoji: "🛒",
     work: "GA4·GTM 이벤트 스크립트 및 검수",
   },
   {
     year: "2023",
-    company: "더본아이에프(알고리즙)",
+    label: "외식·식품 브랜드 기업 A사",
+    emoji: "🍽️",
     work: "GA4·GTM 스크립트 및 이벤트 수정",
   },
   {
     year: "2023",
-    company: "나누",
+    label: "B2B·B2C 마케팅·콘텐츠 기업 A사",
+    emoji: "📣",
     work: "B2B·B2C 포지셔닝, SEO, 검색광고, 제휴 전략",
   },
   {
     year: "2023",
-    company: "잇그린",
+    label: "다회용기 순환 플랫폼 기업 A사",
+    emoji: "♻️",
     work: "미디어믹스와 광고 채널·예산 분석, CRM 활용 방안 정리",
   },
   {
     year: "2024",
-    company: "안랩(AhnLab)",
+    label: "국내 보안 소프트웨어 기업 A사",
+    emoji: "🛡️",
     work: "국내·일본·중국 GA4·GTM, BigQuery, 대시보드",
   },
   {
     year: "2024",
-    company: "고려대학교",
+    label: "사립 종합대학 A",
+    emoji: "🎓",
     work: "디지털 마케팅·데이터 분석 강의",
   },
   {
     year: "2024",
-    company: "나그네들",
+    label: "AI 기반 여행 추천 소프트웨어 기업 A사",
+    emoji: "🧭",
     work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
   },
   {
     year: "2024",
-    company: "남도마켓",
+    label: "도매·소매 거래 중개 플랫폼 기업 A사",
+    emoji: "🧺",
     work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
   },
   {
     year: "2024",
-    company: "커런시유나이티드",
+    label: "디지털 금융·환전 서비스 기업 A사",
+    emoji: "💱",
     work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
   },
   {
     year: "2024",
-    company: "이벤터스",
+    label: "행사·컨퍼런스 플랫폼 기업 A사",
+    emoji: "🎟️",
     work: "GA4 이벤트·전환 데이터 점검, 유입경로 분석, 콘텐츠·광고 개선안 제시",
   },
   {
     year: "2024",
-    company: "지앤지커머스(도매꾹)",
+    label: "B2B 온라인 도매·유통 플랫폼 기업 A사",
+    emoji: "📦",
     work: "커머스 유통 분석 환경 구축",
   },
   {
     year: "2024",
-    company: "반다이남코코리아(BNKR)",
+    label: "캐릭터 상품·완구·게임 유통 기업 A사",
+    emoji: "🎮",
     work: "커머스·엔터테인먼트 유통 분석",
   },
   {
     year: "2024",
-    company: "이노션",
+    label: "글로벌 광고·마케팅 대행사 A사",
+    emoji: "📣",
     work: "GA4 보고서·탐색 기능 실습 교육",
   },
   {
     year: "2024~2026",
-    company: "메디비젼·비앤빛안과",
+    label: "안과·의료 서비스 기업 A사",
+    emoji: "🏥",
     work: "병원 GA4/GTM 및 전환 분석",
   },
   {
     year: "2024~2026",
-    company: "하트하트재단",
+    label: "장애인·아동 지원 비영리재단",
+    emoji: "🤝",
     work: "비영리 후원·전환 추적",
   },
   {
     year: "2024",
-    company: "그라운드원",
+    label: "글로벌 SaaS·블록체인 서비스 기업 A사",
+    emoji: "☁️",
     work: "SaaS 글로벌 마케팅, SEO, 콘텐츠 전략",
   },
   {
     year: "2024",
-    company: "펴나니",
+    label: "요양·돌봄 플랫폼 기업 A사",
+    emoji: "👵",
     work: "요양 플랫폼 B2B·B2C 마케팅, SEO, 검색광고",
   },
   {
     year: "2024",
-    company: "뉴지엄랩",
+    label: "정밀영양 AI·헬스테크 기업 A사",
+    emoji: "🧠",
     work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
   },
   {
     year: "2024",
-    company: "로민",
+    label: "문서 AI 소프트웨어 기업 A사",
+    emoji: "📄",
     work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
   },
   {
     year: "2024",
-    company: "반프",
+    label: "타이어 센싱·스마트 모빌리티 기업 A사",
+    emoji: "🚗",
     work: "타깃 고객 정의, 브랜드 메시지·콘텐츠·채널 전략 제안",
   },
   {
     year: "2024~2026",
-    company: "유진투자증권",
+    label: "증권·자산관리 금융사 A사",
+    emoji: "💹",
     work: "이벤트 추적, GA4 보고서, BigQuery·Looker 연동",
   },
   {
     year: "2025",
-    company: "연세대학교",
+    label: "사립 종합대학 B",
+    emoji: "🎓",
     work: "디지털 마케팅·데이터 분석 강의",
   },
   {
     year: "2025",
-    company: "사이버한국외국어대학교",
+    label: "사이버대학 A",
+    emoji: "🎓",
     work: "디지털 마케팅·데이터 분석 강의",
   },
   {
     year: "2025~2026",
-    company: "그리니어",
+    label: "전통문화·공연 관광 기업 A사",
+    emoji: "🎭",
     work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
   },
   {
     year: "2025",
-    company: "이지백",
+    label: "여행 데이터 소프트웨어 기업 A사",
+    emoji: "🧳",
     work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
   },
   {
     year: "2025",
-    company: "요즘피플",
+    label: "모빌리티 데이터·리워드 플랫폼 기업 A사",
+    emoji: "🚗",
     work: "관광기업 데이터 점검, 유입·전환 분석, 콘텐츠·광고 개선안 제시",
   },
   {
     year: "2025",
-    company: "함께하는사랑밭",
+    label: "국제구호개발 NGO",
+    emoji: "🤝",
     work: "비영리 후원 전환 추적",
   },
   {
     year: "2025~2026",
-    company: "열매나눔재단",
+    label: "자립 지원 사회복지 NGO",
+    emoji: "🤝",
     work: "GA4·GTM 및 후원 전환 추적",
   },
   {
     year: "2025~2026",
-    company: "푸르메재단",
+    label: "장애인 재활·복지 비영리재단",
+    emoji: "🩺",
     work: "비영리 후원·전환 추적",
   },
   {
     year: "2025",
-    company: "한림대학교",
+    label: "사립 종합대학 C",
+    emoji: "🎓",
     work: "대학·대학원 페이지 데이터 분석",
   },
   {
     year: "2026",
-    company: "승우여행사",
+    label: "국내외 트레킹·자연관광 여행사 A사",
+    emoji: "🥾",
     work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
   },
   {
     year: "2026",
-    company: "가시림수목원",
+    label: "제주 수목원·웰니스 관광시설 A사",
+    emoji: "🌳",
     work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
   },
   {
     year: "2026",
-    company: "애기야가자",
+    label: "키즈 여행·액티비티 플랫폼 기업 A사",
+    emoji: "👨‍👩‍👧‍👦",
     work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
   },
   {
     year: "2026",
-    company: "알브이에이치",
+    label: "프리미엄 스파·웰니스 기업 A사",
+    emoji: "🌿",
     work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
   },
   {
     year: "2026",
-    company: "호퍼스",
+    label: "디지털 노마드·워케이션 기업 A사",
+    emoji: "🌏",
     work: "관광기업 데이터 점검, AI 활용 사례 검토, 마케팅·분석 실행안 제안",
   },
   {
     year: "2026",
-    company: "베스핀글로벌",
+    label: "클라우드 MSP·데이터 파이프라인 기업 A사",
+    emoji: "☁️",
     work: "클라우드 MSP 분석 환경·데이터 파이프라인 구축",
   },
   {
     year: "2026",
-    company: "네스트호텔",
+    label: "부티크 호텔 A사",
+    emoji: "🏨",
     work: "호텔 웹사이트 GA4 설정 및 전환 데이터 점검",
   },
   {
     year: "2026",
-    company: "혼다코리아",
+    label: "수입 자동차·모터사이클 판매 법인 A사",
+    emoji: "🚗",
     work: "GA4 권한, UTM, 프로모션 페이지 추적 기획",
   },
   {
     year: "2026",
-    company: "레아딜",
-    work: "GA4·GTM 및 전환 데이터 업무",
-  },
-  {
-    year: "2026",
-    company: "hoppin",
+    label: "워케이션 서비스 브랜드 A사",
+    emoji: "🌏",
     work: "GTM 기본 태그 및 예약 여정 점검",
   },
   {
     year: "2026",
-    company: "불스원",
+    label: "자동차용품 제조·유통 기업 A사",
+    emoji: "🚗",
     work: "광고·전환 데이터 태깅",
   },
   {
     year: "2026",
-    company: "국제사이버대학교",
+    label: "사이버대학 B",
+    emoji: "🎓",
     work: "입시·모집 광고 데이터 및 마케팅 전략",
   },
   {
     year: "2026",
-    company: "슬로운(뉴라이즌)",
+    label: "리퍼·보상판매 커머스 기업 A사",
+    emoji: "🔄",
     work: "브랜드 USP, 콘텐츠, 보상판매, CRM·재구매 마케팅",
   },
   {
     year: "2026",
-    company: "자일로랩스",
+    label: "산업 신호 분석·모니터링 기업 A사",
+    emoji: "📡",
     work: "B2B 글로벌 마케팅, SEO, 사례 콘텐츠·PR 전략",
   },
 ];
 
-const localLogoByCompany: Record<string, string> = {
-  "한국관광공사": "knto",
-  "KOTRA아카데미": "kotra",
-  "교보문고": "kyobo",
-  "신세계면세점": "ssgdfs",
-  "신세계사이먼 프리미엄아울렛": "ssgsimon",
-  "신세계아울렛 eShop": "ssgsimon",
-  "동원·동원디어푸드(동원몰·더반찬)": "dongwon",
-  "풀무원(풀무원녹즙)": "pulmuone",
-  "더플라자": "theplaza",
-  "ABC마트": "abcmart",
-  "안랩(AhnLab)": "ahnlab",
-  "고려대학교": "korea-univ",
-  "이노션": "innocean",
-  "연세대학교": "yonsei",
-  "사이버한국외국어대학교": "cufs",
-  "베스핀글로벌": "bespin",
-  "네스트호텔": "nesthotel",
-};
-
-/** 공식 홈페이지의 파비콘을 회사별 로고로 사용한다. 로컬 로고가 있는 곳은 로컬 자산을 우선한다. */
-const logoDomainByCompany: Record<string, string> = {
-  안국건강: "anguk.com",
-  레프트아이템딜리버리: "leftitemdelivery.com",
-  코딧: "codit.kr",
-  플라스크: "flask.kr",
-  엔닷라이트: "ndotlight.com",
-  네오폰스: "neopons.com",
-  지란지교소프트: "jiran.com",
-  이피엘컴퍼니: "eplcompany.co.kr",
-  센디네어: "sendinear.com",
-  위솝: "wesop.co.kr",
-  하이로컬: "hilocal.co.kr",
-  나인하이어: "ninehire.com",
-  스테이폴리오: "stayfolio.com",
-  캐플릭스: "caflix.com",
-  오피스키퍼: "officekeeper.co.kr",
-  "유니드컴즈(킵그로우)": "keepgrow.com",
-  비바이노베이션: "viva-innovation.com",
-  그레이시티: "graycity.co.kr",
-  "어라운더블(픽앤픽)": "picknpick.co.kr",
-  "더본아이에프(알고리즙)": "theborn.co.kr",
-  나누: "nanu.co.kr",
-  잇그린: "eatgreen.co.kr",
-  나그네들: "nagne.com",
-  남도마켓: "namdomarket.com",
-  커런시유나이티드: "currencyunited.com",
-  이벤터스: "event-us.kr",
-  "지앤지커머스(도매꾹)": "domeggook.com",
-  "반다이남코코리아(BNKR)": "bandainamcoent.co.kr",
-  "메디비젼·비앤빛안과": "banbit.com",
-  하트하트재단: "heart-heart.org",
-  그라운드원: "ground.one",
-  펴나니: "pyeonani.com",
-  뉴지엄랩: "newseumlab.com",
-  로민: "lomin.ai",
-  반프: "banf.co.kr",
-  유진투자증권: "eugenefn.com",
-  그리니어: "greenier.co.kr",
-  이지백: "easybag.co.kr",
-  요즘피플: "yozmp.com",
-  함께하는사랑밭: "sarangbat.org",
-  열매나눔재단: "merryyear.org",
-  푸르메재단: "purme.org",
-  한림대학교: "hallym.ac.kr",
-  승우여행사: "seungwootour.com",
-  가시림수목원: "gasirim.com",
-  애기야가자: "aegiyagaja.com",
-  알브이에이치: "rvh.co.kr",
-  호퍼스: "hoppers.co.kr",
-  혼다코리아: "hondakorea.co.kr",
-  레아딜: "leadill.com",
-  hoppin: "hoppin.co.kr",
-  불스원: "bullsone.com",
-  국제사이버대학교: "global.ac.kr",
-  "슬로운(뉴라이즌)": "newrizon.com",
-  자일로랩스: "xylolab.com",
-};
-
-const companyLogo = (company: string) => {
-  const localLogo = localLogoByCompany[company];
-  if (localLogo) return localLogo;
-  const domain = logoDomainByCompany[company];
-  return domain
-    ? `https://www.google.com/s2/favicons?domain=${domain}&sz=64`
-    : undefined;
-};
-
-/** 대표 이력. 연도는 계약 시작 기준, 로고는 공식 소스에서 확보한 것만 넣는다 */
+/** 대표 이력. 연도는 계약 시작 기준이며, 고객사명 대신 업종형 라벨을 표시한다. */
 const milestones: {
   year: string;
   title: string;
-  orgs: { name: string; logo?: string }[];
+  orgs: { label: string; emoji: string }[];
   note?: string;
 }[] = workHistory.map((item) => ({
   year: item.year.split(/[·~]/)[0],
   title: item.work,
-  orgs: [{ name: item.company, logo: companyLogo(item.company) }],
+  orgs: [{ label: item.label, emoji: item.emoji }],
 }));
 
 /** 연혁을 연도로 묶는다. 배열 순서를 유지하므로 같은 해 안에서도 입력 순서가 곧 계약 순서다 */
@@ -743,7 +723,7 @@ export default async function AboutPage() {
         name: "강의나 교육은 어떻게 요청하나요?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "기업과 공공기관 출강, 온라인 강의 모두 가능합니다. KOTRA아카데미와 대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다. 교육 대상과 인원, 희망 일정을 hong@oso.ma로 보내 주시면 커리큘럼안으로 회신합니다.",
+          text: "기업과 공공기관 출강, 온라인 강의 모두 가능합니다. 무역·투자 진흥 공공기관 아카데미와 대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다. 교육 대상과 인원, 희망 일정을 hong@oso.ma로 보내 주시면 커리큘럼안으로 회신합니다.",
         },
       },
     ],
@@ -883,7 +863,7 @@ export default async function AboutPage() {
       </section>
 
       {/* 연혁. 연도를 왼쪽 축에 고정하고 그해 계약을 한 열에 순서대로 쌓는다.
-          기업 연혁 페이지의 통용 구조로, 시맨틱 ol/li와 텍스트 기관명을 유지해
+          기업 연혁 페이지의 통용 구조로, 시맨틱 ol/li와 업종형 라벨을 유지해
           검색엔진과 AI가 계약 순서를 그대로 읽을 수 있게 한다 */}
       <section className="mb-12 sm:mb-16">
         <div className="flex items-center gap-2 mb-8">
@@ -907,7 +887,7 @@ export default async function AboutPage() {
               <ol className="min-w-0 space-y-5 sm:space-y-6 border-l-2 border-black/25 pl-4 sm:pl-8 py-6 sm:py-7">
                 {milestonesByYear[year].map((m, index) => (
                   <li
-                    key={`${year}-${index}-${m.orgs.map((org) => org.name).join("-")}`}
+                    key={`${year}-${index}-${m.orgs.map((org) => org.label).join("-")}`}
                     className="relative"
                   >
                     {/* 축 위에 계약 하나를 찍는 노드 */}
@@ -918,24 +898,11 @@ export default async function AboutPage() {
                     <div className="flex flex-wrap items-center gap-2 mb-1.5">
                       {m.orgs.map((org) => (
                         <span
-                          key={org.name}
+                          key={org.label}
                           className="inline-flex items-center gap-1.5 bg-white border-2 border-black px-2 py-1 text-xs sm:text-sm font-bold"
                         >
-                          {org.logo && (
-                            /* eslint-disable-next-line @next/next/no-img-element */
-                            <img
-                              src={
-                                org.logo.startsWith("http")
-                                  ? org.logo
-                                  : `/images/about/logos/${org.logo}.logo.png`
-                              }
-                              alt={`${org.name} 로고`}
-                              width={20}
-                              height={20}
-                              className="w-5 h-5 object-contain shrink-0"
-                            />
-                          )}
-                          {org.name}
+                          <span aria-hidden="true">{org.emoji}</span>
+                          {org.label}
                         </span>
                       ))}
                     </div>
@@ -1154,7 +1121,7 @@ export default async function AboutPage() {
               강의나 교육은 어떻게 요청하나요?
             </h3>
             <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-              기업과 공공기관 출강, 온라인 강의 모두 가능합니다. KOTRA아카데미와
+              기업과 공공기관 출강, 온라인 강의 모두 가능합니다. 무역·투자 진흥 공공기관 아카데미와
               대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다.
               교육 대상과 인원, 희망 일정을{" "}
               <a href="mailto:hong@oso.ma" className="font-bold underline">
