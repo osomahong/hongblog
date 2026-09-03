@@ -125,6 +125,8 @@ Gemini 3.7 Flash는 구글이 2026년 8월 13일 공개한 코딩과 에이전�
 
 쓸 수 있는 곳은 Google AI Studio와 Gemini API, Android Studio, Google Antigravity, Gemini Enterprise Agent Platform입니다.
 
+2026년 9월 2일에는 같은 가격의 후속 판인 3.8 플래시가 나왔습니다. 달라진 점과 토큰 사용량 주의점은 [제미나이 3.8 플래시와 3.8 플래시 사이버 정리](/insights/gemini-3-8-flash-cyber-release)에 있습니다.
+
 ## Claude Opus Fast mode, 같은 모델의 실행 설정 변경
 
 Fast mode는 앤트로픽이 Claude Opus 계열에 제공하는 실행 옵션입니다. 공식 문서 기준으로 초당 출력 토큰이 최대 2.5배가 되고, 모델 가중치와 동작은 그대로입니다.
