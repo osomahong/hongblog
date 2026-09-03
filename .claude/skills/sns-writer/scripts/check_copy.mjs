@@ -33,6 +33,13 @@ const CASUAL = /(?:[^니]다|더라|거든|잖아|이야|없음|같음)[.?!]$/;
 // 음슴체("~음", "~함", "~임")도 반말이다. 2026-08-25 사용자 결정: 존대로 충분히 SNS 스타일이 된다.
 const CASUAL_THREADS = /(?:[^니]다|더라|거든|잖아|이야|없음|같음|[가-힣][음함임])[.?!]$/;
 
+// 기호를 예시로 보여주는 카피는 그 기호를 쓸 수밖에 없다. 문체를 다루는 글이
+// 고쳐야 할 표현을 인용하지 못하면 규칙을 설명할 수 없어서, 괄호 안에 홀로 들어간
+// 기호는 인용으로 보고 검사에서 뺀다. 마크다운의 인라인 코드 예외와 같은 취지다.
+// (2026-09-03: "긴 줄표(—)나 가운뎃점(·) 같은 기호" 카피가 막혀 추가)
+const QUOTED_SYMBOL = /\((?:[—–·…])\)/g;
+const stripQuotedSymbols = (t) => t.replace(QUOTED_SYMBOL, "()");
+
 const BANNED = [
   [/[—–]/, "줄표(—) 사용. 쉼표나 마침표로 끊는다"],
   [/·/, "가운뎃점 사용. 쉼표나 슬래시로 바꾼다"],
@@ -166,8 +173,9 @@ parts.forEach((text, idx) => {
   const bangs = (text.match(/!/g) || []).length;
   if (bangs > 1) issues.push(`느낌표 ${bangs}개 > 1개`);
 
+  const bannedTarget = stripQuotedSymbols(text);
   for (const [re, msg] of BANNED) {
-    const m = text.match(re);
+    const m = bannedTarget.match(re);
     if (m) issues.push(`${msg} ("${m[0].trim()}")`);
   }
 
