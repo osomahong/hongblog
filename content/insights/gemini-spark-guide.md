@@ -3,17 +3,21 @@ slug: gemini-spark-guide
 title: 제미나이 스파크(Gemini Spark) 사용법과 제미나이 모델의 장점
 excerpt: >-
   구글 클라우드에서 24시간 실행되는 에이전트형 AI 비서, 제미나이 스파크의 Task, Schedule, Skill 사용법과 요금제, 그리고 구글
-  워크스페이스의 Gmail과 Drive를 읽어 맥락을 파악하는 개인 인텔리전스를 정리합니다.
+  워크스페이스의 Gmail과 Drive를 읽어 맥락을 파악하는 개인 인텔리전스를 정리합니다. 2026년 9월 3일 열린 구글 포토 연동도
+  함께 다룹니다.
 category: AI_TECH
 tags:
   - AI
   - 자동화
   - 노코드
 publishedAt: '2026-07-31T00:00:00.000Z'
-updatedAt: '2026-08-24T00:00:00.000Z'
+updatedAt: '2026-09-04T00:00:00.000Z'
 highlights:
   - '먼저 제미나이 앱 사이드바에 Spark 탭이 있는지 확인하고, 반복 업무 하나를 Task로 등록해 보는 것이 좋습니다.'
   - '결제처럼 민감한 작업 권한은 바로 열지 말고, 확인 단계를 유지한 상태로 사용하는 편이 안전합니다.'
+  - >-
+    구글 포토 연동은 미국에서 영어로만 열렸습니다. 국내 계정에서 사진 정리를 시키려다 안 되면 계정 문제가 아니라 지역과 언어
+    조건을 먼저 확인합니다.
 metaTitle: 제미나이 스파크(Gemini Spark) 사용법과 제미나이 모델의 장점
 metaDescription: >-
   제미나이 스파크(Gemini Spark)는 구글이 2026년 5월 공개한 24시간 에이전트형 AI 비서입니다. Task, Schedule,
@@ -134,6 +138,40 @@ Google I/O 2026 발표 시점부터 Gemini Enterprise와 구글 워크스페이�
 
 ![Adobe, Canva, Salesforce, Spotify, Uber 등 제미나이 스파크와 연동되는 파트너 서비스 로고를 모은 구글 공식 이미지](/images/insights/gemini-spark-guide/gemini-spark-partners.webp)
 
+## 구글 포토 연동으로 늘어난 작업
+
+2026년 9월 3일 스파크가 구글 포토를 다루기 시작했습니다. 구글 공식 도움말 기준으로 맡길 수 있는 일은 세 가지입니다.
+
+- **찾기와 정리**: 인물이나 장소, 날짜, 행사로 사진과 영상을 찾고 중복을 걸러냅니다
+- **고치기와 만들기**: 화질을 올리거나 간단한 보정을 하고, 콜라주와 다른 화풍의 이미지를 만듭니다
+- **앨범 관리**: 앨범을 만들어 고른 사진을 담고, 지메일 같은 연결된 앱으로 공유합니다
+
+한 번에 여러 단계를 묶어 시킬 수 있다는 점이 기존 사진 검색과 다릅니다. 스파크는 지난 여행 사진을 찾아 잘 나온 것만 골라 앨범으로 만들고, 그 앨범을 메일로 보내는 흐름을 한 번의 지시로 처리합니다.
+
+### 원본을 건드리지 않는 세 가지 장치
+
+사진은 한번 잘못 바꾸면 되돌리기 어려운 자료라 구글이 안전장치를 따로 밝혔습니다.
+
+| 장치 | 공식 도움말 설명 |
+|---|---|
+| 원본 보존 | 원본을 고치거나 덮어쓰지 않고 사본을 만들어 편집합니다 |
+| 앨범 기본값 | 새로 만든 앨범은 비공개가 기본입니다 |
+| 확인 단계 | 공유 앨범을 만들거나 메일을 보내기 전에 허락을 묻습니다 |
+
+앞에서 결제 권한을 바로 열지 않는 편이 안전하다고 적었는데, 사진도 같은 기준으로 보면 됩니다. 확인 단계를 켜 둔 채로 쓰다가 익숙해진 뒤에 판단하는 순서입니다.
+
+### 국내 계정에서 쓸 수 있는 조건
+
+**2026년 9월 4일 기준으로는 아직 어렵습니다.** 공식 도움말이 밝힌 조건이 좁게 걸려 있습니다.
+
+- 미국에서만 열렸고, 미국 안에서도 일부 지역은 제외입니다
+- 만 18세 이상이어야 합니다
+- 영어로만 됩니다
+- 모바일 앱과 gemini.google.com에서만 됩니다
+- 순차 배포 중이라 조건을 갖춰도 아직 안 보이기도 합니다
+
+구글 AI 프로와 울트라 구독자가 대상입니다. 국내 계정에서 사진 정리를 시켰는데 반응이 없다면 구독 등급보다 지역과 언어 조건을 먼저 확인하는 편이 빠릅니다.
+
 ## 스파크를 움직이는 제미나이 모델의 장점은 무엇일까요?
 
 컨텍스트 윈도라는 용어가 생소하실 수 있습니다. AI가 한 번의 작업에서 기억하며 다룰 수 있는 정보의 양을 뜻합니다. 스파크가 긴 작업을 안정적으로 이어가는 배경에는 기반 모델인 제미나이의 특성이 있습니다.
@@ -169,3 +207,4 @@ Google I/O 2026 발표 시점부터 Gemini Enterprise와 구글 워크스페이�
 - [Connect your Google apps to personalize your Gemini experience (Gemini 앱 공식 도움말)](https://support.google.com/gemini/answer/16598406)
 - [Connect & manage custom apps for Gemini Spark in the Gemini web app (Gemini 앱 공식 도움말)](https://support.google.com/gemini/answer/17209137)
 - [Gemini에서 Google 앱 사용 또는 사용 중지하기 (구글 워크스페이스 관리자 도움말)](https://knowledge.workspace.google.com/admin/gemini/turn-google-apps-in-gemini-on-or-off?hl=ko)
+- [Use Google Photos with Gemini Spark (Gemini 앱 공식 도움말)](https://support.google.com/gemini/answer/18116629)
