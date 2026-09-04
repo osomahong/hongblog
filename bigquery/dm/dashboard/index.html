@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>준이아빠블로그 데이터 마트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ground:#EDEDE9; --surface:#FFFFFF; --surface-2:#F6F6F3;
+  --ink:#0E0E10; --ink-2:#55555C; --ink-3:#8A8A92;
+  --edge:#0E0E10; --edge-soft:#C9C9C2; --grid:#DEDED8;
+  --accent:#E60000; --gold:#FFD700; --good:#0F7A4A;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7;
+  --heat-0:#F1F1EC; --heat-1:#D8E5F5; --heat-2:#AECBEC;
+  --heat-3:#7BAAE0; --heat-4:#4685D0; --heat-5:#1F5AA3;
+  --shadow:5px 5px 0 var(--edge);
+  --shadow-sm:3px 3px 0 var(--edge);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#15161A; --surface:#1E1F24; --surface-2:#26272D;
+    --ink:#F2F2EF; --ink-2:#A8A8B0; --ink-3:#75757E;
+    --edge:#4A4B54; --edge-soft:#3A3B42; --grid:#31323A;
+    --accent:#FF4D4D; --gold:#FFD700; --good:#3FB985;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --s5:#d55181; --s6:#008300; --s7:#9085e9;
+    --heat-0:#1F2027; --heat-1:#17233a; --heat-2:#24487d;
+    --heat-3:#2c5da4; --heat-4:#3b7bcd; --heat-5:#5c9ae4;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#15161A; --surface:#1E1F24; --surface-2:#26272D;
+  --ink:#F2F2EF; --ink-2:#A8A8B0; --ink-3:#75757E;
+  --edge:#4A4B54; --edge-soft:#3A3B42; --grid:#31323A;
+  --accent:#FF4D4D; --gold:#FFD700; --good:#3FB985;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --s5:#d55181; --s6:#008300; --s7:#9085e9;
+  --heat-0:#1F2027; --heat-1:#17233a; --heat-2:#24487d;
+  --heat-3:#2c5da4; --heat-4:#3b7bcd; --heat-5:#5c9ae4;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:"IBM Plex Sans KR",system-ui,-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  font-size:15px; line-height:1.65; -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:"IBM Plex Mono","SFMono-Regular",Menlo,monospace;font-variant-numeric:tabular-nums}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px 80px}
+
+/* ---------- header ---------- */
+header.top{border-bottom:3px solid var(--edge);background:var(--surface);}
+.top-inner{max-width:1280px;margin:0 auto;padding:26px 20px 20px;
+  display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end;justify-content:space-between}
+h1{font-size:clamp(24px,3.4vw,36px);font-weight:700;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sub{color:var(--ink-2);font-size:13.5px;margin:6px 0 0}
+.srcline{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chip{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.02em;
+  padding:3px 8px;border:2px solid var(--edge);background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.chip.ok{background:var(--gold);color:#0E0E10;border-color:#0E0E10;font-weight:600}
+
+/* ---------- section nav ---------- */
+nav.jump{position:sticky;top:0;z-index:40;background:var(--ground);
+  border-bottom:2px solid var(--edge-soft);padding:8px 0;margin-bottom:28px}
+.jump-inner{max-width:1280px;margin:0 auto;padding:0 20px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin}
+.jump a{font-family:"IBM Plex Mono",monospace;font-size:11.5px;text-decoration:none;color:var(--ink-2);
+  border:2px solid transparent;padding:3px 8px;white-space:nowrap}
+.jump a:hover,.jump a:focus-visible{color:var(--ink);border-color:var(--edge);background:var(--surface)}
+
+/* ---------- kpi ---------- */
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:26px 0 40px}
+@media(max-width:1080px){.kpis{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}}
+.kpi{background:var(--surface);border:3px solid var(--edge);box-shadow:var(--shadow-sm);padding:12px 13px 8px;
+  display:flex;flex-direction:column;gap:2px;min-width:0}
+.kpi .k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.kpi .v{font-size:clamp(20px,2.2vw,27px);font-weight:700;letter-spacing:-.02em;line-height:1.15;
+  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+.kpi .n{font-size:11.5px;color:var(--ink-2);line-height:1.4}
+.kpi svg{display:block;margin-top:4px}
+
+/* ---------- section ---------- */
+section{margin:0 0 52px;scroll-margin-top:56px}
+.sec-head{display:flex;gap:12px;align-items:baseline;border-top:3px solid var(--accent);padding-top:12px;margin-bottom:4px}
+.sec-no{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--accent);flex:none}
+h2{font-size:20px;font-weight:700;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.readout{color:var(--ink-2);font-size:14px;margin:0 0 18px;max-width:74ch}
+.readout b{color:var(--ink);font-weight:600}
+
+.grid{display:grid;gap:18px}
+.g2{grid-template-columns:1fr 1fr}
+.g32{grid-template-columns:1.6fr 1fr}
+.g23{grid-template-columns:1fr 1.6fr}
+@media(max-width:900px){.g2,.g32,.g23{grid-template-columns:1fr}}
+
+.panel{background:var(--surface);border:3px solid var(--edge);box-shadow:var(--shadow);padding:16px 16px 12px;min-width:0}
+.panel h3{font-size:14.5px;font-weight:600;margin:0 0 2px}
+.panel .cap{font-size:12px;color:var(--ink-3);margin:0 0 12px}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+
+button.tbtn{font-family:"IBM Plex Mono",monospace;font-size:10.5px;padding:3px 7px;cursor:pointer;
+  border:2px solid var(--edge);background:var(--surface-2);color:var(--ink-2);flex:none}
+button.tbtn:hover{background:var(--gold);color:#0E0E10;border-color:#0E0E10}
+button.tbtn[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+
+/* ---------- legend ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin:10px 0 0;font-size:11.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:11px;height:11px;display:inline-block;border:1px solid rgba(0,0,0,.28);flex:none}
+
+/* ---------- chart ---------- */
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.tip{position:absolute;pointer-events:none;z-index:20;background:var(--surface);border:2px solid var(--edge);
+  box-shadow:var(--shadow-sm);padding:7px 9px;font-size:11.5px;line-height:1.5;white-space:nowrap;
+  opacity:0;transition:opacity .1s;font-family:"IBM Plex Mono",monospace;max-width:280px}
+.tip.on{opacity:1}
+.tip b{font-weight:600}
+.tip .row{display:flex;gap:8px;justify-content:space-between}
+.tip .sw{display:inline-block;width:8px;height:8px;margin-right:5px;border:1px solid rgba(0,0,0,.3)}
+
+/* ---------- table ---------- */
+.tw{overflow-x:auto;margin-top:12px;border:2px solid var(--edge-soft)}
+.tw.tall{max-height:540px;overflow-y:auto}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+th,td{padding:6px 9px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap}
+th{background:var(--surface-2);font-weight:600;font-size:11px;letter-spacing:.03em;color:var(--ink-2);
+  position:sticky;top:0;text-transform:uppercase;font-family:"IBM Plex Mono",monospace}
+th.s{cursor:pointer;user-select:none}
+th.s:hover{color:var(--ink);background:var(--gold)}
+th[aria-sort]{color:var(--ink)}
+td.l,th.l{text-align:left;white-space:normal}
+td.num{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--surface-2)}
+.slug{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-2);white-space:nowrap}
+.slug.wrap{white-space:normal;overflow-wrap:anywhere;line-height:1.7}
+.bar{display:inline-block;height:8px;background:var(--s1);vertical-align:middle;margin-right:6px;min-width:1px}
+.pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10px;padding:1px 5px;
+  border:1.5px solid var(--edge);background:var(--surface-2);color:var(--ink-2)}
+.pill.warn{background:var(--gold);color:#0E0E10;border-color:#0E0E10}
+.delta{display:inline-flex;align-items:center;gap:6px;justify-content:flex-end;
+  font-family:"IBM Plex Mono",monospace;font-weight:600;font-variant-numeric:tabular-nums}
+.delta i{display:inline-block;height:9px;flex:none}
+.delta.up{color:var(--good)} .delta.up i{background:var(--good)}
+.delta.down{color:var(--accent)} .delta.down i{background:var(--accent)}
+.hidden{display:none}
+
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0 0}
+.ctrl input,.ctrl select{font-family:"IBM Plex Mono",monospace;font-size:12px;padding:5px 8px;
+  border:2px solid var(--edge);background:var(--surface);color:var(--ink)}
+.ctrl input:focus,.ctrl select:focus{outline:2px solid var(--accent);outline-offset:1px}
+.ctrl label{font-size:11.5px;color:var(--ink-3);font-family:"IBM Plex Mono",monospace}
+
+footer{border-top:3px solid var(--edge);margin-top:40px;padding-top:22px;font-size:12.5px;color:var(--ink-2)}
+footer code{font-family:"IBM Plex Mono",monospace;font-size:11.5px;background:var(--surface-2);
+  padding:1px 5px;border:1px solid var(--edge-soft)}
+footer h4{font-size:13px;margin:0 0 6px;color:var(--ink)}
+.foot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<header class="top">
+  <div class="top-inner">
+    <div>
+      <h1>준이아빠블로그 데이터 마트</h1>
+      <p class="sub" id="periodLine">기간 로딩 중</p>
+      <div class="srcline" id="srcline"></div>
+    </div>
+    <div class="srcline" style="margin:0">
+      <span class="chip ok">events 23:00</span>
+      <span class="chip ok">sessions 23:20</span>
+      <span class="chip ok">content_daily 23:40</span>
+      <span class="chip ok">search_content_daily 23:55</span>
+    </div>
+  </div>
+</header>
+
+<nav class="jump"><div class="jump-inner">
+  <a href="#s1">01 규모</a><a href="#s2">02 채널</a><a href="#s3">03 순위와 클릭</a>
+  <a href="#s4">04 콘텐츠</a><a href="#s5">05 검색어</a><a href="#s6">06 읽힘</a>
+  <a href="#s7">07 수명</a><a href="#s8">08 검색면</a><a href="#s9">09 증감</a><a href="#s10">10 방문 패턴</a>
+</div></nav>
+
+<div class="wrap">
+  <div class="kpis" id="kpis"></div>
+
+  <section id="s1">
+    <div class="sec-head"><span class="sec-no">01</span><h2>규모와 추세</h2></div>
+    <p class="readout" id="f1"></p>
+    <div class="grid g2">
+      <div class="panel">
+        <div class="panel-head"><div><h3>일별 검색 노출</h3><p class="cap">Search Console 웹 검색. 굵은 선은 7일 이동평균</p></div>
+          <button class="tbtn" data-table="t-imp" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-imp"></div>
+        <div class="tw tall hidden" id="t-imp"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><div><h3>일별 검색 클릭과 세션</h3><p class="cap">둘 다 방문 규모라 같은 축에 둔다</p></div>
+          <button class="tbtn" data-table="t-clk" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-clk"></div>
+        <div class="legend" id="l-clk"></div>
+        <div class="tw tall hidden" id="t-clk"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s2">
+    <div class="sec-head"><span class="sec-no">02</span><h2>유입 채널</h2></div>
+    <p class="readout" id="f2"></p>
+    <div class="grid g32">
+      <div class="panel">
+        <div class="panel-head"><div><h3>주별 채널 구성비</h3><p class="cap">세션 기준 100% 누적. 상위 6개 채널과 기타</p></div>
+          <button class="tbtn" data-table="t-ch" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-ch"></div>
+        <div class="legend" id="l-ch"></div>
+        <div class="tw tall hidden" id="t-ch"></div>
+      </div>
+      <div class="panel">
+        <h3>채널 요약</h3><p class="cap">전 기간 세션과 참여 세션</p>
+        <div class="tw" id="t-chsum"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s3">
+    <div class="sec-head"><span class="sec-no">03</span><h2>검색 순위와 클릭</h2></div>
+    <p class="readout" id="f3"></p>
+    <div class="grid g2">
+      <div class="panel">
+        <div class="panel-head"><div><h3>순위 구간별 노출과 클릭</h3><p class="cap">막대 위 숫자는 그 구간의 CTR</p></div>
+          <button class="tbtn" data-table="t-pos" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-pos"></div>
+        <div class="legend" id="l-pos"></div>
+        <div class="tw hidden" id="t-pos"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><div><h3>평균 순위 대 CTR</h3><p class="cap">원 크기는 노출량. 노출 3,000회 이상 페이지</p></div>
+          <button class="tbtn" data-table="t-sc" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-sc"></div>
+        <div class="legend" id="l-sc"></div>
+        <div class="tw tall hidden" id="t-sc"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s4">
+    <div class="sec-head"><span class="sec-no">04</span><h2>콘텐츠 성과</h2></div>
+    <p class="readout" id="f4"></p>
+    <div class="panel">
+      <div class="ctrl">
+        <input type="search" id="q-content" placeholder="슬러그 또는 제목 검색" style="min-width:240px">
+        <label for="ty-content">타입</label>
+        <select id="ty-content"><option value="">전체</option></select>
+        <label for="n-content">표시</label>
+        <select id="n-content"><option>30</option><option>60</option><option>120</option><option value="9999">전체</option></select>
+        <span class="pill" id="cnt-content"></span>
+      </div>
+      <div class="tw tall" id="t-content"></div>
+    </div>
+  </section>
+
+  <section id="s5">
+    <div class="sec-head"><span class="sec-no">05</span><h2>검색어</h2></div>
+    <p class="readout" id="f5"></p>
+    <div class="grid g2">
+      <div class="panel">
+        <h3>노출 상위 검색어</h3><p class="cap">페이지별 일간 상위 10개 검색어를 합산. 익명 처리된 검색어는 빠진다</p>
+        <div class="ctrl"><input type="search" id="q-query" placeholder="검색어 필터" style="min-width:200px">
+          <span class="pill" id="cnt-query"></span></div>
+        <div class="tw tall" id="t-query"></div>
+      </div>
+      <div class="panel">
+        <h3>한 검색어에 여러 페이지</h3><p class="cap">같은 검색어에 두 개 이상의 글이 함께 노출된 경우</p>
+        <div class="tw tall" id="t-cann"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s6">
+    <div class="sec-head"><span class="sec-no">06</span><h2>읽힘 품질</h2></div>
+    <p class="readout" id="f6"></p>
+    <div class="grid g23">
+      <div class="panel">
+        <div class="panel-head"><div><h3>스크롤 깊이 퍼널</h3><p class="cap">25% 도달을 100으로 둔 상대 비율</p></div>
+          <button class="tbtn" data-table="t-sr" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-scroll"></div>
+        <div class="legend" id="l-scroll"></div>
+        <div class="tw hidden" id="t-sr"></div>
+      </div>
+      <div class="panel">
+        <h3>콘텐츠 타입별 요약</h3><p class="cap">검색 성과와 읽힘을 한자리에</p>
+        <div class="tw" id="t-type"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s7">
+    <div class="sec-head"><span class="sec-no">07</span><h2>콘텐츠 수명</h2></div>
+    <p class="readout" id="f7"></p>
+    <div class="panel">
+      <div class="panel-head"><div><h3>첫 노출 이후 주차별 글당 성과</h3>
+        <p class="cap">인사이트 글 기준. 글마다 첫 노출일을 0주로 맞춰 겹쳤다</p></div>
+        <button class="tbtn" data-table="t-life" aria-pressed="false">표</button></div>
+      <div class="chart" id="c-life"></div>
+      <div class="legend" id="l-life"></div>
+      <div class="tw tall hidden" id="t-life"></div>
+    </div>
+  </section>
+
+  <section id="s8">
+    <div class="sec-head"><span class="sec-no">08</span><h2>검색면 구성</h2></div>
+    <p class="readout" id="f8"></p>
+    <div class="grid g2">
+      <div class="panel">
+        <div class="panel-head"><div><h3>월별 노출</h3><p class="cap">웹 검색, 이미지, Discover</p></div>
+          <button class="tbtn" data-table="t-st" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-stype"></div>
+        <div class="legend" id="l-stype"></div>
+        <div class="tw hidden" id="t-st"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><div><h3>월별 참여 이벤트</h3><p class="cap">본문 안에서 일어난 행동</p></div>
+          <button class="tbtn" data-table="t-me" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-eng"></div>
+        <div class="legend" id="l-eng"></div>
+        <div class="tw hidden" id="t-me"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s9">
+    <div class="sec-head"><span class="sec-no">09</span><h2>최근 28일 증감</h2></div>
+    <p class="readout" id="f9"></p>
+    <div class="grid g2">
+      <div class="panel"><h3>클릭이 늘어난 글</h3><p class="cap">직전 28일 대비</p><div class="tw tall" id="t-up"></div></div>
+      <div class="panel"><h3>클릭이 줄어든 글</h3><p class="cap">직전 28일 대비</p><div class="tw tall" id="t-down"></div></div>
+    </div>
+  </section>
+
+  <section id="s10">
+    <div class="sec-head"><span class="sec-no">10</span><h2>방문 패턴</h2></div>
+    <p class="readout" id="f10"></p>
+    <div class="grid g32">
+      <div class="panel">
+        <div class="panel-head"><div><h3>요일과 시간대별 세션</h3><p class="cap">한국 시간 기준</p></div>
+          <button class="tbtn" data-table="t-hr" aria-pressed="false">표</button></div>
+        <div class="chart" id="c-heat"></div>
+        <div class="legend" id="l-heat"></div>
+        <div class="tw tall hidden" id="t-hr"></div>
+      </div>
+      <div class="panel">
+        <h3>기기와 지역</h3><p class="cap">세션 기준</p>
+        <div class="tw" id="t-dev"></div>
+        <div class="tw" id="t-geo" style="margin-top:12px"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-grid">
+      <div>
+        <h4>데이터 출처</h4>
+        <p>GA4 속성 <code>520024278</code>의 일별 내보내기와 Search Console 대량 내보내기를
+        <code>hong-project2511</code>(asia-northeast3)에서 <code>analytics_dm</code>으로 가공한 값이다.
+        로컬 개발 트래픽은 제외했다.</p>
+      </div>
+      <div>
+        <h4>갱신 주기</h4>
+        <p>예약 쿼리 네 건이 매일 UTC 23:00부터 20분 간격으로 돈다.
+        <code>events</code> → <code>sessions</code> → <code>content_daily</code> →
+        <code>search_content_daily</code> 순서다. GA4 내보내기가 일별뿐이라 D-1이 상한이고,
+        검색면 지표는 Search Console 사후 보정을 반영하려고 최근 10일을 다시 만든다.</p>
+      </div>
+      <div>
+        <h4>읽을 때 주의</h4>
+        <p>검색어는 페이지별 일간 상위 10개만 담아서 합산값이 전체 노출보다 작다.
+        익명 처리된 검색어는 페이지 합계에는 들어가고 검색어 표에는 빠진다.
+        평균 순위는 노출 가중 평균이다.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+const PAYLOAD = {"meta":{"start":"2026-03-03","end":"2026-09-02","days":184,"project":"hong-project2511","dataset":"analytics_dm","site":"digitalmarketer.co.kr","ga4":"520024278"},"daily":[["2026-03-03",45,37,28,32,75,0,0,null],["2026-03-04",51,44,33,40,70,0,0,null],["2026-03-05",41,34,27,27,48,0,0,null],["2026-03-06",52,43,31,38,61,0,0,null],["2026-03-07",34,27,17,24,54,0,0,null],["2026-03-08",35,32,21,28,61,0,0,null],["2026-03-09",75,64,55,55,103,0,0,null],["2026-03-10",99,83,69,69,132,0,0,null],["2026-03-11",44,39,29,35,51,0,0,null],["2026-03-12",63,55,45,49,64,0,0,null],["2026-03-13",59,51,48,45,53,0,0,null],["2026-03-14",27,22,15,21,24,0,0,null],["2026-03-15",34,30,28,27,32,0,0,null],["2026-03-16",72,61,56,54,97,0,0,null],["2026-03-17",79,66,60,61,95,0,0,null],["2026-03-18",78,66,49,62,100,0,0,null],["2026-03-19",30,24,18,14,43,0,0,null],["2026-03-20",20,18,10,13,36,0,0,null],["2026-03-21",8,6,4,3,28,0,0,null],["2026-03-22",18,15,11,14,36,0,0,null],["2026-03-23",15,14,11,7,19,240,5,7.54],["2026-03-24",17,12,13,7,19,193,4,8.97],["2026-03-25",62,50,41,43,196,205,14,7.47],["2026-03-26",46,41,25,35,59,241,15,8.41],["2026-03-27",31,26,22,21,34,177,7,6.79],["2026-03-28",20,17,13,14,61,123,5,5.87],["2026-03-29",15,14,8,12,29,163,3,7.18],["2026-03-30",25,20,15,15,30,252,6,6.77],["2026-03-31",28,24,13,20,28,283,8,6.07],["2026-04-01",39,34,19,28,47,294,7,7.52],["2026-04-02",24,20,15,14,44,298,5,6.54],["2026-04-03",22,17,14,12,19,167,6,6.41],["2026-04-04",12,12,9,11,16,137,4,5.3],["2026-04-05",17,12,9,11,18,813,30,6.26],["2026-04-06",55,49,41,45,81,990,44,6.07],["2026-04-07",78,61,50,59,118,1057,32,6.06],["2026-04-08",73,66,53,55,90,1051,41,5.87],["2026-04-09",78,69,52,59,131,1167,41,5.98],["2026-04-10",70,64,50,58,114,672,22,5.74],["2026-04-11",27,18,19,14,48,682,7,4.99],["2026-04-12",35,30,22,27,69,1268,48,5.17],["2026-04-13",90,77,70,63,112,1298,55,5.65],["2026-04-14",99,88,71,83,130,1709,54,7.01],["2026-04-15",91,75,58,62,89,1587,35,6.4],["2026-04-16",70,59,46,45,99,1243,25,6.38],["2026-04-17",47,45,33,41,64,807,16,6.19],["2026-04-18",43,36,32,31,53,649,18,6.17],["2026-04-19",57,49,35,43,66,2634,105,7.71],["2026-04-20",193,165,138,158,193,2106,73,7.58],["2026-04-21",119,100,93,89,173,1654,77,7.95],["2026-04-22",121,104,86,91,148,1745,101,7.07],["2026-04-23",215,193,157,179,348,1544,68,7.03],["2026-04-24",105,88,68,77,115,907,30,7.24],["2026-04-25",57,45,40,40,58,942,36,7.64],["2026-04-26",56,50,32,42,52,1751,61,7.67],["2026-04-27",137,115,95,98,216,2278,93,7.86],["2026-04-28",179,147,129,129,255,2531,100,7.54],["2026-04-29",155,125,108,100,177,2424,66,7.27],["2026-04-30",116,96,84,85,110,1250,44,8.05],["2026-05-01",59,51,37,45,59,1146,24,7.25],["2026-05-02",41,35,25,30,38,1015,22,7.58],["2026-05-03",43,40,29,33,48,1768,47,7.28],["2026-05-04",94,82,66,69,104,1329,26,7.8],["2026-05-05",68,61,45,50,87,2367,84,7.29],["2026-05-06",250,198,176,170,386,2717,81,7.54],["2026-05-07",136,116,88,95,160,2635,69,7.58],["2026-05-08",114,100,90,85,143,1494,27,7.63],["2026-05-09",73,59,42,56,77,1457,33,7.09],["2026-05-10",69,61,42,55,71,3067,97,7.18],["2026-05-11",192,165,132,143,247,3177,92,7.34],["2026-05-12",163,139,110,116,210,3215,89,7.07],["2026-05-13",166,141,118,114,216,2948,110,6.93],["2026-05-14",295,241,215,204,393,3381,130,7.22],["2026-05-15",228,186,157,156,276,2267,72,6.65],["2026-05-16",109,91,67,82,109,1862,61,6.56],["2026-05-17",124,102,77,89,167,3516,171,6.64],["2026-05-18",327,271,243,239,400,3995,172,6.93],["2026-05-19",261,221,177,193,374,3801,148,6.76],["2026-05-20",260,219,188,191,327,4057,165,6.7],["2026-05-21",260,225,191,199,269,3889,148,6.59],["2026-05-22",204,172,141,144,183,2391,67,7.03],["2026-05-23",76,64,47,61,95,1816,65,6.83],["2026-05-24",89,76,61,66,97,2240,60,6.74],["2026-05-25",104,92,67,79,135,3982,137,6.62],["2026-05-26",264,224,178,193,278,4747,177,6.61],["2026-05-27",254,208,172,172,275,4560,132,6.35],["2026-05-28",222,190,161,156,284,4743,166,6.56],["2026-05-29",252,215,145,187,262,3066,70,6.91],["2026-05-30",95,82,65,71,124,2618,63,6.59],["2026-05-31",121,103,78,89,135,4802,149,6.54],["2026-06-01",247,203,178,174,270,5265,163,6.53],["2026-06-02",269,222,182,190,343,3347,105,6.36],["2026-06-03",142,122,95,109,133,4761,206,5.97],["2026-06-04",350,288,248,262,388,5750,234,6.02],["2026-06-05",301,250,219,216,306,3729,138,5.89],["2026-06-06",180,146,119,136,216,3430,106,6.14],["2026-06-07",150,131,104,111,191,6635,208,6.35],["2026-06-08",356,305,249,272,394,7934,279,6.09],["2026-06-09",405,336,290,295,472,8180,235,6.07],["2026-06-10",375,325,250,286,449,8321,249,5.9],["2026-06-11",369,309,252,275,361,7156,240,5.68],["2026-06-12",355,295,256,270,420,4081,138,5.86],["2026-06-13",168,148,108,135,202,3496,134,5.78],["2026-06-14",200,174,131,153,204,6543,233,5.99],["2026-06-15",420,350,291,306,405,7267,261,6.0],["2026-06-16",376,320,258,275,400,6953,227,5.93],["2026-06-17",376,309,268,269,524,6776,211,6.02],["2026-06-18",308,270,214,225,336,6090,178,6.13],["2026-06-19",274,234,194,192,286,3650,103,6.38],["2026-06-20",128,119,88,105,145,3048,111,6.64],["2026-06-21",166,139,107,123,203,6603,223,6.05],["2026-06-22",367,316,271,275,451,7503,222,6.07],["2026-06-23",358,291,227,254,397,7920,239,5.71],["2026-06-24",386,300,271,257,472,7902,201,6.26],["2026-06-25",312,256,212,216,356,7831,185,6.28],["2026-06-26",274,227,176,194,365,4280,118,5.99],["2026-06-27",170,148,103,131,309,3691,106,5.98],["2026-06-28",166,136,113,118,178,6256,207,6.23],["2026-06-29",401,335,287,286,466,7663,233,6.08],["2026-06-30",329,278,233,229,372,7526,227,5.72],["2026-07-01",365,319,233,269,364,7811,267,5.8],["2026-07-02",470,390,338,337,631,7431,292,5.63],["2026-07-03",389,327,256,276,386,4761,147,5.73],["2026-07-04",182,159,121,139,182,3844,117,6.29],["2026-07-05",205,168,137,153,255,7398,263,5.85],["2026-07-06",493,412,341,353,536,9464,312,6.14],["2026-07-07",467,395,333,342,528,10313,349,5.82],["2026-07-08",512,425,356,370,597,9571,349,5.82],["2026-07-09",550,456,394,397,675,10185,361,5.57],["2026-07-10",543,448,381,387,613,5635,176,6.2],["2026-07-11",212,186,141,170,268,4267,128,6.14],["2026-07-12",214,187,138,157,245,8557,267,5.98],["2026-07-13",558,451,378,406,628,9747,380,5.92],["2026-07-14",559,468,396,409,672,9234,403,5.91],["2026-07-15",707,584,489,515,894,9407,563,5.61],["2026-07-16",841,695,581,618,969,6309,338,5.38],["2026-07-17",422,362,274,321,463,5001,245,5.41],["2026-07-18",410,342,266,274,486,4994,300,5.14],["2026-07-19",594,509,401,452,680,11410,935,5.0],["2026-07-20",1623,1325,1129,1192,2028,14315,1093,5.14],["2026-07-21",1709,1417,1207,1244,1958,15831,1402,5.02],["2026-07-22",1807,1525,1294,1336,2017,14615,1003,5.29],["2026-07-23",1345,1131,981,944,1485,13863,813,5.46],["2026-07-24",1186,978,826,830,1271,8717,474,5.69],["2026-07-25",656,557,427,485,834,8100,433,6.17],["2026-07-26",746,638,512,529,890,18180,1174,6.15],["2026-07-27",1893,1568,1619,1342,1908,24105,1147,7.16],["2026-07-28",1688,1433,1434,1238,1764,19517,1284,5.59],["2026-07-29",1828,1523,1574,1325,1941,19509,1326,5.72],["2026-07-30",1946,1665,1681,1414,2368,19447,1358,5.62],["2026-07-31",2153,1859,1853,1630,2465,14063,914,5.9],["2026-08-01",1942,1729,1634,1604,2191,13935,954,6.23],["2026-08-02",1824,1608,1519,1456,1967,23153,1772,5.69],["2026-08-03",3674,3187,3158,2799,3999,27100,2023,5.75],["2026-08-04",3356,2860,2827,2492,3654,25996,1560,5.86],["2026-08-05",2539,2196,2129,1853,2888,25310,1361,6.09],["2026-08-06",2352,2003,2000,1675,2662,24178,1492,5.72],["2026-08-07",2228,1925,1890,1614,2638,15561,780,5.61],["2026-08-08",1285,1137,1066,1006,1501,18906,746,5.83],["2026-08-09",1153,1031,984,898,1230,32973,1312,5.73],["2026-08-10",2363,2029,2003,1679,2535,38893,1457,5.55],["2026-08-11",2100,1811,1791,1501,2296,33071,1360,5.88],["2026-08-12",2063,1803,1762,1508,2193,33292,1540,5.63],["2026-08-13",2472,2136,2111,1818,2712,33132,1695,5.57],["2026-08-14",2450,2139,2114,1811,2715,24637,1056,5.99],["2026-08-15",1183,1063,993,923,1388,23373,727,6.15],["2026-08-16",1153,1028,979,891,1259,24295,830,6.11],["2026-08-17",1288,1151,1106,993,1344,33080,1657,6.28],["2026-08-18",2517,2197,2191,1865,2714,44763,1784,6.09],["2026-08-19",2362,2057,2044,1744,2565,44763,1578,6.03],["2026-08-20",2276,1973,1979,1648,2672,40602,1466,6.05],["2026-08-21",1970,1693,1673,1422,2239,28029,794,6.48],["2026-08-22",976,880,834,776,1027,22737,587,7.09],["2026-08-23",908,814,775,689,938,36760,1290,6.4],["2026-08-24",2146,1861,1834,1583,2479,42627,1310,6.56],["2026-08-25",1972,1678,1614,1407,2091,42320,1343,6.34],["2026-08-26",2020,1747,1685,1452,2221,44238,1721,5.94],["2026-08-27",2660,2321,2252,1959,2965,45827,1668,6.11],["2026-08-28",2093,1819,1712,1482,2253,29560,892,6.15],["2026-08-29",1070,942,845,807,1134,28299,656,6.47],["2026-08-30",1012,896,826,766,1076,34888,1289,6.14],["2026-08-31",2020,1742,1685,1420,2340,36279,1586,6.14],["2026-09-01",2350,2019,1970,1695,2672,38657,1624,5.92],["2026-09-02",2326,2002,1970,1690,2628,0,0,null]],"channel":[["2026-03-02","AI 어시스턴트",4,1],["2026-03-02","구글 자연검색",171,127],["2026-03-02","기타",15,7],["2026-03-02","기타 자연검색",4,2],["2026-03-02","네이버 자연검색",3,3],["2026-03-02","직접",61,17],["2026-03-09","AI 어시스턴트",2,2],["2026-03-09","구글 자연검색",297,221],["2026-03-09","기타",7,3],["2026-03-09","기타 자연검색",6,6],["2026-03-09","네이버 자연검색",7,6],["2026-03-09","직접",82,51],["2026-03-16","AI 어시스턴트",5,4],["2026-03-16","구글 자연검색",218,160],["2026-03-16","기타",5,1],["2026-03-16","기타 자연검색",8,7],["2026-03-16","네이버 자연검색",16,12],["2026-03-16","직접",53,24],["2026-03-23","구글 자연검색",71,52],["2026-03-23","기타",1,0],["2026-03-23","기타 자연검색",23,16],["2026-03-23","네이버 자연검색",16,15],["2026-03-23","직접",95,50],["2026-03-30","구글 자연검색",60,40],["2026-03-30","기타",2,0],["2026-03-30","기타 자연검색",52,30],["2026-03-30","네이버 자연검색",14,7],["2026-03-30","직접",39,17],["2026-04-06","AI 어시스턴트",9,2],["2026-04-06","구글 자연검색",293,224],["2026-04-06","기타",5,3],["2026-04-06","기타 자연검색",13,10],["2026-04-06","네이버 자연검색",14,9],["2026-04-06","직접",82,39],["2026-04-13","AI 어시스턴트",12,9],["2026-04-13","구글 자연검색",339,251],["2026-04-13","기타",5,2],["2026-04-13","기타 자연검색",25,17],["2026-04-13","네이버 자연검색",45,32],["2026-04-13","직접",71,34],["2026-04-20","AI 어시스턴트",18,11],["2026-04-20","구글 자연검색",600,461],["2026-04-20","기타",5,1],["2026-04-20","기타 자연검색",26,15],["2026-04-20","네이버 자연검색",65,49],["2026-04-20","메신저",2,1],["2026-04-20","직접",150,76],["2026-04-27","AI 어시스턴트",6,5],["2026-04-27","구글 자연검색",543,401],["2026-04-27","기타",4,2],["2026-04-27","기타 자연검색",28,22],["2026-04-27","네이버 자연검색",56,39],["2026-04-27","메신저",3,1],["2026-04-27","직접",90,37],["2026-05-04","AI 어시스턴트",11,8],["2026-05-04","구글 자연검색",511,365],["2026-05-04","기타",7,4],["2026-05-04","기타 자연검색",13,10],["2026-05-04","네이버 자연검색",63,43],["2026-05-04","직접",199,119],["2026-05-11","AI 어시스턴트",11,6],["2026-05-11","구글 자연검색",883,644],["2026-05-11","기타",6,1],["2026-05-11","기타 자연검색",28,22],["2026-05-11","네이버 자연검색",70,55],["2026-05-11","메신저",9,6],["2026-05-11","직접",270,142],["2026-05-18","AI 어시스턴트",10,7],["2026-05-18","구글 자연검색",1234,907],["2026-05-18","기타",8,4],["2026-05-18","기타 자연검색",24,20],["2026-05-18","네이버 자연검색",64,42],["2026-05-18","메신저",5,5],["2026-05-18","직접",132,63],["2026-05-25","AI 어시스턴트",8,5],["2026-05-25","구글 자연검색",1078,757],["2026-05-25","기타",6,3],["2026-05-25","기타 자연검색",38,24],["2026-05-25","네이버 자연검색",33,17],["2026-05-25","직접",149,60],["2026-06-01","AI 어시스턴트",5,4],["2026-06-01","구글 자연검색",1456,1049],["2026-06-01","기타",4,2],["2026-06-01","기타 자연검색",23,18],["2026-06-01","네이버 자연검색",24,18],["2026-06-01","직접",127,54],["2026-06-08","AI 어시스턴트",5,3],["2026-06-08","구글 자연검색",1938,1386],["2026-06-08","기타",7,3],["2026-06-08","기타 자연검색",35,22],["2026-06-08","네이버 자연검색",57,41],["2026-06-08","직접",186,81],["2026-06-15","AI 어시스턴트",7,5],["2026-06-15","구글 자연검색",1722,1229],["2026-06-15","기타",25,11],["2026-06-15","기타 자연검색",42,33],["2026-06-15","네이버 자연검색",81,57],["2026-06-15","메신저",1,1],["2026-06-15","직접",170,84],["2026-06-22","AI 어시스턴트",13,7],["2026-06-22","구글 자연검색",1682,1178],["2026-06-22","기타",14,5],["2026-06-22","기타 자연검색",35,28],["2026-06-22","네이버 자연검색",81,50],["2026-06-22","메신저",2,2],["2026-06-22","직접",206,103],["2026-06-29","AI 어시스턴트",14,7],["2026-06-29","구글 자연검색",2014,1415],["2026-06-29","기타",7,1],["2026-06-29","기타 자연검색",19,17],["2026-06-29","네이버 자연검색",74,62],["2026-06-29","메신저",8,5],["2026-06-29","직접",205,98],["2026-07-06","AI 어시스턴트",23,17],["2026-07-06","구글 자연검색",2549,1840],["2026-07-06","기타",13,6],["2026-07-06","기타 자연검색",31,21],["2026-07-06","네이버 자연검색",91,58],["2026-07-06","메신저",4,4],["2026-07-06","직접",280,138],["2026-07-13","AI 어시스턴트",27,19],["2026-07-13","구글 자연검색",3549,2463],["2026-07-13","기타",10,6],["2026-07-13","기타 자연검색",55,38],["2026-07-13","네이버 자연검색",84,59],["2026-07-13","메신저",12,10],["2026-07-13","직접",354,190],["2026-07-20","AI 어시스턴트",42,27],["2026-07-20","구글 자연검색",8101,5757],["2026-07-20","기타",13,11],["2026-07-20","기타 자연검색",65,49],["2026-07-20","네이버 자연검색",143,94],["2026-07-20","메신저",9,7],["2026-07-20","직접",699,431],["2026-07-27","AI 어시스턴트",68,61],["2026-07-27","구글 자연검색",11478,9890],["2026-07-27","기타",51,40],["2026-07-27","기타 자연검색",69,58],["2026-07-27","네이버 자연검색",139,127],["2026-07-27","메신저",36,29],["2026-07-27","직접",1433,1109],["2026-08-03","AI 어시스턴트",113,101],["2026-08-03","구글 자연검색",13970,11998],["2026-08-03","기타",63,29],["2026-08-03","기타 자연검색",75,66],["2026-08-03","네이버 자연검색",252,226],["2026-08-03","메신저",20,12],["2026-08-03","직접",2094,1622],["2026-08-10","AI 어시스턴트",98,92],["2026-08-10","구글 자연검색",12120,10428],["2026-08-10","기타",29,19],["2026-08-10","기타 자연검색",90,83],["2026-08-10","네이버 자연검색",404,377],["2026-08-10","메신저",29,21],["2026-08-10","직접",1014,733],["2026-08-17","AI 어시스턴트",100,83],["2026-08-17","구글 자연검색",10866,9505],["2026-08-17","기타",35,24],["2026-08-17","기타 자연검색",96,83],["2026-08-17","네이버 자연검색",455,417],["2026-08-17","메신저",14,11],["2026-08-17","직접",731,479],["2026-08-24","AI 어시스턴트",124,112],["2026-08-24","구글 자연검색",11285,9587],["2026-08-24","기타",97,61],["2026-08-24","기타 자연검색",115,97],["2026-08-24","네이버 자연검색",422,372],["2026-08-24","메신저",28,18],["2026-08-24","직접",902,521],["2026-08-31","AI 어시스턴트",36,31],["2026-08-31","구글 자연검색",5928,5037],["2026-08-31","기타",31,21],["2026-08-31","기타 자연검색",41,40],["2026-08-31","네이버 자연검색",223,195],["2026-08-31","메신저",19,16],["2026-08-31","직접",418,285]],"channelOrder":["구글 자연검색","직접","네이버 자연검색","기타 자연검색","AI 어시스턴트","메신저","기타"],"content":[["insight","grok-usage-guide","그록(Grok) 사용법: 무료 시작 방법과 요금제 정리",238877,2184,0.0091,6.27,2500,2478,2415,4,2,2182,2109,176,0.0835,33.6,0,4,13,29,"2026-08-05",0,0],["insight","orca-ide-easy-guide","클로드코드와 Codex 사용자를 위한 Orca 사용법 총정리",115088,10747,0.0934,4.44,14235,15614,14715,49,23,12204,7828,852,0.1088,46.5,3,26,300,51,"2026-07-14",0,0],["insight","codex-cli-windows-easy-setup-guide","쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(윈도우)",98104,6932,0.0707,4.6,8730,9327,8432,25,17,6980,2581,166,0.0643,24.6,1,0,64,113,"2026-05-13",0,0],["insight","claude-cowork-what-you-can-do","클로드 코워크로 할 수 있는 것 - 총 정리",73497,3371,0.0459,7.4,4935,5318,4719,247,33,4028,989,128,0.1294,50.9,0,0,137,184,"2026-03-03",0,0],["class","claude-model-family","Claude 모델 패밀리 (Opus, Sonnet, Haiku) 비교하기",61088,896,0.0147,4.9,1509,1546,1129,288,8,1251,672,44,0.0655,48.0,0,0,57,125,"2026-05-01",0,0],["insight","localhost-vibe-coding-beginner-guide","로컬호스트(localhost) 뜻과 배포된 웹의 차이, NPM, NPX, 터미널까지 한 번에 정리",57860,308,0.0053,4.76,381,396,365,4,0,296,88,6,0.0682,51.3,0,0,8,134,"2026-04-22",0,0],["class","claude-plans-comparison","클로드 플랜 비교 (Free, Pro, Max) 고르기",57296,1278,0.0223,6.55,1897,1888,1474,304,25,1658,1566,150,0.0958,48.5,0,0,33,39,"2026-07-26",0,0],["insight","gpt-5-6-sol-terra-luna-comparison","GPT-5.6 Sol, Terra, Luna 차이와 가격 비교",52112,1335,0.0256,5.79,1963,1982,1783,7,17,1709,1639,122,0.0744,49.7,0,1,28,35,"2026-07-30",6027,269],["class","claude-code-plans-and-limits","클로드 코드 플랜과 사용량 한도 이해하기",35483,1579,0.0445,6.0,2425,2471,1961,450,17,2267,2086,168,0.0805,53.9,0,0,20,39,"2026-07-26",0,0],["class","what-is-anthropic","초보자를 위한 Anthropic (앤트로픽) 이해하기",33553,131,0.0039,7.69,269,183,152,9,4,135,69,17,0.2464,56.8,0,0,33,103,"2026-04-28",0,0],["insight","gemini-spark-guide","제미나이 스파크(Gemini Spark) 사용법과 제미나이 모델의 장점",30920,3953,0.1278,4.84,8034,8219,6626,4,114,6925,5907,644,0.109,59.9,3,15,61,34,"2026-07-31",43114,2311],["insight","claude-opus-5-update-and-usage","Claude Opus 5 업데이트 방법과 사용법 정리",30461,1442,0.0473,6.76,1791,1919,1805,3,4,1621,1356,157,0.1158,32.7,1,0,36,40,"2026-07-25",0,0],["insight","cli-meaning-claude-code-guide","CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?",30147,476,0.0158,6.25,1132,1123,960,103,5,808,245,35,0.1429,46.9,0,0,17,175,"2026-03-11",0,0],["insight","claude-code-mac-easy-setup-guide","쉽게 설치하는 클로드코드 세팅가이드(맥)",30065,2828,0.0941,5.01,3728,4102,3820,51,10,3019,982,84,0.0855,34.5,0,0,37,118,"2026-05-08",0,0],["insight","claude-design-launch-review","클로드 디자인 사용법 정리: 시작하는 법, 디자인 시스템, 내보내기",28056,273,0.0097,7.59,477,455,375,2,9,354,154,21,0.1364,41.6,2,0,14,138,"2026-04-18",0,0],["insight","naver-search-ad-api-data-for-non-developers","비개발자도 쓰기 편하게 정리한 네이버 검색광고 API 데이터",21877,386,0.0176,6.92,671,701,548,5,27,517,178,57,0.3202,29.6,0,0,15,153,"2026-03-03",0,0],["insight","codex-cli-mac-easy-setup-guide","쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(맥)",21818,1390,0.0637,4.99,1826,1912,1814,18,0,1409,543,27,0.0497,25.7,0,0,8,113,"2026-05-13",0,0],["insight","claude-code-install-errors","클로드코드(Claude Code) 설치 시 발생하는 오류와 해결법 정리",20725,754,0.0364,6.28,868,869,821,3,0,736,613,30,0.0489,24.8,0,0,8,44,"2026-07-21",0,0],["insight","claude-code-pro-plan-fact-check","정말 클로드 코드를 Pro플랜에서 쓸 수 없을까요?",17186,470,0.0273,7.22,614,616,564,3,3,484,31,0,0.0,40.7,0,0,9,134,"2026-04-22",0,0],["insight","claude-code-ultraplan-auto-bypass-mode","Ultraplan, Auto 모드, bypass 모드의 차이와 사용 맥락을 정리했습니다",16542,604,0.0365,5.61,758,815,736,25,2,608,162,9,0.0556,28.1,0,0,11,134,"2026-04-22",0,0],["insight","gemini-notebook-guide","제미나이 노트북(Gemini Notebook) 사용법: PDF와 문서 정리하기",16495,151,0.0092,8.0,275,282,193,0,7,185,165,23,0.1394,44.5,0,0,0,16,"2026-08-18",0,0],["insight","claude-cowork-5-ai-tasks-for-beginners","클로드 코워크로 해야 할 5가지 AI 작업",15935,620,0.0389,5.95,910,853,745,16,7,649,123,35,0.2846,33.9,0,0,25,138,"2026-04-18",0,0],["insight","gpt-5-6-luna-price-cut","GPT-5.6 Luna 파격적인 가격 공개와 GPT의 역습",15593,853,0.0547,5.25,1144,1157,1028,2,2,981,836,81,0.0969,42.9,0,4,7,35,"2026-07-30",0,0],["insight","minimax-h3-overview","미니맥스 H3 정리: 스펙, 요금, 한국 제외 라이선스 쟁점",15401,1050,0.0682,4.6,1226,1234,1194,1,4,1101,1034,66,0.0638,45.3,1,0,4,23,"2026-08-11",797,24],["insight","harness-engineering-beginner-guide","하네스 엔지니어링 입문 가이드: AI 에이전트 시대에 사람이 하는 일",14352,603,0.042,6.81,982,1047,851,1,16,682,153,21,0.1373,53.0,0,0,34,143,"2026-04-13",0,0],["insight","claude-code-windows-easy-setup-guide","쉽게 설치하는 클로드 코드(Claude Code) 설치 가이드 (윈도우)",13591,719,0.0529,5.78,1259,1190,991,67,3,884,410,29,0.0707,38.8,0,0,21,118,"2026-05-08",0,0],["insight","paseo-coding-agent-orchestrator","클로드 코드 모바일로 이어서 쓰는 방법: Paseo 설치와 사용법",13423,731,0.0545,5.49,1038,1066,972,15,1,903,830,99,0.1193,50.3,1,1,15,27,"2026-08-07",0,0],["insight","claude-cowork-vs-code-comparison","클로드 코워크 vs 클로드 코드 비슷해보이지만 어떻게 다른지 정리했습니다.",12962,1167,0.09,4.85,1610,1725,1525,88,0,1446,995,74,0.0744,60.1,0,2,19,142,"2026-03-09",0,0],["class","what-is-claude-code","Claude Code (CLI 코딩 에이전트) 이해하기",12091,96,0.0079,8.27,681,326,220,57,3,229,177,30,0.1695,44.7,0,1,55,119,"2026-04-28",0,0],["insight","qwen3-8-27b-local-mac","Qwen3.8 27B 로컬 실행 결과: 24GB 맥에서는 CPU로 떨어집니다",12047,1136,0.0943,5.45,1406,1367,1269,2,5,1218,1101,81,0.0736,57.5,1,1,11,18,"2026-08-16",0,0],["insight","youtube-ypp-2027-threshold-change","유튜브 수익창출 조건 변경 정리: 2027년 2월부터 2배 상향",12025,873,0.0726,4.48,1209,1189,1056,0,23,1012,909,44,0.0484,50.5,0,0,2,23,"2026-08-11",0,0],["insight","tmux-cmux-basics","AI 사용자를 위한 tmux, cmux 사용법과 차이 쉽게 알아보기",11717,330,0.0282,6.0,465,468,439,8,3,389,295,32,0.1085,43.8,0,0,12,45,"2026-07-20",0,0],["insight","qwen3-8-max-guide","Qwen3.8-Max 정리: 사양, 가격, 자율작업 성적, 오픈웨이트 공개 상태 (2026년 8월 기준)",11119,616,0.0554,5.04,762,734,673,2,1,658,581,73,0.1256,53.2,1,0,13,31,"2026-08-03",0,0],["insight","why-markdown-matters-in-ai-era","AI시대에 마크다운이 중요한 이유: md파일은 뭘까요",10797,388,0.0359,5.14,535,569,507,0,5,487,358,42,0.1173,53.8,1,1,12,84,"2026-03-03",0,0],["insight","openai-astra-model-comparison","OpenAI의 야심작, 아스트라(Astra) 얼마나 뛰어난 걸까? 다른 모델과의 비교",10640,900,0.0846,5.1,2497,2431,1885,0,3,2057,1816,122,0.0672,47.6,1,2,18,32,"2026-08-02",19040,1291],["insight","install-claude-code-vscode-windows","VS Code 클로드 코드 확장 연동하기: 윈도우 사용자를 위한 안내",10512,443,0.0421,6.59,671,646,592,2,6,515,401,32,0.0798,41.2,0,0,7,51,"2026-07-14",0,0],["insight","claude-code-practical-guide","Claude Code 실전 가이드: 설치부터 첫 프로젝트까지",9766,252,0.0258,7.05,476,449,307,10,6,308,96,11,0.1146,34.3,0,0,9,163,"2026-03-24",0,0],["insight","aside-browser-review","Aside 브라우저 사용 후기: 한국인 창업팀이 만든 AI 에이전트 브라우저",9453,664,0.0702,5.9,959,972,912,8,5,819,705,60,0.0851,58.2,0,0,1,15,"2026-08-19",0,0],["insight","orca-vs-vscode","VS Code와 비슷하지만 다른 Orca 사용법",9385,914,0.0974,5.32,1301,1235,1165,14,8,1037,858,126,0.1469,38.7,0,0,36,44,"2026-07-21",0,0],["class","what-is-cac","CAC (Customer Acquisition Cost)",9002,52,0.0058,5.19,90,83,70,1,1,67,37,9,0.2432,55.7,0,0,11,140,"2026-03-03",0,0],["insight","kimi-k3-fable5-gpt56-sol-comparison","Kimi K3, Claude Fable 5, GPT-5.6 Sol 비교: 모델별 장점 정리",8438,958,0.1135,5.11,1223,1201,1168,0,1,1017,542,48,0.0886,53.7,1,4,29,45,"2026-07-20",0,0],["insight","ox-alpha-stealth-model-zai-glm","Ox Alpha 정체와 GLM-5.3-Flash 스펙 정리",8343,1000,0.1199,4.83,1226,1234,1134,0,2,1055,862,70,0.0812,60.5,1,0,18,8,"2026-08-26",151,14],["class","what-are-claude-projects","Claude Projects 활용하기",8332,848,0.1018,5.11,1437,1393,1057,29,30,1069,806,61,0.0757,33.3,0,0,38,105,"2026-05-06",0,0],["insight","gemini-cli-install-guide","제미나이 CLI 설치와 사용법: 하루 1,000회 무료 한도와 Gemini 4 준비 상황",8302,494,0.0595,5.78,648,673,639,4,1,595,480,42,0.0875,45.6,0,0,7,33,"2026-08-01",0,0],["insight","meta-ads-api-data-for-non-developers","비개발자도 쓰기 편하게 정리한 Meta Ads API 데이터",8234,558,0.0678,4.85,853,906,783,2,14,680,267,44,0.1648,35.9,1,0,17,120,"2026-03-03",0,0],["class","context-window-explained","컨텍스트 윈도우 (Context Window) 들여다보기",7928,152,0.0192,6.48,299,232,192,18,2,186,140,16,0.1143,45.2,0,0,14,103,"2026-05-23",0,0],["insight","claude-code-blog-building-easy-version","Claude Code로 블로그 만들기, 쉽게 풀어쓴 버전",7690,621,0.0808,6.31,881,818,746,5,12,660,231,42,0.1818,37.1,0,0,23,158,"2026-03-25",0,0],["insight","grok-4-6-release-benchmark-pricing","Grok 4.6 벤치마크 점수와 가격 구간 정리",6988,464,0.0664,5.88,579,569,548,0,1,506,467,46,0.0985,55.5,0,0,4,22,"2026-08-12",0,0],["insight","claude-text-watermark-detection-limits","클로드 텍스트 워터마크 적용 범위와 탐지 한계 정리",6895,493,0.0715,6.08,634,622,553,7,1,540,517,27,0.0522,75.8,1,0,0,21,"2026-08-13",0,0],["class","claude-cowork-overview","Claude Cowork (작업 자동화, Dispatch) 활용하기",6680,198,0.0296,8.65,399,336,215,65,7,255,158,20,0.1266,40.4,0,0,19,125,"2026-04-28",0,0],["insight","katago-vs-alphago","신진서 9단이 이긴 AI 카타고, 알파고와 어떻게 다른가?",6663,503,0.0755,5.52,589,569,533,2,5,428,145,14,0.0966,69.2,0,0,4,44,"2026-07-21",0,0],["insight","upstage-solar-open-2-solar-pro-4","업스테이지 Solar Open 2, Solar Pro 4 정리: 벤치마크와 클로드 코드 연동",6431,289,0.0449,5.78,393,403,380,0,7,368,292,22,0.0753,50.8,1,0,4,28,"2026-08-06",0,0],["class","what-are-subagents","서브에이전트 (Subagents) 알아보기",5737,114,0.0199,6.14,297,202,169,0,1,147,79,11,0.1392,36.3,0,0,28,124,"2026-05-02",0,0],["class","what-is-hallucination","환각 (Hallucination) 알아보기",5391,16,0.003,9.04,121,40,22,2,5,29,16,8,0.5,54.0,0,0,22,116,"2026-05-05",0,0],["insight","ai-graph-engineering","쉽게 이해하는 AI 그래프 엔지니어링",5345,944,0.1766,2.81,1492,1485,1245,1,2,1236,1054,133,0.1262,40.9,0,1,57,44,"2026-07-21",0,0],["insight","gemini-3-7-flash-gpt-5-6-ultrafast","제미나이 3.7 플래시와 GPT-5.6 울트라패스트, AI 속도 발표 4건 정리",5227,251,0.048,6.96,324,299,287,0,1,257,240,25,0.1042,56.6,0,0,5,21,"2026-08-13",0,0],["insight","vscode-claude-code-terminal-guide","VS Code에서 클로드 코드 실행하기 (윈도우 화면 그대로 따라하기)",4943,299,0.0605,6.69,393,357,344,1,0,323,327,57,0.1743,34.3,0,0,2,22,"2026-08-12",0,0],["insight","conversion-and-conversion-campaign","전환(Conversion)과 전환 캠페인 완전 정리",4736,37,0.0078,8.29,101,61,57,0,0,44,14,1,0.0714,23.6,0,0,3,171,"2026-03-10",0,0],["insight","tailscale-ssh-remote-access-guide","테일스케일 SSH 설정 방법: 키 배포, 접근 제어, 지원 환경 정리",4711,91,0.0193,7.17,119,115,103,7,1,98,89,12,0.1348,49.8,0,0,3,27,"2026-08-07",0,0],["class","what-is-roi","ROI (Return On Investment) 이해하기",4523,17,0.0038,10.12,81,64,24,38,1,48,29,3,0.1034,62.4,0,0,7,140,"2026-03-17",0,0],["insight","deepseek-v4-flash-guide","딥시크 V4 정리: 플래시와 프로 차이, 가격, 코덱스 지원",4387,223,0.0508,5.55,299,295,286,0,0,250,243,20,0.0823,42.0,0,0,5,31,"2026-08-03",0,0],["class","what-is-conversion","전환 (Conversion)",4140,6,0.0014,6.83,23,10,7,1,0,8,5,2,0.4,53.6,0,0,5,49,"2026-03-19",0,0],["insight","install-claude-code-vscode-mac","VS Code 클로드 코드 확장 연동하기: 맥 사용자를 위한 안내",4119,114,0.0277,7.95,197,138,117,3,4,118,106,10,0.0943,33.3,0,0,1,51,"2026-07-14",0,0],["insight","qwen3-8-flash-next-qwen4-architecture","Qwen3.8-Flash-Next 정리: Qwen4 구조를 먼저 공개한 125B 모델",3985,154,0.0386,6.01,204,196,185,0,0,176,136,19,0.1397,45.3,0,0,4,8,"2026-08-26",0,0],["class","claude-code-installation-basics","Claude Code 설치 첫걸음 (터미널 입문 포함) 따라하기",3973,144,0.0362,6.48,576,434,200,137,7,345,161,20,0.1242,35.1,0,1,29,128,"2026-04-28",0,0],["insight","gemini-omni-guide","구글 옴니(Gemini Omni) 장점과 사용법, 다른 모델과 어떤 점이 다를까요?",3904,103,0.0264,6.82,136,143,134,1,1,127,119,17,0.1429,40.8,0,0,2,32,"2026-08-02",0,0],["insight","loop-engineering-guide","2026년 AI시대의 루프 엔지니어링 잘 쓰는 법",3763,195,0.0518,7.19,393,358,310,0,0,263,207,36,0.1739,46.0,0,0,25,45,"2026-07-20",0,0],["insight","deepseek-v4-pro-release-1m-context","딥시크 V4 프로 정식 출시와 100만 토큰 컨텍스트 가격 정리",3701,214,0.0578,5.51,714,700,547,0,2,603,486,24,0.0494,54.8,0,0,5,22,"2026-08-12",4058,331],["insight","meta-campaign-effective-settings-2026","2026 메타 캠페인, 효과 좋은 최근 운영 세팅 전략",3674,83,0.0226,7.26,220,220,146,0,17,140,74,14,0.1892,42.9,0,1,4,146,"2026-04-10",0,0],["insight","claude-free-plan-guide","클로드 무료로 어디까지 되나: 실제로 해볼 수 있는 일 정리",3617,118,0.0326,6.67,151,140,132,1,2,131,111,8,0.0721,48.3,0,0,1,31,"2026-08-03",0,0],["class","claude-code-plan-mode","Plan Mode (실행 전 검토 단계) 활용하기",3540,83,0.0234,6.68,162,123,112,0,0,101,75,5,0.0667,29.8,0,0,13,85,"2026-05-13",0,0],["insight","openclaw-warning","오픈클로(OpenClaw) 설치 전에 꼭 알아야 할 위험한 진실",3447,116,0.0337,6.98,166,153,135,0,1,126,31,3,0.0968,55.4,0,0,2,145,"2026-03-09",0,0],["insight","retargeting-setup-guide-meta-google","리타게팅 완벽 가이드 2026 | Meta, Google 실전 세팅 튜토리얼",3446,90,0.0261,9.67,140,134,113,0,6,102,45,12,0.2667,27.9,0,0,4,146,"2026-04-10",0,0],["insight","google-ai-studio-guide","Google AI Studio 사용법: Gemini로 앱과 웹 만들기",3395,48,0.0141,6.85,78,76,70,0,2,65,54,4,0.0741,39.0,0,0,1,15,"2026-08-17",0,0],["insight","geo-marketing-start-guide","GEO 최적화 하는 법: 가장 먼저 할 일과 순서 정리",3370,113,0.0335,8.23,288,263,181,0,11,208,178,33,0.1854,52.9,1,0,12,30,"2026-08-04",0,0],["insight","claude-fable-5-mythos-5-update-claude-code","클로드 미토스 업데이트 핵심 요약 및 설치방법",3275,159,0.0485,6.81,259,215,211,0,0,164,47,13,0.2766,39.0,0,0,7,85,"2026-06-10",0,0],["insight","facebook-ad-account-disabled-guide","메타 광고 계정 비활성화됐을 때: 확인 순서와 하지 말아야 할 것",3249,191,0.0588,6.23,326,309,231,0,9,255,192,11,0.0573,56.5,0,0,4,46,"2026-07-19",0,0],["insight","genspark-secondbrain-omi-plaud-comparison","플라우드 노트, 젠스파크 세컨드브레인 노트, Omi 비교: 사양과 요금제 정리",3159,263,0.0833,7.14,492,485,351,113,4,436,416,48,0.1154,113.6,1,0,6,27,"2026-08-07",0,0],["class","claude-for-marketers","마케터를 위한 Claude 활용하기",3147,362,0.115,5.95,608,602,462,76,4,483,196,32,0.1633,34.4,0,0,17,114,"2026-04-28",0,0],["class","what-is-claude","입문자를 위한 Claude (앤트로픽 AI 어시스턴트) 이해하기",2981,54,0.0181,8.36,380,150,109,12,4,112,74,29,0.3919,68.9,0,0,43,89,"2026-04-28",0,0],["insight","chatgpt-desktop-linux-preview","챗GPT 리눅스 데스크톱 앱 프리뷰 정리: 설치 패키지와 지원 기능",2803,129,0.046,6.94,175,169,154,1,0,143,137,14,0.1022,23.9,1,0,1,23,"2026-08-11",0,0],["insight","chatgpt-luna-free-unlimited-ads","챗GPT 무료로 어디까지 되는지, 무제한 개방의 정확한 범위",2767,44,0.0159,7.14,63,54,47,0,1,47,48,3,0.0625,27.5,0,0,0,23,"2026-08-11",0,0],["insight","ai-hallucination-cases-and-rates","할루시네이션 뜻과 실제 사례: 모델별 환각률 데이터로 확인하기",2696,78,0.0289,6.93,124,107,92,0,0,85,91,7,0.0769,47.5,0,1,3,31,"2026-08-03",0,0],["insight","claude-code-codex-usage-limit-race","클로드 코드 주간 한도 50% 상향, 8월 31일 종료 예정과 코덱스 한도 경쟁",2611,287,0.1099,4.91,390,367,349,4,0,325,263,22,0.0837,70.2,2,0,2,7,"2026-08-27",0,0],["insight","meta-muse-code-vs-claude-code","메타 Muse Code 정리: 기능, 벤치마크, 클로드 코드와의 차이",2522,356,0.1412,5.36,400,392,377,0,2,350,333,31,0.0931,55.5,2,2,4,29,"2026-08-05",0,0],["insight","ontology-concept-for-ai-era","AI시대 일반인을 위한 온톨로지 설명회",2372,65,0.0274,6.54,311,272,182,3,7,129,48,21,0.4375,41.6,0,4,10,112,"2026-05-13",0,0],["class","what-are-claude-skills","Claude Skills (재사용 가능한 작업 단위) 활용하기",2253,51,0.0226,9.73,209,100,89,3,2,86,87,12,0.1379,34.2,0,0,25,113,"2026-05-01",0,0],["insight","mcp-easy-guide-for-non-developers","MCP란? 비전문가를 위한 MCP 쉽게 이해하기",2243,120,0.0535,6.08,287,284,165,1,1,203,73,14,0.1918,49.6,0,0,10,168,"2026-03-05",0,0],["insight","pmax-indirect-targeting-strategy","타겟팅에 제한이 많은 구글 Pmax, 100% 활용 전략",2214,79,0.0357,6.34,109,124,105,0,1,90,25,1,0.04,31.5,0,0,0,110,"2026-05-11",0,0],["insight","sovereign-ai-foundation-model-2nd-evaluation","독자 AI 파운데이션 모델(독파모) 2차 평가 결과, 근황 및 통과 3팀 정리",2194,42,0.0191,5.3,107,87,53,0,6,65,60,6,0.1,44.2,0,0,1,16,"2026-08-18",0,0],["class","what-is-web-crawling","웹 크롤링 (Web Crawling)",2144,30,0.014,10.39,116,75,50,17,0,57,29,8,0.2759,61.7,1,0,9,88,"2026-03-05",0,0],["insight","codex-cli-vs-claude-code","코덱스 CLI와 클로드 코드 비교 (같은 도구를 만들게 해 봤습니다)",2105,145,0.0689,7.79,251,188,184,0,0,161,168,23,0.1369,81.5,0,0,6,18,"2026-08-16",0,0],["insight","openai-daybreak-gpt-5-6-cyber","OpenAI 사이버보안 이니셔티브 Daybreak 확장과 GPT-5.6-Cyber 공개 정리",2087,110,0.0527,5.97,141,147,141,0,0,124,118,7,0.0593,37.0,0,0,0,23,"2026-08-11",0,0],["insight","aeo-geo-practical-setting-case","실제 적용 사례로 알아보는 AEO 잘하는 법",2062,128,0.0621,6.1,441,422,197,0,5,274,48,4,0.0833,42.4,0,0,3,135,"2026-04-21",0,0],["course","claude-fundamentals","AI Fluency 4D 프레임워크 (Delegation, Description, Discernment, Diligence) 알아보기",2040,52,0.0255,7.49,736,198,80,74,2,167,176,90,0.5114,48.3,1,0,1,72,"2026-05-05",0,0],["class","what-is-ctr","전환 (Conversion)",2010,10,0.005,6.61,40,19,17,0,0,16,11,0,0.0,74.5,0,0,6,67,"2026-03-16",0,0],["insight","genspark-genoffice-guide","젠스파크가 공개한 무료 AI 오피스 GenOffice 정리",1994,271,0.1359,3.69,417,399,325,31,3,359,331,59,0.1782,44.8,1,0,6,30,"2026-08-04",0,0],["insight","html-in-canvas-api","HTML in Canvas API가 바꾸는 웹사이트 화면의 구조",1985,289,0.1456,7.01,363,349,330,0,0,303,305,34,0.1115,43.7,0,0,4,15,"2026-08-19",0,0],["class","what-is-active-user","활성 사용자 (DAU, WAU, MAU)",1919,6,0.0031,7.05,12,11,8,3,0,8,9,1,0.1111,18.5,0,0,0,21,"2026-08-13",0,0],["class","what-is-cvr","ROAS (Return On Ad Spend)",1896,2,0.0011,7.71,47,38,1,36,0,27,12,1,0.0833,43.4,0,0,6,70,"2026-03-20",0,0],["class","claude-vs-other-llms","Claude vs ChatGPT vs Gemini 비교하기",1886,32,0.017,8.35,107,53,40,0,1,45,40,10,0.25,59.8,0,0,18,67,"2026-06-02",0,0],["insight","claude-code-eta-statusline","클로드 코드 상태 표시줄에 작업 진행률과 남은 시간 표시하기",1865,89,0.0477,6.65,137,109,104,0,0,94,93,12,0.129,30.8,0,0,3,28,"2026-08-06",0,0],["insight","what-is-oauth2-beginner-guide","초보자를 위한 OAuth 2.0 이해하기",1856,41,0.0221,8.81,68,60,49,0,0,48,17,3,0.1765,73.5,0,0,1,114,"2026-03-06",0,0],["class","what-is-retention","리텐션 (Retention)",1810,13,0.0072,10.54,23,19,19,0,0,17,18,1,0.0556,26.9,0,0,1,22,"2026-08-12",0,0],["insight","ga4-direct-none-traffic-guide","GA4 direct/none 트래픽, 왜 이렇게 많을까? 원인 8가지와 줄이는 법",1752,57,0.0325,8.03,92,90,75,0,7,69,22,2,0.0909,47.2,1,0,0,160,"2026-03-09",0,0],["insight","meta-mcp-vs-meta-cli-comparison","Meta MCP와 Meta CLI 차이: 가벼운 쪽과 무거운 쪽 정리",1678,44,0.0262,12.92,78,57,52,0,1,45,41,12,0.2927,61.0,0,0,2,28,"2026-08-05",0,0],["insight","ax-meaning-cases-organizational-bottleneck","AX 뜻과 DX 차이: 조직 AX가 도구 도입에서 멈추는 이유",1675,14,0.0084,10.32,65,37,28,0,0,29,21,11,0.5238,51.3,0,0,2,32,"2026-08-01",0,0],["insight","meta-mcp-ads-automation-guide","META MCP란? Meta MCP로 광고 리포트와 세팅 자동화하기",1595,278,0.1743,3.69,445,474,397,8,1,397,327,32,0.0979,37.1,7,1,11,33,"2026-08-01",0,0],["insight","grok-bot-features-and-risks","그록봇 기능과 요금제, 도입 전 확인할 보안 조건",1560,28,0.0179,7.54,59,52,45,6,0,42,36,4,0.1111,47.5,0,0,0,12,"2026-08-22",0,0],["insight","claude-work-use-cases-and-projects","클로드 업무 활용 사례 4가지와 프로젝트 설정법 정리",1525,179,0.1174,5.75,285,231,223,0,0,202,197,41,0.2081,36.5,0,0,15,32,"2026-08-02",0,0],["insight","meta-attribution-window-guide","클릭 후 7일, 조회 후 1일? 메타 전환 추적의 진짜 의미를 알고 계신가요",1515,41,0.0271,5.85,78,64,51,1,4,53,21,1,0.0476,43.4,0,0,9,113,"2026-03-10",0,0],["insight","non-developer-chrome-extension-deployment-guide","비개발자의 크롬 확장 프로그램 배포기록 A to Z",1435,55,0.0383,8.1,99,94,87,0,0,71,9,2,0.2222,33.7,0,0,0,172,"2026-03-03",0,0],["insight","gtm-debugging-practical-guide","GTM 디버깅 실전 가이드: 태그가 안 찍힐 때 원인 찾는 법",1372,52,0.0379,6.13,61,69,65,2,0,50,13,1,0.0769,29.9,0,0,0,141,"2026-03-23",0,0],["insight","data-visualization-best-practices","데이터 시각화 베스트 프랙티스: 2026년 실무 가이드",1328,27,0.0203,8.16,152,157,41,2,8,37,14,1,0.0714,8.3,0,0,2,114,"2026-03-19",0,0],["insight","claude-sonnet-5-price-permanent","클로드 소네트 5 API 가격 정리: 2달러 확정과 실제 비용 계산",1312,33,0.0252,4.84,47,41,29,2,0,37,31,3,0.0968,37.6,0,0,1,22,"2026-08-12",0,0],["insight","vibe-coding-vs-ai-agent-difference","바이브코딩 vs AI 에이전트 다른점 알아보기",1296,72,0.0556,5.93,228,150,105,1,2,104,79,10,0.1266,86.1,1,0,2,103,"2026-03-07",0,0],["insight","claude-code-blog-building-full-process","Claude Code로 무한동력 블로그를 만들고 운영하는 전 과정 정리",1280,66,0.0516,7.97,267,188,105,3,9,123,49,13,0.2653,37.8,0,0,6,155,"2026-03-25",0,0],["class","what-is-sycophancy","모델 아부 (Sycophancy) 알아보기",1268,10,0.0079,5.51,92,27,19,5,0,20,18,4,0.2222,59.2,0,0,19,89,"2026-05-05",0,0],["class","what-is-extended-thinking","Extended Thinking (확장 추론 모드) 알아보기",1225,54,0.0441,4.93,111,69,62,0,0,56,39,1,0.0256,36.2,0,0,12,87,"2026-06-08",0,0],["insight","meta-muse-glimmer-local-agent","메타 뮤즈 글리머 로컬 실행 조건과 벤치마크 정리",1222,116,0.0949,6.36,176,165,158,0,0,137,132,17,0.1288,68.2,0,0,3,21,"2026-08-13",0,0],["insight","google-naver-mau-first-reversal","구글 네이버 앱 MAU 역전 정리: 2026년 7월 데이터와 마케터 시사점",1180,20,0.0169,4.86,37,33,25,1,5,29,25,3,0.12,38.4,0,0,0,22,"2026-08-12",0,0],["class","what-is-ltv","LTV (Lifetime Value)",1148,5,0.0044,10.35,29,14,10,1,0,10,10,2,0.2,90.5,0,0,7,47,"2026-03-21",0,0],["insight","claude-max-codex-pro-20x-comparison","클로드 맥스 5시간 한도와 주간 한도, 코덱스 20x와 다른 점",1134,108,0.0952,7.44,146,150,148,0,0,137,117,13,0.1111,50.1,0,0,1,3,"2026-08-31",0,0],["insight","ai-video-generator-recommendation-2026","클링 AI와 Veo 3.1 비교: 초당 단가 7.5배 차이를 실제 영상으로 확인",1077,49,0.0455,6.31,78,70,62,0,1,61,49,7,0.1429,47.5,0,0,0,33,"2026-08-01",1150,10],["insight","react-spa-gtm-setup-guide","React SPA에서 GTM 설치하기 | 페이지뷰 추적 완벽 가이드",1066,42,0.0394,14.71,72,78,72,2,0,53,6,2,0.3333,30.6,0,0,0,155,"2026-03-03",0,0],["insight","claude-cowork-built-in-browser","클로드 코워크 내장 브라우저 출시, Aside와 같은 작업 실행 비교",1033,90,0.0871,7.52,144,127,123,2,0,114,101,12,0.1188,53.7,0,1,2,7,"2026-08-27",0,0],["class","what-is-cpc","CTR (Click-Through Rate)",1029,2,0.0019,7.22,36,15,4,7,0,12,5,1,0.2,80.1,0,0,13,51,"2026-03-16",0,0],["insight","zero-click-marketing-strategy","제로클릭 시대의 마케팅 전략: 클릭 없이 성과를 만드는 법",1020,16,0.0157,6.05,78,39,19,0,8,25,9,5,0.5556,43.0,2,5,4,116,"2026-03-08",0,0],["insight","coupang-hijack-ads-regulation","클릭 안 했는데 쿠팡이 열리는 납치광고, 작동 방식과 규제 경과",1020,56,0.0549,5.85,75,62,60,0,0,53,45,5,0.1111,29.6,1,0,0,23,"2026-08-11",0,0],["insight","how-the-best-claude-code-users-work","클로드 코드를 가장 잘 쓰는 사람은 이렇게 쓴다고 합니다",1005,57,0.0567,7.2,224,112,81,20,0,94,32,0,0.0,47.5,0,0,5,113,"2026-04-24",0,0],["class","what-is-cpm","CPM (Cost Per Mille)",950,2,0.0021,8.28,82,17,4,6,0,12,9,4,0.4444,54.2,1,0,15,68,"2026-03-09",0,0],["class","what-is-env-variables","환경 변수와 .env (Environment Variables)",913,10,0.011,6.56,108,41,20,13,0,29,22,1,0.0455,74.1,0,0,17,71,"2026-03-16",0,0],["insight","ssh-remote-access-beginner-guide","SSH 뜻과 원격 접속 방법: 키 생성부터 맥, 윈도우 설정까지",887,4,0.0045,7.47,12,5,5,0,0,5,6,3,0.5,6.1,0,0,0,3,"2026-08-31",0,0],["insight","claude-md-setup-official-docs","클로드 코드 CLAUDE.md 세팅, 알려진 노하우들과 공식 문서 업데이트 정리",873,28,0.0321,7.04,71,44,41,1,0,38,40,7,0.175,37.6,0,0,1,7,"2026-08-27",0,0],["insight","ga4-session-source-medium-not-set","GA4에서 세션 소스/매체에 (not set)이 보이는 이유",849,63,0.0742,9.44,97,93,87,0,0,74,26,4,0.1538,49.6,0,0,4,109,"2026-03-10",0,0],["insight","prompt-cache-claude-code-codex","클로드 코드와 코덱스 프롬프트 캐시 정리: 작업을 몰아서 해야 하는 이유",822,70,0.0852,6.62,107,91,87,0,0,78,73,7,0.0959,64.3,0,0,1,23,"2026-08-11",0,0],["class","what-is-dom","DOM (Document Object Model)",820,4,0.0049,8.48,15,8,5,0,0,6,4,1,0.25,113.7,0,0,3,44,"2026-04-06",0,0],["insight","higgsfield-series-b-funding-2026","힉스필드 시리즈 B 4억 달러 투자 유치, 기업가치 54억 달러를 만든 구조",812,16,0.0197,7.35,48,31,24,3,0,30,24,5,0.2083,21.9,0,0,0,15,"2026-08-18",0,0],["insight","aeo-geo-traffic-fact-check","AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다",784,21,0.0268,7.36,69,52,42,0,8,30,4,2,0.5,31.1,0,0,0,154,"2026-03-03",0,0],["class","what-is-debugging","디버깅 (Debugging)",779,0,0.0,9.68,24,2,1,0,0,2,0,0,null,56.0,0,0,3,47,"2026-03-16",0,0],["insight","codex-cli-practical-guide","코덱스 CLI 사용법: 초보 블로거를 위한 GEO 인용 검사 도구 만들기 과정",754,15,0.0199,7.86,54,20,18,0,0,18,21,11,0.5238,61.4,0,0,1,19,"2026-08-15",0,0],["insight","ai-era-three-debts","기술 부채, 인지 부채, 의도 부채: AI 시대에 쌓이는 세 가지 빚",752,60,0.0798,5.6,210,162,120,5,0,118,102,25,0.2451,63.0,0,0,18,42,"2026-07-23",0,0],["class","what-is-terminal-cli","터미널과 CLI (Terminal & CLI)",745,3,0.004,7.03,199,46,22,14,1,36,29,8,0.2759,43.0,0,0,21,101,"2026-03-04",0,0],["class","what-is-deployment","배포 (Deployment)",735,1,0.0014,9.28,33,9,4,4,0,9,4,1,0.25,96.5,0,0,10,48,"2026-03-16",0,0],["class","what-is-domain-and-selfhosting","도메인과 셀프호스팅 (Domain & Self-hosting)",711,20,0.0281,8.21,44,35,35,0,0,23,23,5,0.2174,44.4,0,0,3,66,"2026-05-19",0,0],["insight","claude-academy-free-courses","클로드 아카데미(Claude Academy) 무료 강좌 22개와 한국어 지원 정리",662,42,0.0634,6.04,69,68,65,0,0,57,51,4,0.0784,27.5,0,0,0,5,"2026-08-29",0,0],["insight","ox-alpha-claude-code-codex-setup","Ox Alpha를 클로드 코드와 코덱스 CLI에서 쓰는 방법",657,53,0.0807,7.52,98,71,61,0,0,62,60,14,0.2333,42.0,0,0,4,8,"2026-08-26",0,0],["class","four-ds-of-ai-fluency","AI Fluency 4D 프레임워크 (Delegation, Description, Discernment, Diligence) 알아보기",652,48,0.0736,6.6,146,85,65,5,0,67,40,4,0.1,65.3,0,0,20,106,"2026-05-05",0,0],["class","claude-document-workflow","문서, 자료 정리 워크플로 (PDF, 이미지, 표) 익히기",651,25,0.0384,7.73,68,38,33,0,0,31,20,2,0.1,30.2,0,0,6,94,"2026-05-06",0,0],["class","what-is-attribution","답변 엔진 최적화 (AEO) 이해하기",644,4,0.0062,10.51,24,6,4,1,0,6,0,0,null,60.2,0,0,4,62,"2026-03-17",0,0],["insight","ga4-not-provided-explained","GA4에서 (not provided)가 뜨는 이유 및 해결방안",633,16,0.0253,6.13,62,41,26,3,3,25,6,2,0.3333,25.3,0,0,2,149,"2026-03-26",0,0],["insight","openwiki-guide","OpenWiki 사용법: 코딩 에이전트를 위한 저장소 문서 자동 생성 도구",608,33,0.0543,7.21,80,59,57,0,0,50,43,12,0.2791,47.2,0,0,3,14,"2026-08-20",0,0],["class","what-is-aeo","답변 엔진 최적화 (AEO) 이해하기",597,9,0.0151,5.88,63,25,21,1,0,20,22,9,0.4091,73.8,0,2,12,29,"2026-08-05",0,0],["insight","data-driven-google-meta-campaign-strategy","데이터 드리븐 마케팅의 기술, 구글과 메타 데이터 드리븐 캠페인 전략 2",591,8,0.0135,8.15,26,14,11,0,1,9,5,2,0.4,47.0,0,0,3,140,"2026-04-10",0,0],["insight","redirect-types-seo-marketing-guide","리디렉션하면 어떤 문제가 생길까? 종류별 차이와 마케터가 알아야 할 원리",580,4,0.0069,8.03,27,13,7,0,0,10,5,1,0.2,64.4,0,0,0,113,"2026-04-13",0,0],["insight","google-flow-gemini-omni-architecture-shorts","신비한 건축사전 스타일 유튜브 쇼츠 채널 만드는 과정 알아보기",555,24,0.0432,10.29,82,65,46,3,8,59,55,7,0.1273,79.5,0,0,3,3,"2026-08-31",0,0],["insight","aside-vs-cdp-playwright-browser-agent","Aside는 Playwright MCP, 클로드 인 크롬과 뭐가 다를까요?",547,37,0.0676,7.99,83,71,60,2,0,63,53,8,0.1509,53.9,2,0,3,3,"2026-08-31",0,0],["insight","performance-marketing-measurement-guide","퍼포먼스 마케팅 광고 캠페인 성과를 측정하는 5가지 방법",546,7,0.0128,8.3,48,25,12,2,8,20,7,1,0.1429,53.8,0,0,1,62,"2026-03-03",0,0],["insight","ai-content-seo-not-penalized","AI로 글을 작성해도 SEO에 불리하지 않습니다 : 직접 검증한 결과를 공유합니다.",540,8,0.0148,6.13,69,37,19,1,0,26,2,1,0.5,39.6,0,0,1,133,"2026-03-15",0,0],["insight","geo-agency-selection-criteria","GEO 잘하는 업체 찾는 법과 검증 기준 5가지",534,10,0.0187,11.21,33,16,13,0,0,13,16,6,0.375,38.8,0,0,2,11,"2026-08-22",0,0],["insight","officecli-ai-agent-office-suite","OfficeCLI 정리: AI 에이전트가 워드, 엑셀, PPT를 다루는 오픈소스 도구",503,37,0.0736,7.53,52,55,52,0,1,51,46,6,0.1304,37.6,0,0,0,23,"2026-08-11",0,0],["class","what-is-selector","Selector (선택자)",488,0,0.0,7.68,9,3,2,0,0,1,1,1,1.0,142.0,0,0,2,75,"2026-04-27",0,0],["insight","linkedin-api-auto-posting-integration-guide","블로그 관리 페이지에서 LinkedIn에 바로 글을 올리는 기능을 만들었습니다: LinkedIn API 연동 과정을 처음부터 끝까지 정리합니다",488,24,0.0492,7.42,35,30,29,0,0,24,14,2,0.1429,48.0,0,0,0,70,"2026-04-20",0,0],["insight","ga4-data-loss-automation-with-bigquery","GA4 데이터 유실, BigQuery로 자동 해결: 스프레드시트 관리 탈출기",477,12,0.0252,7.48,31,18,9,0,0,10,5,1,0.2,39.7,0,0,0,136,"2026-03-21",0,0],["insight","google-ads-mcp-report-automation-guide","구글 애즈(Google Ads) MCP로 AI 리포트 자동화하기",470,59,0.1255,4.96,100,88,81,2,0,80,72,7,0.0972,37.7,1,0,5,33,"2026-08-01",0,0],["insight","claude-gmail-drive-cowork-update","클로드 Gmail 답장 발송 기능 직접 테스트: 승인 설정과 Cowork 웹 확장",448,16,0.0357,7.17,24,20,20,0,0,17,19,2,0.1053,26.5,0,0,0,14,"2026-08-20",0,0],["insight","what-is-click-through-attribution","클릭 기여(Click-Through Attribution)란? 디지털 마케팅 성과 측정의 기본",437,10,0.0229,8.04,23,20,12,4,0,11,5,1,0.2,16.7,0,0,1,115,"2026-04-07",0,0],["insight","rag-vs-finetuning-decision-guide","RAG와 파인튜닝 차이: 고르는 기준 다섯 가지와 GraphRAG",436,14,0.0321,12.14,49,33,23,0,1,23,17,3,0.1765,37.3,0,3,2,27,"2026-08-07",0,0],["course","vibe-coding-basics","카테고리 - AI & Tech",431,36,0.0835,7.35,308,99,67,9,1,76,42,23,0.5476,21.3,0,0,0,88,"2026-04-01",0,0],["insight","ai-and-human-work-hours-history","AI가 발전하면 인간은 일을 안 하게 될까요?",428,10,0.0234,7.98,57,32,18,1,1,24,3,0,0.0,58.2,0,0,2,117,"2026-05-04",0,0],["insight","codex-claude-code-import-migration","코덱스와 클로드 코드 사이 설정 이전, /import로 넘어가는 항목 정리",423,16,0.0378,7.67,27,20,18,0,0,19,21,1,0.0476,20.9,0,0,0,7,"2026-08-27",0,0],["insight","headless-ai-concept-and-use-cases","헤드리스 AI의 개념과 특징: AI 에이전트 활용하기",387,19,0.0491,6.97,105,47,40,0,1,39,33,21,0.6364,34.1,0,0,11,37,"2026-07-28",0,0],["insight","seo-title-creator-guide","seo-title-creator: 검색 데이터를 기반으로 블로그 제목을 정하는 클로드 코드 스킬",379,16,0.0422,12.63,51,38,27,0,0,28,22,5,0.2273,27.0,0,0,2,29,"2026-08-05",0,0],["insight","instagram-hashtag-buzz-meta-app-review","인스타그램 해시태그 버즈 수집: API 제약과 메타 앱 검수 통과 조건",373,16,0.0429,8.38,26,21,17,1,0,20,19,0,0.0,50.8,0,0,0,23,"2026-08-11",0,0],["insight","web-crawling-guide-for-non-developers","비개발자를 위한 크롤링 가이드: 크롤링의 종류와 활용법",365,7,0.0192,8.76,50,16,11,1,1,14,4,1,0.25,78.8,0,0,2,61,"2026-03-08",0,0],["class","what-is-aarrr","AARRR 퍼널 (해적 지표)",360,3,0.0083,9.4,5,4,3,1,0,3,3,0,0.0,27.8,0,0,0,21,"2026-08-12",0,0],["insight","cloudflare-ai-bot-blocking-ddos-defense","AI 크롤러와 스팸봇 차단 방법 정리: 클라우드플레어 봇 차단과 DDoS 방어 순서",359,17,0.0474,11.38,41,31,27,0,0,20,21,5,0.2381,26.0,0,0,1,12,"2026-08-20",0,0],["course","claude-code-for-everyone","",357,22,0.0616,8.2,561,102,51,2,5,85,45,54,1.2,53.9,0,0,0,98,"2026-04-28",0,0],["class","what-is-cpi","CPI (Cost Per Install)",350,1,0.0029,6.59,5,5,3,1,0,4,3,1,0.3333,18.9,0,0,0,20,"2026-08-13",0,0],["class","what-are-artifacts","Artifacts (실시간 결과물 생성) 활용하기",341,9,0.0264,6.55,111,38,27,1,0,30,28,4,0.1429,25.1,0,0,13,69,"2026-05-06",0,0],["class","what-is-geo","생성형 엔진 최적화 (GEO) 이해하기",337,2,0.0059,19.63,93,26,19,0,0,17,24,26,1.0833,33.7,0,0,8,29,"2026-08-05",0,0],["class","what-is-aso","ASO (App Store Optimization, 앱스토어 최적화)",334,0,0.0,16.1,2,1,0,0,0,1,1,2,2.0,10.9,0,0,0,19,"2026-08-14",0,0],["insight","ga4-lead-events-explained","GA4 disqualify_lead, close_unconvert_lead 뜻과 현실적인 활용 가이드",329,9,0.0274,7.37,23,19,15,2,0,14,9,1,0.1111,55.9,0,0,1,100,"2026-03-22",0,0],["insight","google-ads-api-data-for-non-developers","구글 애즈(Google Ads) MCP로 AI 리포트 자동화하기",324,9,0.0278,7.97,116,57,42,0,0,37,28,6,0.2143,33.1,0,0,8,79,"2026-03-03",0,0],["insight","search-visibility-diagnosis-guide","블로그 글이 구글 검색에 노출되지 않는 건 어떤 문제일까요?",304,9,0.0296,6.21,52,38,11,0,0,33,32,5,0.1563,47.3,0,1,0,32,"2026-08-02",0,0],["class","what-is-mmp","MMP (Mobile Measurement Partner)",294,2,0.0068,6.28,5,4,3,0,0,4,3,0,0.0,25.0,0,0,0,19,"2026-08-14",0,0],["insight","google-ads-enhanced-conversions-guide","구글애즈 향상된 전환 정리: 개념, 설정 방법, 2026년 6월 통합 변경",292,11,0.0377,7.93,21,19,12,0,0,12,16,4,0.25,40.8,0,0,0,23,"2026-08-11",0,0],["insight","claude-code-custom-skill-3-patterns","Claude Code 커뮤니티에서 찾은 커스텀 Skill 세 가지 패턴",286,10,0.035,7.81,44,25,14,5,0,19,7,1,0.1429,43.3,0,0,2,63,"2026-03-06",0,0],["insight","gpt-live-voice-redesign","GPT-Live 정리: 챗GPT 음성이 말하는 중에도 듣는 구조로 바뀐 이유",283,11,0.0389,6.73,23,20,19,0,0,14,16,0,0.0,34.2,0,1,0,28,"2026-08-05",0,0],["insight","gmail-api-what-you-can-do","Gmail API를 활용해서 할 수 있는 것",268,2,0.0075,7.1,16,7,3,0,0,4,0,1,null,25.2,0,0,2,38,"2026-03-03",0,0],["insight","ai-overviews-ctr-decline","",266,3,0.0113,6.27,21,13,5,0,3,7,0,0,null,5.6,0,0,1,89,"2026-04-01",0,0],["class","what-is-cookie","Cookie (쿠키)",262,1,0.0038,9.37,13,2,2,0,0,1,0,0,null,88.1,0,0,3,47,"2026-05-06",0,0],["insight","content-seo-strategy-guide","콘텐츠 SEO 전략 정리: 무엇을 쓸지 정하는 3층 기준과 아웃라이어",262,4,0.0153,12.81,9,8,7,0,0,7,2,2,1.0,12.9,0,0,1,22,"2026-08-11",0,0],["insight","google-sheets-ai-function-guide","Google Sheets AI 함수 사용법: =AI()와 =Gemini() 완전 정리",261,7,0.0268,7.54,11,10,9,0,0,9,9,2,0.2222,26.9,0,0,0,14,"2026-08-20",0,0],["insight","ai-distribution-race-2026-08","구글 픽셀 11, Qwen3.8, 커서 인수로 본 AI 배포 경쟁",260,0,0.0,7.85,45,7,6,0,0,6,8,10,1.25,30.2,0,0,7,19,"2026-08-15",0,0],["class","what-are-hooks","훅 (Hooks) 알아보기",259,1,0.0039,7.19,241,49,34,2,1,35,18,5,0.2778,33.5,0,0,32,96,"2026-04-28",0,0],["insight","openai-zero-data-retention-private-safety-processing","OpenAI 제로 데이터 리텐션과 Private Safety Processing 정리: 앤트로픽 30일 보관과 비교",259,10,0.0386,4.86,33,30,12,0,0,24,19,1,0.0526,21.7,0,0,0,14,"2026-08-20",0,0],["insight","data-driven-google-meta-campaign-strategy-2","데이터 드리븐 마케팅의 기술, 구글과 메타 데이터 드리븐 캠페인 전략 2",258,2,0.0078,8.86,9,4,2,0,0,3,2,2,1.0,70.7,0,0,0,112,"2026-04-11",0,0],["class","app-store-and-play-store","앱스토어와 플레이스토어 (App Store, Google Play)",257,2,0.0078,10.03,7,3,3,0,0,2,2,0,0.0,22.4,0,0,1,20,"2026-08-13",0,0],["class","what-is-deeplink","딥링크 (Deeplink)",257,0,0.0,15.28,7,3,0,3,0,3,2,0,0.0,22.5,0,0,0,21,"2026-08-13",0,0],["class","what-is-app-marketing","앱마케팅 (App Marketing)",253,1,0.004,12.41,22,5,5,0,0,5,3,2,0.6667,44.3,0,2,1,21,"2026-08-12",0,0],["class","what-is-funnel","퍼널 (Marketing Funnel)",252,2,0.0079,12.5,69,52,3,3,0,22,3,0,0.0,32.0,0,0,6,74,"2026-03-21",0,0],["class","what-is-element","Element (요소)",252,0,0.0,11.08,11,4,0,1,0,1,0,0,null,22.9,0,0,1,32,"2026-04-27",0,0],["class","what-is-api","API (Application Programming Interface)",252,2,0.0079,23.85,43,21,20,0,0,6,1,0,0.0,50.5,0,0,5,119,"2026-03-09",0,0],["class","what-is-bom"," BOM (Browser Object Model)",252,2,0.0079,9.25,17,6,4,0,0,3,1,1,1.0,102.3,0,0,1,112,"2026-04-06",0,0],["class","push-notification-operations","푸시 운영 (수신 권한과 광고 동의, 발송 설계)",250,6,0.024,6.83,10,11,7,3,0,8,8,0,0.0,15.7,0,0,0,14,"2026-08-20",0,0],["class","what-is-mcp","MCP (Model Context Protocol) 이해하기",234,3,0.0128,7.74,388,96,76,1,1,49,27,8,0.2963,44.1,0,0,61,113,"2026-04-28",0,0],["insight","crm-marketer-must-do-3-things","CRM 마케터라면 꼭 해야 할 3가지",217,8,0.0369,16.52,42,25,13,0,0,16,4,1,0.25,25.8,0,0,3,95,"2026-03-10",0,0],["class","deeplink-in-practice","딥링크 실전 (유형별 작동 원리와 구축 선택)",206,2,0.0097,10.38,5,2,2,0,0,2,3,0,0.0,20.4,0,0,1,16,"2026-08-17",0,0],["insight","google-workspace-studio-guide","Google Workspace Studio 사용법: Gmail, Sheets, Drive 업무 자동화하기",205,6,0.0293,9.36,8,10,10,0,0,9,6,0,0.0,33.7,0,0,0,13,"2026-08-20",0,0],["class","responsible-ai-use","책임감 있는 AI 사용 익히기",198,4,0.0202,9.58,75,11,7,2,0,8,24,3,0.125,40.7,0,0,18,83,"2026-04-29",0,0],["insight","ai-self-review-bias-validator-agent","AI 자기 검수의 한계: 클로드 코드에서 검증을 분리하는 방법",198,16,0.0808,11.27,68,45,38,0,0,30,29,9,0.3103,15.7,1,0,6,10,"2026-08-24",0,0],["class","claude-code-memory","Memory와 CLAUDE.md (영속 컨텍스트) 이해하기",196,1,0.0051,7.01,365,111,70,16,2,76,39,23,0.5897,60.6,0,0,44,101,"2026-04-28",0,0],["class","featured-and-bridge-page","피처드와 브릿지페이지 (캠페인 밖에서 노출 얻기)",190,4,0.0211,10.38,8,4,4,0,0,4,4,0,0.0,35.8,0,0,0,16,"2026-08-17",0,0],["insight","google-ads-analytics-ai-features","구글애즈 GA4 AI 기능 정리: Ask Advisor, 대시보드, 벤치마킹",187,10,0.0535,10.0,28,18,18,0,0,14,13,3,0.2308,25.4,0,0,1,21,"2026-08-11",0,0],["insight","kakao-moment-api-data-for-non-developers","비개발자도 쓰기 편하게 정리한 카카오모먼트 API 데이터",186,5,0.0269,5.58,39,12,10,0,1,11,6,3,0.5,27.4,0,0,1,62,"2026-03-22",0,0],["insight","aws-bedrock-agentcore-n8n","AWS AgentCore와 n8n 연동 정리: 기억하는 AI 에이전트를 노코드로 만드는 방법",180,8,0.0444,7.88,25,9,6,0,0,8,11,4,0.3636,25.7,1,2,0,27,"2026-08-06",0,0],["ga4_edu","page-and-screen-report","",171,0,0.0,11.18,11,3,1,0,0,2,1,1,1.0,67.1,0,0,0,13,"2026-08-15",0,0],["class","what-is-roas","ROAS (Return On Ad Spend)",169,0,0.0,9.69,27,9,1,0,0,9,5,6,1.2,105.0,0,0,7,51,"2026-03-21",0,0],["class","claude-for-educators","교육 종사자를 위한 Claude 활용하기",167,23,0.1377,7.4,95,69,30,32,1,59,45,9,0.2,23.2,0,0,9,65,"2026-04-28",0,0],["class","how-to-check-indexing-status","서치 콘솔로 색인 상태 확인하기",156,4,0.0256,11.53,26,11,3,8,0,7,9,0,0.0,39.7,0,0,1,29,"2026-08-05",0,0],["insight","search-console-js-crawled-not-indexed","서치콘솔의 크롤링됨 - 현재 색인이 생성되지 않음에 JS 파일이 많을 때 어떻게 해야 할까?",149,8,0.0537,7.04,11,9,9,0,0,8,7,1,0.1429,34.5,0,0,0,30,"2026-08-02",0,0],["insight","n8n-for-non-developers","비개발자에게 n8n, 과연 도움이 될까?",144,15,0.1042,5.63,39,24,16,0,3,20,17,1,0.0588,44.2,0,0,0,40,"2026-03-20",0,0],["insight","zai-open-weight-strategy","Z.ai 오픈 웨이트 전략 정리: 가중치를 풀고 API로 버는 구조",141,6,0.0426,7.45,16,9,6,0,2,9,7,3,0.4286,36.4,0,0,2,6,"2026-08-27",0,0],["class","app-campaign-and-apple-ads","앱 캠페인과 Apple Ads 운영 (구조 설계와 키워드)",136,2,0.0147,19.05,6,2,2,0,0,2,2,1,0.5,50.3,0,0,1,16,"2026-08-17",0,0],["insight","ga4-campaign-data-import-validation","GA4 캠페인 데이터 가져오기 검증 보고서 읽는 법과 사용법",130,7,0.0538,8.85,15,9,8,1,0,8,5,2,0.4,14.0,0,0,0,22,"2026-08-12",0,0],["course","claude-in-practice","Extended Thinking (확장 추론 모드) 알아보기",130,7,0.0538,10.62,373,78,21,3,4,55,59,32,0.5424,38.5,0,0,0,73,"2026-05-06",0,0],["class","chart-boosting-strategy","리워드 캠페인 설계 (CPE, CPA와 차트 부스팅)",119,0,0.0,8.14,7,6,1,1,1,6,4,1,0.25,18.7,0,0,0,19,"2026-08-14",0,0],["class","what-is-authentication","인증과 보안 (Authentication & Security)",117,2,0.0171,9.02,38,10,9,0,0,8,7,0,0.0,55.1,0,0,8,44,"2026-03-16",0,0],["class","cohort-analysis","코호트 분석 (동질 집단 차트를 읽는 세 방향)",108,3,0.0278,15.51,12,12,8,1,1,8,8,1,0.125,11.9,0,0,0,18,"2026-08-16",0,0],["class","slash-commands-explained","슬래시 명령 (Slash Commands) 알아보기",107,2,0.0187,6.35,123,34,25,1,3,22,11,6,0.5455,39.1,0,0,15,75,"2026-04-28",0,0],["class","what-is-attribute","Attribute (속성)",107,1,0.0093,10.61,10,1,1,0,0,0,0,0,null,265.4,0,0,1,27,"2026-04-06",0,0],["insight","seo-aeo-geo-2-months-real-data","SEO 성과도 빠르게 나올 수 있습니다.",105,4,0.0381,18.34,241,147,14,2,4,97,5,4,0.8,31.8,0,0,9,96,"2026-05-01",0,0],["course","seo-fundamentals","",104,2,0.0192,6.91,267,87,10,1,0,57,86,43,0.5,20.3,2,0,0,32,"2026-08-02",0,0],["insight","meta-advantage-plus-creative-ai-image","메타 어드밴티지+ 크리에이티브 AI 이미지 생성: 실물 일관성과 사용 범위 정리",100,0,0.0,14.44,1,0,0,0,0,0,1,0,0.0,12.2,0,0,0,5,"2026-08-29",0,0],["course","digital-marketing-terms","",99,0,0.0,9.14,146,34,2,27,2,29,27,16,0.5926,43.0,2,0,0,40,"2026-05-06",0,0],["insight","llmo-concept-guide","LLMO가 필요한 이유: AI 답변에 내 글이 인용되지 않을 때",94,3,0.0319,6.32,32,18,17,0,0,6,8,2,0.25,19.5,0,0,2,28,"2026-08-03",0,0],["class","what-is-seo","검색엔진 최적화 (SEO) 이해하기",90,1,0.0111,33.12,124,44,35,0,0,16,16,8,0.5,43.1,0,0,8,31,"2026-08-02",0,0],["course","app-marketing-basics","",89,1,0.0112,12.19,70,7,7,0,0,5,10,8,0.8,11.8,0,0,0,19,"2026-08-12",0,0],["insight","ga4-quota-error-fix","GA4의 데이터 할당량 이슈가 있을 땐 이렇게 해보세요",88,2,0.0227,6.45,8,4,2,0,1,3,3,1,0.3333,20.9,0,0,0,39,"2026-03-10",0,0],["ai_practice","prompt-basics","프롬프트 기초",87,0,0.0,5.33,134,13,11,0,0,11,9,17,1.8889,36.0,1,0,0,34,"2026-07-31",0,0],["class","what-is-frontend-backend","프론트엔드와 백엔드 (Frontend & Backend)",85,0,0.0,10.97,30,0,0,0,0,0,0,0,null,121.2,0,0,13,42,"2026-03-16",0,0],["insight","ga4-bigquery-attribution-models","빅쿼리로 내보낸 GA4 로우데이터에 직접 어트리뷰션을 적용해보기",85,5,0.0588,9.35,14,6,4,0,0,2,3,0,0.0,19.5,0,0,0,40,"2026-06-10",0,0],["class","prompt-engineering-basics","프롬프트 엔지니어링 기본 익히기",84,1,0.0119,8.52,202,45,22,1,0,26,81,3,0.037,56.4,0,0,34,75,"2026-05-01",0,0],["insight","seo-6-months-real-data","AI 시대의 SEO: 자연검색만으로 월 3만 방문까지, 6개월의 기록",82,3,0.0366,12.98,54,11,10,0,0,7,9,8,0.8889,32.9,0,0,4,34,"2026-07-24",0,0],["ga4_edu","users-sessions-events","",81,2,0.0247,6.8,5,2,2,0,0,2,3,0,0.0,22.8,0,0,0,12,"2026-08-21",0,0],["tag","AI","Tag: AI",81,1,0.0123,11.58,44,6,3,1,0,3,1,0,0.0,20.6,0,0,0,25,"2026-04-13",0,0],["class","what-is-html","HTML (HyperText Markup Language)",78,0,0.0,13.81,1,0,0,0,0,0,0,0,null,1595.6,0,0,0,20,"2026-08-11",0,0],["class","what-is-reward-cpi","ROAS (Return On Ad Spend)",78,0,0.0,8.08,1,0,0,0,0,0,0,0,null,117.3,0,0,1,21,"2026-08-12",0,0],["class","what-is-core-web-vitals","페이지 속도와 코어 웹 바이탈 알아보기",77,0,0.0,8.95,17,3,1,1,0,3,3,1,0.3333,59.2,0,0,7,25,"2026-08-04",0,0],["class","what-is-canonical-url","정규 URL (Canonical) 이해하기",63,2,0.0317,10.35,8,3,2,0,0,3,3,1,0.3333,276.4,0,0,2,18,"2026-08-06",0,0],["insight","ai-usage-methods-guide","AI를 쓸 수 있는 방법 5가지 : 웹, 앱, 터미널, 도구 탑재, MCP 완전 정리",62,1,0.0161,8.26,53,25,13,0,0,15,6,2,0.3333,77.1,0,0,0,62,"2026-03-12",0,0],["class","referral-and-share-design","리퍼럴과 공유 설계 (추천이 일어나는 조건 만들기)",62,1,0.0161,16.79,2,1,1,0,0,1,1,0,0.0,29.3,0,0,0,14,"2026-08-17",0,0],["class","what-is-css","CSS (Cascading Style Sheets)",62,0,0.0,9.56,1,0,0,0,0,0,0,0,null,486.6,0,0,0,21,"2026-08-12",0,0],["class","conversion-event-design","전환 이벤트 설계 (GA4 이벤트와 앱 캠페인 연결)",57,1,0.0175,13.98,6,1,1,0,0,1,2,1,0.5,15.7,0,0,1,15,"2026-08-17",0,0],["class","meta-advantage-app-campaigns","앱 캠페인과 Apple Ads 운영 (구조 설계와 키워드)",55,1,0.0182,18.11,6,1,1,0,0,1,2,0,0.0,42.9,0,0,2,14,"2026-08-17",0,0],["ga4_edu","paid-search-performance","",52,0,0.0,19.67,0,0,0,0,0,0,0,0,null,null,0,0,0,11,"2026-08-22",0,0],["ga4_edu","cohort-retention","",52,0,0.0,6.56,0,0,0,0,0,0,0,0,null,null,0,0,0,11,"2026-08-22",0,0],["class","aso-in-practice","ASO 실전 (스토어 실험과 요소별 최적화)",51,1,0.0196,18.55,22,7,6,0,0,3,1,1,1.0,25.8,0,0,2,19,"2026-08-13",0,0],["class","app-types-for-marketers","앱 개발 방식 (네이티브, 크로스플랫폼, 하이브리드, PWA)",49,1,0.0204,13.25,2,0,0,0,0,0,0,0,null,1.1,0,0,0,13,"2026-08-13",0,0],["ga4_edu","custom-event-and-key-event","",48,0,0.0,8.88,0,0,0,0,0,0,0,0,null,null,0,0,0,10,"2026-08-22",0,0],["ga4_edu","funnel-exploration","",46,0,0.0,10.89,1,1,0,1,0,1,1,0,0.0,6.1,0,0,0,11,"2026-08-22",0,0],["class","what-is-npm","패키지 매니저 (npm)",45,1,0.0222,6.91,48,15,14,0,0,8,9,0,0.0,40.7,0,0,11,48,"2026-03-16",0,0],["insight","ai-coding-tools-comparison-vibe-coding","AI 코딩 도구 5종 직접 써본 비교 체험기: 바이브코딩으로 실제 프로젝트를 만들어 봤습니다",44,3,0.0682,8.95,59,11,6,0,0,7,17,1,0.0588,118.5,0,0,0,59,"2026-03-06",0,0],["class","what-is-git","Git과 버전 관리 (Version Control)",43,2,0.0465,13.26,89,11,4,1,0,8,25,4,0.16,48.7,0,0,13,57,"2026-03-16",0,0],["ga4_edu","exploration-free-form","",41,0,0.0,9.1,5,0,0,0,0,0,0,0,null,13.3,0,0,0,11,"2026-08-21",0,0],["ga4_edu","traffic-acquisition-channels","",39,0,0.0,8.18,31,3,0,0,0,2,6,0,0.0,23.9,0,0,0,14,"2026-08-15",0,0],["ga4_edu","date-range-comparison","",37,1,0.027,14.41,1,1,1,0,0,1,1,1,1.0,28.7,0,0,0,10,"2026-08-22",0,0],["insight","google-vp-llm-wrapper-aggregator-crisis","LLM 래퍼와 AI 어그리게이터의 위기: 구글 부사장의 경고",37,1,0.027,4.95,24,12,1,0,0,8,0,0,null,96.6,0,0,4,29,"2026-03-07",0,0],["ga4_edu","engagement-rate-and-bounce","",37,0,0.0,11.19,4,1,1,0,0,0,0,0,null,8.2,0,0,0,9,"2026-08-22",0,0],["class","target-cpi-calculation","적정 CPI 산정 (LTV 역산과 회수 기간)",35,0,0.0,14.8,2,0,0,0,0,0,0,0,null,164.3,0,0,0,12,"2026-08-22",0,0],["class","what-is-rest-api","REST API",32,0,0.0,17.59,32,4,2,0,0,2,0,0,null,141.5,0,0,14,39,"2026-03-05",0,0],["ga4_edu","automatic-events","",32,0,0.0,9.22,1,0,0,0,0,0,0,0,null,null,0,0,0,9,"2026-08-22",0,0],["class","what-is-database","데이터베이스 (Database)",31,0,0.0,8.84,21,0,0,0,0,0,0,0,null,122.4,0,0,9,31,"2026-03-05",0,0],["ai_practice","prompt-advanced","프롬프트 심화",31,1,0.0323,6.23,24,3,1,2,0,2,2,2,1.0,58.8,0,0,0,22,"2026-08-02",0,0],["ga4_edu","custom-dimension-registration","",30,0,0.0,19.0,2,1,0,0,0,0,1,1,1.0,11.6,0,0,0,10,"2026-08-22",0,0],["insight","ai-work-routine-remote-browser-automation","연동이 없는 서비스에도 AI로 일을 시키는 방법과 이동 중 원격 업무",29,3,0.1034,4.86,7,3,3,0,0,3,5,2,0.4,29.7,0,0,0,7,"2026-08-26",0,0],["ga4_edu","bigquery-export","",29,2,0.069,6.0,2,2,2,0,0,2,2,0,0.0,4.2,0,0,0,10,"2026-08-22",0,0],["ga4_edu","path-exploration","",29,0,0.0,12.62,0,0,0,0,0,0,0,0,null,null,0,0,0,10,"2026-08-22",0,0],["ga4_edu","utm-campaign-tracking","",29,0,0.0,24.52,1,0,0,0,0,0,0,0,null,1.0,0,0,0,11,"2026-08-21",0,0],["ga4_edu","new-vs-returning","",27,1,0.037,12.22,2,1,1,0,0,1,2,0,0.0,8.4,0,0,0,10,"2026-08-23",0,0],["ga4_edu","user-id-and-google-signals","",26,1,0.0385,17.88,3,2,2,0,0,1,2,1,0.5,38.8,0,0,0,9,"2026-08-22",0,0],["ga4_edu","attribution-model-comparison","",26,2,0.0769,11.5,4,3,3,0,0,3,3,1,0.3333,5.1,0,0,0,10,"2026-08-21",0,0],["class","growth-stage-campaign-strategy","성장주기별 캠페인 전략 (런칭, 성장, 성숙, 정착)",24,0,0.0,21.63,6,1,1,0,0,1,1,1,1.0,20.2,0,0,1,11,"2026-08-20",0,0],["ga4_edu","custom-channel-group","",24,0,0.0,7.42,0,0,0,0,0,0,0,0,null,null,0,0,0,8,"2026-08-23",0,0],["ai_practice","prompt-intermediate","프롬프트 중급",19,0,0.0,8.89,25,2,2,0,0,2,1,1,1.0,67.3,0,0,0,22,"2026-07-31",0,0],["course","digital-basic","",19,0,0.0,6.63,87,2,0,0,0,2,9,7,0.7778,24.8,0,0,0,30,"2026-04-27",0,0],["class","ad-fraud-response","애드 프러드 대응 (유형별 탐지와 계약 방어)",19,0,0.0,9.11,2,0,0,0,0,0,0,1,null,7.6,0,0,0,9,"2026-08-22",0,0],["ga4_edu","internal-traffic-and-referral-exclusion","",19,0,0.0,24.74,0,0,0,0,0,0,0,0,null,null,0,0,0,6,"2026-08-23",0,0],["ga4_edu","enhanced-measurement-toggle","",18,0,0.0,7.78,0,0,0,0,0,0,0,0,null,null,0,0,0,8,"2026-08-22",0,0],["ga4_edu","segment-basics","",18,0,0.0,7.17,0,0,0,0,0,0,0,0,null,null,0,0,0,8,"2026-08-23",0,0],["course","app-marketing-campaigns","",17,0,0.0,9.94,83,11,7,0,0,10,9,11,1.2222,8.3,0,0,0,17,"2026-08-13",0,0],["ga4_edu","modify-event","",14,0,0.0,22.0,1,0,0,0,0,0,0,0,null,15.1,0,0,0,8,"2026-08-22",0,0],["ga4_edu","ecommerce-item-report","",14,0,0.0,52.79,0,0,0,0,0,0,0,0,null,null,0,0,0,6,"2026-08-22",0,0],["ga4_edu","geo-and-device","",14,0,0.0,21.29,0,0,0,0,0,0,0,0,null,null,0,0,0,7,"2026-08-22",0,0],["ai_practice","geo-basics","GEO 기초",13,0,0.0,5.85,102,64,9,0,0,54,69,42,0.6087,30.9,1,0,0,21,"2026-08-05",0,0],["ga4_edu","thresholding-and-cardinality","",13,0,0.0,25.15,0,0,0,0,0,0,0,0,null,null,0,0,0,8,"2026-08-22",0,0],["ga4_edu","secondary-dimension-and-filter","",12,2,0.1667,19.67,2,2,2,0,0,1,2,0,0.0,11.5,0,0,0,10,"2026-08-22",0,0],["insight","gemini-student-plan-free-year","제미나이 학생 요금제 1년 무료 신청 조건과 한국 대상 정리",12,1,0.0833,8.67,4,2,1,0,0,1,2,1,0.5,20.2,0,0,0,3,"2026-08-30",0,0],["ga4_edu","segment-overlap","",10,0,0.0,17.5,1,1,1,0,0,1,1,0,0.0,38.8,0,0,0,9,"2026-08-22",0,0],["class","whatiscss","JavaScript (자바스크립트) 이해하기",10,0,0.0,5.8,18,0,0,0,0,0,0,0,null,51.2,0,0,4,22,"2026-03-10",0,0],["insight","ai-tool-fatigue-what-to-follow","AI 도구가 매주 바뀌어도 조바심 내지 않는 기준",10,1,0.1,33.4,5,2,2,0,0,2,2,0,0.0,4.9,0,0,0,3,"2026-08-30",0,0],["ga4_edu","landing-page-report","",9,0,0.0,47.11,7,4,3,0,0,1,1,1,1.0,20.9,0,0,0,8,"2026-08-21",0,0],["ga4_edu","audience-export","",9,1,0.1111,16.78,1,1,1,0,0,1,1,0,0.0,28.1,0,0,0,6,"2026-08-22",0,0],["tag","SEO","Tag: SEO",9,0,0.0,8.11,28,10,1,0,0,2,1,3,3.0,9.7,0,0,0,17,"2026-05-14",0,0],["class","what-is-javascript","JavaScript (자바스크립트) 이해하기",6,0,0.0,13.0,17,6,0,1,0,5,1,1,1.0,81.0,0,0,2,19,"2026-03-10",0,0],["tag","GA4","Tag: GA4",4,0,0.0,9.25,74,49,2,1,0,28,3,2,0.6667,7.4,0,0,0,14,"2026-07-21",0,0],["tag","API","Tag: API",2,0,0.0,10.0,11,1,0,0,0,1,1,1,1.0,17.9,0,0,0,8,"2026-06-08",0,0],["tag","BigQuery","Tag: BigQuery",2,1,0.5,1.0,2,1,1,0,0,1,1,0,0.0,3.9,0,0,0,3,"2026-07-12",0,0],["tag","ROAS","Tag: ROAS",1,0,0.0,10.0,5,1,0,0,0,1,2,1,0.5,12.6,0,0,0,5,"2026-05-20",0,0],["tag","CAC","Tag: CAC",1,0,0.0,27.0,3,1,0,0,0,1,1,0,0.0,3.5,0,0,0,3,"2026-05-08",0,0],["tag","CVR","Tag: CVR",1,0,0.0,15.0,4,5,0,0,0,3,2,1,0.5,3.0,0,0,0,3,"2026-07-21",0,0],["tag","마케팅 실무","Tag: 마케팅 실무",0,0,null,null,19,0,0,0,0,0,1,0,0.0,21.1,0,0,0,12,"2026-04-23",0,0],["tag","퍼포먼스마케팅","Tag: 퍼포먼스마케팅",0,0,null,null,29,1,0,0,0,1,1,2,2.0,34.5,0,0,0,19,"2026-04-23",0,0],["class","what-is-robots-txt","robots.txt 알아보기",0,0,null,null,17,7,0,2,0,5,4,0,0.0,159.8,0,0,3,13,"2026-08-04",0,0],["class","whatishtml"," HTML",0,0,null,null,35,4,0,1,0,2,0,1,null,85.7,0,0,5,27,"2026-04-16",0,0],["class","what-is-search-crawler","검색엔진 크롤러 (Search Crawler) 이해하기",0,0,null,null,23,3,0,0,0,2,5,4,0.8,176.1,0,0,6,13,"2026-08-02",0,0],["class","what-is-sitemap","사이트맵 (Sitemap) 알아보기",0,0,null,null,11,3,0,0,0,1,1,0,0.0,88.4,0,0,2,7,"2026-08-02",0,0],["tag","도구","Tag: 도구",0,0,null,null,6,1,0,0,0,1,1,0,0.0,9.1,0,0,0,4,"2026-05-08",0,0],["tag","자동화","Tag: 자동화",0,0,null,null,25,2,0,1,0,1,0,0,null,9.4,0,0,0,17,"2026-04-23",0,0],["tag","index.html","",0,0,null,null,1,1,0,0,0,0,0,0,null,null,0,0,0,1,"2026-03-21",0,0],["tag","바이브코딩","Tag: 바이브코딩",0,0,null,null,26,1,1,0,0,1,2,0,0.0,13.8,0,0,0,16,"2026-04-23",0,0],["insight","codex-cli-windows-easy-setup-guide&pra=5&aiof=13&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljuumcisimfybsisiiisije1ms4wljc5mjiumty5iixudwxsldasbnvsbcwinjqilftbik5vdd1bp0jyyw5kiiwiotkumc4wljaixsxbikdvb2dszsbdahjvbwuilcixnteumc43otiylje2osjdlfsiq2hyb21pdw0ilcixnteumc43otiylje2osjdxswwxq..&dt=1787872603952&bpp=2&bdt=3017&idt=325&shv=r20260825&mjsv=m202608240101&ptt=9&saldr=aa&abxe=1&cookie=id=d51526243e78c781:t=1787212140:rt=1787212140:s=alni_my_af1abkkkwdhl182ks1zr5qyjbg&gpic=uid=00001527c41f820a:t=1787212140:rt=1787212140:s=alni_mblhtamfyu4kxqnphj_mbm0nhth2q&eo_id_str=id=0cbdfa3cf6e91416:t=1787212140:rt=1787212140:s=aa-afjz6n3ei7pokgbuq2kcsdo","",0,0,null,null,2,2,0,0,0,1,2,0,0.0,6.6,0,0,0,1,"2026-08-28",0,0],["tag","퍼널","Tag: 퍼널",0,0,null,null,4,2,0,0,0,1,2,1,0.5,4.0,0,0,0,4,"2026-07-07",0,0],["insight","upstage-solar-open-2-solar-pro-4&fwr=0&fwrattr=true&rpe=1&resp_fmts=3&aiof=10&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljuumiisimfybsisiiisije1ms4wljc5mjiunzyilg51bgwsmcxudwxslci2ncisw1sitm90pue_qnjhbmqilci5os4wljaumcjdlfsir29vz2xlienocm9tzsisije1ms4wljc5mjiunzyixsxbiknocm9taxvtiiwimtuxljaunzkymi43nijdxswwxq..&dt=1786321842658&bpp=21&bdt=72234&idt=1891&shv=r20260805&mjsv=m202608050101&ptt=9&saldr=aa&abxe=1&cookie=id=9b82665e2a4b4f56:t=1786062516:rt=1786321844:s=alni_mzhn2tdhnaxkwizce8k3x6vdl3oag&gpic=uid=00001475f09e0629:t=1786062516:rt=1786321844:s=alni_map0mmx-dbbgw0msiliog6y7-cv3a&eo_id_str=id=bffdb311bb3d5a13:t=1786062516:rt=1786321844:s=aa-afjzmwymbbpo2ig","",0,0,null,null,1,1,0,0,0,0,1,0,0.0,0.0,0,0,0,1,"2026-08-10",0,0],["class","what-is-indexing","색인 (Indexing) 이해하기",0,0,null,null,20,12,0,11,0,11,10,3,0.3,69.6,0,0,5,15,"2026-08-02",0,0],["tag","전환","Tag: 전환",0,0,null,null,2,1,0,0,0,0,0,0,null,0.2,0,0,0,3,"2026-08-11",0,0],["tag","광고","Tag: 광고",0,0,null,null,8,1,0,0,0,1,1,1,1.0,11.3,0,0,0,8,"2026-05-18",0,0],["ga4_edu","realtime","",0,0,null,null,6,0,0,0,0,0,0,1,null,17.7,0,0,0,4,"2026-08-25",0,0],["tag","Meta 광고","Tag: Meta 광고",0,0,null,null,15,0,0,0,0,0,0,0,null,41.8,0,0,0,9,"2026-05-27",0,0],["tag","CPA","Tag: CPA",0,0,null,null,6,1,0,0,0,1,2,2,1.0,16.9,0,0,0,5,"2026-04-23",0,0],["tag","데이터 분석","Tag: 데이터 분석",0,0,null,null,17,6,1,0,0,5,2,2,1.0,12.2,0,0,0,7,"2026-05-14",0,0],["class","what-is-json-and-data-structures","JSON과 데이터 구조 (JSON & Data Structures)",0,0,null,null,20,8,2,1,0,4,1,0,0.0,88.6,0,0,0,14,"2026-05-20",0,0],["tag","HTML","Tag: HTML",0,0,null,null,5,1,0,0,0,0,1,0,0.0,6.5,0,0,0,4,"2026-05-15",0,0],["tag","GTM","Tag: GTM",0,0,null,null,2,2,0,0,0,2,3,2,0.6667,14.1,0,0,0,2,"2026-08-16",0,0],["insight","claude-md-setup-official-docs&fwr=0&fwrattr=true&rpe=1&resp_fmts=3&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisije1ljmumsisimfybsisiiisije1ms4wljc5mjiumtm5iixudwxsldasbnvsbcwinjqilftbik5vdd1bp0jyyw5kiiwiotkumc4wljaixsxbikdvb2dszsbdahjvbwuilcixnteumc43otiyljezosjdlfsiq2hyb21pdw0ilcixnteumc43otiyljezosjdxswwxq..&dt=1788174641277&bpp=1&bdt=600&idt=22&shv=r20260825&mjsv=m202608250101&ptt=9&saldr=aa&abxe=1&cookie=id=1e246c1e576b3160:t=1787632408:rt=1787632408:s=alni_mbcrl705_4-olig5kwgbzyb1qh3wg&gpic=uid=0000153e696dc123:t=1787632408:rt=1787632408:s=alni_ma5nxlilwh44g4qadh-ykc5nxhzow&eo_id_str=id=2eb271b8246970e7:t=1787632408:rt=1787632408:s=aa-afjbd20rlbo_scdzxeo_k8mpf","",0,0,null,null,1,1,0,0,0,1,1,0,0.0,11.5,0,0,0,1,"2026-08-31",0,0],["insight","claude-code-mac-easy-setup-guide&pra=5&aiof=13&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljyumsisimfybsisiiisije1mi4wljc5nzcunzuilg51bgwsmcxudwxslci2ncisw1siq2hyb21pdw0ilcixntiumc43otc3ljc1il0swyjob3q_qv9ccmfuzcisiji0ljaumc4wil0swyjhb29nbgugq2hyb21liiwimtuyljaunzk3ny43nsjdxswwxq..&dt=1788336796543&bpp=8&bdt=1321&idt=492&shv=r20260901&mjsv=m202608270101&ptt=9&saldr=aa&abxe=1&cookie=id=63510efc495e4a10:t=1788334293:rt=1788334293:s=alni_mboatof6map-ieq4xdckyeekdfdjq&gpic=uid=000014f144c8db2a:t=1788334293:rt=1788334293:s=alni_myapaf58ywt6byxfs2oaw8rt5xxew&eo_id_str=id=64021e8b2b8069af:t=1788334293:rt=1788334293:s=aa-afjycr410apsk-v6_k9fx9ftq&n","",0,0,null,null,1,1,0,0,0,1,1,0,0.0,11.6,0,0,0,1,"2026-09-02",0,0],["insight","ox-alpha-stealth-model-zai-glm&pra=5&aiof=12&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljuumiisimfybsisiiisije0nc4xns40ljk3iixudwxsldasbnvsbcwinjqilftbik5vdchbokjyyw5kiiwioc4wljaumcjdlfsiq2hyb21pdw0ilcixndqumtuunc45nyjdxswwxq..&dt=1787782578680&bpp=2&bdt=1294&idt=398&shv=r20260825&mjsv=m202608210101&ptt=9&saldr=aa&abxe=1&cookie=id=d62714f410fd3e7f:t=1787015683:rt=1787015683:s=alni_myzbfau4jjnl91bijil_hx_mavwza&gpic=uid=000015224fc61108:t=1787015683:rt=1787015683:s=alni_mznng5xej9fv9grswkg-zaqgea8aa&eo_id_str=id=485fdd350ad72d45:t=1787015683:rt=1787015683:s=aa-afjb-gy23d_pqfe56wxjuf-w_&nras=1&correlator=8049494407957&frm=20&pv=2","",0,0,null,null,1,1,0,0,0,1,1,0,0.0,11.8,0,0,0,1,"2026-08-27",0,0],["tag","Google 광고","Tag: Google 광고",0,0,null,null,3,0,0,0,0,0,0,0,null,6.2,0,0,0,3,"2026-05-08",0,0],["ai_practice","geo-advanced","GEO 심화",0,0,null,null,5,0,0,0,0,0,0,0,null,48.1,0,0,0,3,"2026-08-11",0,0],["ai_practice","geo-intermediate","GEO 중급",0,0,null,null,6,0,0,0,0,0,0,2,null,49.4,0,0,0,4,"2026-08-11",0,0],["insight","claude-fable-5-1-mythos-5-1-update","클로드 페이블 5.1과 미토스 5.1 공개, 달라진 점 정리",0,0,null,null,21,16,13,1,0,11,10,0,0.0,36.4,0,0,0,1,"2026-09-02",0,0],["tag","CTR","Tag: CTR",0,0,null,null,2,1,0,0,0,0,2,1,0.5,3.4,0,0,0,2,"2026-08-16",0,0],["tag","LTV","Tag: LTV",0,0,null,null,2,0,0,0,0,0,0,0,null,8.0,0,0,0,2,"2026-05-14",0,0],["insight","ox-alpha-stealth-model-zai-glm&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljyumiisimfybsisiiisije1ms4wljc5mjiumty5iixudwxsldasbnvsbcwinjqilftbik5vdd1bp0jyyw5kiiwiotkumc4wljaixsxbikdvb2dszsbdahjvbwuilcixnteumc43otiylje2osjdlfsiq2hyb21pdw0ilcixnteumc43otiylje2osjdxswwxq..&dt=1787785402543&bpp=1&bdt=1437&idt=414&shv=r20260825&mjsv=m202608210101&ptt=9&saldr=aa&abxe=1&cookie=id=50e91b4f5b334437:t=1786683683:rt=1786683683:s=alni_mzrjsyywh8zwidtqmxsbvd2bxpwyq&eo_id_str=id=4f1a4a1ac7584457:t=1786683683:rt=1786683683:s=aa-afjyy-dpr67ri4qerdff1k5oe&nras=1&correlator=7349415559838&frm=20&pv=2&u_tz=540&u_his=1&u_h=1080&u_w=1920&u_","",0,0,null,null,1,1,0,0,0,1,1,0,0.0,11.8,0,0,0,1,"2026-08-27",0,0],["class","what-is-internal-link","URL 구조와 내부 링크 이해하기",0,0,null,null,8,4,4,0,0,3,1,0,0.0,100.1,0,0,2,9,"2026-08-05",0,0],["insight","orca-ide-easy-guide&fwr=0&fwrattr=true&rpe=1&resp_fmts=3&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljiumcisimfybsisiiisije1ms4wljc5mjiumtcyiixudwxsldasbnvsbcwinjqilftbik5vdd1bp0jyyw5kiiwiotkumc4wljaixsxbikdvb2dszsbdahjvbwuilcixnteumc43otiylje3mijdlfsiq2hyb21pdw0ilcixnteumc43otiylje3mijdxswwxq..&dt=1787930855351&bpp=2&bdt=586&idt=219&shv=r20260825&mjsv=m202608250101&ptt=9&saldr=aa&abxe=1&cookie=id=b1e1e65b3063825c:t=1786324032:rt=1786351049:s=alni_macpc0jv3ghmatiqz9klg8a0rfj6a&gpic=uid=000014d4ccb157cb:t=1786324032:rt=1786351049:s=alni_mbzzvu4fk0dvtyspvswrgjnvoesdg&eo_id_str=id=ae2867c086c038c3:t=1786324032:rt=1786351049:s=aa-afjan-w2dunw8cojata-fdy--&prev_fmts=","",0,0,null,null,3,3,0,0,0,1,2,0,0.0,3.9,0,0,0,1,"2026-08-29",0,0],["tag","데이터 추적","",0,0,null,null,3,0,0,0,0,0,0,0,null,8.6,0,0,0,3,"2026-05-19",0,0],["tag","리타게팅","Tag: 리타게팅",0,0,null,null,4,1,0,0,0,1,1,1,1.0,9.1,0,0,0,4,"2026-05-08",0,0],["insight","codex-cli-windows-easy-setup-guide&fwr=0&fwrattr=true&rpe=1&resp_fmts=3&aiof=13&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljuumcisimfybsisiiisije1ms4wljc5mjiumty5iixudwxsldasbnvsbcwinjqilftbik5vdd1bp0jyyw5kiiwiotkumc4wljaixsxbikdvb2dszsbdahjvbwuilcixnteumc43otiylje2osjdlfsiq2hyb21pdw0ilcixnteumc43otiylje2osjdxswwxq..&dt=1787872603954&bpp=1&bdt=3018&idt=332&shv=r20260825&mjsv=m202608240101&ptt=9&saldr=aa&abxe=1&cookie=id=d51526243e78c781:t=1787212140:rt=1787212140:s=alni_my_af1abkkkwdhl182ks1zr5qyjbg&gpic=uid=00001527c41f820a:t=1787212140:rt=1787212140:s=alni_mblhtamfyu4kxqnphj_mbm0nhth2q&eo_id_str=id=0cbdfa3cf6e91416:t=1787212140:rt=1787212140:s=aa-afjz6n3ei7","",0,0,null,null,2,2,0,0,0,1,2,0,0.0,7.3,0,0,0,1,"2026-08-28",0,0],["tag","CPM","Tag: CPM",0,0,null,null,1,0,0,0,0,0,0,0,null,6.1,0,0,0,1,"2026-07-31",0,0],["insight","claude-code-mac-easy-setup-guide그래서","",0,0,null,null,1,0,0,0,0,0,0,0,null,2.7,0,0,0,1,"2026-06-15",0,0],["insight","orca-ide-easy-guide&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljiumcisimfybsisiiisije1ms4wljc5mjiumtcyiixudwxsldasbnvsbcwinjqilftbik5vdd1bp0jyyw5kiiwiotkumc4wljaixsxbikdvb2dszsbdahjvbwuilcixnteumc43otiylje3mijdlfsiq2hyb21pdw0ilcixnteumc43otiylje3mijdxswwxq..&dt=1787930855349&bpp=2&bdt=583&idt=206&shv=r20260825&mjsv=m202608250101&ptt=9&saldr=aa&abxe=1&cookie=id=b1e1e65b3063825c:t=1786324032:rt=1786351049:s=alni_macpc0jv3ghmatiqz9klg8a0rfj6a&gpic=uid=000014d4ccb157cb:t=1786324032:rt=1786351049:s=alni_mbzzvu4fk0dvtyspvswrgjnvoesdg&eo_id_str=id=ae2867c086c038c3:t=1786324032:rt=1786351049:s=aa-afjan-w2dunw8cojata-fdy--&nras=1&correlator=58953","",0,0,null,null,1,1,0,0,0,1,1,0,0.0,11.7,0,0,0,1,"2026-08-29",0,0],["tag","CPC","",0,0,null,null,2,0,0,0,0,0,0,0,null,7.9,0,0,0,3,"2026-07-01",0,0],["insight","upstage-solar-open-2-solar-pro-4&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljuumcisimfybsisiiisije1ms4wljc5mjiumtm4iixudwxsldasbnvsbcwinjqilftbik5vdd1bp0jyyw5kiiwiotkumc4wljaixsxbikdvb2dszsbdahjvbwuilcixnteumc43otiyljezocjdlfsiq2hyb21pdw0ilcixnteumc43otiyljezocjdxswwxq..&dt=1787377874613&bpp=2&bdt=220&idt=21&shv=r20260820&mjsv=m202608170101&ptt=9&saldr=aa&abxe=1&cookie=id=05736e931a8eb41b:t=1787377223:rt=1787377223:s=alni_mazzwzv-15gxuzsqa38pkpzzjoleg&gpic=uid=0000152e392cf14d:t=1787377223:rt=1787377223:s=alni_marfndsfwuehsqm8t_i0hqfs9klyw&eo_id_str=id=65904ef517719b0b:t=1787377223:rt=1787377223:s=aa-afjzoieihaxbacrfg1bjs1mhs&nras=1&co","",0,0,null,null,1,1,0,0,0,1,1,0,0.0,11.7,0,0,0,1,"2026-08-22",0,0],["insight","geo-marketing-start-guide에서","",0,0,null,null,2,1,1,0,0,1,2,0,0.0,2.1,0,0,0,1,"2026-08-04",0,0],["tag","DOM","",0,0,null,null,1,0,0,0,0,0,0,0,null,4.6,0,0,0,1,"2026-07-22",0,0],["tag","노코드","Tag: 노코드",0,0,null,null,2,0,0,0,0,0,0,0,null,20.0,0,0,0,1,"2026-08-07",0,0],["insight","meta-ads-api-data-for-non-developers를","",0,0,null,null,1,0,0,0,0,0,1,1,1.0,6.7,0,0,0,1,"2026-08-13",0,0],["insight","openai-astra-model-comparison&fwr=0&fwrattr=true&rpe=1&resp_fmts=3&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisiji2ljuumsisimfybsisiiisije1ms4wljc5mjiunzyilg51bgwsmcxudwxslci2ncisw1sitm90pue_qnjhbmqilci5os4wljaumcjdlfsir29vz2xlienocm9tzsisije1ms4wljc5mjiunzyixsxbiknocm9taxvtiiwimtuxljaunzkymi43nijdxswwxq..&dt=1787729433407&bpp=2&bdt=1381&idt=693&shv=r20260824&mjsv=m202608200101&ptt=9&saldr=aa&abxe=1&cookie=id=81f8507f49b9e06c:t=1786404222:rt=1786404222:s=alni_mzksqvaypujn0c8jgmklqz_uhffqg&gpic=uid=000014d71c668337:t=1786404222:rt=1786404222:s=alni_mbsvbdgubjrc9u4_op30feic_vona&eo_id_str=id=54daecbb2c34e8ed:t=1786404222:rt=1786404222:s=aa-afjarypzzu-dozfvhv-jqfwlh","",0,0,null,null,2,2,0,0,0,2,2,0,0.0,11.6,0,0,0,1,"2026-08-26",0,0],["insight","claude-text-watermark-detection-limit","",0,0,null,null,2,1,0,0,0,1,1,0,0.0,2.4,0,0,0,1,"2026-08-19",0,0],["tag","React","",0,0,null,null,1,0,0,0,0,0,0,0,null,4.5,0,0,0,1,"2026-07-21",0,0],["insight","meta-mcp-meta-cli-comparison","",0,0,null,null,1,0,0,0,0,0,1,0,0.0,0.7,0,0,0,1,"2026-08-05",0,0],["tag","CSS","Tag: CSS",0,0,null,null,2,1,0,0,0,0,2,1,0.5,1.1,0,0,0,2,"2026-08-16",0,0],["tag","ROI","Tag: ROI",0,0,null,null,1,0,0,0,0,0,0,0,null,5.4,0,0,0,1,"2026-07-31",0,0],["insight","claude-md-setup-official-docs&pra=5&asro=0&aimartd=4&aieuf=1&aicrs=1&uach=wyjtywnpuyisije1ljmumsisimfybsisiiisije1ms4wljc5mjiumtm5iixudwxsldasbnvsbcwinjqilftbik5vdd1bp0jyyw5kiiwiotkumc4wljaixsxbikdvb2dszsbdahjvbwuilcixnteumc43otiyljezosjdlfsiq2hyb21pdw0ilcixnteumc43otiyljezosjdxswwxq..&dt=1788174641276&bpp=1&bdt=598&idt=14&shv=r20260825&mjsv=m202608250101&ptt=9&saldr=aa&abxe=1&cookie=id=1e246c1e576b3160:t=1787632408:rt=1787632408:s=alni_mbcrl705_4-olig5kwgbzyb1qh3wg&gpic=uid=0000153e696dc123:t=1787632408:rt=1787632408:s=alni_ma5nxlilwh44g4qadh-ykc5nxhzow&eo_id_str=id=2eb271b8246970e7:t=1787632408:rt=1787632408:s=aa-afjbd20rlbo_scdzxeo_k8mpf&nras=1&c","",0,0,null,null,1,1,0,0,0,1,1,0,0.0,11.9,0,0,0,1,"2026-08-31",0,0]],"queries":[["그록",198997,280,0.0014,6.49,3],["orca",61918,4653,0.0751,3.93,2],["클로드 코워크",30100,1038,0.0345,7.63,5],["클로드 디자인",15055,28,0.0019,7.83,3],["localhost",13391,41,0.0031,5.9,1],["제미나이",13268,3,0.0002,8.04,4],["오르카",11669,1985,0.1701,4.09,1],["앤트로픽",10414,20,0.0019,9.04,2],["cli",9961,101,0.0101,6.5,2],["codex 설치",9263,170,0.0184,4.82,2],["codex cli 설치",9088,634,0.0698,2.32,3],["paseo",8564,228,0.0266,5.37,1],["opus 5",8080,74,0.0092,8.71,2],["codex cli",6291,46,0.0073,9.12,3],["제미나이 스파크",6181,1712,0.277,1.84,4],["cmux",6081,80,0.0132,6.01,1],["localhost 3000",5719,32,0.0056,3.13,1],["claude cli",5349,13,0.0024,8.57,4],["cli 뜻",5222,52,0.01,6.38,2],["제미나이 노트북",5015,19,0.0038,7.5,1],["클로드 프로",4947,98,0.0198,6.45,3],["aside",4909,267,0.0544,6.24,3],["grok",4688,9,0.0019,7.57,2],["클로드 가격",4534,32,0.0071,7.76,2],["qwen3.8",4468,283,0.0633,4.99,4],["orca ide",4465,217,0.0486,5.76,2],["그록 ai",4433,9,0.002,8.1,1],["cac",4319,20,0.0046,4.88,1],["minimax h3",4170,343,0.0823,3.64,1],["클로드디자인",3787,3,0.0008,7.52,1],["클로드코워크",3662,44,0.012,7.64,3],["코덱스 설치",3569,97,0.0272,4.03,2],["코덱스 cli",3556,338,0.0951,3.95,3],["클로드 모델 비교",3527,31,0.0088,3.9,2],["클로드 무료",3526,42,0.0119,7.05,6],["그래프 엔지니어링",3106,667,0.2147,2.23,1],["orca 사용법",3068,317,0.1033,5.9,2],["codex cli install",2918,13,0.0045,7.13,2],["anthropic",2907,9,0.0031,7.24,1],["클로드 cowork",2856,119,0.0417,8.17,5],["앤 트로픽",2824,2,0.0007,8.78,1],["gemini spark",2822,237,0.084,6.17,1],["md 파일",2702,93,0.0344,4.35,1],["미니맥스",2664,64,0.024,6.8,1],["그록 무료",2598,317,0.122,2.06,1],["클로드 요금제",2455,24,0.0098,8.86,1],["하네스 엔지니어링 예시",2453,75,0.0306,7.08,1],["qwen3.8 27b",2415,191,0.0791,5.03,4],["테일스케일",2276,12,0.0053,7.63,1],["클로드 모델",2261,10,0.0044,6.92,1],["hallucination 뜻",2150,1,0.0005,9.67,2],["localhost:",2124,4,0.0019,5.69,1],["glm 5.3 flash",2057,171,0.0831,4.51,1],["클로드 모델 차이",2029,15,0.0074,4.03,1],["코워크",1970,24,0.0122,9.07,4],["클로드 코워크 사용법",1946,56,0.0288,7.28,5],["오르카 ai",1884,204,0.1083,3.25,2],["클로드 cli",1853,13,0.007,5.49,5],["ox alpha",1827,465,0.2545,2.63,2],["md파일",1757,47,0.0268,4.71,1],["클로드 플랜",1724,12,0.007,8.57,3],["conversion",1702,2,0.0012,5.89,3],["codex cli 사용법",1702,190,0.1116,3.88,4],["제미나이 cli",1693,94,0.0555,5.42,1],["localhost:3000",1681,2,0.0012,3.1,1],["클로드 워터마크",1677,93,0.0555,7.23,1],["아스트라",1604,74,0.0461,6.97,1],["anthropic 뜻",1552,14,0.009,4.78,1],["gpt 5.6 sol terra luna 차이",1529,13,0.0085,4.62,1],["claude code cli",1503,4,0.0027,9.51,2],["gpt-5.6",1470,3,0.002,10.66,1],["gpt sol terra luna 차이",1468,12,0.0082,5.46,1],["grok 4.6",1444,96,0.0665,5.64,1],["미니맥스 h3",1415,140,0.0989,3.09,1],["클로드",1394,1,0.0007,10.05,25],["http://localhost:3000",1337,3,0.0022,4.52,1],["conversion 뜻",1308,0,0.0,8.03,2],["local: http://localhost:3000",1304,1,0.0008,3.28,1],["루프 엔지니어링",1251,23,0.0184,8.29,1],["클로드 맥스 가격",1240,5,0.004,8.04,2],["cac 뜻",1226,2,0.0016,5.82,1],["opus5",1224,22,0.018,7.62,1],["gpt 5.6 luna",1201,43,0.0358,6.25,2],["카타고",1191,20,0.0168,9.01,1],["클로드 사용량",1136,26,0.0229,7.3,3],["gpt astra",1099,96,0.0874,4.58,1],["claude 모델 비교",1088,20,0.0184,4.12,1],["제미나이 설치",1073,3,0.0028,9.52,1],["구글 옴니",1056,7,0.0066,8.11,1],["gpt 아스트라",1041,95,0.0913,3.92,1],["그록 요금제",1037,83,0.08,2.98,2],["그록 무료체험",1029,116,0.1127,3.61,1],[".md 파일",1025,29,0.0283,5.06,1],["오르카 ide",1023,124,0.1212,3.73,2],["클로드 모델 종류",1015,9,0.0089,4.07,2],["meta api",1009,66,0.0654,3.52,1],["gpt luna",1008,40,0.0397,5.93,2],["클로드 컨텍스트 윈도우",995,12,0.0121,7.51,1],["opus sonnet 차이",963,3,0.0031,6.32,1],["5.6 sol terra luna 차이",962,4,0.0042,4.5,1],["그록 4.6",949,72,0.0759,4.75,2],["gpt 루나",941,16,0.017,7.8,2],["클로드 프로젝트 사용법",934,248,0.2655,4.21,3],["제미나이노트북",922,4,0.0043,7.86,1],["claude 요금제",900,5,0.0056,9.47,1],["cowork",895,6,0.0067,7.02,4],["genoffice",893,155,0.1736,2.51,2],["claude cowork",892,25,0.028,10.15,2],["코덱스 cli 설치",891,118,0.1324,2.69,2],["solar pro 4",886,54,0.0609,5.39,1],["클로드 프로젝트",886,97,0.1095,4.55,2],["geo",873,7,0.008,10.91,2],["클로드 pro",861,22,0.0256,6.49,3],["그록ai",841,3,0.0036,8.01,1],["하네스 엔지니어링 하는 법",813,65,0.08,4.17,1],["astra",806,40,0.0496,5.7,1],["claude bypass permission",805,7,0.0087,7.28,1],["cvr",803,0,0.0,8.85,2],["로컬호스트",802,23,0.0287,2.67,1],["ai studio",796,1,0.0013,5.39,2],["orca 설치",789,29,0.0368,6.39,2],["딥시크 v4",786,71,0.0903,3.66,2],["클로드 코드 cli",785,11,0.014,7.96,2],["codex mac",783,17,0.0217,5.65,1],["유튜브 수익창출 조건",775,53,0.0684,5.06,1],["html in canvas",769,176,0.2289,4.33,1],["클로드 코 워크",757,22,0.0291,9.71,4],["그록 19 사용법",742,12,0.0162,5.23,1],["네이버 검색광고 api",737,49,0.0665,5.31,1],["aside browser",724,56,0.0773,5.72,2],["sol terra luna 차이",720,2,0.0028,5.34,1],["qwen3.8-27b",716,61,0.0852,4.79,2],["glm 5.3",714,37,0.0518,6.68,1],["클로드 코드 가격",709,6,0.0085,7.17,6],["openai astra",706,138,0.1955,2.84,1],["클로드 워터 마크",694,18,0.0259,6.65,1],["구글 스파크",687,153,0.2227,2.22,1],["sycophancy",676,6,0.0089,4.51,1],["클로드 업데이트",676,14,0.0207,4.99,2],["챗지피티 루나",653,5,0.0077,6.73,1],["안트로픽",653,0,0.0,9.02,1],["클로드 블로그",650,39,0.06,4.81,2],["그록 가격",650,30,0.0462,4.25,2],["메타 api",649,46,0.0709,3.66,1],["aside 브라우저",640,75,0.1172,6.24,3],["제미나이 스파크 사용법",637,207,0.325,1.33,1],["클로드 프로 사용량",634,123,0.194,2.05,2],["클로드 이 파일을 다른 응용 프로그램에서 사용 중입니다",632,10,0.0158,6.86,1],["클로드 오류",620,2,0.0032,8.47,3],["클로드 요금제 비교",612,15,0.0245,4.51,2]],"trend":{"up":[["grok-usage-guide","insight","그록(Grok) 사용법: 무료 시작 방법과 요금제 정리",238119,758,2159,25,2134],["qwen3-8-27b-local-mac","insight","Qwen3.8 27B 로컬 실행 결과: 24GB 맥에서는 CPU로 떨어집니다",12047,0,1136,0,1136],["minimax-h3-overview","insight","미니맥스 H3 정리: 스펙, 요금, 한국 제외 라이선스 쟁점",15401,0,1050,0,1050],["ox-alpha-stealth-model-zai-glm","insight","Ox Alpha 정체와 GLM-5.3-Flash 스펙 정리",8343,0,1000,0,1000],["youtube-ypp-2027-threshold-change","insight","유튜브 수익창출 조건 변경 정리: 2027년 2월부터 2배 상향",12025,0,873,0,873],["paseo-coding-agent-orchestrator","insight","클로드 코드 모바일로 이어서 쓰는 방법: Paseo 설치와 사용법",13423,0,731,0,731],["aside-browser-review","insight","Aside 브라우저 사용 후기: 한국인 창업팀이 만든 AI 에이전트 브라우저",9453,0,664,0,664],["claude-code-plans-and-limits","class","클로드 코드 플랜과 사용량 한도 이해하기",22323,13160,1068,511,557],["claude-text-watermark-detection-limits","insight","클로드 텍스트 워터마크 적용 범위와 탐지 한계 정리",6895,0,493,0,493],["grok-4-6-release-benchmark-pricing","insight","Grok 4.6 벤치마크 점수와 가격 구간 정리",6988,0,464,0,464],["qwen3-8-max-guide","insight","Qwen3.8-Max 정리: 사양, 가격, 자율작업 성적, 오픈웨이트 공개 상태 (2026년 8월 기준)",10114,1005,500,116,384],["what-are-claude-projects","class","Claude Projects 활용하기",3633,2396,555,186,369],["gemini-cli-install-guide","insight","제미나이 CLI 설치와 사용법: 하루 1,000회 무료 한도와 Gemini 4 준비 상황",7314,988,428,66,362],["claude-cowork-vs-code-comparison","insight","클로드 코워크 vs 클로드 코드 비슷해보이지만 어떻게 다른지 정리했습니다.",8053,3353,700,352,348],["openai-astra-model-comparison","insight","OpenAI의 야심작, 아스트라(Astra) 얼마나 뛰어난 걸까? 다른 모델과의 비교",8751,1889,614,286,328],["vscode-claude-code-terminal-guide","insight","VS Code에서 클로드 코드 실행하기 (윈도우 화면 그대로 따라하기)",4943,0,299,0,299],["html-in-canvas-api","insight","HTML in Canvas API가 바꾸는 웹사이트 화면의 구조",1985,0,289,0,289],["upstage-solar-open-2-solar-pro-4","insight","업스테이지 Solar Open 2, Solar Pro 4 정리: 벤치마크와 클로드 코드 연동",6431,0,289,0,289]],"down":[["orca-ide-easy-guide","insight","클로드코드와 Codex 사용자를 위한 Orca 사용법 총정리",47616,67472,3457,7290,-3833],["claude-opus-5-update-and-usage","insight","Claude Opus 5 업데이트 방법과 사용법 정리",10027,20434,242,1200,-958],["codex-cli-windows-easy-setup-guide","insight","쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(윈도우)",21071,30945,1590,2357,-767],["kimi-k3-fable5-gpt56-sol-comparison","insight","Kimi K3, Claude Fable 5, GPT-5.6 Sol 비교: 모델별 장점 정리",3027,5411,242,716,-474],["katago-vs-alphago","insight","신진서 9단이 이긴 AI 카타고, 알파고와 어떻게 다른가?",2083,4580,104,399,-295],["gpt-5-6-luna-price-cut","insight","GPT-5.6 Luna 파격적인 가격 공개와 GPT의 역습",10397,5196,325,528,-203],["claude-code-mac-easy-setup-guide","insight","쉽게 설치하는 클로드코드 세팅가이드(맥)",5877,7143,635,810,-175],["claude-cowork-what-you-can-do","insight","클로드 코워크로 할 수 있는 것 - 총 정리",9990,14696,594,757,-163],["gemini-spark-guide","insight","제미나이 스파크(Gemini Spark) 사용법과 제미나이 모델의 장점",18200,12720,1911,2042,-131],["codex-cli-mac-easy-setup-guide","insight","쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(맥)",4292,5714,364,447,-83],["orca-vs-vscode","insight","VS Code와 비슷하지만 다른 Orca 사용법",5178,4207,427,487,-60],["claude-for-marketers","class","마케터를 위한 Claude 활용하기",778,1153,87,144,-57],["ai-graph-engineering","insight","쉽게 이해하는 AI 그래프 엔지니어링",3495,1850,447,497,-50],["claude-code-ultraplan-auto-bypass-mode","insight","Ultraplan, Auto 모드, bypass 모드의 차이와 사용 맥락을 정리했습니다",3500,4699,129,172,-43],["claude-cowork-5-ai-tasks-for-beginners","insight","클로드 코워크로 해야 할 5가지 AI 작업",1756,2433,60,98,-38],["localhost-vibe-coding-beginner-guide","insight","로컬호스트(localhost) 뜻과 배포된 웹의 차이, NPM, NPX, 터미널까지 한 번에 정리",14850,15995,66,103,-37],["claude-code-installation-basics","class","Claude Code 설치 첫걸음 (터미널 입문 포함) 따라하기",716,1096,21,57,-36],["tmux-cmux-basics","insight","AI 사용자를 위한 tmux, cmux 사용법과 차이 쉽게 알아보기",6328,5389,148,182,-34]]},"positionBucket":[["1-3",11704,1477,0.1262,770],["3-6",811337,48813,0.0602,5142],["6-10",814628,19944,0.0245,7911],["11-20",15537,324,0.0209,1186],["21-50",2658,50,0.0188,510],["50+",158,0,0.0,73]],"scroll":[["insight",94933,49822,35237,15178,5139,102055,44.7],["class",15528,7253,5071,1631,831,16286,47.9],["home",4302,824,535,451,545,3244,33.6],["course",2631,463,401,342,284,1735,37.9],["tag",360,33,26,24,21,296,13.7],["ai_practice",296,81,74,64,64,267,40.1],["ga4_edu",91,27,21,11,7,80,25.5]],"typeSummary":[["insight",187,1346537,63817,0.0474,5.9,95817,94933,0.1031],["class",99,300066,6464,0.0215,6.69,11633,15528,0.1146],["course",9,3286,120,0.0365,7.84,618,2631,0.6134],["ga4_edu",31,1006,12,0.0119,13.1,28,91,0.2593],["ai_practice",6,150,1,0.0067,6.01,82,296,0.7901],["tag",35,101,2,0.0198,11.11,97,360,0.6364]],"monthly":[["2026-03",1738,1712,77,68,0,0,52,0,0,80],["2026-04",3253,3192,131,111,0,0,52,0,0,146],["2026-05",6029,6174,202,164,0,0,112,0,0,256],["2026-06",10014,10207,323,273,0,0,190,0,0,303],["2026-07",31001,32301,722,612,0,0,929,3,0,770],["2026-08",67886,69840,845,717,92,88,1134,109,44,478],["2026-09",5300,5400,71,60,11,2,116,4,2,14]],"searchType":[["2026-03",1877,67,96,0,0,0],["2026-04",37655,1344,3383,29,0,0],["2026-05",90068,2954,4851,51,0,0],["2026-06",179587,5720,6070,67,0,0],["2026-07",335601,18613,12008,176,13933,833],["2026-08",972577,40286,39821,394,60404,3417],["2026-09",38657,1624,2003,14,0,0]],"hourly":[[0,1,"Sun",431],[1,1,"Sun",315],[2,1,"Sun",219],[3,1,"Sun",170],[4,1,"Sun",87],[5,1,"Sun",104],[6,1,"Sun",131],[7,1,"Sun",160],[8,1,"Sun",244],[9,1,"Sun",359],[10,1,"Sun",364],[11,1,"Sun",426],[12,1,"Sun",423],[13,1,"Sun",432],[14,1,"Sun",499],[15,1,"Sun",601],[16,1,"Sun",580],[17,1,"Sun",537],[18,1,"Sun",484],[19,1,"Sun",443],[20,1,"Sun",513],[21,1,"Sun",584],[22,1,"Sun",574],[23,1,"Sun",524],[0,2,"Mon",435],[1,2,"Mon",294],[2,2,"Mon",191],[3,2,"Mon",125],[4,2,"Mon",87],[5,2,"Mon",78],[6,2,"Mon",135],[7,2,"Mon",316],[8,2,"Mon",768],[9,2,"Mon",1360],[10,2,"Mon",1578],[11,2,"Mon",1324],[12,2,"Mon",924],[13,2,"Mon",1551],[14,2,"Mon",1608],[15,2,"Mon",1537],[16,2,"Mon",1513],[17,2,"Mon",1293],[18,2,"Mon",897],[19,2,"Mon",645],[20,2,"Mon",625],[21,2,"Mon",674],[22,2,"Mon",675],[23,2,"Mon",595],[0,3,"Tue",448],[1,3,"Tue",288],[2,3,"Tue",176],[3,3,"Tue",130],[4,3,"Tue",97],[5,3,"Tue",108],[6,3,"Tue",196],[7,3,"Tue",319],[8,3,"Tue",808],[9,3,"Tue",1426],[10,3,"Tue",1599],[11,3,"Tue",1498],[12,3,"Tue",951],[13,3,"Tue",1558],[14,3,"Tue",1605],[15,3,"Tue",1645],[16,3,"Tue",1564],[17,3,"Tue",1423],[18,3,"Tue",874],[19,3,"Tue",667],[20,3,"Tue",652],[21,3,"Tue",703],[22,3,"Tue",673],[23,3,"Tue",546],[0,4,"Wed",455],[1,4,"Wed",326],[2,4,"Wed",180],[3,4,"Wed",117],[4,4,"Wed",84],[5,4,"Wed",100],[6,4,"Wed",160],[7,4,"Wed",342],[8,4,"Wed",822],[9,4,"Wed",1403],[10,4,"Wed",1606],[11,4,"Wed",1339],[12,4,"Wed",830],[13,4,"Wed",1513],[14,4,"Wed",1680],[15,4,"Wed",1601],[16,4,"Wed",1542],[17,4,"Wed",1411],[18,4,"Wed",830],[19,4,"Wed",646],[20,4,"Wed",590],[21,4,"Wed",632],[22,4,"Wed",666],[23,4,"Wed",577],[0,5,"Thu",400],[1,5,"Thu",249],[2,5,"Thu",138],[3,5,"Thu",93],[4,5,"Thu",73],[5,5,"Thu",95],[6,5,"Thu",127],[7,5,"Thu",263],[8,5,"Thu",768],[9,5,"Thu",1296],[10,5,"Thu",1470],[11,5,"Thu",1205],[12,5,"Thu",863],[13,5,"Thu",1425],[14,5,"Thu",1454],[15,5,"Thu",1496],[16,5,"Thu",1444],[17,5,"Thu",1291],[18,5,"Thu",856],[19,5,"Thu",556],[20,5,"Thu",524],[21,5,"Thu",621],[22,5,"Thu",600],[23,5,"Thu",540],[0,6,"Fri",416],[1,6,"Fri",246],[2,6,"Fri",186],[3,6,"Fri",98],[4,6,"Fri",94],[5,6,"Fri",87],[6,6,"Fri",141],[7,6,"Fri",302],[8,6,"Fri",731],[9,6,"Fri",1141],[10,6,"Fri",1302],[11,6,"Fri",1208],[12,6,"Fri",792],[13,6,"Fri",1361],[14,6,"Fri",1314],[15,6,"Fri",1263],[16,6,"Fri",1239],[17,6,"Fri",1049],[18,6,"Fri",635],[19,6,"Fri",461],[20,6,"Fri",445],[21,6,"Fri",463],[22,6,"Fri",504],[23,6,"Fri",423],[0,7,"Sat",377],[1,7,"Sat",271],[2,7,"Sat",168],[3,7,"Sat",119],[4,7,"Sat",140],[5,7,"Sat",172],[6,7,"Sat",283],[7,7,"Sat",248],[8,7,"Sat",252],[9,7,"Sat",363],[10,7,"Sat",445],[11,7,"Sat",463],[12,7,"Sat",410],[13,7,"Sat",478],[14,7,"Sat",544],[15,7,"Sat",539],[16,7,"Sat",584],[17,7,"Sat",504],[18,7,"Sat",469],[19,7,"Sat",424],[20,7,"Sat",424],[21,7,"Sat",488],[22,7,"Sat",535],[23,7,"Sat",484]],"lifecycle":[[0,187,243772,17263,1303.6,92.3],[1,137,197287,8549,1440.1,62.4],[2,126,195702,7344,1553.2,58.3],[3,113,148110,5245,1310.7,46.4],[4,88,68630,3630,779.9,41.3],[5,67,47854,2366,714.2,35.3],[6,60,41397,1886,690.0,31.4],[7,57,31688,1351,555.9,23.7],[8,57,31348,1474,550.0,25.9],[9,58,32312,1395,557.1,24.1],[10,59,27996,1413,474.5,23.9],[11,58,30219,1222,521.0,21.1],[12,56,27846,1153,497.3,20.6],[13,61,27966,1249,458.5,20.5],[14,58,25648,1150,442.2,19.8],[15,59,26163,1245,443.4,21.1],[16,59,20351,653,344.9,11.1],[17,57,21136,620,370.8,10.9],[18,55,19541,624,355.3,11.3],[19,53,11421,464,215.5,8.8],[20,47,12115,625,257.8,13.3],[21,40,11957,635,298.9,15.9],[22,39,13155,589,337.3,15.1],[23,38,11638,574,306.3,15.1]],"cannibal":[["그록",3,198997,280,"grok-4-6-release-benchmark-pricing | grok-bot-features-and-risks | grok-usage-guide"],["orca",2,61918,4653,"orca-ide-easy-guide | orca-vs-vscode"],["클로드 코워크",5,30100,1038,"claude-cowork-5-ai-tasks-for-beginners | claude-cowork-built-in-browser | claude-cowork-overview"],["클로드 디자인",3,15055,28,"claude-design-launch-review | claude-work-use-cases-and-projects | what-are-claude-skills"],["제미나이",4,13268,3,"gemini-3-7-flash-gpt-5-6-ultrafast | gemini-cli-install-guide | gemini-notebook-guide | gemini-spark-guide"],["앤트로픽",2,10414,20,"cli-meaning-claude-code-guide | what-is-anthropic"],["cli",2,9961,101,"cli-meaning-claude-code-guide | what-is-terminal-cli"],["codex 설치",2,9263,170,"codex-cli-mac-easy-setup-guide | codex-cli-windows-easy-setup-guide"],["codex cli 설치",3,9088,634,"codex-cli-mac-easy-setup-guide | codex-cli-practical-guide | codex-cli-windows-easy-setup-guide"],["opus 5",2,8080,74,"claude-opus-5-update-and-usage | kimi-k3-fable5-gpt56-sol-comparison"],["codex cli",3,6291,46,"codex-cli-mac-easy-setup-guide | codex-cli-practical-guide | codex-cli-windows-easy-setup-guide"],["제미나이 스파크",4,6181,1712,"aws-bedrock-agentcore-n8n | claude-work-use-cases-and-projects | gemini-spark-guide | seo-title-creator-guide"],["claude cli",4,5349,13,"claude-code-installation-basics | claude-code-practical-guide | cli-meaning-claude-code-guide | what-is-claude-code"],["cli 뜻",2,5222,52,"cli-meaning-claude-code-guide | what-is-terminal-cli"],["클로드 프로",3,4947,98,"claude-code-plans-and-limits | claude-code-pro-plan-fact-check | claude-plans-comparison"],["aside",3,4909,267,"aside-browser-review | aside-vs-cdp-playwright-browser-agent | claude-cowork-built-in-browser"],["grok",2,4688,9,"grok-4-6-release-benchmark-pricing | grok-usage-guide"],["클로드 가격",2,4534,32,"claude-code-pro-plan-fact-check | claude-plans-comparison"],["qwen3.8",4,4468,283,"ai-distribution-race-2026-08 | meta-muse-glimmer-local-agent | qwen3-8-27b-local-mac | qwen3-8-max-guide"],["orca ide",2,4465,217,"orca-ide-easy-guide | orca-vs-vscode"],["클로드코워크",3,3662,44,"claude-cowork-5-ai-tasks-for-beginners | claude-cowork-vs-code-comparison | claude-cowork-what-you-can-do"],["코덱스 설치",2,3569,97,"codex-cli-mac-easy-setup-guide | codex-cli-windows-easy-setup-guide"],["코덱스 cli",3,3556,338,"codex-cli-mac-easy-setup-guide | codex-cli-practical-guide | codex-cli-windows-easy-setup-guide"],["클로드 모델 비교",2,3527,31,"claude-code-pro-plan-fact-check | claude-model-family"],["클로드 무료",6,3526,42,"claude-code-practical-guide | claude-code-pro-plan-fact-check | claude-free-plan-guide | claude-plans-comparison"],["orca 사용법",2,3068,317,"orca-ide-easy-guide | orca-vs-vscode"],["codex cli install",2,2918,13,"codex-cli-mac-easy-setup-guide | codex-cli-windows-easy-setup-guide"],["클로드 cowork",5,2856,119,"claude-cowork-5-ai-tasks-for-beginners | claude-cowork-overview | claude-cowork-vs-code-comparison | claude-cowork-what-you-can-do"],["qwen3.8 27b",4,2415,191,"meta-muse-glimmer-local-agent | openwiki-guide | qwen3-8-27b-local-mac | qwen3-8-max-guide"],["hallucination 뜻",2,2150,1,"ai-hallucination-cases-and-rates | what-is-hallucination"]],"device":[["desktop",88361,71685],["mobile",21602,16138],["tablet",807,590]],"country":[["South Korea",107564,86879],["",968,12],["United States",762,504],["Japan",464,334],["China",136,42],["Singapore",113,77],["Vietnam",110,84],["Canada",97,74],["Australia",61,53],["Hong Kong",50,37],["Malaysia",48,30],["Germany",43,33]]};
+
+/* ============ utils ============ */
+const NS='http://www.w3.org/2000/svg';
+const el=(t,a={})=>{const e=document.createElementNS(NS,t);for(const k in a)if(a[k]!=null)e.setAttribute(k,a[k]);return e;};
+const $=s=>document.querySelector(s);
+const cssv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt=n=>(n==null?'-':Math.round(n).toLocaleString('ko-KR'));
+const fmtK=n=>{if(n==null)return'-';const a=Math.abs(n);
+  if(a>=100000000)return (n/100000000).toFixed(1).replace(/\.0$/,'')+'억';
+  if(a>=10000)return (n/10000).toFixed(a>=100000?0:1).replace(/\.0$/,'')+'만';
+  return Math.round(n).toLocaleString('ko-KR');};
+const pct=(v,d=1)=>v==null?'-':(v*100).toFixed(d)+'%';
+const dec=(v,d=1)=>v==null?'-':v.toFixed(d);
+const SERIES=['--s1','--s2','--s3','--s4','--s5','--s6','--s7'];
+const sc=i=>cssv(SERIES[i%7]);
+const HEAT=['--heat-0','--heat-1','--heat-2','--heat-3','--heat-4','--heat-5'];
+
+function tipFor(host){const t=document.createElement('div');t.className='tip';host.appendChild(t);return t;}
+function placeTip(tip,host,x,y){
+  const hw=host.clientWidth, tw=tip.offsetWidth||180;
+  let lx=x+14; if(lx+tw>hw) lx=x-tw-14; if(lx<0) lx=0;
+  tip.style.left=lx+'px'; tip.style.top=Math.max(0,y-10)+'px';
+}
+function legend(node,items){
+  node.innerHTML=items.map(i=>`<span><i style="background:${i.c}"></i>${i.t}</span>`).join('');
+}
+function table(node,cols,rows,opt={}){
+  const head=cols.map((c,i)=>`<th class="${c.l?'l':''} ${c.sort===false?'':'s'}" data-i="${i}">${c.h}</th>`).join('');
+  const body=rows.map(r=>'<tr>'+r.map((v,i)=>
+    `<td class="${cols[i].l?'l':'num'}">${v}</td>`).join('')+'</tr>').join('');
+  node.innerHTML=`<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+  if(opt.sortable!==false) makeSortable(node);
+}
+function makeSortable(node){
+  const tb=node.querySelector('table'); if(!tb)return;
+  tb.querySelectorAll('th.s').forEach(th=>{
+    th.addEventListener('click',()=>{
+      const i=+th.dataset.i;
+      const cur=th.getAttribute('aria-sort');
+      const dir=cur==='descending'?'ascending':'descending';
+      tb.querySelectorAll('th').forEach(x=>x.removeAttribute('aria-sort'));
+      th.setAttribute('aria-sort',dir);
+      const rows=[...tb.querySelectorAll('tbody tr')];
+      const val=tr=>{const c=tr.children[i]; const raw=(c.dataset.v!=null?c.dataset.v:c.textContent);
+        const n=parseFloat(String(raw).replace(/[^\d.\-]/g,'')); return isNaN(n)?String(raw):n;};
+      rows.sort((a,b)=>{const x=val(a),y=val(b);
+        if(typeof x==='number'&&typeof y==='number')return dir==='ascending'?x-y:y-x;
+        return dir==='ascending'?String(x).localeCompare(String(y),'ko'):String(y).localeCompare(String(x),'ko');});
+      const tbody=tb.querySelector('tbody'); rows.forEach(r=>tbody.appendChild(r));
+    });
+  });
+}
+document.querySelectorAll('button.tbtn[data-table]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const t=document.getElementById(b.dataset.table);
+    const on=t.classList.toggle('hidden')===false;
+    b.setAttribute('aria-pressed',String(on)); b.textContent=on?'차트':'표';
+  });
+});
+
+/* ============ chart: time series (line / area) ============ */
+function timeSeries(host,{labels,series,W=560,H=210,pad={t:16,r:14,b:26,l:46},yFmt=fmtK,area=false,xTick}){
+  host.innerHTML=''; const tip=tipFor(host);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const max=Math.max(1,...series.flatMap(s=>s.v.filter(v=>v!=null)));
+  const X=i=>pad.l+(labels.length<2?iw/2:i/(labels.length-1)*iw);
+  const Y=v=>pad.t+ih-(v/max)*ih;
+  // grid + y labels
+  for(let k=0;k<=4;k++){
+    const v=max*k/4, y=Y(v);
+    svg.appendChild(el('line',{x1:pad.l,x2:W-pad.r,y1:y,y2:y,stroke:cssv('--grid'),'stroke-width':1}));
+    const tx=el('text',{x:pad.l-7,y:y+3.5,'text-anchor':'end','font-size':10,fill:cssv('--ink-3'),
+      'font-family':'IBM Plex Mono, monospace'}); tx.textContent=yFmt(v); svg.appendChild(tx);
+  }
+  // x ticks
+  (xTick||[]).forEach(({i,t})=>{
+    const tx=el('text',{x:X(i),y:H-8,'text-anchor':'middle','font-size':10,fill:cssv('--ink-3'),
+      'font-family':'IBM Plex Mono, monospace'}); tx.textContent=t; svg.appendChild(tx);
+  });
+  series.forEach(s=>{
+    const pts=s.v.map((v,i)=>v==null?null:[X(i),Y(v)]).filter(Boolean);
+    if(!pts.length)return;
+    if(area||s.area){
+      const d='M'+pts.map(p=>p.join(',')).join('L')+`L${pts[pts.length-1][0]},${Y(0)}L${pts[0][0]},${Y(0)}Z`;
+      svg.appendChild(el('path',{d,fill:s.c,'fill-opacity':s.fillOpacity||0.16,stroke:'none'}));
+    }
+    svg.appendChild(el('path',{d:'M'+pts.map(p=>p.join(',')).join('L'),fill:'none',
+      stroke:s.c,'stroke-width':s.w||2,'stroke-linejoin':'round','stroke-linecap':'round',
+      'stroke-dasharray':s.dash||null,'stroke-opacity':s.opacity||1}));
+  });
+  // crosshair
+  const cross=el('line',{y1:pad.t,y2:pad.t+ih,stroke:cssv('--ink-3'),'stroke-width':1,opacity:0});
+  svg.appendChild(cross);
+  const dots=series.map(s=>{const c=el('circle',{r:4.5,fill:s.c,stroke:cssv('--surface'),'stroke-width':2,opacity:0});
+    svg.appendChild(c);return c;});
+  const hit=el('rect',{x:pad.l,y:pad.t,width:iw,height:ih,fill:'transparent'});
+  svg.appendChild(hit);
+  const move=ev=>{
+    const r=svg.getBoundingClientRect();
+    const px=(ev.clientX-r.left)/r.width*W;
+    let i=Math.round((px-pad.l)/(iw||1)*(labels.length-1));
+    i=Math.max(0,Math.min(labels.length-1,i));
+    cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('opacity',.55);
+    series.forEach((s,k)=>{const v=s.v[i];
+      if(v==null){dots[k].setAttribute('opacity',0);return;}
+      dots[k].setAttribute('cx',X(i));dots[k].setAttribute('cy',Y(v));dots[k].setAttribute('opacity',1);});
+    tip.innerHTML=`<b>${labels[i]}</b>`+series.map(s=>s.v[i]==null?'':
+      `<div class="row"><span><i class="sw" style="background:${s.c}"></i>${s.t}</span><b>${(s.fmt||fmt)(s.v[i])}</b></div>`).join('');
+    tip.classList.add('on');
+    const hr=host.getBoundingClientRect();
+    placeTip(tip,host,ev.clientX-hr.left,ev.clientY-hr.top);
+  };
+  hit.addEventListener('mousemove',move);
+  hit.addEventListener('mouseleave',()=>{tip.classList.remove('on');cross.setAttribute('opacity',0);
+    dots.forEach(d=>d.setAttribute('opacity',0));});
+  host.appendChild(svg);
+}
+
+/* ============ chart: 100% stacked area ============ */
+function stack100(host,{labels,keys,rows,colors,W=560,H=230,pad={t:14,r:12,b:26,l:40},xTick}){
+  host.innerHTML=''; const tip=tipFor(host);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const X=i=>pad.l+(labels.length<2?iw/2:i/(labels.length-1)*iw);
+  const Y=f=>pad.t+ih-f*ih;
+  const totals=rows.map(r=>r.reduce((a,b)=>a+b,0)||1);
+  const cum=rows.map(r=>{let a=0;return r.map(v=>{a+=v;return a;});});
+  for(let k=0;k<=4;k++){
+    const y=Y(k/4);
+    svg.appendChild(el('line',{x1:pad.l,x2:W-pad.r,y1:y,y2:y,stroke:cssv('--grid'),'stroke-width':1}));
+    const tx=el('text',{x:pad.l-7,y:y+3.5,'text-anchor':'end','font-size':10,fill:cssv('--ink-3'),
+      'font-family':'IBM Plex Mono, monospace'}); tx.textContent=(k*25)+'%'; svg.appendChild(tx);
+  }
+  (xTick||[]).forEach(({i,t})=>{const tx=el('text',{x:X(i),y:H-8,'text-anchor':'middle','font-size':10,
+    fill:cssv('--ink-3'),'font-family':'IBM Plex Mono, monospace'});tx.textContent=t;svg.appendChild(tx);});
+  for(let s=keys.length-1;s>=0;s--){
+    const up=labels.map((_,i)=>[X(i),Y(cum[i][s]/totals[i])]);
+    const d='M'+up.map(p=>p.join(',')).join('L')+`L${X(labels.length-1)},${Y(0)}L${X(0)},${Y(0)}Z`;
+    svg.appendChild(el('path',{d,fill:colors[s],stroke:cssv('--surface'),'stroke-width':2,'stroke-linejoin':'round'}));
+  }
+  const cross=el('line',{y1:pad.t,y2:pad.t+ih,stroke:cssv('--ink'),'stroke-width':1,opacity:0});
+  svg.appendChild(cross);
+  const hit=el('rect',{x:pad.l,y:pad.t,width:iw,height:ih,fill:'transparent'});svg.appendChild(hit);
+  hit.addEventListener('mousemove',ev=>{
+    const r=svg.getBoundingClientRect(); const px=(ev.clientX-r.left)/r.width*W;
+    let i=Math.round((px-pad.l)/(iw||1)*(labels.length-1));i=Math.max(0,Math.min(labels.length-1,i));
+    cross.setAttribute('x1',X(i));cross.setAttribute('x2',X(i));cross.setAttribute('opacity',.6);
+    tip.innerHTML=`<b>${labels[i]} 주</b><div class="row"><span>세션</span><b>${fmt(totals[i])}</b></div>`+
+      keys.map((k,s)=>rows[i][s]?`<div class="row"><span><i class="sw" style="background:${colors[s]}"></i>${k}</span><b>${pct(rows[i][s]/totals[i])}</b></div>`:'').join('');
+    tip.classList.add('on');
+    const hr=host.getBoundingClientRect();placeTip(tip,host,ev.clientX-hr.left,ev.clientY-hr.top);
+  });
+  hit.addEventListener('mouseleave',()=>{tip.classList.remove('on');cross.setAttribute('opacity',0);});
+  host.appendChild(svg);
+}
+
+/* ============ chart: grouped bars ============ */
+function groupedBar(host,{cats,series,W=560,H=225,pad={t:34,r:12,b:34,l:48},note}){
+  host.innerHTML=''; const tip=tipFor(host);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const max=Math.max(1,...series.flatMap(s=>s.v));
+  const Y=v=>pad.t+ih-(v/max)*ih;
+  const gw=iw/cats.length, bw=Math.min(30,(gw-14)/series.length);
+  for(let k=0;k<=4;k++){const y=Y(max*k/4);
+    svg.appendChild(el('line',{x1:pad.l,x2:W-pad.r,y1:y,y2:y,stroke:cssv('--grid'),'stroke-width':1}));
+    const tx=el('text',{x:pad.l-7,y:y+3.5,'text-anchor':'end','font-size':10,fill:cssv('--ink-3'),
+      'font-family':'IBM Plex Mono, monospace'});tx.textContent=fmtK(max*k/4);svg.appendChild(tx);}
+  cats.forEach((c,i)=>{
+    const gx=pad.l+gw*i+gw/2;
+    series.forEach((s,j)=>{
+      const v=s.v[i], h=Math.max(0,pad.t+ih-Y(v));
+      const x=gx-(series.length*bw+ (series.length-1)*2)/2 + j*(bw+2);
+      const y=Y(v), r=Math.min(4,h/2);
+      const d=h<=0?'':`M${x},${pad.t+ih}L${x},${y+r}Q${x},${y} ${x+r},${y}L${x+bw-r},${y}Q${x+bw},${y} ${x+bw},${y+r}L${x+bw},${pad.t+ih}Z`;
+      if(d){const p=el('path',{d,fill:s.c});
+        p.addEventListener('mousemove',ev=>{tip.innerHTML=`<b>${c}</b><div class="row"><span><i class="sw" style="background:${s.c}"></i>${s.t}</span><b>${fmt(v)}</b></div>`+
+          (note?`<div class="row"><span>CTR</span><b>${note[i]}</b></div>`:'');
+          tip.classList.add('on');const hr=host.getBoundingClientRect();placeTip(tip,host,ev.clientX-hr.left,ev.clientY-hr.top);});
+        p.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+        svg.appendChild(p);}
+    });
+    const tx=el('text',{x:gx,y:H-16,'text-anchor':'middle','font-size':10.5,fill:cssv('--ink-2'),
+      'font-family':'IBM Plex Mono, monospace'});tx.textContent=c;svg.appendChild(tx);
+    if(note){const nt=el('text',{x:gx,y:pad.t-11,'text-anchor':'middle','font-size':10.5,'font-weight':600,
+      fill:cssv('--ink'),'font-family':'IBM Plex Mono, monospace'});nt.textContent=note[i];svg.appendChild(nt);}
+  });
+  if(note){const nl=el('text',{x:pad.l-7,y:pad.t-11,'text-anchor':'end','font-size':9.5,fill:cssv('--ink-3'),
+    'font-family':'IBM Plex Mono, monospace'});nl.textContent='CTR';svg.appendChild(nl);
+    svg.appendChild(el('line',{x1:pad.l,x2:W-pad.r,y1:pad.t-6,y2:pad.t-6,stroke:cssv('--edge-soft'),'stroke-width':1}));}
+  const xl=el('text',{x:pad.l+iw/2,y:H-2,'text-anchor':'middle','font-size':10,fill:cssv('--ink-3'),
+    'font-family':'IBM Plex Mono, monospace'});xl.textContent='평균 순위 구간';svg.appendChild(xl);
+  host.appendChild(svg);
+}
+
+/* ============ chart: stacked bars (by month) ============ */
+function stackedBar(host,{cats,keys,rows,colors,W=560,H=215,pad={t:16,r:12,b:30,l:48}}){
+  host.innerHTML=''; const tip=tipFor(host);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const tot=rows.map(r=>r.reduce((a,b)=>a+b,0));
+  const max=Math.max(1,...tot);
+  const Y=v=>pad.t+ih-(v/max)*ih;
+  const gw=iw/cats.length, bw=Math.min(46,gw-16);
+  for(let k=0;k<=4;k++){const y=Y(max*k/4);
+    svg.appendChild(el('line',{x1:pad.l,x2:W-pad.r,y1:y,y2:y,stroke:cssv('--grid'),'stroke-width':1}));
+    const tx=el('text',{x:pad.l-7,y:y+3.5,'text-anchor':'end','font-size':10,fill:cssv('--ink-3'),
+      'font-family':'IBM Plex Mono, monospace'});tx.textContent=fmtK(max*k/4);svg.appendChild(tx);}
+  cats.forEach((c,i)=>{
+    const x=pad.l+gw*i+(gw-bw)/2; let acc=0;
+    keys.forEach((k,s)=>{
+      const v=rows[i][s]; if(!v){acc+=v;return;}
+      const y0=Y(acc), y1=Y(acc+v); acc+=v;
+      const h=y0-y1; if(h<=0)return;
+      const r=Math.min(4,h/2), top=(s===keys.length-1||rows[i].slice(s+1).every(z=>!z));
+      const d=top?`M${x},${y0}L${x},${y1+r}Q${x},${y1} ${x+r},${y1}L${x+bw-r},${y1}Q${x+bw},${y1} ${x+bw},${y1+r}L${x+bw},${y0}Z`
+                 :`M${x},${y0}L${x},${y1}L${x+bw},${y1}L${x+bw},${y0}Z`;
+      const p=el('path',{d,fill:colors[s],stroke:cssv('--surface'),'stroke-width':2});
+      p.addEventListener('mousemove',ev=>{
+        tip.innerHTML=`<b>${c}</b>`+keys.map((kk,ss)=>rows[i][ss]?
+          `<div class="row"><span><i class="sw" style="background:${colors[ss]}"></i>${kk}</span><b>${fmt(rows[i][ss])}</b></div>`:'').join('')+
+          `<div class="row"><span>합계</span><b>${fmt(tot[i])}</b></div>`;
+        tip.classList.add('on');const hr=host.getBoundingClientRect();placeTip(tip,host,ev.clientX-hr.left,ev.clientY-hr.top);});
+      p.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+      svg.appendChild(p);
+    });
+    const tx=el('text',{x:pad.l+gw*i+gw/2,y:H-10,'text-anchor':'middle','font-size':10,fill:cssv('--ink-2'),
+      'font-family':'IBM Plex Mono, monospace'});tx.textContent=c;svg.appendChild(tx);
+  });
+  host.appendChild(svg);
+}
+
+/* ============ chart: scatter ============ */
+function scatter(host,{pts,W=560,H=250,pad={t:16,r:16,b:34,l:48}}){
+  host.innerHTML=''; const tip=tipFor(host);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});
+  const iw=W-pad.l-pad.r, ih=H-pad.t-pad.b;
+  const xmax=Math.min(14,Math.ceil(Math.max(...pts.map(p=>p.x))));
+  const ymax=Math.max(0.02,Math.max(...pts.map(p=>p.y))*1.08);
+  const rmax=Math.max(...pts.map(p=>p.r));
+  const X=v=>pad.l+(v-1)/(xmax-1)*iw;
+  const Y=v=>pad.t+ih-(v/ymax)*ih;
+  const R=v=>3+Math.sqrt(v/rmax)*15;
+  for(let k=0;k<=4;k++){const y=Y(ymax*k/4);
+    svg.appendChild(el('line',{x1:pad.l,x2:W-pad.r,y1:y,y2:y,stroke:cssv('--grid'),'stroke-width':1}));
+    const tx=el('text',{x:pad.l-7,y:y+3.5,'text-anchor':'end','font-size':10,fill:cssv('--ink-3'),
+      'font-family':'IBM Plex Mono, monospace'});tx.textContent=(ymax*k/4*100).toFixed(0)+'%';svg.appendChild(tx);}
+  for(let v=2;v<=xmax;v+=2){const x=X(v);
+    svg.appendChild(el('line',{x1:x,x2:x,y1:pad.t,y2:pad.t+ih,stroke:cssv('--grid'),'stroke-width':1}));
+    const tx=el('text',{x,y:H-16,'text-anchor':'middle','font-size':10,fill:cssv('--ink-3'),
+      'font-family':'IBM Plex Mono, monospace'});tx.textContent=v+'위';svg.appendChild(tx);}
+  const xl=el('text',{x:pad.l+iw/2,y:H-2,'text-anchor':'middle','font-size':10,fill:cssv('--ink-3'),
+    'font-family':'IBM Plex Mono, monospace'});xl.textContent='← 상위   평균 순위   하위 →';svg.appendChild(xl);
+  const yl=el('text',{x:pad.l-7,y:pad.t-4,'text-anchor':'end','font-size':10,fill:cssv('--ink-3'),
+    'font-family':'IBM Plex Mono, monospace'});yl.textContent='CTR';svg.appendChild(yl);
+  pts.slice().sort((a,b)=>b.r-a.r).forEach(p=>{
+    const c=el('circle',{cx:X(Math.min(p.x,xmax)),cy:Y(Math.min(p.y,ymax)),r:R(p.r),fill:p.c,
+      'fill-opacity':.55,stroke:cssv('--surface'),'stroke-width':2});
+    c.addEventListener('mousemove',ev=>{
+      tip.innerHTML=`<b>${p.name}</b><div class="row"><span>노출</span><b>${fmt(p.r)}</b></div>`+
+        `<div class="row"><span>클릭</span><b>${fmt(p.clicks)}</b></div>`+
+        `<div class="row"><span>CTR</span><b>${pct(p.y,2)}</b></div>`+
+        `<div class="row"><span>평균 순위</span><b>${dec(p.x,2)}</b></div>`;
+      tip.classList.add('on');const hr=host.getBoundingClientRect();placeTip(tip,host,ev.clientX-hr.left,ev.clientY-hr.top);});
+    c.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+    svg.appendChild(c);
+  });
+  host.appendChild(svg);
+}
+
+/* ============ chart: funnel ============ */
+function funnel(host,{groups,W=560,rowH=30,pad={t:22,r:80,b:8,l:96}}){
+  host.innerHTML=''; const tip=tipFor(host);
+  const H=pad.t+groups.length*rowH*4/4+pad.b+groups.length*8;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${pad.t+groups.length*(rowH+8)+pad.b}`,role:'img'});
+  const iw=W-pad.l-pad.r;
+  const steps=['25%','50%','75%','90%'];
+  steps.forEach((s,i)=>{const tx=el('text',{x:pad.l+iw*(i+.5)/4,y:12,'text-anchor':'middle','font-size':10,
+    fill:cssv('--ink-3'),'font-family':'IBM Plex Mono, monospace'});tx.textContent=s+' 도달';svg.appendChild(tx);});
+  groups.forEach((g,gi)=>{
+    const y=pad.t+gi*(rowH+8);
+    const lb=el('text',{x:pad.l-10,y:y+rowH*.62,'text-anchor':'end','font-size':11.5,fill:cssv('--ink'),
+      'font-weight':500});lb.textContent=g.name;svg.appendChild(lb);
+    g.v.forEach((v,i)=>{
+      const frac=v/(g.v[0]||1);
+      const bx=pad.l+iw*i/4+1, bwFull=iw/4-3;
+      svg.appendChild(el('rect',{x:bx,y:y+4,width:bwFull,height:rowH-8,fill:cssv('--grid')}));
+      const w=Math.max(1,bwFull*frac);
+      const r=Math.min(4,w/2);
+      const d=`M${bx},${y+4}L${bx+w-r},${y+4}Q${bx+w},${y+4} ${bx+w},${y+4+r}L${bx+w},${y+rowH-4-r}Q${bx+w},${y+rowH-4} ${bx+w-r},${y+rowH-4}L${bx},${y+rowH-4}Z`;
+      const p=el('path',{d,fill:sc(0)});
+      p.addEventListener('mousemove',ev=>{tip.innerHTML=`<b>${g.name} ${steps[i]}</b>`+
+        `<div class="row"><span>이벤트</span><b>${fmt(v)}</b></div>`+
+        `<div class="row"><span>25% 대비</span><b>${pct(frac)}</b></div>`;
+        tip.classList.add('on');const hr=host.getBoundingClientRect();placeTip(tip,host,ev.clientX-hr.left,ev.clientY-hr.top);});
+      p.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+      svg.appendChild(p);
+    });
+    const vt=el('text',{x:W-pad.r+8,y:y+rowH*.62,'font-size':11,fill:cssv('--ink-2'),'font-weight':600,
+      'font-family':'IBM Plex Mono, monospace'});vt.textContent=pct(g.v[3]/(g.v[0]||1));svg.appendChild(vt);
+  });
+  host.appendChild(svg);
+}
+
+/* ============ chart: heatmap ============ */
+function heatmap(host,{rows,cols,grid,W=560,cell=18,pad={t:18,r:8,b:8,l:38}}){
+  host.innerHTML=''; const tip=tipFor(host);
+  const cw=(W-pad.l-pad.r)/cols.length;
+  const H=pad.t+rows.length*cell+pad.b+4;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'});
+  const max=Math.max(1,...grid.flat());
+  const step=v=>v===0?0:Math.min(5,1+Math.floor(v/max*4.999));
+  cols.forEach((c,i)=>{if(i%3)return;const tx=el('text',{x:pad.l+cw*(i+.5),y:11,'text-anchor':'middle',
+    'font-size':9.5,fill:cssv('--ink-3'),'font-family':'IBM Plex Mono, monospace'});tx.textContent=c;svg.appendChild(tx);});
+  rows.forEach((r,ri)=>{
+    const tx=el('text',{x:pad.l-8,y:pad.t+ri*cell+cell*.68,'text-anchor':'end','font-size':10.5,
+      fill:cssv('--ink-2'),'font-family':'IBM Plex Mono, monospace'});tx.textContent=r;svg.appendChild(tx);
+    cols.forEach((c,ci)=>{
+      const v=grid[ri][ci];
+      const rect=el('rect',{x:pad.l+cw*ci+1,y:pad.t+ri*cell+1,width:Math.max(1,cw-2),height:cell-2,
+        fill:cssv(HEAT[step(v)])});
+      rect.addEventListener('mousemove',ev=>{tip.innerHTML=`<b>${r} ${c}시</b><div class="row"><span>세션</span><b>${fmt(v)}</b></div>`;
+        tip.classList.add('on');const hr=host.getBoundingClientRect();placeTip(tip,host,ev.clientX-hr.left,ev.clientY-hr.top);});
+      rect.addEventListener('mouseleave',()=>tip.classList.remove('on'));
+      svg.appendChild(rect);
+    });
+  });
+  host.appendChild(svg);
+}
+
+/* ============ sparkline ============ */
+function spark(vals,color,w=150,h=26){
+  const max=Math.max(1,...vals), min=0;
+  const pts=vals.map((v,i)=>[i/(vals.length-1)*w,h-((v-min)/(max-min||1))*(h-3)-1.5]);
+  const d='M'+pts.map(p=>p.map(n=>n.toFixed(1)).join(',')).join('L');
+  return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="none" aria-hidden="true">
+    <path d="${d}L${w},${h}L0,${h}Z" fill="${color}" fill-opacity="0.14"/>
+    <path d="${d}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linejoin="round"/></svg>`;
+}
+
+/* ============ build ============ */
+const REDRAW=[];
+const draw=fn=>{REDRAW.push(fn);fn();};
+const P=PAYLOAD, M=P.meta;
+const D=P.daily;               // [date,sessions,users,engaged,new,pv,imp,clk,pos]
+const CT=P.content;            // see builder
+const CI={type:0,slug:1,name:2,imp:3,clk:4,ctr:5,pos:6,pv:7,en:8,gen:9,nen:10,aien:11,een:12,s25:13,s90:14,deep:15,eng:16,nl:17,sh:18,rel:19,days:20,first:21,dimp:22,dclk:23};
+
+const sum=(a,f)=>a.reduce((s,r)=>s+f(r),0);
+const totImp=sum(D,r=>r[6]), totClk=sum(D,r=>r[7]);
+const totSess=sum(D,r=>r[1]), totPv=sum(D,r=>r[5]), totEng=sum(D,r=>r[3]);
+const wPos=sum(D,r=>(r[8]||0)*r[6])/(totImp||1);
+const s25=sum(P.scroll,r=>r[2]), s90=sum(P.scroll,r=>r[5]);
+
+$('#periodLine').textContent=`${M.start} ~ ${M.end}, ${M.days}일, ${M.site}`;
+$('#srcline').innerHTML=[`GA4 520024278`,`Search Console`,`${M.project}`,`${M.dataset}`]
+  .map(t=>`<span class="chip">${t}</span>`).join('');
+
+/* KPI */
+draw(()=>{
+  const kpi=[
+    {k:'검색 노출',v:fmtK(totImp),n:'Search Console 웹 검색',s:D.map(r=>r[6]),c:sc(0)},
+    {k:'검색 클릭',v:fmtK(totClk),n:`평균 CTR ${pct(totClk/totImp,2)}`,s:D.map(r=>r[7]),c:sc(1)},
+    {k:'세션',v:fmtK(totSess),n:`참여 세션 ${pct(totEng/totSess)}`,s:D.map(r=>r[1]),c:sc(2)},
+    {k:'페이지뷰',v:fmtK(totPv),n:`세션당 ${dec(totPv/totSess,2)}장`,s:D.map(r=>r[5]),c:sc(6)},
+    {k:'평균 순위',v:dec(wPos,2),n:'노출 가중 평균, 그래프는 위가 상위',s:D.map(r=>r[8]?Math.max(0,20-r[8]):0),c:sc(3)},
+    {k:'깊은 읽기',v:pct(s90/s25),n:'25% 도달 대비 90% 도달',s:P.scroll.map(r=>r[5]),c:sc(5)},
+  ];
+  $('#kpis').innerHTML=kpi.map(x=>
+    `<div class="kpi"><span class="k">${x.k}</span><span class="v">${x.v}</span><span class="n">${x.n}</span>${spark(x.s,x.c)}</div>`).join('');
+});
+
+/* x ticks by month */
+const monthTicks=(()=>{const out=[];let last='';
+  D.forEach((r,i)=>{const m=r[0].slice(0,7);if(m!==last){out.push({i,t:r[0].slice(5,7)+'월'});last=m;}});return out;})();
+
+/* 01 */
+const ma=(v,n)=>v.map((_,i)=>{const a=v.slice(Math.max(0,i-n+1),i+1);return a.reduce((x,y)=>x+y,0)/a.length;});
+const aug=D.filter(r=>r[0].startsWith('2026-08')).reduce((s,r)=>s+r[6],0);
+$('#f1').innerHTML=`검색 노출은 <b>${fmtK(totImp)}회</b>, 클릭은 <b>${fmtK(totClk)}회</b>였다.
+  8월 한 달이 전체 노출의 <b>${pct(aug/totImp,0)}</b>를 차지한다. 성장이 최근 두 달에 몰려 있어서
+  전체 평균으로는 현재 수준을 설명하지 못한다.`;
+draw(()=>{
+timeSeries($('#c-imp'),{labels:D.map(r=>r[0]),xTick:monthTicks,
+  series:[{t:'노출',v:D.map(r=>r[6]),c:sc(0),area:true,w:1.2,opacity:.45},
+          {t:'7일 이동평균',v:ma(D.map(r=>r[6]),7),c:sc(0),w:2.4}]});
+timeSeries($('#c-clk'),{labels:D.map(r=>r[0]),xTick:monthTicks,
+  series:[{t:'검색 클릭',v:D.map(r=>r[7]),c:sc(1),w:2},
+          {t:'세션',v:D.map(r=>r[1]),c:sc(2),w:2}]});
+legend($('#l-clk'),[{c:sc(1),t:'검색 클릭'},{c:sc(2),t:'세션'}]);
+});
+table($('#t-imp'),[{h:'날짜',l:1},{h:'노출'},{h:'클릭'},{h:'CTR'},{h:'평균 순위'}],
+  D.slice().reverse().map(r=>[r[0],fmt(r[6]),fmt(r[7]),r[6]?pct(r[7]/r[6],2):'-',dec(r[8],2)]));
+table($('#t-clk'),[{h:'날짜',l:1},{h:'세션'},{h:'참여 세션'},{h:'신규'},{h:'페이지뷰'},{h:'검색 클릭'}],
+  D.slice().reverse().map(r=>[r[0],fmt(r[1]),fmt(r[3]),fmt(r[4]),fmt(r[5]),fmt(r[7])]));
+
+/* 02 */
+const CH=P.channelOrder, weeks=[...new Set(P.channel.map(r=>r[0]))].sort();
+const chIdx=Object.fromEntries(CH.map((c,i)=>[c,i]));
+const chRows=weeks.map(w=>CH.map(()=>0));
+const chEng=Object.fromEntries(CH.map(c=>[c,[0,0]]));
+P.channel.forEach(([w,c,s,e])=>{chRows[weeks.indexOf(w)][chIdx[c]]+=s;chEng[c][0]+=s;chEng[c][1]+=e;});
+const weekTicks=(()=>{const out=[];let last='';weeks.forEach((w,i)=>{const m=w.slice(0,7);
+  if(m!==last){out.push({i,t:w.slice(5,7)+'월'});last=m;}});return out;})();
+const aiTot=chEng['AI 어시스턴트'][0];
+const aiLate=P.channel.filter(r=>r[1]==='AI 어시스턴트'&&r[0]>='2026-08-01').reduce((s,r)=>s+r[2],0);
+const aiEarly=P.channel.filter(r=>r[1]==='AI 어시스턴트'&&r[0]<'2026-04-01').reduce((s,r)=>s+r[2],0);
+$('#f2').innerHTML=`구글 자연검색이 세션의 <b>${pct(chEng['구글 자연검색'][0]/totSess,0)}</b>를 가져온다.
+  주목할 곳은 AI 어시스턴트로, 3월에는 한 달 <b>${fmt(aiEarly)}세션</b>이었는데 8월에는 <b>${fmt(aiLate)}세션</b>이 됐다.
+  아직 절대량은 작지만 챗봇 답변에서 넘어오는 유입이 실제로 생기고 있다.`;
+draw(()=>{
+const chColors=CH.map((_,i)=>sc(i));
+stack100($('#c-ch'),{labels:weeks,keys:CH,rows:chRows,colors:chColors,xTick:weekTicks});
+legend($('#l-ch'),CH.map((c,i)=>({c:sc(i),t:c})));
+});
+table($('#t-ch'),[{h:'주',l:1},...CH.map(c=>({h:c}))],
+  weeks.map((w,i)=>[w,...chRows[i].map(v=>fmt(v))]));
+table($('#t-chsum'),[{h:'채널',l:1},{h:'세션'},{h:'비중'},{h:'참여 세션'},{h:'참여율'}],
+  CH.slice().sort((a,b)=>chEng[b][0]-chEng[a][0])
+    .map(c=>[c,fmt(chEng[c][0]),pct(chEng[c][0]/totSess),fmt(chEng[c][1]),pct(chEng[c][1]/(chEng[c][0]||1))]));
+
+/* 03 */
+const PB=P.positionBucket;
+const b36=PB.find(r=>r[0]==='3-6'), b610=PB.find(r=>r[0]==='6-10');
+$('#f3').innerHTML=`노출의 대부분은 3~6위와 6~10위 두 구간에 있고 양쪽 노출량은 <b>${fmtK(b36[1])}</b> 대
+  <b>${fmtK(b610[1])}</b>로 거의 같다. 그런데 클릭은 <b>${fmtK(b36[2])}</b> 대 <b>${fmtK(b610[2])}</b>로
+  <b>${dec(b36[2]/b610[2],1)}배</b> 차이가 난다. 6위를 5위로 올리는 일이 새 글 한 편보다 클릭을 더 많이 만든다.`;
+draw(()=>{
+groupedBar($('#c-pos'),{cats:PB.map(r=>r[0]),
+  series:[{t:'노출',v:PB.map(r=>r[1]),c:sc(0)},{t:'클릭',v:PB.map(r=>r[2]),c:sc(1)}],
+  note:PB.map(r=>pct(r[3],1))});
+legend($('#l-pos'),[{c:sc(0),t:'노출'},{c:sc(1),t:'클릭'}]);
+});
+table($('#t-pos'),[{h:'순위 구간',l:1},{h:'노출'},{h:'클릭'},{h:'CTR'},{h:'페이지 일수'}],
+  PB.map(r=>[r[0],fmt(r[1]),fmt(r[2]),pct(r[3],2),fmt(r[4])]));
+
+draw(()=>{
+const TYC={insight:sc(0),class:sc(1)};
+const scPts=CT.filter(r=>r[CI.imp]>=3000&&r[CI.pos]).map(r=>({
+  x:r[CI.pos],y:r[CI.ctr]||0,r:r[CI.imp],clicks:r[CI.clk],name:r[CI.slug],
+  c:TYC[r[CI.type]]||sc(2)}));
+scatter($('#c-sc'),{pts:scPts});
+legend($('#l-sc'),[{c:sc(0),t:'insight'},{c:sc(1),t:'class'},{c:sc(2),t:'기타'}]);
+});
+table($('#t-sc'),[{h:'슬러그',l:1},{h:'타입',l:1},{h:'노출'},{h:'클릭'},{h:'CTR'},{h:'평균 순위'}],
+  CT.filter(r=>r[CI.imp]>=3000).map(r=>[r[CI.slug],r[CI.type],fmt(r[CI.imp]),fmt(r[CI.clk]),pct(r[CI.ctr],2),dec(r[CI.pos],2)]));
+
+/* 04 */
+const top10=CT.slice().sort((a,b)=>b[CI.imp]-a[CI.imp]).slice(0,10);
+const sImp=sum(CT,r=>r[CI.imp]), sClk=sum(CT,r=>r[CI.clk]);
+const no1=top10[0];
+const big=CT.filter(r=>r[CI.imp]>=20000);
+const worst=big.slice().sort((a,b)=>(a[CI.ctr]||0)-(b[CI.ctr]||0))[0];
+const best=big.slice().sort((a,b)=>(b[CI.ctr]||0)-(a[CI.ctr]||0))[0];
+$('#f4').innerHTML=`노출 상위 10편이 전체 노출의 <b>${pct(sum(top10,r=>r[CI.imp])/sImp,1)}</b>,
+  클릭의 <b>${pct(sum(top10,r=>r[CI.clk])/sClk,1)}</b>를 만든다.
+  노출이 가장 많은 <b>${no1[CI.slug]}</b>는 <b>${fmtK(no1[CI.imp])}회</b> 노출되고도 CTR이
+  <b>${pct(no1[CI.ctr],2)}</b>다. 반대로 <b>${best[CI.slug]}</b>는 노출이 그 절반 이하인
+  <b>${fmtK(best[CI.imp])}회</b>인데 CTR <b>${pct(best[CI.ctr],2)}</b>로 클릭을 <b>${fmt(best[CI.clk])}회</b>
+  가져갔다. 노출 순위와 유입 순위는 다른 줄이다. CTR 열의 노란 배지는 노출 2만 이상인데 CTR이 2% 아래인 글이다.`;
+const typeSet=[...new Set(CT.map(r=>r[CI.type]))];
+$('#ty-content').innerHTML='<option value="">전체</option>'+typeSet.map(t=>`<option>${t}</option>`).join('');
+const maxImp=Math.max(...CT.map(r=>r[CI.imp]));
+function renderContent(){
+  const q=$('#q-content').value.trim().toLowerCase();
+  const ty=$('#ty-content').value, n=+$('#n-content').value;
+  const rows=CT.filter(r=>(!ty||r[CI.type]===ty)&&
+    (!q||r[CI.slug].toLowerCase().includes(q)||(r[CI.name]||'').toLowerCase().includes(q)))
+    .sort((a,b)=>b[CI.imp]-a[CI.imp]);
+  $('#cnt-content').textContent=`${rows.length}편 중 ${Math.min(n,rows.length)}편`;
+  table($('#t-content'),
+    [{h:'슬러그',l:1},{h:'타입',l:1},{h:'노출'},{h:'클릭'},{h:'CTR'},{h:'평균 순위'},
+     {h:'유입'},{h:'AI 유입'},{h:'PV'},{h:'깊은 읽기'},{h:'체류(초)'},{h:'노출일'}],
+    rows.slice(0,n).map(r=>[
+      `<span class="bar" style="width:${Math.max(1,Math.round(r[CI.imp]/maxImp*44))}px"></span><span class="slug">${r[CI.slug]}</span>`,
+      `<span class="pill">${r[CI.type]}</span>`,
+      fmt(r[CI.imp]),fmt(r[CI.clk]),
+      (r[CI.imp]>=20000&&(r[CI.ctr]||0)<0.02)?`<span class="pill warn">${pct(r[CI.ctr],2)}</span>`:pct(r[CI.ctr],2),
+      dec(r[CI.pos],2),fmt(r[CI.en]),fmt(r[CI.aien]),fmt(r[CI.pv]),
+      pct(r[CI.deep],1),dec(r[CI.eng],0),fmt(r[CI.days])]));
+  const dv={2:CI.imp,3:CI.clk,4:CI.ctr,5:CI.pos,6:CI.en,7:CI.aien,8:CI.pv,9:CI.deep,10:CI.eng,11:CI.days};
+  $('#t-content').querySelectorAll('tbody tr').forEach((tr,i)=>{
+    const r=rows[i]; if(!r)return;
+    for(const k in dv) tr.children[k].dataset.v=r[dv[k]];
+  });
+}
+['input','change'].forEach(e=>{$('#q-content').addEventListener(e,renderContent);
+  $('#ty-content').addEventListener(e,renderContent);$('#n-content').addEventListener(e,renderContent);});
+renderContent();
+
+/* 05 */
+const Q=P.queries, q1=Q[0];
+$('#f5').innerHTML=`가장 많이 노출된 검색어 <b>${q1[0]}</b>는 <b>${fmtK(q1[1])}회</b> 노출되고
+  <b>${fmt(q1[2])}회</b> 클릭됐다. CTR <b>${pct(q1[3],2)}</b>다. 브랜드 이름만 친 사람은 공식 사이트로 가지
+  블로그 글로 오지 않는다. 이런 검색어는 노출 지표만 부풀린다.`;
+function renderQuery(){
+  const q=$('#q-query').value.trim().toLowerCase();
+  const rows=Q.filter(r=>!q||r[0].toLowerCase().includes(q));
+  $('#cnt-query').textContent=`${rows.length}개 중 ${Math.min(80,rows.length)}개`;
+  table($('#t-query'),[{h:'검색어',l:1},{h:'노출'},{h:'클릭'},{h:'CTR'},{h:'평균 순위'},{h:'페이지'}],
+    rows.slice(0,80).map(r=>[r[0],fmt(r[1]),fmt(r[2]),
+      (r[1]>=5000&&(r[3]||0)<0.01)?`<span class="pill warn">${pct(r[3],2)}</span>`:pct(r[3],2),
+      dec(r[4],2),r[5]]));
+}
+$('#q-query').addEventListener('input',renderQuery); renderQuery();
+table($('#t-cann'),[{h:'검색어',l:1},{h:'페이지'},{h:'노출'},{h:'클릭'},{h:'겹치는 글',l:1}],
+  P.cannibal.map(r=>[r[0],r[1],fmt(r[2]),fmt(r[3]),`<span class="slug wrap">${r[4].split(' | ').join('<br>')}</span>`]));
+
+/* 06 */
+const SR=P.scroll.filter(r=>r[2]>0).sort((a,b)=>b[2]-a[2]);
+const ins=SR.find(r=>r[0]==='insight');
+$('#f6').innerHTML=`인사이트 글은 25% 지점에 도달한 독자 중 <b>${pct(ins[5]/ins[2],1)}</b>만 90%까지 내려간다.
+  본문이 길다는 뜻이기도 하고, 검색으로 들어와 필요한 문단만 읽고 나간다는 뜻이기도 하다.
+  글마다 편차가 크니 04번 표에서 깊은 읽기 열을 정렬해 보면 어떤 글이 끝까지 읽히는지 바로 드러난다.`;
+draw(()=>{
+funnel($('#c-scroll'),{groups:SR.map(r=>({name:r[0],v:[r[2],r[3],r[4],r[5]]}))});
+});
+$('#l-scroll').innerHTML='<span style="color:var(--ink-3)">회색 막대는 25% 도달 기준선, 오른쪽 숫자는 90% 도달 비율</span>';
+table($('#t-sr'),[{h:'타입',l:1},{h:'페이지뷰'},{h:'25%'},{h:'50%'},{h:'75%'},{h:'90%'},{h:'90/25'},{h:'세션당 체류(초)'}],
+  SR.map(r=>[r[0],fmt(r[1]),fmt(r[2]),fmt(r[3]),fmt(r[4]),fmt(r[5]),pct(r[5]/r[2],1),dec(r[7],1)]));
+table($('#t-type'),[{h:'타입',l:1},{h:'글'},{h:'노출'},{h:'클릭'},{h:'CTR'},{h:'평균 순위'},{h:'유입'},{h:'PV'},{h:'깊은 읽기'}],
+  P.typeSummary.map(r=>[r[0],fmt(r[1]),fmt(r[2]),fmt(r[3]),pct(r[4],2),dec(r[5],2),fmt(r[6]),fmt(r[7]),pct(r[8],1)]));
+
+/* 07 */
+const LC=P.lifecycle.filter(r=>r[0]<=20);
+const pkI=LC.reduce((a,b)=>b[4]>a[4]?b:a,LC[0]);
+const pkC=LC.reduce((a,b)=>b[5]>a[5]?b:a,LC[0]);
+const ctr0=LC[0][3]/LC[0][2], ctrP=pkI[3]/pkI[2];
+$('#f7').innerHTML=`글당 노출은 발행 직후가 아니라 <b>${pkI[0]}주차</b>에 정점을 찍는다
+  (<b>${dec(pkI[4],0)}회</b>). 반면 글당 클릭은 <b>${pkC[0]}주차</b>가 가장 높다(<b>${dec(pkC[5],0)}회</b>).
+  같은 기간 CTR이 <b>${pct(ctr0,2)}</b>에서 <b>${pct(ctrP,2)}</b>로 떨어진다.
+  새 글은 노출이 덜 붙은 상태에서도 클릭은 잘 되고, 노출이 늘어날 무렵에는 클릭률이 이미 내려간다.
+  발행 첫 주 노출만 보고 실패라고 판단하면 틀리고, 첫 주 클릭을 기준선으로 삼아도 틀린다.`;
+draw(()=>{
+timeSeries($('#c-life'),{labels:LC.map(r=>r[0]+'주'),
+  xTick:LC.filter((_,i)=>i%2===0).map((r,j)=>({i:LC.indexOf(r),t:r[0]+'주'})),
+  series:[{t:'글당 노출',v:LC.map(r=>r[4]),c:sc(0),w:2.4,area:true},
+          {t:'글당 클릭',v:LC.map(r=>r[5]),c:sc(1),w:2.4}]});
+legend($('#l-life'),[{c:sc(0),t:'글당 노출'},{c:sc(1),t:'글당 클릭'}]);
+});
+table($('#t-life'),[{h:'주차',l:1},{h:'글 수'},{h:'노출'},{h:'클릭'},{h:'글당 노출'},{h:'글당 클릭'}],
+  P.lifecycle.map(r=>[r[0]+'주',fmt(r[1]),fmt(r[2]),fmt(r[3]),dec(r[4],1),dec(r[5],1)]));
+
+/* 08 */
+const ST=P.searchType;
+const disc=ST.reduce((s,r)=>s+r[5],0), discClk=ST.reduce((s,r)=>s+r[6],0);
+$('#f8').innerHTML=`7월부터 Discover 노출이 잡히기 시작해 누적 <b>${fmtK(disc)}회</b> 노출에
+  <b>${fmt(discClk)}회</b> 클릭이 붙었다. CTR <b>${pct(discClk/disc,2)}</b>로 웹 검색보다 높다.
+  검색어가 없는 추천 지면이라 순위 최적화와는 다른 축으로 봐야 한다.`;
+draw(()=>{
+stackedBar($('#c-stype'),{cats:ST.map(r=>r[0].slice(5)+'월'),keys:['웹 검색','이미지','Discover'],
+  rows:ST.map(r=>[r[1],r[3],r[5]]),colors:[sc(0),sc(3),sc(2)]});
+legend($('#l-stype'),[{c:sc(0),t:'웹 검색'},{c:sc(3),t:'이미지'},{c:sc(2),t:'Discover'}]);
+});
+table($('#t-st'),[{h:'월',l:1},{h:'웹 노출'},{h:'웹 클릭'},{h:'이미지 노출'},{h:'이미지 클릭'},{h:'Discover 노출'},{h:'Discover 클릭'}],
+  ST.map(r=>[r[0],fmt(r[1]),fmt(r[2]),fmt(r[3]),fmt(r[4]),fmt(r[5]),fmt(r[6])]));
+
+const MO=P.monthly;
+draw(()=>{
+timeSeries($('#c-eng'),{labels:MO.map(r=>r[0]),xTick:MO.map((r,i)=>({i,t:r[0].slice(5)+'월'})),
+  series:[{t:'퀴즈 응답',v:MO.map(r=>r[3]),c:sc(0),w:2.2},
+          {t:'관련글 클릭',v:MO.map(r=>r[7]),c:sc(1),w:2.2},
+          {t:'뉴스레터 클릭',v:MO.map(r=>r[5]),c:sc(2),w:2.2},
+          {t:'펼쳐보기',v:MO.map(r=>r[10]),c:sc(6),w:2.2}]});
+legend($('#l-eng'),[{c:sc(0),t:'퀴즈 응답'},{c:sc(1),t:'관련글 클릭'},{c:sc(2),t:'뉴스레터 클릭'},{c:sc(6),t:'펼쳐보기'}]);
+});
+table($('#t-me'),[{h:'월',l:1},{h:'페이지뷰'},{h:'퀴즈 응답'},{h:'정답'},{h:'뉴스레터'},{h:'공유'},{h:'관련글'},{h:'실습 시작'},{h:'실습 완료'},{h:'펼쳐보기'}],
+  MO.map(r=>[r[0],fmt(r[1]),fmt(r[3]),fmt(r[4]),fmt(r[5]),fmt(r[6]),fmt(r[7]),fmt(r[8]),fmt(r[9]),fmt(r[10])]));
+
+/* 09 */
+const up=P.trend.up, down=P.trend.down;
+$('#f9').innerHTML=`직전 28일과 견주면 상승 상위 글이 <b>+${fmt(up[0][7])}클릭</b>,
+  하락 상위 글이 <b>${fmt(down[0][7])}클릭</b>이다. 오르는 글과 내리는 글이 같이 있다는 것은
+  전체 합계만 보면 둘 다 보이지 않는다는 뜻이다.`;
+const dMax=Math.max(...up.concat(down).map(r=>Math.abs(r[7])))||1;
+const dRow=r=>[`<span class="slug">${r[0]}</span>`,`<span class="pill">${r[1]}</span>`,
+  fmt(r[5]),fmt(r[6]),
+  `<span class="delta ${r[7]>=0?'up':'down'}"><i style="width:${Math.max(2,Math.round(Math.abs(r[7])/dMax*40))}px"></i>${r[7]>=0?'+':'−'}${fmt(Math.abs(r[7]))}</span>`,
+  fmt(r[3])];
+const dCols=[{h:'슬러그',l:1},{h:'타입',l:1},{h:'최근 클릭'},{h:'직전 클릭'},{h:'증감'},{h:'최근 노출'}];
+table($('#t-up'),dCols,up.map(dRow)); table($('#t-down'),dCols,down.map(dRow));
+[['#t-up',up],['#t-down',down]].forEach(([sel,src])=>{
+  document.querySelectorAll(sel+' tbody tr').forEach((tr,i)=>{
+    if(!src[i])return; tr.children[4].dataset.v=src[i][7];
+    tr.children[2].dataset.v=src[i][5]; tr.children[3].dataset.v=src[i][6];
+    tr.children[5].dataset.v=src[i][3];
+  });
+});
+
+/* 10 */
+const DOW=['일','월','화','수','목','금','토'];
+const heat=DOW.map(()=>Array(24).fill(0));
+P.hourly.forEach(([h,dow,wd,s])=>{heat[dow-1][h]+=s;});
+const flat=heat.flat(), peak=Math.max(...flat), pi=flat.indexOf(peak);
+$('#f10').innerHTML=`세션이 가장 몰리는 시간은 <b>${DOW[Math.floor(pi/24)]}요일 ${pi%24}시</b>다.
+  평일 업무 시간대에 집중되는 모양이라 독자가 일하다가 검색해서 들어온다고 읽을 수 있다.
+  발행 시각과 SNS 게시 시각을 정할 때 쓸 수 있는 자료다.`;
+draw(()=>{
+heatmap($('#c-heat'),{rows:DOW,cols:[...Array(24).keys()],grid:heat});
+$('#l-heat').innerHTML='<span style="color:var(--ink-3)">적음</span>'+
+  HEAT.map(h=>`<span><i style="background:${cssv(h)};width:22px"></i></span>`).join('')+
+  '<span style="color:var(--ink-3)">많음</span>';
+});
+table($('#t-hr'),[{h:'요일',l:1},...[...Array(24).keys()].map(h=>({h:h+'시'}))],
+  DOW.map((d,i)=>[d,...heat[i].map(v=>fmt(v))]));
+const devTot=P.device.reduce((s,r)=>s+r[1],0);
+table($('#t-dev'),[{h:'기기',l:1},{h:'세션'},{h:'비중'},{h:'참여율'}],
+  P.device.map(r=>[r[0],fmt(r[1]),pct(r[1]/devTot),pct(r[2]/(r[1]||1))]));
+table($('#t-geo'),[{h:'지역',l:1},{h:'세션'},{h:'비중'},{h:'참여율'}],
+  P.country.map(r=>[r[0]||'(미상)',fmt(r[1]),pct(r[1]/totSess),pct(r[2]/(r[1]||1))]));
+
+/* 테마가 바뀌면 차트를 다시 그린다. 색을 CSS 토큰에서 읽기 때문이다. */
+const redraw=()=>REDRAW.forEach(f=>{try{f();}catch(e){}});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',redraw);
+new MutationObserver(redraw).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+</script>
+</body>
+</html>
