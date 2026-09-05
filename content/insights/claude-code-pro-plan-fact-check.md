@@ -1,6 +1,6 @@
 ---
 slug: claude-code-pro-plan-fact-check
-title: 정말 클로드 코드를 Pro플랜에서 쓸 수 없을까요?
+title: 클로드 코드 Pro 플랜 사용 가능 여부 팩트체크
 excerpt: >-
   2026년 4월 22일 Anthropic이 Claude Code를 Pro 플랜에서 잠시 제외했다가 가격 페이지를 복구한 사건을 둘러싸고
   혼란이 큽니다. 공식 해명과 커뮤니티가 추측하는 배경, 기존 Pro 구독자의 실제 영향, 그리고 입문자가 어떻게 시작해야 할지를 팩트체크
@@ -26,19 +26,20 @@ quiz:
       시작하되, 본격 사용이 늘어나는 시점에 Max 5x나 API로 넘어가는 단계적 접근이 가장 안전합니다. 다만 플랜 구조가 바뀔 수
       있다는 점을 전제로 한 선택입니다.
     correctIndex: 0
-metaTitle: 정말 클로드 코드를 Pro플랜에서 쓸 수 없을까요? 팩트체크
+metaTitle: 클로드 코드 Pro 플랜 사용 가능 여부 팩트체크
 metaDescription: >-
   Anthropic이 2026년 4월 22일 Claude Code를 Pro 플랜에서 잠시 제외했다가 복구한 사건의 확정 사실, 공식 입장,
   커뮤니티 추측, Pro 구독 유지 여부, 입문자 시작 경로를 정리했습니다.
 ogImage: /og/claude-code-pro-plan-fact-check.png
-ogTitle: 정말 클로드 코드를 Pro플랜에서 쓸 수 없을까요?
 ogDescription: >-
   실제로 무엇이 바뀌었고, Anthropic은 뭐라고 했고, 왜 이런 실험을 했을지 추측은 어떤지, 지금 Pro 구독해도 되는지, 입문자는
   어떻게 시작해야 하는지 정리했습니다.
 summary3:
-  - '2026년 4월 22일 앤트로픽 요금 페이지에서 Pro 플랜의 Claude Code 표시가 X로 바뀌었다가 같은 날 늦게 원상복구됐습니다.'
-  - '앤트로픽은 신규 가입자 약 2퍼센트를 대상으로 한 테스트였다고 밝혔고 기존 Pro와 Max 구독자는 영향을 받지 않았습니다.'
-  - '기존 구독자는 지금도 클로드 코드를 그대로 쓸 수 있어서 오늘부터 못 쓰게 됐다는 우려는 사실이 아닙니다.'
+  - >-
+    2026년 4월 22일 앤트로픽 요금 페이지에서 Pro 플랜의 Claude Code 표시가 X로 바뀌었다가 같은 날 늦게
+    원상복구됐습니다.
+  - 앤트로픽은 신규 가입자 약 2퍼센트를 대상으로 한 테스트였다고 밝혔고 기존 Pro와 Max 구독자는 영향을 받지 않았습니다.
+  - 기존 구독자는 지금도 클로드 코드를 그대로 쓸 수 있어서 오늘부터 못 쓰게 됐다는 우려는 사실이 아닙니다.
 ---
 
 결론부터 말씀드립니다. **기존 Pro 구독자는 [클로드 코드](/class/claude-code-for-everyone/what-is-claude-code)를 지금도 그대로 쓸 수 있습니다.** 2026년 4월 22일 [Anthropic](/class/claude-fundamentals/what-is-anthropic)이 `claude.com/pricing` 페이지에서 Pro 플랜의 Claude Code 포함 표시를 잠시 제거했다가 곧 복구한 사건이 있었고, 같은 날 Anthropic의 Growth 담당 Amol Avasare가 X에 "신규 가입자 약 2%를 대상으로 한 소규모 테스트"였으며 "기존 Pro, Max 구독자는 영향받지 않는다"고 밝혔습니다.

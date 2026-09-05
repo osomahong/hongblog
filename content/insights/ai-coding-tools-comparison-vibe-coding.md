@@ -1,31 +1,42 @@
 ---
 slug: ai-coding-tools-comparison-vibe-coding
-title: 'AI 코딩 도구 5종 직접 써본 비교 체험기: 바이브코딩으로 실제 프로젝트를 만들어 봤습니다'
-excerpt: Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code까지 5개 AI 코딩 도구를 실제 프로젝트에 써보고 비교한 체험기입니다. 디지털 마케터가 바이브코딩으로 프로덕트를 만든 경험과 AI FOMO를 두고 느낀 솔직한 이야기를 담았습니다.
+title: 'AI 코딩 도구 5종 비교 체험기: 바이브코딩으로 실제 프로젝트 제작'
+excerpt: >-
+  Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code까지 5개 AI 코딩 도구를 실제 프로젝트에
+  써보고 비교한 체험기입니다. 디지털 마케터가 바이브코딩으로 프로덕트를 만든 경험과 AI FOMO를 두고 느낀 솔직한 이야기를 담았습니다.
 category: AI_TECH
 tags:
-- 바이브코딩
-- AI
+  - 바이브코딩
+  - AI
 publishedAt: '2026-02-20T05:15:26.381Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 quiz:
-- options:
-  - '모델의 추론 품질: 복잡한 맥락을 이해하고 정확한 코드를 생성하는 능력이 가장 중요하다'
-  - '생태계와 확장성: MCP, 플러그인, IDE 연동 등 다른 도구와 연결되는 범위가 넓어야 한다'
-  - '진입장벽과 비용: 무료이거나 설정이 간단해야 더 많은 사람이 활용할 수 있다'
-  - '워크플로우 체계성: 스펙 문서와 설계를 먼저 잡아주는 구조적 접근이 실수를 줄여준다'
-  question: AI 코딩 도구를 선택할 때 가장 중요한 기준은 무엇이라고 생각하시나요?
-  explanation: 이 글에서는 복잡한 프로젝트일수록 모델의 추론 품질이 결정적이라는 결론을 내립니다. 하지만 간단한 프로젝트에서는 진입장벽이, 팀 프로젝트에서는 체계성이 더 중요할 수 있습니다. 결국 어떤 문제를 풀고 있느냐에 따라 기준이 달라집니다.
-  correctIndex: 0
-metaTitle: AI 코딩 도구 5종 비교 체험기 | 바이브코딩 실전 리뷰
-metaDescription: Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실제 프로젝트에 적용한 비교 체험기입니다. 디지털 마케터의 바이브코딩 경험과 AI FOMO를 두고 느낀 현실적인 이야기를 담았습니다.
+  - options:
+      - '모델의 추론 품질: 복잡한 맥락을 이해하고 정확한 코드를 생성하는 능력이 가장 중요하다'
+      - '생태계와 확장성: MCP, 플러그인, IDE 연동 등 다른 도구와 연결되는 범위가 넓어야 한다'
+      - '진입장벽과 비용: 무료이거나 설정이 간단해야 더 많은 사람이 활용할 수 있다'
+      - '워크플로우 체계성: 스펙 문서와 설계를 먼저 잡아주는 구조적 접근이 실수를 줄여준다'
+    question: AI 코딩 도구를 선택할 때 가장 중요한 기준은 무엇이라고 생각하시나요?
+    explanation: >-
+      이 글에서는 복잡한 프로젝트일수록 모델의 추론 품질이 결정적이라는 결론을 내립니다. 하지만 간단한 프로젝트에서는 진입장벽이, 팀
+      프로젝트에서는 체계성이 더 중요할 수 있습니다. 결국 어떤 문제를 풀고 있느냐에 따라 기준이 달라집니다.
+    correctIndex: 0
+metaTitle: 'AI 코딩 도구 5종 비교 체험기: 바이브코딩 실전 리뷰'
+metaDescription: >-
+  Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실제 프로젝트에 적용한 비교 체험기입니다.
+  디지털 마케터의 바이브코딩 경험과 AI FOMO를 두고 느낀 현실적인 이야기를 담았습니다.
 ogImage: /og/ai-coding-tools-comparison-vibe-coding.png
-ogTitle: AI 코딩 도구 5종을 바이브코딩으로 직접 써보고 비교한 마케터의 솔직 체험기
-ogDescription: Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실전 프로젝트에 적용한 마케터의 비교 리뷰와 AI FOMO 이야기.
+ogDescription: >-
+  Gemini CLI, Codex CLI, Kiro, Antigravity, Claude Code를 실전 프로젝트에 적용한 마케터의 비교
+  리뷰와 AI FOMO 이야기.
 summary3:
-  - '직접 써 본 AI 코딩 도구 다섯 종은 제미나이 CLI와 코덱스 CLI, AWS Kiro, 구글 Antigravity, 클로드 코드입니다.'
-  - '제미나이 CLI는 구글 계정만으로 무료로 쓸 수 있고 Kiro는 코드보다 요구사항과 설계 문서를 먼저 만들며 Antigravity는 여러 에이전트가 작업을 나눠 동시에 처리합니다.'
-  - '개발자가 아니어도 광고 리포트 자동화나 GA4 데이터 조회 같은 실무 문제를 이 도구들로 직접 만들어 볼 수 있습니다.'
+  - >-
+    직접 써 본 AI 코딩 도구 다섯 종은 제미나이 CLI와 코덱스 CLI, AWS Kiro, 구글 Antigravity, 클로드
+    코드입니다.
+  - >-
+    제미나이 CLI는 구글 계정만으로 무료로 쓸 수 있고 Kiro는 코드보다 요구사항과 설계 문서를 먼저 만들며 Antigravity는 여러
+    에이전트가 작업을 나눠 동시에 처리합니다.
+  - 개발자가 아니어도 광고 리포트 자동화나 GA4 데이터 조회 같은 실무 문제를 이 도구들로 직접 만들어 볼 수 있습니다.
 ---
 
 ## AI 코딩 도구가 쏟아지는 시대, 직접 다 써봤습니다

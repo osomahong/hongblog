@@ -29,7 +29,6 @@ metaTitle: '제미나이 노트북 사용법: PDF와 문서 정리하기'
 metaDescription: >-
   제미나이 노트북(Gemini Notebook)은 PDF와 문서를 바탕으로 질문에 답하고 요약하는 AI 연구 도구입니다. NotebookLM
   이름 변경, 자료 업로드, 인용, 오디오 개요 사용법을 정리합니다.
-ogTitle: '제미나이 노트북 사용법: PDF와 문서 정리하기'
 ogDescription: '기존 NotebookLM에서 이름이 바뀐 제미나이 노트북의 PDF 업로드, 질문, 인용, 오디오 개요, 마인드맵 사용법을 정리했습니다.'
 ogImage: /og/gemini-notebook-guide.png
 quiz:

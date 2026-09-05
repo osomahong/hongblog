@@ -1,6 +1,6 @@
 ---
 slug: mcp-easy-guide-for-non-developers
-title: MCP란? 비전문가를 위한 MCP 쉽게 이해하기
+title: 'MCP 뜻: 비개발자를 위한 MCP 쉬운 설명'
 excerpt: >-
   AI가 내 노션, 슬랙, 구글 드라이브를 직접 다루는 것 이 MCP(Model Context Protocol)인데, 이름만 들으면 어렵게
   느껴집니다. USB 포트 비유와 실제 프로덕트 예시로, 비개발자도 이해할 수 있도록 쉽게 정리했습니다.
@@ -31,17 +31,16 @@ quiz:
     correctIndex: 0
 thumbnailUrl: >-
   https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrations/mcp-easy-guide-for-non-developers-1-1772721478777.png
-metaTitle: MCP란? 비전문가를 위한 MCP 쉽게 이해하기 | 준이아빠블로그
+metaTitle: 'MCP 뜻: 비개발자를 위한 MCP 쉬운 설명'
 metaDescription: >-
   AI가 내 노션, 슬랙, 구글 드라이브를 직접 다루는 것 이 MCP(Model Context Protocol)인데, 이름만 들으면 어렵게
   느껴집니다. USB 포트 비유와 실제 프로덕트 예시로, 비개발자도 이해할 수 있도록 쉽게 정리했습니다.
 ogImage: /og/mcp-easy-guide-for-non-developers.png
-ogTitle: 'MCP란?: AI가 내 업무 도구를 직접 다루게 만드는 표준 규격'
 ogDescription: '노션, 슬랙, 구글 드라이브를 AI에 연결하는 MCP를 USB 포트 비유로 쉽게 설명합니다. 비개발자를 위한 입문 가이드.'
 summary3:
   - 'MCP는 노션과 슬랙, 구글 드라이브 같은 서비스를 하나의 표준 방식으로 AI에 연결하는 규격입니다.'
-  - '서비스마다 연결을 새로 만들던 방식과 달리 규격에 맞추면 한 번 만든 연결을 어떤 AI 앱에서든 다시 씁니다.'
-  - '클로드 데스크톱에 노션 MCP를 붙이면 데이터베이스를 직접 조회하고 슬랙 MCP를 붙이면 채널 메시지를 읽어 요약합니다.'
+  - 서비스마다 연결을 새로 만들던 방식과 달리 규격에 맞추면 한 번 만든 연결을 어떤 AI 앱에서든 다시 씁니다.
+  - 클로드 데스크톱에 노션 MCP를 붙이면 데이터베이스를 직접 조회하고 슬랙 MCP를 붙이면 채널 메시지를 읽어 요약합니다.
 ---
 
 ## AI가 내 업무 도구를 못 보는 답답함

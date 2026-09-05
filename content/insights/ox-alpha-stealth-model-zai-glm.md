@@ -32,7 +32,6 @@ metaTitle: Ox Alpha 정체와 GLM-5.3-Flash 스펙 정리
 metaDescription: >-
   Ox Alpha는 중국 Z.AI가 만든 곳을 감춘 채 공개했던 GLM-5.3-Flash의 프리뷰 모델입니다. 등장부터 정체 공개까지의 경과와 총
   3,200억 파라미터 구조, MIT 라이선스, 100만 토큰당 입력 0.15달러의 가격을 공식 자료로 정리했습니다.
-ogTitle: Ox Alpha 정체와 GLM-5.3-Flash 스펙 정리
 ogDescription: >-
   이름 없이 등장해 OpenRouter 1위에 오른 모델의 정체는 Z.AI의 GLM-5.3-Flash였습니다. 공개 경과와 공식 스펙,
   벤치마크 해석 기준을 정리했습니다.

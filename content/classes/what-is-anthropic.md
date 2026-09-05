@@ -1,6 +1,6 @@
 ---
 slug: what-is-anthropic
-term: 초보자를 위한 Anthropic (앤트로픽) 이해하기
+term: '앤트로픽(Anthropic) 이해하기: 클로드를 만든 회사'
 definition: >-
   미국 샌프란시스코에 본사를 둔 AI 안전 연구 회사로, AI 어시스턴트 Claude를 만든 곳입니다. 일반 영리법인이 아닌 Public
   Benefit Corporation 형태로 운영됩니다.
@@ -22,10 +22,10 @@ relatedTerms:
   - what-is-claude
   - claude-model-family
 difficulty: BEGINNER
-metaTitle: '앤트로픽(Anthropic) 뜻: 클로드 만든 회사 정리'
+metaTitle: '앤트로픽(Anthropic) 뜻: 클로드를 만든 회사 정리'
 metaDescription: >-
-  앤트로픽은 AI 챗봇 클로드(Claude)를 만든 미국 AI 회사입니다. 회사 이름의 뜻, 창업 배경, OpenAI와의 관계, 주요 제품과 안전 중심 철학까지 처
-  음 듣는 분도 이해할 수 있게 정리했습니다.
+  앤트로픽은 AI 챗봇 클로드(Claude)를 만든 미국 AI 회사입니다. 회사 이름의 뜻, 창업 배경, OpenAI와의 관계, 주요 제품과
+  안전 중심 철학까지 처 음 듣는 분도 이해할 수 있게 정리했습니다.
 quiz:
   - question: >-
       앤트로픽이 일반 영리법인이 아닌 Public Benefit Corporation(공익 회사) 형태로 설립된 이유와 가장 가까운 것은
@@ -42,9 +42,11 @@ quiz:
       위함입니다. 세금 면제나 모델 출시 속도와는 관련이 없습니다.
 ogImage: /og/what-is-anthropic.png
 summary3:
-  - '앤트로픽은 2021년 오픈AI 출신인 다리오 아모데이와 다니엘라 아모데이가 세운 미국 샌프란시스코의 AI 안전 연구 회사입니다.'
-  - '일반 영리법인이 아니라 공익 회사 형태로 운영되고 장기 이익 신탁이 이사 일부를 지명하는 지배 구조를 둡니다.'
-  - '안전 연구를 Constitutional AI와 책임 있는 스케일링 정책 같은 공개 문서로 내놓고 제품으로는 Claude와 개발자 플랫폼을 운영합니다.'
+  - 앤트로픽은 2021년 오픈AI 출신인 다리오 아모데이와 다니엘라 아모데이가 세운 미국 샌프란시스코의 AI 안전 연구 회사입니다.
+  - 일반 영리법인이 아니라 공익 회사 형태로 운영되고 장기 이익 신탁이 이사 일부를 지명하는 지배 구조를 둡니다.
+  - >-
+    안전 연구를 Constitutional AI와 책임 있는 스케일링 정책 같은 공개 문서로 내놓고 제품으로는 Claude와 개발자 플랫폼을
+    운영합니다.
 ---
 
 이 글은 앤트로픽이 운영하는 Anthropic Academy(anthropic.com/learn), claude.com/resources, platform.claude.com/docs의 공식 교육 자료 중 회사 소개를 한국어 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.

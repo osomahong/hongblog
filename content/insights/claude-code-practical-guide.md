@@ -32,7 +32,6 @@ metaDescription: >-
   Claude Code 설치 방법, 초기 설정, 프로젝트 분석, 코드 수정, Git 자동화까지 실전 활용법을 단계별로 정리합니다.
   CLAUDE.md, Skills, MCP 등 핵심 기능도 함께 소개합니다.
 ogImage: /og/claude-code-practical-guide.png
-ogTitle: 'Claude Code 실전 가이드: 설치에서 첫 프로젝트까지 단계별 정리'
 ogDescription: '터미널 기반 AI 코딩 도구 Claude Code의 설치, 설정, 실전 활용법을 한 글에 정리했습니다. 비교 분석과 실전 팁까지 포함합니다.'
 summary3:
   - 'Claude Code는 앤트로픽이 만든 터미널 기반 AI 코딩 도구로 코드베이스 전체를 이해하고 파일을 고치며 명령까지 실행합니다.'

@@ -27,9 +27,8 @@ quiz:
   question: 쿠팡이나 인스타그램처럼 스크롤을 내려야 상품이 더 나타나는 사이트에서 데이터를 수집하려면 어떤 크롤링 방식을 사용해야 할까요?
   explanation: 쿠팡, 인스타그램 같은 사이트는 JavaScript로 콘텐츠를 동적으로 불러옵니다. 단순히 HTML을 받아오면 빈 페이지만 보이므로, 헤드리스 브라우저(Puppeteer, Playwright 등)를 사용해 JavaScript를 실행시켜야 실제 데이터를 수집할 수 있습니다.
   correctIndex: 0
-metaTitle: 웹 크롤링이란? 비개발자를 위한 쉬운 설명
+metaTitle: '웹 크롤링 뜻: 비개발자를 위한 쉬운 설명'
 metaDescription: 웹 크롤링의 개념, 작동 방식(정적/동적/API), 법적 주의사항, 비개발자 활용법까지. 크롤링을 처음 접하는 분을 위해 쉽게 설명합니다.
-ogTitle: 웹 크롤링이란? 비개발자를 위한 쉬운 설명
 ogDescription: 크롤링의 개념부터 정적, 동적, API 방식의 차이, 법적 주의사항, 비개발자 활용법까지 쉽게 설명합니다.
 ogImage: /og/what-is-web-crawling.png
 summary3:

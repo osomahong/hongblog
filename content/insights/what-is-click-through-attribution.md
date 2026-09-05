@@ -1,6 +1,6 @@
 ---
 slug: what-is-click-through-attribution
-title: 클릭 기여(Click-Through Attribution)란? 디지털 마케팅 성과 측정의 기본
+title: '클릭 기여(Click-Through Attribution) 뜻: 성과 측정의 기본'
 excerpt: >-
   디지털 마케팅에서 클릭 기여(Click-Through Attribution)의 개념과 뷰스루 기여와의 차이, 기여 기간 설정 기준, 실무에서
   주의할 점을 정리했습니다.
@@ -9,19 +9,18 @@ tags:
   - 어트리뷰션
   - 광고
 publishedAt: '2026-02-12T08:11:59.012Z'
-metaTitle: 클릭 기여(Click-Through Attribution)란? 성과 측정의 기본
+metaTitle: '클릭 기여(Click-Through Attribution) 뜻: 성과 측정의 기본'
 metaDescription: >-
   클릭 기여(Click-Through Attribution)의 개념, 뷰스루 기여와의 차이, 기여 기간(Attribution Window)
   설정 기준, 중복 기여 문제와 쿠키 제한 대응까지 디지털 마케팅 성과 측정의 핵심을 정리했습니다.
-ogTitle: 클릭 기여(Click-Through Attribution) 완전 정리 - 디지털 마케팅 성과 측정의 기본
 ogDescription: >-
   광고를 클릭한 뒤 전환까지 이어지는 과정을 어떻게 측정하고, 기여 기간은 어떻게 설정해야 할까요? 클릭 기여의 개념부터 실무 주의사항까지
   정리했습니다.
 ogImage: /og/what-is-click-through-attribution.png
 summary3:
-  - '클릭 기여는 광고를 클릭한 뒤 일어난 전환을 그 광고의 성과로 인정하는 방식입니다.'
-  - '노출만 보고 전환한 경우를 세는 뷰스루 기여보다 참여 수준이 높아 신뢰도가 높게 평가됩니다.'
-  - '기여 기간은 구글 광고와 네이버가 기본 30일이고 메타와 카카오가 기본 7일이라 같은 캠페인도 플랫폼마다 전환 수가 다릅니다.'
+  - 클릭 기여는 광고를 클릭한 뒤 일어난 전환을 그 광고의 성과로 인정하는 방식입니다.
+  - 노출만 보고 전환한 경우를 세는 뷰스루 기여보다 참여 수준이 높아 신뢰도가 높게 평가됩니다.
+  - 기여 기간은 구글 광고와 네이버가 기본 30일이고 메타와 카카오가 기본 7일이라 같은 캠페인도 플랫폼마다 전환 수가 다릅니다.
 ---
 
 ## 클릭 기여의 뜻

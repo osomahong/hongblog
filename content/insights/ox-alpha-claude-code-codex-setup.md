@@ -27,7 +27,6 @@ metaTitle: Ox Alpha를 클로드 코드와 코덱스 CLI에서 쓰는 방법
 metaDescription: >-
   Ox Alpha는 Z.AI의 GLM-5.3-Flash입니다. 클로드 코드와 코덱스 CLI는 모두 Z.AI가 공식 지원하는 도구입니다. 두 도구의 설정
   파일 위치와 값, 프로토콜별 주소, 요금제 한도를 공식 문서 기준으로 정리했습니다.
-ogTitle: Ox Alpha를 클로드 코드와 코덱스 CLI에서 쓰는 방법
 ogDescription: '도구는 그대로 두고 요청을 보내는 주소만 Z.AI로 돌리는 방식입니다. 설정 파일 위치와 값, 주의할 점을 정리했습니다.'
 ogImage: /og/ox-alpha-claude-code-codex-setup.png
 quiz:

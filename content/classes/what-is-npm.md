@@ -1,6 +1,6 @@
 ---
 slug: what-is-npm
-term: 패키지 매니저 (npm)
+term: npm (패키지 매니저)
 definition: >-
   다른 개발자가 만든 코드(패키지)를 쉽게 설치하고 관리할 수 있는 도구입니다. AI가 프로젝트를 만들면 가장 먼저 'npm install'을
   실행하라고 하는데, 이것이 바로 필요한 패키지를 설치하는 명령어입니다.
@@ -33,12 +33,18 @@ quiz:
       설치합니다. node_modules는 언제든 재생성 가능하기 때문에 GitHub에도 올리지 않습니다.
     correctIndex: 0
 metaTitle: 'npm 뜻: 패키지 매니저가 하는 일과 기본 개념'
-metaDescription: 'npm은 다른 개발자가 만든 코드 패키지를 설치하고 관리하는 패키지 매니저입니다. 패키지 설치의 원리와 AI 코딩에서 자주 만나는 상황을 정리했습니다.'
+metaDescription: >-
+  npm은 다른 개발자가 만든 코드 패키지를 설치하고 관리하는 패키지 매니저입니다. 패키지 설치의 원리와 AI 코딩에서 자주 만나는 상황을
+  정리했습니다.
 ogImage: /og/what-is-npm.png
 summary3:
-  - 'npm은 다른 개발자가 만든 패키지를 내 프로젝트로 가져와 설치하고 관리하는 도구입니다.'
-  - 'package.json은 필요한 패키지 목록이고 package-lock.json은 정확한 버전을 기록해 다른 컴퓨터에서도 같은 버전이 깔리게 합니다.'
-  - 'node_modules는 npm install로 다시 만들어지므로 GitHub에 올리지 않고 package-lock.json은 함께 올립니다.'
+  - npm은 다른 개발자가 만든 패키지를 내 프로젝트로 가져와 설치하고 관리하는 도구입니다.
+  - >-
+    package.json은 필요한 패키지 목록이고 package-lock.json은 정확한 버전을 기록해 다른 컴퓨터에서도 같은 버전이
+    깔리게 합니다.
+  - >-
+    node_modules는 npm install로 다시 만들어지므로 GitHub에 올리지 않고 package-lock.json은 함께
+    올립니다.
 ---
 
 ## 🤔 혹시 이런 경험 있나요?

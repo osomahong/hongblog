@@ -5,7 +5,7 @@ category: MARKETING
 difficulty: BEGINNER
 publishedAt: '2026-01-16T09:01:12.556Z'
 ogImage: /og/digital-basic.png
-metaTitle: '디지털 기초 용어 코스: HTML, 쿠키, API, 도메인 개념 정리'
+metaTitle: '비개발자도 쉽게 배우는 디지털 기초 용어: HTML, 쿠키, API, 도메인'
 metaDescription: >-
   웹과 디지털 업무에서 매일 만나는 기초 개념을 하나씩 정리한 코스입니다. HTML, CSS, DOM, 쿠키, API, 도메인과 셀프호스팅까지 비개발자 눈높이로 다룹니다.
 summary3:

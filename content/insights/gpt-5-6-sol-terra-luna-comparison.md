@@ -15,11 +15,10 @@ updatedAt: '2026-08-25T00:00:00.000Z'
 highlights:
   - '기본값은 Terra로 잡고, 대량 반복 작업은 Luna로, 복잡한 추론과 에이전트 작업만 Sol로 올리는 방식이 비용 효율적입니다.'
   - Sol 인하는 2026년 11월 21일까지의 한시 가격이므로 장기 예산은 정가 기준으로 잡아 두세요.
-metaTitle: 'GPT-5.6 Sol, Terra, Luna 차이와 가격 비교 (2026년 8월 기준)'
+metaTitle: 'GPT-5.6 Sol, Terra, Luna 차이와 가격 비교'
 metaDescription: >-
   GPT-5.6은 OpenAI의 3단계 모델 제품군으로 최상위 Sol, 균형형 Terra, 경량 Luna로 나뉩니다. 세 모델의 차이,
   2026년 8월 Sol 가격 인하 내용, ChatGPT 요금제별 사용 범위, Claude와 Gemini 대비 가격과 벤치마크를 정리했습니다.
-ogTitle: 'GPT-5.6 Sol, Terra, Luna 차이와 가격 비교'
 ogDescription: 'GPT-5.6 세 모델의 차이와 두 차례 가격 인하 이력, Claude와 Gemini 경쟁 모델과의 가격, 벤치마크 비교를 정리했습니다.'
 ogImage: /og/gpt-5-6-sol-terra-luna-comparison.png
 quiz:

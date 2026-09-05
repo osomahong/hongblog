@@ -1,6 +1,6 @@
 ---
 slug: claude-for-marketers
-term: 마케터를 위한 Claude 활용하기
+term: 마케터를 위한 클로드(Claude) 활용하기
 definition: >-
   마케터가 자기 자리에서 Claude의 핵심 도구(Projects, Skills, Cowork, Artifacts)를 묶어 매주 반복 업무를
   자동화하고 보고서, 콘텐츠, 캠페인 자료를 일관된 품질로 만드는 방법을 정리한 가이드입니다.
@@ -24,22 +24,26 @@ difficulty: BEGINNER
 quiz:
   - question: 마케터가 매주 금요일 광고 리포트 자동화를 처음 도입할 때 가장 효율적인 도구 조합은 무엇일까요?
     options:
-      - Cowork(스케줄, 실행) + Skills(회사 형식) + Projects(가이드라인 자료)
+      - 'Cowork(스케줄, 실행) + Skills(회사 형식) + Projects(가이드라인 자료)'
       - claude.ai 챗에서 매주 처음부터 다시 지시
       - 엑셀에 매크로만 작성
       - 외부 스크립트만 사용하고 Claude는 안 씀
     correctIndex: 0
     explanation: >-
-      반복 업무 자동화의 표준 조합은 Cowork(스케줄과 실행) + Skills(회사 형식, 체크리스트의 재사용) + Projects(공유
-      자료, 가이드라인의 컨테이너)입니다. 세 도구가 묶이면 매주 같은 품질의 결과물이 자동으로 생성됩니다. 매주 다시 지시하거나 엑셀
-      매크로만으로는 회사 형식, 검증 흐름이 빠집니다.
-metaTitle: '마케터 클로드 활용법: Projects, Skills, Cowork 실무 적용'
-metaDescription: '마케터를 위한 클로드 활용은 Projects, Skills, Cowork, Artifacts를 마케팅 실무에 쓰는 방법입니다. 업무별 적용 사례와 시작 순서를 정리했습니다.'
+      반복 업무 자동화의 표준 조합은 Cowork(스케줄과 실행) + Skills(회사 형식, 체크리스트의 재사용) +
+      Projects(공유 자료, 가이드라인의 컨테이너)입니다. 세 도구가 묶이면 매주 같은 품질의 결과물이 자동으로 생성됩니다. 매주
+      다시 지시하거나 엑셀 매크로만으로는 회사 형식, 검증 흐름이 빠집니다.
+metaTitle: '마케터를 위한 클로드 활용법: Projects, Skills, Cowork 적용'
+metaDescription: >-
+  마케터를 위한 클로드 활용은 Projects, Skills, Cowork, Artifacts를 마케팅 실무에 쓰는 방법입니다. 업무별 적용
+  사례와 시작 순서를 정리했습니다.
 ogImage: /og/claude-for-marketers.png
 summary3:
   - '마케터가 Claude로 자동화할 만한 반복 업무는 광고 리포트 정리와 콘텐츠 캘린더 관리, 캠페인 카피 작성, 고객 리서치입니다.'
-  - 'claude.ai 챗으로 시작해 같은 자료를 반복해 쓰게 되면 Projects로 옮기고 절차가 굳으면 Skills로 저장하는 순서로 올립니다.'
-  - '카피와 분석은 모델이 사용자 말에 맞춰 주는 아부를 피하려고 강점 분석과 약점 분석을 따로 두 번 요청해 비교합니다.'
+  - >-
+    claude.ai 챗으로 시작해 같은 자료를 반복해 쓰게 되면 Projects로 옮기고 절차가 굳으면 Skills로 저장하는 순서로
+    올립니다.
+  - 카피와 분석은 모델이 사용자 말에 맞춰 주는 아부를 피하려고 강점 분석과 약점 분석을 따로 두 번 요청해 비교합니다.
 ---
 
 이 글은 앤트로픽이 운영하는 claude.com/resources의 Marketing 활용 사례와 Anthropic Academy 자료를 한국 마케터가 보기 편하게 정리한 글입니다.

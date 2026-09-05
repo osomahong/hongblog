@@ -1,6 +1,6 @@
 ---
 slug: what-is-attribute
-term: Attribute (속성)
+term: HTML 속성 (Attribute)
 definition: >-
   Attribute(속성)는 HTML Element에 붙는 추가 정보입니다. 택배 상자의 송장처럼, 이름표(id), 분류표(class),
   목적지(href) 같은 값으로 각 Element를 식별하고 동작을 결정합니다.
@@ -31,12 +31,14 @@ quiz:
       역할을 합니다.
     correctIndex: 1
 metaTitle: 'HTML 속성(Attribute) 뜻: 태그에 붙는 추가 정보'
-metaDescription: '속성(Attribute)은 HTML 요소에 붙는 추가 정보입니다. 대표 속성의 역할과 GTM 태깅에서 속성이 쓰이는 방식을 정리했습니다.'
+metaDescription: 속성(Attribute)은 HTML 요소에 붙는 추가 정보입니다. 대표 속성의 역할과 GTM 태깅에서 속성이 쓰이는 방식을 정리했습니다.
 ogImage: /og/what-is-attribute.png
 summary3:
-  - 'Attribute는 HTML 요소에 추가 정보를 붙이는 이름과 값의 쌍입니다.'
-  - 'id는 한 요소만 가리키는 유일한 식별자이고 class는 같은 성격의 여러 요소를 한 번에 묶는 분류표입니다.'
-  - 'GTM의 Click ID와 Click Classes가 바로 이 값이라 어떤 버튼이 눌렸는지 구분하는 트리거는 이 속성 위에서 만들어집니다.'
+  - Attribute는 HTML 요소에 추가 정보를 붙이는 이름과 값의 쌍입니다.
+  - id는 한 요소만 가리키는 유일한 식별자이고 class는 같은 성격의 여러 요소를 한 번에 묶는 분류표입니다.
+  - >-
+    GTM의 Click ID와 Click Classes가 바로 이 값이라 어떤 버튼이 눌렸는지 구분하는 트리거는 이 속성 위에서
+    만들어집니다.
 ---
 
 ## 🤔 혹시 이런 경험 있으신가요?

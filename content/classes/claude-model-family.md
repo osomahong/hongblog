@@ -1,6 +1,6 @@
 ---
 slug: claude-model-family
-term: Claude 모델 패밀리 (Opus, Sonnet, Haiku) 비교하기
+term: '클로드 모델 패밀리(Opus, Sonnet, Haiku) 비교하기'
 definition: >-
   Claude는 단일 모델이 아니라 Fable, Opus, Sonnet, Haiku 등 여러 라인업으로 구성된 모델 패밀리입니다. 작업의
   난이도, 속도, 비용에 따라 다른 모델을 골라 쓰도록 설계되었습니다.
@@ -26,9 +26,11 @@ relatedTerms:
   - what-is-claude
   - what-is-anthropic
 updateNotice:
-  date: '2026-07'
+  date: 2026-07
   items:
-    - 2026년 7월 24일 공개된 Claude Opus 5를 현행 라인업에 반영했습니다. 비교표와 선택 기준의 Opus 4.8을 Opus 5로 교체했습니다.
+    - >-
+      2026년 7월 24일 공개된 Claude Opus 5를 현행 라인업에 반영했습니다. 비교표와 선택 기준의 Opus 4.8을 Opus
+      5로 교체했습니다.
     - Opus 4.8을 레거시 모델 목록으로 옮겼습니다. 가격은 Opus 5와 같습니다.
     - Opus 5의 신뢰 가능한 지식 기준일을 2026년 5월로 반영했습니다.
 difficulty: BEGINNER
@@ -49,13 +51,17 @@ quiz:
       과합니다.
 metaTitle: '클로드 모델 비교 2026: 종류와 차이, 선택 기준'
 metaDescription: >-
-  일상 업무는 Sonnet 5, 복잡한 작업은 Opus 5, 대량 처리는 Haiku 4.5입니다. 네 라인업의 가격과 속도, 컨텍스트 차이를 표로 비교하고 직무별 
-  선택 기준을 정리했습니다. 2026년 7월 기준.
+  일상 업무는 Sonnet 5, 복잡한 작업은 Opus 5, 대량 처리는 Haiku 4.5입니다. 네 라인업의 가격과 속도, 컨텍스트 차이를
+  표로 비교하고 직무별  선택 기준을 정리했습니다. 2026년 7월 기준.
 ogImage: /og/claude-model-family.png
 summary3:
   - 'Claude는 하나가 아니라 최상위 Fable 5와 Opus, Sonnet, Haiku 네 라인업으로 함께 운영되는 모델 패밀리입니다.'
-  - '2026년 6월 9일 Claude 5 세대의 Fable 5가 나온 뒤에도 Opus와 Sonnet, Haiku는 그대로 남아 있어서 라인업을 먼저 고르고 번호는 나중에 봅니다.'
-  - 'Fable 5와 사양이 같은 Mythos 5는 일반 판매용이 아니라 Project Glasswing에 참여하는 승인된 조직만 초대로 씁니다.'
+  - >-
+    2026년 6월 9일 Claude 5 세대의 Fable 5가 나온 뒤에도 Opus와 Sonnet, Haiku는 그대로 남아 있어서
+    라인업을 먼저 고르고 번호는 나중에 봅니다.
+  - >-
+    Fable 5와 사양이 같은 Mythos 5는 일반 판매용이 아니라 Project Glasswing에 참여하는 승인된 조직만 초대로
+    씁니다.
 ---
 
 이 글은 [앤트로픽](/class/claude-fundamentals/what-is-anthropic)이 운영하는 platform.claude.com/docs의 모델 개요 문서와 공식 발표문을 한국어 입문자가 보기 편하게 정리한 글입니다. 가격, 컨텍스트 같은 수치는 **2026년 7월 기준** 공식 문서를 그대로 옮겼고, 원문 링크는 글 끝 참고 자료에 모았습니다.

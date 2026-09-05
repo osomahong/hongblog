@@ -1,6 +1,6 @@
 ---
 slug: claude-code-memory
-term: Memory와 CLAUDE.md (영속 컨텍스트) 이해하기
+term: 클로드 코드 메모리와 CLAUDE.md (영속 컨텍스트) 이해하기
 definition: >-
   Claude Code가 세션을 넘어 기억할 수 있도록 만든 영속 컨텍스트 시스템입니다. 사용자가 직접 적은 CLAUDE.md 파일과
   Claude가 작업 중 자동으로 쌓는 auto memory 두 가지로 구성됩니다.
@@ -24,7 +24,7 @@ difficulty: BEGINNER
 quiz:
   - question: CLAUDE.md 파일은 어떤 역할을 할까요?
     options:
-      - 프로젝트 루트에 두고 Claude Code가 모든 세션 시작 시 읽어 들이는 영속 지시, 표준 문서
+      - '프로젝트 루트에 두고 Claude Code가 모든 세션 시작 시 읽어 들이는 영속 지시, 표준 문서'
       - Claude Code의 설치 로그
       - 자동으로 백업되는 파일
       - 한국어 번역 사전
@@ -34,12 +34,20 @@ quiz:
       코딩 표준, 아키텍처 결정, 선호 라이브러리, 검토 체크리스트 같은 영속 지시를 적어두면 매번 다시 설명할 필요가 없습니다. 설치
       로그, 백업, 번역 사전과는 관련이 없습니다.
 metaTitle: '클로드 코드 메모리 사용법: CLAUDE.md와 자동 메모리 정리'
-metaDescription: '클로드 코드 메모리는 Claude Code가 세션을 넘어 기억하도록 만든 영속 컨텍스트 시스템입니다. CLAUDE.md와 자동 메모리의 차이, 관리 방법을 정리했습니다.'
+metaDescription: >-
+  클로드 코드 메모리는 Claude Code가 세션을 넘어 기억하도록 만든 영속 컨텍스트 시스템입니다. CLAUDE.md와 자동 메모리의
+  차이, 관리 방법을 정리했습니다.
 ogImage: /og/claude-code-memory.png
 summary3:
-  - 'Memory는 Claude Code가 세션을 넘어 기억하게 만드는 구조이고 사용자가 적는 CLAUDE.md와 자동으로 쌓이는 auto memory 두 가지로 이뤄집니다.'
-  - 'CLAUDE.md는 프로젝트 폴더에 두면 매 세션이 시작할 때 자동으로 읽히므로 코딩 표준이나 글쓰기 규칙을 다시 설명하지 않아도 됩니다.'
-  - 'CLAUDE.md는 프로젝트 단위와 사용자 단위 두 곳에 둘 수 있고 길게 쓸수록 지켜지지 않으므로 비밀번호와 키는 빼고 짧게 유지합니다.'
+  - >-
+    Memory는 Claude Code가 세션을 넘어 기억하게 만드는 구조이고 사용자가 적는 CLAUDE.md와 자동으로 쌓이는 auto
+    memory 두 가지로 이뤄집니다.
+  - >-
+    CLAUDE.md는 프로젝트 폴더에 두면 매 세션이 시작할 때 자동으로 읽히므로 코딩 표준이나 글쓰기 규칙을 다시 설명하지 않아도
+    됩니다.
+  - >-
+    CLAUDE.md는 프로젝트 단위와 사용자 단위 두 곳에 둘 수 있고 길게 쓸수록 지켜지지 않으므로 비밀번호와 키는 빼고 짧게
+    유지합니다.
 ---
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs의 Memory와 CLAUDE.md 자료를 한국 비개발자 입문자가 보기 편하게 정리한 글입니다.

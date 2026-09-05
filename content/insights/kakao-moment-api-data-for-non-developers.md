@@ -1,6 +1,6 @@
 ---
 slug: kakao-moment-api-data-for-non-developers
-title: 비개발자도 쓰기 편하게 정리한 카카오모먼트 API 데이터
+title: '비개발자를 위한 카카오모먼트 API 가이드: 권한 신청부터 코드 예시까지'
 excerpt: >-
   카카오모먼트 광고 데이터를 API로 가져오고 싶은 마케터를 위한 가이드입니다. 공식대행사 전용 권한 신청, 비즈 앱 전환 심사, 비즈니스
   토큰 인증, 보고서 API의 metricsGroup 구조까지: 카카오모먼트 API의 진입 장벽과 실전 사용법을 정리했습니다.
@@ -30,17 +30,18 @@ quiz:
     correctIndex: 1
 seriesSlug: digitalmarketing
 seriesOrder: 5
-metaTitle: '비개발자를 위한 카카오모먼트 API 가이드: 권한 신청, 심사부터 코드 예시까지'
+metaTitle: '비개발자를 위한 카카오모먼트 API 가이드: 권한 신청부터 코드 예시까지'
 metaDescription: >-
   카카오모먼트 API 권한 신청 조건, 비즈 앱 전환, 비즈니스 토큰 발급, 보고서 API 필드 매핑까지. 비개발자 마케터를 위한 카카오모먼트
   API 실전 가이드입니다.
-ogTitle: 비개발자도 쓰기 편하게 정리한 카카오모먼트 API 데이터
 ogDescription: '카카오모먼트 API 권한 신청부터 보고서 조회, 필드 매핑, 코드 예시까지. 진입 장벽이 높은 카카오 API의 핵심을 정리했습니다.'
 ogImage: /og/kakao-moment-api-data-for-non-developers.png
 summary3:
-  - '카카오모먼트 API는 일반 개발자나 소규모 광고주가 직접 신청할 수 없고 공식대행사이거나 담당 카카오 마케터를 거쳐야 합니다.'
+  - 카카오모먼트 API는 일반 개발자나 소규모 광고주가 직접 신청할 수 없고 공식대행사이거나 담당 카카오 마케터를 거쳐야 합니다.
   - '준비는 앱 생성과 비즈 앱 전환 심사, 약관 동의, 비즈니스 인증 설정, API 권한 신청까지 여섯 단계입니다.'
-  - '일반 카카오 로그인 토큰이 아니라 비즈니스 토큰을 쓰므로 Redirect URI 등록과 Client Secret 활성화를 먼저 해 둡니다.'
+  - >-
+    일반 카카오 로그인 토큰이 아니라 비즈니스 토큰을 쓰므로 Redirect URI 등록과 Client Secret 활성화를 먼저 해
+    둡니다.
 ---
 
 ## 카카오모먼트 API, 시작하기 전에 알아야 할 것

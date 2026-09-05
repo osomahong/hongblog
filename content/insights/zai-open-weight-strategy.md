@@ -28,7 +28,6 @@ metaTitle: 'Z.ai 오픈 웨이트 전략 정리: 가중치를 풀고 API로 버�
 metaDescription: >-
   Z.ai는 GLM 계열 모델의 가중치를 MIT 라이선스로 공개하면서 유료 API로 수익을 내는 중국 AI 기업입니다. 상장과 실적, 오픈
   웨이트와 오픈 소스의 차이, 공개가 최적화로 돌아오는 구조를 공개 자료로 정리했습니다.
-ogTitle: 'Z.ai 오픈 웨이트 전략: 가중치를 풀고 API로 버는 구조'
 ogDescription: 공개한 지 하루 만에 파생본 43개가 생겼습니다. 가중치를 푸는 쪽이 무엇을 얻는지 공개 자료로 정리했습니다.
 ogImage: /og/zai-open-weight-strategy.png
 quiz:

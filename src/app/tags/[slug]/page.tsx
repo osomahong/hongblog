@@ -44,8 +44,9 @@ export async function generateMetadata(
 
   // 브랜드는 루트 layout의 title template이 붙인다. 여기에 다시 넣으면 접미사가 두 번 붙는다.
   const title = `#${tagName} 태그 인사이트와 클래스 ${totalCount}건 모음`;
-  // og와 twitter의 title에는 template이 적용되지 않으므로 브랜드를 직접 붙인다.
-  const socialTitle = `${title} | ${SITE_NAME}`;
+  // og와 twitter의 title에는 브랜드를 붙이지 않는다. 브랜드는 og:site_name이 맡고,
+  // 콘텐츠 페이지의 og:title도 제목만 쓰므로 공유 카드 규칙을 한 가지로 맞춘다.
+  const socialTitle = title;
   const description = totalCount > 0
     ? `${tagName} 태그가 붙은 인사이트 ${posts.length}건과 클래스 ${classes.length}건을 한곳에 모았습니다. 디지털 마케팅, GA4, GTM, AI 활용 관점에서 ${tagName} 주제를 입문자도 이해하기 쉽게 풀어 드립니다.`
     : `${tagName} 태그 관련 콘텐츠 모음입니다. 디지털 마케팅, AI, 데이터 분석 주제에서 ${tagName} 키워드를 다룬 글을 모았습니다.`;

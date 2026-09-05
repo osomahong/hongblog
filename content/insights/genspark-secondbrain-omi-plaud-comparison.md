@@ -15,11 +15,10 @@ highlights:
     회의록 품질이 목적이면 플라우드, 기록이 메일과 캘린더로 이어지는 흐름이 목적이면 젠스파크, 데이터를 직접 쥐는 것이 목적이면 Omi
     쪽입니다.
   - 카드형 두 제품은 하드웨어가 거의 같으므로 사양표가 아니라 녹음한 다음에 무엇이 일어나는지를 기준으로 고릅니다.
-metaTitle: 'PLAUD Note, Genspark SecondBrain Note, Omi 사양과 요금제 비교'
+metaTitle: '플라우드 노트, 젠스파크 세컨드브레인, Omi 사양과 요금제 비교'
 metaDescription: >-
   플라우드 노트, 젠스파크 세컨드브레인 노트, Omi는 대화를 녹음해 요약과 할 일로 바꿔 주는 AI 기록 기기입니다. 세 제품의 하드웨어
   사양과 요금제, 고르는 기준을 2026년 8월 기준 공식 자료로 정리했습니다.
-ogTitle: '플라우드 노트, 젠스파크 세컨드브레인 노트, Omi 비교'
 ogDescription: 'AI 녹음 기기 3종의 하드웨어 사양과 요금제, 각 제품이 노리는 지점과 고르는 기준을 공식 자료 기준으로 정리한 글입니다.'
 ogImage: /og/genspark-secondbrain-omi-plaud-comparison.png
 quiz:

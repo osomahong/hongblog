@@ -1,6 +1,6 @@
 ---
 slug: aws-bedrock-agentcore-n8n
-title: 'AWS AgentCore와 n8n 연동 정리: 기억하는 AI 에이전트를 노코드로 만드는 방법'
+title: 'AWS AgentCore와 n8n 연동: 기억하는 AI 에이전트 노코드 제작 정리'
 excerpt: >-
   Amazon Bedrock AgentCore는 AWS가 AI 에이전트의 기억, 도구 사용, 실행 과정을 대신 관리해 주는 운영 서비스입니다.
   n8n 커뮤니티 노드로 시각적 편집기 안에서 쓸 수 있게 된 AgentCore의 구조, 설치 순서, 비용, 시작 전 준비물을 정리했습니다.
@@ -28,15 +28,20 @@ metaTitle: 'AWS AgentCore n8n 연동 정리: 설치, 기능, 비용'
 metaDescription: >-
   Amazon Bedrock AgentCore는 AWS가 AI 에이전트의 기억, 도구 사용, 실행 과정을 대신 관리해 주는 운영 서비스입니다.
   n8n 커뮤니티 노드 설치 순서와 지원 모델, 비용, 시작 전 준비물을 정리했습니다.
-ogTitle: 'AWS AgentCore와 n8n 연동 정리: 기억하는 AI 에이전트를 노코드로 만드는 방법'
 ogDescription: >-
   Amazon Bedrock AgentCore는 AWS가 AI 에이전트의 기억, 도구 사용, 실행 과정을 대신 관리해 주는 운영 서비스입니다.
   n8n 노드 설치, 지원 모델, 비용, 준비물을 정리했습니다.
 ogImage: /og/aws-bedrock-agentcore-n8n.png
 summary3:
-  - 'Amazon Bedrock AgentCore는 AWS가 AI 에이전트의 기억과 도구 사용, 실행 과정을 대신 관리해 주는 운영 서비스입니다.'
-  - 'n8n 기본 AI Agent 노드는 한 번의 실행 안에서만 기억하고 브라우저와 코드를 실행하지 못하며 실행 시간 제한이 짧은데 AgentCore가 그 세 가지를 채웁니다.'
-  - 'AWS 계정과 IAM 권한, 실행 역할을 먼저 준비한 뒤 노드를 설치하고 전사 자동화 대신 반복 업무 하나로 시작해 비용이 어떻게 쌓이는지부터 봅니다.'
+  - >-
+    Amazon Bedrock AgentCore는 AWS가 AI 에이전트의 기억과 도구 사용, 실행 과정을 대신 관리해 주는 운영
+    서비스입니다.
+  - >-
+    n8n 기본 AI Agent 노드는 한 번의 실행 안에서만 기억하고 브라우저와 코드를 실행하지 못하며 실행 시간 제한이 짧은데
+    AgentCore가 그 세 가지를 채웁니다.
+  - >-
+    AWS 계정과 IAM 권한, 실행 역할을 먼저 준비한 뒤 노드를 설치하고 전사 자동화 대신 반복 업무 하나로 시작해 비용이 어떻게
+    쌓이는지부터 봅니다.
 ---
 
 Amazon Bedrock AgentCore는 AWS가 AI 에이전트의 기억, 도구 사용, 실행 과정을 대신 관리해 주는 운영 서비스입니다. 2026년 6월에 핵심 기능인 harness(하네스, 에이전트 실행에 필요한 부품을 한데 묶어 관리하는 런타임)가 정식 공개됐고, AWS가 직접 만든 커뮤니티 노드가 이 기능을 n8n 시각적 편집기 안으로 가져왔습니다.

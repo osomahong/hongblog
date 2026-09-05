@@ -18,7 +18,6 @@ metaTitle: 쉽게 이해하는 AI 그래프 엔지니어링
 metaDescription: >-
   AI 에이전트들의 작업 흐름을 노드와 엣지로 설계하는 그래프 엔지니어링을 쉽게 알아봅니다. 직렬 체인의 한계, 팬아웃과 조건 분기 같은 대표
   패턴, LangGraph와 Microsoft Agent Framework 등 도구까지 정리했습니다.
-ogTitle: 쉽게 이해하는 AI 그래프 엔지니어링
 ogDescription: '에이전트 작업 흐름을 노드와 연결선으로 설계하는 그래프 엔지니어링. 개념, 대표 패턴, 도구를 기초부터 알아봅니다.'
 ogImage: /og/ai-graph-engineering.png
 quiz:

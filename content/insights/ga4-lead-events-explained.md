@@ -1,6 +1,6 @@
 ---
 slug: ga4-lead-events-explained
-title: 'GA4 disqualify_lead, close_unconvert_lead 뜻과 현실적인 활용 가이드'
+title: 'GA4 리드 이벤트 뜻: disqualify_lead, close_unconvert_lead 정리'
 excerpt: >-
   GA4 리드 이벤트 6가지(generate_lead, qualify_lead, disqualify_lead, working_lead,
   close_convert_lead, close_unconvert_lead)의 의미, 왜 구현이 어려운지, 현실적인 단계별 접근법을
@@ -23,18 +23,19 @@ quiz:
       Google이 목록에 표시해주지만, 실제 데이터 수집은 CRM 연동이나 GTM 설정으로 직접 구현해야 합니다.
       generate_lead 이후의 이벤트는 웹사이트 밖(CRM, 오프라인 영업)에서 발생하므로 구현 난이도가 높습니다.
     correctIndex: 1
-metaTitle: 'GA4 리드 이벤트 뜻: disqualify_lead 정리'
+metaTitle: 'GA4 리드 이벤트 뜻: disqualify_lead, close_unconvert_lead 정리'
 metaDescription: >-
   GA4 리드 이벤트 6가지(generate_lead, qualify_lead, disqualify_lead, working_lead,
   close_convert_lead, close_unconvert_lead)의 의미, 왜 구현이 어려운지, 현실적인 단계별 접근법을
   정리합니다.
 ogImage: /og/ga4-lead-events-explained.png
-ogTitle: 'GA4 disqualify_lead, close_unconvert_lead 뜻: 리드 이벤트의 의미와 현실적인 한계'
 ogDescription: 'GA4 리드 생성 이벤트 6가지의 정확한 의미와, 왜 대부분의 회사에서 구현이 어려운지, 그리고 현실적인 단계별 접근법을 정리합니다.'
 summary3:
-  - 'GA4의 리드 이벤트 여섯 개는 속성을 만들 때 리드 생성 유형을 고르면 구글이 추천하는 이벤트일 뿐 자동으로 수집되지 않습니다.'
-  - 'generate_lead에서 시작해 qualify_lead와 disqualify_lead, working_lead를 거쳐 close_convert_lead나 close_unconvert_lead로 끝나는 흐름입니다.'
-  - '뒤쪽 이벤트는 영업 단계에서 일어나기 때문에 CRM의 상태 변화를 GA4로 다시 보내야 해서 구현이 어렵습니다.'
+  - GA4의 리드 이벤트 여섯 개는 속성을 만들 때 리드 생성 유형을 고르면 구글이 추천하는 이벤트일 뿐 자동으로 수집되지 않습니다.
+  - >-
+    generate_lead에서 시작해 qualify_lead와 disqualify_lead, working_lead를 거쳐
+    close_convert_lead나 close_unconvert_lead로 끝나는 흐름입니다.
+  - 뒤쪽 이벤트는 영업 단계에서 일어나기 때문에 CRM의 상태 변화를 GA4로 다시 보내야 해서 구현이 어렵습니다.
 ---
 
 ## 결론: Google이 추천하는 이벤트이지만, 실제로 쓰기는 쉽지 않습니다

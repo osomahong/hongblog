@@ -23,7 +23,6 @@ metaTitle: 'Aside 브라우저 사용 후기와 기능, 가격, 경쟁 제품 �
 metaDescription: >-
   Aside는 로그인해 둔 웹사이트에 직접 들어가 다단계 작업을 끝내는 AI 에이전트 브라우저입니다. 직접 설치해 실행한 기록으로 기능적
   장점, ChatGPT Atlas와 Comet과의 차이, 가격, 개선점을 정리했습니다.
-ogTitle: 'Aside 브라우저 사용 후기: AI 에이전트 브라우저'
 ogDescription: 요약하는 브라우저가 아니라 일을 끝내는 브라우저입니다. 한국인 창업팀이 만든 Aside를 직접 설치해 실행한 기록을 정리했습니다.
 ogImage: /og/aside-browser-review.png
 quiz:

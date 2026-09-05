@@ -102,7 +102,7 @@ const HERO_COPY: {
     slug: "claude-fundamentals",
     bgColor: "#f5f5f2",
     headline: "Claude 아직 어렵다면\n쉽게 배워보세요",
-    title: "Claude 기초 교육",
+    title: "클로드(Claude) 기초 교육",
     description:
       "환각과 아부를 알아채는 법부터\n검증하며 쓰는 순서까지 익힙니다.",
   },

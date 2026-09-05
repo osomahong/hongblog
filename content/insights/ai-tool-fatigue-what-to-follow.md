@@ -17,7 +17,6 @@ metaTitle: AI 도구 피로를 줄이는 기준
 metaDescription: >-
   AI 도구 피로는 새 모델과 도구가 공개되는 속도를 따라가지 못한다고 느끼는 상태입니다. 무엇이 반년 뒤에도 남고 무엇이 사흘 만에
   사라지는지를 가르는 기준을 서점의 신간 매대에 빗대어 정리했습니다.
-ogTitle: AI 도구가 매주 바뀌어도 조바심 내지 않는 기준
 ogDescription: >-
   매주 새 도구가 나오는데 다 따라가야 할지 고민될 때. 오래 쓰면서 관찰한, 남는 것과 사라지는 것의 차이를 살펴봅니다.
 ogImage: /og/ai-tool-fatigue-what-to-follow.png

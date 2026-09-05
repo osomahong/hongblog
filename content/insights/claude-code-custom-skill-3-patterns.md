@@ -27,7 +27,6 @@ metaTitle: 'Claude Code 커스텀 Skill 3가지 패턴'
 metaDescription: >-
   Claude Code 커스텀 Skill의 실전 패턴 3가지를 분석합니다. context: fork 기반 TDD 강제, 팀 맞춤 코드 리뷰,
   실행 가능한 런북까지 커뮤니티가 검증한 방법론입니다.
-ogTitle: 'Claude Code 커스텀 Skill의 진짜 힘: 3가지 패턴'
 ogDescription: 'TDD 강제, 팀 맞춤 코드 리뷰, 실행 가능한 런북: 커뮤니티가 검증한 커스텀 Skill 패턴을 정리했습니다.'
 ogImage: /og/claude-code-custom-skill-3-patterns.png
 summary3:

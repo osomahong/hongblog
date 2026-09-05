@@ -28,7 +28,6 @@ metaTitle: 'Google Sheets AI 함수 사용법: =AI()와 =Gemini()'
 metaDescription: >-
   Google Sheets AI 함수는 스프레드시트에서 텍스트 생성, 요약, 분류, 감정 분석을 처리하는 기능입니다. =AI()와
   =Gemini() 사용법과 실전 예제를 정리합니다.
-ogTitle: 'Google Sheets AI 함수 사용법: =AI()와 =Gemini()'
 ogDescription: '구글시트 AI 함수의 문법, 실무 예제, Gemini 사이드 패널과의 차이, 이용 조건과 한계를 정리했습니다.'
 ogImage: /og/google-sheets-ai-function-guide.png
 quiz:

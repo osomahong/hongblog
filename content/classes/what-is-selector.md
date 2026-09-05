@@ -1,6 +1,6 @@
 ---
 slug: what-is-selector
-term: Selector (선택자)
+term: 선택자 (Selector)
 definition: >-
   웹페이지에서 특정 Element를 찾아내기 위한 '주소'나 '이름표' 같은 것입니다. CSS에서 스타일을 적용하거나, GTM에서 클릭
   이벤트를 추적할 때 '이 버튼'을 지정하는 방법입니다.
@@ -37,12 +37,14 @@ quiz:
       쓰지만, GTM 트리거 설정에서는 btn-purchase만 입력하면 됩니다. #는 ID Selector에 사용되는 기호입니다.
     correctIndex: 0
 metaTitle: '선택자(Selector) 뜻: CSS와 GTM에서 요소를 찾는 방법'
-metaDescription: '선택자는 웹페이지에서 특정 요소를 찾아내는 주소 역할을 하는 표기법입니다. CSS 스타일 적용과 GTM 태깅에서 선택자를 쓰는 방법을 정리했습니다.'
+metaDescription: >-
+  선택자는 웹페이지에서 특정 요소를 찾아내는 주소 역할을 하는 표기법입니다. CSS 스타일 적용과 GTM 태깅에서 선택자를 쓰는 방법을
+  정리했습니다.
 ogImage: /og/what-is-selector.png
 summary3:
-  - 'Selector는 웹페이지에서 특정 요소를 집어내기 위한 주소이고 CSS로 모양을 바꾸거나 GTM으로 클릭을 잡을 때 씁니다.'
+  - Selector는 웹페이지에서 특정 요소를 집어내기 위한 주소이고 CSS로 모양을 바꾸거나 GTM으로 클릭을 잡을 때 씁니다.
   - '유일한 값을 부르는 ID 선택자와 같은 분류를 묶는 Class 선택자, 같은 종류를 모두 잡는 Tag 선택자로 나뉩니다.'
-  - 'GTM의 Click ID와 Click Classes가 이 값이라 선택자가 모호하면 의도한 버튼 말고 다른 요소까지 함께 잡힙니다.'
+  - GTM의 Click ID와 Click Classes가 이 값이라 선택자가 모호하면 의도한 버튼 말고 다른 요소까지 함께 잡힙니다.
 ---
 
 ## 🤔 혹시 이런 생각 해본 적 없나요?

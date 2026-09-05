@@ -30,7 +30,6 @@ metaTitle: 'Meta MCP와 Meta CLI 차이: 가벼운 쪽과 무거운 쪽 정리'
 metaDescription: >-
   Meta MCP와 Meta CLI는 같은 광고 API를 서로 다른 방식으로 여는 두 가지 연결 통로입니다. 시작 부담과 실행 부담, 같은
   작업의 처리 순서 차이, 서로에게 없는 기능을 한자리에 모아 비교합니다.
-ogTitle: 'Meta MCP와 Meta CLI 차이: 무엇이 가볍고 무엇이 무거운가'
 ogDescription: '메타가 함께 공개한 두 연결 방식의 차이를 시작 부담, 실행 부담, 반복 부담 세 가지로 나눠 정리했습니다.'
 ogImage: /og/meta-mcp-vs-meta-cli-comparison.png
 summary3:

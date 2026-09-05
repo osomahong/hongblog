@@ -18,7 +18,6 @@ metaTitle: '콘텐츠 SEO 전략 정리: 무엇을 쓸지 정하는 3층 기준'
 metaDescription: >-
   콘텐츠 SEO 전략은 무엇을 쓸지 정하는 기준입니다. 검색으로 들어오는 사람을 인지층, 관심층, 핵심층으로 나누고 주제와 형식을 각각 다른
   층에 맞추는 운영 방법을 구글 공식 문서를 근거로 정리했습니다.
-ogTitle: '콘텐츠 SEO 전략 정리: 무엇을 쓸지 정하는 3층 기준과 아웃라이어'
 ogDescription: '검색으로 들어오는 사람을 세 층으로 나누고, 주제는 관심층에 형식은 인지층에 맞추는 콘텐츠 SEO 운영 기준을 정리했습니다.'
 ogImage: /og/content-seo-strategy-guide.png
 quiz:

@@ -29,7 +29,6 @@ metaDescription: >-
   Claude Opus 5를 클로드 코드와 클로드 앱에서 쓰는 방법을 정리했습니다. 업데이트 명령어, 모델 선택, effort 레벨, 목록에
   안 보일 때 점검 순서를 단계별로 다룹니다.
 ogImage: /og/claude-opus-5-update-and-usage.png
-ogTitle: Claude Opus 5 업데이트 방법과 사용법 정리
 ogDescription: '클로드 코드 업데이트부터 모델 선택, effort 레벨 조절, 요금 조건까지 Opus 5를 실제로 쓰는 데 필요한 내용을 정리했습니다.'
 summary3:
   - 'Claude Opus 5는 앤트로픽이 2026년 7월 24일 공개한 모델이고 API 이름은 claude-opus-5입니다.'

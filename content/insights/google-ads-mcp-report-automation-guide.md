@@ -29,7 +29,6 @@ metaTitle: 구글 애즈(Google Ads) MCP로 AI 리포트 자동화하기
 metaDescription: >-
   구글 애즈 MCP는 구글이 공식 배포하는 광고 계정 조회용 오픈소스 서버입니다. 만들 수 있는 리포트 형태, 읽기 전용이라는 제약, Meta
   MCP와의 차이, MCC와 개발자 토큰 요건, 연결 절차를 정리했습니다.
-ogTitle: 구글 애즈 MCP로 AI 리포트 자동화하기
 ogDescription: 구글이 공식 배포하는 Google Ads MCP 서버로 만들 수 있는 리포트 형태와 연결에 필요한 준비물을 다룹니다.
 ogImage: /og/google-ads-mcp-report-automation-guide.png
 summary3:

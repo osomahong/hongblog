@@ -33,7 +33,7 @@ quiz:
       MCP는 modelcontextprotocol.io 공식 페이지에서 직접 사용하는 비유로 "AI를 위한 USB-C 포트"입니다.
       USB-C가 어떤 기기든 같은 방식으로 연결할 수 있게 해 주듯, MCP는 어떤 AI 애플리케이션이든 같은 방식으로 외부
       시스템(노션, 슬랙, DB, 파일 시스템 등)에 연결할 수 있도록 한 표준 규격입니다. 모델, DB, 음성 인식과는 다른 영역입니다.
-metaTitle: 'MCP 뜻: AI를 외부 도구와 연결하는 표준 (Model Context Protocol)'
+metaTitle: 'MCP 뜻: AI를 외부 도구와 연결하는 표준 규격'
 metaDescription: >-
   MCP(Model Context Protocol)는 AI를 노션, 슬랙, DB 같은 외부 시스템과 연결하는 표준 규격입니다. USB-C 비유로 개념을 잡고, 무엇이 가능해지고 어떻게 시작하는지 정리했습니다.
 ogImage: /og/what-is-mcp.png

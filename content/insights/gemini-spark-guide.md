@@ -22,7 +22,6 @@ metaTitle: 제미나이 스파크(Gemini Spark) 사용법과 제미나이 모델
 metaDescription: >-
   제미나이 스파크(Gemini Spark)는 구글이 2026년 5월 공개한 24시간 에이전트형 AI 비서입니다. Task, Schedule,
   Skill 사용법과 요금제, 구글 워크스페이스의 Gmail과 Drive를 읽어 맥락을 파악하는 개인 인텔리전스를 정리합니다.
-ogTitle: 제미나이 스파크(Gemini Spark) 사용법과 제미나이 3.5 모델의 장점 정리
 ogDescription: >-
   구글 클라우드에서 24시간 실행되는 AI 에이전트, 제미나이 스파크의 Task, Schedule, Skill 사용법과 요금제, 기반 모델인
   제미나이 3.5의 장점을 정리했습니다.

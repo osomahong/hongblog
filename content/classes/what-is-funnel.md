@@ -1,6 +1,6 @@
 ---
 slug: what-is-funnel
-term: 퍼널 (Marketing Funnel)
+term: 마케팅 퍼널 (Marketing Funnel)
 definition: 잠재 고객이 브랜드를 처음 인지하는 순간부터 최종 구매(전환)까지 거치는 단계별 여정을 깔때기 형태로 시각화한 마케팅 프레임워크입니다.
 category: MARKETING
 tags:
@@ -38,7 +38,9 @@ quiz:
       합니다.
     correctIndex: 0
 metaTitle: '마케팅 퍼널 뜻: 인지부터 구매까지 단계 설계'
-metaDescription: '퍼널은 잠재 고객이 브랜드 인지부터 구매까지 거치는 여정을 깔때기 형태로 나눈 모델입니다. 단계별 지표와 이탈 구간을 찾는 방법을 정리했습니다.'
+metaDescription: >-
+  퍼널은 잠재 고객이 브랜드 인지부터 구매까지 거치는 여정을 깔때기 형태로 나눈 모델입니다. 단계별 지표와 이탈 구간을 찾는 방법을
+  정리했습니다.
 ogImage: /og/what-is-funnel.png
 summary3:
   - '퍼널은 잠재 고객이 브랜드를 알게 된 순간부터 구매까지 거치는 단계를 인지와 관심, 고려, 전환으로 나눠 보는 모델입니다.'

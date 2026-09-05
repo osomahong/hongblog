@@ -29,7 +29,6 @@ metaTitle: META MCP란? Meta MCP로 광고 리포트와 세팅 자동화하기
 metaDescription: >-
   Meta MCP는 메타가 공식으로 운영하는 광고 계정 연결 통로입니다. MCP 개념부터 클로드와 챗GPT 연결 절차, 리포트 자동화 실전
   프롬프트, 캠페인 세팅 범위와 주의점까지 정리했습니다.
-ogTitle: META MCP란? 광고 리포트와 세팅 자동화하기
 ogDescription: 메타 공식 MCP를 클로드나 챗GPT에 연결해 광고 실적을 말로 묻고 캠페인 세팅을 맡기는 방법을 순서대로 다룹니다.
 ogImage: /og/meta-mcp-ads-automation-guide.png
 summary3:

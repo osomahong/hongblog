@@ -21,7 +21,6 @@ metaTitle: 'Kimi K3 vs Fable 5 vs GPT-5.6 Sol 비교'
 metaDescription: >-
   2026년 7월 출시된 Kimi K3와 Claude Fable 5, GPT-5.6 Sol을 비교합니다. 벤치마크, 가격, 오픈 웨이트,
   커뮤니티 반응까지 정리하고 작업별 모델 선택 기준을 제시합니다.
-ogTitle: 'Kimi K3, Claude Fable 5, GPT-5.6 Sol 모델별 장점 비교'
 ogDescription: >-
   2.8조 파라미터 오픈 웨이트 Kimi K3, 절대 성능의 Fable 5, 효율의 GPT-5.6 Sol. 세 모델의 장점과 선택 기준을
   정리했습니다.

@@ -23,7 +23,6 @@ metaTitle: 'GTM 디버깅 실전 가이드 : 태그가 안 찍힐 때 원인 찾
 metaDescription: >-
   GTM 태그가 안 찍히는 5대 원인과 해결법을 정리했습니다. Preview 모드 활용법, Network 탭으로 실제 전송 확인, SPA
   대응, 전환 중복 해결까지 실무 체크리스트와 함께 안내합니다.
-ogTitle: 'GTM 디버깅 실전 가이드: 태그가 안 찍힐 때 원인 찾는 법'
 ogDescription: 'GTM Preview부터 Network 탭까지, 태그 미작동 원인을 체계적으로 찾는 실전 디버깅 가이드입니다.'
 ogImage: /og/gtm-debugging-practical-guide.png
 summary3:

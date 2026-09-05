@@ -21,7 +21,6 @@ quiz:
 metaTitle: AI Overviews 도입 이후 오가닉 CTR은 61% 하락했습니다
 metaDescription: Seer Interactive 15개월 연구 기반, AI Overviews의 오가닉 CTR 61% 하락 데이터 분석. 인용 브랜드 CTR 35% 우위, 산업별 차이, 대응 전략을 정리합니다.
 ogImage: /og/ai-overviews-ctr-decline.png
-ogTitle: 'AI Overviews 도입 이후 오가닉 CTR 61% 하락: 데이터 분석'
 ogDescription: 'Seer Interactive 2,510만 노출 연구 결과: AI Overviews가 표시되면 오가닉 CTR 61% 하락, 인용된 브랜드는 35% 더 높은 CTR. 원출처 기반 분석과 대응 전략.'
 summary3:
   - 'Seer Interactive가 15개월 동안 검색어 3,119개와 노출 2,510만 건을 추적한 결과 AI 요약이 붙는 검색의 오가닉 CTR은 1.76퍼센트에서 0.61퍼센트로 내려갔습니다.'

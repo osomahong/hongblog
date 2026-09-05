@@ -31,7 +31,6 @@ metaDescription: >-
   GA4에서 direct/none 트래픽이 많은 이유를 8가지 원인으로 분석하고, UTM 관리부터 리디렉션 점검까지 실무에서 바로 적용할 수
   있는 5가지 해결 방법을 정리했습니다. direct/none 분석 팁도 확인하세요.
 ogImage: /og/ga4-direct-none-traffic-guide.png
-ogTitle: GA4 direct/none 트래픽이 절반이라고요? 원인과 해결법 총정리
 ogDescription: >-
   direct/none은 단순히 '직접 유입'이 아닙니다. 메신저, 이메일, 리디렉션 등 숨겨진 원인 8가지와 줄이는 방법 5가지를
   정리했습니다.

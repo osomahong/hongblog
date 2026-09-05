@@ -17,7 +17,6 @@ metaTitle: 클로드 텍스트 워터마크 적용 범위와 탐지 한계 정�
 metaDescription: >-
   클로드 텍스트 워터마크는 앤트로픽이 2026년 8월 2일 이후 출시 모델부터 클로드가 만든 글에 심는 기계 판독용 표식입니다. 표식이 남는
   조건과 지워지는 조건, 조심할 지점을 공식 문서 기준으로 정리했습니다.
-ogTitle: 클로드 텍스트 워터마크 적용 범위 정리
 ogDescription: '표식이 남는 조건과 지워지는 조건, 그리고 표식을 AI 작성 판정으로 쓰면 안 되는 이유를 공식 문서 기준으로 짚었습니다.'
 ogImage: /og/claude-text-watermark-detection-limits.png
 quiz:

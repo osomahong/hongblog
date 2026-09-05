@@ -21,7 +21,6 @@ quiz:
 metaTitle: AEO/GEO 시대, 검색 트래픽 변화를 데이터로 검증했습니다
 metaDescription: Gartner의 검색 25% 감소 예측을 원본 데이터로 팩트체크합니다. AI 추천 트래픽 1%, CTR 61% 하락 등 실제 수치와 대응 전략을 정리했습니다.
 ogImage: /og/aeo-geo-traffic-fact-check.png
-ogTitle: 'AEO/GEO 시대의 검색 트래픽 변화: 데이터 기반 팩트체크'
 ogDescription: 검색 25% 감소설, AI 검색 대체론, SEO 종말론을 원본 출처와 대조하여 검증합니다. 실제 수치 기반의 팩트체크와 실무 대응 전략을 정리했습니다.
 summary3:
   - '가트너는 2024년 2월에 2026년까지 전통적인 검색 엔진 볼륨이 25퍼센트 줄어든다고 예측했습니다.'

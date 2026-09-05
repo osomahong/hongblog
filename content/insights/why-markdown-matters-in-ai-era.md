@@ -1,33 +1,40 @@
 ---
 slug: why-markdown-matters-in-ai-era
-title: 'AI시대에 마크다운이 중요한 이유: md파일은 뭘까요'
-excerpt: 마크다운은 더 이상 개발자의 문서 도구가 아닙니다. AI 에이전트의 행동 규칙을 정하고, 스킬을 정의하고, 프롬프트 품질을 높이는 AI 시대의 핵심 소통 수단이 된 마크다운의 변화를 초보자 눈높이에서 설명합니다.
+title: 'AI 시대에 마크다운이 중요한 이유: md 파일 뜻과 역할'
+excerpt: >-
+  마크다운은 더 이상 개발자의 문서 도구가 아닙니다. AI 에이전트의 행동 규칙을 정하고, 스킬을 정의하고, 프롬프트 품질을 높이는 AI
+  시대의 핵심 소통 수단이 된 마크다운의 변화를 초보자 눈높이에서 설명합니다.
 category: AI_TECH
 tags:
-- AI
-- 바이브코딩
-- 자동화
-- 노코드
-- SEO
+  - AI
+  - 바이브코딩
+  - 자동화
+  - 노코드
+  - SEO
 publishedAt: '2026-02-21T14:26:07.041Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 quiz:
-- options:
-  - 'CLAUDE.md: 프로젝트 규칙을 마크다운으로 작성하면 AI가 자동으로 읽고 따른다'
-  - 'config.json: JSON 형식의 설정 파일에 규칙을 정의한다'
-  - 'settings.yaml: YAML 형식으로 에이전트의 행동 패턴을 설정한다'
-  question: AI 에이전트 도구인 Claude Code에서 AI의 행동 규칙을 정의하는 파일의 이름은 무엇일까요?
-  explanation: Claude Code는 CLAUDE.md 파일에 작성된 규칙을 자동으로 읽고 따릅니다. 마크다운 형식이기 때문에 코딩 지식 없이도 누구나 AI의 행동 규칙을 정의할 수 있다는 것이 핵심입니다.
-  correctIndex: 0
-metaTitle: 'AI시대에 마크다운이 중요한 이유: md파일은 뭘까요 | 준이아빠블로그'
-metaDescription: 마크다운은 이제 AI 에이전트의 행동 규칙을 정의하는 핵심 도구입니다. CLAUDE.md, SKILL.md 등 .md 파일이 AI를 움직이는 원리를 초보자 눈높이에서 설명합니다.
+  - options:
+      - 'CLAUDE.md: 프로젝트 규칙을 마크다운으로 작성하면 AI가 자동으로 읽고 따른다'
+      - 'config.json: JSON 형식의 설정 파일에 규칙을 정의한다'
+      - 'settings.yaml: YAML 형식으로 에이전트의 행동 패턴을 설정한다'
+    question: AI 에이전트 도구인 Claude Code에서 AI의 행동 규칙을 정의하는 파일의 이름은 무엇일까요?
+    explanation: >-
+      Claude Code는 CLAUDE.md 파일에 작성된 규칙을 자동으로 읽고 따릅니다. 마크다운 형식이기 때문에 코딩 지식 없이도
+      누구나 AI의 행동 규칙을 정의할 수 있다는 것이 핵심입니다.
+    correctIndex: 0
+metaTitle: 'AI 시대에 마크다운이 중요한 이유: md 파일 뜻과 역할'
+metaDescription: >-
+  마크다운은 이제 AI 에이전트의 행동 규칙을 정의하는 핵심 도구입니다. CLAUDE.md, SKILL.md 등 .md 파일이 AI를 움직이는
+  원리를 초보자 눈높이에서 설명합니다.
 ogImage: /og/why-markdown-matters-in-ai-era.png
-ogTitle: 'AI시대에 마크다운이 중요한 이유: .md 파일이 AI를 움직인다'
-ogDescription: 문서 서식에서 AI 에이전트의 운영 체제로. 마크다운이 AI 시대의 핵심 소통 수단이 된 이유와 비개발자도 바로 활용하는 방법을 알려드립니다.
+ogDescription: >-
+  문서 서식에서 AI 에이전트의 운영 체제로. 마크다운이 AI 시대의 핵심 소통 수단이 된 이유와 비개발자도 바로 활용하는 방법을
+  알려드립니다.
 summary3:
-  - '마크다운은 노션과 슬랙에서 이미 쓰던 서식 방법인데 지금은 AI 에이전트의 행동 규칙을 적는 형식이 됐습니다.'
-  - 'CLAUDE.md와 SKILL.md처럼 md 파일에 적어 둔 지침을 AI가 읽어 그대로 따릅니다.'
-  - '서식이 단순해서 사람도 읽고 기계도 구조를 알아보기 때문에 지침을 적는 형식으로 자리 잡았습니다.'
+  - 마크다운은 노션과 슬랙에서 이미 쓰던 서식 방법인데 지금은 AI 에이전트의 행동 규칙을 적는 형식이 됐습니다.
+  - CLAUDE.md와 SKILL.md처럼 md 파일에 적어 둔 지침을 AI가 읽어 그대로 따릅니다.
+  - 서식이 단순해서 사람도 읽고 기계도 구조를 알아보기 때문에 지침을 적는 형식으로 자리 잡았습니다.
 ---
 
 ## 마크다운은 이미 우리 옆에 있었습니다

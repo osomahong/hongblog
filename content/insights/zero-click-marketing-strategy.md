@@ -42,7 +42,6 @@ metaDescription: >-
   구글 검색의 69%가 클릭 없이 끝나고, AI Overviews가 뜬 검색어는 83%가 제로클릭입니다. 클릭을 전제로 한 마케팅은 더 이상
   작동하지 않습니다. 최신 전략을 바탕으로, 클릭 없이 성과를 만드는 제로클릭 마케팅의 구체적인 방법을 정리했습니다.
 ogImage: /og/zero-click-marketing-strategy.png
-ogTitle: '제로클릭 시대, 클릭 없이 성과를 만드는 마케팅 전략 5가지 (2026)'
 ogDescription: >-
   검색의 69%가 클릭 없이 끝나는 시대. Rand Fishkin과 Amanda Natividad의 전략으로 클릭 없이 성과를 만드는 법을
   정리했습니다.

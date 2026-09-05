@@ -1,6 +1,6 @@
 ---
 slug: claude-code-windows-easy-setup-guide
-title: 쉽게 설치하는 클로드 코드(Claude Code) 설치 가이드 (윈도우)
+title: 클로드 코드(Claude Code) 윈도우 설치 가이드
 excerpt: >-
   윈도우 PC에 클로드 코드(Claude Code)를 처음 설치하는 분을 위해, 명령 한 줄로 Git과 Node.js, 본체를 한 번에 까는
   방법과 자주 막히는 지점의 해결법을 정리했습니다.
@@ -32,12 +32,13 @@ metaDescription: >-
   클로드 코드 윈도우 설치는 PowerShell에 명령 한 줄을 붙여 넣는 작업입니다. 통합 설치 명령, 유료 구독 조건, 자주 막히는 오류
   해결법, 터미널 없이 쓰는 데스크톱 앱까지 정리했습니다.
 ogImage: /og/claude-code-windows-easy-setup-guide.png
-ogTitle: 쉽게 설치하는 클로드 코드(Claude Code) 설치 가이드 (윈도우)
 ogDescription: 통합 명령 한 줄로 끝내는 윈도우 클로드 코드 설치 절차와 자주 막히는 지점의 해결법입니다.
 summary3:
-  - '윈도우에서 클로드 코드 설치는 PowerShell에 명령 한 줄을 붙여 넣는 작업이고 Git과 Node.js, 본체를 세미콜론으로 이어 한 번에 깝니다.'
-  - '요구 사항은 윈도우 10의 1809 빌드 이상에 메모리 4GB 이상이고 그보다 낮으면 설치 도구인 winget 자체가 돌아가지 않습니다.'
-  - '검색 결과에서 Windows PowerShell (x86)은 32비트용이라 고르면 안 되고 무료 계정으로는 로그인 자체가 되지 않습니다.'
+  - >-
+    윈도우에서 클로드 코드 설치는 PowerShell에 명령 한 줄을 붙여 넣는 작업이고 Git과 Node.js, 본체를 세미콜론으로 이어
+    한 번에 깝니다.
+  - 요구 사항은 윈도우 10의 1809 빌드 이상에 메모리 4GB 이상이고 그보다 낮으면 설치 도구인 winget 자체가 돌아가지 않습니다.
+  - 검색 결과에서 Windows PowerShell (x86)은 32비트용이라 고르면 안 되고 무료 계정으로는 로그인 자체가 되지 않습니다.
 ---
 
 ## 윈도우 사용자가 가장 먼저 만나는 검은 화면, PowerShell

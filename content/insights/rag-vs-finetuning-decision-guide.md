@@ -13,11 +13,10 @@ publishedAt: '2026-08-08T05:00:00.000Z'
 highlights:
   - '자료를 채우려면 RAG, 형식과 어투를 고정하려면 파인튜닝입니다. 바꾸려는 대상이 지식인지 행동인지부터 정합니다.'
   - 파인튜닝을 시작하기 전에 평가 체계를 만들고 프롬프트로 어디까지 되는지 먼저 잽니다.
-metaTitle: 'RAG와 파인튜닝(fine-tuning) 차이, 고르는 기준과 GraphRAG 정리'
+metaTitle: 'RAG와 파인튜닝 차이: 고르는 기준과 GraphRAG 정리'
 metaDescription: >-
   RAG는 모델이 답하기 전에 학습 데이터 밖의 자료를 참고하게 만드는 방식이고, 파인튜닝은 예시를 학습시켜 답하는 방식을 바꾸는 작업입니다.
   둘을 고르는 기준과 벡터 RAG, GraphRAG 구분을 공식 문서 기준으로 정리했습니다.
-ogTitle: 'RAG와 파인튜닝 차이: 고르는 기준과 GraphRAG'
 ogDescription: '회사 자료를 AI에 물릴 때 RAG와 파인튜닝 중 무엇을 고를지, 판단 기준과 공식 문서 기준 수치를 정리한 글입니다.'
 ogImage: /og/rag-vs-finetuning-decision-guide.png
 quiz:

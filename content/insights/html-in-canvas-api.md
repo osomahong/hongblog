@@ -24,7 +24,6 @@ metaTitle: 'HTML in Canvas API 정리: 웹사이트 화면 구조의 변화'
 metaDescription: >-
   HTML in Canvas는 살아 있는 HTML 요소를 캔버스 안에 직접 그리는 웹 API입니다. 접근성과 표현력의 양자택일이 사라질 때
   웹사이트가 어떻게 달라지는지, AI 코딩 시대와 만나는 지점까지 직접 만든 데모로 정리했습니다.
-ogTitle: HTML in Canvas API가 바꾸는 웹사이트 화면
 ogDescription: 문서를 택하면 표현을 잃고 그림판을 택하면 구조를 잃던 웹의 오래된 전제가 바뀌고 있습니다. 직접 만든 데모로 확인했습니다.
 ogImage: /og/html-in-canvas-api.png
 quiz:

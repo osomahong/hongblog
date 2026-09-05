@@ -1,6 +1,6 @@
 ---
 slug: openai-zero-data-retention-private-safety-processing
-title: 'OpenAI 제로 데이터 리텐션과 Private Safety Processing 정리: 앤트로픽 30일 보관과 비교'
+title: OpenAI 제로 데이터 리텐션(ZDR)과 Private Safety Processing 정리
 excerpt: >-
   제로 데이터 리텐션(ZDR)은 API로 보낸 프롬프트와 응답을 처리가 끝난 뒤 남기지 않는 설정입니다. OpenAI가 2026년 8월 19일
   발표한 Private Safety Processing과 앤트로픽의 30일 보관 정책을 비교하고, 회사 데이터를 AI에 넣기 전에 확인할
@@ -15,11 +15,11 @@ publishedAt: '2026-08-20T00:00:00.000Z'
 highlights:
   - 쓰려는 모델이 ZDR 대상인지 먼저 확인합니다. 같은 회사 모델이라도 상위 모델은 보관이 필요할 수 있습니다.
   - ZDR을 켜도 엔드포인트마다 저장 여부가 다르므로 라벨이 아니라 엔드포인트 표로 확인합니다.
-metaTitle: OpenAI 제로 데이터 리텐션과 Private Safety Processing 정리
+metaTitle: 'OpenAI 제로 데이터 리텐션(ZDR)과 Private Safety Processing 정리'
 metaDescription: >-
   제로 데이터 리텐션(ZDR)은 API로 보낸 프롬프트와 응답을 처리 후 남기지 않는 설정입니다. OpenAI의 Private Safety
   Processing과 앤트로픽 30일 보관 정책을 비교해 정리했습니다.
-ogTitle: 'AI에 회사 데이터를 넣기 전에 확인할 것: ZDR과 30일 보관'
+ogTitle: 'OpenAI ZDR과 30일 보관: AI에 회사 데이터를 넣기 전에 확인할 것'
 ogDescription: >-
   OpenAI는 제로 데이터 리텐션을 유지하면서 안전 점검을 하는 방식을 공개했고, 앤트로픽은 상위 모델에 30일 보관을 요구합니다. 두
   정책의 차이와 확인 순서를 정리했습니다.
@@ -36,9 +36,11 @@ quiz:
       OpenAI 직원은 고객 콘텐츠에 접근하지 않습니다. 고객사는 자사 시스템의 기록으로 알림을 조사하고, 필요하면 스스로 판단해 자료를
       공유할 수 있습니다.
 summary3:
-  - '제로 데이터 리텐션은 API로 보낸 프롬프트와 응답을 처리한 뒤 보관하지 않는 설정이고 승인받은 고객이 조직 단위로 켭니다.'
-  - 'OpenAI는 2026년 8월 19일 최신 모델에도 이 약속을 이어 가면서 콘텐츠를 남기지 않고 안전을 점검하는 Private Safety Processing을 함께 공개했습니다.'
-  - '앤트로픽은 반대로 상위 모델에 30일 보관을 요구해서 같은 시기에 두 회사가 다른 방향으로 움직였습니다.'
+  - 제로 데이터 리텐션은 API로 보낸 프롬프트와 응답을 처리한 뒤 보관하지 않는 설정이고 승인받은 고객이 조직 단위로 켭니다.
+  - >-
+    OpenAI는 2026년 8월 19일 최신 모델에도 이 약속을 이어 가면서 콘텐츠를 남기지 않고 안전을 점검하는 Private
+    Safety Processing을 함께 공개했습니다.
+  - 앤트로픽은 반대로 상위 모델에 30일 보관을 요구해서 같은 시기에 두 회사가 다른 방향으로 움직였습니다.
 ---
 
 제로 데이터 리텐션(Zero Data Retention), 즉 데이터를 남기지 않는 설정은 API로 보낸 프롬프트와 모델 응답을 요청 처리가 끝난 뒤 보관하지 않는 것입니다. 승인받은 API 고객이 조직이나 프로젝트 단위로 켤 수 있고, OpenAI는 2026년 8월 19일 이 약속을 최신 모델에서도 이어 가겠다고 발표했습니다.

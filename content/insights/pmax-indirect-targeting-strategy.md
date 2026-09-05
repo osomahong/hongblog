@@ -30,7 +30,6 @@ metaDescription: >-
   Performance Max의 타겟팅 제한을 간접 제어로 극복하는 실전 전략을 정리합니다. 잠재고객 시그널, 제외 전략, 피드 온리
   캠페인까지 2026년 2월 최신 정보 기준.
 ogImage: /og/pmax-indirect-targeting-strategy.png
-ogTitle: '타겟팅에 제한이 많은 Pmax, 100% 활용 전략'
 ogDescription: '잠재고객 시그널, 제외 전략, 에셋 그룹 분리, 피드 온리 캠페인까지: Pmax를 간접적으로 제어하는 실전 방법론을 정리했습니다.'
 summary3:
   - 'Performance Max는 키워드와 잠재고객, 채널 예산을 직접 정할 수 없지만 학습 방향을 유도하는 간접 제어 수단이 있습니다.'

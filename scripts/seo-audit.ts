@@ -4,7 +4,8 @@
  * Run: npm run build && npx tsx scripts/seo-audit.ts
  *
  * 검사 항목: title/description 존재와 길이, 중복, canonical 정합성, noindex,
- * h1 개수, 이미지 alt, 구조화 데이터, 사이트맵 정합성, 고아 페이지, 얇은 콘텐츠
+ * h1 개수, 이미지 alt, 구조화 데이터, 사이트맵 정합성, 고아 페이지, 얇은 콘텐츠,
+ * 제목 정합성(og:title, twitter:title, H1, JSON-LD headline이 title과 같은 대상을 가리키는지)
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -26,6 +27,10 @@ interface PageInfo {
     imagesWithoutAlt: number;
     internalLinks: string[];
     ogImage: string | null;
+    ogTitle: string | null;
+    twitterTitle: string | null;
+    h1Text: string | null;
+    headline: string | null;
 }
 
 function decodeEntities(s: string): string {
@@ -66,6 +71,11 @@ function analyze(file: string): PageInfo {
     const ogImage = html.match(/<meta property="og:image" content="([^"]*)"/)?.[1] ?? null;
 
     const h1Count = (html.match(/<h1[\s>]/g) ?? []).length;
+    const ogTitle = html.match(/<meta property="og:title" content="([^"]*)"/)?.[1] ?? null;
+    const twitterTitle = html.match(/<meta name="twitter:title" content="([^"]*)"/)?.[1] ?? null;
+    const h1Raw = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? null;
+    // Article/LearningResource의 headline. 목록 페이지의 ItemList 안 headline은 첫 항목이라 비교하지 않는다
+    const headline = html.match(/"headline":"((?:[^"\\]|\\.)*)"/)?.[1] ?? null;
 
     // 본문 텍스트 추정: script/style 제거 후 태그 제거
     const text = html
@@ -103,6 +113,10 @@ function analyze(file: string): PageInfo {
         imagesWithoutAlt,
         internalLinks,
         ogImage,
+        ogTitle: ogTitle ? decodeEntities(ogTitle) : null,
+        twitterTitle: twitterTitle ? decodeEntities(twitterTitle) : null,
+        h1Text: h1Raw ? decodeEntities(h1Raw.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim() : null,
+        headline: headline ? decodeEntities(headline.replace(/\\"/g, '"')) : null,
     };
 }
 
@@ -131,8 +145,9 @@ const add = (severity: Issue["severity"], category: string, route: string, detai
 for (const p of pages) {
     if (!p.title) add("높음", "title 누락", p.route, "");
     else {
-        const len = p.title.length;
-        if (len > 60) add("낮음", "title 과다 길이", p.route, `${len}자: ${p.title.slice(0, 70)}`);
+        // 검색 결과는 픽셀 폭에서 잘리므로 한글 1, 라틴 0.5로 환산한 표시 폭으로 잰다 (check-titles.ts와 같은 기준)
+        const len = [...p.title].reduce((w, ch) => w + (/[\p{Script=Hangul}\p{Script=Han}]/u.test(ch) ? 1 : 0.5), 0);
+        if (len > 55) add("낮음", "title 과다 길이 (표시 폭 55 초과)", p.route, `폭 ${len}: ${p.title.slice(0, 70)}`);
         if (len < 15) add("중간", "title 과소 길이", p.route, `${len}자: ${p.title}`);
     }
     if (!p.description) add("높음", "description 누락", p.route, "");
@@ -197,9 +212,42 @@ for (const p of pages) {
     }
 }
 
+// 7) 제목 정합성: 검색 결과(title), 공유 카드(og/twitter), 화면(H1), 구조화 데이터(headline)가 같은 대상을 가리키는지
+const SITE_NAME = "준이아빠블로그";
+const titleCore = (t: string) =>
+    t.replace(/\s*\|\s*준이아빠블로그\s*$/, "").replace(/^(Class|GA4 Edu|AI-Practice|Tags)\s*\|\s*/, "").trim();
+const normTitle = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
+const titleTokens = (s: string) =>
+    new Set(s.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, " ").split(/\s+/).filter((t) => t.length >= 2));
+const sharesToken = (a: string, b: string) => [...titleTokens(a)].some((t) => titleTokens(b).has(t));
+const isContentDetail = (route: string) => /^\/insights\/[^/]+$/.test(route) || /^\/class\/[^/]+\/[^/]+$/.test(route);
+
+for (const p of pages) {
+    if (!p.title) continue;
+    const core = titleCore(p.title);
+    const withLabel = p.title.replace(/\s*\|\s*준이아빠블로그\s*$/, "").trim();
+    if ((p.title.match(new RegExp(SITE_NAME, "g")) ?? []).length > 1) add("높음", "title에 브랜드 중복", p.route, p.title);
+    // 홈은 브랜드 자체가 제목이라 og:title에 브랜드가 들어가는 것이 맞다
+    if (p.route !== "/" && p.ogTitle?.includes(SITE_NAME)) add("중간", "og:title에 브랜드 포함 (og:site_name이 맡음)", p.route, p.ogTitle);
+    if (p.twitterTitle && p.ogTitle && normTitle(p.twitterTitle) !== normTitle(p.ogTitle)) {
+        add("중간", "twitter:title ≠ og:title", p.route, `${p.twitterTitle} / ${p.ogTitle}`);
+    }
+    // 허브 페이지 H1은 섹션 라벨("Class", "Tags")이라 라벨을 포함한 제목과 비교한다
+    if (p.h1Text && !sharesToken(p.h1Text, withLabel)) add("중간", "H1과 title이 다른 대상 (겹치는 낱말 없음)", p.route, `H1=${p.h1Text} / title=${withLabel}`);
+    if (isContentDetail(p.route)) {
+        if (p.headline && normTitle(p.headline) !== normTitle(core)) add("중간", "JSON-LD headline ≠ title", p.route, `${p.headline} / ${core}`);
+        // 콘텐츠 상세의 og:title은 metaTitle과 같거나(기본값) 공유용 문장(ogTitle)이다. 겹치는 낱말조차 없으면 다른 글처럼 보인다
+        if (p.ogTitle && normTitle(p.ogTitle) !== normTitle(core) && !sharesToken(p.ogTitle, core)) {
+            add("중간", "og:title이 title과 다른 대상", p.route, `${p.ogTitle} / ${core}`);
+        }
+    } else if (p.ogTitle && normTitle(p.ogTitle) !== normTitle(core)) {
+        add("낮음", "og:title ≠ title (허브 페이지)", p.route, `${p.ogTitle} / ${core}`);
+    }
+}
+
 // 6) 사이트맵 정합성
 const sitemapFiles = ["0", "1", "2"].map((i) => path.join(APP_DIR, `sitemap/${i}.xml.body`));
-let sitemapUrls: string[] = [];
+const sitemapUrls: string[] = [];
 for (const f of sitemapFiles) {
     if (!fs.existsSync(f)) continue;
     const xml = fs.readFileSync(f, "utf-8");

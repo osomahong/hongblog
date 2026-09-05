@@ -36,7 +36,6 @@ metaDescription: >-
   윈도우 PC에 OpenAI 코덱스 CLI를 설치하고 GPT-5.6 모델로 첫 작업을 시작하는 가이드입니다. 2026년 8월 기준으로
   확인했으며 PowerShell, Node.js, npm 설치, ChatGPT 로그인, 추론 깊이 설정까지 정리했습니다.
 ogImage: /og/codex-cli-windows-easy-setup-guide.png
-ogTitle: 쉽게 설치하는 코덱스 CLI 세팅가이드(윈도우)
 ogDescription: >-
   PowerShell 관리자 모드부터 Node.js, 코덱스 CLI 본체 설치, ChatGPT 로그인, GPT-5.6 모델과 추론 깊이
   설정까지. 윈도우 입문자를 위한 코덱스 CLI 설치 가이드입니다.

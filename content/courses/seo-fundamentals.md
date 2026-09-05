@@ -5,7 +5,7 @@ category: MARKETING
 difficulty: BEGINNER
 publishedAt: '2026-08-02T00:00:00.000Z'
 ogImage: /og/seo-fundamentals.png
-metaTitle: '검색엔진 최적화(SEO) 기초 코스: 크롤링, 색인, 사이트맵 개념 정리'
+metaTitle: '비개발자를 위한 SEO 기초 코스: 크롤링, 색인, 사이트맵'
 metaDescription: >-
   검색엔진 최적화(SEO)는 검색엔진이 페이지를 발견하고 저장하고 보여주는 과정에 맞춰 사이트를 정리하는 일입니다. 크롤링, 색인,
   robots.txt, 사이트맵, 정규 URL, 내부 링크, 페이지 속도, 서치 콘솔 확인까지 비개발자 눈높이로 9강에 걸쳐 다룹니다.

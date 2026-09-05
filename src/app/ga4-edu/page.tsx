@@ -28,8 +28,9 @@ export const metadata: Metadata = {
   title: { absolute: FULL_TITLE },
   description: PAGE_DESC,
   alternates: { canonical: `${SITE_URL}/ga4-edu` },
+  // og 제목은 섹션 라벨과 브랜드 없이 페이지 제목만 쓴다 (브랜드는 og:site_name)
   openGraph: {
-    title: FULL_TITLE,
+    title: PAGE_TITLE,
     description: PAGE_DESC,
     type: "website",
     url: `${SITE_URL}/ga4-edu`,

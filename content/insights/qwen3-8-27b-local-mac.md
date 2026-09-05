@@ -30,7 +30,6 @@ metaDescription: >-
   Qwen3.8 27B는 알리바바 Qwen 팀이 2026년 8월 공개한 Apache 2.0 오픈 웨이트 모델입니다. 24GB 맥미니 M4
   프로에서 실행하면 GPU 할당 한도를 넘겨 CPU로 떨어집니다. 그때 측정한 속도와 원인을 담았습니다.
 ogImage: /og/qwen3-8-27b-local-mac.png
-ogTitle: 'Qwen3.8 27B 로컬 실행 결과: 24GB 맥에서는 CPU로 떨어집니다'
 ogDescription: 18GB를 내려받기 전에 확인할 것. 24GB 맥에서 Qwen3.8 27B를 실제로 돌려 측정한 속도와 그 원인을 정리했습니다.
 summary3:
   - 'Qwen3.8 27B는 알리바바 Qwen 팀이 2026년 8월 Apache 2.0으로 공개한 273억 파라미터 오픈 웨이트 모델입니다.'

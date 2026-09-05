@@ -1,10 +1,10 @@
 ---
 slug: claude-in-practice
-title: 'Claude 실무 활용, 매일 쓰는 도구로 만들기'
+title: '클로드(Claude) 실무 활용, 매일 쓰는 도구로 만들기'
 category: CLAUDE_EDUCATION
 difficulty: BEGINNER
 publishedAt: '2026-04-27T09:01:00.000Z'
-metaTitle: Claude 실무 활용 | 매일 쓰는 도구로 만들기 (앤트로픽 공식 자료 한국어 정리)
+metaTitle: '클로드 실무 활용 코스: 매일 쓰는 도구로 만들기'
 metaDescription: >-
   claude.com/resources의 공식 활용 사례와 Claude.ai 기능 문서를 한국 실무자 눈높이로 정리했습니다. Projects,
   Artifacts, Skills, Cowork 같은 핵심 기능과 시나리오를 다룹니다.

@@ -1,6 +1,6 @@
 ---
 slug: openai-daybreak-gpt-5-6-cyber
-title: OpenAI 사이버보안 이니셔티브 Daybreak 확장과 GPT-5.6-Cyber 공개 정리
+title: OpenAI Daybreak 확장과 GPT-5.6-Cyber 공개 정리
 excerpt: >-
   OpenAI가 2026년 8월 10일 사이버보안 이니셔티브 Daybreak를 Blue와 Red 두 티어로 확장하고, 인가된 방어팀 전용 모델
   GPT-5.6-Cyber를 공개했습니다. 두 티어의 차이와 접근 조건, 안전장치를 정리합니다.
@@ -17,7 +17,6 @@ metaTitle: OpenAI Daybreak 확장과 GPT-5.6-Cyber 공개 정리
 metaDescription: >-
   OpenAI Daybreak는 인가된 방어팀에게 프런티어 AI 보안 역량을 먼저 제공하는 사이버보안 이니셔티브입니다. 2026년 8월
   Blue와 Red 두 티어 확장과 GPT-5.6-Cyber 모델 공개 내용을 정리합니다.
-ogTitle: OpenAI Daybreak 확장과 GPT-5.6-Cyber 공개 정리
 ogDescription: >-
   OpenAI가 사이버보안 이니셔티브 Daybreak를 Blue와 Red 두 티어로 확장하고 인가된 방어팀 전용 모델
   GPT-5.6-Cyber를 공개했습니다. 두 티어 차이와 접근 조건을 정리했습니다.
@@ -33,9 +32,11 @@ quiz:
       GPT-5.6-Cyber는 취약점 연구와 익스플로잇 검증 같은 고위험 작업용이라 더 엄격한 심사를 거치는 Daybreak Red 티어
       뒤에 배치됩니다. Blue 티어는 GPT-5.6 Sol 같은 범용 모델로 일상 방어 작업을 지원합니다.
 summary3:
-  - 'Daybreak는 심사를 통과한 방어팀에게 프런티어 AI 보안 역량을 먼저 여는 OpenAI의 사이버보안 프로그램입니다.'
-  - '2026년 8월 10일 발표로 일상 방어 작업을 맡는 Blue와 취약점 연구와 침투 테스트를 다루는 Red 두 티어로 나뉘었습니다.'
-  - 'GPT-5.6-Cyber는 더 엄격한 Red 티어 뒤에 있고 2026년 9월 1일부터 모든 개별 Daybreak 계정에 하드웨어 보안 키가 의무화됩니다.'
+  - Daybreak는 심사를 통과한 방어팀에게 프런티어 AI 보안 역량을 먼저 여는 OpenAI의 사이버보안 프로그램입니다.
+  - 2026년 8월 10일 발표로 일상 방어 작업을 맡는 Blue와 취약점 연구와 침투 테스트를 다루는 Red 두 티어로 나뉘었습니다.
+  - >-
+    GPT-5.6-Cyber는 더 엄격한 Red 티어 뒤에 있고 2026년 9월 1일부터 모든 개별 Daybreak 계정에 하드웨어 보안
+    키가 의무화됩니다.
 ---
 
 OpenAI Daybreak는 인가된 방어팀에게 프런티어 AI 보안 역량을 먼저 제공하는 사이버보안 이니셔티브입니다. OpenAI는 2026년 8월 10일 "Expanding Daybreak as the Cyber Defense Window Narrows"라는 발표에서 Daybreak를 Blue와 Red 두 티어로 확장하고, 인가된 방어팀 전용 모델 GPT-5.6-Cyber를 함께 공개했습니다. 공격자가 AI로 무장하기 전에 방어자 손에 같은 수준의 도구를 먼저 쥐여 준다는 것이 이번 발표의 핵심입니다.

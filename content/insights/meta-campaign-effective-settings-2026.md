@@ -25,7 +25,6 @@ metaTitle: '2026 메타 광고, 효과 좋은 캠페인 운영 세팅 5가지'
 metaDescription: >-
   2026년 메타 광고 캠페인 세팅 전략 5가지를 정리합니다. 캠페인 구조, 타겟팅, 소재, 예산, 자동화까지 초중급 마케터도 바로 적용
   가능한 실전 가이드.
-ogTitle: '2026 메타 캠페인, 효과 좋은 최근 운영 세팅 전략'
 ogDescription: '캠페인 구조, 타겟팅, 소재, 예산, 자동화 설정까지: 2026년 2월 기준 메타 광고 세팅 전략 5가지를 정리합니다.'
 ogImage: /og/meta-campaign-effective-settings-2026.png
 summary3:

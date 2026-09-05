@@ -1,6 +1,6 @@
 ---
 slug: coupang-robots-txt-partners-strategy
-title: 'GEO, SEO 시대 쿠팡과 네이버의 검색 전략 분석, robots.txt로 확인한 AI 크롤러 차단의 이유'
+title: 쿠팡과 네이버의 robots.txt로 본 AI 크롤러 차단 이유
 excerpt: >-
   쿠팡과 네이버 쇼핑은 GEO, SEO 시대에 AI 크롤러를 차단하는 쪽을 택한 국내 대표 플랫폼입니다. 2026년 9월 두 곳의
   robots.txt를 직접 열어 확인한 내용과 인터넷 아카이브에 남은 변화, 다른 커머스와의 비교, 쿠팡 파트너스가 크롤러 대신 맡는 유통
@@ -15,11 +15,10 @@ publishedAt: '2026-09-03T00:00:00.000Z'
 highlights:
   - 'AI 크롤러를 열지 닫을지는 유행이 아니라 자체 채널 비중과 데이터 민감도, 마진 구조로 정합니다.'
   - 파트너스형 유통망을 만들 수 없는 브랜드는 쿠팡과 반대로 학습용 봇만 막고 검색용 AI 봇은 열어 두는 편이 안전합니다.
-metaTitle: 'GEO, SEO 시대 쿠팡과 네이버의 검색 전략 분석, robots.txt로 확인한 AI 크롤러 차단의 이유'
+metaTitle: 쿠팡과 네이버의 robots.txt로 본 AI 크롤러 차단 이유
 metaDescription: >-
   쿠팡과 네이버 쇼핑은 GEO, SEO 시대에 AI 크롤러를 차단하는 쪽을 택한 국내 대표 플랫폼입니다. 2026년 9월 직접 확인한 두 곳의
   robots.txt 내용과 다른 커머스 비교, 쿠팡 파트너스가 크롤러 대신 맡는 유통 역할을 정리했습니다.
-ogTitle: 'GEO, SEO 시대 쿠팡과 네이버의 검색 전략 분석'
 ogDescription: 'AI 크롤러를 차단한 쿠팡과 네이버 쇼핑이 대신 무엇으로 방문자를 받는지, 실제 robots.txt 파일과 다른 커머스 비교로 설명합니다.'
 ogImage: /og/coupang-robots-txt-partners-strategy.png
 quiz:

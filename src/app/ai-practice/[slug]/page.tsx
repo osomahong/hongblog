@@ -25,6 +25,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${track.title}: AI-Practice 실습`,
     description: track.subtitle,
     alternates: { canonical: `${SITE_URL}/ai-practice/${track.slug}` },
+    // og 제목은 섹션 라벨과 브랜드 없이 페이지 제목만 (템플릿 fallback을 막는다)
+    openGraph: { title: `${track.title}: AI-Practice 실습`, description: track.subtitle },
     // 레거시 텍스트 트랙: AIPBL 실습으로 대체되어 비색인 유지 (사이트맵 미포함)
     robots: { index: false, follow: false },
   };

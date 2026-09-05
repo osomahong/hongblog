@@ -4,7 +4,7 @@ import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { getCourseLinks } from "@/lib/promotions";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, YEARS_OF_EXPERIENCE } from "@/lib/constants";
 // 다이내믹 서브셋: 92개 유니코드 슬라이스 중 페이지에 쓰인 글리프의 슬라이스만 다운로드된다.
 // 전체 웨이트 5종 셀프 호스팅(약 3.9MB/신규 방문) 대비 전송량이 1/10 이하로 줄어든다.
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | 준이아빠블로그",
   },
   description:
-    "AI 도구 활용법, 클로드 코드와 바이브코딩 입문, GA4와 디지털 마케팅 실무를 다루는 기술 블로그입니다. 9년 차 데이터 마케터가 직접 검증한 내용을 초보자 눈높이로 정리합니다.",
+    `AI 도구 활용법, 클로드 코드와 바이브코딩 입문, GA4와 디지털 마케팅 실무를 다루는 기술 블로그입니다. ${YEARS_OF_EXPERIENCE}년 차 데이터 마케터가 직접 검증한 내용을 초보자 눈높이로 정리합니다.`,
   keywords: ["AI", "디지털 마케팅", "데이터 분석", "테크 블로그", "위키"],
   authors: [{ name: "준이아빠" }],
   openGraph: {

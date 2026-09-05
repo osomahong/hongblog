@@ -1,6 +1,6 @@
 ---
 slug: claude-fundamentals
-title: 'Claude 기초 교육, AI를 제대로 쓰는 첫걸음'
+title: '클로드(Claude) 기초 교육, AI를 제대로 쓰는 첫걸음'
 category: CLAUDE_EDUCATION
 difficulty: BEGINNER
 publishedAt: '2026-04-27T09:00:00.000Z'

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Sparkles, Database, TrendingUp, BookOpen, Flame } from "lucide-react";
 import { NeoTiltCard, NeoBadge } from "@/components/neo";
 import { getAllTagsWithId as getAllTags, getFeaturedTags, getFeaturedTagPreviews } from "@/lib/content";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { ListViewTracker } from "@/components/ListViewTracker";
 
 export const dynamic = "force-static";
@@ -22,12 +22,13 @@ const categoryLabels = {
 
 export function generateMetadata(): Metadata {
   const allTags = getAllTags();
-  const totalContent = allTags.reduce((sum, t) => sum + t.count, 0);
   const title = `태그 ${allTags.length}개로 탐색하는 콘텐츠 모음`;
-  const description = `${allTags.length}개 태그로 인사이트와 클래스 ${totalContent}건을 탐색하세요. AI, 마케팅, 데이터 분석 주제를 태그별로 모아 봅니다.`;
+  // 태그별 count 합계는 같은 글이 여러 태그에 겹쳐 실제 글 수보다 크므로 건수를 적지 않는다.
+  const description = `준이아빠블로그 태그 페이지는 ${allTags.length}개 태그로 AI, 마케팅, 데이터 분석 인사이트와 클래스를 주제별로 모은 목록입니다.`;
 
   return {
-    title,
+    // H1이 "Tags"라 검색 결과 제목도 "Tags | 제목 | 브랜드" 3단으로 맞춘다. og는 제목만 쓴다
+    title: { absolute: `Tags | ${title} | ${SITE_NAME}` },
     description,
     alternates: { canonical: `${SITE_URL}/tags` },
     openGraph: {

@@ -1,6 +1,6 @@
 ---
 slug: retargeting-setup-guide-meta-google
-title: 리타게팅 완벽 가이드 2026 | Meta, Google 실전 세팅 튜토리얼
+title: '리타게팅 설정 가이드 2026: Meta, Google 실전 세팅'
 excerpt: '리타게팅의 원리를 간단히 짚고, Meta와 Google Ads에서 리타게팅 캠페인을 세팅하는 전체 과정을 스텝별로 안내합니다.'
 category: MARKETING
 tags:
@@ -15,17 +15,16 @@ highlights:
   - '쿠키 제한 시대에는 Meta CAPI, Google Enhanced Conversions 등 서버 사이드 추적 설정이 필수입니다'
 seriesSlug: digitalmarketing
 seriesOrder: 3
-metaTitle: 리타게팅 완벽 가이드 2026 | Meta, Google 실전 세팅 튜토리얼
+metaTitle: '리타게팅 설정 가이드 2026: Meta, Google 실전 세팅'
 metaDescription: ' 2026년 최신 매체 업데이트 반영된 UI 기준으로 리타게팅의 원리와 Meta 맞춤 타겟, Google 잠재고객 세그먼트를 활용한 리타게팅 캠페인 세팅법을 스텝바이스텝으로 안내합니다.'
-ogTitle: '리타게팅 실전 세팅 가이드: Meta, Google 스텝바이스텝 튜토리얼'
 ogDescription: >-
   사이트 방문자에게 다시 광고를 보여주는 리타게팅. Meta 맞춤 타겟부터 Google 잠재고객 세그먼트까지 실전 세팅 과정을 따라하기
   형식으로 정리했습니다.
 ogImage: /og/retargeting-setup-guide-meta-google.png
 summary3:
-  - '리타게팅은 사이트에 왔지만 전환하지 않은 사용자에게 다시 광고를 보여주는 방식입니다.'
-  - '첫 방문에서 바로 구매하는 비율이 2에서 3퍼센트뿐이라 나머지를 다시 부르면 신규 대비 전환율이 2배에서 3배 나옵니다.'
-  - '메타는 맞춤 타겟으로 구글은 잠재고객 세그먼트로 대상을 만들고 쿠키가 제한된 지금은 서버 사이드 전송을 함께 켭니다.'
+  - 리타게팅은 사이트에 왔지만 전환하지 않은 사용자에게 다시 광고를 보여주는 방식입니다.
+  - 첫 방문에서 바로 구매하는 비율이 2에서 3퍼센트뿐이라 나머지를 다시 부르면 신규 대비 전환율이 2배에서 3배 나옵니다.
+  - 메타는 맞춤 타겟으로 구글은 잠재고객 세그먼트로 대상을 만들고 쿠키가 제한된 지금은 서버 사이드 전송을 함께 켭니다.
 ---
 
 ## 리타게팅, 한 줄 요약

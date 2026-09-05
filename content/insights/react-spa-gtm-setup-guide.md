@@ -1,6 +1,6 @@
 ---
 slug: react-spa-gtm-setup-guide
-title: React SPA에서 GTM 설치하기 | 페이지뷰 추적 완벽 가이드
+title: 'React SPA에서 GTM 설치하기: 페이지뷰 추적 설정 정리'
 excerpt: >-
   리액트 같은 SPA 환경에서는 일반 웹사이트처럼 GTM을 설치해서는 안 됩니다. dataLayer를 올바르게 설정하고, 라우팅 이벤트를
   추적하는 방법을 단계별로 설명합니다.
@@ -25,16 +25,16 @@ quiz:
       history.pushState()로 URL만 변경합니다. 브라우저 입장에서 '새 페이지를 열었다'는 이벤트가 발생하지 않으므로,
       GTM의 기본 Page View 트리거(gtm.js)는 최초 로딩 시에만 작동합니다.
     correctIndex: 1
-metaTitle: React SPA에서 GTM 설치하기 | 페이지뷰 추적 완벽 가이드
+metaTitle: 'React SPA에서 GTM 설치하기: 페이지뷰 추적 설정 정리'
 metaDescription: >-
   리액트 SPA에서 GTM을 올바르게 설치하는 방법을 코드 예시와 함께 설명합니다. dataLayer 설정부터 페이지뷰 추적, Next.js
   환경까지 실전 가이드를 확인하세요.
-ogTitle: '리액트 SPA에서 GTM 설치, 왜 데이터가 안 잡힐까?'
+ogTitle: 리액트 SPA에서 GTM 설치 후 데이터가 잡히지 않는 이유
 ogDescription: SPA 환경에서 GTM이 제대로 작동하지 않는 이유와 해결법. dataLayer 설정으로 정확한 추적을 시작하세요.
 ogImage: /og/react-spa-gtm-setup-guide.png
 summary3:
-  - '리액트 같은 SPA는 페이지를 옮겨도 DOM만 바뀌기 때문에 GTM의 기본 페이지뷰 트리거가 최초 로딩 때 한 번만 작동합니다.'
-  - '화면이 바뀔 때마다 dataLayer로 직접 알려야 GA4에 페이지뷰가 제대로 쌓입니다.'
+  - 리액트 같은 SPA는 페이지를 옮겨도 DOM만 바뀌기 때문에 GTM의 기본 페이지뷰 트리거가 최초 로딩 때 한 번만 작동합니다.
+  - 화면이 바뀔 때마다 dataLayer로 직접 알려야 GA4에 페이지뷰가 제대로 쌓입니다.
   - '설치 방법은 react-gtm-module과 타입 지원이 나은 gtm-support 패키지, 의존성 없이 직접 구현하는 세 가지입니다.'
 ---
 

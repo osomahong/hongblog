@@ -17,11 +17,10 @@ highlights:
     API 비용을 계산할 때 출력 토큰을 먼저 봅니다. GPT-6 아스트라는 입력 100만 토큰당 10달러인데 출력은 50달러로 다섯
     배입니다.
   - 기업 계정에서 아스트라가 보이지 않으면 관리자 설정을 확인합니다. 출시 시점에는 워크스페이스에서 꺼진 상태가 기본값입니다.
-metaTitle: 'GPT-6 아스트라(Astra) 출시 정리 | 벤치마크와 가격, 모델 비교'
+metaTitle: 'GPT-6 아스트라(Astra) 출시 정리: 벤치마크와 가격, 모델 비교'
 metaDescription: >-
   GPT-6 아스트라는 OpenAI가 2026년 9월 3일 공개한 모델입니다. 컴퓨터 사용 벤치마크 성적과 API 가격, ChatGPT
   요금제별 제공 범위를 공식 발표로 확인하고 클로드, 제미나이와 나란히 정리했습니다.
-ogTitle: 'GPT-6 아스트라(Astra) 출시, 벤치마크와 가격 정리'
 ogDescription: 'GPT-6 아스트라의 컴퓨터 사용 벤치마크와 API 가격, 요금제별 제공 범위를 공식 발표로 확인해 클로드, 제미나이와 비교했습니다.'
 ogImage: /og/openai-astra-model-comparison.png
 quiz:

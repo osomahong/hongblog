@@ -18,7 +18,6 @@ metaTitle: 메타 어드밴티지+ 크리에이티브 AI 이미지 생성 정리
 metaDescription: >-
   어드밴티지+ 크리에이티브 이미지 생성은 광고주가 올린 사진 한 장으로 여러 광고 이미지 버전을 만드는 메타의 생성형 AI 기능입니다. 적용
   모델과 제품 실물 유지 조건, 사용 범위와 업종 제한을 공식 문서 기준으로 정리했습니다.
-ogTitle: 메타 어드밴티지+ 크리에이티브 AI 이미지 생성 정리
 ogDescription: '광고 관리자의 AI 이미지 생성이 무엇을 만들고 무엇을 못 하는지, 실물 일관성과 사용 범위를 공식 문서로 정리했습니다.'
 ogImage: /og/meta-advantage-plus-creative-ai-image.png
 quiz:

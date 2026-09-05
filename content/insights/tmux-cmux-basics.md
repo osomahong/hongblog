@@ -18,7 +18,6 @@ metaTitle: 'AI 사용자를 위한 tmux, cmux 사용법과 차이 쉽게 알아�
 metaDescription: >-
   AI 코딩 에이전트를 쓰는 분들을 위해 tmux의 세션, 윈도우, 페인 개념과 기본 명령어를 쉽게 알아봅니다. 에이전트 여러 개를 한
   화면에서 관리하는 방법과 macOS 전용 cmux와의 차이 비교까지 기초부터 다룹니다.
-ogTitle: 'AI 사용자를 위한 tmux, cmux 사용법과 차이'
 ogDescription: 'AI 에이전트를 여러 개 돌릴 때 왜 tmux가 필요한지, cmux는 무엇이 다른지 기초부터 쉽게 알아봅니다.'
 ogImage: /og/tmux-cmux-basics.png
 quiz:

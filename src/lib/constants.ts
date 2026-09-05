@@ -13,6 +13,11 @@ export const SITE_NAME = "준이아빠블로그";
  * 어떤 성격의 페이지인지는 이 라벨로 사람에게 바로 알린다.
  * 구조화 데이터에는 넣지 않는다.
  */
+/** 경력 연차. 소개 페이지와 루트 메타 설명이 같은 값을 쓴다 (2017년 시작, 기준 연도 2026) */
+export const CAREER_BASE_YEAR = 2017;
+export const CAREER_REFERENCE_YEAR = 2026;
+export const YEARS_OF_EXPERIENCE = CAREER_REFERENCE_YEAR - CAREER_BASE_YEAR + 1;
+
 export const SECTION_LABELS = {
   class: "Class",
   ga4Edu: "GA4 Edu",

@@ -21,11 +21,10 @@ highlights:
     CLAUDE.md나 AGENTS.md를 직접 고치며 관리하고 있다면, openwiki --init 한 번으로 위키 생성과 자동 갱신
     설정까지 확인해 봅니다.
   - '자동 생성 문서는 코드의 동작만 담으므로, 설계 의도와 결정 배경 같은 내용은 CLAUDE.md에 직접 남깁니다.'
-metaTitle: '오픈위키(OpenWiki) 사용법: 에이전트용 저장소 문서 자동 생성'
+metaTitle: 'OpenWiki 사용법: 코딩 에이전트용 저장소 문서 자동 생성'
 metaDescription: >-
   OpenWiki는 코딩 에이전트가 읽을 저장소 문서를 자동으로 만들고 유지하는 랭체인(LangChain)의 오픈소스 CLI 도구입니다.
   사람용 문서와 다른 점, 설치 명령어, GitHub Actions 자동 갱신, 초기 벤치마크 결과를 정리합니다.
-ogTitle: 'OpenWiki 사용법: 코딩 에이전트용 저장소 문서 자동 생성'
 ogDescription: 'CLAUDE.md를 직접 수정하는 대신, 에이전트가 읽을 위키를 자동으로 만들고 갱신하는 OpenWiki의 구조와 설치 방법을 정리했습니다.'
 ogImage: /og/openwiki-guide.png
 quiz:

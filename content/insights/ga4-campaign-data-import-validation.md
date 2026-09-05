@@ -17,7 +17,6 @@ metaTitle: 'GA4 캠페인 데이터 가져오기 검증 보고서: 조인 상태
 metaDescription: >-
   캠페인 데이터 가져오기 검증 보고서는 GA4로 가져온 구글 외 캠페인 데이터가 수집 데이터와 얼마나 결합됐는지 보여주는 기본 보고서입니다.
   조인 상태 3종과 일치율 규칙, 열어야 하는 시점과 점검 순서를 공식 문서 기준으로 정리했습니다.
-ogTitle: GA4 캠페인 데이터 가져오기 검증 보고서 사용법
 ogDescription: 가져온 광고 비용 데이터가 GA4와 제대로 붙었는지 이제 기본 보고서에서 확인합니다. 조인 상태 3종과 일치율 규칙을 정리했습니다.
 ogImage: /og/ga4-campaign-data-import-validation.png
 quiz:

@@ -26,11 +26,10 @@ quiz:
     correctIndex: 0
 seriesSlug: digitalmarketing
 seriesOrder: 9
-metaTitle: 'Google Ads API 데이터 활용 정리: 구글 애즈 API 필드와 지표 매핑'
+metaTitle: 'Google Ads API 데이터 활용 정리: 필드와 지표 매핑'
 metaDescription: >-
   구글 Ads API 필드 구조, 마케팅 지표 매핑, 연결 과정, PMax, 디멘드젠 소재 성과 추출법, AI 프롬프트 활용 팁까지. 비개발자
   마케터를 위한 실전 정리.
-ogTitle: 'Google Ads API 데이터 활용 정리: 구글 애즈 API 필드와 지표 매핑'
 ogDescription: '마케터가 알아야 할 구글 Ads API 핵심만 정리. 필드 매핑표, 연결 과정, PMax 소재 성과 추출, AI 활용 팁까지.'
 ogImage: /og/google-ads-api-data-for-non-developers.png
 summary3:

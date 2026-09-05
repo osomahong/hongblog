@@ -14,11 +14,10 @@ publishedAt: '2026-08-12T00:00:00.000Z'
 highlights:
   - 'Ask Advisor는 영어 언어 계정 한정 베타이므로, 한국어 계정은 GA 홈의 AI 개요와 벤치마킹 설정부터 확인합니다.'
   - '벤치마킹은 관리자, 계정 설정의 데이터 기여 옵션이 사용 설정돼 있어야 보이므로 설정 상태를 먼저 점검합니다.'
-metaTitle: '구글 애널리틱스 AI 기능: Ask Advisor와 대시보드 정리'
+metaTitle: '구글애즈, GA4 AI 기능 정리: Ask Advisor, 대시보드, 벤치마킹'
 metaDescription: >-
   구글애즈 GA4 AI 기능은 2026년 8월 구글이 발표한 홈 AI 인사이트, 프롬프트 대시보드, Ask Advisor 벤치마킹을
   가리킵니다. 기능별 출시 상태와 베타 조건, 한국 계정 사용 가능 여부를 정리했습니다.
-ogTitle: '구글애즈 GA4 AI 기능 정리: Ask Advisor, 대시보드, 벤치마킹'
 ogDescription: '구글이 광고와 애널리틱스에 AI 기능을 확대했습니다. 발표 내용과 실제 출시 상태의 차이, 한국 계정 사용 조건을 정리했습니다.'
 ogImage: /og/google-ads-analytics-ai-features.png
 quiz:

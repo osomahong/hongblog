@@ -186,7 +186,7 @@ export default async function InsightDetailPage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: post.title,
+    headline: post.metaTitle || post.title,
     description: post.excerpt,
     image: articleImage,
     datePublished: (post.publishedAt ?? post.createdAt).toISOString(),

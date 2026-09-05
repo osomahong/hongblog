@@ -18,7 +18,6 @@ quiz:
   correctIndex: 0
 metaTitle: '비개발자를 위한 크롤링 가이드: 종류, 도구, 활용법 총정리'
 metaDescription: 봇으로 감지되는 방식 vs 사람처럼 보이는 방식, 차단 가능성 비교부터 노코드 크롤링 도구, AI 활용법까지. 비개발자를 위한 크롤링 가이드입니다.
-ogTitle: '비개발자를 위한 크롤링 가이드: 종류, 도구, 활용법 총정리'
 ogDescription: 크롤링의 종류와 도구 차이, 노코드 크롤링 추천, AI 활용법까지. 비개발자를 위한 크롤링의 모든 것.
 ogImage: /og/web-crawling-guide-for-non-developers.png
 summary3:

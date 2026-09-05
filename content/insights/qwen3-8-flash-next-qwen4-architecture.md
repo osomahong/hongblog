@@ -33,7 +33,6 @@ metaTitle: 'Qwen3.8-Flash-Next 정리: Qwen4 구조를 먼저 공개한 125B 모
 metaDescription: >-
   Qwen3.8-Flash-Next는 알리바바 Qwen 팀이 2026년 8월 26일 공개한 125B 멀티모달 MoE 모델입니다. 토큰당 활성
   파라미터 60억, 100만 토큰 컨텍스트, 1비트 기준 메모리 75GB라는 조건을 공식 자료로 정리했습니다.
-ogTitle: 'Qwen3.8-Flash-Next: Qwen4 구조를 먼저 공개한 125B 모델'
 ogDescription: '125B 가운데 토큰마다 60억 개만 쓰는 구조와 긴 컨텍스트에서 벌어지는 처리량 차이, 로컬 구동에 필요한 메모리 요구량을 담았습니다.'
 ogImage: /og/qwen3-8-flash-next-qwen4-architecture.png
 quiz:

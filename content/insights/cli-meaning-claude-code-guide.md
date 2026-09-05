@@ -1,6 +1,6 @@
 ---
 slug: cli-meaning-claude-code-guide
-title: 'CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?'
+title: CLI 뜻과 클로드 코드를 CLI 없이 쓰는 방법
 excerpt: >-
   CLI는 영화 속 해커 화면처럼 보이지만, 실제로는 텍스트로 대화하는 창일 뿐입니다. 클로드 코드를 CLI에서 쓰면 웹 채팅보다 입출력
   제한이 없고, AI가 직접 파일을 수정하는 강력한 환경이 됩니다.
@@ -20,19 +20,18 @@ quiz:
     correctIndex: 1
 thumbnailUrl: >-
   https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773112884167-2bkyq1.png
-metaTitle: 'CLI 뜻: 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?'
+metaTitle: CLI 뜻과 클로드 코드를 CLI 없이 쓰는 방법
 metaDescription: >-
   CLI는 영화 속 해커 화면처럼 보이지만, 실제로는 텍스트로 대화하는 창일 뿐입니다. 클로드 코드를 CLI에서 쓰면 웹 채팅보다 입출력
   제한이 없고, AI가 직접 파일을 수정하는 강력한 환경이 됩니다.
 ogImage: /og/cli-meaning-claude-code-guide.png
-ogTitle: 'CLI 뜻 : 클로드 코드를 쓰려면 CLI밖에 방법이 없을까?'
 ogDescription: >-
   CLI는 텍스트로 컴퓨터를 조작하는 방식일 뿐, 어려운 기술이 아닙니다. 클로드 코드의 CLI 사용법과 웹 채팅 대비 장점을 초보자 눈높이로
   설명합니다.
 summary3:
-  - 'CLI는 마우스 대신 텍스트로 명령을 입력하고 결과를 텍스트로 받는 방식이고 검색창에 검색어를 넣는 것과 구조가 같습니다.'
-  - '클로드 코드가 CLI에서 도는 이유는 AI가 대화창 밖으로 나와 파일을 직접 읽고 고쳐야 하기 때문입니다.'
-  - '웹 채팅은 한 번에 보내는 길이에 제한이 있어 긴 코드가 잘리지만 CLI에서는 입력과 출력 길이 제한이 사실상 없습니다.'
+  - CLI는 마우스 대신 텍스트로 명령을 입력하고 결과를 텍스트로 받는 방식이고 검색창에 검색어를 넣는 것과 구조가 같습니다.
+  - 클로드 코드가 CLI에서 도는 이유는 AI가 대화창 밖으로 나와 파일을 직접 읽고 고쳐야 하기 때문입니다.
+  - 웹 채팅은 한 번에 보내는 길이에 제한이 있어 긴 코드가 잘리지만 CLI에서는 입력과 출력 길이 제한이 사실상 없습니다.
 ---
 
 "[클로드 코드](/class/claude-code-for-everyone/what-is-claude-code)(Claude Code)가 좋다는데, CLI에서만 된다고?" 여기서 막히는 분들이 많습니다.

@@ -16,7 +16,6 @@ metaTitle: 'AI 시대의 SEO: 자연검색 월 3만 방문까지 6개월 기록'
 metaDescription: >-
   검색 이용이 줄어드는 AI 시대에도 SEO가 성과를 낼 수 있는지 본인 블로그로 검증한 6개월 기록입니다. 자연검색만으로 월 3만 방문에
   이르기까지의 과정과 콘텐츠 선정 기준, 유입 다음에 남는 과제를 정리했습니다.
-ogTitle: 'AI 시대의 SEO: 자연검색 월 3만 방문까지 6개월 기록'
 ogDescription: 검색이 줄어드는 시대에도 SEO는 성과를 냅니다. 다만 자연검색 하나에만 기대는 것은 좋은 선택이 아니었습니다.
 ogImage: /og/seo-6-months-real-data.png
 quiz:

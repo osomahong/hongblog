@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { SITE_URL } from "@/lib/constants";
+import { SITE_URL, CAREER_BASE_YEAR, CAREER_REFERENCE_YEAR, YEARS_OF_EXPERIENCE } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
 import { getInsights, getClasses, getCourses } from "@/lib/content";
 import {
@@ -34,9 +34,8 @@ import { ViewTracker } from "@/components/ViewTracker";
 import { BrandIcon } from "@/components/icons/BrandIcons";
 import { AboutCanvasFx } from "@/components/about/AboutCanvasFx";
 
-const BASE_YEAR = 2017;
-const REFERENCE_YEAR = 2026;
-const YEARS_OF_EXPERIENCE = REFERENCE_YEAR - BASE_YEAR + 1;
+const BASE_YEAR = CAREER_BASE_YEAR;
+const REFERENCE_YEAR = CAREER_REFERENCE_YEAR;
 const CLIENT_COUNT_LABEL = "120곳+";
 /** 경력, 고객사, 교육 수치를 마지막으로 확인한 시점 */
 const CREDENTIAL_AS_OF = "2026년 8월";
@@ -777,12 +776,14 @@ export default async function AboutPage() {
                 About Me
               </span>
             </div>
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-black leading-tight mb-4">
+            {/* 검색 결과 제목과 같은 H1. 슬로건은 시각 요소로 남긴다 */}
+            <h1 className="sr-only">{ABOUT_TITLE}</h1>
+            <p className="text-2xl sm:text-4xl md:text-5xl font-black text-black leading-tight mb-4">
               마케팅 성과를
               <br />
               <span className="text-[#FF0033]">데이터로 확인하는</span> 일을
               합니다.
-            </h1>
+            </p>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
               저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로,
               오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는{" "}

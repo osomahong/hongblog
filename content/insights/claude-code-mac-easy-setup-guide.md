@@ -37,7 +37,6 @@ metaDescription: >-
   맥에 클로드 코드를 설치하고 한국어로 첫 작업을 시작하는 9단계 가이드입니다. 2026년 8월 기준으로 확인했으며 터미널,
   Homebrew, Git, 본체 설치, /config 한국어, 공식 스킬 마켓플레이스 등록까지 포함합니다.
 ogImage: /og/claude-code-mac-easy-setup-guide.png
-ogTitle: 쉽게 설치하는 클로드코드 세팅가이드(맥) 9단계
 ogDescription: >-
   터미널 실행부터 Homebrew, Git, Node.js 사전 준비, 클로드 코드 본체 설치, 한국어 설정, 첫 작업 시작까지 9단계로 정리한
   맥 입문 가이드입니다.

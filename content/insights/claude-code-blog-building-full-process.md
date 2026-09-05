@@ -35,7 +35,6 @@ metaDescription: >-
   개발 경험 없는 마케터가 Claude Code로 Next.js 블로그를 구축하고 콘텐츠 자동화 파이프라인을 운영하는 전 과정. 기술 스택,
   에이전트 시스템, 실전 팁을 정리합니다.
 ogImage: /og/claude-code-blog-building-full-process.png
-ogTitle: Claude Code로 블로그를 만들고 운영하는 전 과정 정리
 ogDescription: >-
   개발 경험 없는 마케터가 Claude Code로 Next.js 블로그를 구축하고, 에이전트 시스템으로 콘텐츠 운영까지 자동화한 실전
   기록입니다.

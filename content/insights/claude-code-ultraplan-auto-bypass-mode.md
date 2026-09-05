@@ -1,6 +1,6 @@
 ---
 slug: claude-code-ultraplan-auto-bypass-mode
-title: 'Ultraplan, Auto 모드, bypass 모드의 차이와 사용 맥락을 정리했습니다'
+title: 'Claude Code Ultraplan, Auto, Bypass 모드의 차이와 사용 맥락 정리'
 excerpt: >-
   Claude Opus 4.7 출시와 함께 Claude Code에 Ultraplan과 Auto 모드가 추가되면서
   --dangerously-skip-permissions(bypass 모드)와 어떻게 다른지 헷갈리는 분이 많습니다. 공식 문서 기준 3가지
@@ -21,8 +21,8 @@ quiz:
     question: '하루 종일 장기 에이전트 작업을 돌려야 하는 상황에서, 안전과 생산성을 동시에 잡는 가장 합리적인 선택은 무엇일까요?'
     explanation: >-
       Auto 모드는 Sonnet 4.6 기반 분류기가 권한 밖 위험 액션(코드 다운로드, 실행, 민감 데이터 유출, 프로덕션 배포 등)만
-      차단하고 나머지는 자동 실행합니다. --dangerously-skip-permissions는 안전 검사 자체가 없어 격리
-      컨테이너, VM 외에서는 공식적으로 권장되지 않습니다. Plan 모드는 실행을 막는 설계라 여기선 부적합합니다.
+      차단하고 나머지는 자동 실행합니다. --dangerously-skip-permissions는 안전 검사 자체가 없어 격리 컨테이너,
+      VM 외에서는 공식적으로 권장되지 않습니다. Plan 모드는 실행을 막는 설계라 여기선 부적합합니다.
     correctIndex: 0
 metaTitle: 'Claude Code Ultraplan, Auto, Bypass 모드 차이 정리'
 metaDescription: >-
@@ -30,12 +30,15 @@ metaDescription: >-
   --dangerously-skip-permissions(bypass 모드)의 정확한 차이, 플랜별 가용성, 분류기 작동 원리, 일상 작업
   조합을 공식 문서 기준으로 정리했습니다.
 ogImage: /og/claude-code-ultraplan-auto-bypass-mode.png
-ogTitle: Ultraplan, Auto, Bypass 모드의 차이와 사용 맥락
 ogDescription: '클로드 코드에 새로 추가된 세 가지 실행 방식을 공식 문서 기준으로 비교하고, 일상 작업에서 어떤 조합이 안전한지 정리했습니다.'
 summary3:
-  - 'Ultraplan은 클라우드에서 계획을 만들어 브라우저에서 검토하는 기능이고 Auto 모드는 분류기가 위험한 동작만 막으며 자동으로 실행하는 모드입니다.'
-  - 'bypass 모드는 모든 안전 검사를 없애고 보호된 경로만 예외로 남기는 실행 방식입니다.'
-  - 'Opus 4.7이 장기 실행 작업에서 더 자율적으로 움직이면서 계획은 촘촘히 보고 실행은 끊지 않되 위험만 걸러 내려는 요구가 커진 결과입니다.'
+  - >-
+    Ultraplan은 클라우드에서 계획을 만들어 브라우저에서 검토하는 기능이고 Auto 모드는 분류기가 위험한 동작만 막으며 자동으로
+    실행하는 모드입니다.
+  - bypass 모드는 모든 안전 검사를 없애고 보호된 경로만 예외로 남기는 실행 방식입니다.
+  - >-
+    Opus 4.7이 장기 실행 작업에서 더 자율적으로 움직이면서 계획은 촘촘히 보고 실행은 끊지 않되 위험만 걸러 내려는 요구가 커진
+    결과입니다.
 ---
 
 결론부터 말씀드립니다. 세 가지는 **"어디까지 자동으로 실행하고 무엇을 검사하느냐"**가 근본적으로 다릅니다. Ultraplan은 **계획을 클라우드에서 만들고 브라우저에서 검토**하는 기능이고, Auto 모드는 **분류기가 위험 액션만 차단하면서 자동 실행**하는 모드이며, bypass 모드(`--dangerously-skip-permissions`)는 **모든 안전 검사를 제거**하고 실행만 합니다. Ultraplan은 계획 단계, Auto와 Bypass는 실행 단계의 선택지라 "대체" 관계가 아니라 **층이 다른 도구**입니다.

@@ -17,7 +17,6 @@ metaTitle: 힉스필드 시리즈 B 4억 달러 투자와 기업가치 54억 달
 metaDescription: >-
   힉스필드(Higgsfield)는 여러 회사의 영상과 이미지 AI 모델을 구독 하나로 묶어 파는 콘텐츠 제작 플랫폼입니다. 2026년 8월
   시리즈 B 4억 달러 유치와 기업가치 54억 달러, 연환산 매출 7억 달러의 구조를 정리했습니다.
-ogTitle: 힉스필드 시리즈 B 4억 달러 투자 유치 정리
 ogDescription: 모델을 만드는 회사보다 모델을 묶어 파는 플랫폼이 먼저 커졌습니다. 힉스필드 기업가치 54억 달러의 배경을 공식 발표 기준으로 정리했습니다.
 ogImage: /og/higgsfield-series-b-funding-2026.png
 quiz:

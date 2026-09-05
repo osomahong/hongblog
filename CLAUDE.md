@@ -31,11 +31,32 @@ npx tsx --env-file=.env.local scripts/gsc-report.ts   # Search Console 성과 �
 npm run check:summary3 -- content/insights/{slug}.md  # 파일 하나
 npm run check:summary3 -- --all                       # 전체
 
+# 제목 정합성 검사 (prebuild에서 자동 실행, HARD면 빌드 중단)
+npm run check:titles                                  # H1, metaTitle, ogTitle 대조
+npm run check:titles -- --warn                        # 폭 초과, ogTitle 축약판 경고까지
+
 # 3줄 요약 미리보기 (자동 추출 결과 확인)
 npx tsx scripts/preview-summaries.ts                  # 인사이트 전체
 npx tsx scripts/preview-summaries.ts --type class     # 클래스 전체
 npx tsx scripts/preview-summaries.ts --slug <slug>    # 하나만
 ```
+
+### 제목 규칙 (H1, title, og:title 정합성)
+
+- **metaTitle과 ogTitle에 "준이아빠블로그"를 적지 않는다.** 루트 템플릿이 "| 준이아빠블로그"를 붙이므로
+  두 번 붙는다(2026-09-05 전수검사에서 6편 발견).
+- 제목 필드에 파이프(|)를 쓰지 않는다. 템플릿 구분자와 같아 "A | B | 준이아빠블로그" 세 토막이 된다.
+  구분은 콜론으로 한다.
+- **H1(title/term)의 첫 개체는 metaTitle과 같은 표기, 같은 순서로 쓴다.** "클로드 코드 설치 방법"으로
+  검색 결과에 나왔는데 착지 H1이 "Claude Code 설치"면 안 된다. 영문은 괄호로 뒤에 둔다. 첫 어절이
+  다르면 `check:titles`가 SOFT로 알린다.
+- **og:title과 twitter:title에는 섹션 라벨과 브랜드를 넣지 않는다.** 콘텐츠와 허브 페이지 모두 페이지
+  제목만 쓴다. 브랜드는 `og:site_name`이 맡는다. 허브 페이지에서 `title: { absolute }`를 쓸 때
+  openGraph.title에 같은 값을 넣지 말 것.
+- ogTitle은 공유용 문장을 따로 쓸 때만 적는다. 비우면 og:title은 metaTitle로 떨어진다. metaTitle을
+  몇 글자 줄인 축약판은 두지 않는다.
+- 길이는 표시 폭으로 잰다(한글 1, 라틴 0.5). metaTitle 폭 36 초과는 경고, 45 초과는 빌드 중단.
+- JSON-LD headline은 인사이트와 클래스 모두 `metaTitle || title`이다(메타, 본문, JSON-LD 삼중 정렬).
 
 ### 링크 규칙 (404 재발 방지)
 
@@ -170,6 +191,7 @@ GA4 용어, 썸네일 규격). 특정 스킬 전용 규칙은 그 스킬의 `ref
 1. `npm run check:prose -- <파일>` HARD 0건
 2. `node .claude/skills/prose-inspector/scripts/check-literary.mjs <파일>` HARD 0건
 3. `npm run check:summary3 -- <파일>` HARD 0건
+3-1. `npm run check:titles` HARD 0건 (prebuild가 같은 검사를 다시 돌린다)
 4. 낭독 검수 1회 (`prose-inspector` 스킬의 7개 항목. 표와 HTML 도표 안 문장까지 본다)
 5. **전문을 사용자에게 출력하고 승인받은 뒤에만 커밋·배포** ("써줘"는 초안 요청이지 배포 승인이 아니다)
 

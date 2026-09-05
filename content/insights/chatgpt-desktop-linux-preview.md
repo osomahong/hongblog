@@ -14,11 +14,10 @@ publishedAt: '2026-08-12T00:00:00.000Z'
 highlights:
   - '설치는 openai.com/codex의 x64와 ARM64용 .deb, .rpm 4종 가운데 배포판에 맞는 패키지를 고릅니다.'
   - '프리뷰 단계라 공식 문서가 아직 갱신되지 않았으므로, 요금 조건과 기능 범위는 실제 계정에서 확인한 뒤 팀에 안내합니다.'
-metaTitle: '챗지피티 리눅스 앱 프리뷰: 설치 방법과 기능 정리'
+metaTitle: '챗GPT 리눅스 앱 프리뷰: 설치 방법과 기능 정리'
 metaDescription: >-
   챗GPT 리눅스 데스크톱 앱은 오픈AI가 2026년 8월 11일 프리뷰로 공개한 리눅스용 공식 앱입니다. 설치 패키지 4종, 테스트된
   배포판, ChatGPT와 Work, Codex 통합 구성, 요금 조건에서 확인된 사실을 정리했습니다.
-ogTitle: 챗GPT 리눅스 데스크톱 앱 프리뷰 정리
 ogDescription: '오픈AI가 리눅스용 챗GPT 데스크톱 앱을 프리뷰로 공개했습니다. 설치 패키지와 배포판, Work와 Codex 통합 구성을 정리했습니다.'
 ogImage: /og/chatgpt-desktop-linux-preview.png
 quiz:

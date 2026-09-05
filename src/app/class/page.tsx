@@ -20,8 +20,9 @@ export const metadata: Metadata = {
     alternates: {
         canonical: `${SITE_URL}/class`,
     },
+    // og와 twitter 제목은 섹션 라벨과 브랜드 없이 페이지 제목만 쓴다 (브랜드는 og:site_name)
     openGraph: {
-        title: FULL_TITLE,
+        title: PAGE_TITLE,
         description: PAGE_DESCRIPTION,
         type: "website",
         url: `${SITE_URL}/class`,
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: FULL_TITLE,
+        title: PAGE_TITLE,
         description: PAGE_DESCRIPTION,
         images: [PAGE_OG_IMAGE],
     },

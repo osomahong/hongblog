@@ -20,11 +20,10 @@ updatedAt: '2026-09-03T00:00:00.000Z'
 highlights:
   - '클로드를 처음 쓴다면 Claude 101부터 듣습니다. 채팅으로 이미 쓰고 있다면 Cowork 강좌가 다음 순서입니다.'
   - '로그인 없이도 읽을 수 있지만 진행 상황과 수료 배지는 저장되지 않으므로, 이어서 들을 계획이면 먼저 로그인합니다.'
-metaTitle: Claude Academy 무료 강좌 22개와 한국어 지원 정리
+metaTitle: '클로드 아카데미(Claude Academy) 무료 강좌 22개 정리'
 metaDescription: >-
   클로드 아카데미(Claude Academy)는 앤트로픽이 운영하는 무료 학습 사이트입니다. 2026년 8월 기준 강좌 22개와 튜토리얼
   119개의 구성, 한국어 지원 범위, 계정 조건, 입문자와 개발자별 학습 순서를 정리했습니다.
-ogTitle: 클로드 아카데미 무료 강좌 22개 정리
 ogDescription: '앤트로픽이 운영하는 클로드 아카데미의 강좌 구성과 한국어 지원 범위, 무료 조건, 상황별 학습 순서를 실제 화면과 함께 담았습니다.'
 ogImage: /og/claude-academy-free-courses.png
 quiz:

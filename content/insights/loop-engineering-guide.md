@@ -20,7 +20,6 @@ metaTitle: 2026년 AI시대의 루프 엔지니어링 잘 쓰는 법
 metaDescription: >-
   루프 엔지니어링이 무엇인지 기초부터 알아봅니다. 프롬프트 엔지니어링에서 루프 설계로 넘어온 2026년의 변화, Ralph 기법, Addy
   Osmani의 5가지 구성 요소, 검증과 종료 조건까지 정리했습니다.
-ogTitle: 2026년 AI시대의 루프 엔지니어링 잘 쓰는 법
 ogDescription: '프롬프트를 직접 치는 대신 에이전트가 일하는 반복 구조를 설계하는 루프 엔지니어링. 개념, 사례, 주의점을 기초부터 알아봅니다.'
 ogImage: /og/loop-engineering-guide.png
 quiz:

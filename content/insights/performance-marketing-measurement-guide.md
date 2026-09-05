@@ -21,7 +21,6 @@ thumbnailUrl: https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/illustrati
 metaTitle: 퍼포먼스 마케팅 광고 캠페인 성과를 측정하는 5가지 방법
 metaDescription: 광고를 돌렸는데 이 숫자가 잘 나온 건지 모르겠다면, 이 글이 기준을 잡아드립니다. CTR, CPC, CVR, CPA, ROAS 5가지 지표의 의미와 업종별 벤치마크 데이터, SA와 DA의 구조적 차이까지 초보자 눈높이로 정리했습니다.
 ogImage: /og/performance-marketing-measurement-guide.png
-ogTitle: '퍼포먼스 마케팅 성과 측정법: CTR, CPC, CVR, CPA, ROAS 완전 정리'
 ogDescription: 클릭은 소재 반응, 구매는 상세페이지 반응. 이 차이를 아는 것이 성과 측정의 출발점입니다. 5가지 핵심 지표와 업종별 벤치마크 데이터를 정리했습니다.
 summary3:
   - '퍼포먼스 마케팅 성과는 CTR과 CPC, CVR, CPA, ROAS 다섯 지표로 읽습니다.'

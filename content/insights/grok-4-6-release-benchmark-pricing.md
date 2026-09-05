@@ -21,7 +21,6 @@ metaTitle: Grok 4.6 벤치마크 점수와 가격 구간 정리
 metaDescription: >-
   그록 4.6은 SpaceXAI가 2026년 8월 12일 공개한 언어 모델입니다. Artificial Analysis 지능 지수 61점의
   위치와 200K 토큰을 넘으면 2배가 되는 요금 구간, 도입 판단 순서를 공식 문서 기준으로 정리했습니다.
-ogTitle: Grok 4.6 벤치마크와 가격 구간 정리
 ogDescription: '지능 지수 61점이 라인업에서 어느 자리인지, 그록 4.5와 같다는 가격이 어느 조건까지 같은지를 공식 문서와 외부 측정치로 짚었습니다.'
 ogImage: /og/grok-4-6-release-benchmark-pricing.png
 quiz:

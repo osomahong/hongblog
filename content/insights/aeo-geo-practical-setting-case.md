@@ -30,7 +30,6 @@ metaDescription: >-
   AEO는 본문이 아니라 소스코드 뒤에 숨은 schema.org 구조화 데이터, 메타 태그, sitemap, llms.txt,
   canonical URL에서 결정됩니다. 이 글 자체에 실제로 적용된 기능들을 코드로 공개합니다.
 ogImage: /og/aeo-geo-practical-setting-case.png
-ogTitle: 실제 적용 사례로 알아보는 AEO 잘하는 법
 ogDescription: >-
   이 글 자체가 AEO 적용 사례입니다. 소스코드 뒤에 숨은 JSON-LD, 메타 태그, sitemap, llms.txt를 눈에 보이게
   공개합니다.

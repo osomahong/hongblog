@@ -29,7 +29,6 @@ metaTitle: 'Google AI Studio 사용법: Gemini로 앱과 웹 만들기'
 metaDescription: >-
   Google AI Studio는 Gemini 모델을 시험하고 자연어로 웹 앱과 Android 앱을 만드는 개발 환경입니다.
   Playground, Build, API 키, 배포 방법을 초보자 눈높이로 정리합니다.
-ogTitle: 'Google AI Studio 사용법: Gemini로 앱과 웹 만들기'
 ogDescription: '프롬프트로 Gemini 앱을 만들고, 코드 확인부터 API 키 보관과 배포까지 Google AI Studio 사용법을 정리했습니다.'
 ogImage: /og/google-ai-studio-guide.png
 quiz:

@@ -7,6 +7,7 @@ import { PixelAssemble } from "@/components/PixelAssemble";
 
 export const metadata: Metadata = {
   title: "페이지를 찾을 수 없습니다",
+  openGraph: { title: "페이지를 찾을 수 없습니다" },
   robots: { index: false, follow: true },
 };
 
@@ -22,7 +23,7 @@ export default function NotFound() {
       <PixelAssemble>
         <p className="font-mono text-sm text-[#FF0033] font-bold mb-2">404</p>
         <h1 className="text-2xl sm:text-4xl font-black tracking-tighter leading-tight mb-3">
-          찾으시는 페이지가 없습니다
+          페이지를 찾을 수 없습니다
         </h1>
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
           주소가 바뀌었거나 지워진 글입니다. 아래에서 다른 글로 이어 가시면 됩니다.

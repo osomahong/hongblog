@@ -1,6 +1,6 @@
 ---
 slug: claude-code-installation-basics
-term: Claude Code 설치 첫걸음 (터미널 입문 포함) 따라하기
+term: '클로드 코드(Claude Code) 설치 따라하기: 터미널 입문 포함'
 definition: >-
   Claude Code를 처음 설치하고 실행하는 단계를 비개발자 눈높이로 정리한 가이드입니다. 터미널이 무엇인지부터 설치 명령 한 줄, 첫
   로그인, 첫 실행까지 다룹니다.
@@ -32,12 +32,15 @@ quiz:
       표준입니다. App Store나 메일 첨부는 공식 채널이 아닙니다.
 metaTitle: '클로드 코드 설치 방법: 윈도우, 맥 명령어와 준비물 정리'
 metaDescription: >-
-  클로드 코드 설치 명령어(윈도우 PowerShell, 맥 터미널)와 설치 전 준비물, 로그인까지의 과정을 순서대로 정리했습니다. 설치가 안 될 때 확인할 것도 담았습니다.
+  클로드 코드 설치 명령어(윈도우 PowerShell, 맥 터미널)와 설치 전 준비물, 로그인까지의 과정을 순서대로 정리했습니다. 설치가 안
+  될 때 확인할 것도 담았습니다.
 ogImage: /og/claude-code-installation-basics.png
 summary3:
-  - 'Claude Code 설치는 맥과 리눅스에서 curl -fsSL https://claude.ai/install.sh | bash 한 줄, 윈도우 파워셸에서 irm https://claude.ai/install.ps1 | iex 한 줄이면 끝납니다.'
-  - '2026년 4월 기준 Claude Code를 쓰려면 Pro 이상 구독이나 Anthropic Console 계정이 있어야 합니다.'
-  - '설치한 뒤 새 터미널에서 claude를 실행해 브라우저로 로그인하고 작업할 폴더에 들어가 다시 실행하면 시작됩니다.'
+  - >-
+    Claude Code 설치는 맥과 리눅스에서 curl -fsSL https://claude.ai/install.sh | bash 한 줄,
+    윈도우 파워셸에서 irm https://claude.ai/install.ps1 | iex 한 줄이면 끝납니다.
+  - 2026년 4월 기준 Claude Code를 쓰려면 Pro 이상 구독이나 Anthropic Console 계정이 있어야 합니다.
+  - 설치한 뒤 새 터미널에서 claude를 실행해 브라우저로 로그인하고 작업할 폴더에 들어가 다시 실행하면 시작됩니다.
 ---
 
 이 글은 앤트로픽이 운영하는 code.claude.com/docs/en/overview의 Claude Code 공식 설치 가이드를 한국 비개발자 입문자가 따라하기 쉽게 정리한 글입니다.

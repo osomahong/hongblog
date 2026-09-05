@@ -25,7 +25,6 @@ metaTitle: 'CRM 마케터라면 꼭 해야 할 3가지 : 자동화, A/B 테스�
 metaDescription: >-
   CRM 마케터의 필수 역량 3가지를 쉽게 정리했습니다. 고객 여정 자동화 시나리오 설계, A/B 테스트로 데이터 기반 의사결정, 개인화
   메시지와 채널 최적화까지 실무 전략을 다룹니다.
-ogTitle: CRM 마케터라면 꼭 해야 할 3가지
 ogDescription: '자동화 시나리오, A/B 테스트, 개인화. CRM 마케터가 반드시 해야 할 3가지 핵심 역량을 어려운 용어 없이 쉽게 풀어 설명합니다.'
 ogImage: /og/crm-marketer-must-do-3-things.png
 summary3:

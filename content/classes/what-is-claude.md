@@ -1,6 +1,6 @@
 ---
 slug: what-is-claude
-term: 입문자를 위한 Claude (앤트로픽 AI 어시스턴트) 이해하기
+term: '클로드(Claude) 이해하기: 입문자를 위한 앤트로픽 AI 어시스턴트 소개'
 definition: '앤트로픽이 만든 AI 어시스턴트로, 한국어 대화부터 글쓰기, 코드 작성, PDF, 이미지, 표 분석까지 한 화면에서 처리합니다.'
 category: CLAUDE_EDUCATION
 tags:
@@ -21,17 +21,17 @@ relatedTerms:
   - what-is-anthropic
   - claude-model-family
 updateNotice:
-  date: '2026-07'
+  date: 2026-07
   items:
-    - 1M 컨텍스트 설명의 모델 이름을 현행 세대인 Opus 5, Sonnet 5로 교체했습니다.
+    - '1M 컨텍스트 설명의 모델 이름을 현행 세대인 Opus 5, Sonnet 5로 교체했습니다.'
 difficulty: BEGINNER
-metaTitle: Claude 입문 | 앤트로픽 AI 어시스턴트, 초보자 첫걸음 가이드
+metaTitle: '클로드(Claude) 입문: 앤트로픽 AI 어시스턴트 첫걸음'
 metaDescription: >-
   클로드 처음 쓰는 입문자를 위한 가이드입니다. Anthropic이 만든 AI 어시스턴트 Claude의 정체, ChatGPT, Gemini와의
   차이, 마케터, 디자이너, 개발자 직무별 활용법을 정리했습니다.
 quiz:
   - options:
-      - PDF, Word, Excel, 이미지 같은 파일을 직접 읽고 분석할 수 있다
+      - 'PDF, Word, Excel, 이미지 같은 파일을 직접 읽고 분석할 수 있다'
       - 인터넷에 자동 접속해 모든 파일을 다운받아온다
       - 모든 PDF를 OCR로 자동 변환해서 저장해둔다
       - 마케팅 도메인 전용으로 만들어진 AI여서 후기에 강하다
@@ -45,9 +45,13 @@ quiz:
     correctIndex: 0
 ogImage: /og/what-is-claude.png
 summary3:
-  - 'Claude는 미국 AI 안전 연구 회사 앤트로픽이 만든 AI 어시스턴트이고 한국어 대화와 글쓰기, 코드 작성, PDF와 이미지 분석을 한 화면에서 처리합니다.'
-  - '글쓰기와 번역 같은 기본 작업은 세 AI가 비슷해서 실제 차이는 회사 성격과 붙어 있는 도구에서 납니다.'
-  - 'Claude Code와 Remote Control, Cowork의 Dispatch처럼 ChatGPT나 Gemini에 같은 형태가 없는 도구가 옮겨 타는 이유가 됩니다.'
+  - >-
+    Claude는 미국 AI 안전 연구 회사 앤트로픽이 만든 AI 어시스턴트이고 한국어 대화와 글쓰기, 코드 작성, PDF와 이미지 분석을
+    한 화면에서 처리합니다.
+  - 글쓰기와 번역 같은 기본 작업은 세 AI가 비슷해서 실제 차이는 회사 성격과 붙어 있는 도구에서 납니다.
+  - >-
+    Claude Code와 Remote Control, Cowork의 Dispatch처럼 ChatGPT나 Gemini에 같은 형태가 없는
+    도구가 옮겨 타는 이유가 됩니다.
 ---
 
 이 글은 [앤트로픽](/class/claude-fundamentals/what-is-anthropic)이 운영하는 Anthropic Academy(anthropic.com/learn), claude.com/resources, platform.claude.com/docs의 공식 교육 자료 중 Claude의 정체와 기능을 한국 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.

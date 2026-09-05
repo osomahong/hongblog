@@ -29,7 +29,6 @@ metaDescription: >-
   claude.ai/design 접근 방법, 프로젝트 만드는 순서, 디자인 시스템 설정, 내보내기 형식과 사용량 한도를 공식 문서 기준으로
   정리했습니다.
 ogImage: /og/claude-design-launch-review.png
-ogTitle: '클로드 디자인 사용법 정리: 시작하는 법과 디자인 시스템 설정'
 ogDescription: 'claude.ai/design 접근 방법부터 디자인 시스템 설정, 내보내기 형식, 사용량 한도까지 공식 문서 기준으로 정리했습니다.'
 summary3:
   - '클로드 디자인은 자연어 지시로 웹 시안과 디자인 시스템을 만들어 프로덕션 코드로 넘기는 앤트로픽 랩스의 도구입니다.'

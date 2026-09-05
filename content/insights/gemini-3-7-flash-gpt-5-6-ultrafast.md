@@ -19,7 +19,6 @@ metaTitle: '제미나이 3.7 Flash, GPT-5.6 Ultrafast 속도와 가격 정리'
 metaDescription: >-
   AI 추론 속도는 모델이 답을 만들어 내는 속도입니다. OpenAI Ultrafast의 14배와 실제 작업 5.6배의 차이, Gemini
   3.7 Flash의 도입가 조건을 공식 자료로 정리했습니다.
-ogTitle: 제미나이 3.7 플래시와 GPT-5.6 울트라패스트 속도 정리
 ogDescription: >-
   속도를 하드웨어에서 얻는지 모델에서 얻는지에 따라 도입 조건이 달라집니다. 발표된 배수가 실제 작업에서 줄어드는 이유를 공식 측정치로
   짚었습니다.

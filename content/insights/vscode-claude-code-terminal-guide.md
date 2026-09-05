@@ -25,12 +25,11 @@ quiz:
     explanation: >-
       PATH에 추가는 터미널 어디에서나 명령을 인식하게 만드는 설정입니다. 이 항목이 빠지면 터미널에서 claude를 입력했을 때 용어가
       인식되지 않는다는 오류가 납니다. 나머지 세 항목은 편의 기능이라 빠져도 실행에는 지장이 없습니다.
-metaTitle: 'VS Code에서 클로드 코드 실행하는 방법: 윈도우 설치부터 bypass 모드까지'
+metaTitle: 'VS Code에서 클로드 코드 실행하는 방법: 윈도우 설치부터 bypass까지'
 metaDescription: >-
   VS Code 설치 후 터미널을 열어 클로드 코드를 실행하는 순서를 화면 그림으로 정리했습니다. 폴더 여는 순서, PATH 체크,
   claude 명령 입력, bypass 모드 사용 기준까지 담았습니다.
 ogImage: /og/vscode-claude-code-terminal-guide.png
-ogTitle: VS Code에서 클로드 코드 실행하기 (윈도우 화면 그대로 따라하기)
 ogDescription: 검은 PowerShell 대신 VS Code에서 클로드 코드를 실행하는 순서를 화면 그림과 함께 정리했습니다.
 summary3:
   - 'VS Code는 클로드 코드를 실행하는 터미널과 그 결과 파일을 한 화면에서 보게 해 주는 작업 창입니다.'

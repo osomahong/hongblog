@@ -40,7 +40,6 @@ metaDescription: >-
   GA4 트래픽 획득 보고서에서 세션 소스/매체가 (not set)으로 나타나는 5가지 원인과 각각의 대응법을 초보자 눈높이에서 정리했습니다.
   데이터 처리 지연, 비활성 세션, Measurement Protocol, 잠재고객 이벤트까지 다룹니다.
 ogImage: /og/ga4-session-source-medium-not-set.png
-ogTitle: GA4 세션 소스/매체에 (not set)이 왜 이렇게 많을까?
 ogDescription: >-
   세션 소스/매체의 (not set)은 설정 오류가 아닐 수 있습니다. GA4 데이터 처리 구조에서 비롯되는 5가지 원인과 대응법을
   정리했습니다.

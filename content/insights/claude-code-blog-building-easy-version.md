@@ -38,7 +38,6 @@ metaDescription: >-
   개발 경험 없는 마케터가 Claude Code로 블로그를 만들고 운영하는 과정을, 전문 용어 없이 비유 중심으로 쉽게 풀어서 설명합니다.
   같은 내용의 쉬운 버전입니다.
 ogImage: /og/claude-code-blog-building-easy-version.png
-ogTitle: 'Claude Code로 블로그 만들기, 쉽게 풀어쓴 버전'
 ogDescription: '코딩을 모르는 마케터가 AI로 블로그를 만든 과정을, 전문 용어 없이 비유로 쉽게 설명합니다.'
 summary3:
   - '개발을 해본 적 없는 마케터가 Claude Code와 대화하는 것만으로 블로그의 디자인과 데이터 저장소, 서버 설정까지 만들었습니다.'

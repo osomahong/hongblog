@@ -20,7 +20,6 @@ metaTitle: VS Code와 비슷하지만 다른 Orca 사용법 (2026)
 metaDescription: >-
   VS Code처럼 생겼지만 중심이 다른 Orca를 정리했습니다. 세션 관리와 GitHub, Linear 통합, diff 주석, 디자인 모드,
   컴퓨터 유즈, 휴대폰 연결 같은 장점과 리소스 사용량, 사용량 배수 소모 같은 현실적인 한계까지 다룹니다.
-ogTitle: VS Code와 비슷하지만 다른 Orca 사용법
 ogDescription: '에이전트 관리 화면, 디자인 모드, 휴대폰 연결까지. Orca를 썼을 때의 장점과 기능을 많이 붙이면 무거워지는 현실적인 한계를 정리했습니다.'
 ogImage: /og/orca-vs-vscode.png
 quiz:

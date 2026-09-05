@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { SITE_URL, SITE_NAME, SECTION_LABELS } from "@/lib/constants";
+import { SITE_URL } from "@/lib/constants";
 import { Ga4Logo } from "@/components/icons/Ga4Logo";
 import { RealtimeDashboard } from "./RealtimeDashboard";
 
 // 라벨과 브랜드는 layout의 title template이 `GA4 Edu | %s | 준이아빠블로그`로 붙인다.
 const PAGE_TITLE = "GA4 실시간 보고서 실습";
-const SOCIAL_TITLE = `${SECTION_LABELS.ga4Edu} | ${PAGE_TITLE} | ${SITE_NAME}`;
 // AEO 정의 문장: 도입부, metaDescription, JSON-LD를 같은 개체와 정의로 맞춘다
 const PAGE_DESC =
   "이 화면은 준이아빠블로그의 실제 GA4 데이터로 GA4 실시간 개요 보고서를 그대로 재현한 교육용 화면입니다. 화면의 각 카드가 GA4 Data API의 어떤 측정기준과 측정항목으로 만들어지는지 함께 표시합니다.";
@@ -19,7 +18,7 @@ export const metadata: Metadata = {
   // 실시간 수치만 담긴 화면이라 색인 대상으로 두지 않는다
   robots: { index: false, follow: true },
   openGraph: {
-    title: SOCIAL_TITLE,
+    title: PAGE_TITLE,
     description: PAGE_DESC,
     type: "website",
     url: `${SITE_URL}/ga4-edu/realtime`,

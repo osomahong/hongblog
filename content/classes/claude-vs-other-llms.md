@@ -1,6 +1,6 @@
 ---
 slug: claude-vs-other-llms
-term: Claude vs ChatGPT vs Gemini 비교하기
+term: 클로드 vs ChatGPT vs 제미나이 비교하기
 definition: >-
   세 AI 어시스턴트는 만든 회사, 강조점, 도구 패키지에서 서로 다른 색깔을 가집니다. 작업 성격에 따라 각 AI가 더 잘하는 일이 분명히
   나뉩니다.
@@ -35,12 +35,20 @@ quiz:
       인터랙티브 프로토타입을 만드는 데 특화되어 있습니다. ChatGPT GPTs와 Gemini Gems는 비슷한 워크플로 자동화를
       제공하지만, 코드베이스 통합 후 동작 프로토타입 핸드오프까지 묶인 도구는 아닙니다.
 metaTitle: '클로드 ChatGPT 제미나이 비교: 차이와 선택 기준'
-metaDescription: '클로드, ChatGPT, 제미나이는 만든 회사와 강조점, 도구 구성이 서로 다른 AI 어시스턴트입니다. 작업 성격별로 어떤 것을 고를지 비교 기준을 정리했습니다.'
+metaDescription: >-
+  클로드, ChatGPT, 제미나이는 만든 회사와 강조점, 도구 구성이 서로 다른 AI 어시스턴트입니다. 작업 성격별로 어떤 것을 고를지 비교
+  기준을 정리했습니다.
 ogImage: /og/claude-vs-other-llms.png
 summary3:
-  - 'ChatGPT는 대중 인지도와 이미지, 음성 같은 부가 기능이 넓고 Gemini는 구글 워크스페이스 연동이 강하며 Claude는 코딩과 긴 문서에서 앞섭니다.'
-  - 'Claude는 1M 토큰 컨텍스트와 Claude Code, Cowork, Design으로 이어지는 도구 묶음을 갖췄고 MCP를 외부 표준으로 내놓았습니다.'
-  - '같은 50쪽 보고서를 요약시키면 ChatGPT는 부연이 길고 Gemini는 검색 결과를 덧붙이며 Claude는 군더더기가 적고 앞뒤가 덜 어긋납니다.'
+  - >-
+    ChatGPT는 대중 인지도와 이미지, 음성 같은 부가 기능이 넓고 Gemini는 구글 워크스페이스 연동이 강하며 Claude는 코딩과
+    긴 문서에서 앞섭니다.
+  - >-
+    Claude는 1M 토큰 컨텍스트와 Claude Code, Cowork, Design으로 이어지는 도구 묶음을 갖췄고 MCP를 외부
+    표준으로 내놓았습니다.
+  - >-
+    같은 50쪽 보고서를 요약시키면 ChatGPT는 부연이 길고 Gemini는 검색 결과를 덧붙이며 Claude는 군더더기가 적고 앞뒤가 덜
+    어긋납니다.
 ---
 
 이 글은 앤트로픽 공식 자료 및 각 회사 공식 페이지를 한국 입문자가 보기 편하게 정리한 글입니다. 원문 링크는 글 끝 참고 자료에 모았습니다.

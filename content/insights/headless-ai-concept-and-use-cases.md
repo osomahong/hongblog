@@ -30,7 +30,6 @@ metaDescription: >-
   화면 없이 백그라운드에서 실행되는 헤드리스 AI의 개념과 채팅형 AI와의 차이를 정리했습니다. 이벤트 기반 동작 구조, 이메일 자동 분류와
   주간 리포트 자동화 사례, 클로드 코드로 시작하는 방법까지 다룹니다.
 ogImage: /og/headless-ai-concept-and-use-cases.png
-ogTitle: '헤드리스 AI의 개념과 특징: AI 에이전트 활용하기'
 ogDescription: '채팅창 없이 뒤에서 일하는 AI가 있습니다. 헤드리스 AI의 개념, 채팅형 AI와의 차이, 실무 활용 사례를 정리했습니다.'
 summary3:
   - '헤드리스 AI는 채팅창 없이 백그라운드에서 스스로 작업을 처리하는 AI 에이전트입니다.'

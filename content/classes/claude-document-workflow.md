@@ -1,9 +1,9 @@
 ---
 slug: claude-document-workflow
-term: 문서, 자료 정리 워크플로 (PDF, 이미지, 표) 익히기
+term: '클로드로 문서 정리하기 (PDF, 엑셀, 이미지 워크플로)'
 definition: >-
-  PDF, 이미지, Excel, Word 같은 문서 자료를 Claude에 통째로 던져 분석, 요약, 변환, 정리하는 표준 흐름입니다. 매주 반복되는
-  자료 정리 업무를 일관된 품질로 만드는 데 쓰입니다.
+  PDF, 이미지, Excel, Word 같은 문서 자료를 Claude에 통째로 던져 분석, 요약, 변환, 정리하는 표준 흐름입니다. 매주
+  반복되는 자료 정리 업무를 일관된 품질로 만드는 데 쓰입니다.
 category: CLAUDE_EDUCATION
 tags:
   - AI
@@ -21,9 +21,9 @@ relatedTerms:
   - what-are-claude-projects
   - context-window-explained
 updateNotice:
-  date: '2026-07'
+  date: 2026-07
   items:
-    - 보고서 분석 시나리오의 권장 모델을 Sonnet 5, Opus 5로 교체했습니다.
+    - '보고서 분석 시나리오의 권장 모델을 Sonnet 5, Opus 5로 교체했습니다.'
 difficulty: BEGINNER
 quiz:
   - question: 두꺼운 PDF 보고서 100쪽을 정리할 때 결과 품질을 가장 안정적으로 만드는 흐름은 무엇일까요?
@@ -37,13 +37,15 @@ quiz:
       긴 자료 분석은 한 번에 다 시키지 말고, 자료 첨부 → 명확한 지시 → 단계 분리(요약 → 분석 → 결론) → Artifacts로
       다듬기 흐름을 따라야 결과가 안정됩니다. PDF 본문을 직접 붙여 넣으면 토큰을 낭비하고, 파일 이름만으로는 분석이 불가합니다. 한
       문장 요약은 분석이 아니라 압축에 가깝습니다.
-metaTitle: '클로드로 PDF, 엑셀, 이미지 정리하는 방법: 문서 워크플로'
-metaDescription: '클로드 문서 워크플로는 PDF, 이미지, 엑셀, 워드 자료를 Claude에 통째로 맡겨 분석, 요약, 변환하는 작업 방식입니다. 자료 유형별 처리 방법을 정리했습니다.'
+metaTitle: '클로드로 문서 정리하는 방법: PDF, 엑셀, 이미지 워크플로'
+metaDescription: >-
+  클로드 문서 워크플로는 PDF, 이미지, 엑셀, 워드 자료를 Claude에 통째로 맡겨 분석, 요약, 변환하는 작업 방식입니다. 자료 유형별
+  처리 방법을 정리했습니다.
 ogImage: /og/claude-document-workflow.png
 summary3:
   - 'Claude는 PDF와 이미지, Word와 Excel, CSV와 HTML을 그대로 받아 분석하고 표나 요약으로 바꿔 줍니다.'
   - '자료 정리는 자료 첨부와 분명한 지시, 단계 분리, 결과 검증 네 단계로 나눌 때 품질이 일정해집니다.'
-  - '100쪽짜리 보고서는 1M 컨텍스트 모델에 통째로 넣되 요약과 인사이트를 나눠 요청하고 출처가 본문에 실제로 있는지 무작위로 확인합니다.'
+  - 100쪽짜리 보고서는 1M 컨텍스트 모델에 통째로 넣되 요약과 인사이트를 나눠 요청하고 출처가 본문에 실제로 있는지 무작위로 확인합니다.
 ---
 
 이 글은 앤트로픽이 운영하는 claude.com/resources와 platform.claude.com/docs의 문서, 이미지 처리 자료를 한국 입문자가 보기 편하게 정리한 글입니다.

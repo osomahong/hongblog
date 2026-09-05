@@ -1,6 +1,6 @@
 ---
 slug: google-workspace-studio-guide
-title: 'Google Workspace Studio 사용법: Gmail, Sheets, Drive 업무 자동화하기'
+title: 'Google Workspace Studio 사용법: Gmail, Sheets, Drive 자동화'
 excerpt: >-
   Google Workspace Studio는 Gmail, Drive, Sheets, Docs 같은 Workspace 앱의 반복 업무를
   Gemini와 함께 자동화하는 도구입니다. 시작 조건, 단계, 변수의 구조부터 이메일 요약과 첨부파일 저장 플로우를 만드는 방법까지
@@ -25,11 +25,10 @@ highlights:
   - 'Workspace Studio 플로우는 시작 조건 하나와 여러 단계, 단계 사이에서 값을 전달하는 변수로 구성됩니다.'
   - 처음에는 템플릿을 복사한 뒤 Gmail 요약이나 Drive 파일 저장처럼 결과를 확인하기 쉬운 업무부터 자동화하는 편이 좋습니다.
   - '플로우를 켜기 전 테스트 실행과 활동 기록을 확인하고, Gmail과 Drive에 접근하는 권한을 필요한 범위로 제한해야 합니다.'
-metaTitle: 'Google Workspace Studio 사용법: Gmail, Sheets, Drive 자동화'
+metaTitle: 'Google Workspace Studio 사용법: 업무 자동화 정리'
 metaDescription: >-
   Google Workspace Studio는 Gmail, Drive, Sheets 업무를 Gemini로 자동화하는 도구입니다. 시작 조건,
   단계, 변수, 이메일 요약과 파일 저장 플로우를 설명합니다.
-ogTitle: 'Google Workspace Studio 사용법: Gmail, Sheets, Drive 업무 자동화'
 ogDescription: '코딩 없이 Gmail, Drive, Sheets를 연결하는 Workspace Studio의 플로우 구조와 실전 자동화 방법을 정리했습니다.'
 ogImage: /og/google-workspace-studio-guide.png
 quiz:
@@ -45,7 +44,7 @@ quiz:
 summary3:
   - 'Google Workspace Studio는 Gmail과 드라이브, 시트 사이의 반복 업무를 제미나이로 자동화하는 도구입니다.'
   - '플로우는 언제 실행할지 정하는 시작 조건과 실행할 작업인 단계, 값을 다음 단계로 넘기는 변수로 이뤄집니다.'
-  - '템플릿을 복사해 메일 요약이나 파일 저장처럼 결과를 확인하기 쉬운 업무부터 만들고 켜기 전에 테스트 실행과 권한 범위를 확인합니다.'
+  - 템플릿을 복사해 메일 요약이나 파일 저장처럼 결과를 확인하기 쉬운 업무부터 만들고 켜기 전에 테스트 실행과 권한 범위를 확인합니다.
 ---
 
 Gmail에서 받은 메일을 읽고, 첨부파일을 Drive에 저장하고, 팀 채팅에 알림을 보내는 업무를 매번 반복하는 경우가 있습니다. 한 번에 걸리는 시간은 짧아도 하루에 여러 번 실행하면 다른 업무를 끊는 원인이 됩니다.
