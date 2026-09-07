@@ -69,7 +69,7 @@ Muse Code는 함께 공개된 전용 모델 Muse Spark 1.2로 움직입니다. �
 
 ![메타가 공개한 Meta Internal Coding Bench 차트, 클로드 코드의 Opus 5가 79.4%로 1위이고 Muse Spark 1.2가 70.6%로 2위](/images/insights/meta-muse-code-vs-claude-code/muse-code-internal-bench.png)
 
-메타 내부 업무에서 뽑은 실제 풀 리퀘스트 440건으로 만든 Meta Internal Coding Bench에서도 순서는 같습니다. Opus 5가 79.4%, Muse Spark 1.2가 70.6%입니다. 자사 벤치마크에서조차 경쟁사 모델을 1위로 표시한 발표는 흔하지 않습니다. 메타가 성능 1위를 주장하는 대신 다른 무기를 내세우고 있다는 뜻으로 읽힙니다. 그 무기는 아래에서 다룰 가격입니다.
+메타 내부 업무에서 뽑은 실제 풀 리퀘스트 440건으로 만든 Meta Internal Coding Bench에서도 순서는 같습니다. Opus 5가 79.4%, Muse Spark 1.2가 70.6%입니다. 자사 벤치마크에서조차 경쟁사 모델을 1위로 표시한 발표는 흔하지 않습니다. 메타가 성능 1위를 주장하는 대신 다른 무기를 내세우고 있다는 뜻으로 보입니다. 그 무기는 아래에서 다룰 가격입니다.
 
 ## Muse Code와 클로드 코드의 차이 비교
 
