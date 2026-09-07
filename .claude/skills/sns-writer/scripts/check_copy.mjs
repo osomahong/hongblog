@@ -432,8 +432,14 @@ if (!VOICE) {
     // 수치 나열 자체가 카피다. P9의 "수치를 옮기지 않는다"와 정면으로 부딪히므로 면제한다.
     // 2026-08-27에 기록형을 처음 쓰면서 확인했다. 화살표 나열 2줄 이상을 신호로 본다.
     const isLogForm = (raw.match(/(→|->|~>)/g) || []).length >= 2;
+    // 통찰형(hongsh-voice 10-tone-threads, 2026-09-07 사용자 샘플)은 숫자 하나를 뼈대로
+    // "100달러 가운데 25달러, 나머지 75달러"처럼 분해하는 것이 형식이라 수치가 카피의 뼈대다.
+    // 큰따옴표 질문 한 줄과 수치 셋 이상을 신호로 보고 수치 이전 제한을 면제한다. 절 겹침 검사는 그대로 건다.
+    const isInsightForm = /^[“"'‘][^”"'’]{6,}[?？][”"'’]?\s*$/m.test(raw) && (raw.match(/\d[\d,.]*/g) || []).length >= 3;
     if (isLogForm && moved.length >= 3) {
       console.log(`  - 기록형이라 수치 ${moved.length}개를 옮겼다. 이 계열은 나열이 형식이라 통과시킨다`);
+    } else if (isInsightForm && moved.length >= 3) {
+      console.log(`  - 통찰형이라 수치 ${moved.length}개를 옮겼다. 숫자 하나를 뼈대로 분해하는 계열이라 통과시킨다`);
     } else if (moved.length >= 3) {
       console.log(`  x 본문 수치 ${moved.length}개(${moved.join(", ")})를 그대로 옮겼다. 수치는 본문에서 확인하게 남긴다`);
       failed += 1;
