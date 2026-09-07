@@ -97,6 +97,13 @@
         "threads",
         "linkedin"
       ]
+    },
+    "qwen3-tts-voice-clone-fine-tuning-mac-mini": {
+      "date": "2026-09-07",
+      "platforms": [
+        "threads",
+        "linkedin"
+      ]
     }
   }
 }
