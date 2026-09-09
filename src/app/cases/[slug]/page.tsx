@@ -5,7 +5,7 @@ import { workCases, getWorkCase } from "@/lib/cases";
 import { CaseVisual } from "@/components/cases/CaseVisual";
 import { caseVisuals } from "@/lib/case-visuals";
 import { educationPrograms } from "@/lib/education";
-import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
+import { AUTHOR_PERSON_LD, AUTHOR_LABEL } from "@/lib/structured-data";
 import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-static";
@@ -43,7 +43,7 @@ export default async function CasePage({ params }: Props) {
           <p className="text-base sm:text-lg leading-[1.8] text-gray-600 mb-6">{item.description}</p>
           <p className="text-sm text-gray-600 mb-3">{item.sector}</p>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-gray-600">
-            <Link href="/about" className="underline underline-offset-4">홍승협(준이아빠)</Link>
+            <Link href="/about" className="underline underline-offset-4">{AUTHOR_LABEL}</Link>
           </div>
         </header>
         <div className="text-[16px] sm:text-[17px] leading-[1.95] text-gray-800 [word-break:keep-all] [overflow-wrap:anywhere]">
@@ -61,6 +61,10 @@ export default async function CasePage({ params }: Props) {
         <footer className="mt-12 sm:mt-16 border-t border-gray-200 pt-6">
           <p className="mb-6 text-sm text-gray-500">최종 수정 <time dateTime={item.updatedAt}>{item.updatedAt}</time></p>
           {item.references?.map((reference) => <p key={reference.url} className="mb-6 text-sm text-gray-600">기술 참고: <a href={reference.url} className="underline underline-offset-4">{reference.label}</a></p>)}
+          <section aria-labelledby="case-evidence" className="mb-8 text-sm text-gray-600 leading-relaxed">
+            <h2 id="case-evidence" className="font-bold text-black mb-2">사례의 공개 범위</h2>
+            <p>홍승협이 수행한 역할과 작업 과정을 정리한 사례입니다. 고객 이름과 내부 문서는 공개하지 않습니다. 설명을 위해 재구성한 화면은 실제 고객 원본과 구분해 표시합니다. 기술 참고 링크는 방법의 근거이며 고객의 성과를 독립적으로 검증한 자료는 아닙니다.</p>
+          </section>
           <section aria-labelledby="related-title">
             <h2 id="related-title" className="text-sm font-bold text-gray-500 mb-4">함께 읽을 글</h2>
             <ul className="space-y-3">{related.map((value) => <li key={value.slug}><Link href={`/cases/${value.slug}`} className="underline underline-offset-4 leading-relaxed hover:text-[#FF0033]">{value.title}</Link></li>)}</ul>

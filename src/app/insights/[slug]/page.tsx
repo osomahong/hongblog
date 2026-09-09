@@ -7,7 +7,7 @@ import { NeoBadge } from "@/components/neo";
 import { NeoButton } from "@/components/neo";
 import { NeoTagBadge } from "@/components/neo";
 import { absoluteUrl } from "@/lib/utils";
-import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
+import { AUTHOR_PERSON_LD, AUTHOR_LABEL } from "@/lib/structured-data";
 import { classHref } from "@/lib/links";
 import { SITE_URL } from "@/lib/constants";
 import { getInsightSummary3, getPostBySlug, getRelatedClassesForPost, getPublishedPosts, getTrendingInsightSlugs } from "@/lib/content";
@@ -84,7 +84,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: absoluteUrl(`/insights/${slug}`),
       publishedTime: (post.publishedAt ?? post.createdAt).toISOString(),
       modifiedTime: post.updatedAt.toISOString(),
-      authors: ["준이아빠"],
+      authors: [AUTHOR_LABEL],
       tags: post.tags,
       images: post.ogImage ? [{ url: post.ogImage, width: 1200, height: 630 }] : undefined,
     },
@@ -321,6 +321,7 @@ export default async function InsightDetailPage({ params }: Props) {
               <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tighter mb-2 sm:mb-4 comic-emphasis leading-tight">
                 {post.title}
               </h1>
+              <p className="my-3 text-sm text-muted-foreground"><Link href="/about" rel="author" className="underline underline-offset-4">{AUTHOR_LABEL}</Link>{" / 데이터 분석, AI 실무 교육"}</p>
               <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">{post.excerpt}</p>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 sm:gap-x-4 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t-2 border-black">
                 <span className="shrink-0 whitespace-nowrap text-xs sm:text-sm font-mono">

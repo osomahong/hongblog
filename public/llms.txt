@@ -16,11 +16,17 @@
 - 산업군: 공공, 금융, 리테일, 이커머스, 제조, 엔터, 보안, 패션, 플랫폼, 면세, 유통, 대학교육 등 12개 이상
 - 상세: https://www.digitalmarketer.co.kr/about
 
-## 콘텐츠 구조 (2026년 8월 기준 159편)
+- [작성자와 서비스 안내](https://www.digitalmarketer.co.kr/about)
+- [기업 AI 실무 교육](https://www.digitalmarketer.co.kr/education)
+- [수행 사례와 공개 범위](https://www.digitalmarketer.co.kr/cases)
 
-- **Insights** (`/insights/{slug}`): 마케팅, AI, 데이터 분석에 대한 심화 인사이트 91편
-- **Class** (`/class/{courseSlug}/{classSlug}`): 체계적으로 정리된 개념 학습 콘텐츠 62편
-- **Courses** (`/class/{courseSlug}`): 주제별 학습 경로 6개
+## 콘텐츠 구조
+
+전체 목록과 최신 글은 각 허브와 사이트맵을 기준으로 확인합니다. 아래 링크는 주요 자료의 선별 목록입니다.
+
+- **Insights** (`/insights/{slug}`): 마케팅, AI, 데이터 분석에 대한 심화 인사이트
+- **Class** (`/class/{courseSlug}/{classSlug}`): 체계적으로 정리된 개념 학습 콘텐츠
+- **Courses** (`/class/{courseSlug}`): 주제별 학습 경로
 - **AI-Practice** (`/ai-practice`): PBL 기반 AI Self Education. 프롬프트 기초, 중급, 심화 AIPBL(프로젝트 기반 AI 실습)을 웹 실습 화면에서 진행
 
 ## 핵심 전문 분야
@@ -77,4 +83,4 @@ Search Console 실측 노출 기준 상위 문서입니다.
 - 작성자: 준이아빠
 - 기술 스택: Next.js, Vercel
 - 콘텐츠 갱신: 수시
-- 이 파일 갱신: 2026-08-02
+- 이 파일 갱신: 2026-09-10

@@ -8,3 +8,5 @@ export const AUTHOR_PERSON_LD = {
   alternateName: "준이아빠",
   url: absoluteUrl("/about"),
 } as const;
+
+export const AUTHOR_LABEL = `${AUTHOR_PERSON_LD.name}(${AUTHOR_PERSON_LD.alternateName})`;

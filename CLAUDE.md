@@ -206,3 +206,7 @@ GA4 용어, 썸네일 규격). 특정 스킬 전용 규칙은 그 스킬의 `ref
 - **Slugs**: Kebab-case English. Duplicate slugs get `-2`, `-3` suffix.
 - **React Compiler**: Enabled in `next.config.ts`. No manual `useMemo`/`useCallback` needed for rendering optimization.
 - **Image handling**: Use native `<img>` in client components for lightweight loading; `next/image` in server components.
+
+## 작업마다 확인할 유지보수
+
+`AGENTS.md`의 유지보수 기준을 모든 콘텐츠/템플릿 변경에 적용한다. `npm run build`의 postbuild는 `npm run check:maintenance`로 렌더 HTML, 작성자, 학점, 공개 설명, 구독 selector, llms 링크와 내부 링크를 확인한다. 공식 출처/실제 검증일과 구독 상태 검토는 별도로 기록한다.

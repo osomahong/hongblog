@@ -69,8 +69,8 @@ export function StepsSection({ title, lead, steps }: StepsSectionProps) {
                   <ChevronDown className="w-4 h-4 ga4-timeline-caret" strokeWidth={2} aria-hidden />
                 </button>
 
-                {isOpen && (
-                  <div id={panelId}>
+                {(
+                  <div id={panelId} hidden={!isOpen}>
                     <p className="ga4-timeline-body">{step.body}</p>
                     {step.image && (
                       <button
@@ -207,7 +207,7 @@ export function FaqSection({ faq }: { faq: FaqPair[] }) {
                 </span>
                 {item.question}
               </button>
-              {isOpen && <p className="ga4-acc-a">{item.answer}</p>}
+              <p className="ga4-acc-a" hidden={!isOpen}>{item.answer}</p>
             </div>
           );
         })}

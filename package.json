@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "tsx scripts/check-search-readiness.ts",
+    "postbuild": "npm run check:maintenance",
     "start": "next start",
     "lint": "eslint",
     "prebuild": "tsx scripts/generate-class-map.ts && tsx scripts/check-links.ts && tsx scripts/check-titles.ts",
@@ -14,7 +14,8 @@
     "check:links:html": "tsx scripts/check-links.ts --html",
     "check:search": "tsx scripts/check-search-readiness.ts",
     "check:prose": "tsx scripts/check-prose.ts",
-    "check:summary3": "tsx scripts/check-summary3.ts"
+    "check:summary3": "tsx scripts/check-summary3.ts",
+    "check:maintenance": "npm run check:search && npm run check:links:html"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",

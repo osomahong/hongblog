@@ -11,7 +11,7 @@ import { isAiPracticeTopic } from "@/lib/aipractice-topic";
 import { ClassProgressMarker } from "@/components/ClassProgressMarker";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { absoluteUrl } from "@/lib/utils";
-import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
+import { AUTHOR_PERSON_LD, AUTHOR_LABEL } from "@/lib/structured-data";
 import { SITE_URL, SITE_NAME } from "@/lib/constants";
 import { classHref } from "@/lib/links";
 import { ContentFocusLayout } from "@/components/ContentFocusLayout";
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             url: absoluteUrl(`/class/${courseSlug}/${classSlug}`),
             publishedTime: (classData.publishedAt ?? classData.createdAt).toISOString(),
             modifiedTime: classData.updatedAt.toISOString(),
-            authors: ["준이아빠"],
+            authors: [AUTHOR_LABEL],
             tags: classData.tags,
             images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : undefined,
         },
@@ -380,6 +380,7 @@ export default async function ClassDetailPage({ params }: Props) {
                             <h1 className="text-3xl sm:text-5xl font-black tracking-tighter mb-3 sm:mb-4 comic-emphasis leading-tight">
                                 {classData.term}
                             </h1>
+              <p className="my-3 text-sm text-muted-foreground"><Link href="/about" rel="author" className="underline underline-offset-4">{AUTHOR_LABEL}</Link>{" / 데이터 분석, AI 실무 교육"}</p>
 
                             <p className="text-base sm:text-xl text-muted-foreground leading-relaxed border-l-4 border-primary pl-4 sm:pl-6 py-2">
                                 {classData.definition}

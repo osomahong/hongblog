@@ -1063,6 +1063,37 @@ export default async function AboutPage() {
         </div>
       </section>
 
+      <section id="services" className="mb-12 sm:mb-16 scroll-mt-24" aria-labelledby="services-title">
+        <h2 id="services-title" className="text-xl sm:text-2xl font-black mb-6">의뢰 범위와 결과물</h2>
+        <p className="mb-6 text-gray-700 leading-relaxed">컨설팅과 교육은 현재 문제와 필요한 결과물을 확인한 뒤 범위를 정합니다. 아래 결과물은 협의할 수 있는 예시이며 모든 항목이 기본으로 포함되는 것은 아닙니다.</p>
+        <div className="space-y-5">
+          {[
+            { title: "GA4, GTM 구축과 담당자 교육", target: "수집 데이터가 맞는지 확인하거나 운영 담당자의 인수인계가 필요한 팀", outputs: "현황 진단, 이벤트 정의서, 개발 요청 가이드, 태그 검증 기록, 운영 교육", acceptance: "합의한 사용자 행동을 재현해 이벤트명, 전달 값, 중복과 누락을 확인하고 남은 항목을 문서로 정리합니다.", href: "/cases/purchase-measurement-design", link: "구매 이벤트 설계 사례" },
+            { title: "GEO 진단과 개선 과제 정리", target: "AI 답변의 브랜드 언급과 웹사이트 인용 현황을 확인하려는 팀", outputs: "페이지 진단, 고객 질문 목록, 답변과 인용 URL 기록, 우선순위별 수정 과제", acceptance: "질문과 실행 조건, 집계 분모를 남기고 방문 데이터와 직접 인용을 분리합니다. 특정 순위나 인용 건수를 보장하지 않습니다.", href: "/insights/geo-agency-selection-criteria", link: "GEO 측정과 검증 기준" },
+            { title: "기업, 기관의 AI 실무 교육", target: "마케팅과 데이터 업무에 AI를 적용하려는 실무자", outputs: "업무별 교육 구성안, 실습 예제, 결과 검토 기준, 현업 적용 과제", acceptance: "교육 대상과 난이도에 맞춘 실습 범위를 정하고 결과물과 수정할 항목을 함께 확인합니다.", href: "/education", link: "교육 주제와 실습 결과물" },
+          ].map((service) => (
+            <article key={service.title} className="bg-white border-2 sm:border-4 border-black p-5 sm:p-6">
+              <h3 className="font-black text-lg mb-4">{service.title}</h3>
+              <dl className="space-y-3 text-sm sm:text-base leading-relaxed">
+                <div><dt className="font-bold">대상</dt><dd className="text-gray-700">{service.target}</dd></div>
+                <div><dt className="font-bold">결과물 예시</dt><dd className="text-gray-700">{service.outputs}</dd></div>
+                <div><dt className="font-bold">완료 확인</dt><dd className="text-gray-700">{service.acceptance}</dd></div>
+              </dl>
+              <Link href={service.href} className="inline-block mt-4 font-bold underline underline-offset-4">{service.link}</Link>
+            </article>
+          ))}
+        </div>
+        <div className="mt-5 border-2 border-black bg-white p-5 sm:p-6 text-sm sm:text-base leading-relaxed">
+          <h3 className="font-black mb-3">진행 전에 협의하는 항목</h3>
+          <ul className="list-disc pl-5 space-y-3 text-gray-700">
+            <li>준비사항: 대상 사이트, 해결하려는 문제, 현재 도구, 담당자와 개발 협업 가능 여부를 확인합니다. 계정 권한과 예제 데이터는 필요한 범위를 정한 뒤 준비합니다.</li>
+            <li>별도 협의 범위: 사이트 개발, 상시 운영, 콘텐츠 대량 제작, 추가 교육과 도구 사용료는 포함 여부를 따로 정합니다.</li>
+            <li>기간과 견적: 사이트 수, 이벤트 수, 구현 복잡도, 교육 인원과 회차, 검수 및 후속 지원 범위에 따라 산정합니다.</li>
+          </ul>
+          <p className="mt-4">문의 시 대상과 목표, 희망 일정, 필요한 결과물을 <a href="mailto:hong@oso.ma" className="font-bold underline">hong@oso.ma</a>로 보내 주시면 협의할 수 있습니다.</p>
+        </div>
+      </section>
+
       {/* 자주 묻는 질문. FAQPage JSON-LD와 문구를 일치시킨다 */}
       <section className="mb-12 sm:mb-16">
         <div className="flex items-center gap-2 mb-6">

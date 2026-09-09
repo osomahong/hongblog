@@ -104,6 +104,7 @@ export default async function Ga4EduTutorialPage(props: {
     url,
     description,
     inLanguage: "ko",
+    ...(t.reviewedAt ? { dateModified: t.reviewedAt } : {}),
     learningResourceType: "대화형 튜토리얼",
     about: ["Google Analytics 4", AREA_LABEL[t.area]],
     teaches: t.teaches ?? [t.title],
@@ -239,6 +240,13 @@ export default async function Ga4EduTutorialPage(props: {
         )}
 
         <RelatedGrid items={related.slice(0, 4)} />
+
+        {t.reviewedAt && t.reviewSource && (
+          <p className="ga4-tut-section text-sm text-gray-600">
+            GA4 개념 확인 <time dateTime={t.reviewedAt}>{t.reviewedAt}</time>{" / "}
+            <a href={t.reviewSource.url} className="underline">{t.reviewSource.label}</a>
+          </p>
+        )}
 
         {t.sources && t.sources.length > 0 && (
           <section className="ga4-tut-section">

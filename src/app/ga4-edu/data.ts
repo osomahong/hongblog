@@ -83,12 +83,17 @@ export interface Ga4EduTutorial {
   takeaways?: string[];
   related?: string[];
   sources?: SourceLink[];
+  /** 실제로 개념과 공식 근거를 다시 확인한 날짜. 빌드 날짜를 넣지 않는다. */
+  reviewedAt?: string;
+  reviewSource?: SourceLink;
 }
 
 export const GA4_EDU_TUTORIALS: Ga4EduTutorial[] = [
   /* ================= 초급 ================= */
   {
     slug: "traffic-acquisition-channels",
+    reviewedAt: "2026-09-10",
+    reviewSource: { label: "Google 공식 문서: GA4와 UA의 세션 차이", url: "https://support.google.com/analytics/answer/11986666?hl=en" },
     order: 1,
     level: "basic",
     area: "analysis",
@@ -123,7 +128,7 @@ export const GA4_EDU_TUTORIALS: Ga4EduTutorial[] = [
       {
         term: "세션",
         definition:
-          "세션은 사용자가 사이트에 들어와서 활동한 한 묶음의 방문입니다. 30분 동안 아무 활동이 없으면 끊기고, 그 뒤에 다시 움직이면 새 세션으로 셉니다. 자정을 넘겨도 세션이 나뉩니다. 한 사람이 하루에 세 번 들어오면 사용자 수는 1이고 세션수는 3입니다.",
+          "세션은 사용자가 사이트에 들어와서 활동한 한 묶음의 방문입니다. 기본 설정에서는 30분 동안 아무 활동이 없으면 종료되고, 그 뒤에 다시 움직이면 새 세션으로 셉니다. GA4에서는 자정이 되거나 캠페인 매개변수가 바뀌었다는 이유만으로 세션을 새로 시작하지 않습니다. 한 사람이 하루에 세 번 들어오면 사용자 수는 1이고 세션수는 3입니다.",
       },
       {
         term: "참여율",
@@ -513,6 +518,8 @@ export const GA4_EDU_TUTORIALS: Ga4EduTutorial[] = [
   },
   {
     slug: "users-sessions-events",
+    reviewedAt: "2026-09-10",
+    reviewSource: { label: "Google 공식 문서: GA4와 UA의 세션 차이", url: "https://support.google.com/analytics/answer/11986666?hl=en" },
     order: 4,
     level: "basic",
     area: "analysis",
@@ -547,7 +554,7 @@ export const GA4_EDU_TUTORIALS: Ga4EduTutorial[] = [
       {
         term: "세션",
         definition:
-          "세션은 한 사람이 들어와서 활동한 방문 묶음입니다. 30분 동안 아무 활동이 없으면 끊기고, 그 뒤에 다시 움직이면 새 세션이 됩니다. 자정을 넘겨도 나뉩니다. 한 사람이 아침과 저녁에 한 번씩 들어오면 사용자는 1이고 세션은 2입니다. 그래서 세션수는 늘 사용자 수보다 크거나 같습니다. 준준상점의 지난 28일은 사용자 9,840명에 세션 25,260회로 한 사람이 평균 2.57번 들어왔습니다.",
+          "세션은 한 사람이 들어와서 활동한 방문 묶음입니다. 기본 설정에서는 30분 동안 아무 활동이 없으면 종료되고, 그 뒤에 다시 움직이면 새 세션이 됩니다. GA4에서는 자정이 되거나 캠페인 매개변수가 바뀌었다는 이유만으로 세션을 새로 시작하지 않습니다. 한 사람이 아침과 저녁에 한 번씩 들어오면 사용자는 1이고 세션은 2입니다. 그래서 세션수는 늘 사용자 수보다 크거나 같습니다. 준준상점의 지난 28일은 사용자 9,840명에 세션 25,260회로 한 사람이 평균 2.57번 들어왔습니다.",
       },
       {
         term: "이벤트 수",
