@@ -11,6 +11,8 @@ import { KAKAO_INQUIRY_URL } from "@/lib/constants";
 import type { CourseLink } from "@/lib/promotions";
 
 const EXPLORE_LINKS = [
+  { href: "/education", label: "AI 교육 안내" },
+  { href: "/cases", label: "교육과 컨설팅 사례" },
   { href: "/ai-practice", label: "AI-Practice" },
   { href: "/class", label: "Class" },
   { href: "/insights", label: "Insights" },

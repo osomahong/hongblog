@@ -1,3 +1,4 @@
+import { workCases } from "@/lib/cases";
 import { getInsights, getClasses, getCourses, getAllTagsWithId, getContentByTag } from "@/lib/content";
 import { SITE_URL, MIN_TAG_ITEMS_FOR_INDEX } from "@/lib/constants";
 import { getIndexableTutorials } from "@/app/ga4-edu/data";
@@ -66,7 +67,10 @@ function buildClassSitemap(): SitemapEntry[] {
   return [
     { url: SITE_URL, changefreq: "daily", priority: 1.0 },
     { url: `${SITE_URL}/class`, changefreq: "weekly", priority: 0.9 },
-    { url: `${SITE_URL}/about`, changefreq: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/about`, lastModified: "2026-09-09", changefreq: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/education`, lastModified: "2026-09-09", changefreq: "monthly", priority: 0.7 },
+    { url: `${SITE_URL}/cases`, lastModified: workCases.map((item) => item.updatedAt).sort().at(-1), changefreq: "monthly", priority: 0.7 },
+    ...workCases.map((item) => ({ url: `${SITE_URL}/cases/${item.slug}`, lastModified: item.updatedAt, changefreq: "monthly" as const, priority: 0.7 })),
     { url: `${SITE_URL}/tags`, changefreq: "weekly", priority: 0.7 },
     // AI-Practice: AIPBL 실습 (레거시 [slug] 트랙은 noindex라 제외)
     { url: `${SITE_URL}/ai-practice`, changefreq: "weekly", priority: 0.9 },

@@ -1,3 +1,4 @@
+import { workCases } from "../src/lib/cases";
 /**
  * 내부 링크 무결성 검사.
  *
@@ -48,6 +49,9 @@ const validRoutes = new Set<string>([
     "/class",
     "/tags",
     "/about",
+    "/education",
+    "/cases",
+    ...workCases.map((item) => `/cases/${item.slug}`),
     "/rss.xml",
     "/sitemap.xml",
     "/robots.txt",
@@ -209,6 +213,15 @@ if (process.argv.includes("--html")) {
     if (!fs.existsSync(APP_DIR)) {
         console.error("빌드 산출물이 없습니다. npm run build 후 다시 실행하세요.");
         process.exit(1);
+    }
+    // 실제 빌드된 정적 경로도 포함한다. 콘텐츠 목록만으로 검사하면
+    // GA4 학습·개인정보 안내 등 앱 페이지를 잘못된 링크로 오인한다.
+    const manifestPath = path.join(ROOT, ".next/prerender-manifest.json");
+    if (fs.existsSync(manifestPath)) {
+        const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf-8")) as {
+            routes?: Record<string, unknown>;
+        };
+        for (const route of Object.keys(manifest.routes ?? {})) validRoutes.add(route);
     }
     const htmlFiles: string[] = [];
     const walk = (dir: string) => {

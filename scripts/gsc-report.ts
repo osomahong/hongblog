@@ -48,8 +48,8 @@ async function query(token: string, body: Record<string, unknown>): Promise<Row[
 }
 
 const END = new Date(Date.now() - 3 * 86400000).toISOString().slice(0, 10);
-const START_90 = new Date(Date.now() - 93 * 86400000).toISOString().slice(0, 10);
-const START_28 = new Date(Date.now() - 31 * 86400000).toISOString().slice(0, 10);
+const START_90 = new Date(new Date(END).getTime() - 89 * 86400000).toISOString().slice(0, 10);
+const START_28 = new Date(new Date(END).getTime() - 27 * 86400000).toISOString().slice(0, 10);
 
 function pathOf(url: string): string {
   try { return new URL(url).pathname; } catch { return url; }

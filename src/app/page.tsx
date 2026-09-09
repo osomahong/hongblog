@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Database, TrendingUp } from "lucide-react";
+import { ArrowRight, Sparkles, Database, TrendingUp, type LucideIcon } from "lucide-react";
 import { SITE_URL } from "@/lib/constants";
+import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
 import {
-  NeoCard,
   NeoCardHeader,
   NeoCardTitle,
   NeoCardDescription,
@@ -20,14 +20,13 @@ import {
   getCategoryStats,
   getAllTagsWithId,
 } from "@/lib/content";
-import type { TrendingItem } from "@/lib/types";
 import { getHeroSlots, getCourseCards } from "@/lib/promotions";
 import { TrackedLink } from "@/components/TrackedLink";
 import { NewsletterCta } from "@/components/NewsletterCta";
 import { HeroCarousel } from "@/components/home/HeroCarousel";
 import { CourseCarousel } from "@/components/home/CourseCarousel";
 
-const categoryIcons: Record<string, any> = {
+const categoryIcons: Record<string, LucideIcon> = {
   AI_TECH: Sparkles,
   DATA: Database,
   MARKETING: TrendingUp,
@@ -83,18 +82,10 @@ export default async function HomePage() {
     description:
       "AI 도구 활용법, 클로드 코드와 바이브코딩 입문, GA4와 디지털 마케팅 실무를 다루는 기술 블로그입니다.",
     inLanguage: "ko",
-    publisher: { "@id": `${SITE_URL}/#person` },
+    publisher: AUTHOR_PERSON_LD,
   };
 
-  const personLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": `${SITE_URL}/#person`,
-    name: "준이아빠",
-    url: `${SITE_URL}/about`,
-    jobTitle: "데이터 마케터",
-    knowsAbout: ["디지털 마케팅", "GA4", "AI 도구 활용", "바이브코딩", "데이터 분석"],
-  };
+  const personLd = { "@context": "https://schema.org", ...AUTHOR_PERSON_LD };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-12 relative">
@@ -113,6 +104,16 @@ export default async function HomePage() {
       {/* 추천 코스 배너 */}
       <HeroCarousel slots={heroSlots} />
 
+      <section aria-labelledby="education-intro-title" className="mb-6 sm:mb-10 border-2 border-black bg-white p-4 sm:p-6">
+        <h2 id="education-intro-title" className="font-black text-lg sm:text-xl mb-2">비개발자, 마케터를 위한 AI 실무 교육</h2>
+        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">홍승협(준이아빠)이 마케팅과 데이터 분석 경험을 바탕으로 콘텐츠 작성, 데이터 해석, 반복 업무에 AI를 적용하는 방법을 교육합니다.</p>
+        <div className="flex flex-wrap gap-4 mt-3 text-sm sm:text-base font-bold underline underline-offset-4">
+          <Link href="/education">기업, 기관 교육 안내</Link>
+          <Link href="/about">강사 이력</Link>
+          <Link href="/cases">교육과 컨설팅 사례</Link>
+        </div>
+      </section>
+
       {/* 코스 캐러셀 */}
       <CourseCarousel courses={courseCards} />
 
@@ -125,9 +126,8 @@ export default async function HomePage() {
             <span className="text-[10px] sm:text-xs text-muted-foreground font-mono font-normal normal-case tracking-normal ml-auto">최근 7일 인기</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-4 divide-y divide-gray-200 sm:divide-y-0">
-            {trending.map((item, index) => {
+            {trending.map((item) => {
               const Icon = categoryIcons[item.category as keyof typeof categoryIcons] || Sparkles;
-              const rotations = ["", "sm:rotate-1", "", "sm:rotate-0.5"];
 
               return (
                   <TrackedLink

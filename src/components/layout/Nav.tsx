@@ -31,7 +31,7 @@ const NAV_LINKS = [
 interface NavCtaButtonsProps {
   apTheme: boolean;
   location: "nav" | "nav_mobile";
-  /** true면 lg 미만에서 아이콘만 남긴다 (데스크톱 내비 전용) */
+  /** true면 xl 미만에서 아이콘만 남긴다 (데스크톱 내비 전용) */
   compactLabels?: boolean;
 }
 
@@ -245,8 +245,8 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
             </div>
             <span
               className={cn(
-                // sm~md 구간은 메뉴, CTA 버튼과 폭 경합이 나서 로고 텍스트를 숨긴다
-                "text-lg sm:text-xl font-black tracking-tighter sm:hidden md:inline",
+                // 1024px 미만에서는 접이식 메뉴를 사용하므로 로고 이름을 유지한다
+                "text-lg sm:text-xl font-black tracking-tighter",
                 isApTheme && "text-white"
               )}
             >
@@ -256,8 +256,8 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
 
           {/* 메뉴, CTA 버튼, 햄버거를 묶어 오른쪽 정렬한다 */}
           <div className="flex items-center gap-3 min-w-0">
-          {/* Desktop Navigation Links. CTA 버튼과 한 줄에 공존해야 해서 lg 미만에서는 밀도를 줄인다 */}
-          <div className="hidden sm:flex items-center gap-1 lg:gap-1.5">
+          {/* Desktop Navigation Links. 태블릿에서는 아래 접이식 메뉴를 사용한다 */}
+          <div className="hidden lg:flex items-center gap-1 lg:gap-1.5">
             {NAV_LINKS.map(({ href, label }) => {
               // GA4 Edu는 GA4 로고 색을 그대로 입힌 필로 구분한다
               if (href === "/ga4-edu") {
@@ -341,13 +341,13 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
           </div>
 
           {/* Desktop CTA Buttons. 돋보기는 뉴스레터 버튼 왼쪽에 둔다 */}
-          <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-2 flex-shrink-0">
             <SearchTrigger apTheme={isApTheme} onOpen={openSearch} />
             <NavCtaButtons apTheme={isApTheme} location="nav" compactLabels />
           </div>
 
           {/* Mobile: 검색은 햄버거를 열지 않고 바로 닿아야 해서 밖에 둔다 */}
-          <div className="sm:hidden">
+          <div className="lg:hidden">
             <SearchTrigger apTheme={isApTheme} onOpen={openSearch} />
           </div>
 
@@ -355,12 +355,13 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className={cn(
-              "sm:hidden p-2 border-2 active:translate-x-0.5 active:translate-y-0.5 transition-all",
+              "lg:hidden p-2 border-2 active:translate-x-0.5 active:translate-y-0.5 transition-all",
               isApTheme
                 ? "border-white/25 text-white rounded-[8px]"
                 : "border-black neo-shadow-sm active:shadow-none"
             )}
-            aria-label="메뉴 열기"
+            aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -371,7 +372,7 @@ export function Nav({ courses = [] }: { courses?: CourseLink[] }) {
         {isMenuOpen && (
           <div
             className={cn(
-              "sm:hidden py-2",
+              "lg:hidden py-2",
               isApTheme ? "border-t border-white/10" : "border-t-2 border-black"
             )}
           >

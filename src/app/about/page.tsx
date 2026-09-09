@@ -10,11 +10,8 @@ import {
   BookOpen,
   Layers,
   Award,
-  Users,
-  Building2,
   GraduationCap,
   CalendarDays,
-  Tag,
   FileText,
   GitBranch,
   UserCheck,
@@ -33,18 +30,18 @@ import { NeoTiltCard } from "@/components/neo";
 import { ViewTracker } from "@/components/ViewTracker";
 import { BrandIcon } from "@/components/icons/BrandIcons";
 import { AboutCanvasFx } from "@/components/about/AboutCanvasFx";
+import { ExperienceCases } from "@/components/education/ExperienceCases";
+import { PROFILE_DESCRIPTION } from "@/lib/education";
+import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
 
 const BASE_YEAR = CAREER_BASE_YEAR;
 const REFERENCE_YEAR = CAREER_REFERENCE_YEAR;
-const CLIENT_COUNT_LABEL = "120곳+";
-/** 경력, 고객사, 교육 수치를 마지막으로 확인한 시점 */
-const CREDENTIAL_AS_OF = "2026년 8월";
 /** 화면의 프로필 버튼과 Person, Organization JSON-LD의 sameAs가 같은 값을 쓴다 */
 const LINKEDIN_PROFILE_URL =
   "https://www.linkedin.com/in/%EC%8A%B9%ED%98%91-%ED%99%8D-1771b2240/";
 
 const ABOUT_TITLE = "AI, 데이터 분석 컨설턴트 홍승협(준이아빠) 소개";
-const ABOUT_DESCRIPTION = `홍승협(준이아빠)은 ${YEARS_OF_EXPERIENCE}년차 AI/AX, 데이터 분석 컨설턴트입니다. AEO와 GEO, AI 업무 자동화 컨설팅과 함께 ${CLIENT_COUNT_LABEL} 기업과 기관의 GA4, GTM 분석 환경을 구축했고 누적 1,000명 이상을 교육했습니다.`;
+const ABOUT_DESCRIPTION = PROFILE_DESCRIPTION;
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -89,24 +86,6 @@ function buildStats(counts: ContentCounts) {
       sub: `${BASE_YEAR}년~${REFERENCE_YEAR}년 기준`,
     },
     {
-      icon: Building2,
-      value: CLIENT_COUNT_LABEL,
-      label: "누적 고객사 프로젝트",
-      sub: "최근 5년 누적 기준",
-    },
-    {
-      icon: Tag,
-      value: "3,000+",
-      label: "누적 설계 이벤트와 파라미터",
-      sub: `고객사당 20~30개 × ${CLIENT_COUNT_LABEL}`,
-    },
-    {
-      icon: Users,
-      value: "1,000명+",
-      label: "누적 실무 교육 수강자",
-      sub: "기업 담당자, 공공 아카데미",
-    },
-    {
       icon: BookOpen,
       value: `${counts.total}편`,
       label: "공개 콘텐츠",
@@ -114,9 +93,9 @@ function buildStats(counts: ContentCounts) {
     },
     {
       icon: GraduationCap,
-      value: "12개+",
-      label: "산업군 경험",
-      sub: "공공, 금융, 이커머스, 제조 외",
+      value: "실습 중심",
+      label: "기업·기관 교육",
+      sub: "디지털 마케팅과 데이터 활용",
     },
   ];
 }
@@ -150,7 +129,7 @@ const workItems = [
   {
     icon: FileText,
     title: "이벤트 택소노미와 정의서 설계",
-    desc: "비즈니스가 신경 써야 하는 순간을 일관된 네이밍과 계층 파라미터로 정의합니다. 고객사당 20~30개, 누적 3,000개 안팎 운영.",
+    desc: "구매·신청 등 중요한 행동을 이벤트로 정의하고, 이름과 파라미터의 기준을 문서로 정리합니다.",
   },
   {
     icon: GitBranch,
@@ -179,8 +158,8 @@ const workItems = [
   },
   {
     icon: Workflow,
-    title: "대형 프로젝트 리드와 교육",
-    desc: "관광 진흥 공공기관 데이터 분석 환경 구축 사업에 2023년부터 4년 연속 컨설턴트. 기업과 공공기관에서 AI 활용과 데이터 분석 실무를 누적 1,000명 이상 교육했습니다.",
+    title: "기업·기관 실무 교육",
+    desc: "기업·공공 교육기관에서 디지털 마케팅 강의와 데이터 활용 실습을 진행했습니다. AI 활용 교육은 대상의 업무와 수준에 맞춰 구성합니다.",
   },
 ];
 
@@ -654,20 +633,15 @@ export default async function AboutPage() {
 
   const personLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    // 글마다 붙는 Article.author가 이 @id를 참조해 하나의 인물 그래프로 합산된다
-    "@id": absoluteUrl("/about#person"),
-    name: "홍승협",
-    alternateName: ["준이아빠", "Hong Seunghyub"],
-    url: absoluteUrl("/about"),
+    ...AUTHOR_PERSON_LD,
     image: absoluteUrl("/profile-illustration.png"),
-    jobTitle: "AX 컨설팅 랩 차장",
+    jobTitle: "컨설팅 랩 차장",
     worksFor: {
       "@type": "Organization",
       name: "오픈소스마케팅",
       url: "https://osoma.kr",
     },
-    description: `${YEARS_OF_EXPERIENCE}년차 AI/AX, 데이터 분석 컨설턴트. AEO와 GEO, AI 업무 자동화 컨설팅과 ${CLIENT_COUNT_LABEL} 고객사의 GA4, GTM 분석 환경 구축. 누적 1,000명 이상 교육 경력.`,
+    description: PROFILE_DESCRIPTION,
     knowsAbout: [
       "AI 업무 자동화(AX)",
       "Answer Engine Optimization",
@@ -698,7 +672,7 @@ export default async function AboutPage() {
     name: "준이아빠블로그",
     url: SITE_URL,
     logo: absoluteUrl("/favicon.ico"),
-    founder: { "@type": "Person", name: "준이아빠" },
+    founder: AUTHOR_PERSON_LD,
     description:
       "GA4, GTM, AEO, GEO 실무 인사이트를 정리한 디지털 마케팅 지식 사이트.",
     sameAs: [LINKEDIN_PROFILE_URL],
@@ -722,7 +696,7 @@ export default async function AboutPage() {
         name: "강의나 교육은 어떻게 요청하나요?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "기업과 공공기관 출강, 온라인 강의 모두 가능합니다. 무역·투자 진흥 공공기관 아카데미와 대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다. 교육 대상과 인원, 희망 일정을 hong@oso.ma로 보내 주시면 커리큘럼안으로 회신합니다.",
+          text: "기업과 공공기관 출강, 온라인 교육을 협의할 수 있습니다. 교육 대상과 인원, 해결하려는 업무, 희망 일정을 hong@oso.ma로 보내 주시면 교육 구성안을 안내합니다.",
         },
       },
     ],
@@ -762,7 +736,7 @@ export default async function AboutPage() {
               zIndex: 0,
             }}
           />
-          <div className="relative z-10">
+          <div className="relative z-10 sm:pr-28">
             <div className="flex items-center gap-3 mb-4">
               <div className="relative w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full border-3 border-black overflow-hidden rotate-3">
                 <Image
@@ -779,29 +753,23 @@ export default async function AboutPage() {
             {/* 검색 결과 제목과 같은 H1. 슬로건은 시각 요소로 남긴다 */}
             <h1 className="sr-only">{ABOUT_TITLE}</h1>
             <p className="text-2xl sm:text-4xl md:text-5xl font-black text-black leading-tight mb-4">
-              마케팅 성과를
+              마케팅과 데이터를 아는
               <br />
-              <span className="text-[#FF0033]">데이터로 확인하는</span> 일을
-              합니다.
+              <span className="text-[#FF0033]">AI 실무 교육</span>
             </p>
             <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
-              저는 {YEARS_OF_EXPERIENCE}년차 디지털 마케터이자 AI/AX 컨설턴트로,
-              오픈소스마케팅 컨설팅 랩 차장으로 일하고 있는{" "}
-              <strong>홍승협(준이아빠)</strong>입니다. 공공기관, 면세 유통,
-              정보보안, 클라우드, 호텔, 글로벌 브랜드 한국 법인 등{" "}
-              <strong>120곳 이상의 기업과 기관</strong>에서{" "}
-              <strong>
-                이벤트 택소노미 설계, GA4와 GTM 분석 환경 구축, BigQuery
-                로우데이터 분석
-              </strong>
-              을 해왔습니다. 어떤 마케팅이 성과를 냈는지 데이터로 확인할 수 있게
-              만드는 일입니다. 기업 담당자와 공공 아카데미에서{" "}
-              <strong>누적 1,000명 이상</strong>을 교육했고, 이 사이트에는 그
-              과정에서 정리한 실무 인사이트를 올리고 있습니다.
-              <span className="block mt-2 text-xs text-gray-500">
-                경력 수치는 {CREDENTIAL_AS_OF} 기준
-              </span>
+              {PROFILE_DESCRIPTION}
             </p>
+            <p className="mt-3 text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl">
+              오픈소스마케팅 컨설팅 랩 차장으로 일하며, GA4·GTM 분석 환경과
+              마케팅 데이터 활용을 다뤄왔습니다. 비개발자와 마케터가 AI로
+              문서를 작성하고, 데이터를 해석하고, 반복 업무를 정리하는 방법을
+              교육합니다. 준이아빠블로그에는 직접 정리한 개념 학습 자료와
+              실무 인사이트를 공개합니다.
+            </p>
+            <Link href="/education" className="inline-flex items-center gap-2 mt-5 border-2 border-black bg-black text-white px-4 py-3 font-bold hover:bg-gray-800">
+              AI 교육 대상과 과정 보기 <ArrowRight className="w-4 h-4" />
+            </Link>
             {/* 고객사를 업종 표기로 바꾼 만큼, 경력을 직접 확인할 경로를 남긴다 */}
             <div className="mt-5 flex flex-wrap items-center gap-2">
               <a
@@ -827,6 +795,8 @@ export default async function AboutPage() {
         </NeoTiltCard>
       </section>
 
+      <ExperienceCases />
+
       {/* Credentials / Stats Section */}
       <section className="mb-12 sm:mb-16">
         <div className="flex items-center gap-2 mb-6">
@@ -835,7 +805,7 @@ export default async function AboutPage() {
           </div>
           <h2 className="text-xl sm:text-2xl font-black">경력</h2>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {stats.map((stat) => {
             const Icon = stat.icon;
             return (
@@ -857,9 +827,7 @@ export default async function AboutPage() {
           })}
         </div>
         <p className="mt-4 text-xs text-gray-500">
-          경력, 고객사, 교육 수치는 {CREDENTIAL_AS_OF} 기준이며 공개 가능한
-          레퍼런스와 내부 기록을 근거로 집계했습니다. 공개 콘텐츠 편수는 현재
-          사이트에 올라와 있는 글의 수입니다.
+          경력 연차는 {REFERENCE_YEAR}년 기준이며, 공개 콘텐츠 수는 현재 게시된 글과 코스의 합계입니다.
         </p>
       </section>
 
@@ -873,6 +841,7 @@ export default async function AboutPage() {
           </div>
           <h2 className="text-xl sm:text-2xl font-black">연혁</h2>
         </div>
+        <p className="mb-5 text-sm text-gray-600 leading-relaxed">연도는 각 프로젝트의 계약 시작 시점을 기준으로 정리했습니다.</p>
         <div className="border-t-4 border-black">
           {milestoneYears.map((year) => (
             <div
@@ -1122,13 +1091,12 @@ export default async function AboutPage() {
               강의나 교육은 어떻게 요청하나요?
             </h3>
             <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-              기업과 공공기관 출강, 온라인 강의 모두 가능합니다. 무역·투자 진흥 공공기관 아카데미와
-              대학 강의에서 진행한 커리큘럼을 기준으로 대상에 맞춰 조정합니다.
-              교육 대상과 인원, 희망 일정을{" "}
+              기업과 공공기관 출강, 온라인 교육을 협의할 수 있습니다.
+              교육 대상과 인원, 해결하려는 업무, 희망 일정을{" "}
               <a href="mailto:hong@oso.ma" className="font-bold underline">
                 hong@oso.ma
               </a>
-              로 보내 주시면 커리큘럼안으로 회신합니다.
+              로 보내 주시면 교육 구성안을 안내합니다.
             </p>
           </div>
         </div>

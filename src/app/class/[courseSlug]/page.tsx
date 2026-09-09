@@ -8,6 +8,8 @@ import { NeoButton } from "@/components/neo";
 import { CourseClassList } from "@/components/CourseClassList";
 import { SITE_URL } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
+import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
+import { EDUCATION_COURSE_SLUGS } from "@/lib/education";
 
 const educationalLevelMap: Record<string, string> = {
     BEGINNER: "Beginner",
@@ -100,7 +102,6 @@ export default async function CourseDetailPage({ params }: Props) {
         ...(course.classes.length > 0
             ? {
                   teaches: course.classes.map((cls) => cls.term),
-                  numberOfCredits: course.classCount,
                   syllabusSections: course.classes.map((cls, idx) => ({
                       "@type": "Syllabus",
                       name: cls.term,
@@ -109,18 +110,14 @@ export default async function CourseDetailPage({ params }: Props) {
                       url: absoluteUrl(`/class/${courseSlug}/${cls.slug}`),
                   })),
               }
-            : { numberOfCredits: course.classCount }),
+            : {}),
         audience: {
             "@type": "EducationalAudience",
             educationalRole: "lifelong learner",
         },
         datePublished,
         dateCreated: datePublished,
-        provider: {
-            "@type": "Person",
-            name: "준이아빠",
-            url: absoluteUrl("/about"),
-        },
+        provider: AUTHOR_PERSON_LD,
         publisher: {
             "@type": "Organization",
             name: "준이아빠블로그",
@@ -133,7 +130,9 @@ export default async function CourseDetailPage({ params }: Props) {
         hasCourseInstance: {
             "@type": "CourseInstance",
             courseMode: "online",
-            courseWorkload: "PT1H",
+            ...(course.totalReadingTime > 0
+                ? { courseWorkload: `전체 콘텐츠 예상 읽기 ${course.totalReadingTime}분` }
+                : {}),
             inLanguage: "ko",
         },
         isAccessibleForFree: true,
@@ -238,6 +237,16 @@ export default async function CourseDetailPage({ params }: Props) {
                     )}
                 </div>
             </div>
+
+            {EDUCATION_COURSE_SLUGS.some((slug) => slug === courseSlug) && (
+                <aside aria-label="강사와 기업 교육 안내" className="border-2 border-black bg-white p-4 sm:p-5 mb-6">
+                    <p className="text-sm sm:text-base leading-relaxed">홍승협(준이아빠)이 정리한 개인 학습용 개념 코스입니다. 강사와 함께하는 기업, 기관 교육은 대상과 업무에 맞춰 별도로 구성합니다.</p>
+                    <div className="mt-3 flex flex-wrap gap-4 text-sm font-bold underline underline-offset-4">
+                        <Link href="/about#experience">강사 이력과 사례</Link>
+                        <Link href="/education">AI 실무 교육 안내</Link>
+                    </div>
+                </aside>
+            )}
 
             {/* Classes List (학습 진도 표시 포함) */}
             <CourseClassList courseSlug={courseSlug} classes={course.classes} />

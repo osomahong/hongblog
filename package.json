@@ -5,12 +5,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "tsx scripts/check-search-readiness.ts",
     "start": "next start",
     "lint": "eslint",
     "prebuild": "tsx scripts/generate-class-map.ts && tsx scripts/check-links.ts && tsx scripts/check-titles.ts",
     "check:links": "tsx scripts/check-links.ts",
     "check:titles": "tsx scripts/check-titles.ts",
     "check:links:html": "tsx scripts/check-links.ts --html",
+    "check:search": "tsx scripts/check-search-readiness.ts",
     "check:prose": "tsx scripts/check-prose.ts",
     "check:summary3": "tsx scripts/check-summary3.ts"
   },
