@@ -9,6 +9,9 @@ tags:
   - AI
   - 자동화
   - 노코드
+relatedSlugs:
+  - claude-work-use-cases-and-projects
+  - claude-cowork-5-ai-tasks-for-beginners
 publishedAt: '2026-02-21T15:24:47.729Z'
 updatedAt: '2026-09-03T00:00:00.000Z'
 quiz:
@@ -25,8 +28,8 @@ quiz:
     correctIndex: 0
 metaTitle: '클로드 코워크로 할 수 있는 것: 기능별 총정리'
 metaDescription: >-
-  Claude Cowork의 실전 활용법을 정리합니다. 파일 정리, 보고서 생성, 데이터 분석, 플러그인 시스템까지 비개발자도 바로 쓸 수
-  있는 AI 에이전트의 모든 것.
+  클로드 코워크는 파일과 폴더를 직접 다루며 작업을 대신 수행하는 AI 에이전트입니다. 기능 구성과 작동 방식, 플러그인, 백그라운드 실행,
+  요금제별 제공 범위를 정리했습니다.
 ogImage: /og/claude-cowork-what-you-can-do.png
 ogDescription: '파일 정리부터 보고서, 데이터 분석, 플러그인까지: Claude Cowork로 데스크톱 업무를 자동화하는 방법을 정리했습니다.'
 summary3:
@@ -121,6 +124,8 @@ Cowork는 가상 머신 안에서 Python이나 셸 명령을 직접 실행할 �
 "이 기획서를 바탕으로 10장짜리 PowerPoint를 만들어줘"라고 요청하면, Cowork는 내용을 분석하여 슬라이드 구조를 설계하고 `.pptx` 파일을 생성합니다. 텍스트 배치, 불릿 포인트 정리, 기본적인 레이아웃까지 포함됩니다.
 
 완벽한 디자인을 기대하기는 어렵지만, **초안 작성 시간을 대폭 줄여주는 것**이 핵심입니다. 생성된 파일을 열어서 디자인만 다듬으면 됩니다.
+
+여기까지는 코워크가 무엇을 할 수 있는지를 기능 단위로 본 것입니다. 반복 보고서나 회의록처럼 업무에 붙여 쓰는 사례와 설정 순서는 [클로드 업무 활용 사례](/insights/claude-work-use-cases-and-projects)에 따로 정리했습니다.
 
 ---
 

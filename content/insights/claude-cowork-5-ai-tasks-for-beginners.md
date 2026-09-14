@@ -10,6 +10,9 @@ tags:
   - AI
   - 자동화
   - 노코드
+relatedSlugs:
+  - claude-cowork-what-you-can-do
+  - claude-work-use-cases-and-projects
 publishedAt: '2026-04-18T13:30:00.000Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 quiz:

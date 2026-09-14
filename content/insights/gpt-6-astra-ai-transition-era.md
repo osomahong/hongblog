@@ -12,9 +12,9 @@ tags:
   - API
   - 바이브코딩
 relatedSlugs:
+  - gpt-6-astra-how-to-use
   - openai-astra-model-comparison
   - claude-fable-5-1-mythos-5-1-update
-  - ai-and-human-work-hours-history
 publishedAt: '2026-09-05T00:00:00.000Z'
 updatedAt: '2026-09-05T00:00:00.000Z'
 highlights:
