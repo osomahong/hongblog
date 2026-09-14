@@ -8,6 +8,7 @@
  *   node buffer_post.mjs --plan <post.json>            # 보낼 내용만 출력 (전송 없음)
  *   node buffer_post.mjs --send <post.json> --confirm  # 실제 예약
  *   node buffer_post.mjs --publish <post.json> --confirm  # 지금 바로 SNS에 발행
+ *   node buffer_post.mjs --schedule-draft <postId> --at <ISO시각> --confirm  # 초안을 예약으로 올림
  *
  * 안전 장치 (문서의 규칙을 코드로 강제한다):
  *   - --send 경로에서는 shareNow를 거부한다. 초안(saveToDraft)이나 예약만 보낸다.
@@ -260,6 +261,63 @@ async function main() {
     console.log(`삭제함: ${id}`);
     return;
   }
+  // 초안을 예약으로 올린다. 무료 플랜의 채널당 예약 10건에 막혀 초안으로 남겨 둔 건을
+  // 앞 건이 발행돼 슬롯이 빈 뒤에 올릴 때 쓴다 (2026-09-14 추가).
+  if (has("--schedule-draft")) {
+    const id = valueOf("--schedule-draft");
+    const at = valueOf("--at");
+    if (!id || !at) {
+      console.error("사용법: buffer_post.mjs --schedule-draft <postId> --at <2026-09-29T09:00:00+09:00> --confirm");
+      process.exit(2);
+    }
+    if (Number.isNaN(Date.parse(at))) {
+      console.error(`--at 값을 시각으로 읽지 못했습니다: ${at}`);
+      process.exit(2);
+    }
+    if (!has("--confirm")) {
+      console.error("--confirm 이 없어 예약하지 않았습니다.");
+      process.exit(1);
+    }
+    // editPost는 부분 갱신이 아니다. text를 빼면 "Post must have either text or media"로 거부하므로
+    // 기존 본문을 먼저 읽어 그대로 다시 넣는다 (2026-09-14 확인).
+    const cur = await gql(
+      `query($id: PostId!) { post(input: { id: $id }) { id status text channelService } }`,
+      { id },
+    );
+    const post = cur?.post;
+    if (!post) {
+      console.error(`글을 찾지 못했습니다: ${id}`);
+      process.exit(1);
+    }
+    if (post.status !== "draft")
+      console.error(`경고: status가 ${post.status}입니다. 초안이 아닌 글의 시각을 바꾸려는 것일 수 있습니다.`);
+    const input = { id, text: post.text, dueAt: at, mode: "customScheduled", saveToDraft: false };
+    guardSafety(input);
+    const data = await gql(
+      `mutation($input: EditPostInput!) {
+         editPost(input: $input) {
+           __typename
+           ... on PostActionSuccess { post { id status dueAt } }
+           ... on NotFoundError { message }
+           ... on UnauthorizedError { message }
+           ... on UnexpectedError { message }
+           ... on RestProxyError { message }
+           ... on LimitReachedError { message }
+           ... on InvalidInputError { message }
+         }
+       }`,
+      { input },
+    );
+    const r = data?.editPost;
+    if (!r || r.__typename?.endsWith("Error")) {
+      console.error(`예약 실패: ${r?.message || JSON.stringify(data).slice(0, 300)}`);
+      process.exit(1);
+    }
+    const p = r.post || {};
+    console.log(`예약으로 올림: ${p.id || id} status=${p.status || "?"} dueAt=${p.dueAt || at}`);
+    return;
+  }
+
   const file = valueOf("--plan") || valueOf("--send") || valueOf("--publish");
   if (!file) {
     console.error(
@@ -267,7 +325,8 @@ async function main() {
         "  node buffer_post.mjs --channels\n" +
         "  node buffer_post.mjs --plan <post.json>\n" +
         "  node buffer_post.mjs --send <post.json> --confirm\n" +
-        "  node buffer_post.mjs --publish <post.json> --confirm   # 지금 바로 SNS에 발행",
+        "  node buffer_post.mjs --publish <post.json> --confirm   # 지금 바로 SNS에 발행\n" +
+        "  node buffer_post.mjs --schedule-draft <postId> --at <ISO시각> --confirm   # 초안을 예약으로",
     );
     process.exit(2);
   }

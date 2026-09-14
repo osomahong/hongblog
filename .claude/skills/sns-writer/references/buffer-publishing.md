@@ -133,6 +133,20 @@ Buffer에는 파일 업로드 엔드포인트가 없다. `assets`에 **공개 UR
 
 특히 두 번째는 단독 1편으로 나가는 통찰형에서 걸린다. 체인은 편마다 세므로 여유가 있다.
 
+## 초안을 예약으로 올리기 (2026-09-14 추가)
+
+예약 상한에 막혀 초안으로 남겨 둔 건은 앞 건이 실제로 발행돼 슬롯이 빈 뒤에 올린다.
+
+```bash
+node ${CLAUDE_SKILL_DIR}/scripts/buffer_post.mjs --schedule-draft <postId> --at 2026-09-29T09:00:00+09:00 --confirm
+```
+
+**`editPost`는 부분 갱신이 아니다.** `dueAt`만 보내면 `Invalid post: Post must have either text or
+media`로 거부한다. 스크립트가 `post(input:{id})`로 기존 본문을 먼저 읽어 함께 보낸다.
+
+슬롯이 비었는지는 실행해 보면 안다. 아직 차 있으면 `LimitReachedError`가 그대로 나오고
+아무것도 바뀌지 않는다.
+
 ## 예약 목록을 조회할 때 (2026-09-14)
 
 `posts` 쿼리는 `first` 인자를 생략하면 **10건만 돌려준다.** 19건이 예약된 상태에서 10건만 보고
