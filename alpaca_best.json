@@ -1,0 +1,3715 @@
+{
+  "count": 371,
+  "items": [
+    {
+      "p": 1,
+      "href": "/b/alpaca/182222468?mode=best&p=1",
+      "cat": "일반",
+      "title": "AI 허브에 독파모 학습데이터 공개됐네요",
+      "comments": "[11]",
+      "time": "2026-09-06T13:20:42.000Z",
+      "views": "1434",
+      "rate": "16"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/182104958?mode=best&p=1",
+      "cat": "일반",
+      "title": "2스파크 deepseek-v4-flash-ve vs glm-5.3-flash vs qwen3.8-flash-next 비교",
+      "comments": "[16]",
+      "time": "2026-09-05T09:21:47.000Z",
+      "views": "2040",
+      "rate": "13"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181653760?mode=best&p=1",
+      "cat": "일반",
+      "title": "Qwen3.8-Flash-Next+4x3090관련 주저리",
+      "comments": "[2]",
+      "time": "2026-09-01T01:13:32.000Z",
+      "views": "1267",
+      "rate": "11"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/182082435?mode=best&p=1",
+      "cat": "일반",
+      "title": "170hx+3090 qwen3.8 flash 디코드100tok/s 프리필 3,100tok/s달성",
+      "comments": "[2]",
+      "time": "2026-09-05T04:46:05.000Z",
+      "views": "948",
+      "rate": "11"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/182162797?mode=best&p=1",
+      "cat": "일반",
+      "title": "이 사이트 너무 좋네요.",
+      "comments": "[12]",
+      "time": "2026-09-06T01:35:35.000Z",
+      "views": "2102",
+      "rate": "23"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/182079389?mode=best&p=1",
+      "cat": "일반",
+      "title": "소형 Transformer에 Activation Function의 변경을 통한 Quantization Robustness 향상",
+      "comments": "[7]",
+      "time": "2026-09-05T04:04:24.000Z",
+      "views": "1111",
+      "rate": "12"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/182014156?mode=best&p=1",
+      "cat": "일반",
+      "title": "K2 호라이즌 완전 오픈 소스로 공개",
+      "comments": "[9]",
+      "time": "2026-09-04T10:55:54.000Z",
+      "views": "1618",
+      "rate": "22"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/182015934?mode=best&p=1",
+      "cat": "하드웨어",
+      "title": "H200 언박싱",
+      "comments": "[14]",
+      "time": "2026-09-04T11:10:47.000Z",
+      "views": "1890",
+      "rate": "19"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181945624?mode=best&p=1",
+      "cat": "구동후기",
+      "title": "H200 x8 실사용 체감",
+      "comments": "[29]",
+      "time": "2026-09-03T16:51:04.000Z",
+      "views": "2915",
+      "rate": "14"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181937528?mode=best&p=1",
+      "cat": "일반",
+      "title": "RTX PRO 6000 2개 GLM 5.3 FLASH 구동 레시피",
+      "comments": "[7]",
+      "time": "2026-09-03T15:02:05.000Z",
+      "views": "1733",
+      "rate": "13"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181896284?mode=best&p=1",
+      "cat": "하드웨어",
+      "title": "H200 8장 설치완료",
+      "comments": "[25]",
+      "time": "2026-09-03T08:52:56.000Z",
+      "views": "2236",
+      "rate": "25"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181872031?mode=best&p=1",
+      "cat": "하드웨어",
+      "title": "황가놈의 진정한 노예가 되어버렸다",
+      "comments": "[30]",
+      "time": "2026-09-03T04:26:18.000Z",
+      "views": "2604",
+      "rate": "30"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181800057?mode=best&p=1",
+      "cat": "하드웨어",
+      "title": "짭수 장착을 위한 cmp170hx 청소 후기 [사진 다수 포함]",
+      "comments": "[1]",
+      "time": "2026-09-02T10:51:12.000Z",
+      "views": "1551",
+      "rate": "10"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181777994?mode=best&p=1",
+      "cat": "하드웨어",
+      "title": "6000 도착해서 설치 완료했습니다.",
+      "comments": "[28]",
+      "time": "2026-09-02T07:51:25.000Z",
+      "views": "2473",
+      "rate": "18"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181745807?mode=best&p=1",
+      "cat": "일반",
+      "title": "아... 결국..",
+      "comments": "[35]",
+      "time": "2026-09-02T00:40:29.000Z",
+      "views": "3354",
+      "rate": "15"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181711670?mode=best&p=1",
+      "cat": "일반",
+      "title": "새로운 Gemma Arena에 등록?",
+      "comments": "[20]",
+      "time": "2026-09-01T12:36:11.000Z",
+      "views": "3138",
+      "rate": "15"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181661706?mode=best&p=1",
+      "cat": "구동후기",
+      "title": "[긴글주의] Qwen3.8-Flash-Next 2차 기술 인터뷰 완료 (5개 분야별 20개의 범용 문제)",
+      "comments": "[17]",
+      "time": "2026-09-01T03:18:02.000Z",
+      "views": "2721",
+      "rate": "17"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181658447?mode=best&p=1",
+      "cat": "자작모델",
+      "title": "Gemma4-12B를 업사이클 해봄!!",
+      "comments": "[4]",
+      "time": "2026-09-01T02:29:55.000Z",
+      "views": "1894",
+      "rate": "11"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181650692?mode=best&p=1",
+      "cat": "구동후기",
+      "title": "클로드코드(Fable5)가 Qwen3.8-Flash-Next 기술 인터뷰 진행하는 중..",
+      "comments": "[22]",
+      "time": "2026-09-01T00:17:15.000Z",
+      "views": "3091",
+      "rate": "18"
+    },
+    {
+      "p": 1,
+      "href": "/b/alpaca/181606530?mode=best&p=1",
+      "cat": "정보",
+      "title": "DeepSeek-V4-Flash-Vision-Exp 공개",
+      "comments": "[10]",
+      "time": "2026-08-31T10:54:01.000Z",
+      "views": "1796",
+      "rate": "12"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181625799?mode=best&p=2",
+      "cat": "하드웨어",
+      "title": "혹시나 bykski에서 cmp 170hx 수냉쿨러 산 사람 참고하라고 여기에도 올림",
+      "comments": "[6]",
+      "time": "2026-08-31T14:07:47.000Z",
+      "views": "1681",
+      "rate": "15"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181579960?mode=best&p=2",
+      "cat": "일반",
+      "title": "오랜만에 터보퀀트 떡밥이 올라와서 써보는 KV양자화 뻘글",
+      "comments": "[22]",
+      "time": "2026-08-31T05:55:22.000Z",
+      "views": "2011",
+      "rate": "12"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181476851?mode=best&p=2",
+      "cat": "일반",
+      "title": "이제 구현의 한계(?)는 정말 많이 줄어든 것 같습니다.",
+      "comments": "[8]",
+      "time": "2026-08-30T04:05:36.000Z",
+      "views": "1974",
+      "rate": "11"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181534198?mode=best&p=2",
+      "cat": "자료",
+      "title": "[후속] M5 Max 128GB 로컬 코딩 LLM (더빡세게 하드테스트 굴리니까 역할이 갈림 + 벤치 공개)",
+      "comments": "[19]",
+      "time": "2026-08-30T14:29:46.000Z",
+      "views": "6535",
+      "rate": "24"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181534531?mode=best&p=2",
+      "cat": "일반",
+      "title": "큐웬이 나 괴롭혀ㅠ",
+      "comments": "[10]",
+      "time": "2026-08-30T14:33:11.000Z",
+      "views": "2534",
+      "rate": "27"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181516551?mode=best&p=2",
+      "cat": "일반",
+      "title": "Qwen 3.8 Flash Next 한자혼입 삽질 결과 (좋은 양자화 찾음)",
+      "comments": "[11]",
+      "time": "2026-08-30T11:38:07.000Z",
+      "views": "2006",
+      "rate": "15"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181444005?mode=best&p=2",
+      "cat": "일반",
+      "title": "3090 두장 nvlink 수냉빌드",
+      "comments": "[22]",
+      "time": "2026-08-29T15:13:58.000Z",
+      "views": "1914",
+      "rate": "15"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181386839?mode=best&p=2",
+      "cat": "일반",
+      "title": "Qwen 3.8 flash 언어 혼입 문제 해결.. 한줄 알았는데",
+      "comments": "[20]",
+      "time": "2026-08-29T05:47:48.000Z",
+      "views": "2401",
+      "rate": "10"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181376216?mode=best&p=2",
+      "cat": "일반",
+      "title": "여러분 안심하십시오 Qwen3.8-Flash의 NVFP4는 안전합니다!",
+      "comments": "[19]",
+      "time": "2026-08-29T03:36:33.000Z",
+      "views": "3194",
+      "rate": "13"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181285093?mode=best&p=2",
+      "cat": "구동후기",
+      "title": "5090 1장 + 램 128GB로 Qwen3.8 Flash Next 구동",
+      "comments": "[15]",
+      "time": "2026-08-28T05:07:10.000Z",
+      "views": "2469",
+      "rate": "12"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181293949?mode=best&p=2",
+      "cat": "구동후기",
+      "title": "qwen 3.8 flash next 리즈닝 껏을 경우",
+      "comments": "[6]",
+      "time": "2026-08-28T06:51:00.000Z",
+      "views": "1720",
+      "rate": "13"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181309077?mode=best&p=2",
+      "cat": "구동후기",
+      "title": "5090 1장 + R9700 1장 + 128GB 메모리로 Qwen3.8 Flash Next 구동해보기",
+      "comments": "[1]",
+      "time": "2026-08-28T09:23:02.000Z",
+      "views": "1993",
+      "rate": "13"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181288177?mode=best&p=2",
+      "cat": "일반",
+      "title": "bykski aio cmp 170hx 수냉",
+      "comments": "[8]",
+      "time": "2026-08-28T05:43:25.000Z",
+      "views": "1691",
+      "rate": "14"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181268557?mode=best&p=2",
+      "cat": "일반",
+      "title": "Qwen3.8 Flash next nvfp4 - RTX6000 1대 (n-gram 테이블을 SSD에서)",
+      "comments": "[2]",
+      "time": "2026-08-28T01:36:50.000Z",
+      "views": "3214",
+      "rate": "20"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181230107?mode=best&p=2",
+      "cat": "구동후기",
+      "title": "Qwen3.8-Flash-Next 논리성능 및 토큰효율 테스트 결과",
+      "comments": "[16]",
+      "time": "2026-08-27T13:02:24.000Z",
+      "views": "2696",
+      "rate": "11"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181247961?mode=best&p=2",
+      "cat": "정보",
+      "title": "홈랩 구성정보 공유 (DGX Spark 3노드 에이전트 서빙 환경)",
+      "comments": "[14]",
+      "time": "2026-08-27T15:58:06.000Z",
+      "views": "2153",
+      "rate": "17"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181250364?mode=best&p=2",
+      "cat": "정보",
+      "title": "무료(+약간의 노가다)로 LLM API 쓰기 + 최저요금제로 바이브코딩 쥐어짜기",
+      "comments": "[11]",
+      "time": "2026-08-27T16:32:44.000Z",
+      "views": "4422",
+      "rate": "47"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181233235?mode=best&p=2",
+      "cat": "구동후기",
+      "title": "M1 Max 32GB + 외장 SSD 오프로드를 통한 qwen3.8-flash-next 구동기",
+      "comments": "[4]",
+      "time": "2026-08-27T13:28:56.000Z",
+      "views": "1886",
+      "rate": "11"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181187394?mode=best&p=2",
+      "cat": "자료",
+      "title": "llm과 체스하는 도구 만들어옴",
+      "comments": "[9]",
+      "time": "2026-08-27T06:31:30.000Z",
+      "views": "1811",
+      "rate": "12"
+    },
+    {
+      "p": 2,
+      "href": "/b/alpaca/181186146?mode=best&p=2",
+      "cat": "구동후기",
+      "title": "GLM-5.3 flash - RTX6000 Pro 4way 구동 후기",
+      "comments": "[11]",
+      "time": "2026-08-27T06:17:30.000Z",
+      "views": "1985",
+      "rate": "11"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181182514?mode=best&p=3",
+      "cat": "구동후기",
+      "title": "[구동후기] qwen 3.8 flash next 1 dgx spark (1 스파크)",
+      "comments": "[4]",
+      "time": "2026-08-27T05:35:43.000Z",
+      "views": "2266",
+      "rate": "14"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181188734?mode=best&p=3",
+      "cat": "구동후기",
+      "title": "Qwen3.8-Flash-Next, RTX PRO 6000 x 2 WSL FP8 구동 성공",
+      "comments": "[8]",
+      "time": "2026-08-27T06:46:16.000Z",
+      "views": "2295",
+      "rate": "13"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181174721?mode=best&p=3",
+      "cat": "정보",
+      "title": "모티프, 독파모 2차 공식 이의신청",
+      "comments": "[6]",
+      "time": "2026-08-27T04:04:35.000Z",
+      "views": "2216",
+      "rate": "25"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181158857?mode=best&p=3",
+      "cat": "구동후기",
+      "title": "스파크에서 qwen3.8 next nvfp4 서빙 성공했습니다.",
+      "comments": "[16]",
+      "time": "2026-08-27T00:53:30.000Z",
+      "views": "2265",
+      "rate": "18"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181156511?mode=best&p=3",
+      "cat": "일반",
+      "title": "Tailscale 상시 켜고 삼페 쓰는 법 (그동안 VPN 껐다 킨 내인생 레전드)",
+      "comments": "[19]",
+      "time": "2026-08-27T00:09:33.000Z",
+      "views": "2267",
+      "rate": "18"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181147571?mode=best&p=3",
+      "cat": "일반",
+      "title": "Qwen3.8-Flash-Next Q4_K_XL / CMP 170HX 64GB + RTX 3090 24GB 벤치",
+      "comments": "",
+      "time": "2026-08-26T18:47:25.000Z",
+      "views": "1994",
+      "rate": "11"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181155840?mode=best&p=3",
+      "cat": "정보",
+      "title": "모티프 이의제기문",
+      "comments": "[8]",
+      "time": "2026-08-26T23:56:35.000Z",
+      "views": "2065",
+      "rate": "26"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181128420?mode=best&p=3",
+      "cat": "정보",
+      "title": "Qwen 3.8 Flash Next 테크 리포트도 공개해줬단거임 ㄷㄷ",
+      "comments": "[2]",
+      "time": "2026-08-26T14:00:00.000Z",
+      "views": "2623",
+      "rate": "11"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181131117?mode=best&p=3",
+      "cat": "정보",
+      "title": "GLM5.3 Flash 공개",
+      "comments": "[11]",
+      "time": "2026-08-26T14:25:03.000Z",
+      "views": "2489",
+      "rate": "10"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181119485?mode=best&p=3",
+      "cat": "일반",
+      "title": "Qwen 3.8 flash next 출시",
+      "comments": "[6]",
+      "time": "2026-08-26T12:43:09.000Z",
+      "views": "1895",
+      "rate": "10"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/180949271?mode=best&p=3",
+      "cat": "구동후기",
+      "title": "DeepSeek-V4-Flash-0731 FreeToken RTX 4090 테스트",
+      "comments": "[10]",
+      "time": "2026-08-25T00:30:13.000Z",
+      "views": "2008",
+      "rate": "11"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181052477?mode=best&p=3",
+      "cat": "일반",
+      "title": "m5u, m6나왔으니 또 MOE는 맥이 유리 이 메아리에 한동안 시달릴듯 ㅋㅋ",
+      "comments": "[13]",
+      "time": "2026-08-26T00:41:19.000Z",
+      "views": "2305",
+      "rate": "14"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181030396?mode=best&p=3",
+      "cat": "일반",
+      "title": "qwen3.8 flash next도 정말 기대되네요",
+      "comments": "[11]",
+      "time": "2026-08-25T15:11:39.000Z",
+      "views": "2852",
+      "rate": "12"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/181007423?mode=best&p=3",
+      "cat": "일반",
+      "title": "내가 하려는 미친짓",
+      "comments": "[17]",
+      "time": "2026-08-25T11:43:32.000Z",
+      "views": "2036",
+      "rate": "15"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/180934446?mode=best&p=3",
+      "cat": "일반",
+      "title": "170hx 시대에 미련하게 DGX Spark 네 대를 구매한 분이 있다면",
+      "comments": "[9]",
+      "time": "2026-08-24T16:20:03.000Z",
+      "views": "6366",
+      "rate": "12"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/180966622?mode=best&p=3",
+      "cat": "일반",
+      "title": "기업들이 ai도입에 실패하는 케이스가 상당히 많은데",
+      "comments": "[26]",
+      "time": "2026-08-25T04:39:01.000Z",
+      "views": "2732",
+      "rate": "15"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/180884501?mode=best&p=3",
+      "cat": "구동후기",
+      "title": "초보주의 qwen3.8 모델 저사양에서 돌려봤습니다. vscode+ cline 사용",
+      "comments": "[15]",
+      "time": "2026-08-24T07:47:55.000Z",
+      "views": "2317",
+      "rate": "10"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/180658253?mode=best&p=3",
+      "cat": "일반",
+      "title": "2018년 맥북 내장그래픽으로 800M LLM 학습을 돌려봤습니다",
+      "comments": "[17]",
+      "time": "2026-08-22T03:26:01.000Z",
+      "views": "1999",
+      "rate": "12"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/180725292?mode=best&p=3",
+      "cat": "일반",
+      "title": "손납땜 처음엔 ㅈㄴ 빡쎗는데 하나 하고나니 할만하네용",
+      "comments": "[8]",
+      "time": "2026-08-22T14:43:20.000Z",
+      "views": "2228",
+      "rate": "19"
+    },
+    {
+      "p": 3,
+      "href": "/b/alpaca/180580943?mode=best&p=3",
+      "cat": "일반",
+      "title": "대 모델 자작시대가 온건가요!! & 업사이클링 근황",
+      "comments": "[4]",
+      "time": "2026-08-21T10:00:49.000Z",
+      "views": "2318",
+      "rate": "19"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180567610?mode=best&p=4",
+      "cat": "일반",
+      "title": "qwen 3.8 27b reasoning levels에 대한 한 유튜버의 실험",
+      "comments": "[28]",
+      "time": "2026-08-21T08:29:11.000Z",
+      "views": "5419",
+      "rate": "31"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180504783?mode=best&p=4",
+      "cat": "일반",
+      "title": "사실 저는 개인 연구소를 운영하고 있습니다",
+      "comments": "[27]",
+      "time": "2026-08-20T15:06:01.000Z",
+      "views": "3358",
+      "rate": "22"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180485627?mode=best&p=4",
+      "cat": "학습",
+      "title": "자체 제작 MoE모델 학습",
+      "comments": "[21]",
+      "time": "2026-08-20T12:22:12.000Z",
+      "views": "2626",
+      "rate": "15"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180416381?mode=best&p=4",
+      "cat": "구동후기",
+      "title": "Ornith 1.5 35b 이 모델 재미있네.",
+      "comments": "[4]",
+      "time": "2026-08-20T00:01:54.000Z",
+      "views": "5036",
+      "rate": "16"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180429470?mode=best&p=4",
+      "cat": "일반",
+      "title": "Qwen 밋업 다녀왔습니다",
+      "comments": "[6]",
+      "time": "2026-08-20T02:44:42.000Z",
+      "views": "2654",
+      "rate": "19"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180396543?mode=best&p=4",
+      "cat": "일반",
+      "title": "Artificial Analysis Search Index",
+      "comments": "[4]",
+      "time": "2026-08-19T15:21:58.000Z",
+      "views": "1962",
+      "rate": "17"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180345672?mode=best&p=4",
+      "cat": "일반",
+      "title": "AdamW 그까짓거 꼭 써야함? 그래서 옵티마이저 직접 만들어봄 ㅇㅇ",
+      "comments": "[21]",
+      "time": "2026-08-19T07:34:42.000Z",
+      "views": "2679",
+      "rate": "45"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180277250?mode=best&p=4",
+      "cat": "일반",
+      "title": "엑사원 떨어질거라고 생각했던 이유",
+      "comments": "[4]",
+      "time": "2026-08-18T12:52:56.000Z",
+      "views": "3173",
+      "rate": "17"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180254331?mode=best&p=4",
+      "cat": "일반",
+      "title": "공개된 모티프 점수로 추론해보는 독파모 각 회사들 개별 점수",
+      "comments": "[13]",
+      "time": "2026-08-18T09:36:48.000Z",
+      "views": "3289",
+      "rate": "12"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180248904?mode=best&p=4",
+      "cat": "일반",
+      "title": "독파모 그냥 벤치맥싱, 치팅 안잡는거부터 답이 없다고 생각함",
+      "comments": "[9]",
+      "time": "2026-08-18T08:36:39.000Z",
+      "views": "2690",
+      "rate": "28"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180247842?mode=best&p=4",
+      "cat": "일반",
+      "title": "로컬 ai 한달정도 연구해본 초보의 소감...",
+      "comments": "[14]",
+      "time": "2026-08-18T08:24:54.000Z",
+      "views": "4753",
+      "rate": "20"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180224118?mode=best&p=4",
+      "cat": "일반",
+      "title": "아니 엑사원 기사 ㅋㅋㅋㅋㅋ",
+      "comments": "[2]",
+      "time": "2026-08-18T03:14:26.000Z",
+      "views": "2411",
+      "rate": "17"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180217821?mode=best&p=4",
+      "cat": "구동후기",
+      "title": "5090 내게 맞는 Qwen3.8-27B 서빙 최적화를 찾아서..",
+      "comments": "[12]",
+      "time": "2026-08-18T01:36:53.000Z",
+      "views": "4094",
+      "rate": "18"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180202334?mode=best&p=4",
+      "cat": "일반",
+      "title": "[개발/정보] 중국 AI 스타트업 개발자의 모델 전환 후기 (DeepSeek, Qwen, Gemini 2.5 Pro & API 중계소 동향)",
+      "comments": "[15]",
+      "time": "2026-08-17T16:53:21.000Z",
+      "views": "2756",
+      "rate": "22"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180163565?mode=best&p=4",
+      "cat": "정보",
+      "title": "Qwen3.6/3.8 27B 사용 관련 개인적인 팁 몇개",
+      "comments": "[5]",
+      "time": "2026-08-17T09:32:21.000Z",
+      "views": "2820",
+      "rate": "11"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180166277?mode=best&p=4",
+      "cat": "일반",
+      "title": "Qwen 3.8 27b Xhigh 에 과추론을 줄이는 법",
+      "comments": "[15]",
+      "time": "2026-08-17T10:04:09.000Z",
+      "views": "2844",
+      "rate": "21"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180158595?mode=best&p=4",
+      "cat": "일반",
+      "title": "독파모 그까짓거 쉬운거 아님? 내가 llama.cpp로 만들어봄 ㅇㅇ",
+      "comments": "[15]",
+      "time": "2026-08-17T08:27:54.000Z",
+      "views": "2477",
+      "rate": "27"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180157556?mode=best&p=4",
+      "cat": "일반",
+      "title": "Qwen 3.8 27B가 대단한 모델인건 맞음",
+      "comments": "[18]",
+      "time": "2026-08-17T08:15:04.000Z",
+      "views": "8618",
+      "rate": "20"
+    },
+    {
+      "p": 4,
+      "href": "/b/alpaca/180119748?mode=best&p=4",
+      "cat": "일반",
+      "title": "초보 2080ti*4 44GB 구성 경험담 올려봅니다. (8개월 고생..)",
+      "comments": "[27]",
+      "time": "2026-08-16T18:35:20.000Z",
+      "views": "4266",
+      "rate": "42"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/180091363?mode=best&p=5",
+      "cat": "정보",
+      "title": "Cmp 170 hx x16 작업 직접 해보기 (사진 많음)",
+      "comments": "[29]",
+      "time": "2026-08-16T12:01:40.000Z",
+      "views": "3105",
+      "rate": "43"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/180052428?mode=best&p=5",
+      "cat": "일반",
+      "title": "질문 탭으로 분류가 안 된 질문 글에 대답해 주지 마세요.",
+      "comments": "[2]",
+      "time": "2026-08-16T04:08:09.000Z",
+      "views": "1349",
+      "rate": "15"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/180012464?mode=best&p=5",
+      "cat": "일반",
+      "title": "Qwen3.8은 사고 쓴다면 medium이 가장 좋을 듯합니다.",
+      "comments": "[10]",
+      "time": "2026-08-15T13:41:18.000Z",
+      "views": "2593",
+      "rate": "10"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179943249?mode=best&p=5",
+      "cat": "일반",
+      "title": "Qwen 3.8 코딩이나 툴콜링은 많이 발전한 게 맞는 듯",
+      "comments": "[6]",
+      "time": "2026-08-14T18:18:39.000Z",
+      "views": "3282",
+      "rate": "10"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179943149?mode=best&p=5",
+      "cat": "정보",
+      "title": "Qwen 3.8 27b 성능 비교",
+      "comments": "[6]",
+      "time": "2026-08-14T18:15:41.000Z",
+      "views": "3872",
+      "rate": "12"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179869107?mode=best&p=5",
+      "cat": "정보",
+      "title": "[월간 AI 리뷰] 26년도 8월 (상용 5, 오픈소스 16)",
+      "comments": "[4]",
+      "time": "2026-08-14T03:09:18.000Z",
+      "views": "3628",
+      "rate": "12"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179955785?mode=best&p=5",
+      "cat": "구동후기",
+      "title": "Qwen 3.8 27B 뉴 간단 한국어 가동 후기",
+      "comments": "[7]",
+      "time": "2026-08-15T01:45:31.000Z",
+      "views": "6021",
+      "rate": "28"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179923129?mode=best&p=5",
+      "cat": "구동후기",
+      "title": "3090 4way 구리 방열판 후기(온도테스트 추가)",
+      "comments": "[12]",
+      "time": "2026-08-14T13:29:39.000Z",
+      "views": "1751",
+      "rate": "15"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179931773?mode=best&p=5",
+      "cat": "일반",
+      "title": "27b 떳냐?",
+      "comments": "[32]",
+      "time": "2026-08-14T15:04:17.000Z",
+      "views": "4103",
+      "rate": "18"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179755261?mode=best&p=5",
+      "cat": "일반",
+      "title": "독파모 모델 전부 AAII 공개!",
+      "comments": "[27]",
+      "time": "2026-08-13T00:55:54.000Z",
+      "views": "3448",
+      "rate": "28"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179741373?mode=best&p=5",
+      "cat": "정보",
+      "title": "DeepSeek v4 pro 0813 수능 결과",
+      "comments": "[9]",
+      "time": "2026-08-12T17:40:00.000Z",
+      "views": "2528",
+      "rate": "14"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179583217?mode=best&p=5",
+      "cat": "일반",
+      "title": "qwen 3.8 27b 이번 주 출시 확정",
+      "comments": "[10]",
+      "time": "2026-08-11T07:07:30.000Z",
+      "views": "3879",
+      "rate": "11"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179608448?mode=best&p=5",
+      "cat": "일반",
+      "title": "모바일 온디바이스 LLM 앱 mKJA Project",
+      "comments": "[2]",
+      "time": "2026-08-11T11:21:37.000Z",
+      "views": "1399",
+      "rate": "10"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179686941?mode=best&p=5",
+      "cat": "구동후기",
+      "title": "32GB 통합메모리 맥북에서 RAM보다 큰 모델 돌리기(삽질기 공유)",
+      "comments": "[16]",
+      "time": "2026-08-12T08:29:18.000Z",
+      "views": "3717",
+      "rate": "30"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179636735?mode=best&p=5",
+      "cat": "일반",
+      "title": "독파모 2차 모델 아키텍처/크기 비교",
+      "comments": "[7]",
+      "time": "2026-08-11T16:43:54.000Z",
+      "views": "4668",
+      "rate": "53"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179234319?mode=best&p=5",
+      "cat": "자작모델",
+      "title": "안녕하세요, 커뮤니티 처음 해보는, 언어모델 입문한 고1입니다.",
+      "comments": "[11]",
+      "time": "2026-08-07T10:41:50.000Z",
+      "views": "2974",
+      "rate": "17"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179115980?mode=best&p=5",
+      "cat": "일반",
+      "title": "Qwen 3.8 개발자들의 AMA",
+      "comments": "[28]",
+      "time": "2026-08-06T07:08:35.000Z",
+      "views": "5290",
+      "rate": "11"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/179119322?mode=best&p=5",
+      "cat": "일반",
+      "title": "qwen 3.8 출시예정일 나왔네요",
+      "comments": "[10]",
+      "time": "2026-08-06T07:47:35.000Z",
+      "views": "4346",
+      "rate": "11"
+    },
+    {
+      "p": 5,
+      "href": "/b/alpaca/178988265?mode=best&p=5",
+      "cat": "일반",
+      "title": "개인적으로 추론 차력쇼좀 줄었으면 좋겠음.",
+      "comments": "[6]",
+      "time": "2026-08-04T23:40:32.000Z",
+      "views": "4239",
+      "rate": "11"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178825134?mode=best&p=6",
+      "cat": "정보",
+      "title": "Qwen 3.8 Max 2.8T 및 27B 다음주 오픈소스 공개",
+      "comments": "[11]",
+      "time": "2026-08-03T05:12:01.000Z",
+      "views": "3717",
+      "rate": "10"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178849329?mode=best&p=6",
+      "cat": "일반",
+      "title": "스파크만이 아니라 업체들 이것저것 가격 과하게 올릴때는 그냥 직구하세요",
+      "comments": "[11]",
+      "time": "2026-08-03T10:13:50.000Z",
+      "views": "2695",
+      "rate": "28"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178718973?mode=best&p=6",
+      "cat": "일반",
+      "title": "딥식플 1 Spark 레시피",
+      "comments": "[3]",
+      "time": "2026-08-02T01:52:31.000Z",
+      "views": "2095",
+      "rate": "10"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178737860?mode=best&p=6",
+      "cat": "일반",
+      "title": "LLM 쓰다보면 느껴지는게",
+      "comments": "[9]",
+      "time": "2026-08-02T06:17:13.000Z",
+      "views": "3102",
+      "rate": "18"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178549272?mode=best&p=6",
+      "cat": "일반",
+      "title": "딥시크플래시 정식버전 출시되었어요",
+      "comments": "[13]",
+      "time": "2026-07-31T06:44:45.000Z",
+      "views": "2434",
+      "rate": "11"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178631299?mode=best&p=6",
+      "cat": "구동후기",
+      "title": "딥식 v4 플래쉬 0731 미쳤네요...",
+      "comments": "[18]",
+      "time": "2026-08-01T02:52:43.000Z",
+      "views": "6770",
+      "rate": "12"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178592660?mode=best&p=6",
+      "cat": "정보",
+      "title": "DeepSeek v4 Flash 0731 수능 Hard 결과",
+      "comments": "[4]",
+      "time": "2026-07-31T13:37:41.000Z",
+      "views": "2756",
+      "rate": "19"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178584915?mode=best&p=6",
+      "cat": "일반",
+      "title": "딥시크 v4 flash 0731 사후학습 오픈 가중치 공개!",
+      "comments": "[9]",
+      "time": "2026-07-31T12:32:48.000Z",
+      "views": "2194",
+      "rate": "14"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178479388?mode=best&p=6",
+      "cat": "정보",
+      "title": "엑사원 정보 누출",
+      "comments": "[9]",
+      "time": "2026-07-30T12:11:07.000Z",
+      "views": "2688",
+      "rate": "12"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178048586?mode=best&p=6",
+      "cat": "일반",
+      "title": "생각할 수록 젬마가 진짜 명품이긴 하네요",
+      "comments": "[10]",
+      "time": "2026-07-26T12:01:48.000Z",
+      "views": "3105",
+      "rate": "10"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178086791?mode=best&p=6",
+      "cat": "구동후기",
+      "title": "이 속도는 뭐지",
+      "comments": "[6]",
+      "time": "2026-07-26T22:26:13.000Z",
+      "views": "3703",
+      "rate": "10"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178295057?mode=best&p=6",
+      "cat": "일반",
+      "title": "미완성이지만 일단 라이트노벨 자동 작성기 올려봅니다.",
+      "comments": "[27]",
+      "time": "2026-07-28T22:40:10.000Z",
+      "views": "7066",
+      "rate": "30"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178199379?mode=best&p=6",
+      "cat": "정보",
+      "title": "Kimi K3 테크 리포트 훑어보기",
+      "comments": "[4]",
+      "time": "2026-07-28T03:13:39.000Z",
+      "views": "2934",
+      "rate": "21"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178156134?mode=best&p=6",
+      "cat": "자작모델",
+      "title": "한국어 소설 문체 임베딩 모델 개발했습니다.",
+      "comments": "[46]",
+      "time": "2026-07-27T13:01:38.000Z",
+      "views": "7592",
+      "rate": "88"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/178047786?mode=best&p=6",
+      "cat": "일반",
+      "title": "법학적성시험 언어이해 문제지 만드는 코드 깃헙에 공개했습니다.",
+      "comments": "[16]",
+      "time": "2026-07-26T11:55:21.000Z",
+      "views": "2289",
+      "rate": "19"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/177943949?mode=best&p=6",
+      "cat": "구동후기",
+      "title": "p100 4장 구동 중간 후기 (스압주의)",
+      "comments": "[41]",
+      "time": "2026-07-25T11:01:17.000Z",
+      "views": "2412",
+      "rate": "13"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/177723668?mode=best&p=6",
+      "cat": "일반",
+      "title": "Nemotron 3 : Tinker 튜닝 후기 및 과정 (배포 아님)",
+      "comments": "[19]",
+      "time": "2026-07-23T07:20:19.000Z",
+      "views": "1220",
+      "rate": "10"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/177782780?mode=best&p=6",
+      "cat": "일반",
+      "title": "량원펑 유출내용 흥미롭네요",
+      "comments": "[6]",
+      "time": "2026-07-23T16:43:41.000Z",
+      "views": "2492",
+      "rate": "14"
+    },
+    {
+      "p": 6,
+      "href": "/b/alpaca/177807458?mode=best&p=6",
+      "cat": "일반",
+      "title": "[ Nemotron 한국화 ] NANO 튜닝 1차 결과",
+      "comments": "[8]",
+      "time": "2026-07-24T03:00:46.000Z",
+      "views": "1606",
+      "rate": "16"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177766240?mode=best&p=7",
+      "cat": "구동후기",
+      "title": "p100 4장 구동 간단 후기",
+      "comments": "[12]",
+      "time": "2026-07-23T13:40:12.000Z",
+      "views": "2112",
+      "rate": "12"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177722064?mode=best&p=7",
+      "cat": "일반",
+      "title": "이 정도 성능 향상이면 독파모 떨어져도 지원 해줄 가치가 있을 것 같네요.",
+      "comments": "[6]",
+      "time": "2026-07-23T07:02:51.000Z",
+      "views": "2178",
+      "rate": "14"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177652928?mode=best&p=7",
+      "cat": "일반",
+      "title": "솔라오픈2 코딩+에이전틱용으로 쓸만한거 같습니다.",
+      "comments": "[8]",
+      "time": "2026-07-22T12:53:07.000Z",
+      "views": "2451",
+      "rate": "12"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177598237?mode=best&p=7",
+      "cat": "일반",
+      "title": "네모트론 3 슈퍼 한글 공부시키는 중임",
+      "comments": "[2]",
+      "time": "2026-07-22T02:41:14.000Z",
+      "views": "1094",
+      "rate": "10"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177570666?mode=best&p=7",
+      "cat": "정보",
+      "title": "개인적으로 느낀 AI와 사람의 글쓰기 특징 차이",
+      "comments": "[13]",
+      "time": "2026-07-21T15:13:24.000Z",
+      "views": "3187",
+      "rate": "17"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177554904?mode=best&p=7",
+      "cat": "일반",
+      "title": "초보용-로컬llm이 가장 똑똑해지는 온도를 찾는방법",
+      "comments": "[13]",
+      "time": "2026-07-21T12:39:38.000Z",
+      "views": "6543",
+      "rate": "28"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177503956?mode=best&p=7",
+      "cat": "일반",
+      "title": "한국이 드디어!!",
+      "comments": "[2]",
+      "time": "2026-07-21T02:56:15.000Z",
+      "views": "2406",
+      "rate": "13"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177498821?mode=best&p=7",
+      "cat": "정보",
+      "title": "[자작] 내 GPU로 어떤 LLM이 돌아가는지 계산해주는 웹 도구를 만들었습니다.",
+      "comments": "[26]",
+      "time": "2026-07-21T01:38:12.000Z",
+      "views": "2576",
+      "rate": "17"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177498564?mode=best&p=7",
+      "cat": "일반",
+      "title": "초보용-직접 gguf를 무검열+mtp로 만드는 방법(cpu,일반램)",
+      "comments": "",
+      "time": "2026-07-21T01:33:14.000Z",
+      "views": "2134",
+      "rate": "21"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177447390?mode=best&p=7",
+      "cat": "정보",
+      "title": "미로벤치 5.6 Sol Pro 업뎃 - 압도적 1위",
+      "comments": "[5]",
+      "time": "2026-07-20T10:03:40.000Z",
+      "views": "1370",
+      "rate": "11"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177456819?mode=best&p=7",
+      "cat": "질문",
+      "title": "월간 AI 리뷰 관련해서 고견을 여쭙고자 함",
+      "comments": "[10]",
+      "time": "2026-07-20T11:41:31.000Z",
+      "views": "1161",
+      "rate": "16"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177261366?mode=best&p=7",
+      "cat": "정보",
+      "title": "미로 벤치 Fable 1위, Kimi가 5.6 Sol 따잇",
+      "comments": "[8]",
+      "time": "2026-07-18T11:15:50.000Z",
+      "views": "2197",
+      "rate": "15"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177276406?mode=best&p=7",
+      "cat": "정보",
+      "title": "[월간 AI 리뷰] 26년도 7월 (상용 10, 오픈소스 10)",
+      "comments": "[3]",
+      "time": "2026-07-18T13:35:28.000Z",
+      "views": "5111",
+      "rate": "28"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177230103?mode=best&p=7",
+      "cat": "일반",
+      "title": "gemma4 공식 대규모 업데이트로 혼돈의 도가니네",
+      "comments": "[7]",
+      "time": "2026-07-18T04:40:54.000Z",
+      "views": "4292",
+      "rate": "14"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177148411?mode=best&p=7",
+      "cat": "구동후기",
+      "title": "Gemma 4 26B 뉴 간단 한국어 가동 후기",
+      "comments": "[2]",
+      "time": "2026-07-17T08:05:57.000Z",
+      "views": "1969",
+      "rate": "11"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177150552?mode=best&p=7",
+      "cat": "구동후기",
+      "title": "무검열 튜닝 Gemma 4 26B 뉴 간단 한국어 가동 후기",
+      "comments": "[1]",
+      "time": "2026-07-17T08:32:39.000Z",
+      "views": "3165",
+      "rate": "16"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/176837668?mode=best&p=7",
+      "cat": "일반",
+      "title": "로컬모델로 코딩하시는 분들 계신가요?",
+      "comments": "[5]",
+      "time": "2026-07-14T06:51:11.000Z",
+      "views": "1912",
+      "rate": "10"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177118798?mode=best&p=7",
+      "cat": "일반",
+      "title": "글 생성 작업하면서 느낀 AI에 명령 잘 먹히게 하는 법",
+      "comments": "[12]",
+      "time": "2026-07-17T01:29:50.000Z",
+      "views": "1718",
+      "rate": "20"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177108184?mode=best&p=7",
+      "cat": "정보",
+      "title": "Kimi K3가 Artificial Analysis에서 종합 3위",
+      "comments": "[7]",
+      "time": "2026-07-16T19:41:49.000Z",
+      "views": "3302",
+      "rate": "15"
+    },
+    {
+      "p": 7,
+      "href": "/b/alpaca/177087622?mode=best&p=7",
+      "cat": "일반",
+      "title": "한국어 문제생성기 Fable 5에 돌려봤습니다.",
+      "comments": "[10]",
+      "time": "2026-07-16T13:51:39.000Z",
+      "views": "2370",
+      "rate": "12"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/177100159?mode=best&p=8",
+      "cat": "일반",
+      "title": "여러분의 기대와 조언이 필요한 주말이네요",
+      "comments": "[2]",
+      "time": "2026-07-16T16:15:50.000Z",
+      "views": "993",
+      "rate": "14"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/177071990?mode=best&p=8",
+      "cat": "일반",
+      "title": "한국어 관련된거는 무조건 젬마 쓰세요",
+      "comments": "[8]",
+      "time": "2026-07-16T11:30:37.000Z",
+      "views": "2428",
+      "rate": "13"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/177009333?mode=best&p=8",
+      "cat": "일반",
+      "title": "이 RTX PRO 6000은 무료로 해드립니다.",
+      "comments": "[10]",
+      "time": "2026-07-16T01:05:58.000Z",
+      "views": "2179",
+      "rate": "11"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/177041953?mode=best&p=8",
+      "cat": "일반",
+      "title": "뉴비 llm용 본체 조립함",
+      "comments": "[19]",
+      "time": "2026-07-16T07:19:26.000Z",
+      "views": "1894",
+      "rate": "15"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/177008317?mode=best&p=8",
+      "cat": "일반",
+      "title": "gemma-4 chat template이 변경되었다고 합니다.",
+      "comments": "[3]",
+      "time": "2026-07-16T00:50:40.000Z",
+      "views": "2211",
+      "rate": "16"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176859767?mode=best&p=8",
+      "cat": "자료",
+      "title": "koharu 만화번역기 AMD GPU버전으로 개발해서 올려봅니다",
+      "comments": "[2]",
+      "time": "2026-07-14T10:47:48.000Z",
+      "views": "1930",
+      "rate": "17"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176784677?mode=best&p=8",
+      "cat": "구동후기",
+      "title": "gemma-4 40.5B 모델 안정화 및 자랑질",
+      "comments": "[7]",
+      "time": "2026-07-13T14:38:21.000Z",
+      "views": "1726",
+      "rate": "19"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176782404?mode=best&p=8",
+      "cat": "일반",
+      "title": "고급(?) 한국어 문제만들기 작업 상세 소개",
+      "comments": "[17]",
+      "time": "2026-07-13T14:15:12.000Z",
+      "views": "1517",
+      "rate": "16"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176776933?mode=best&p=8",
+      "cat": "구동후기",
+      "title": "젬마 31b vs 28b 비교",
+      "comments": "[2]",
+      "time": "2026-07-13T13:17:39.000Z",
+      "views": "1899",
+      "rate": "15"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176539435?mode=best&p=8",
+      "cat": "일반",
+      "title": "Gemma-4로 고급(?) 한국어 시험문제 만들기",
+      "comments": "[16]",
+      "time": "2026-07-11T06:02:15.000Z",
+      "views": "1691",
+      "rate": "12"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176549855?mode=best&p=8",
+      "cat": "자작모델",
+      "title": "Gemma 28b 공개",
+      "comments": "[9]",
+      "time": "2026-07-11T08:11:06.000Z",
+      "views": "3297",
+      "rate": "22"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/175923908?mode=best&p=8",
+      "cat": "일반",
+      "title": "2 스파크 케이스 뽑음",
+      "comments": "[12]",
+      "time": "2026-07-05T07:00:01.000Z",
+      "views": "1535",
+      "rate": "11"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176105553?mode=best&p=8",
+      "cat": "정보",
+      "title": "VLM은 시각적으로 보는 행위를 하고 있는가? (ICML 2026 Spotlight)",
+      "comments": "[18]",
+      "time": "2026-07-07T05:52:29.000Z",
+      "views": "2250",
+      "rate": "27"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176068770?mode=best&p=8",
+      "cat": "구동후기",
+      "title": "로컬로 GLM-5.2 구동",
+      "comments": "[12]",
+      "time": "2026-07-06T17:30:32.000Z",
+      "views": "3415",
+      "rate": "12"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/176015752?mode=best&p=8",
+      "cat": "정보",
+      "title": "텐센트 hy3 출시",
+      "comments": "[13]",
+      "time": "2026-07-06T07:21:05.000Z",
+      "views": "2207",
+      "rate": "11"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/175967171?mode=best&p=8",
+      "cat": "일반",
+      "title": "저는 m5u 좀 부정적으로 봅니다.",
+      "comments": "[11]",
+      "time": "2026-07-05T15:03:58.000Z",
+      "views": "2291",
+      "rate": "14"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/175971945?mode=best&p=8",
+      "cat": "학습",
+      "title": "Gemma4-28b 만드는 중입니다",
+      "comments": "[8]",
+      "time": "2026-07-05T16:00:09.000Z",
+      "views": "2620",
+      "rate": "18"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/175598042?mode=best&p=8",
+      "cat": "자작모델",
+      "title": "구글이 안주길래 만들어 보았다 - extGemma4-44B",
+      "comments": "[16]",
+      "time": "2026-07-02T02:43:54.000Z",
+      "views": "2645",
+      "rate": "20"
+    },
+    {
+      "p": 8,
+      "href": "/b/alpaca/175447480?mode=best&p=8",
+      "cat": "일반",
+      "title": "LLM이 글을 더 치밀하게 쓰게 만들기, 되긴 하는군요.",
+      "comments": "[12]",
+      "time": "2026-06-30T14:11:50.000Z",
+      "views": "2141",
+      "rate": "14"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/175435142?mode=best&p=9",
+      "cat": "구동후기",
+      "title": "(실험)로컬 모델은 클라우드 기반 프론티어 모델을 대체할 수 있을까?",
+      "comments": "[9]",
+      "time": "2026-06-30T12:20:53.000Z",
+      "views": "1834",
+      "rate": "23"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/175398274?mode=best&p=9",
+      "cat": "정보",
+      "title": "로컬 모델들의 수능 고난도 풀이 결과",
+      "comments": "[17]",
+      "time": "2026-06-30T06:50:51.000Z",
+      "views": "2579",
+      "rate": "18"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/175359462?mode=best&p=9",
+      "cat": "구동후기",
+      "title": "5090 Mobile + Gemma 4",
+      "comments": "[5]",
+      "time": "2026-06-29T19:05:11.000Z",
+      "views": "1911",
+      "rate": "13"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/175232018?mode=best&p=9",
+      "cat": "일반",
+      "title": "로컬챈에서 API 이야기하는 글들에 대한 개인적인 의견입니다.",
+      "comments": "[25]",
+      "time": "2026-06-28T12:27:39.000Z",
+      "views": "1726",
+      "rate": "11"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/175125202?mode=best&p=9",
+      "cat": "일반",
+      "title": "AI정신병에 대해 느끼는 점",
+      "comments": "[10]",
+      "time": "2026-06-27T12:23:54.000Z",
+      "views": "2019",
+      "rate": "21"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/175058521?mode=best&p=9",
+      "cat": "일반",
+      "title": "에이전트와 직무에 대한 잡설",
+      "comments": "[10]",
+      "time": "2026-06-26T22:54:05.000Z",
+      "views": "1386",
+      "rate": "16"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/175051590?mode=best&p=9",
+      "cat": "일반",
+      "title": "앞으로 탭 분류가 제대로 안 된 작성글은 경고 없이 내려갑니다.",
+      "comments": "[2]",
+      "time": "2026-06-26T17:58:47.000Z",
+      "views": "696",
+      "rate": "12"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/174958648?mode=best&p=9",
+      "cat": "일반",
+      "title": "자가회귀 언어모델에서 에이전트까지",
+      "comments": "[5]",
+      "time": "2026-06-26T02:31:49.000Z",
+      "views": "1265",
+      "rate": "20"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/174876980?mode=best&p=9",
+      "cat": "구동후기",
+      "title": "Gemma4 26B A4B QAT와 Gemma4 12B QAT 지식 비교 테스트",
+      "comments": "[10]",
+      "time": "2026-06-25T06:22:33.000Z",
+      "views": "3012",
+      "rate": "11"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/174915425?mode=best&p=9",
+      "cat": "일반",
+      "title": "로컬은 모델의 툴콜링에 너무 집착하지 않는 것이 맞는 듯 합니다.",
+      "comments": "[11]",
+      "time": "2026-06-25T12:53:41.000Z",
+      "views": "1784",
+      "rate": "19"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/174739948?mode=best&p=9",
+      "cat": "구동후기",
+      "title": "RTX 5090 32GB 한 장으로 Deepseek V4 Flash 돌리기",
+      "comments": "[4]",
+      "time": "2026-06-24T00:13:56.000Z",
+      "views": "2502",
+      "rate": "21"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/174545824?mode=best&p=9",
+      "cat": "정보",
+      "title": "[월간 AI 리뷰] 26년도 6월 (상용 2, 오픈소스 5)",
+      "comments": "[5]",
+      "time": "2026-06-22T00:45:41.000Z",
+      "views": "4024",
+      "rate": "13"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/174452258?mode=best&p=9",
+      "cat": "정보",
+      "title": "의외로 숨겨진 가성비 그래픽카드 하나 추천하고 갑니다.",
+      "comments": "[7]",
+      "time": "2026-06-20T23:24:02.000Z",
+      "views": "3679",
+      "rate": "15"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/174257569?mode=best&p=9",
+      "cat": "정보",
+      "title": "젬마4 플래시인퍼 VS 트리톤 어텐션 속도 벤치 해봤습니다.",
+      "comments": "[11]",
+      "time": "2026-06-19T01:50:43.000Z",
+      "views": "1153",
+      "rate": "12"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/173973323?mode=best&p=9",
+      "cat": "일반",
+      "title": "7월 시행되는 AI 기반 검열 관련 잡담",
+      "comments": "[20]",
+      "time": "2026-06-16T09:26:41.000Z",
+      "views": "3187",
+      "rate": "19"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/173924496?mode=best&p=9",
+      "cat": "일반",
+      "title": "이정도 업무자동화는 이제 그냥 되네요",
+      "comments": "[11]",
+      "time": "2026-06-15T21:37:58.000Z",
+      "views": "2846",
+      "rate": "15"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/173798864?mode=best&p=9",
+      "cat": "자작모델",
+      "title": "Tiny-Ko-Stories 데이터셋과 모델을 만들었습니다.",
+      "comments": "[36]",
+      "time": "2026-06-14T13:51:22.000Z",
+      "views": "1974",
+      "rate": "62"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/173597278?mode=best&p=9",
+      "cat": "구동후기",
+      "title": "Qwen3.6-27B-PrismaSCOUT-Blackwell-NVFP4-BF16-vllm 구동",
+      "comments": "[5]",
+      "time": "2026-06-12T13:51:13.000Z",
+      "views": "2064",
+      "rate": "12"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/173524163?mode=best&p=9",
+      "cat": "일반",
+      "title": "[중급자/상식]로컬 LLM환경 구축하신다는 분들이 꼭 선행했으면 하는점...",
+      "comments": "[32]",
+      "time": "2026-06-12T00:40:05.000Z",
+      "views": "16411",
+      "rate": "31"
+    },
+    {
+      "p": 9,
+      "href": "/b/alpaca/173451307?mode=best&p=9",
+      "cat": "일반",
+      "title": "디퓨전 젬마4 써본 간단 후기",
+      "comments": "[5]",
+      "time": "2026-06-11T06:51:13.000Z",
+      "views": "3950",
+      "rate": "14"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/173414707?mode=best&p=10",
+      "cat": "일반",
+      "title": "디퓨전 젬마4가 나왔네요.",
+      "comments": "[8]",
+      "time": "2026-06-10T21:39:13.000Z",
+      "views": "2430",
+      "rate": "12"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/173441836?mode=best&p=10",
+      "cat": "일반",
+      "title": "디퓨전 젬마 한국 KAIST 논문 기반으로 만들어진 모델이네요 ㄷㄷ",
+      "comments": "[2]",
+      "time": "2026-06-11T05:03:21.000Z",
+      "views": "1898",
+      "rate": "12"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/173100969?mode=best&p=10",
+      "cat": "정보",
+      "title": "Gemma 4 및 Qwen 등 모델 도구 호출 이슈 해결 방안 공유",
+      "comments": "[3]",
+      "time": "2026-06-07T15:54:59.000Z",
+      "views": "2930",
+      "rate": "16"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/173098189?mode=best&p=10",
+      "cat": "정보",
+      "title": "(260608) 그래픽카드 TFLOPS, 대역폭/가격 비교",
+      "comments": "[8]",
+      "time": "2026-06-07T15:20:59.000Z",
+      "views": "1626",
+      "rate": "15"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/173008712?mode=best&p=10",
+      "cat": "정보",
+      "title": "[비개발자용] DGX Spark OEM 구매후 3주간 얻은 인사이트 공유.",
+      "comments": "[17]",
+      "time": "2026-06-06T18:18:47.000Z",
+      "views": "3694",
+      "rate": "37"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172788661?mode=best&p=10",
+      "cat": "일반",
+      "title": "(스압)스캐폴딩(?)으로 LEET 환각유발 문제를 처음으로 Qwen3.6에서 맞추게 했네요.",
+      "comments": "[18]",
+      "time": "2026-06-04T14:42:47.000Z",
+      "views": "1212",
+      "rate": "15"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172764675?mode=best&p=10",
+      "cat": "일반",
+      "title": "우리가 원하는건 12B가 아니다ㅡ! *124B*를 달라!",
+      "comments": "[6]",
+      "time": "2026-06-04T11:10:00.000Z",
+      "views": "2121",
+      "rate": "14"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172692535?mode=best&p=10",
+      "cat": "구동후기",
+      "title": "RTX PRO 6000 4 way 에서 Deepseek V4 flash MTP 구동 - 초당 150토큰",
+      "comments": "[14]",
+      "time": "2026-06-03T17:28:17.000Z",
+      "views": "2196",
+      "rate": "14"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172707993?mode=best&p=10",
+      "cat": "구동후기",
+      "title": "gemma-4-12B-it FP8 BLOCK 후기",
+      "comments": "[6]",
+      "time": "2026-06-04T00:56:11.000Z",
+      "views": "4495",
+      "rate": "14"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172687746?mode=best&p=10",
+      "cat": "일반",
+      "title": "젬마4 12B 공개",
+      "comments": "[10]",
+      "time": "2026-06-03T16:10:16.000Z",
+      "views": "3319",
+      "rate": "13"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172545978?mode=best&p=10",
+      "cat": "일반",
+      "title": "중국 모델들 10종 개인적인 툴콜링 테스트(Alibaba API)",
+      "comments": "[6]",
+      "time": "2026-06-02T11:08:33.000Z",
+      "views": "2016",
+      "rate": "17"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172228389?mode=best&p=10",
+      "cat": "일반",
+      "title": "한국형 LLM을 만든다 하면 사실 수지타산이 안맞아 보임",
+      "comments": "[20]",
+      "time": "2026-05-30T07:41:02.000Z",
+      "views": "2578",
+      "rate": "22"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172136676?mode=best&p=10",
+      "cat": "일반",
+      "title": "stepfun 3.7 flash 후기",
+      "comments": "[22]",
+      "time": "2026-05-29T09:40:42.000Z",
+      "views": "2826",
+      "rate": "18"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/171971661?mode=best&p=10",
+      "cat": "구동후기",
+      "title": "2xArc B580 llama.cpp 구동후기",
+      "comments": "[6]",
+      "time": "2026-05-27T17:33:03.000Z",
+      "views": "1708",
+      "rate": "12"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/172069921?mode=best&p=10",
+      "cat": "일반",
+      "title": "젬마4 max_soft_tokens(이미지 토큰 예산) 값에 따른 비전 성능 변화",
+      "comments": "[7]",
+      "time": "2026-05-28T15:28:39.000Z",
+      "views": "1972",
+      "rate": "17"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/171870465?mode=best&p=10",
+      "cat": "일반",
+      "title": "Hy-MT2-30B-A3B vs gemma-4-26B-A4B-it 일한 번역에 대한 사견",
+      "comments": "[6]",
+      "time": "2026-05-26T18:55:29.000Z",
+      "views": "1924",
+      "rate": "12"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/171799721?mode=best&p=10",
+      "cat": "정보",
+      "title": "[월간 AI 리뷰] 26년도 5월 미완",
+      "comments": "[4]",
+      "time": "2026-05-26T04:42:19.000Z",
+      "views": "3398",
+      "rate": "18"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/171427132?mode=best&p=10",
+      "cat": "일반",
+      "title": "늒네를 위한 LLM 적용 가이드 (8) - 텐서병렬이란? + 설정 실험후기",
+      "comments": "[13]",
+      "time": "2026-05-22T08:30:44.000Z",
+      "views": "2750",
+      "rate": "17"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/171339880?mode=best&p=10",
+      "cat": "정보",
+      "title": "[초보자/상식]그놈의 Artificial Analysis 점수가 뭐길래 맨날 들고 오는거냐",
+      "comments": "[7]",
+      "time": "2026-05-21T10:10:16.000Z",
+      "views": "4406",
+      "rate": "14"
+    },
+    {
+      "p": 10,
+      "href": "/b/alpaca/171345637?mode=best&p=10",
+      "cat": "일반",
+      "title": "늒네를 위한 LLM 적용 가이드 (7) - MTP 란 무엇인가?",
+      "comments": "[10]",
+      "time": "2026-05-21T11:04:07.000Z",
+      "views": "3390",
+      "rate": "18"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/171105812?mode=best&p=11",
+      "cat": "구동후기",
+      "title": "2 DGX Deepseek v4 flash 35t/s 정도 나와주네요.",
+      "comments": "[15]",
+      "time": "2026-05-19T05:29:27.000Z",
+      "views": "1926",
+      "rate": "11"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/171029544?mode=best&p=11",
+      "cat": "구동후기",
+      "title": "R9700 되게 만족스럽네요",
+      "comments": "[20]",
+      "time": "2026-05-18T09:05:58.000Z",
+      "views": "6255",
+      "rate": "14"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/170208043?mode=best&p=11",
+      "cat": "일반",
+      "title": "레딧보다가 흥미로워보여서 따라해봄",
+      "comments": "[4]",
+      "time": "2026-05-10T01:23:42.000Z",
+      "views": "3032",
+      "rate": "13"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/170208920?mode=best&p=11",
+      "cat": "일반",
+      "title": "MoE 저비트 양자화, imatrix 영향이 있는 것 같네요 (Xiaomi MiMo v2.5)",
+      "comments": "[3]",
+      "time": "2026-05-10T01:40:21.000Z",
+      "views": "1838",
+      "rate": "15"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/170096937?mode=best&p=11",
+      "cat": "구동후기",
+      "title": "스파크 2대에 Qwen 3.5 397B 서빙 후기 (TP=2)",
+      "comments": "[5]",
+      "time": "2026-05-08T16:14:10.000Z",
+      "views": "2578",
+      "rate": "14"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169939222?mode=best&p=11",
+      "cat": "정보",
+      "title": "LM Studio에서 한국 주식관련 MCP가 붙습니다.",
+      "comments": "[1]",
+      "time": "2026-05-07T06:41:00.000Z",
+      "views": "2836",
+      "rate": "18"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169905337?mode=best&p=11",
+      "cat": "일반",
+      "title": "gemma-4-26b-awq MTP 간단 속도 측정",
+      "comments": "[4]",
+      "time": "2026-05-06T21:09:50.000Z",
+      "views": "4674",
+      "rate": "10"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169902336?mode=best&p=11",
+      "cat": "일반",
+      "title": "[초보자/상식] 올바른 모델 선택에 관한 원론적인 글",
+      "comments": "[29]",
+      "time": "2026-05-06T18:45:04.000Z",
+      "views": "12014",
+      "rate": "68"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169790929?mode=best&p=11",
+      "cat": "자작모델",
+      "title": "Gemma 4 31B용 한국어 Eagle-3 모델 만들었습니다",
+      "comments": "[15]",
+      "time": "2026-05-05T15:24:38.000Z",
+      "views": "4204",
+      "rate": "41"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169514920?mode=best&p=11",
+      "cat": "일반",
+      "title": "Gemma 4 (26b, 31b) 세차장 문제 실험 총 15번 (31b 5번 26b 10번) 전문과 요약",
+      "comments": "[1]",
+      "time": "2026-05-02T18:07:39.000Z",
+      "views": "2590",
+      "rate": "12"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169636785?mode=best&p=11",
+      "cat": "공지",
+      "title": "[공지] 영역 개선에 대한 의견 청취",
+      "comments": "[15]",
+      "time": "2026-05-04T04:47:20.000Z",
+      "views": "1403",
+      "rate": "17"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169543269?mode=best&p=11",
+      "cat": "일반",
+      "title": "로컬 모델들 돌려보면서 몇가지 깨우친 점",
+      "comments": "[6]",
+      "time": "2026-05-03T05:37:40.000Z",
+      "views": "3281",
+      "rate": "16"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169581110?mode=best&p=11",
+      "cat": "일반",
+      "title": "챈에 새로운 완장 분이 취임 하셨습니다",
+      "comments": "[20]",
+      "time": "2026-05-03T12:05:27.000Z",
+      "views": "1858",
+      "rate": "28"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169535289?mode=best&p=11",
+      "cat": "일반",
+      "title": "공지 글 정리가 좀 필요해보임",
+      "comments": "[12]",
+      "time": "2026-05-03T03:51:00.000Z",
+      "views": "1428",
+      "rate": "20"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169483206?mode=best&p=11",
+      "cat": "정보",
+      "title": "늒네를 위한 LLM 적용 가이드 (3)",
+      "comments": "[6]",
+      "time": "2026-05-02T11:38:02.000Z",
+      "views": "4851",
+      "rate": "16"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169480500?mode=best&p=11",
+      "cat": "정보",
+      "title": "늒네를 위한 LLM 적용 가이드 (2)",
+      "comments": "[11]",
+      "time": "2026-05-02T11:12:27.000Z",
+      "views": "4767",
+      "rate": "15"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169483698?mode=best&p=11",
+      "cat": "정보",
+      "title": "늒네를 위한 LLM 적용 가이드 (4)",
+      "comments": "[6]",
+      "time": "2026-05-02T11:42:56.000Z",
+      "views": "5743",
+      "rate": "22"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/169479173?mode=best&p=11",
+      "cat": "정보",
+      "title": "[초보자/상식] 늒네를 위한 LLM 적용 가이드 (1)",
+      "comments": "[8]",
+      "time": "2026-05-02T10:58:56.000Z",
+      "views": "8931",
+      "rate": "22"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/168398031?mode=best&p=11",
+      "cat": "일반",
+      "title": "로컬 AI와 CS에 대한 개인적인 잡설",
+      "comments": "[19]",
+      "time": "2026-04-21T18:21:31.000Z",
+      "views": "2771",
+      "rate": "18"
+    },
+    {
+      "p": 11,
+      "href": "/b/alpaca/168535591?mode=best&p=11",
+      "cat": "정보",
+      "title": "[트렌드, 26.4월] 실제로 쓸만한 로컬 LLM 비교분석",
+      "comments": "[25]",
+      "time": "2026-04-23T04:49:53.000Z",
+      "views": "23587",
+      "rate": "14"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/168127823?mode=best&p=12",
+      "cat": "구동후기",
+      "title": "5070ti 16GB + 3060 12GB 듀얼 구성후 젬마4 모델 후기",
+      "comments": "[6]",
+      "time": "2026-04-19T04:48:48.000Z",
+      "views": "4127",
+      "rate": "14"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/168022919?mode=best&p=12",
+      "cat": "일반",
+      "title": "Qwen3.6 35B-A3B BF16  엄청 괜찮네요",
+      "comments": "[9]",
+      "time": "2026-04-18T03:17:05.000Z",
+      "views": "4763",
+      "rate": "11"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/168108771?mode=best&p=12",
+      "cat": "일반",
+      "title": "gemma-4-31b-it vllm FP8+int4 3종 비교 (AutoRound, AWQ cyanwiki, AWQ QuantTrio)",
+      "comments": "[5]",
+      "time": "2026-04-18T22:46:59.000Z",
+      "views": "3702",
+      "rate": "18"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/167944551?mode=best&p=12",
+      "cat": "일반",
+      "title": "[트렌드, 26.8월] 념글 카테고리별 정리중",
+      "comments": "[2]",
+      "time": "2026-04-17T08:07:16.000Z",
+      "views": "7162",
+      "rate": "21"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/167597965?mode=best&p=12",
+      "cat": "정보",
+      "title": "Gemma 4 \"짭 추론\"",
+      "comments": "[18]",
+      "time": "2026-04-13T15:18:37.000Z",
+      "views": "9098",
+      "rate": "38"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/167466173?mode=best&p=12",
+      "cat": "정보",
+      "title": "Google DeepMind배 천하제일 Gemma4 파인튜닝 대회",
+      "comments": "[3]",
+      "time": "2026-04-12T07:04:56.000Z",
+      "views": "3346",
+      "rate": "18"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/167414957?mode=best&p=12",
+      "cat": "일반",
+      "title": "gemma-4 31b로 어떻게 로컬에서 '한글' 소설을 쓸 수 있을지에 대한 꼼수들.",
+      "comments": "[6]",
+      "time": "2026-04-11T14:20:18.000Z",
+      "views": "4290",
+      "rate": "23"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/167052631?mode=best&p=12",
+      "cat": "일반",
+      "title": "Glm5.1",
+      "comments": "[2]",
+      "time": "2026-04-07T21:13:54.000Z",
+      "views": "1865",
+      "rate": "12"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/167186955?mode=best&p=12",
+      "cat": "일반",
+      "title": "Gemma 4 뜯어볼 수록 스트레스 받네",
+      "comments": "[4]",
+      "time": "2026-04-09T07:01:42.000Z",
+      "views": "5182",
+      "rate": "16"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166835200?mode=best&p=12",
+      "cat": "구동후기",
+      "title": "RTX 3080 Ti 12브램으로 gemma-4-26B-A4B-it 동작",
+      "comments": "[3]",
+      "time": "2026-04-05T09:58:59.000Z",
+      "views": "3424",
+      "rate": "13"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/167034241?mode=best&p=12",
+      "cat": "일반",
+      "title": "최근 시작한 뻘짓",
+      "comments": "[3]",
+      "time": "2026-04-07T14:01:41.000Z",
+      "views": "1430",
+      "rate": "12"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166953378?mode=best&p=12",
+      "cat": "일반",
+      "title": "젬마 벤치 비교가 나왓읍니다",
+      "comments": "[6]",
+      "time": "2026-04-06T16:47:55.000Z",
+      "views": "2644",
+      "rate": "17"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166890856?mode=best&p=12",
+      "cat": "일반",
+      "title": "gemma-4-E2B-it-UD-Q8_K_XL 의 짜장면 테스트",
+      "comments": "",
+      "time": "2026-04-06T03:30:21.000Z",
+      "views": "1776",
+      "rate": "12"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166773542?mode=best&p=12",
+      "cat": "일반",
+      "title": "근데 세차장 벤치는 이미 학습가능성이 있어서 다른게 낫지않음?",
+      "comments": "[6]",
+      "time": "2026-04-04T14:12:56.000Z",
+      "views": "1857",
+      "rate": "18"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166682934?mode=best&p=12",
+      "cat": "일반",
+      "title": "gemma4-31B-it 한국어 테스트 결과",
+      "comments": "[6]",
+      "time": "2026-04-03T13:01:43.000Z",
+      "views": "2805",
+      "rate": "12"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166682716?mode=best&p=12",
+      "cat": "일반",
+      "title": "Gemma 4 31B UD-Q4_K_XL — RTX 5090 한 장으로 256K 풀 컨텍스트 벤치마크",
+      "comments": "[8]",
+      "time": "2026-04-03T12:59:42.000Z",
+      "views": "5401",
+      "rate": "15"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166638852?mode=best&p=12",
+      "cat": "일반",
+      "title": "Gemma 4의 아키텍처적 혁신은 없음 (feat. 구글은 똑똑하다)",
+      "comments": "[10]",
+      "time": "2026-04-03T04:51:12.000Z",
+      "views": "2977",
+      "rate": "16"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166668223?mode=best&p=12",
+      "cat": "구동후기",
+      "title": "캬 잼마 야점 야점이요!",
+      "comments": "[10]",
+      "time": "2026-04-03T10:37:07.000Z",
+      "views": "2782",
+      "rate": "16"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166622732?mode=best&p=12",
+      "cat": "일반",
+      "title": "Gemma-4 31B 하루 사용 후기(수정)",
+      "comments": "[25]",
+      "time": "2026-04-03T00:27:26.000Z",
+      "views": "13031",
+      "rate": "21"
+    },
+    {
+      "p": 12,
+      "href": "/b/alpaca/166613079?mode=best&p=12",
+      "cat": "일반",
+      "title": "젬마4 포함 간단한 단문 번역 벤치",
+      "comments": "[3]",
+      "time": "2026-04-02T17:25:51.000Z",
+      "views": "2516",
+      "rate": "15"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/166612994?mode=best&p=13",
+      "cat": "일반",
+      "title": "llama.cpp 터보퀸트 알고리즘 (attn-rot) 찍먹 후기 (qwen3.5-122b, qwen3.5-27b 일반gguf)",
+      "comments": "[3]",
+      "time": "2026-04-02T17:23:37.000Z",
+      "views": "2627",
+      "rate": "13"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/166460672?mode=best&p=13",
+      "cat": "구동후기",
+      "title": "1bit llm Bonsai-8b 구동 후기",
+      "comments": "[4]",
+      "time": "2026-04-01T07:29:39.000Z",
+      "views": "2468",
+      "rate": "21"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/165918977?mode=best&p=13",
+      "cat": "일반",
+      "title": "회사에서 agent 발표 겸 바이브코딩 소감회를 가져봤습니다.",
+      "comments": "[8]",
+      "time": "2026-03-26T12:46:49.000Z",
+      "views": "1653",
+      "rate": "13"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/166179374?mode=best&p=13",
+      "cat": "일반",
+      "title": "[모델 공유] Qwen3-122B-A10B 의 NVFP4 양자화 모델도 만들어 봤음",
+      "comments": "[5]",
+      "time": "2026-03-29T09:58:44.000Z",
+      "views": "2043",
+      "rate": "15"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/165786543?mode=best&p=13",
+      "cat": "자료",
+      "title": "TurboQuant 라는 llm 효율 올리는 기술이 나왔다네요",
+      "comments": "[4]",
+      "time": "2026-03-25T05:04:26.000Z",
+      "views": "2405",
+      "rate": "12"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/165272067?mode=best&p=13",
+      "cat": "일반",
+      "title": "Qwen 3.5 27B를 40B로 마개조한 모델",
+      "comments": "[9]",
+      "time": "2026-03-19T06:43:44.000Z",
+      "views": "5897",
+      "rate": "10"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/165694454?mode=best&p=13",
+      "cat": "정보",
+      "title": "[중급자/상식] MoE의 Activation이란 무엇인가? Qwen 3.5 35B-A3B를 예시로 들기",
+      "comments": "[3]",
+      "time": "2026-03-24T05:08:54.000Z",
+      "views": "5297",
+      "rate": "14"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/165151789?mode=best&p=13",
+      "cat": "정보",
+      "title": "Unsloth Studio : 로컬로 학습부터 추론까지 오픈소스 WebUI",
+      "comments": "[14]",
+      "time": "2026-03-17T22:27:09.000Z",
+      "views": "2692",
+      "rate": "13"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/165067073?mode=best&p=13",
+      "cat": "일반",
+      "title": "오픈소스 llm 아키텍처 이미지 갤러리 및 모음집",
+      "comments": "[2]",
+      "time": "2026-03-17T00:45:39.000Z",
+      "views": "1388",
+      "rate": "15"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/165145055?mode=best&p=13",
+      "cat": "구동후기",
+      "title": "[Qwen 3.5 122B] spark vs m3 ultra 실사용 후기",
+      "comments": "[8]",
+      "time": "2026-03-17T16:44:40.000Z",
+      "views": "2726",
+      "rate": "15"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/164718486?mode=best&p=13",
+      "cat": "일반",
+      "title": "AI 모델의 Task에 대한 짧은 글",
+      "comments": "[4]",
+      "time": "2026-03-13T01:54:02.000Z",
+      "views": "1154",
+      "rate": "11"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/164208622?mode=best&p=13",
+      "cat": "정보",
+      "title": "핸드폰 NPU로 LLM 구동 간단후기",
+      "comments": "[19]",
+      "time": "2026-03-07T10:14:31.000Z",
+      "views": "3191",
+      "rate": "18"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/164194614?mode=best&p=13",
+      "cat": "일반",
+      "title": "Qwen3.5-27B 기본 vs Opus 4.6 증류 비교",
+      "comments": "[16]",
+      "time": "2026-03-07T07:23:05.000Z",
+      "views": "4788",
+      "rate": "30"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/163991693?mode=best&p=13",
+      "cat": "일반",
+      "title": "Qwen 팀 최고책임자 퇴사 +(다른 연구원들도 따라 줄줄이 퇴사)",
+      "comments": "[4]",
+      "time": "2026-03-04T23:09:12.000Z",
+      "views": "2015",
+      "rate": "11"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/163995138?mode=best&p=13",
+      "cat": "일반",
+      "title": "후.. 어젯밤에 2 Spark 구성까지 완료하고 Qwen3.5-122B-A10 FP8 공식 양자화 올려 테스트 해 봄",
+      "comments": "[12]",
+      "time": "2026-03-05T00:31:19.000Z",
+      "views": "1593",
+      "rate": "13"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/163812018?mode=best&p=13",
+      "cat": "일반",
+      "title": "환각을 줄이기 위한 쿼리 작성 습관(논문 소개)",
+      "comments": "[6]",
+      "time": "2026-03-02T16:34:56.000Z",
+      "views": "2031",
+      "rate": "11"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/163671964?mode=best&p=13",
+      "cat": "일반",
+      "title": "인민의 LLM) ORANGE PI6 PLUS SBC에서 LLM을 돌려보자",
+      "comments": "[4]",
+      "time": "2026-03-01T05:37:56.000Z",
+      "views": "1887",
+      "rate": "15"
+    },
+    {
+      "p": 13,
+      "href": "/b/alpaca/163448244?mode=best&p=13",
+      "cat": "정보",
+      "title": "Qwen 3.5 시리즈 Artificial Analysis 점수",
+      "comments": "[19]",
+      "time": "2026-02-26T14:50:58.000Z",
+      "views": "2135",
+      "rate": "12"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/163438479?mode=best&p=14",
+      "cat": "일반",
+      "title": "RTX5090 / 64GB RAM / Qwen3.5-122B-10B MVFP4 테스트",
+      "comments": "[8]",
+      "time": "2026-02-26T13:10:55.000Z",
+      "views": "2772",
+      "rate": "15"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/163364941?mode=best&p=14",
+      "cat": "구동후기",
+      "title": "Qwen3.5-122B-A10B AWQ 4bit 구동 후기",
+      "comments": "[7]",
+      "time": "2026-02-25T19:03:21.000Z",
+      "views": "2881",
+      "rate": "12"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/163357805?mode=best&p=14",
+      "cat": "구동후기",
+      "title": "bbox 정확도 비교 qwen3 vs qwen3.5",
+      "comments": "[1]",
+      "time": "2026-02-25T16:05:53.000Z",
+      "views": "1522",
+      "rate": "16"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/163329643?mode=best&p=14",
+      "cat": "구동후기",
+      "title": "Qwen3.5-27B 뉴 간단 한국어 가동 후기",
+      "comments": "[16]",
+      "time": "2026-02-25T10:37:28.000Z",
+      "views": "3992",
+      "rate": "25"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/163266723?mode=best&p=14",
+      "cat": "일반",
+      "title": "qwen 3.5 몇가지 모델이 더 떴네요",
+      "comments": "[12]",
+      "time": "2026-02-24T15:06:14.000Z",
+      "views": "2098",
+      "rate": "15"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/163206034?mode=best&p=14",
+      "cat": "일반",
+      "title": "최고급 야짤 머신 도착했습니다.",
+      "comments": "[28]",
+      "time": "2026-02-24T03:40:54.000Z",
+      "views": "3077",
+      "rate": "16"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/163073828?mode=best&p=14",
+      "cat": "정보",
+      "title": "[초보자/상식] 초보자가 GPU 사기 전에 고민해야 할 것 들",
+      "comments": "[20]",
+      "time": "2026-02-22T11:30:48.000Z",
+      "views": "9265",
+      "rate": "22"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/162025261?mode=best&p=14",
+      "cat": "구동후기",
+      "title": "엑사원 236b - 중국꺼보다 심하다",
+      "comments": "[11]",
+      "time": "2026-02-10T09:40:26.000Z",
+      "views": "2615",
+      "rate": "12"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/161895802?mode=best&p=14",
+      "cat": "일반",
+      "title": "395들끼리 텐서 병렬하는거 성공했나본데",
+      "comments": "[9]",
+      "time": "2026-02-08T23:36:48.000Z",
+      "views": "2315",
+      "rate": "12"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/161620432?mode=best&p=14",
+      "cat": "일반",
+      "title": "RTX pro 6000? DGX? Ryzen395+?",
+      "comments": "[3]",
+      "time": "2026-02-06T03:21:21.000Z",
+      "views": "2704",
+      "rate": "15"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/161393379?mode=best&p=14",
+      "cat": "공지",
+      "title": "[임시조치] 로그인한 사용자만 게시글 작성 가능하도록 설정하였습니다",
+      "comments": "[4]",
+      "time": "2026-02-03T15:17:15.000Z",
+      "views": "2705",
+      "rate": "23"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/160502177?mode=best&p=14",
+      "cat": "일반",
+      "title": "방이 너무 더워요",
+      "comments": "[5]",
+      "time": "2026-01-24T11:14:10.000Z",
+      "views": "1737",
+      "rate": "14"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/160094433?mode=best&p=14",
+      "cat": "일반",
+      "title": "오랫만에 똥글 하나 싸야겠음",
+      "comments": "[16]",
+      "time": "2026-01-20T04:15:33.000Z",
+      "views": "3661",
+      "rate": "24"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/159958855?mode=best&p=14",
+      "cat": "일반",
+      "title": "곧 MoE 모델 튜닝이 편해질 것 같아요(experts_implementation=\"grouped_mm\")",
+      "comments": "[5]",
+      "time": "2026-01-18T11:07:46.000Z",
+      "views": "2101",
+      "rate": "23"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/159751632?mode=best&p=14",
+      "cat": "일반",
+      "title": "한글 소설(웹소설/라이트노벨) 작성만 염두에 둔 LLM 모델들 간단 평가.",
+      "comments": "[18]",
+      "time": "2026-01-16T05:28:09.000Z",
+      "views": "6835",
+      "rate": "12"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/159407661?mode=best&p=14",
+      "cat": "구동후기",
+      "title": "VAETKI 뉴 간단 한국어 가동 맛보기",
+      "comments": "[2]",
+      "time": "2026-01-12T11:25:21.000Z",
+      "views": "1538",
+      "rate": "12"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/159374706?mode=best&p=14",
+      "cat": "정보",
+      "title": "AI Max+ 395 설정 팁 (+리눅스를 추천하는 이유)",
+      "comments": "[8]",
+      "time": "2026-01-12T04:39:27.000Z",
+      "views": "5671",
+      "rate": "13"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/159353216?mode=best&p=14",
+      "cat": "일반",
+      "title": "(장문주의) 한눈에 보는 tech report 기반 K-LLM 5종 비교",
+      "comments": "[6]",
+      "time": "2026-01-11T19:08:04.000Z",
+      "views": "4728",
+      "rate": "28"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/159211195?mode=best&p=14",
+      "cat": "일반",
+      "title": "RAG + IRQA 통합과학 질문-답변 챗봇 소스코드를 공개합니다",
+      "comments": "[2]",
+      "time": "2026-01-10T05:16:00.000Z",
+      "views": "1226",
+      "rate": "17"
+    },
+    {
+      "p": 14,
+      "href": "/b/alpaca/159125052?mode=best&p=14",
+      "cat": "일반",
+      "title": "nanoRLHF 프로젝트를 소개합니다.",
+      "comments": "[3]",
+      "time": "2026-01-09T06:18:22.000Z",
+      "views": "4371",
+      "rate": "35"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/158957246?mode=best&p=15",
+      "cat": "일반",
+      "title": "Solar-Open-100B 과소적합 토큰 문제",
+      "comments": "[15]",
+      "time": "2026-01-07T09:31:54.000Z",
+      "views": "4223",
+      "rate": "18"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/158951842?mode=best&p=15",
+      "cat": "일반",
+      "title": "[업데이트] PonderTTT - arXiv에 올렸습니다",
+      "comments": "[7]",
+      "time": "2026-01-07T08:31:01.000Z",
+      "views": "3173",
+      "rate": "16"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/158821844?mode=best&p=15",
+      "cat": "구동후기",
+      "title": "GLM-4.6V 뉴 간단 한국어 가동 후기",
+      "comments": "[2]",
+      "time": "2026-01-05T16:59:16.000Z",
+      "views": "2146",
+      "rate": "14"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/158810754?mode=best&p=15",
+      "cat": "구동후기",
+      "title": "Upstage Solar-Open-100B 뉴 간단 한국어 가동 후기",
+      "comments": "[5]",
+      "time": "2026-01-05T14:14:40.000Z",
+      "views": "1590",
+      "rate": "12"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/158740864?mode=best&p=15",
+      "cat": "일반",
+      "title": "우리는 왜 '짜장-벤치'를 하는가",
+      "comments": "[7]",
+      "time": "2026-01-04T17:05:21.000Z",
+      "views": "2114",
+      "rate": "16"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/158507880?mode=best&p=15",
+      "cat": "구동후기",
+      "title": "업스테이지 Solar-Open-100B-GGUF:Q8_0 구동 후기",
+      "comments": "[5]",
+      "time": "2026-01-02T04:34:40.000Z",
+      "views": "1417",
+      "rate": "13"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/158484076?mode=best&p=15",
+      "cat": "정보",
+      "title": "[수정] K-EXAONE 236B (추론/비추론), GPT-OSS 120B (high) 수능 풀이 결과",
+      "comments": "[14]",
+      "time": "2026-01-01T18:36:45.000Z",
+      "views": "2557",
+      "rate": "14"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/158222666?mode=best&p=15",
+      "cat": "일반",
+      "title": "짜장면 테스트는 한국 고유의 벤치마크로 자리 잡았네요",
+      "comments": "[9]",
+      "time": "2025-12-30T07:34:14.000Z",
+      "views": "1924",
+      "rate": "16"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/157466986?mode=best&p=15",
+      "cat": "정보",
+      "title": "최근 llama.cpp에서 KORMo-10B 지원을 시작함.",
+      "comments": "[4]",
+      "time": "2025-12-22T02:30:03.000Z",
+      "views": "1901",
+      "rate": "11"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/156700826?mode=best&p=15",
+      "cat": "일반",
+      "title": "꿈이 점점 현실이 돼가네용...",
+      "comments": "[12]",
+      "time": "2025-12-13T17:39:34.000Z",
+      "views": "4524",
+      "rate": "16"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/156075735?mode=best&p=15",
+      "cat": "일반",
+      "title": "문서 기반 RAG + LLM 어시스턴트 만들어봤습니다",
+      "comments": "[31]",
+      "time": "2025-12-07T10:12:50.000Z",
+      "views": "13563",
+      "rate": "17"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/155421066?mode=best&p=15",
+      "cat": "일반",
+      "title": "PonderTTT: Test-Time Training으로 \"언제 더 생각할지\" 배우는 언어 모델 실험 공유",
+      "comments": "[6]",
+      "time": "2025-11-30T14:49:56.000Z",
+      "views": "2264",
+      "rate": "23"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/154066154?mode=best&p=15",
+      "cat": "일반",
+      "title": "재밌는 연구 내용 하나 공유해드립니다.",
+      "comments": "[6]",
+      "time": "2025-11-17T12:51:47.000Z",
+      "views": "2647",
+      "rate": "28"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/153704606?mode=best&p=15",
+      "cat": "정보",
+      "title": "RAG와 QLoRA에 대해",
+      "comments": "[15]",
+      "time": "2025-11-14T02:58:14.000Z",
+      "views": "4919",
+      "rate": "25"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/152948454?mode=best&p=15",
+      "cat": "일반",
+      "title": "뉴비의 데이터세트 번역기 8(끝)",
+      "comments": "[6]",
+      "time": "2025-11-06T12:56:38.000Z",
+      "views": "1255",
+      "rate": "12"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/152877589?mode=best&p=15",
+      "cat": "일반",
+      "title": "Rosetta 27B (번역 모델) 사이즈 올라왔습니다~",
+      "comments": "[9]",
+      "time": "2025-11-06T00:10:04.000Z",
+      "views": "2387",
+      "rate": "18"
+    },
+    {
+      "p": 15,
+      "href": "/b/alpaca/151600625?mode=best&p=15",
+      "cat": "일반",
+      "title": "GLM-4.5-Air-REAP 엄청 짧은 한국어 후기",
+      "comments": "[2]",
+      "time": "2025-10-24T18:55:27.000Z",
+      "views": "1995",
+      "rate": "11"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/151548520?mode=best&p=16",
+      "cat": "일반",
+      "title": "재미로 보는 llama.cpp cpu offload 속도 (feat. oss-120b & RTX3090)",
+      "comments": "[3]",
+      "time": "2025-10-24T09:33:56.000Z",
+      "views": "2090",
+      "rate": "14"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/151553124?mode=best&p=16",
+      "cat": "일반",
+      "title": "윈도우 llama cpp AMD도 빌드과정없이 사용가능",
+      "comments": "",
+      "time": "2025-10-24T10:15:21.000Z",
+      "views": "1672",
+      "rate": "13"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/151438281?mode=best&p=16",
+      "cat": "일반",
+      "title": "ROCm 7.9 테스트 GPT OSS 120B on AMD Ryzen™ Al Max+ 395",
+      "comments": "[5]",
+      "time": "2025-10-23T07:29:43.000Z",
+      "views": "2554",
+      "rate": "13"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/150568621?mode=best&p=16",
+      "cat": "자료",
+      "title": "초경량 아키텍처가 하나 나왔네요",
+      "comments": "[6]",
+      "time": "2025-10-14T08:43:32.000Z",
+      "views": "3221",
+      "rate": "12"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/150139176?mode=best&p=16",
+      "cat": "구동후기",
+      "title": "GLM 4.6 (KoboldCpp IQ4_NL) 초간단 테스트",
+      "comments": "[1]",
+      "time": "2025-10-09T13:22:55.000Z",
+      "views": "1038",
+      "rate": "13"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/150118048?mode=best&p=16",
+      "cat": "자작모델",
+      "title": "YanoljaNEXT-Rosetta-12B-2510 새 버전 올렸습니다",
+      "comments": "[36]",
+      "time": "2025-10-09T09:47:34.000Z",
+      "views": "3568",
+      "rate": "21"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/149653269?mode=best&p=16",
+      "cat": "정보",
+      "title": "MI50 32GB 4way 후기 겸 간단 정보",
+      "comments": "[16]",
+      "time": "2025-10-03T19:02:29.000Z",
+      "views": "8178",
+      "rate": "18"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/149388021?mode=best&p=16",
+      "cat": "일반",
+      "title": "지극히 주관적인 모델별 일한 소설 번역 소감",
+      "comments": "[16]",
+      "time": "2025-09-30T19:40:59.000Z",
+      "views": "4995",
+      "rate": "17"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/148420400?mode=best&p=16",
+      "cat": "구동후기",
+      "title": "Apertus-70B-Instruct-2509 초간단 후기",
+      "comments": "",
+      "time": "2025-09-20T10:19:04.000Z",
+      "views": "1093",
+      "rate": "14"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/146943384?mode=best&p=16",
+      "cat": "일반",
+      "title": "번역 모델 올렸습니다!",
+      "comments": "[42]",
+      "time": "2025-09-03T12:17:46.000Z",
+      "views": "6054",
+      "rate": "42"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/146600681?mode=best&p=16",
+      "cat": "일반",
+      "title": "뉴비 실험했음",
+      "comments": "[9]",
+      "time": "2025-08-30T12:54:51.000Z",
+      "views": "3476",
+      "rate": "16"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/146560003?mode=best&p=16",
+      "cat": "일반",
+      "title": "기분 너무 좋다",
+      "comments": "[7]",
+      "time": "2025-08-30T04:53:29.000Z",
+      "views": "1941",
+      "rate": "13"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/146386901?mode=best&p=16",
+      "cat": "일반",
+      "title": "AMD AI Max+ 395 로 LLM 토큰 속도 테스트 후기",
+      "comments": "[13]",
+      "time": "2025-08-28T08:24:57.000Z",
+      "views": "6624",
+      "rate": "14"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/146313820?mode=best&p=16",
+      "cat": "일반",
+      "title": "sLLM 쓰는거 좀 감이 잡혀갑니다",
+      "comments": "[11]",
+      "time": "2025-08-27T12:16:23.000Z",
+      "views": "7285",
+      "rate": "12"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/145707110?mode=best&p=16",
+      "cat": "정보",
+      "title": "일주일 전 맥스튜디오 M3 Ultra 256GB를 구매했습니다.",
+      "comments": "[26]",
+      "time": "2025-08-20T13:22:46.000Z",
+      "views": "5696",
+      "rate": "14"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/145084336?mode=best&p=16",
+      "cat": "일반",
+      "title": "이거 진짜임",
+      "comments": "[7]",
+      "time": "2025-08-13T16:54:41.000Z",
+      "views": "8572",
+      "rate": "18"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/145137237?mode=best&p=16",
+      "cat": "정보",
+      "title": "2025 서울 AI 해커톤에 아카라이브 개발자분들을 모십니다.(모집: 8월 31일까지)",
+      "comments": "[11]",
+      "time": "2025-08-14T08:39:50.000Z",
+      "views": "2451",
+      "rate": "20"
+    },
+    {
+      "p": 16,
+      "href": "/b/alpaca/144384733?mode=best&p=16",
+      "cat": "구동후기",
+      "title": "gpt-oss-120b 간단 한국어 가동 후기",
+      "comments": "[12]",
+      "time": "2025-08-06T02:53:31.000Z",
+      "views": "2426",
+      "rate": "14"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/144205614?mode=best&p=17",
+      "cat": "구동후기",
+      "title": "Qwen3-30B-A3B-Instruct-2507 간단 한국어 가동 후기",
+      "comments": "[7]",
+      "time": "2025-08-04T02:26:42.000Z",
+      "views": "1393",
+      "rate": "15"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/140811459?mode=best&p=17",
+      "cat": "일반",
+      "title": "챗봇 개발 일지 - Live2D 연동",
+      "comments": "[15]",
+      "time": "2025-06-27T10:50:16.000Z",
+      "views": "2420",
+      "rate": "16"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/140652007?mode=best&p=17",
+      "cat": "일반",
+      "title": "뉴비의 LLM 서비스 만들기 0",
+      "comments": "[12]",
+      "time": "2025-06-25T15:11:39.000Z",
+      "views": "1875",
+      "rate": "14"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/139244272?mode=best&p=17",
+      "cat": "일반",
+      "title": "Qwen3-30B-A3B 모델의 MoE 패턴 관찰하기",
+      "comments": "[18]",
+      "time": "2025-06-10T14:04:29.000Z",
+      "views": "4512",
+      "rate": "37"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/138991418?mode=best&p=17",
+      "cat": "일반",
+      "title": "OIE 정보 관리 프로젝트",
+      "comments": "[10]",
+      "time": "2025-06-07T21:01:23.000Z",
+      "views": "1411",
+      "rate": "17"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/137932300?mode=best&p=17",
+      "cat": "자료",
+      "title": "간단하지만 중요한 임베딩 모델 학습 시 고려해야 할 False Negative 제거 방법에 대해 공유합니다.",
+      "comments": "[2]",
+      "time": "2025-05-27T12:49:09.000Z",
+      "views": "2189",
+      "rate": "12"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/137738842?mode=best&p=17",
+      "cat": "일반",
+      "title": "쓸 사람 있을지는 모르겠지만 크기 작은 데이터셋 공유함",
+      "comments": "[4]",
+      "time": "2025-05-25T10:18:11.000Z",
+      "views": "1799",
+      "rate": "17"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/136986652?mode=best&p=17",
+      "cat": "일반",
+      "title": "[레딧펌] SmolVLM 쓰면 실시간 웹캠 해석이 되네요",
+      "comments": "[7]",
+      "time": "2025-05-17T10:14:29.000Z",
+      "views": "2195",
+      "rate": "13"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/136778560?mode=best&p=17",
+      "cat": "일반",
+      "title": "챗봇 개발 일지 -들어가기에 앞서-",
+      "comments": "[31]",
+      "time": "2025-05-15T05:53:44.000Z",
+      "views": "2373",
+      "rate": "23"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/136541164?mode=best&p=17",
+      "cat": "자작모델",
+      "title": "Small 사이즈 한국어 임베딩 모델을 구워봤습니다. 목적 : 빠르고 좋은 모델, 데모나 가벼운 테스트 시 적절",
+      "comments": "[9]",
+      "time": "2025-05-12T12:43:10.000Z",
+      "views": "4756",
+      "rate": "21"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/135402950?mode=best&p=17",
+      "cat": "구동후기",
+      "title": "Qwen3-235B-A22B Q4 구동 후기 + UD-Q3_K_XL",
+      "comments": "[4]",
+      "time": "2025-04-29T20:40:31.000Z",
+      "views": "1328",
+      "rate": "14"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/134517614?mode=best&p=17",
+      "cat": "일반",
+      "title": "한국어 번역 벤치마크 KorT를 소개합니다: LLM이 평가하는 번역 품질",
+      "comments": "[16]",
+      "time": "2025-04-20T07:58:30.000Z",
+      "views": "3791",
+      "rate": "26"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/133459383?mode=best&p=17",
+      "cat": "구동후기",
+      "title": "Llama-4-Scout-17B-16E-Instruct IQ4_XS 짧은 후기",
+      "comments": "[1]",
+      "time": "2025-04-08T16:39:07.000Z",
+      "views": "1039",
+      "rate": "10"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/132180889?mode=best&p=17",
+      "cat": "일반",
+      "title": "오픈소스로 코드 하나 공개해 드립니다!",
+      "comments": "[17]",
+      "time": "2025-03-25T07:24:38.000Z",
+      "views": "3905",
+      "rate": "31"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/131764800?mode=best&p=17",
+      "cat": "일반",
+      "title": "Gemma3 12B 이미지 인식이 생각보다 잘 됩니다",
+      "comments": "[33]",
+      "time": "2025-03-20T09:03:56.000Z",
+      "views": "5097",
+      "rate": "13"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/131766159?mode=best&p=17",
+      "cat": "일반",
+      "title": "난이도를 평가해서 어려운 작업을 쉽게 바꿔주는 플래너 만듬",
+      "comments": "[8]",
+      "time": "2025-03-20T09:19:44.000Z",
+      "views": "3907",
+      "rate": "17"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/131764807?mode=best&p=17",
+      "cat": "일반",
+      "title": "트릴리온랩스, 한국어 특화 LLM 'Trillion-7B-preview' 공개",
+      "comments": "[15]",
+      "time": "2025-03-20T09:03:59.000Z",
+      "views": "3373",
+      "rate": "20"
+    },
+    {
+      "p": 17,
+      "href": "/b/alpaca/131157851?mode=best&p=17",
+      "cat": "자료",
+      "title": "ko-auto-arena-auto: 한국어 인간 선호도를 측정 하기위한 벤치마크",
+      "comments": "[1]",
+      "time": "2025-03-13T03:20:40.000Z",
+      "views": "1996",
+      "rate": "15"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/130702141?mode=best&p=18",
+      "cat": "자작모델",
+      "title": "다양한 한국어 Retrieval 벤치마크에서 SOTA 성능을 보이는 임베딩 모델 개발했습니다.",
+      "comments": "[11]",
+      "time": "2025-03-07T16:46:33.000Z",
+      "views": "4874",
+      "rate": "13"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/129502452?mode=best&p=18",
+      "cat": "구동후기",
+      "title": "Mistral Small 3 한국어 초간단 후기",
+      "comments": "[1]",
+      "time": "2025-02-21T11:12:06.000Z",
+      "views": "1608",
+      "rate": "13"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/129584666?mode=best&p=18",
+      "cat": "일반",
+      "title": "LLM의 작동구조 20초만에 알아보기",
+      "comments": "[8]",
+      "time": "2025-02-22T11:07:18.000Z",
+      "views": "3221",
+      "rate": "16"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/129541707?mode=best&p=18",
+      "cat": "일반",
+      "title": "[종료][챈섭] Open WeuUI (phi-4, gemma-2-27b, Mistral Small 3)",
+      "comments": "[8]",
+      "time": "2025-02-22T00:19:58.000Z",
+      "views": "2126",
+      "rate": "13"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/128472517?mode=best&p=18",
+      "cat": "정보",
+      "title": "당신의 컴퓨터가 이 대규모 언어 모델을 실행할 수 있나요?",
+      "comments": "[11]",
+      "time": "2025-02-09T14:05:25.000Z",
+      "views": "5068",
+      "rate": "14"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/127995776?mode=best&p=18",
+      "cat": "정보",
+      "title": "LLM 학습을 두배이상 빠르게 Sequence-Packing",
+      "comments": "[11]",
+      "time": "2025-02-04T05:21:24.000Z",
+      "views": "3600",
+      "rate": "26"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/127864867?mode=best&p=18",
+      "cat": "정보",
+      "title": "2000$로 deepseek r1 671b 로컬 구동",
+      "comments": "[13]",
+      "time": "2025-02-02T11:10:20.000Z",
+      "views": "4937",
+      "rate": "14"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/127515191?mode=best&p=18",
+      "cat": "자료",
+      "title": "한국어 멀티턴 합성 대화 데이터셋을 만들었습니다",
+      "comments": "[1]",
+      "time": "2025-01-29T02:50:04.000Z",
+      "views": "2074",
+      "rate": "13"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/127491074?mode=best&p=18",
+      "cat": "일반",
+      "title": "DeepSeek R1 1.58bit - 131GB Dynamic GGUF 한국어 테스트",
+      "comments": "[14]",
+      "time": "2025-01-28T15:40:57.000Z",
+      "views": "4893",
+      "rate": "19"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/127216498?mode=best&p=18",
+      "cat": "일반",
+      "title": "인스트럭트kr 미트업 참석중",
+      "comments": "[11]",
+      "time": "2025-01-25T05:37:13.000Z",
+      "views": "1591",
+      "rate": "11"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/126281379?mode=best&p=18",
+      "cat": "일반",
+      "title": "왠지 남들도 한번쯤 해봤을 것 같은 뻘짓 후기",
+      "comments": "[11]",
+      "time": "2025-01-14T10:34:32.000Z",
+      "views": "2704",
+      "rate": "12"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/125600267?mode=best&p=18",
+      "cat": "일반",
+      "title": "튜링(2080ti, Titan RTX)을 사도 되는 경우와 안 되는 경우",
+      "comments": "[7]",
+      "time": "2025-01-05T19:00:19.000Z",
+      "views": "2810",
+      "rate": "12"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/125292688?mode=best&p=18",
+      "cat": "정보",
+      "title": "Claude 3.5 Sonnet, GPT-4o 등 여러 상용 모델들에 대한 파라메터 규모에 대한 추정치",
+      "comments": "[2]",
+      "time": "2025-01-02T03:54:46.000Z",
+      "views": "2382",
+      "rate": "13"
+    },
+    {
+      "p": 18,
+      "href": "/b/alpaca/124777918?mode=best&p=18",
+      "cat": "일반",
+      "title": "재미난 연구 결과와 함께 오랜만에 인사드립니다.",
+      "comments": "[12]",
+      "time": "2024-12-26T19:42:07.000Z",
+      "views": "2986",
+      "rate": "31"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/123717078?mode=best&p=19",
+      "cat": "구동후기",
+      "title": "phi-4 간단 한국어 가동 후기",
+      "comments": "[3]",
+      "time": "2024-12-14T00:44:22.000Z",
+      "views": "1878",
+      "rate": "13"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/123454414?mode=best&p=19",
+      "cat": "자료",
+      "title": "llm as a judge을 위한 arena-hard-auto-v0.1을 한국어로 번역",
+      "comments": "[1]",
+      "time": "2024-12-10T14:42:52.000Z",
+      "views": "1098",
+      "rate": "14"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/122785169?mode=best&p=19",
+      "cat": "정보",
+      "title": "AI-Hub 이외 한국어 데이터셋 모음",
+      "comments": "[6]",
+      "time": "2024-12-02T22:27:36.000Z",
+      "views": "3482",
+      "rate": "18"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/122619426?mode=best&p=19",
+      "cat": "일반",
+      "title": "SLM(1~3B)들 한국어 벤치마크 평가",
+      "comments": "[11]",
+      "time": "2024-11-30T15:52:38.000Z",
+      "views": "6005",
+      "rate": "35"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/119643610?mode=best&p=19",
+      "cat": "정보",
+      "title": "Cerebras llama 3.1 70b 체감 속도",
+      "comments": "[9]",
+      "time": "2024-10-25T14:35:15.000Z",
+      "views": "3723",
+      "rate": "10"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/119279222?mode=best&p=19",
+      "cat": "일반",
+      "title": "한글 임베딩 모델. dragonkue / BGE-m3-ko",
+      "comments": "[11]",
+      "time": "2024-10-21T07:23:57.000Z",
+      "views": "16220",
+      "rate": "11"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/119422827?mode=best&p=19",
+      "cat": "일반",
+      "title": "로컬 LLM 써서 AI 웹 어플리케이션 만듬",
+      "comments": "[14]",
+      "time": "2024-10-23T01:57:44.000Z",
+      "views": "2903",
+      "rate": "14"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/119085078?mode=best&p=19",
+      "cat": "일반",
+      "title": "bitnet.cpp 출시",
+      "comments": "[10]",
+      "time": "2024-10-18T17:55:17.000Z",
+      "views": "2867",
+      "rate": "15"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/118948432?mode=best&p=19",
+      "cat": "정보",
+      "title": "제가 쓰는 4090 4way 셋업 소개 (공랭, 작업실 내부 설치용 오픈케이스)",
+      "comments": "[28]",
+      "time": "2024-10-17T07:18:52.000Z",
+      "views": "4367",
+      "rate": "28"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/118880728?mode=best&p=19",
+      "cat": "정보",
+      "title": "엄청난 벤치 점수를 보여주는 Llama-3.1-Nemotron-70B-Instruct",
+      "comments": "[8]",
+      "time": "2024-10-16T10:00:52.000Z",
+      "views": "2691",
+      "rate": "15"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/118499697?mode=best&p=19",
+      "cat": "일반",
+      "title": "흙수저 직장인 셋팅(?) 근황",
+      "comments": "[15]",
+      "time": "2024-10-11T10:33:18.000Z",
+      "views": "2926",
+      "rate": "16"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/118268661?mode=best&p=19",
+      "cat": "일반",
+      "title": "Differential Transformer: 업그레이드된 transformer 아키텍처",
+      "comments": "[11]",
+      "time": "2024-10-08T16:08:54.000Z",
+      "views": "1615",
+      "rate": "15"
+    },
+    {
+      "p": 19,
+      "href": "/b/alpaca/118258234?mode=best&p=19",
+      "cat": "정보",
+      "title": "힌튼 선생님, 홉필드 선생님 2024년 노벨물리학상 수상 축하드립니다",
+      "comments": "[3]",
+      "time": "2024-10-08T13:50:34.000Z",
+      "views": "1101",
+      "rate": "15"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/118187818?mode=best&p=20",
+      "cat": "정보",
+      "title": "vocab 사이즈(토크나이저)가 커지면 무조건 좋을까?",
+      "comments": "[8]",
+      "time": "2024-10-07T15:17:03.000Z",
+      "views": "1676",
+      "rate": "15"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/118040462?mode=best&p=20",
+      "cat": "일반",
+      "title": "VPTQ: LLM을 위한 고성능 극저비트 양자화",
+      "comments": "[3]",
+      "time": "2024-10-05T17:09:14.000Z",
+      "views": "2982",
+      "rate": "12"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/117661386?mode=best&p=20",
+      "cat": "일반",
+      "title": "Whisper-turbo 출시",
+      "comments": "[13]",
+      "time": "2024-10-01T02:56:59.000Z",
+      "views": "4064",
+      "rate": "15"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/116687888?mode=best&p=20",
+      "cat": "구동후기",
+      "title": "Qwen2.5-72B-Instruct 간단 한국어 가동 후기",
+      "comments": "[13]",
+      "time": "2024-09-19T10:54:08.000Z",
+      "views": "2068",
+      "rate": "10"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/116166909?mode=best&p=20",
+      "cat": "일반",
+      "title": "openai o1 preview 간단테스트 후기",
+      "comments": "[5]",
+      "time": "2024-09-12T23:39:59.000Z",
+      "views": "3270",
+      "rate": "16"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/115740299?mode=best&p=20",
+      "cat": "자료",
+      "title": "한국어 문체 데이터셋",
+      "comments": "[1]",
+      "time": "2024-09-07T16:06:48.000Z",
+      "views": "1868",
+      "rate": "17"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/115609989?mode=best&p=20",
+      "cat": "정보",
+      "title": "LLM Ready 도커이미지 및 런팟 템플릿 (CUDA 12.4, pytorch 2.4.0, vLLM, SGLang, unsloth 등)",
+      "comments": "[7]",
+      "time": "2024-09-06T05:43:40.000Z",
+      "views": "2634",
+      "rate": "18"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/115369053?mode=best&p=20",
+      "cat": "일반",
+      "title": "데이터셋 릴리즈 하나 하였습니다.",
+      "comments": "[6]",
+      "time": "2024-09-03T08:46:21.000Z",
+      "views": "2151",
+      "rate": "26"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/114660219?mode=best&p=20",
+      "cat": "일반",
+      "title": "국립국어원 ai말평 간단 후기",
+      "comments": "[4]",
+      "time": "2024-08-26T00:16:46.000Z",
+      "views": "2417",
+      "rate": "10"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/114706918?mode=best&p=20",
+      "cat": "일반",
+      "title": "기록용 국어원 말평 맥락추론 모델 126개 만들어본 후기",
+      "comments": "[7]",
+      "time": "2024-08-26T12:53:02.000Z",
+      "views": "2240",
+      "rate": "24"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/114379433?mode=best&p=20",
+      "cat": "일반",
+      "title": "Language Confusion(언어 혼동)에 대한 논문/벤치마크(Cohere)",
+      "comments": "[7]",
+      "time": "2024-08-22T09:01:37.000Z",
+      "views": "3130",
+      "rate": "25"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/113464630?mode=best&p=20",
+      "cat": "정보",
+      "title": "vLLM 추론 기기별 속도/가성비 비교",
+      "comments": "[8]",
+      "time": "2024-08-10T19:54:41.000Z",
+      "views": "4287",
+      "rate": "15"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/113335226?mode=best&p=20",
+      "cat": "정보",
+      "title": "트랜스포머 모델 작동 원리 시각화",
+      "comments": "[6]",
+      "time": "2024-08-09T06:55:36.000Z",
+      "views": "2278",
+      "rate": "20"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/113158081?mode=best&p=20",
+      "cat": "구동후기",
+      "title": "EXAONE-3.0-7.8B-Instruct 간단 구동 후기",
+      "comments": "[24]",
+      "time": "2024-08-07T05:09:43.000Z",
+      "views": "1939",
+      "rate": "26"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/113094399?mode=best&p=20",
+      "cat": "일반",
+      "title": "Embedding | OpenAI Large vs BGE Gemma 2 vs BGE m3",
+      "comments": "[8]",
+      "time": "2024-08-06T09:29:30.000Z",
+      "views": "3960",
+      "rate": "14"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/112678892?mode=best&p=20",
+      "cat": "질문",
+      "title": "LLM에서 rag, fine-tunig, lora의 차이가",
+      "comments": "[6]",
+      "time": "2024-08-01T04:09:22.000Z",
+      "views": "2391",
+      "rate": "10"
+    },
+    {
+      "p": 20,
+      "href": "/b/alpaca/112916775?mode=best&p=20",
+      "cat": "일반",
+      "title": "FLUX.1-dev 미드저니를 위협하는 오픈소스 모델???",
+      "comments": "[8]",
+      "time": "2024-08-04T04:43:16.000Z",
+      "views": "2174",
+      "rate": "15"
+    }
+  ]
+}

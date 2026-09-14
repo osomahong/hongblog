@@ -79,7 +79,10 @@ export interface Course {
   publishedAt: string;
   metaTitle?: string;
   metaDescription?: string;
+  /** 본문 첫 문단의 평문. 카드 소개와 메타 설명 폴백에 쓴다 */
   description: string;
+  /** 코스 소개 본문 원본 마크다운. 상세 페이지에서 그대로 렌더한다 */
+  content: string;
   classCount?: number;
 }
 
@@ -139,6 +142,8 @@ export interface CourseWithClasses {
   classCount: number;
   metaTitle: string | null;
   metaDescription: string | null;
+  /** 코스 소개 본문 원본 마크다운 */
+  content: string;
   totalReadingTime: number;
   classes: { id: number; slug: string; term: string; definition: string; readingTime: number }[];
 }

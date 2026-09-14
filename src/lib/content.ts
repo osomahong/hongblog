@@ -153,7 +153,10 @@ function toCourse(data: Record<string, unknown>, content: string): Course {
     publishedAt: data.publishedAt as string,
     metaTitle: data.metaTitle as string | undefined,
     metaDescription: data.metaDescription as string | undefined,
-    description: stripMarkdown(content),
+    // 카드와 메타 설명에는 첫 문단만 쓴다. 본문 전체를 한 문단으로 밀어 넣으면
+    // 코스 목록 카드가 소개 세 문단을 통째로 물고 온다.
+    description: stripMarkdown(content.trim().split(/\n{2,}/)[0] ?? ""),
+    content,
   };
 }
 
@@ -403,6 +406,7 @@ export function getPublishedCourses(): CourseWithClasses[] {
       classCount: classes.length,
       metaTitle: course.metaTitle || null,
       metaDescription: course.metaDescription || null,
+      content: course.content,
       totalReadingTime: classes.reduce((sum, cls) => sum + cls.readingTime, 0),
       classes: classes.map((cls, i) => ({
         id: i + 1,
@@ -430,6 +434,7 @@ export function getPublishedCourseBySlug(slug: string): CourseWithClasses | null
     classCount: classes.length,
     metaTitle: course.metaTitle || null,
     metaDescription: course.metaDescription || null,
+    content: course.content,
     totalReadingTime: classes.reduce((sum, cls) => sum + cls.readingTime, 0),
     classes: classes.map((cls, i) => ({
       id: i + 1,

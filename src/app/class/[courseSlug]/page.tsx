@@ -2,10 +2,14 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, BookOpen } from "lucide-react";
-import { getPublishedCourseBySlug as getCourseBySlug, getPublishedCourses } from "@/lib/content";
+import { getCourseSummary3, getPublishedCourseBySlug as getCourseBySlug, getPublishedCourses } from "@/lib/content";
 import { getCourseBannerImage, getCourseBannerIntro } from "@/lib/promotions";
 import { NeoButton } from "@/components/neo";
 import { CourseClassList } from "@/components/CourseClassList";
+import { ContentSummary } from "@/components/ContentSummary";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
+import { extractFaqPairs } from "@/lib/extract-faq";
+import { SUMMARY_PAYWALL_PART } from "@/lib/summary-gate";
 import { SITE_URL } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/utils";
 import { AUTHOR_PERSON_LD } from "@/lib/structured-data";
@@ -74,6 +78,8 @@ export default async function CourseDetailPage({ params }: Props) {
         notFound();
     }
 
+    const summaryLines = getCourseSummary3(courseSlug);
+
     // 메인 배너에서 눌러 들어온 사람이 같은 그림을 다시 보게 한다.
     const bannerImage = getCourseBannerImage(courseSlug);
 
@@ -136,7 +142,20 @@ export default async function CourseDetailPage({ params }: Props) {
             inLanguage: "ko",
         },
         isAccessibleForFree: true,
+        hasPart: SUMMARY_PAYWALL_PART,
     };
+
+    // 코스 소개 본문의 질문형 헤딩을 FAQPage로 발행한다. 클래스/인사이트와 기준을 맞춘다.
+    const faqPairs = extractFaqPairs(course.content);
+    const faqLd = faqPairs.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqPairs.map((pair) => ({
+            "@type": "Question",
+            name: pair.question,
+            acceptedAnswer: { "@type": "Answer", text: pair.answer },
+        })),
+    } : null;
 
     // 코스 내 클래스 목록을 ItemList로 추가 발행 (검색 결과 풍부도 향상)
     const itemListLd = course.classes.length > 0 ? {
@@ -173,6 +192,12 @@ export default async function CourseDetailPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
+            {faqLd && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+                />
+            )}
             {itemListLd && (
                 <script
                     type="application/ld+json"
@@ -225,10 +250,10 @@ export default async function CourseDetailPage({ params }: Props) {
                     <BookOpen className="w-8 h-8 sm:w-12 sm:h-12" />
                     {course.title}
                 </h1>
-                {course.description && (
-                    <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                        {course.description}
-                    </p>
+                {course.content.trim() && (
+                    <div className="prose prose-sm sm:prose-lg max-w-none text-muted-foreground">
+                        <MarkdownRenderer content={course.content} />
+                    </div>
                 )}
                 <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
                     <span>{course.classCount}개 개념</span>
@@ -247,6 +272,13 @@ export default async function CourseDetailPage({ params }: Props) {
                     </div>
                 </aside>
             )}
+
+            <ContentSummary
+                slug={courseSlug}
+                contentType="course"
+                lines={summaryLines}
+                className="mb-6 sm:mb-8"
+            />
 
             {/* Classes List (학습 진도 표시 포함) */}
             <CourseClassList courseSlug={courseSlug} classes={course.classes} />

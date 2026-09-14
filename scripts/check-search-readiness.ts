@@ -5,7 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
-import { getClasses, getCourses, getInsights } from "../src/lib/content";
+import { getClasses, getCourseSummary3, getCourses, getInsights } from "../src/lib/content";
 import { workCases } from "../src/lib/cases";
 import { caseVisuals } from "../src/lib/case-visuals";
 import { GA4_EDU_TUTORIALS } from "../src/app/ga4-edu/data";
@@ -132,6 +132,15 @@ for (const route of routes) {
   if (course) {
     const courseLd = ld.find(n => n["@type"] === "Course");
     if (!courseLd) fail(route, "missing Course");
+    // 코스 소개 본문과 3줄 요약은 답변 엔진이 먼저 집어 가는 구간이다. 렌더까지 확인한다.
+    const courseBody = text(html);
+    const rendered = marked.parse(course.content, { async: false });
+    const firstParagraph = rendered.match(/<p[^>]*>([\s\S]*?)<\/p>/)?.[1];
+    if (!firstParagraph || !courseBody.includes(text(firstParagraph).slice(0, 60))) fail(route, "course intro missing from server HTML");
+    for (const line of getCourseSummary3(course.slug)) {
+      if (!courseBody.includes(text(line))) fail(route, "course summary line missing from server HTML");
+    }
+    if (!ld.some(n => n["@type"] === "WebPageElement" && n.isAccessibleForFree === false && n.cssSelector === `.${SUMMARY_GATED_CLASS}`)) fail(route, "course summary access declaration missing");
     if (courseLd && "numberOfCredits" in courseLd) fail(route, "non-credit course declares credits");
     const workload = ld.find(n => n["@type"] === "CourseInstance")?.courseWorkload;
     const minutes = classes.filter(c => c.courseSlug === course.slug).reduce((n, c) => n + c.readingTime, 0);
