@@ -71,6 +71,18 @@ source ~/.zshrc
 - **원인**: 로컬에 저장된 Homebrew 목록이 오래돼서 새 패키지를 인식하지 못하는 상태
 - **대응법**: 목록 갱신 후 재설치: `brew update && brew install --cask claude-code`
 
+### "claude에 문제가 있습니다. 원래 설치 위치에서 응용 프로그램을 다시 설치하거나 관리자에게 문의하세요"
+
+- **상황**: 설치는 끝났는데 실행할 때 macOS가 이 경고를 띄우며 막음
+- **원인**: 앱 번들을 내려받은 자리에서 옮겼거나, 압축을 푼 폴더째 다른 위치로 이동해 macOS의 앱 이동 보호(App Translocation)에 걸린 상태
+- **대응법**: 앱을 응용 프로그램 폴더에 직접 넣은 뒤 한 번 실행하거나, 터미널 설치 경로로 다시 설치
+
+```bash
+xattr -dr com.apple.quarantine /Applications/Claude\ Code.app
+```
+
+격리 속성을 지운 뒤에도 같은 경고가 나오면 앱을 지우고 공식 설치 명령으로 다시 받는 편이 빠릅니다.
+
 ### "dyld: cannot load" 또는 "Symbol not found"
 
 - **상황**: 설치나 실행 시 `dyld`로 시작하는 오류 또는 `Abort trap: 6` 발생
@@ -123,7 +135,9 @@ $currentPath = [Environment]::GetEnvironmentVariable('PATH', 'User')
 - **원인**: 시작 메뉴의 `Windows PowerShell (x86)` 항목으로 실행 시 32비트 프로세스로 구동되어 오류 발생
 - **대응법**: x86 미표기 `Windows PowerShell`을 열어 재실행. `[Environment]::Is64BitOperatingSystem`이 `False`로 나오는 진짜 32비트 Windows에서는 설치 불가
 
-### "The process cannot access the file ... being used by another process"
+### "The process cannot access the file ... being used by another process" (한국어: 이 파일을 다른 응용 프로그램에서 사용 중입니다)
+
+한국어 윈도우에서는 같은 오류가 "이 파일을 다른 응용 프로그램에서 사용 중입니다"로 나옵니다. 같은 원인이므로 아래 대응이 그대로 적용됩니다.
 
 - **상황**: PowerShell 설치 도중 파일 접근 오류로 실패
 - **원인**: 이전 설치 시도가 아직 실행 중이거나, 백신 프로그램이 다운로드 중인 파일을 검사하며 점유 중인 상태
@@ -210,6 +224,24 @@ sudo swapon /swapfile
 - **중복 설치 확인**: npm 설치와 네이티브 설치가 함께 있으면 버전 충돌 가능. `which -a claude`로 확인 후 npm 쪽 제거(`npm uninstall -g @anthropic-ai/claude-code`)
 - **오류 문구 그대로 검색**: 공식 GitHub 이슈에서 동일 문구로 검색 시 알려진 문제인지 확인 가능
 - **데스크톱 앱 우회**: 터미널 설치가 계속 막히면 그래픽 화면으로 쓰는 Claude Code 데스크톱 앱(macOS, Windows)이 대안
+
+## 자주 묻는 질문
+
+### 설치가 끝났는데 claude 명령을 못 찾습니다
+
+설치 위치가 PATH에 없는 경우가 대부분입니다. 터미널을 새로 열어 보고, 그래도 같으면 `which -a claude`로 실제 설치 경로를 확인한 뒤 셸 설정 파일에 그 경로를 추가합니다. VS Code에서 안 되는 경우는 따로인데, VS Code가 시작할 때 PATH를 읽기 때문에 설정을 고친 뒤 에디터를 완전히 껐다 켜야 반영됩니다.
+
+### 오류 문구가 영어로 안 나오고 한국어로 나옵니다
+
+같은 오류를 운영체제가 번역해 보여 주는 것입니다. 예를 들어 "이 파일을 다른 응용 프로그램에서 사용 중입니다"는 영문 "The process cannot access the file"과 같은 상황이고 대응도 같습니다. 검색할 때는 한국어 문구와 영어 문구를 모두 넣어 보면 찾을 확률이 올라갑니다.
+
+### npm으로 설치한 것과 네이티브 설치가 같이 있으면 문제가 되나요?
+
+버전이 충돌해 이상하게 동작할 수 있습니다. `which -a claude`로 경로가 두 개 이상 잡히는지 확인하고, npm 쪽을 지우는 편이 정리하기 쉽습니다. 명령은 `npm uninstall -g @anthropic-ai/claude-code`입니다.
+
+### 여기에 없는 오류를 만나면 어떻게 하나요?
+
+먼저 `claude doctor`를 실행합니다. 설치가 절반이라도 된 상태라면 진단 보고서가 나옵니다. 그다음 오류 문구를 그대로 공식 저장소 이슈에서 검색해 알려진 문제인지 확인합니다. 터미널 설치가 계속 막히면 그래픽 화면으로 쓰는 데스크톱 앱이 우회 경로입니다.
 
 ## Sources
 
