@@ -1,0 +1,245 @@
+[
+  {
+    "id": 1,
+    "title": "마케팅 KPI 설정 총정리: 채널별 예시와 OKR 차이",
+    "category": "MARKETING",
+    "priority": "HIGH",
+    "reason": "KPI 13,690 + KPI뜻 11,570, 페이지 없음 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "마케팅 실무",
+      "데이터 분석"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 2,
+    "title": "마케팅 지표 계산 공식 총정리: CTR, CVR, CPC, CPM, CPA, CAC, LTV, ROAS, ROI",
+    "category": "MARKETING",
+    "priority": "HIGH",
+    "reason": "지표 클래스 16편 허브. ROI 7,060, CTR 4,170 등 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "CTR",
+      "CVR",
+      "CPC",
+      "ROAS",
+      "ROI"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 3,
+    "title": "마케팅 퍼널 설계 총정리: AARRR 단계별 지표와 GA4 퍼널 탐색",
+    "category": "MARKETING",
+    "priority": "MED",
+    "reason": "퍼널 1,040, 퍼널뜻 840, AARRR 180 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "퍼널",
+      "GA4",
+      "마케팅 실무"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 4,
+    "title": "마케팅 전략 프레임워크 총정리: STP, 4P, SWOT, 포지셔닝 한 사례로",
+    "category": "MARKETING",
+    "priority": "HIGH",
+    "reason": "SWOT분석 4,770, STP전략 1,290, 포지셔닝 1,080, 4P 1,010 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "마케팅 실무"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 5,
+    "title": "브랜딩 뜻과 브랜드 전략: 마케팅과의 차이와 브랜드 검색량 측정",
+    "category": "MARKETING",
+    "priority": "MED",
+    "reason": "브랜딩 2,310, 브랜딩뜻 1,770 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "마케팅 실무",
+      "SEO"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 6,
+    "title": "고객 세그먼트와 페르소나 만드는 법: GA4 세그먼트 실습",
+    "category": "MARKETING",
+    "priority": "MED",
+    "reason": "세그먼트 3,650, 페르소나 30,720(동음, SERP 확인 후) (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "GA4",
+      "마케팅 실무"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 7,
+    "title": "랜딩페이지 전환율 높이는 법: 구성 요소와 전환율 최적화(CRO)",
+    "category": "MARKETING",
+    "priority": "HIGH",
+    "reason": "랜딩페이지 2,370, 랜딩페이지란 640, 전환율 640 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "전환",
+      "CVR",
+      "마케팅 실무"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 8,
+    "title": "UTM 파라미터 완전 정리: 규칙서 템플릿과 GA4 연결",
+    "category": "DATA",
+    "priority": "HIGH",
+    "reason": "UTM 1,820, 페이지 없음 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "GA4",
+      "데이터 추적"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 9,
+    "title": "GA4 기초 개념 총정리: 이벤트, 세션, 사용자, 참여율, 전환",
+    "category": "DATA",
+    "priority": "HIGH",
+    "reason": "구글애널리틱스 3,990, GA4 1,750, 참여율 860 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "GA4",
+      "데이터 분석"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 10,
+    "title": "리텐션 분석 총정리: 코호트 표 읽는 법과 DAU MAU",
+    "category": "DATA",
+    "priority": "HIGH",
+    "reason": "리텐션 1,630+1,000, MAU 1,860, DAU 1,040, 코호트 분석 SERP 기회 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "데이터 분석",
+      "LTV"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 11,
+    "title": "마케팅 대시보드 만드는 법: 루커 스튜디오, 태블로, 엑셀 비교",
+    "category": "DATA",
+    "priority": "HIGH",
+    "reason": "대시보드 5,590, 태블로 1,590, 루커스튜디오 290 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "데이터 분석",
+      "GA4"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 12,
+    "title": "마케터를 위한 통계 기초: 평균, 표준편차, 상관관계, p값, AB 테스트",
+    "category": "DATA",
+    "priority": "MED",
+    "reason": "표준편차 4,900, 상관관계 3,520, 표본 3,350 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "데이터 분석"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 13,
+    "title": "데이터 파이프라인 용어 총정리: ETL, 웨어하우스, 레이크, 빅쿼리",
+    "category": "DATA",
+    "priority": "MED",
+    "reason": "ETL 1,880, 데이터레이크 350, 빅쿼리 160 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "BigQuery",
+      "데이터 분석"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 14,
+    "title": "어트리뷰션 모델 총정리: 라스트 클릭부터 데이터 기반까지",
+    "category": "MARKETING",
+    "priority": "LOW",
+    "reason": "어트리뷰션 100, 어트리뷰션 윈도우 GSC 30 노출 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "어트리뷰션",
+      "GA4"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 15,
+    "title": "CDP, DMP, MMM 뜻과 차이",
+    "category": "MARKETING",
+    "priority": "LOW",
+    "reason": "CDP 3,180, MMM 4,170, DMP 860. 동음 확인 필요 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "데이터 분석",
+      "마케팅 실무"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  },
+  {
+    "id": 16,
+    "title": "앰플리튜드, 믹스패널, GA4 비교: 제품 분석 도구 고르기",
+    "category": "DATA",
+    "priority": "MED",
+    "reason": "앰플리튜드 470, 믹스패널 180 (네이버 월간 검색량 2026-09-14 조회). 규격은 docs/marketing-data-pillar-plan-2026-09.md 3.2절",
+    "tags": [
+      "데이터 분석",
+      "GA4"
+    ],
+    "contentType": "post",
+    "source": "marketing-data-pillar-plan-2026-09",
+    "addedAt": "2026-09-14",
+    "status": "pending"
+  }
+]

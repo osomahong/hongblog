@@ -32,7 +32,7 @@ export const NEWSLETTER_URL = "https://digitalmarketer.stibee.com/";
 export const KAKAO_INQUIRY_URL = "https://open.kakao.com/o/pvUCYfci";
 
 export const POST_CATEGORIES = ["MARKETING", "AI_TECH", "DATA"] as const;
-export const CLASS_CATEGORIES = ["MARKETING", "AI_TECH", "CLAUDE_EDUCATION"] as const;
+export const CLASS_CATEGORIES = ["MARKETING", "AI_TECH", "DATA", "CLAUDE_EDUCATION"] as const;
 
 export type PostCategory = (typeof POST_CATEGORIES)[number];
 export type ClassCategory = (typeof CLASS_CATEGORIES)[number];

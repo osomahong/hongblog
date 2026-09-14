@@ -52,7 +52,7 @@ export interface ClassItem {
   slug: string;
   term: string;
   definition: string;
-  category: "MARKETING" | "AI_TECH" | "CLAUDE_EDUCATION";
+  category: "MARKETING" | "AI_TECH" | "DATA" | "CLAUDE_EDUCATION";
   tags: string[];
   publishedAt: string;
   /** 실질적 내용 수정일. 없으면 publishedAt을 쓴다. */
@@ -74,7 +74,7 @@ export interface ClassItem {
 export interface Course {
   slug: string;
   title: string;
-  category: "MARKETING" | "AI_TECH" | "CLAUDE_EDUCATION";
+  category: "MARKETING" | "AI_TECH" | "DATA" | "CLAUDE_EDUCATION";
   difficulty: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
   publishedAt: string;
   metaTitle?: string;
