@@ -294,6 +294,59 @@ async function main() {
     return;
   }
 
+  // 예약은 그대로 두고 카피만 갈아 끼운다. 말투를 손봤을 때 지우고 다시 넣으면
+  // 예약 슬롯을 한 번 비웠다 채우게 되고 그 사이 상한에 걸릴 수 있다 (2026-09-14 추가).
+  // 파일은 {"<postId>": {"chain": ["훅", "1/ ...", "2/ ..."]}} 또는 {"<postId>": {"text": "..."}} 형식이다.
+  if (has("--retext")) {
+    const file = valueOf("--retext");
+    if (!file) { console.error("사용법: buffer_post.mjs --retext <rewrite.json> --confirm"); process.exit(2); }
+    const spec = JSON.parse(readFileSync(file, "utf8"));
+    const ids = Object.keys(spec);
+    console.log(`대상 ${ids.length}건\n`);
+    for (const id of ids) {
+      const cur = await gql(
+        `query($id: PostId!) { post(input: { id: $id }) { id status dueAt channelService } }`,
+        { id },
+      );
+      const post = cur?.post;
+      if (!post) { console.error(`  x ${id} 글을 찾지 못했습니다`); continue; }
+      const chain = spec[id].chain;
+      const text = chain ? chain[0] : spec[id].text;
+      if (!text) { console.error(`  x ${id} chain 도 text 도 없습니다`); continue; }
+      // 쓰레드는 훅까지 thread 배열에 넣어야 한다. 최상위 text만 바꾸면 배열에 옛 훅이 남는다.
+      const input = { id, text, ...(post.status === "draft"
+        ? { saveToDraft: true, mode: "addToQueue" }
+        : { dueAt: post.dueAt, mode: "customScheduled", saveToDraft: false }) };
+      if (post.channelService === "threads" && chain)
+        input.metadata = { threads: { type: "post", ...(chain.length > 1 ? { thread: chain.map((t) => ({ text: t, assets: [] })) } : {}) } };
+      guardSafety(input);
+      if (!has("--confirm")) { console.log(`  - ${id} ${post.channelService} ${post.status}  ${text.split("\n")[0].slice(0, 40)}`); continue; }
+      const data = await gql(
+        `mutation($input: EditPostInput!) {
+           editPost(input: $input) {
+             __typename
+             ... on PostActionSuccess { post { id status dueAt } }
+             ... on NotFoundError { message }
+             ... on UnauthorizedError { message }
+             ... on UnexpectedError { message }
+             ... on RestProxyError { message }
+             ... on LimitReachedError { message }
+             ... on InvalidInputError { message }
+           }
+         }`,
+        { input },
+      );
+      const r = data?.editPost;
+      if (!r || r.__typename?.endsWith("Error")) {
+        console.error(`  x ${id} 교체 실패: ${r?.message || JSON.stringify(data).slice(0, 200)}`);
+        continue;
+      }
+      console.log(`  o ${id} ${post.channelService} status=${r.post?.status} ${text.split("\n")[0].slice(0, 40)}`);
+    }
+    if (!has("--confirm")) console.log("\n--confirm 이 없어 계획만 출력했습니다.");
+    return;
+  }
+
   // 초안을 예약으로 올린다. 무료 플랜의 채널당 예약 10건에 막혀 초안으로 남겨 둔 건을
   // 앞 건이 발행돼 슬롯이 빈 뒤에 올릴 때 쓴다 (2026-09-14 추가).
   if (has("--schedule-draft")) {
