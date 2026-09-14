@@ -57,6 +57,7 @@ const validRoutes = new Set<string>([
     "/robots.txt",
     "/llms.txt",
     "/ai-practice",
+    "/ga4-edu",
 ]);
 
 // AI-Practice 하위 페이지는 앱 디렉터리에서 파생시킨다 (새 AIPBL이 생겨도 자동 반영)
