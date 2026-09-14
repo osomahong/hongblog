@@ -104,6 +104,13 @@
         "threads",
         "linkedin"
       ]
+    },
+    "openclaw-2-0-changes": {
+      "date": "2026-09-09",
+      "platforms": [
+        "threads",
+        "linkedin"
+      ]
     }
   }
 }
