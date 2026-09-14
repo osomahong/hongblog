@@ -15,7 +15,8 @@
     "check:search": "tsx scripts/check-search-readiness.ts",
     "check:prose": "tsx scripts/check-prose.ts",
     "check:summary3": "tsx scripts/check-summary3.ts",
-    "check:maintenance": "npm run check:search && npm run check:links:html"
+    "check:maintenance": "npm run check:search && npm run check:links:html",
+    "check:index": "tsx --env-file=.env.local scripts/gsc-index-check.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
