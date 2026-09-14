@@ -122,6 +122,32 @@ Buffer에는 파일 업로드 엔드포인트가 없다. `assets`에 **공개 UR
 
 인스타 캐러셀은 이미지와 영상을 한 게시물에 섞을 수 없다.
 
+## 무료 플랜의 두 상한 (2026-09-14 실제로 걸림)
+
+주 2회 게시를 넘겨 한꺼번에 밀어 넣을 때 걸린다. 한 번에 18건을 예약하다 둘 다 만났다.
+
+| 상한 | 증상 | 대응 |
+|---|---|---|
+| **채널당 예약 10건** | `LimitReachedError: You have 10 scheduled posts out of 10 allowed` | 가장 나중 날짜부터 `dueAt`을 빼 초안으로 보낸다. 앞 건이 실제로 발행되면 슬롯이 비므로 그때 예약으로 올린다 |
+| **쓰레드 편당 500자** | `InvalidInputError: Threads posts cannot exceed 500 characters` | **링크까지 포함한 길이다.** 블로그 URL이 90자 안팎이라 본문은 400자 아래로 잡는다. `check_copy.mjs`는 링크를 빼고 세므로 통과해도 Buffer에서 거부될 수 있다 |
+
+특히 두 번째는 단독 1편으로 나가는 통찰형에서 걸린다. 체인은 편마다 세므로 여유가 있다.
+
+## 예약 목록을 조회할 때 (2026-09-14)
+
+`posts` 쿼리는 `first` 인자를 생략하면 **10건만 돌려준다.** 19건이 예약된 상태에서 10건만 보고
+나머지가 실패했다고 판단한 적이 있다. 조회할 때는 `posts(first: 100, input: {...})`로 명시한다.
+
+```graphql
+query($id: OrganizationId!, $st: [PostStatus!]) {
+  posts(first: 100, input: { organizationId: $id, filter: { status: $st } }) {
+    edges { node { id status dueAt text channelId } }
+  }
+}
+```
+
+`filter.status`는 리스트다. `scheduled`와 `draft`를 따로 조회한다.
+
 ## 토큰 만료
 
 플랫폼 정책이라 피할 수 없다. 만료되면 게시가 조용히 실패하므로 미리 챙긴다.

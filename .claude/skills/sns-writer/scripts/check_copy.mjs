@@ -103,6 +103,16 @@ parts.forEach((text, idx) => {
   else if (len > target[1]) notes.push("권장 범위보다 김. 지루해질 수 있으니 줄인다");
   else if (len < target[0]) notes.push("권장 범위보다 짧음. 더 풀어 쓸 수 있는지 본다");
 
+  // 쓰레드는 노출 계산에서만 링크가 빠진다. Buffer API는 링크까지 세서 500자를 넘기면 거부한다
+  // (2026-09-14 InvalidInputError: Threads posts cannot exceed 500 characters)
+  if (platform === "threads") {
+    const rawLen = [...text].length;
+    if (rawLen > spec.max)
+      issues.push(
+        `링크 포함 ${rawLen}자로 Buffer가 거부한다. 링크까지 ${spec.max}자 안에 넣는다 (본문은 ${spec.max - 100}자 아래로)`,
+      );
+  }
+
   const hashtags = text.match(/#[^\s#]+/g) || [];
   if (platform === "threads") {
     if (hashtags.length)
