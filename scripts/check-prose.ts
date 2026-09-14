@@ -76,6 +76,13 @@ const RULES: Rule[] = [
     { pattern: /이해[가를] (더 )?(줄어|깎)/g, label: "'이해가 줄어들다' 금지: '이해가 어려워지다'로", severity: "HARD" },
     { pattern: /풍경|리듬을|사이클을|빚어내|길어 올리|다가서/g, label: "추상 명사·문어체 동사 금지 (일상어로)", severity: "HARD" },
 
+    // ── 어색한 연어 (2026-09-14 사용자 지적: "얇습니다가 맞아? 비문 투성이") ──
+    // 단어 하나하나는 정상이라 사전·정규식이 놓친 조합. 사용자가 직접 지적한 것만 등록한다.
+    // '근거가 얇다', '표본이 얇다'는 통계·데이터 맥락의 정당한 관용이라 뺀다.
+    // 잡는 것은 추상 명사를 두께로 비유한 '이야기·설명·글·내용이 얇다'뿐이다.
+    { pattern: /(이야기|설명|글|내용)[이가] (너무 |좀 )?얇/g, label: "'~이 얇다' 비유 금지: '부족합니다', '깊이가 없습니다'로", severity: "HARD" },
+    { pattern: /(사실|진짜)(처럼|로) (굴러가|굴러갑)/g, label: "'사실처럼 굴러가다' 금지: '사실로 굳어집니다', '사실처럼 통합니다'로", severity: "HARD" },
+
     // ── 헤딩 규칙 ──
     { pattern: /^#{2,3} .*(는가|은가|인가|한가|할까|일까|인지|하나|되나)\?\s*$/gm, label: "반말 의문형 헤딩 금지: '~을까요?' 존댓말로", severity: "HARD" },
     // 위 목록은 종결 어미를 하나씩 적어 둔 탓에 "될까?", "올랐을까?", "시작되었나?" 같은 변형을 놓쳤다.
@@ -112,6 +119,46 @@ function findTripleSameEnding(text: string): string[] {
         found.push(`동일 종결 3연속 "${m[1]}": …${m[0].slice(0, 60)}…`);
     }
     return found;
+}
+
+/**
+ * 같은 명사구(관형어+체언)가 본문에 과하게 반복되는지.
+ *
+ * 사전·정규식이 못 잡던 층위다. 2026-09-14 스펙 게이밍 글에서 은유 "빠른 길"이
+ * 여섯 번 반복돼 글이 겉돌았는데 세 검사기 모두 통과했다. 종결어 반복은 보면서
+ * 본문 명사구 반복은 아무도 보지 않았다. 어절 끝 조사를 벗겨 어간으로 세므로
+ * "빠른 길을", "빠른 길이"가 한 표현으로 합산된다. 주제어도 걸리지만 SOFT라
+ * 낭독 검수에서 의도한 반복인지 판단한다.
+ */
+// '은/는'은 뺀다. 붙이면 관형사형 어미('없는', '있는')를 조사로 오인해
+// '없'처럼 어간을 잘라 엉뚱한 구('없 규칙')를 만든다.
+const JOSA = /(으로|에서|에게|까지|부터|처럼|만큼|라도|이나|을|를|이|가|에|의|로|와|과|도|만|나|께|뿐)$/;
+const PHRASE_STOP = new Set([
+    "것", "수", "때", "더", "그", "이", "저", "및", "등", "거", "좀", "안", "못", "잘",
+    "한", "두", "세", "이런", "그런", "저런", "여기", "거기",
+    // 용언 관형사형. 명사구의 머리가 아니라 꾸미는 말이라 반복해도 문제가 아니다.
+    "하는", "있는", "없는", "되는", "같은", "만든", "그런", "이런", "보면", "주고",
+]);
+function findRepeatedPhrases(text: string): string[] {
+    const tokens = text.replace(/[^가-힣\s]/g, " ").split(/\s+/).filter(Boolean);
+    const stem = (w: string) => w.replace(JOSA, "");
+    const counts = new Map<string, number>();
+    for (let i = 0; i < tokens.length - 1; i++) {
+        // 조사를 떼기 전 원어절 길이로 거른다. 체언이 한 글자("길")여도
+        // 원어절("길을")이 두 글자면 통과시켜야 "빠른 길" 같은 구가 잡힌다.
+        if (tokens[i].length < 2 || tokens[i + 1].length < 2) continue;
+        const a = stem(tokens[i]);
+        const b = stem(tokens[i + 1]);
+        if (!a || !b) continue;
+        if (PHRASE_STOP.has(a) || PHRASE_STOP.has(b)) continue;
+        const key = `${a} ${b}`;
+        counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
+    return [...counts.entries()]
+        .filter(([, n]) => n >= 5)
+        .sort((x, y) => y[1] - x[1])
+        .slice(0, 4)
+        .map(([k, n]) => `"${k}" 약 ${n}회 반복: 은유·표현 반복인지 확인 (주제어면 무시)`);
 }
 
 function stripNonProse(raw: string): string {
@@ -160,13 +207,21 @@ function checkFile(filePath: string): { hard: number; soft: number } {
         }
     }
 
-    for (const msg of findRepeatedEndings(text)) {
+    // 흐름 검사(종결 반복, 명사구 반복)는 본문만 본다. frontmatter의
+    // summary3·highlights는 본문을 요약하느라 같은 표현을 다시 쓰므로,
+    // 함께 세면 주제어가 과다 반복으로 잡혀 신호가 묻힌다.
+    const bodyText = stripNonProse(raw.replace(/^---\n[\s\S]*?\n---\n/, ""));
+    for (const msg of findRepeatedEndings(bodyText)) {
         soft += 1;
         report.push(`[SOFT] 인접 문장 동일 종결\n    ${msg}`);
     }
-    for (const msg of findTripleSameEnding(text)) {
+    for (const msg of findTripleSameEnding(bodyText)) {
         soft += 1;
         report.push(`[SOFT] ${msg}`);
+    }
+    for (const msg of findRepeatedPhrases(bodyText)) {
+        soft += 1;
+        report.push(`[SOFT] 명사구 반복\n    ${msg}`);
     }
 
     console.log(`\n===== ${path.relative(process.cwd(), filePath)} =====`);
