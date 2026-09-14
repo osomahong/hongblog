@@ -240,3 +240,21 @@ AI 서비스는 **토큰** 단위로 비용을 계산합니다. HTML은 `<h2>제
 - [읽기 쉽고 명료한 프롬프트 작성법 feat. 마크다운](https://brunch.co.kr/@bobbyryu/54)
 - [Why use Markdown in your Agents' System Prompt?](https://medium.com/@edprata/why-use-markdown-in-your-agents-system-prompt-41ad258a25c7)
 - [Why AI Prefers Markdown: The Logic Behind This Format Revolution](https://medium.com/@bingzead/why-ai-prefers-markdown-the-logic-behind-this-format-revolution-237675f33a8b)
+
+## 자주 묻는 질문
+
+### md 파일이 뭔가요?
+
+마크다운으로 쓴 문서 파일입니다. `##`으로 제목을 만들고 `-`로 목록을 만드는 것처럼, 기호 몇 개로 문서의 구조를 표시하는 방식입니다. 확장자가 `.md`이고 메모장 같은 편집기로 열어 그대로 읽고 고칠 수 있습니다.
+
+### md 파일은 무엇으로 여나요?
+
+일반 텍스트라서 메모장, VS Code, 옵시디언 같은 편집기 어디서나 열립니다. VS Code나 옵시디언처럼 미리 보기를 지원하는 편집기에서는 기호가 적용된 화면을 옆에 띄워 확인할 수 있습니다. 별도 프로그램을 사지 않아도 됩니다.
+
+### AI에게 질문할 때 마크다운을 쓰면 정말 다른가요?
+
+요청이 길어질수록 차이가 납니다. 조건이 여러 개인 요청을 줄글로 넣으면 AI가 무엇이 필수이고 무엇이 참고인지 구분하기 어렵습니다. 제목으로 요청과 조건을 나누고 목록으로 항목을 끊어 주면 빠뜨리는 조건이 줄어듭니다.
+
+### 마크다운 문법을 다 외워야 하나요?
+
+여섯 가지면 충분합니다. 제목, 굵게, 목록, 번호 목록, 코드, 표입니다. 이 조합으로 AI 프롬프트와 업무 문서, 에이전트 설정 파일까지 다 쓸 수 있습니다. 나머지 문법은 필요할 때 찾아보면 됩니다.
