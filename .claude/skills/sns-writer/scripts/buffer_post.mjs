@@ -261,6 +261,39 @@ async function main() {
     console.log(`삭제함: ${id}`);
     return;
   }
+  // 예약을 초안으로 되돌린다. 예약 상한을 비우거나 일정을 다시 짤 때 쓴다 (2026-09-14 추가).
+  if (has("--to-draft")) {
+    const id = valueOf("--to-draft");
+    if (!id) { console.error("사용법: buffer_post.mjs --to-draft <postId> --confirm"); process.exit(2); }
+    if (!has("--confirm")) { console.error("--confirm 이 없어 바꾸지 않았습니다."); process.exit(1); }
+    const cur = await gql(`query($id: PostId!) { post(input: { id: $id }) { id status text } }`, { id });
+    if (!cur?.post) { console.error(`글을 찾지 못했습니다: ${id}`); process.exit(1); }
+    const input = { id, text: cur.post.text, saveToDraft: true, mode: "addToQueue" };
+    guardSafety(input);
+    const data = await gql(
+      `mutation($input: EditPostInput!) {
+         editPost(input: $input) {
+           __typename
+           ... on PostActionSuccess { post { id status dueAt } }
+           ... on NotFoundError { message }
+           ... on UnauthorizedError { message }
+           ... on UnexpectedError { message }
+           ... on RestProxyError { message }
+           ... on LimitReachedError { message }
+           ... on InvalidInputError { message }
+         }
+       }`,
+      { input },
+    );
+    const r = data?.editPost;
+    if (!r || r.__typename?.endsWith("Error")) {
+      console.error(`초안 전환 실패: ${r?.message || JSON.stringify(data).slice(0, 300)}`);
+      process.exit(1);
+    }
+    console.log(`초안으로 내림: ${r.post?.id || id} status=${r.post?.status || "?"}`);
+    return;
+  }
+
   // 초안을 예약으로 올린다. 무료 플랜의 채널당 예약 10건에 막혀 초안으로 남겨 둔 건을
   // 앞 건이 발행돼 슬롯이 빈 뒤에 올릴 때 쓴다 (2026-09-14 추가).
   if (has("--schedule-draft")) {
