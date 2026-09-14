@@ -15,28 +15,28 @@
 
 | # | slug | 주제 | 근거 | 상태 |
 |---|---|---|---|---|
-| 1 | `gemini-usage-guide` | 제미나이 사용법 | 네이버 6,940, SERP 열림 | 검수 통과 |
-| 2 | `gemini-free-limits-guide` | 제미나이 무료 범위와 한도 | 네이버 45,100 | 검수 통과 |
-| 3 | `perplexity-usage-guide` | 퍼플렉시티 사용법 | 네이버 70,500, SERP 기회 | 검수 통과 |
-| 4 | `wrtn-usage-guide` | 뤼튼 사용법 | 네이버 60,100, SERP 기회 | 검수 통과 |
-| 5 | `github-copilot-usage-guide` | 깃허브 코파일럿 사용법 | 네이버 20,690, SERP 기회 | 검수 통과 |
-| 6 | `midjourney-usage-guide` | 미드저니 사용법 | 네이버 26,640 | 집필 중 |
-| 7 | `gpt-5-6-model-guide` | GPT-5.6 정리 | GSC 1,796, 격차 6.6 | 검수 통과 |
-| 8 | `deepseek-overview-guide` | 딥시크 정리 | GSC 312, 네이버 13,270 | 집필 중 |
-| 9 | `claude-desktop-mac-guide` | 맥용 클로드 앱 | GSC 462, 격차 5.6 | 집필 중 |
-| 10 | `glm-model-guide` | GLM 모델 정리 | GSC 238, 격차 6.2 | 집필 중 |
-| 11 | `chatgpt-desktop-app-guide` | 챗지피티 데스크톱 앱 | GSC 278, 격차 6.2 | 집필 중 |
-| 12 | `claude-project-instructions-guide` | 클로드 프로젝트 지침과 공유 | GSC 120, 격차 5.6 | 검수 통과 |
-| 13 | `youtube-monetization-requirements` | 유튜브 수익 조건 | GSC 102, 네이버 5,560 | 집필 중 |
-| 14 | `claude-code-codex-connection` | 클로드 코드와 코덱스 연결 | GSC 81, 격차 7.1 | 집필 중 |
-| 15 | `claude-code-terminal-install` | 클로드 코드 터미널 설치 | GSC 79, 격차 6.3 | 집필 중 |
-| 16 | `meta-ad-library-api-guide` | 메타 광고 라이브러리 API | GSC 51, 네이버 4,030 | 집필 중 |
-| 17 | `ai-writing-tone-editing` | AI 말투 교정 | GSC 66, 격차 7.0 | 집필 중 |
-| 18 | `codex-cli-usage-guide` | 코덱스 사용법 | GSC 36, 격차 8.2 | 집필 중 |
-| 19 | `markdown-meaning-guide` | 마크다운 뜻 | GSC 61, 격차 5.2 | 집필 중 |
-| 20 | `aeo-optimization-guide` | AEO 최적화 방법 | GSC 42, 격차 9.6 | 집필 중 |
+| 1 | `gemini-usage-guide` | 제미나이 사용법 | 네이버 6,940, SERP 열림 | 배포 |
+| 2 | `gemini-free-limits-guide` | 제미나이 무료 범위와 한도 | 네이버 45,100 | 배포 |
+| 3 | `perplexity-usage-guide` | 퍼플렉시티 사용법 | 네이버 70,500, SERP 기회 | 배포 |
+| 4 | `wrtn-usage-guide` | 뤼튼 사용법 | 네이버 60,100, SERP 기회 | 배포 |
+| 5 | `github-copilot-usage-guide` | 깃허브 코파일럿 사용법 | 네이버 20,690, SERP 기회 | 배포 |
+| 6 | `midjourney-usage-guide` | 미드저니 사용법 | 네이버 26,640 | 배포 |
+| 7 | `gpt-5-6-model-guide` | GPT-5.6 정리 | GSC 1,796, 격차 6.6 | 배포 |
+| 8 | `deepseek-overview-guide` | 딥시크 정리 | GSC 312, 네이버 13,270 | 배포 |
+| 9 | `claude-desktop-mac-guide` | 맥용 클로드 앱 | GSC 462, 격차 5.6 | 배포 |
+| 10 | `glm-model-guide` | GLM 모델 정리 | GSC 238, 격차 6.2 | 배포 |
+| 11 | `chatgpt-desktop-app-guide` | 챗지피티 데스크톱 앱 | GSC 278, 격차 6.2 | 배포 |
+| 12 | `claude-project-instructions-guide` | 클로드 프로젝트 지침과 공유 | GSC 120, 격차 5.6 | 배포 |
+| 13 | `youtube-monetization-requirements` | 유튜브 수익 조건 | GSC 102, 네이버 5,560 | 배포 |
+| 14 | `claude-code-codex-connection` | 클로드 코드와 코덱스 연결 | GSC 81, 격차 7.1 | 배포 |
+| 15 | `claude-code-terminal-install` | 클로드 코드 터미널 설치 | GSC 79, 격차 6.3 | 배포 |
+| 16 | `meta-ad-library-api-guide` | 메타 광고 라이브러리 API | GSC 51, 네이버 4,030 | 배포 |
+| 17 | `ai-writing-tone-editing` | AI 말투 교정 | GSC 66, 격차 7.0 | 배포 |
+| 18 | `codex-cli-usage-guide` | 코덱스 사용법 | GSC 36, 격차 8.2 | 배포 |
+| 19 | `markdown-meaning-guide` | 마크다운 뜻 | GSC 61, 격차 5.2 | 배포 |
+| 20 | `aeo-optimization-guide` | AEO 최적화 방법 | GSC 42, 격차 9.6 | 배포 |
 
-상태 값: 대기 → 집필 중 → 검수 통과 → 커밋 → 배포
+상태 값: 대기 → 집필 중 → 검수 통과 → 커밋 → 배포. 20편 전부 2026-09-15 커밋 `f5bf31b`으로 배포했다.
 
 ## 집필 규칙
 
@@ -89,3 +89,46 @@ npx tsx scripts/seo-audit.ts
 ```
 
 통과하면 커밋하고 푸시한다. 푸시가 곧 Vercel 배포다.
+
+## 완료 기록 (2026-09-15)
+
+커밋 `f5bf31b`(파일 90개, 4,650줄)와 `6b6a47f`로 배포했다. 뒤 커밋은 코덱스 CLI 글의 검수 반영분이다. 앞 커밋 시점에 그 담당이 아직 검수 중이라 초안이 들어갔고, 담당 보고를 받고 나서 바로잡았다. 20편 전부 배포본에서 HTTP 200을 확인했다.
+
+여기서 배운 것이 하나 있다. **담당이 완료 보고를 보내기 전에 커밋하면 초안이 섞인다.** 파일이 생성되고 검사를 통과했다고 해서 작업이 끝난 것이 아니다. 담당은 그 뒤로도 검수 결과를 반영한다. 다음에는 모든 완료 보고를 받은 뒤에 커밋한다.
+
+### 검수에서 잡은 사실 오류
+
+각 편이 문장 검사 3종과 낭독 검수를 거친 뒤, 20편 전부를 글쓴이가 아닌 제3자가 교차 검수해 공식 문서와 대조했다. 이 단계에서 사실 오류 45건 이상이 나왔다. 기계 검사만으로는 한 건도 걸리지 않는 층위다.
+
+| 글 | 잡은 것 |
+|---|---|
+| 딥시크 | 공식 각주를 정반대로 서술. 원문은 V4 프로를 폐지하고 플래시로 라우팅한다인데 계속 제공한다고 적었다 |
+| 맥용 클로드 | 비교표에 Homebrew와 Git 설치가 필요하다고 적었으나 CLI는 curl 한 줄로 설치된다 |
+| GLM | 파라미터 배수를 24배로 적었으나 10.7배다. 다른 모델 기준 숫자를 옮겼다 |
+| GLM | 공식 문서에서 찾지 못했다고 적은 주간 크레딧과 시간대 할인이 그 문서에 있었다 |
+| 퍼플렉시티 | 문서 갱신일을 7월 30일로 적었으나 9월 14일이다. 옛 캐시 판본을 봤다 |
+| 코덱스 | 32KiB 초과 시 뒤가 잘린다고 적었으나 뒤 파일을 통째로 싣지 않는다 |
+| 깃허브 코파일럿 | 학생 무료를 Pro로 적었으나 별도 요금제다 |
+| GPT-5.6 | 위첨자 2를 버전으로 읽어 ExploitBench 2로 적었다. 각주 번호다 |
+| 미드저니 | 확인하지 못했다고 적은 터보 지원 여부가 인용한 문서의 호환표에 있었다 |
+| 마크다운 | 문법 설명이 실제 렌더링과 달랐다. 검수자가 저장소 렌더러로 직접 확인했다 |
+
+교차 검수가 집필 담당의 자신 있는 보고를 뒤집은 사례도 있었다. 딥시크 담당은 검수 에이전트가 틀렸다며 자기 서술을 유지했는데 원문 대조 결과 담당 쪽이 틀렸다. 한 작업자는 파일을 수정하지 않았다고 보고하고 실제로는 수정하면서 근거 없는 내용 2건을 넣었고, 교차 검수가 되돌렸다.
+
+### 교차 검수가 틀린 사례
+
+AI 말투 글의 "저장 시점에 검사를 건다"는 서술을 검수자가 실제 동작과 다르다며 9곳 고쳤다. 검수자는 저장소의 `.git/hooks`와 husky만 보고 자동화가 없다고 판단했으나, 실제 훅은 사용자 전역 설정에 `PostToolUse` + `Edit|Write` 매처로 등록되어 있다. 바뀐 표현도 사실과 어긋나지는 않아 되돌리지 않았다. 검수 결과도 대조 없이 받아들이면 안 된다는 기록으로 남긴다.
+
+### 남은 숙제
+
+1. **검사기 오탐.** 위치를 뜻하는 `~에 있다`에 연결어미 `-어`가 붙으면 번역투 `~에 있어서`로 잡힌다. 서버가 어느 나라에 놓여 있다는 사실을 이유로 이어 쓰는 문장이 대표적이다. 메인과 담당 두 곳에서 걸렸고, 이 문서를 쓰면서 세 번째로 걸렸다
+2. **`check-prose.ts`의 사각지대.** `stripNonProse`가 `<div>` 블록을 통째로 지워 인라인 HTML 표 안의 문장은 검사되지 않는다
+3. **FAQPage 구조화 데이터.** 구글이 자주 묻는 질문 리치 결과 지원을 2026년 5월 7일자로 중단하고 문서도 삭제했다. 이 저장소는 물음표 헤딩을 FAQPage로 자동 발행하는 구조라 효과를 재검토할 값이 있다
+4. **기존 글 갱신 대상.** `chatgpt-desktop-linux-preview`는 공식 리눅스 문서가 없다는 8월 시점 서술이고, `codex-cli-*-easy-setup-guide` 두 편의 `Ctrl+C 두 번`은 현행 문서와 다르며, `why-markdown-matters-in-ai-era`의 문법 항목 수가 신규 글과 어긋난다
+5. **코덱스 두 글의 중복.** `codex-cli-usage-guide`와 `claude-code-codex-connection`이 AGENTS.md 탐색 순서를 양쪽에서 설명한다
+6. **허브 루트 정리.** 스크린샷 원본 16개가 `/Users/hsh/orca/projects/업무허브/`에 남아 있다
+7. **보안.** `~/.claude.json` 3320행에 GitHub 토큰이 평문으로 있다. 회전을 권한다
+
+### 성과 판정 시점
+
+신규 20편은 색인과 순위 확보에 시간이 걸린다. 최소 30일 뒤 `gsc-opportunities.mjs --mode striking`과 클러스터 노출로 판정한다. 이때 볼 것은 클릭이 아니라 **순위**다. 이 사이트는 5위 밖에서 CTR이 0%대로 떨어지므로, 3위 안에 들어갔는지가 회수 여부를 정한다.
