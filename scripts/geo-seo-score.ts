@@ -279,10 +279,11 @@ function scoreAeo(type: ContentType, fm: Record<string, unknown>, body: string):
   else push("R-AEO-05", 10, "FAIL", "요약 없음");
 
   // R-AEO-06 음성 검색 친화
+  // 원본 명세는 의문사(어떻게, 왜, 무엇...)를 함께 요구하지만, 실제 음성 질의는 의문사 없이도
+  // 많다. "AI 검색이 구글을 대체하고 있나요?"처럼 제대로 된 해요체 질문이 의문사가 없다는
+  // 이유로 미달로 잡히는 경우가 326편 중 219편이어서 해요체 의문형 종결로 기준을 넓혔다.
   const voice = [
-    ...plain(body).matchAll(
-      /(어떻게|왜|언제|얼마나|무엇|어떤|어디)[^\n?]{1,40}(까요|나요|는가요|은가요|인가요|죠)\s*[?？]/g,
-    ),
+    ...plain(body).matchAll(/[가-힣][^\n?]{2,60}(까요|나요|는가요|은가요|인가요|죠)\s*[?？]/g),
   ].length;
   if (voice >= 2) push("R-AEO-06", 10, "PASS", `${voice}개`);
   else if (voice === 1) push("R-AEO-06", 10, "PARTIAL", "1개");

@@ -100,7 +100,7 @@ summary3:
 
 핵심은 **"알고리즘이 학습할 수 있는 충분한 데이터가 쌓이는 선에서, 가능한 한 비즈니스 가치가 높은 행동"**을 전환으로 설정하는 것입니다.
 
-## 전환 추적을 설정하면 무엇이 달라질까?
+## 전환 추적을 설정하면 무엇이 달라지나요?
 
 <div style="overflow-x:auto;margin:24px 0">
 <div style="max-width:100%;border:3px solid #000;background:#fff">
