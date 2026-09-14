@@ -7,6 +7,7 @@ definition: >-
 category: CLAUDE_EDUCATION
 tags:
   - AI
+  - 마케팅 실무
 publishedAt: '2026-04-27T09:14:00.000Z'
 courseSlug: claude-fundamentals
 orderInCourse: 5
@@ -35,8 +36,8 @@ quiz:
       약합니까?"는 같은 방향의 재확인이라 검증 효과가 없습니다.
 metaTitle: 'AI 아부(Sycophancy) 뜻: 모델이 동의만 하는 이유'
 metaDescription: >-
-  시코판시(Sycophancy)는 AI가 사실보다 사용자의 의견에 맞춰 동의를 선택하는 경향입니다. 나타나는 상황과 결과를 검증할 때 주의할
-  점을 정리했습니다.
+  모델 아부는 AI가 사실보다 사용자의 의견에 맞춰 동의를 고르는 경향입니다. 사람의 피드백을 학습하는 과정에서 생기는 이유와 두드러지는 상황, 알아채는 세 가지 신호, 질문을 바꿔 아부를 줄이는 네
+  가지 방법을 정리했습니다.
 ogImage: /og/what-is-sycophancy.png
 summary3:
   - 모델 아부는 AI가 사용자의 의견과 감정에 맞춰 사실보다 동의를 고르는 경향입니다.

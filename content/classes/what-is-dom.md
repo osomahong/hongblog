@@ -5,6 +5,9 @@ definition: '브라우저가 HTML 문서를 읽어 만든 트리 구조로, 자�
 category: AI_TECH
 tags:
   - DOM
+  - HTML
+  - JavaScript
+  - GTM
 publishedAt: '2026-02-11T08:58:45.297Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: digital-basic
@@ -28,7 +31,9 @@ quiz:
       결과물입니다.
     correctIndex: 2
 metaTitle: 'DOM 뜻: 브라우저가 HTML을 다루는 구조'
-metaDescription: 'DOM은 브라우저가 HTML 문서를 읽어 만든 트리 구조입니다. 자바스크립트가 웹페이지 요소를 찾고 바꾸는 원리를 초보자 눈높이로 정리했습니다.'
+metaDescription: >-
+  DOM은 브라우저가 HTML 문서를 읽어 만든 트리 구조입니다. 자바스크립트가 이 구조를 따라가 요소를 찾고 바꾸는 과정, GTM의 CSS 선택자가 가리키는 DOM 주소, 클릭
+  추적이 잡히지 않을 때 확인할 지점을 정리했습니다.
 ogImage: /og/what-is-dom.png
 summary3:
   - 'DOM은 브라우저가 HTML을 읽어 만든 트리 구조이고 자바스크립트가 화면 요소를 찾아 바꿀 때 이 구조를 씁니다.'

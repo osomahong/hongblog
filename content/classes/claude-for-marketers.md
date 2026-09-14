@@ -35,8 +35,8 @@ quiz:
       다시 지시하거나 엑셀 매크로만으로는 회사 형식, 검증 흐름이 빠집니다.
 metaTitle: '마케터를 위한 클로드 활용법: Projects, Skills, Cowork 적용'
 metaDescription: >-
-  마케터를 위한 클로드 활용은 Projects, Skills, Cowork, Artifacts를 마케팅 실무에 쓰는 방법입니다. 업무별 적용
-  사례와 시작 순서를 정리했습니다.
+  마케터의 클로드 활용은 Projects, Skills, Cowork, Artifacts를 묶어 매주 반복하는 업무를 줄이는 일입니다. 광고 리포트
+  자동화와 콘텐츠 캘린더 관리, 캠페인 카피 작성, 고객 리서치 시나리오와 자주 빠지는 함정을 정리했습니다.
 ogImage: /og/claude-for-marketers.png
 summary3:
   - '마케터가 Claude로 자동화할 만한 반복 업무는 광고 리포트 정리와 콘텐츠 캘린더 관리, 캠페인 카피 작성, 고객 리서치입니다.'

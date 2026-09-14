@@ -62,7 +62,7 @@ summary3:
 | 활용 사례 | 148개 | 직무와 업종별로 클로드를 쓴 사례 |
 | 웨비나 | 표기 없음 | 예정된 라이브 일정과 지난 회차가 함께 올라옵니다 |
 
-첫 화면은 Claude.ai, Claude Cowork, Claude Code, Claude Tag, Claude Platform 다섯 제품으로 나뉩니다. 각각 대화, 작업 위임, 개발, 팀 채널 호출, API 연동을 다룹니다. 여기에 특정 제품에 묶이지 않는 AI Fluency 자료가 따로 있습니다.
+첫 화면은 Claude.ai, [Claude Cowork](/class/claude-in-practice/claude-cowork-overview), Claude Code, Claude Tag, Claude Platform 다섯 제품으로 나뉩니다. 각각 대화, 작업 위임, 개발, 팀 채널 호출, API 연동을 다룹니다. 여기에 특정 제품에 묶이지 않는 [AI Fluency](/class/claude-fundamentals/four-ds-of-ai-fluency) 자료가 따로 있습니다.
 
 이전에 쓰이던 주소도 이 사이트로 이어집니다. `claude.com/resources/courses`와 `anthropic.com/learn` 아래 주소를 열면 `academy.claude.com`의 같은 성격 페이지로 넘어갑니다. 예전 링크를 저장해 둔 분들은 따로 찾아 들어가지 않아도 됩니다.
 

@@ -5,6 +5,8 @@ definition: '데이터를 체계적으로 저장하고, 필요할 때 빠르게 
 category: AI_TECH
 tags:
   - 바이브코딩
+  - AI
+  - 데이터 분석
 publishedAt: '2026-02-18T15:19:55.089Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: vibe-coding-basics
@@ -36,7 +38,9 @@ quiz:
       설계해달라고 요청하면 더 안정적인 앱을 만들 수 있습니다.
     correctIndex: 1
 metaTitle: '데이터베이스 뜻: 데이터를 저장하고 찾는 구조'
-metaDescription: '데이터베이스는 데이터를 체계적으로 저장하고 필요할 때 빠르게 찾도록 정리해 주는 저장소입니다. 저장 구조와 AI 코딩에서 만나는 데이터베이스 개념을 정리했습니다.'
+metaDescription: >-
+  데이터베이스는 데이터를 정해진 구조로 저장하고 필요할 때 빠르게 찾아 쓰게 만든 저장소입니다. 표로 저장하는 SQL과 문서로 담는 NoSQL의 차이, 스키마가 하는 일,
+  바이브코딩에서 자주 쓰는 서비스와 흔한 실수를 정리했습니다.
 ogImage: /og/what-is-database.png
 summary3:
   - '데이터베이스는 데이터를 정해진 구조로 저장하고 필요할 때 빠르게 찾아 쓰게 만든 저장소입니다.'

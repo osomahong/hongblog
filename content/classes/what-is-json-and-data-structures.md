@@ -7,6 +7,8 @@ definition: >-
 category: AI_TECH
 tags:
   - 바이브코딩
+  - API
+  - JavaScript
 publishedAt: '2026-04-11T01:18:07.000Z'
 courseSlug: digital-basic
 orderInCourse: 13

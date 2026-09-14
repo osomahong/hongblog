@@ -178,7 +178,7 @@ Build에서 기본으로 생성하는 웹 앱은 단순한 HTML 조각에 그치
 
 ## API 키와 Secrets 관리
 
-Gemini API를 사용하는 앱에서 가장 먼저 확인해야 할 부분은 API 키입니다. API 키는 서비스를 호출할 수 있는 인증 정보이므로 코드 저장소나 브라우저에 노출되면 안 됩니다.
+Gemini [API](/class/digital-basic/what-is-api)를 사용하는 앱에서 가장 먼저 확인해야 할 부분은 API 키입니다. API 키는 서비스를 호출할 수 있는 인증 정보이므로 코드 저장소나 브라우저에 노출되면 안 됩니다.
 
 Google AI Studio Build는 새 앱에서 Gemini API를 사용할 때 API 키를 서버 측 Secret으로 구성하는 방식을 안내합니다. 설정 메뉴의 Secrets에서 키를 확인하고 관리할 수 있으며, API 호출은 서버 측 코드에서 수행하도록 구성됩니다.
 
@@ -190,7 +190,7 @@ Google AI Studio Build는 새 앱에서 Gemini API를 사용할 때 API 키를 �
 - 키가 노출되었다면 해당 키를 폐기하고 새 키를 발급합니다.
 - 공유나 배포 전에 어떤 사용자가 API 호출 비용을 부담하는지 확인합니다.
 
-기존 프로젝트를 ZIP으로 내려받아 다른 호스팅 환경에서 실행할 때는 해당 호스팅 서비스에 `GEMINI_API_KEY` 환경 변수를 별도로 등록해야 할 수 있습니다. AI Studio 안에서 자동으로 설정된 값이 외부 환경까지 따라가는 것은 아닙니다.
+기존 프로젝트를 ZIP으로 내려받아 다른 호스팅 환경에서 실행할 때는 해당 호스팅 서비스에 `GEMINI_API_KEY` [환경 변수](/class/vibe-coding-basics/what-is-env-variables)를 별도로 등록해야 할 수 있습니다. AI Studio 안에서 자동으로 설정된 값이 외부 환경까지 따라가는 것은 아닙니다.
 
 ## 생성한 앱 검수 순서
 
@@ -216,7 +216,7 @@ AI Studio의 미리보기는 검수 과정에 도움이 되지만, 실제 서비
 | GitHub 내보내기 | 버전 관리, 협업 | 저장소에 비밀 값이 들어가지 않았는지 확인 |
 | Cloud Run 배포 | 공개 URL로 서비스 | Google Cloud 사용량과 비용 확인 |
 
-Google 공식 문서에 따르면 Build 앱은 Cloud Run으로 배포할 수 있고, ZIP으로 내려받거나 GitHub로 내보낼 수도 있습니다. Cloud Run 배포에는 사용량에 따른 비용이 생길 수 있고, 공유한 앱에서도 API 호출이 사용량에 포함될 수 있습니다.
+Google 공식 문서에 따르면 Build 앱은 Cloud Run으로 [배포](/class/vibe-coding-basics/what-is-deployment)할 수 있고, ZIP으로 내려받거나 GitHub로 내보낼 수도 있습니다. Cloud Run 배포에는 사용량에 따른 비용이 생길 수 있고, 공유한 앱에서도 API 호출이 사용량에 포함될 수 있습니다.
 
 초보자라면 먼저 AI Studio 안에서 미리보기와 공유 기능을 사용해 흐름을 확인한 뒤, 실제 공개가 필요할 때 배포를 검토하는 편이 좋습니다. 공개 URL이 생겼다는 이유만으로 로그인과 결제까지 바로 연결할 필요는 없습니다.
 

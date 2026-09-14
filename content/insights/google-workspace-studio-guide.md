@@ -51,7 +51,7 @@ Gmail에서 받은 메일을 읽고, 첨부파일을 Drive에 저장하고, 팀 
 
 Google Workspace Studio는 이런 반복 작업을 Gemini와 함께 자동화하는 도구입니다. Gmail, Drive, Docs, Sheets, Calendar, Chat, Forms, Tasks 같은 Workspace 서비스를 하나의 플로우로 연결할 수 있습니다.
 
-Google AI Studio가 Gemini를 사용한 앱을 만드는 개발 환경이라면, Workspace Studio는 이미 사용하는 Google Workspace 안에서 업무 흐름을 자동화하는 공간입니다. 이 글에서는 Workspace Studio의 기본 구조와 접근 조건, 자연어로 플로우를 만드는 방법, 이메일 요약과 첨부파일 저장 사례를 정리합니다.
+[Google AI Studio](/insights/google-ai-studio-guide)가 Gemini를 사용한 앱을 만드는 개발 환경이라면, Workspace Studio는 이미 사용하는 Google Workspace 안에서 업무 흐름을 자동화하는 공간입니다. 이 글에서는 Workspace Studio의 기본 구조와 접근 조건, 자연어로 플로우를 만드는 방법, 이메일 요약과 첨부파일 저장 사례를 정리합니다.
 
 아래 이미지는 Google Workspace 공식 페이지에 공개된 Workspace Studio 소개 화면입니다. Gmail, Gemini, Chat과 함께 업무 자동화를 설명하는 프롬프트가 배치되어 있어 Workspace 앱 사이의 작업을 연결하는 구조를 보여줍니다.
 
@@ -144,7 +144,7 @@ Google 공식 시작 가이드가 예로 드는 플로우는 읽지 않은 이�
 
 ## Gemini로 자연어 플로우 만들기
 
-Workspace Studio에서는 자동화하려는 일을 자연어로 설명해 Gemini가 플로우 초안을 만들게 할 수 있습니다. 좋은 결과를 얻으려면 다음 네 가지를 함께 적는 것이 좋습니다.
+Workspace Studio에서는 자동화하려는 일을 [자연어로 설명해](/class/claude-fundamentals/prompt-engineering-basics) Gemini가 플로우 초안을 만들게 할 수 있습니다. 좋은 결과를 얻으려면 다음 네 가지를 함께 적는 것이 좋습니다.
 
 - 플로우가 시작되는 조건
 - 사용할 Google Workspace 앱

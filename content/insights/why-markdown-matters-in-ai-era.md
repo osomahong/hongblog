@@ -25,8 +25,8 @@ quiz:
     correctIndex: 0
 metaTitle: 'AI 시대에 마크다운이 중요한 이유: md 파일 뜻과 역할'
 metaDescription: >-
-  마크다운은 이제 AI 에이전트의 행동 규칙을 정의하는 핵심 도구입니다. CLAUDE.md, SKILL.md 등 .md 파일이 AI를 움직이는
-  원리를 초보자 눈높이에서 설명합니다.
+  마크다운은 기호 몇 개로 문서 구조를 표시하는 서식 방법이고, 지금은 AI 에이전트의 행동 규칙을 적는 형식이 됐습니다. CLAUDE.md와
+  SKILL.md의 역할, 헤딩 구조와 SEO의 관계, 프롬프트에 쓸 때의 차이를 정리했습니다.
 ogImage: /og/why-markdown-matters-in-ai-era.png
 ogDescription: >-
   문서 서식에서 AI 에이전트의 운영 체제로. 마크다운이 AI 시대의 핵심 소통 수단이 된 이유와 비개발자도 바로 활용하는 방법을

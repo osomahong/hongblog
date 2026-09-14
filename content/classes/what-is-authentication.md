@@ -5,6 +5,8 @@ definition: '사용자가 누구인지 확인하고(인증), 허가된 사람만
 category: AI_TECH
 tags:
   - 바이브코딩
+  - API
+  - AI
 publishedAt: '2026-02-18T15:19:55.525Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: vibe-coding-basics
@@ -34,7 +36,9 @@ quiz:
       바이브코딩처럼 보안 전문 지식이 부족한 상황에서 특히 유용한 방식입니다.
     correctIndex: 1
 metaTitle: '인증과 보안(Authentication) 뜻: 로그인의 기본 구조'
-metaDescription: '인증은 사용자가 누구인지 확인하고 허가된 사람만 데이터에 접근하게 보호하는 시스템입니다. 로그인과 권한의 기본 구조를 초보자 눈높이로 정리했습니다.'
+metaDescription: >-
+  인증은 접속한 사람이 누구인지 확인하고 허가된 사람만 데이터에 닿게 하는 구조입니다. 로그인 상태를 유지하는 세션 방식과 JWT 토큰 방식의 차이, Google 로그인에 쓰이는
+  OAuth의 흐름, 바이브코딩에서 자주 나는 보안 실수를 정리했습니다.
 ogImage: /og/what-is-authentication.png
 summary3:
   - '인증은 접속한 사람이 누구인지 확인하는 절차이고 보안은 허가된 사람만 데이터에 닿게 하는 장치입니다.'

@@ -31,7 +31,9 @@ quiz:
       역할을 합니다.
     correctIndex: 1
 metaTitle: 'HTML 속성(Attribute) 뜻: 태그에 붙는 추가 정보'
-metaDescription: 속성(Attribute)은 HTML 요소에 붙는 추가 정보입니다. 대표 속성의 역할과 GTM 태깅에서 속성이 쓰이는 방식을 정리했습니다.
+metaDescription: >-
+  속성(Attribute)은 HTML 요소에 추가 정보를 붙이는 이름과 값의 쌍입니다. id와 class, href, src, alt, data-* 여섯 가지의 역할, GTM의
+  Click ID와 Click Classes가 읽는 값, CSS Selector 읽는 법을 정리했습니다.
 ogImage: /og/what-is-attribute.png
 summary3:
   - Attribute는 HTML 요소에 추가 정보를 붙이는 이름과 값의 쌍입니다.

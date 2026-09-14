@@ -34,8 +34,8 @@ quiz:
     correctIndex: 0
 metaTitle: 'npm 뜻: 패키지 매니저가 하는 일과 기본 개념'
 metaDescription: >-
-  npm은 다른 개발자가 만든 코드 패키지를 설치하고 관리하는 패키지 매니저입니다. 패키지 설치의 원리와 AI 코딩에서 자주 만나는 상황을
-  정리했습니다.
+  npm은 다른 개발자가 만든 패키지를 내 프로젝트에 설치하고 관리하는 도구입니다. package.json과 node_modules, package-lock.json이 하는 일과 yarn, pnpm의
+  차이, 설치가 안 될 때 확인할 것을 정리했습니다.
 ogImage: /og/what-is-npm.png
 summary3:
   - npm은 다른 개발자가 만든 패키지를 내 프로젝트로 가져와 설치하고 관리하는 도구입니다.

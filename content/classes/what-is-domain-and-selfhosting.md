@@ -5,6 +5,7 @@ definition: 도메인은 인터넷에서 내 서비스를 찾을 수 있는 고�
 category: AI_TECH
 tags:
 - 바이브코딩
+- AI
 publishedAt: '2026-04-11T01:18:07.000Z'
 courseSlug: digital-basic
 orderInCourse: 12
@@ -30,7 +31,9 @@ quiz:
   explanation: 웹 서비스에 도메인을 연결할 때는 A 레코드(도메인 → IP 주소) 또는 CNAME(도메인 → 다른 도메인)을 사용합니다. Vercel 같은 플랫폼은 보통 CNAME 설정을 안내하며, 루트 도메인에는 A 레코드를 사용합니다. 설정 후 HTTPS 인증서는 자동으로 발급됩니다.
   correctIndex: 1
 metaTitle: '도메인과 셀프호스팅 뜻: 내 주소로 서비스 여는 방법'
-metaDescription: '도메인은 인터넷에서 내 서비스를 찾는 고유 주소이고, 셀프호스팅은 내 서버로 직접 서비스를 운영하는 방식입니다. 도메인 연결과 호스팅 선택 기준을 정리했습니다.'
+metaDescription: >-
+  도메인은 인터넷에서 내 서비스를 찾는 고유 주소이고 셀프호스팅은 직접 서버를 운영하는 방식입니다. 도메인 구매와 DNS 레코드 설정, 배포 플랫폼에 연결하는 순서, 셀프호스팅을
+  고를 기준과 챙겨야 할 보안 항목을 정리했습니다.
 ogImage: /og/what-is-domain-and-selfhosting.png
 summary3:
   - '도메인은 숫자로 된 IP 주소 대신 사람이 읽을 수 있게 붙인 서비스 주소이고 DNS가 그 이름을 IP로 바꿔 줍니다.'

@@ -7,6 +7,8 @@ excerpt: >-
 category: AI_TECH
 tags:
   - AI
+  - 자동화
+  - 바이브코딩
 quiz:
   - options:
       - 각 인터페이스마다 서로 다른 AI 모델이 사용된다

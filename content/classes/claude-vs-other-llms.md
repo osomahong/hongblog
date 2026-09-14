@@ -7,6 +7,8 @@ definition: >-
 category: CLAUDE_EDUCATION
 tags:
   - AI
+  - 자동화
+  - 바이브코딩
 publishedAt: '2026-04-27T09:17:00.000Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: claude-fundamentals
@@ -36,8 +38,8 @@ quiz:
       제공하지만, 코드베이스 통합 후 동작 프로토타입 핸드오프까지 묶인 도구는 아닙니다.
 metaTitle: '클로드 ChatGPT 제미나이 비교: 차이와 선택 기준'
 metaDescription: >-
-  클로드, ChatGPT, 제미나이는 만든 회사와 강조점, 도구 구성이 서로 다른 AI 어시스턴트입니다. 작업 성격별로 어떤 것을 고를지 비교
-  기준을 정리했습니다.
+  클로드와 ChatGPT, 제미나이는 만든 회사와 강조점, 도구 구성이 서로 다른 AI 어시스턴트입니다. 셋의 강점이 나뉘는 지점과 같은 보고서를
+  요약시켰을 때의 차이, 마케터와 디자이너, 개발자의 도구 선택 기준을 정리했습니다.
 ogImage: /og/claude-vs-other-llms.png
 summary3:
   - >-

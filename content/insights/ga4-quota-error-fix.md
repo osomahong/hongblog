@@ -30,7 +30,7 @@ summary3:
   - 한도는 사람이 아니라 속성 단위라 같은 속성을 보는 사람과 루커 스튜디오 같은 외부 도구의 요청이 모두 합산됩니다.
 ---
 
-GA4를 사용하다 보면 갑자기 아래와 같은 메시지가 뜨면서 데이터가 안 보이는 경우가 있습니다.
+[GA4](/class/data-analytics-basics/what-is-ga4)를 사용하다 보면 갑자기 아래와 같은 메시지가 뜨면서 데이터가 안 보이는 경우가 있습니다.
 
 > **할당량 오류**
 > 이 데이터 세트에 대한 액세스 허용 횟수를 초과했습니다.
@@ -40,7 +40,7 @@ GA4를 사용하다 보면 갑자기 아래와 같은 메시지가 뜨면서 데
 
 ## GA4 할당량 시스템 : 토큰 기반 구조
 
-GA4는 **Google Analytics Data API v1**이라는 인터페이스로 데이터를 처리합니다. GA4 화면에서 보고서를 열거나, Looker Studio 같은 외부 도구가 데이터를 가져올 때 모두 이 API를 거칩니다.
+GA4는 **Google Analytics Data API v1**이라는 인터페이스로 데이터를 처리합니다. GA4 화면에서 보고서를 열거나, [Looker Studio](/class/data-analytics-basics/tableau-and-looker-studio) 같은 외부 도구가 데이터를 가져올 때 모두 이 API를 거칩니다.
 
 이 API는 **토큰(Token) 기반 할당량 시스템**을 사용합니다. 보고서를 요청할 때마다 일정량의 토큰이 소모되고, 토큰이 바닥나면 할당량 오류가 발생하는 구조입니다.
 
@@ -152,7 +152,7 @@ GA4를 여러 탭에 열어놓으면, 각 탭이 독립적으로 데이터를 �
 
 ### 예방법 3 : BigQuery 연동하기 (대용량 분석용)
 
-GA4 토큰 할당량은 **GA4 Data API에만 적용**됩니다. GA4 데이터를 BigQuery로 내보내면, BigQuery에서는 GA4 할당량과 무관하게 데이터를 분석할 수 있습니다.
+GA4 토큰 할당량은 **GA4 Data API에만 적용**됩니다. GA4 데이터를 [BigQuery](/class/data-analytics-basics/what-is-bigquery)로 내보내면, BigQuery에서는 GA4 할당량과 무관하게 데이터를 분석할 수 있습니다.
 
 BigQuery는 SQL이라는 데이터 조회 언어를 알아야 해서 진입장벽이 있지만, 할당량 오류가 반복된다면 장기적으로 가장 근본적인 해결책입니다.
 

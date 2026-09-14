@@ -5,6 +5,8 @@ definition: '프로그램이 실행될 때 참조하는 설정값으로, API 키
 category: AI_TECH
 tags:
   - 바이브코딩
+  - API
+  - AI
 publishedAt: '2026-02-18T15:19:52.600Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: vibe-coding-basics
@@ -32,7 +34,9 @@ quiz:
       위험합니다.
     correctIndex: 0
 metaTitle: '환경 변수와 .env 파일 뜻: API 키를 안전하게 두는 방법'
-metaDescription: '환경 변수는 API 키나 비밀번호 같은 민감한 정보를 코드와 분리해 저장하는 설정값입니다. .env 파일의 역할과 유출을 막는 관리 방법을 정리했습니다.'
+metaDescription: >-
+  환경 변수는 API 키나 비밀번호 같은 민감한 정보를 코드와 분리해 두는 설정값입니다. .env 파일에 값을 적는 방법, .gitignore로 저장소 유출을 막는 순서, 키가
+  공개됐을 때의 대응과 배포 환경에서 따로 등록하는 절차를 정리했습니다.
 ogImage: /og/what-is-env-variables.png
 summary3:
   - '환경 변수는 프로그램이 실행될 때 읽는 설정값이고 API 키나 비밀번호를 코드에서 떼어 내 따로 두는 방법입니다.'

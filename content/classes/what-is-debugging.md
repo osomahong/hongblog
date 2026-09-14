@@ -6,6 +6,8 @@ definition: 코드에서 발생한 오류(버그)의 원인을 찾아내고 수�
 category: AI_TECH
 tags:
   - 바이브코딩
+  - AI
+  - JavaScript
 publishedAt: '2026-02-18T15:19:56.401Z'
 courseSlug: vibe-coding-basics
 orderInCourse: 10

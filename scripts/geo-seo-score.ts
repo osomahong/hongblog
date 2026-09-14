@@ -499,6 +499,21 @@ if (ruleFilter) {
   process.exit(0);
 }
 
+// --worklist: 보강 대상 파일과 필요한 조치를 파일 단위로 묶어 낸다
+if (args.includes("--worklist")) {
+  // 출처(R-GEO-01)와 통계(R-GEO-02)는 없는 근거를 지어내면 안 되므로 일괄 작업 목록에서 뺀다.
+  const TARGET = ["R-SEO-01", "R-SEO-02", "R-SEO-06", "R-SEO-07", "R-AEO-02", "R-GEO-06"];
+  const lines: string[] = [];
+  for (const s of all) {
+    const need = s.rules.filter((r) => TARGET.includes(r.id) && r.verdict === "FAIL");
+    if (!need.length) continue;
+    lines.push(`${s.file}\t${s.total}\t${need.map((r) => `${r.id}(${r.detail})`).join("; ")}`);
+  }
+  console.log(lines.join("\n"));
+  console.log(`\n대상 ${lines.length}편`);
+  process.exit(0);
+}
+
 // 요약 리포트
 console.log(`대상 ${all.length}편 (insights ${all.filter((s) => s.type === "insights").length}, classes ${all.filter((s) => s.type === "classes").length}, courses ${all.filter((s) => s.type === "courses").length})\n`);
 

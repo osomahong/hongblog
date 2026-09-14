@@ -7,6 +7,8 @@ definition: >-
 category: AI_TECH
 tags:
   - 바이브코딩
+  - API
+  - AI
 publishedAt: '2026-02-18T15:19:54.068Z'
 courseSlug: vibe-coding-basics
 orderInCourse: 5
@@ -35,7 +37,9 @@ quiz:
       확인할 수 있습니다. 반드시 백엔드(서버)에서 API 키를 사용하고, 프론트엔드는 백엔드 API로 간접 요청해야 합니다.
     correctIndex: 0
 metaTitle: '프론트엔드와 백엔드 차이: 화면과 서버의 역할 구분'
-metaDescription: '프론트엔드는 사용자가 보는 화면을, 백엔드는 데이터 처리와 로직을 담당하는 영역입니다. 두 영역의 역할 차이와 협업 구조를 초보자 눈높이로 정리했습니다.'
+metaDescription: >-
+  프런트엔드는 브라우저에서 사용자가 보는 화면이고 백엔드는 서버에서 데이터와 인증을 처리하는 쪽입니다. 두 영역이 나뉘는 기준, API 키를 백엔드에 두어야 하는 이유, 파일 위치로
+  둘을 구분하는 방법과 확인 항목을 정리했습니다.
 ogImage: /og/what-is-frontend-backend.png
 summary3:
   - '프런트엔드는 브라우저에서 사용자가 보고 누르는 화면이고 백엔드는 서버에서 데이터를 처리하고 인증을 맡는 쪽입니다.'

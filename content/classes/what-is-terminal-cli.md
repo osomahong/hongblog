@@ -7,6 +7,8 @@ definition: >-
 category: AI_TECH
 tags:
   - 바이브코딩
+  - AI
+  - 자동화
 publishedAt: '2026-02-18T15:19:51.988Z'
 courseSlug: vibe-coding-basics
 orderInCourse: 1
@@ -33,7 +35,9 @@ quiz:
       Cursor에서는 하단의 내장 터미널(Ctrl + `)을 열어 바로 입력할 수 있습니다.
     correctIndex: 0
 metaTitle: '터미널과 CLI 뜻: 명령어 입력이 필요한 이유'
-metaDescription: '터미널은 컴퓨터에 텍스트 명령어를 입력해 작업을 수행하는 도구입니다. AI 코딩 도구가 알려 주는 명령어를 이해하고 실행하는 기본기를 정리했습니다.'
+metaDescription: >-
+  터미널은 마우스 대신 텍스트 명령으로 컴퓨터에 일을 시키는 도구이고 이 방식을 CLI라고 부릅니다. 터미널을 여는 곳과 자주 쓰는 기본 명령어, 명령이 듣지 않을 때 현재 위치부터 확인하는 이유,
+  sudo를 조심하는 이유를 정리했습니다.
 ogImage: /og/what-is-terminal-cli.png
 summary3:
   - '터미널은 마우스 대신 텍스트 명령으로 컴퓨터에 일을 시키는 도구이고 AI 코딩 도구가 명령을 실행하라고 할 때 쓰는 화면입니다.'

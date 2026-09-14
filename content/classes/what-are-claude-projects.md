@@ -34,8 +34,8 @@ quiz:
       Skills](/class/claude-in-practice/what-are-claude-skills)와 함께 쓰면 더 강해집니다.
 metaTitle: '클로드 프로젝트(Projects) 사용법: 자료 넣고 작업 공간 만들기'
 metaDescription: >-
-  클로드 프로젝트는 자료와 지침을 미리 넣어두고 반복 사용하는 작업 공간입니다. 일반 대화와의 차이, 지식 파일 활용법, 직무별 활용 예시까지
-  정리했습니다.
+  클로드 프로젝트는 같은 자료와 지시, 대화 기록을 묶어 두는 claude.ai의 작업 공간입니다. 프로젝트가 잘 맞는 작업의 특징과 만드는
+  순서, 직무별 활용 예시, 스킬과 함께 쓰는 방법, 자주 하는 실수를 정리했습니다.
 ogImage: /og/what-are-claude-projects.png
 summary3:
   - 'Claude Projects는 자료와 지시, 대화 기록을 하나로 묶어 두는 claude.ai의 작업 공간입니다.'

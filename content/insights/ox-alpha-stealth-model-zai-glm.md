@@ -54,7 +54,7 @@ Ox Alpha는 중국 Z.AI가 만든 곳을 감춘 채 2026년 8월 21일 OpenRoute
 
 새 모델이 나오면 대개 만든 회사의 이름과 벤치마크 점수가 함께 발표됩니다. 어느 회사가 만들었는지 알면 대략의 기대치가 정해지고, 점수는 그 기대치를 숫자로 확인하는 재료가 됩니다. 그런데 Ox Alpha에는 둘 다 없었고, 판단할 재료가 실제로 돌려 본 결과밖에 없었습니다. 상표를 가린 채 접시만 내놓은 시식 코너처럼 이름을 지우고 맛부터 보여준 방식입니다.
 
-무료로 열려 있는 사이 사용량 1위에 올랐고, 정체가 공개되면서 가중치까지 MIT 라이선스로 풀렸습니다. 순서가 이렇게 뒤집히면 실무자는 판단이 어려워지는데, 무료 기간에 붙어 있던 조건과 정식 출시 뒤의 가격이 서로 다르기 때문입니다. OpenRouter 모델 페이지와 Z.ai 공식 모델 카드, 평가 기관 Artificial Analysis의 측정을 근거로 2026년 8월 27일 기준으로 정리하겠습니다.
+무료로 열려 있는 사이 사용량 1위에 올랐고, 정체가 공개되면서 [가중치까지 MIT 라이선스](/insights/k2-horizon-fully-open-source-vs-open-weight)로 풀렸습니다. 순서가 이렇게 뒤집히면 실무자는 판단이 어려워지는데, 무료 기간에 붙어 있던 조건과 정식 출시 뒤의 가격이 서로 다르기 때문입니다. OpenRouter 모델 페이지와 Z.ai 공식 모델 카드, 평가 기관 Artificial Analysis의 측정을 근거로 2026년 8월 27일 기준으로 정리하겠습니다.
 
 ![OpenRouter의 Ox Alpha 모델 페이지 화면. 상단 경고 배너에 이 스텔스 모델은 ZAI가 개발하고 운영했으며 ZAI GLM-5.3-Flash로 밝혀졌다는 안내와 프롬프트를 제공자가 보관하되 학습에는 쓰지 않는다는 설명이 있고, 아래에 모달리티, 컨텍스트 1M, 공개일 2026년 8월 21일이 표시되어 있다](/images/insights/ox-alpha-stealth-model-zai-glm/openrouter-ox-alpha-page.png)
 
@@ -85,7 +85,7 @@ OpenRouter가 모델 페이지에 적어 둔 설명은 이렇습니다. Ox Alpha
 
 ![OpenRouter LLM 리더보드 화면. 1위 Ox Alpha가 stealth 제공으로 23.2조 토큰에 new 표시, 2위 DeepSeek V4 Flash 0731이 11.6조 토큰, 3위 샤오미 MiMo-V2.5가 9.92조 토큰으로 이어진다](/images/insights/ox-alpha-stealth-model-zai-glm/openrouter-leaderboard-ox-alpha.png)
 
-위 화면은 2026년 8월 25일까지의 사용량을 반영한 OpenRouter 리더보드입니다. Ox Alpha가 23.2조 토큰으로 1위에 있고, 2위인 딥시크 V4 Flash의 11.6조 토큰과 견주면 두 배 규모입니다. 등록 닷새 만의 기록이라 무료라는 조건이 크게 작용했다고 볼 수 있습니다.
+위 화면은 2026년 8월 25일까지의 사용량을 반영한 OpenRouter 리더보드입니다. Ox Alpha가 23.2조 토큰으로 1위에 있고, 2위인 [딥시크](/insights/deepseek-v4-pro-release-1m-context) V4 Flash의 11.6조 토큰과 견주면 두 배 규모입니다. 등록 닷새 만의 기록이라 무료라는 조건이 크게 작용했다고 볼 수 있습니다.
 
 ## 커뮤니티가 정체를 좁혀 간 방법
 

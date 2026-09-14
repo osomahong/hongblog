@@ -7,6 +7,7 @@ definition: >-
 category: CLAUDE_EDUCATION
 tags:
   - AI
+  - 자동화
 publishedAt: '2026-04-27T09:11:00.000Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: claude-fundamentals
@@ -25,7 +26,7 @@ difficulty: BEGINNER
 metaTitle: '앤트로픽(Anthropic) 뜻: 클로드를 만든 회사 정리'
 metaDescription: >-
   앤트로픽은 AI 챗봇 클로드(Claude)를 만든 미국 AI 회사입니다. 회사 이름의 뜻, 창업 배경, OpenAI와의 관계, 주요 제품과
-  안전 중심 철학까지 처 음 듣는 분도 이해할 수 있게 정리했습니다.
+  안전 중심 철학까지 처음 듣는 분도 이해할 수 있게 정리했습니다.
 quiz:
   - question: >-
       앤트로픽이 일반 영리법인이 아닌 Public Benefit Corporation(공익 회사) 형태로 설립된 이유와 가장 가까운 것은

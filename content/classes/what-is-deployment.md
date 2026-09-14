@@ -5,6 +5,8 @@ definition: 내 컴퓨터에서만 돌아가던 프로젝트를 인터넷에 올
 category: AI_TECH
 tags:
   - 바이브코딩
+  - AI
+  - 자동화
 publishedAt: '2026-02-18T15:19:55.962Z'
 courseSlug: vibe-coding-basics
 orderInCourse: 9
@@ -34,7 +36,9 @@ quiz:
       필요한 외부 서비스에 접근할 수 없어 오류가 발생합니다.
     correctIndex: 1
 metaTitle: '배포(Deployment) 뜻: 내 프로젝트를 인터넷에 올리는 과정'
-metaDescription: '배포는 내 컴퓨터에서만 돌아가던 프로젝트를 인터넷에 올려 누구나 접속하게 만드는 과정입니다. 배포 절차와 호스팅 서비스의 역할을 초보자 눈높이로 정리했습니다.'
+metaDescription: >-
+  배포는 내 컴퓨터에서만 돌아가던 프로젝트를 인터넷에 올려 누구나 접속하게 만드는 과정입니다. Vercel을 비롯한 배포 플랫폼 비교, GitHub 연결부터 자동 배포까지의 순서,
+  도메인 연결과 환경 변수에서 자주 나는 실수를 정리했습니다.
 ogImage: /og/what-is-deployment.png
 summary3:
   - '배포는 내 컴퓨터에서만 돌아가던 프로젝트를 인터넷에 연결된 서버에 올려 누구나 접속하게 만드는 과정입니다.'

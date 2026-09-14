@@ -34,8 +34,8 @@ seriesSlug: digitalmarketing
 seriesOrder: 6
 metaTitle: '비개발자를 위한 네이버 검색광고 API 가이드: 필드 매핑, 통합 리포트'
 metaDescription: >-
-  네이버 검색광고 API 키 발급, HMAC 인증, 통계 필드 매핑, 구글, 메타와 통합 시 주의점까지. 비개발자 마케터를 위한 네이버 API
-  실전 가이드입니다.
+  네이버 검색광고 API는 심사 없이 약관 동의만으로 키가 발급되고, 요청마다 HMAC-SHA256 서명을 직접 만들어 보내는 방식입니다.
+  마스터 데이터와 통계 데이터를 조인하는 구조, 퍼센트 단위인 ror 필드, 구글과 메타 데이터를 합칠 때 확인할 점을 정리했습니다.
 ogDescription: '네이버 검색광고 API 인증부터 필드 매핑, 구글, 메타 통합 주의점까지. 네이버 API만의 특이점을 중심으로 정리했습니다.'
 ogImage: /og/naver-search-ad-api-data-for-non-developers.png
 summary3:

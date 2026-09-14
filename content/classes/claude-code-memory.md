@@ -35,8 +35,8 @@ quiz:
       로그, 백업, 번역 사전과는 관련이 없습니다.
 metaTitle: '클로드 코드 메모리 사용법: CLAUDE.md와 자동 메모리 정리'
 metaDescription: >-
-  클로드 코드 메모리는 Claude Code가 세션을 넘어 기억하도록 만든 영속 컨텍스트 시스템입니다. CLAUDE.md와 자동 메모리의
-  차이, 관리 방법을 정리했습니다.
+  클로드 코드 메모리는 세션이 바뀌어도 지시가 남아 있게 만드는 영속 컨텍스트 구조입니다. 직접 적는 CLAUDE.md와 자동으로 쌓이는
+  auto memory의 차이, 사용자 단위와 프로젝트 단위의 구분, 작성할 때 주의할 점을 정리했습니다.
 ogImage: /og/claude-code-memory.png
 summary3:
   - >-

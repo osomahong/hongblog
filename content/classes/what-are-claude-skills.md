@@ -36,8 +36,8 @@ quiz:
       재사용 됩니다. 가격, 언어, 접속 기능과는 직접 관련이 없습니다.
 metaTitle: 클로드 스킬(Claude Skills) 뜻과 만드는 방법
 metaDescription: >-
-  클로드 스킬(Claude Skills)은 자주 시키는 작업을 폴더 단위로 묶어 Claude가 자동으로 불러 쓰게 만든 재사용 단위입니다.
-  구조와 만드는 순서를 정리했습니다.
+  클로드 스킬(Claude Skills)은 자주 시키는 작업을 폴더 단위로 묶어 Claude가 자동으로 불러 쓰게 만든 재사용 단위입니다. SKILL.md를 중심으로 한 폴더 구조,
+  스킬이 호출되는 흐름, 쓸 수 있는 환경과 만들 때 주의할 점을 정리했습니다.
 ogImage: /og/what-are-claude-skills.png
 summary3:
   - >-

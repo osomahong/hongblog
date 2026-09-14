@@ -7,6 +7,7 @@ definition: >-
 category: CLAUDE_EDUCATION
 tags:
   - AI
+  - 마케팅 실무
 publishedAt: '2026-04-27T09:13:00.000Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: claude-fundamentals
@@ -36,8 +37,8 @@ quiz:
       검증 효과가 없습니다.
 metaTitle: '할루시네이션 뜻: AI 환각이 생기는 이유와 확인법'
 metaDescription: >-
-  AI 할루시네이션(환각)은 인공지능이 사실이 아닌 내용을 그럴듯하게 지어내는 현상입니다. 발생 원인, 실제 사례, 업무에서 피해를 줄이는
-  확인 방법까지 정리했습니다.
+  환각은 AI가 사실이 아닌 내용을 사실처럼 자신 있게 만들어 내는 현상입니다. 다음 단어를 확률로 고르는 구조에서 생기는 이유와 자주 나타나는 질문 유형, 알아채는 네 가지 신호와 업무에서 환각을
+  줄이는 방법을 정리했습니다.
 ogImage: /og/what-is-hallucination.png
 summary3:
   - 환각은 AI가 사실이 아닌 내용을 사실처럼 자신 있게 만들어 내는 현상이고 거짓말이 아니라 다음 단어를 확률로 고르는 구조에서 나옵니다.

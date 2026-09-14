@@ -7,6 +7,7 @@ definition: >-
 category: AI_TECH
 tags:
   - 바이브코딩
+  - AI
 publishedAt: '2026-02-18T15:19:53.039Z'
 updatedAt: '2026-07-23T00:00:00.000Z'
 courseSlug: vibe-coding-basics
@@ -36,8 +37,8 @@ quiz:
     correctIndex: 0
 metaTitle: 'Git 뜻: 버전 관리가 필요한 이유와 기본 개념'
 metaDescription: >-
-  Git은 파일의 변경 이력을 기록하고 관리하는 버전 관리 시스템입니다. AI가 코드를 대량 수정해도 되돌릴 수 있는 원리와 기본 개념을
-  정리했습니다.
+  Git은 파일이 언제 어떻게 바뀌었는지 기록해 두고 원하는 시점으로 되돌릴 수 있게 하는 버전 관리 시스템입니다. 커밋과 푸시, 브랜치가 하는 일과 GitHub과의 차이, AI가 파일을 한꺼번에
+  고친 뒤 되돌리는 방법을 정리했습니다.
 ogImage: /og/what-is-git.png
 summary3:
   - Git은 파일이 언제 어떻게 바뀌었는지 기록해 두고 원하는 시점으로 되돌릴 수 있게 하는 버전 관리 시스템입니다.

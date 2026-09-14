@@ -7,6 +7,8 @@ definition: >-
 category: CLAUDE_EDUCATION
 tags:
   - AI
+  - 자동화
+  - 바이브코딩
 publishedAt: '2026-04-27T09:19:00.000Z'
 updatedAt: '2026-07-26T00:00:00.000Z'
 courseSlug: claude-fundamentals

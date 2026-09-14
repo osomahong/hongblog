@@ -38,8 +38,8 @@ quiz:
     correctIndex: 0
 metaTitle: '선택자(Selector) 뜻: CSS와 GTM에서 요소를 찾는 방법'
 metaDescription: >-
-  선택자는 웹페이지에서 특정 요소를 찾아내는 주소 역할을 하는 표기법입니다. CSS 스타일 적용과 GTM 태깅에서 선택자를 쓰는 방법을
-  정리했습니다.
+  선택자는 웹페이지에서 특정 요소를 찾아내는 주소 역할을 하는 표기법입니다. ID와 Class, Tag, 속성 선택자의 차이와 CSS 스타일 적용, GTM의 Click ID와 Click Classes
+  설정에 쓰는 방법을 정리했습니다.
 ogImage: /og/what-is-selector.png
 summary3:
   - Selector는 웹페이지에서 특정 요소를 집어내기 위한 주소이고 CSS로 모양을 바꾸거나 GTM으로 클릭을 잡을 때 씁니다.

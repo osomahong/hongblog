@@ -41,7 +41,7 @@ summary3:
 
 ## tmux 단축키를 먼저 찾는 이유
 
-tmux는 터미널 세션을 유지하면서 하나의 창 안에서 여러 작업 화면을 관리하는 터미널 멀티플렉서입니다. 터미널을 닫거나 SSH 연결이 끊겨도 세션을 남겨 둘 수 있어, 오래 걸리는 테스트와 Claude Code, Codex 작업을 실행할 때 유용합니다.
+tmux는 터미널 세션을 유지하면서 하나의 창 안에서 여러 작업 화면을 관리하는 [터미널 멀티플렉서](/insights/tmux-cmux-basics)입니다. 터미널을 닫거나 SSH 연결이 끊겨도 세션을 남겨 둘 수 있어, 오래 걸리는 테스트와 [Claude Code](/class/claude-code-for-everyone/what-is-claude-code), [Codex](/insights/codex-cli-mac-easy-setup-guide) 작업을 실행할 때 유용합니다.
 
 검색 결과에서 가장 자주 찾는 tmux 단축키는 `Ctrl+b d`입니다. `Ctrl+b`를 먼저 누르고 손을 뗀 뒤 `d`를 누르면 현재 세션에서 빠져나옵니다. 실행 중인 프로세스는 계속 남아 있으므로, 나중에 같은 세션으로 다시 들어가면 작업 화면이 그대로 보입니다.
 

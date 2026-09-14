@@ -36,7 +36,7 @@ summary3:
   - '에이전트 하나로 되는 일에는 그래프가 필요 없고 동시에 처리할 작업이 쌓였을 때 팬아웃 패턴 하나부터 시작합니다.'
 ---
 
-2026년 7월 18일, OpenClaw를 만든 Peter Steinberger가 짧은 질문 하나를 올렸습니다. "우리 아직 루프 얘기 중인가요, 아니면 벌써 그래프로 넘어갔나요?" 이 글은 170만 회가량 조회되며 다음 화두를 예고했습니다. 프롬프트, 컨텍스트, 하네스, 루프로 이어져 온 AI 업계의 용어 흐름에서 다음 차례로 언급되기 시작한 것이 그래프입니다. 이 글은 트렌드 계보는 여기까지만 짚고, 그래프 엔지니어링 자체를 기초부터 정리합니다.
+2026년 7월 18일, OpenClaw를 만든 Peter Steinberger가 짧은 질문 하나를 올렸습니다. "우리 아직 루프 얘기 중인가요, 아니면 벌써 그래프로 넘어갔나요?" 이 글은 170만 회가량 조회되며 다음 화두를 예고했습니다. 프롬프트, 컨텍스트, [하네스](/insights/harness-engineering-beginner-guide), [루프](/insights/loop-engineering-guide)로 이어져 온 AI 업계의 용어 흐름에서 다음 차례로 언급되기 시작한 것이 그래프입니다. 이 글은 트렌드 계보는 여기까지만 짚고, 그래프 엔지니어링 자체를 기초부터 정리합니다.
 
 ![Peter Steinberger의 2026년 7월 18일 X 게시물 스크린샷. "Are we still talking loops or did we shift to graphs yet?"라는 문장과 조회수 170만 회 표시](/images/insights/ai-graph-engineering/steipete-graphs-tweet.png)
 

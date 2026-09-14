@@ -35,8 +35,8 @@ quiz:
       우회하거나 사용자에게 숨기는 용도로는 절대 쓰지 않습니다.
 metaTitle: '클로드 코드 훅(Hooks) 사용법: 자동 실행 명령 설정'
 metaDescription: >-
-  훅(Hooks)은 Claude Code가 특정 행동을 하기 전후에 자동으로 실행되는 명령입니다. 파일 수정 직후 포맷팅 같은 자동화 설정
-  방법과 활용 예시를 정리했습니다.
+  훅(Hooks)은 Claude Code가 특정 행동을 하기 전이나 후에 자동으로 실행되는 명령입니다. 훅이 발동하는 네 가지 시점, settings.json에 등록하는 위치, 자동
+  포맷과 lint 같은 쓰임, 슬래시 명령이나 서브에이전트와 다른 점을 정리했습니다.
 ogImage: /og/what-are-hooks.png
 summary3:
   - '훅은 Claude Code가 파일 수정이나 명령 실행, 세션 시작과 종료 같은 시점에 자동으로 실행되는 명령입니다.'

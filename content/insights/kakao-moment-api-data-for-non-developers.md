@@ -32,8 +32,8 @@ seriesSlug: digitalmarketing
 seriesOrder: 5
 metaTitle: '비개발자를 위한 카카오모먼트 API 가이드: 권한 신청부터 코드 예시까지'
 metaDescription: >-
-  카카오모먼트 API 권한 신청 조건, 비즈 앱 전환, 비즈니스 토큰 발급, 보고서 API 필드 매핑까지. 비개발자 마케터를 위한 카카오모먼트
-  API 실전 가이드입니다.
+  카카오모먼트 API는 공식대행사이거나 사전에 협의된 광고주만 권한을 받을 수 있는 광고 데이터 조회 API입니다. 권한 신청 여섯 단계와
+  비즈 앱 전환 심사, 비즈니스 토큰 인증, 보고서 API의 metricsGroup 구조를 정리했습니다.
 ogDescription: '카카오모먼트 API 권한 신청부터 보고서 조회, 필드 매핑, 코드 예시까지. 진입 장벽이 높은 카카오 API의 핵심을 정리했습니다.'
 ogImage: /og/kakao-moment-api-data-for-non-developers.png
 summary3:

@@ -28,7 +28,9 @@ quiz:
   explanation: 쿠팡, 인스타그램 같은 사이트는 JavaScript로 콘텐츠를 동적으로 불러옵니다. 단순히 HTML을 받아오면 빈 페이지만 보이므로, 헤드리스 브라우저(Puppeteer, Playwright 등)를 사용해 JavaScript를 실행시켜야 실제 데이터를 수집할 수 있습니다.
   correctIndex: 0
 metaTitle: '웹 크롤링 뜻: 비개발자를 위한 쉬운 설명'
-metaDescription: 웹 크롤링의 개념, 작동 방식(정적/동적/API), 법적 주의사항, 비개발자 활용법까지. 크롤링을 처음 접하는 분을 위해 쉽게 설명합니다.
+metaDescription: >-
+  웹 크롤링은 프로그램이 웹사이트를 자동으로 돌아다니며 정보를 모으는 기술입니다. 크롤링과 스크래핑의 차이와 정적, 브라우저, API 세 가지 방식, 방식별 차단 가능성과 수집 전에 확인해야 할 세
+  가지를 정리했습니다.
 ogDescription: 크롤링의 개념부터 정적, 동적, API 방식의 차이, 법적 주의사항, 비개발자 활용법까지 쉽게 설명합니다.
 ogImage: /og/what-is-web-crawling.png
 summary3:

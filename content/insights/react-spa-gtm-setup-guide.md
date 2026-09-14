@@ -27,8 +27,8 @@ quiz:
     correctIndex: 1
 metaTitle: 'React SPA에서 GTM 설치하기: 페이지뷰 추적 설정 정리'
 metaDescription: >-
-  리액트 SPA에서 GTM을 올바르게 설치하는 방법을 코드 예시와 함께 설명합니다. dataLayer 설정부터 페이지뷰 추적, Next.js
-  환경까지 실전 가이드를 확인하세요.
+  리액트 SPA는 페이지를 옮겨도 DOM만 바뀌어서 GTM의 기본 페이지뷰 트리거가 최초 로딩 때 한 번만 작동합니다. dataLayer로 화면
+  전환을 직접 알리는 설치 방법 세 가지와 GTM 트리거 설정, Next.js 적용, 설치 후 확인 항목을 정리했습니다.
 ogTitle: 리액트 SPA에서 GTM 설치 후 데이터가 잡히지 않는 이유
 ogDescription: SPA 환경에서 GTM이 제대로 작동하지 않는 이유와 해결법. dataLayer 설정으로 정확한 추적을 시작하세요.
 ogImage: /og/react-spa-gtm-setup-guide.png

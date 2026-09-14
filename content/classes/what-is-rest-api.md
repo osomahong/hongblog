@@ -34,7 +34,9 @@ quiz:
       DELETE는 삭제할 때 사용합니다.
     correctIndex: 1
 metaTitle: 'REST API 뜻: 데이터를 주고받는 기본 규칙'
-metaDescription: 'REST API는 서로 다른 프로그램이 인터넷으로 데이터를 주고받도록 정해진 규칙으로 소통하는 방식입니다. 기본 규칙과 API와의 관계를 정리했습니다.'
+metaDescription: >-
+  REST API는 서로 다른 프로그램이 인터넷으로 데이터를 주고받도록 정해 둔 요청과 응답의 규칙입니다. GET과 POST 같은 HTTP 메서드와 JSON 형식, API 키가 필요한 이유, 상태
+  코드를 읽는 방법을 정리했습니다.
 ogImage: /og/what-is-rest-api.png
 summary3:
   - 'REST API는 서로 다른 프로그램이 인터넷으로 데이터를 주고받도록 정해 둔 요청과 응답의 규칙입니다.'
