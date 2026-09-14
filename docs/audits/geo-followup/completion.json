@@ -1,0 +1,66 @@
+{
+  "changed_tracked_files": [
+    "CLAUDE.md",
+    "content/insights/geo-agency-selection-criteria.md",
+    "content/insights/seo-aeo-geo-2-months-real-data.md",
+    "package.json",
+    "public/llms.txt",
+    "scripts/check-search-readiness.ts",
+    "src/app/about/page.tsx",
+    "src/app/cases/[slug]/page.tsx",
+    "src/app/class/[courseSlug]/[classSlug]/page.tsx",
+    "src/app/ga4-edu/[slug]/page.tsx",
+    "src/app/ga4-edu/data.ts",
+    "src/app/insights/[slug]/page.tsx",
+    "src/components/ga4-edu/TutorialSections.tsx",
+    "src/lib/structured-data.ts"
+  ],
+  "main_source_matches_verified_worktree": true,
+  "committed": true,
+  "deployed": true,
+  "build": "passed",
+  "search_routes": 342,
+  "html_checked": 395,
+  "live_subscriber_account_verified": false,
+  "review": "review.html",
+  "commit": "e64f351",
+  "deployment_id": "dpl_8aEUmsG54SNgZog5hbXkYbJVSch6",
+  "production_verified_at": "2026-09-09T18:10:06.843796+00:00",
+  "production_checks": [
+    {
+      "url": "https://www.digitalmarketer.co.kr/about",
+      "http_status": 200,
+      "expected_copy_present": true
+    },
+    {
+      "url": "https://www.digitalmarketer.co.kr/ga4-edu/traffic-acquisition-channels",
+      "http_status": 200,
+      "expected_copy_present": true
+    },
+    {
+      "url": "https://www.digitalmarketer.co.kr/ga4-edu/users-sessions-events",
+      "http_status": 200,
+      "expected_copy_present": true
+    },
+    {
+      "url": "https://www.digitalmarketer.co.kr/insights/geo-agency-selection-criteria",
+      "http_status": 200,
+      "expected_copy_present": true
+    },
+    {
+      "url": "https://www.digitalmarketer.co.kr/insights/seo-aeo-geo-2-months-real-data",
+      "http_status": 200,
+      "expected_copy_present": true
+    },
+    {
+      "url": "https://www.digitalmarketer.co.kr/cases/purchase-measurement-design",
+      "http_status": 200,
+      "expected_copy_present": true
+    },
+    {
+      "url": "https://www.digitalmarketer.co.kr/llms.txt",
+      "http_status": 200,
+      "expected_copy_present": true
+    }
+  ]
+}

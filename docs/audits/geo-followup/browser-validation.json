@@ -1,0 +1,53 @@
+[
+  {
+    "route": "/about",
+    "h1": "AI, 데이터 분석 컨설턴트 홍승협(준이아빠) 소개",
+    "width": 1440,
+    "scrollWidth": 1440
+  },
+  {
+    "route": "/insights/geo-agency-selection-criteria",
+    "h1": "GEO 잘하는 업체 찾는 법과 검증 기준 5가지",
+    "width": 1440,
+    "scrollWidth": 1440
+  },
+  {
+    "route": "/insights/seo-aeo-geo-2-months-real-data",
+    "h1": "SEO 성과도 빠르게 나올 수 있습니다: 신생 블로그 2달 1,316 클릭 실측",
+    "width": 1440,
+    "scrollWidth": 1440
+  },
+  {
+    "route": "/cases/purchase-measurement-design",
+    "h1": "GA4 구매 이벤트 설계 사례: 서비스 신청과 실제 결제 구분",
+    "width": 1440,
+    "scrollWidth": 1440
+  },
+  {
+    "route": "/ga4-edu/traffic-acquisition-channels",
+    "h1": "트래픽 획득 보고서로 유입 채널 분석하기",
+    "width": 1440,
+    "scrollWidth": 1440
+  },
+  {
+    "route": "/ga4-edu/users-sessions-events",
+    "h1": "사용자, 세션, 이벤트 수를 구분해서 읽기",
+    "width": 1440,
+    "scrollWidth": 1440
+  },
+  {
+    "route": "/about mobile",
+    "width": 390,
+    "scrollWidth": 390
+  },
+  {
+    "gateFixture": "anonymous",
+    "publicDefinition": true,
+    "realAccountVerified": false
+  },
+  {
+    "gateFixture": "subscriber",
+    "publicDefinition": true,
+    "realAccountVerified": false
+  }
+]
