@@ -238,7 +238,8 @@
     "aside-browser-windows-install-guide": {
       "date": "2026-09-14",
       "platforms": [
-        "threads"
+        "threads",
+        "linkedin"
       ]
     }
   }
