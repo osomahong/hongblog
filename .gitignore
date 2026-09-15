@@ -62,3 +62,4 @@ public/images/insights/gemini-3-6-flash/
 # 임시 산출물
 .superpowers/
 __pycache__/
+.claude/.review-stamps/
