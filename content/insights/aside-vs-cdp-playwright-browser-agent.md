@@ -1,6 +1,6 @@
 ---
 slug: aside-vs-cdp-playwright-browser-agent
-title: 'Aside와 Playwright MCP, 클로드 인 크롬 차이 정리'
+title: 'Aside(어사이드)와 Playwright MCP, 클로드 인 크롬 차이 정리'
 excerpt: >-
   Aside는 크로미움 엔진을 직접 고쳐 에이전트를 브라우저 안에 넣은 AI 브라우저입니다. CDP로 바깥에서 붙는 Playwright
   MCP와 chrome-devtools-mcp, 크롬 확장인 Claude in Chrome과 무엇이 다른지 자동화 탐지와 화면 읽는 시점,
@@ -21,7 +21,7 @@ highlights:
     브라우저 자동화 도구를 고를 때는 기능 목록보다 붙는 위치를 먼저 확인합니다. 엔진 수정과 외부 하네스, 확장 프로그램은 접근 범위가
     다릅니다.
   - '디버깅과 테스트 자동화는 하네스로 충분하므로, 로그인된 계정으로 실제 업무를 맡길 때만 엔진을 고친 브라우저를 검토합니다.'
-metaTitle: 'Aside와 Playwright MCP, 클로드 인 크롬 차이 정리'
+metaTitle: 'Aside(어사이드)와 Playwright MCP, 클로드 인 크롬 차이 정리'
 metaDescription: >-
   Aside는 크로미움 엔진을 직접 고쳐 에이전트를 브라우저 안에 넣은 AI 브라우저입니다. CDP로 바깥에서 붙는 Playwright
   MCP와 크롬 확장인 Claude in Chrome과 무엇이 다른지 자동화 탐지, 화면 읽는 시점, 자격 증명 처리로 나눠 정리했습니다.
