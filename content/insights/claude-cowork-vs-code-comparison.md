@@ -1,6 +1,6 @@
 ---
 slug: claude-cowork-vs-code-comparison
-title: 클로드 코워크 vs 클로드 코드 차이점 정리
+title: 클로드 코워크(Claude Cowork) vs 클로드 코드 차이점 정리
 excerpt: >-
   Claude Desktop의 Cowork 탭과 터미널의 Claude Code는 같은 AI 모델을 쓰지만 대상 사용자와 작업 범위가 완전히
   다릅니다. 비개발자를 위한 Cowork과 개발자를 위한 Code의 차이를 비유와 비교표로 정리했습니다.
@@ -23,7 +23,7 @@ quiz:
       매주 반복하는 브라우저 기반 작업은 코워크의 핵심 활용 영역입니다. 코드는 개발 작업에, 챗은 일회성 질문에 더 적합합니다. 다만
       데이터 양이 매우 크거나 완전 자동화가 필요하다면 코드로 스크립트를 만드는 것도 좋은 선택입니다.
     correctIndex: 0
-metaTitle: '클로드 코워크 vs 클로드 코드 차이점: 선택 기준'
+metaTitle: '클로드 코워크(Claude Cowork) vs 클로드 코드 차이점: 선택 기준'
 metaDescription: >-
   Claude Cowork과 Claude Code는 같은 AI인데 왜 따로 있을까요? 대상 사용자, 인터페이스, 작업 범위 차이를 비유와
   비교표로 정리하고, 나에게 맞는 도구 선택법을 안내합니다.

@@ -1,6 +1,6 @@
 ---
 slug: claude-code-codex-connection
-title: '클로드 코드 코덱스 연결: 규칙 파일과 작업 분담 정리'
+title: '클로드 코드(Claude Code) 코덱스 연결: 규칙 파일과 작업 분담 정리'
 excerpt: >-
   클로드 코드 코덱스 연결은 두 도구가 한 저장소에서 같은 규칙 파일을 읽고 서로의 수정을 덮어쓰지 않게 맞추는 작업입니다.
   CLAUDE.md와 AGENTS.md를 한 벌로 묶는 방법, 어느 쪽에 어떤 일을 맡길지 정하는 기준, 작업 폴더를 나누는 순서를 공식
@@ -14,7 +14,7 @@ publishedAt: '2026-09-15T06:00:00.000Z'
 highlights:
   - 저장소에 AGENTS.md를 두고 CLAUDE.md 첫 줄에 @AGENTS.md만 적어 규칙 원본을 하나로 둡니다.
   - 두 도구를 같은 폴더에서 동시에 돌리지 말고 순서대로 돌리거나 git worktree로 폴더를 나눕니다.
-metaTitle: '클로드 코드 코덱스 연결: 규칙 파일과 작업 분담 정리'
+metaTitle: '클로드 코드(Claude Code) 코덱스 연결: 규칙 파일과 작업 분담 정리'
 metaDescription: >-
   클로드 코드 코덱스 연결은 두 도구가 한 저장소에서 같은 규칙 파일을 읽고 서로의 수정을 덮어쓰지 않게 맞추는 작업입니다.
   CLAUDE.md와 AGENTS.md를 한 벌로 묶는 방법과 작업 분담 기준을 공식 문서로 확인해 정리했습니다.

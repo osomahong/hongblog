@@ -1,6 +1,6 @@
 ---
 slug: gemini-3-7-flash-gpt-5-6-ultrafast
-title: '제미나이 3.7 플래시와 GPT-5.6 울트라패스트, AI 속도 발표 4건 정리'
+title: '제미나이(Gemini) 3.7 플래시와 GPT-5.6 울트라패스트, AI 속도 발표 4건 정리'
 excerpt: >-
   AI 추론 속도는 모델이 답을 만들어 내는 속도입니다. 2026년 8월 둘째 주에 나온 네 건의 발표를 놓고 각각이 속도를 어디서 얻는지,
   발표된 배수가 실제 작업 시간에서 어떻게 줄어드는지를 공식 자료 기준으로 정리했습니다.
@@ -15,7 +15,7 @@ highlights:
   - >-
     Ultrafast와 Fast mode는 접근 신청이 필요한 프리뷰입니다. 지금 바로 시험할 수 있는 것은 Gemini 3.7 Flash와
     Muse Glimmer입니다.
-metaTitle: '제미나이 3.7 Flash, GPT-5.6 Ultrafast 속도와 가격 정리'
+metaTitle: '제미나이(Gemini) 3.7 Flash, GPT-5.6 Ultrafast 속도와 가격 정리'
 metaDescription: >-
   AI 추론 속도는 모델이 답을 만들어 내는 속도입니다. OpenAI Ultrafast의 14배와 실제 작업 5.6배의 차이, Gemini
   3.7 Flash의 도입가 조건을 공식 자료로 정리했습니다.
@@ -37,8 +37,10 @@ quiz:
       때문입니다. 속도 배수를 일정 계산에 넣을 때는 어느 구간을 잰 값인지부터 확인해야 합니다.
 summary3:
   - '2026년 8월 둘째 주 나흘 사이에 추론 속도를 올렸다는 발표가 OpenAI와 구글, 앤트로픽, 메타에서 네 건 나왔습니다.'
-  - 'OpenAI Ultrafast는 표준 대비 최대 14배에 초당 750토큰을 내세우지만 이 수치는 토큰을 만들어 내는 구간만 잰 값입니다.'
-  - 'Ultrafast와 Fast mode는 접근 신청이 필요한 프리뷰라 지금 바로 시험할 수 있는 것은 Gemini 3.7 Flash와 Muse Glimmer입니다.'
+  - OpenAI Ultrafast는 표준 대비 최대 14배에 초당 750토큰을 내세우지만 이 수치는 토큰을 만들어 내는 구간만 잰 값입니다.
+  - >-
+    Ultrafast와 Fast mode는 접근 신청이 필요한 프리뷰라 지금 바로 시험할 수 있는 것은 Gemini 3.7 Flash와
+    Muse Glimmer입니다.
 ---
 
 AI 추론 속도는 모델이 답을 만들어 내는 속도입니다. 2026년 8월 둘째 주에 이 속도를 끌어올렸다는 발표가 나흘 사이에 네 건 나왔습니다. OpenAI의 Ultrafast, 구글의 Gemini 3.7 Flash, 앤트로픽의 Fast mode, 메타의 Muse Glimmer입니다.

@@ -1,6 +1,6 @@
 ---
 slug: vscode-claude-code-terminal-guide
-title: VS Code에서 클로드 코드 실행하기 (윈도우 화면 그대로 따라하기)
+title: VS Code에서 클로드 코드(Claude Code) 실행하기 (윈도우 화면 그대로 따라하기)
 excerpt: >-
   클로드 코드를 설치했는데 검은 PowerShell 창이 부담스러운 분을 위해, VS Code를 설치하고 그 안 터미널에서 클로드 코드를
   실행하는 순서를 화면 그림과 함께 정리했습니다. 승인 질문을 건너뛰는 bypass 모드까지 담았습니다.
@@ -25,16 +25,16 @@ quiz:
     explanation: >-
       PATH에 추가는 터미널 어디에서나 명령을 인식하게 만드는 설정입니다. 이 항목이 빠지면 터미널에서 claude를 입력했을 때 용어가
       인식되지 않는다는 오류가 납니다. 나머지 세 항목은 편의 기능이라 빠져도 실행에는 지장이 없습니다.
-metaTitle: 'VS Code에서 클로드 코드 실행하는 방법: 윈도우 설치부터 bypass까지'
+metaTitle: 'VS Code에서 클로드 코드(Claude Code) 실행: 윈도우 설치부터 bypass까지'
 metaDescription: >-
   VS Code 설치 후 터미널을 열어 클로드 코드를 실행하는 순서를 화면 그림으로 정리했습니다. 폴더 여는 순서, PATH 체크,
   claude 명령 입력, bypass 모드 사용 기준까지 담았습니다.
 ogImage: /og/vscode-claude-code-terminal-guide.png
 ogDescription: 검은 PowerShell 대신 VS Code에서 클로드 코드를 실행하는 순서를 화면 그림과 함께 정리했습니다.
 summary3:
-  - 'VS Code는 클로드 코드를 실행하는 터미널과 그 결과 파일을 한 화면에서 보게 해 주는 작업 창입니다.'
-  - '설치할 때 PATH에 추가 항목을 체크하지 않으면 터미널에서 claude 명령이 인식되지 않습니다.'
-  - '작업할 폴더를 먼저 열고 그다음 터미널을 여는 순서를 지켜야 클로드 코드가 원하는 위치에서 일합니다.'
+  - VS Code는 클로드 코드를 실행하는 터미널과 그 결과 파일을 한 화면에서 보게 해 주는 작업 창입니다.
+  - 설치할 때 PATH에 추가 항목을 체크하지 않으면 터미널에서 claude 명령이 인식되지 않습니다.
+  - 작업할 폴더를 먼저 열고 그다음 터미널을 여는 순서를 지켜야 클로드 코드가 원하는 위치에서 일합니다.
 ---
 
 ## PowerShell 대신 VS Code를 쓰는 이유

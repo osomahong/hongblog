@@ -1,6 +1,6 @@
 ---
 slug: cli-meaning-claude-code-guide
-title: CLI 뜻과 클로드 코드를 CLI 없이 쓰는 방법
+title: CLI 뜻과 클로드 코드(Claude Code)를 CLI 없이 쓰는 방법
 excerpt: >-
   CLI는 영화 속 해커 화면처럼 보이지만, 실제로는 텍스트로 대화하는 창일 뿐입니다. 클로드 코드를 CLI에서 쓰면 웹 채팅보다 입출력
   제한이 없고, AI가 직접 파일을 수정하는 강력한 환경이 됩니다.
@@ -20,7 +20,7 @@ quiz:
     correctIndex: 1
 thumbnailUrl: >-
   https://avqz4vnz10fk0ilw.public.blob.vercel-storage.com/uploads/1773112884167-2bkyq1.png
-metaTitle: CLI 뜻과 클로드 코드를 CLI 없이 쓰는 방법
+metaTitle: CLI 뜻과 클로드 코드(Claude Code)를 CLI 없이 쓰는 방법
 metaDescription: >-
   CLI는 영화 속 해커 화면처럼 보이지만, 실제로는 텍스트로 대화하는 창일 뿐입니다. 클로드 코드를 CLI에서 쓰면 웹 채팅보다 입출력
   제한이 없고, AI가 직접 파일을 수정하는 강력한 환경이 됩니다.

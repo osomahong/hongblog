@@ -1,6 +1,6 @@
 ---
 slug: claude-code-mac-easy-setup-guide
-title: 쉽게 설치하는 클로드코드 세팅가이드(맥)
+title: 쉽게 설치하는 클로드코드(Claude Code) 세팅가이드(맥)
 excerpt: >-
   맥(Mac)에 클로드 코드(Claude Code)를 처음 설치하는 분을 위해, 터미널 실행부터 Homebrew, Git, Node.js 사전
   준비, 본체 설치, 한국어 설정, 첫 작업 시작까지 9단계로 단순하게 정리했습니다.
@@ -16,11 +16,11 @@ highlights:
     설치 스크립트 한 줄(curl -fsSL https://claude.ai/install.sh | bash)로 클로드 코드 본체를 받고
     브라우저 로그인 한 번으로 계정을 연결합니다.
   - >-
-    클로드 코드 본체에는 Node.js가 필요하지 않습니다. 자체 실행 파일로 동작하며, Node.js는 나중에
-    다른 도구를 붙일 때를 위해 함께 깔아 둡니다.
+    클로드 코드 본체에는 Node.js가 필요하지 않습니다. 자체 실행 파일로 동작하며, Node.js는 나중에 다른 도구를 붙일 때를 위해
+    함께 깔아 둡니다.
   - >-
-    무료 플랜으로는 클로드 코드를 쓸 수 없습니다. Pro, Max, Team, Enterprise, Console 계정 가운데
-    하나가 필요합니다.
+    무료 플랜으로는 클로드 코드를 쓸 수 없습니다. Pro, Max, Team, Enterprise, Console 계정 가운데 하나가
+    필요합니다.
 quiz:
   - question: 맥에서 클로드 코드를 설치하기 전에 가장 먼저 깔아야 하는 것은 무엇일까요?
     options:
@@ -32,18 +32,22 @@ quiz:
     explanation: >-
       맥에는 윈도우의 winget 같은 기본 패키지 관리자가 없습니다. Homebrew를 먼저 설치해야 그 뒤 brew 명령으로 Git과
       Node.js를 깔 수 있고, 그 위에 클로드 코드를 올릴 수 있습니다.
-metaTitle: 쉽게 설치하는 클로드코드 세팅가이드(맥) 9단계
+metaTitle: 쉽게 설치하는 클로드코드(Claude Code) 세팅가이드(맥) 9단계
 metaDescription: >-
-  맥에 클로드 코드를 설치하고 한국어로 첫 작업을 시작하는 9단계 가이드입니다. 2026년 8월 기준으로 확인했으며 터미널,
-  Homebrew, Git, 본체 설치, /config 한국어, 공식 스킬 마켓플레이스 등록까지 포함합니다.
+  맥에 클로드 코드를 설치하고 한국어로 첫 작업을 시작하는 9단계 가이드입니다. 2026년 8월 기준으로 확인했으며 터미널, Homebrew,
+  Git, 본체 설치, /config 한국어, 공식 스킬 마켓플레이스 등록까지 포함합니다.
 ogImage: /og/claude-code-mac-easy-setup-guide.png
 ogDescription: >-
-  터미널 실행부터 Homebrew, Git, Node.js 사전 준비, 클로드 코드 본체 설치, 한국어 설정, 첫 작업 시작까지 9단계로 정리한
-  맥 입문 가이드입니다.
+  터미널 실행부터 Homebrew, Git, Node.js 사전 준비, 클로드 코드 본체 설치, 한국어 설정, 첫 작업 시작까지 9단계로
+  정리한 맥 입문 가이드입니다.
 summary3:
-  - '맥에서 클로드 코드는 공식 설치 스크립트 한 줄로 받고 브라우저 로그인 한 번으로 계정을 연결합니다.'
-  - '클로드 코드 본체는 자체 실행 파일로 돌아가 Node.js가 필요 없고 npm 방식으로 설치할 때만 Node.js 22 이상이 필요합니다.'
-  - '사양은 macOS 13.0 이상에 메모리 4GB 이상이고 무료 플랜으로는 쓸 수 없어 Pro와 Max, Team, Enterprise, Console 가운데 하나가 있어야 합니다.'
+  - 맥에서 클로드 코드는 공식 설치 스크립트 한 줄로 받고 브라우저 로그인 한 번으로 계정을 연결합니다.
+  - >-
+    클로드 코드 본체는 자체 실행 파일로 돌아가 Node.js가 필요 없고 npm 방식으로 설치할 때만 Node.js 22 이상이
+    필요합니다.
+  - >-
+    사양은 macOS 13.0 이상에 메모리 4GB 이상이고 무료 플랜으로는 쓸 수 없어 Pro와 Max, Team, Enterprise,
+    Console 가운데 하나가 있어야 합니다.
 ---
 
 ## AI시대에는 터미널과 친해져야 합니다

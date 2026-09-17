@@ -1,6 +1,6 @@
 ---
 slug: claude-code-pro-plan-fact-check
-title: 클로드 코드 Pro 플랜 사용 가능 여부 팩트체크
+title: 클로드 코드(Claude Code) Pro 플랜 사용 가능 여부 팩트체크
 excerpt: >-
   2026년 4월 22일 Anthropic이 Claude Code를 Pro 플랜에서 잠시 제외했다가 가격 페이지를 복구한 사건을 둘러싸고
   혼란이 큽니다. 공식 해명과 커뮤니티가 추측하는 배경, 기존 Pro 구독자의 실제 영향, 그리고 입문자가 어떻게 시작해야 할지를 팩트체크
@@ -26,7 +26,7 @@ quiz:
       시작하되, 본격 사용이 늘어나는 시점에 Max 5x나 API로 넘어가는 단계적 접근이 가장 안전합니다. 다만 플랜 구조가 바뀔 수
       있다는 점을 전제로 한 선택입니다.
     correctIndex: 0
-metaTitle: 클로드 코드 Pro 플랜 사용 가능 여부 팩트체크
+metaTitle: 클로드 코드(Claude Code) Pro 플랜 사용 가능 여부 팩트체크
 metaDescription: >-
   Anthropic이 2026년 4월 22일 Claude Code를 Pro 플랜에서 잠시 제외했다가 복구한 사건의 확정 사실, 공식 입장,
   커뮤니티 추측, Pro 구독 유지 여부, 입문자 시작 경로를 정리했습니다.

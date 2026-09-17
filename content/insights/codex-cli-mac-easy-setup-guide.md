@@ -2,9 +2,9 @@
 slug: codex-cli-mac-easy-setup-guide
 title: 쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(맥)
 excerpt: >-
-  맥(Mac)에 OpenAI 코덱스 CLI(Codex CLI)를 처음 설치하는 분을 위해, 터미널 실행부터 Homebrew, Node.js 사전
-  준비, 본체 설치, ChatGPT 로그인, GPT-5.6 모델 선택까지 단순하게 정리했습니다. 클로드 코드(Claude Code)와의 차이도
-  마지막에 짧게 짚었습니다.
+  맥(Mac)에 OpenAI 코덱스 CLI(Codex CLI)를 처음 설치하는 분을 위해, 터미널 실행부터 Homebrew, Node.js
+  사전 준비, 본체 설치, ChatGPT 로그인, GPT-5.6 모델 선택까지 단순하게 정리했습니다. 클로드 코드(Claude Code)와의
+  차이도 마지막에 짧게 짚었습니다.
 category: AI_TECH
 tags:
   - AI
@@ -31,7 +31,7 @@ quiz:
     explanation: >-
       맥에는 윈도우의 winget 같은 기본 패키지 관리자가 없습니다. Homebrew를 먼저 설치해야 그 뒤 brew 명령으로
       Node.js를 깔 수 있고, 그 위에 npm으로 코덱스 CLI 본체를 올릴 수 있습니다.
-metaTitle: 쉽게 설치하는 코덱스 CLI 세팅가이드(맥)
+metaTitle: 쉽게 설치하는 코덱스(Codex) CLI 세팅가이드(맥)
 metaDescription: >-
   맥에 OpenAI 코덱스 CLI를 설치하고 GPT-5.6 모델로 첫 작업을 시작하는 가이드입니다. 2026년 8월 기준으로 확인했으며
   터미널, Homebrew, Node.js, npm 설치, ChatGPT 로그인, 추론 깊이 설정까지 정리했습니다.
@@ -40,9 +40,11 @@ ogDescription: >-
   터미널 실행부터 Homebrew, Node.js 사전 준비, 코덱스 CLI 본체 설치, ChatGPT 로그인, GPT-5.6 모델과 추론
   깊이 설정까지. 맥 입문자를 위한 코덱스 CLI 설치 가이드입니다.
 summary3:
-  - '맥에서 코덱스 CLI는 Node.js를 깐 뒤 npm 전역 설치 한 줄로 본체를 받고 ChatGPT 계정으로 로그인하면 준비가 끝납니다.'
-  - '기본 모델은 gpt-5.6-sol이고 기본 추론 깊이는 none이라 필요하면 model 명령이나 설정 파일에서 Terra와 Luna로 바꿉니다.'
-  - '별도 언어 설정이 없어 안내는 영문으로 나오지만 한국어로 물으면 한국어로 답합니다.'
+  - 맥에서 코덱스 CLI는 Node.js를 깐 뒤 npm 전역 설치 한 줄로 본체를 받고 ChatGPT 계정으로 로그인하면 준비가 끝납니다.
+  - >-
+    기본 모델은 gpt-5.6-sol이고 기본 추론 깊이는 none이라 필요하면 model 명령이나 설정 파일에서 Terra와 Luna로
+    바꿉니다.
+  - 별도 언어 설정이 없어 안내는 영문으로 나오지만 한국어로 물으면 한국어로 답합니다.
 ---
 
 ## 터미널 기반 AI 코딩 도구가 표준이 되는 시기
